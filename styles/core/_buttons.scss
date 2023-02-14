@@ -1,0 +1,90 @@
+$btn-gradient-1: #009de0;
+$btn-gradient-2: #0081c7;
+
+a.btn,
+.btn {
+	font-weight: $font-weight__semibold;
+	font-size: 14px;
+	letter-spacing: -0.1px;
+	line-height: 18px;
+	border-radius: 4px;
+	width: auto;
+	padding: 15px 20px;
+	border: none;
+
+	&:hover {
+		text-decoration: none;
+	}
+
+	&--primary {
+		background-image: linear-gradient(180deg, #009de0 0%, #0081c7 100%);
+		color: white;
+
+		&:hover {
+			background-image: linear-gradient(
+				180deg,
+				$color-secondary 0%,
+				$color-secondary 100%
+			);
+
+			border: none;
+			background-color: $color-secondary;
+		}
+	}
+
+	&--big {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	&--medium {
+		padding: 11px 16px;
+		font-size: 14px;
+	}
+
+	&--secondary {
+		background-color: $color-secondary;
+		font-family: $font-primary;
+		color: white;
+
+		&:hover {
+			background-color: $color-primary;
+		}
+	}
+
+	&--search {
+		border: none;
+		position: absolute;
+		z-index: 2;
+		left: 12px;
+		top: 12px;
+		width: 24px;
+		background-color: transparent;
+		height: 24px;
+	}
+
+	&--ghost {
+		background-color: transparent;
+		border: 1px solid $color-grey-border;
+		font-weight: normal;
+
+		&:hover {
+			border-color: $color-secondary;
+		}
+	}
+
+	&--disabled {
+		@extend .btn-primary;
+		opacity: 50%;
+	}
+}
+
+a.btn-primary {
+	color: white;
+}
+
+button {
+	&:hover {
+		cursor: pointer;
+	}
+}

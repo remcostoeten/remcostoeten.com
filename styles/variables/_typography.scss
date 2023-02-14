@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+$heading-h1-size: 25px;
+$heading-h2-size: 23px;
+$heading-h3-size: 18px;
+$heading-h4-size: 15px;
+$heading-h5-size: 15px;
+$heading-h6-size: 15px;
+
+$text-base--regular: 14px;
+$text-large: 18px;
+$text-medium: 16px;
+$text-small: 12px;
+$list-size-textsize: 13.6px;
+
+$font-primary: 'Open Sans';
+$font-primary-bold: 'Open Sans';
+
+$font-weight__medium: 400;
+$font-weight__semibold: 600;
+$font-weight__bold: 700;
+$font-weight__normal: $font-weight__medium;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: $font-primary-bold, sans-serif;
+}
+
+.h1,
+h1 {
+	font-size: $heading-h1-size;
+	letter-spacing: -0.89px;
+	line-height: 32px;
+}
+
+.h2,
+h2 {
+	font-size: $heading-h2-size;
+	letter-spacing: -0.86px;
+}
+
+.h3,
+h3 {
+	font-size: $heading-h3-size;
+	letter-spacing: -0.62px;
+}
+
+.h4,
+h4 {
+	font-size: $heading-h4-size;
+	letter-spacing: -0.4px;
+}
+
+.h5,
+h5 {
+	font-size: $heading-h5-size;
+	letter-spacing: -0.62px;
+}
+
+.h6,
+h6 {
+	font-size: $heading-h6-size;
+	letter-spacing: -0.62px;
+}
