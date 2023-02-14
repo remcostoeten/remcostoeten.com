@@ -1,0 +1,94 @@
+// @import '../variables/colors';
+
+// $themes: (
+// 	default: (
+// 		logo: url('../images/brand/logo_vertical.svg'),
+// 		bg: $color-primary,
+// 		card-bg: $background-light,
+// 		text: $light-dark,
+// 		text-secondary: $light-dark,
+// 		link: $color-primary,
+// 		hover: darken($color-primary, 5%),
+// 		border: $border-color,
+// 	),
+// 	dark: (
+// 		logo: url('/public/logo.svg'),
+// 		bg: linear-gradient($background-dark, $background-dark-accent),
+// 		card-bg: $background-dark-accent,
+// 		text: $text-dark,
+// 		text-secondary: $text-dark,
+// 		link: $color-primary,
+// 		hover: $color-primary,
+// 		border: $color-primary,
+// 	),
+// );
+
+// @mixin themed() {
+// 	@each $theme, $map in $themes {
+// 		.theme--#{$theme} & {
+// 			$theme-map: () !global;
+// 			@each $key, $submap in $map {
+// 				$value: map-get(map-get($themes, $theme), '#{$key}');
+// 				$theme-map: map-merge(
+// 					$theme-map,
+// 					(
+// 						$key: $value,
+// 					)
+// 				) !global;
+// 			}
+// 			@content;
+// 			$theme-map: null !global;
+// 		}
+// 	}
+// }
+
+// @function t($key) {
+// 	@return map-get($theme-map, $key);
+// }
+
+// .base {
+// 	@include themed() {
+// 		color: t($text);
+// 		background: t($bg);
+// 	}
+
+// 	position: fixed;
+// 	width: 100%;
+// 	overflow-y: auto;
+// 	height: 100vh;
+// 	padding-bottom: $spacing * 2;
+
+// 	@media (max-width: $screen-md-max) {
+// 		overflow-x: hidden;
+// 		padding: 0 $spacer--default;
+// 	}
+// }
+
+// .logo {
+// 	position: absolute;
+// 	top: $spacing;
+// 	left: calc(50% - #{$logo-width / 2});
+// 	height: $logo-height - 45px;
+// 	width: $logo-width;
+// 	background-size: $logo-width $logo-height;
+// 	background-repeat: no-repeat;
+// 	background-position: top center;
+
+// 	@include themed() {
+// 		background-image: t($logo);
+// 	}
+// }
+
+// .badge {
+// 	font-weight: normal;
+// 	margin-right: 3px;
+// 	font-size: $font-size--tags;
+// 	padding: 4px 10px;
+// 	text-transform: lowercase;
+
+// 	@include themed() {
+// 		background: t($card-bg);
+// 		color: t($text);
+// 		border: 1px solid t($border);
+// 	}
+// }

@@ -1,0 +1,19 @@
+:root {
+	--my-color-variable: #000000;
+	--color-bg: #000000;
+	--color-fg: #ffffff;
+}
+@media (prefers-color-scheme: light) {
+	:root {
+		--color-bg: #ffffff;
+		--color-fg: #000000;
+	}
+}
+body {
+	background-color: var(--color-bg);
+	color: var(--color-fg);
+}
+.element {
+	/* This is calculated as #000000! */
+	color: var(--my-color-variable);
+}

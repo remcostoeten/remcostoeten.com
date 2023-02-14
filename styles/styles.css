@@ -348,7 +348,7 @@ input {
   z-index: 1;
 }
 .checkbox-wrapper--regular input:checked + label::before {
-  content: url("../../icon-check-white-16.svg");
+  content: url("/public/icons/icon-check-white-16.svg");
   color: white;
   top: 2px;
   left: 2px;
@@ -382,7 +382,7 @@ input {
   left: -3px;
 }
 .checkbox-wrapper--rounded-green input:checked + label::before {
-  content: url("../../icon-check-white-12.svg");
+  content: url("/public/icons/icon-check-white-12.svg");
   color: #fff;
   top: 0;
   left: 1px;
@@ -592,4 +592,26 @@ input[type=text]:hover {
 }
 .list-links--icon {
   padding: 4px 0 4px 28px !important;
+}
+
+:root {
+  --my-color-variable: #000000;
+  --color-bg: #000000;
+  --color-fg: #ffffff;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-bg: #ffffff;
+    --color-fg: #000000;
+  }
+}
+body {
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+.element {
+  /* This is calculated as #000000! */
+  color: var(--my-color-variable);
 }/*# sourceMappingURL=styles.css.map */
