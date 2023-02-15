@@ -17,7 +17,7 @@ export default function Intro() {
 						<br />
 						developer aspiring
 						<br />
-						to make cool stuff
+						to make cool stuff.
 						<br />
 					</span>
 				</div>
@@ -33,7 +33,7 @@ export default function Intro() {
 						</div>
 						developer aspiring
 						<br />
-						to make cool stuff
+						to make cool stuff.
 						<br />
 					</span>
 				</div>
