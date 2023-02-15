@@ -21,7 +21,8 @@ $gradient-background-static: rgb(33, 38, 46);
 	-webkit-animation: gradient 3s ease infinite;
 	animation: gradient 3s ease infinite;
 }
+$body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
 body {
-	background-color: $theme-black;
+	background: $body-gradient;
 }

@@ -3,3 +3,5 @@ $card-gradient--dark: linear-gradient(
 	rgba(35, 37, 49, 0.5),
 	rgba(15, 15, 24, 0.5)
 );
+
+$body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 5%));

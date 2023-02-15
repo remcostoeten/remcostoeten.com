@@ -8,30 +8,17 @@ export default function Intro() {
 					<br />
 					<span>
 						<div className='intro__effect'>
+							<div className='special'>divjesschuiver</div>
 							<span className='intro__hero--heading-gradient'>
-								<div className='special'>divjesschuiver</div>
-								front-end developer
+								<div className='gradient'>front-end</div>
 							</span>
 						</div>
 						<br />
-						aspiring to make
+						developer aspiring
 						<br />
-						cool stuff.
+						to make cool stuff
+						<br />
 					</span>
-					<svg id='filters'>
-						<defs>
-							<filter id='threshold'>
-								<feColorMatrix
-									in='SourceGraphic'
-									type='matrix'
-									values='1 0 0 0 0
-									0 1 0 0 0
-									0 0 1 0 0
-									0 0 0 255 -140'
-								/>
-							</filter>
-						</defs>
-					</svg>
 				</div>
 			</article>
 		</>

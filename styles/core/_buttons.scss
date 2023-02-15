@@ -44,7 +44,7 @@ a.btn,
 
 	&--secondary {
 		background-color: $color-secondary;
-		font-family: $font-primary;
+		font-family: $font--primary;
 		color: white;
 
 		&:hover {
@@ -86,5 +86,42 @@ a.btn-primary {
 button {
 	&:hover {
 		cursor: pointer;
+	}
+}
+
+.btn__cta {
+	padding: 0 8rem;
+	font-family: $font--alternative;
+	font-size: 2rem;
+	color: $theme-gray;
+	border: none;
+
+	a {
+		position: relative;
+		cursor: pointer;
+
+		&:hover {
+			&:after {
+				width: 100%;
+				background: linear-gradient(
+					-45deg,
+					$theme-primary,
+					$theme-primary--accent,
+					$theme-primary,
+					$theme-primary--accent
+				);
+			}
+		}
+
+		&:after {
+			content: '';
+			transition: all 350ms ease-out;
+			width: 50%;
+			height: 1px;
+			background-color: $color-grey;
+			position: absolute;
+			bottom: -$spacing-xs;
+			left: 0;
+		}
 	}
 }

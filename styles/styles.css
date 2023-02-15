@@ -1,5 +1,7 @@
 @import url("https://fonts.cdnfonts.com/css/circular-std");
 @import url("https://fonts.cdnfonts.com/css/mark-pro");
+@import url("https://fonts.cdnfonts.com/css/d-din");
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;500&display=swap");
 * {
   font-family: "Circular Std", sans-serif;
 }
@@ -376,6 +378,32 @@ button:hover {
   cursor: pointer;
 }
 
+.btn__cta {
+  padding: 0 8rem;
+  font-family: "D-DIN", sans-serif;
+  font-size: 2rem;
+  color: #c4c4c4;
+  border: none;
+}
+.btn__cta a {
+  position: relative;
+  cursor: pointer;
+}
+.btn__cta a:hover:after {
+  width: 100%;
+  background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
+}
+.btn__cta a:after {
+  content: "";
+  transition: all 350ms ease-out;
+  width: 50%;
+  height: 1px;
+  background-color: #c7d2d9;
+  position: absolute;
+  bottom: -6.8571428571px;
+  left: 0;
+}
+
 html {
   height: 100%;
   font-size: 50%;
@@ -463,7 +491,7 @@ input[type=text]:hover {
 }
 
 body {
-  background-color: #10101a;
+  background: linear-gradient(180deg, #10101a, #23233a);
 }
 
 @keyframes gradient {
@@ -568,15 +596,62 @@ body {
     opacity: 0;
   }
 }
+@keyframes tracking-out-contract {
+  0% {
+    letter-spacing: 0;
+    opacity: 1;
+  }
+  50% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  100% {
+    letter-spacing: 0;
+    opacity: 1;
+  }
+}
+@keyframes animatinTwo {
+  0% {
+    background: red;
+  }
+  100% {
+    background: none;
+  }
+}
+@keyframes tracking-out-contract-reverse {
+  0% {
+    letter-spacing: -0.5em;
+  }
+  20% {
+    opacity: 0.25;
+    letter-spacing: -0.5em;
+  }
+  50% {
+    letter-spacing: -0.5em;
+    opacity: 1;
+  }
+  100% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+}
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .intro {
   font-family: "Mark Pro", sans-serif;
   color: white;
   font: 9rem "Mark Pro", sans-serif;
-}
-.intro svg {
-  font-weight: bold;
-  max-width: 400px;
-  height: 100%;
+  background: none;
 }
 .intro__heading {
   font-size: 6rem;
@@ -588,23 +663,145 @@ body {
   padding: 16rem 8rem;
   position: relative;
   z-index: 10;
+  overflow: hidden;
 }
-.intro__effect {
-  position: relative;
-  display: inline;
+.intro__effect span {
+  animation: fade-in 1s 250ms;
+  animation-fill-mode: both;
+  opacity: 0;
+  position: absolute;
+  animation-timing-function: cubic-bezier(1, -0.71, 1, 1);
+}
+@keyframes scale-out {
+  0% {
+    scale: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 .intro .special {
-  color: white;
   position: absolute;
   font-size: 40px;
-  animation: slide-out-top 1s 1s ease-in;
+  animation: scale-out 250ms 1s ease-out;
   z-index: 50;
+  width: 150px;
+  min-width: 150px;
   animation-fill-mode: forwards;
 }
-.intro__hero--heading-gradient {
+.intro__hero--heading-gradient,
+.intro .gradient {
   background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
   background-size: 400% 400%;
   animation: gradient 3s ease infinite;
   background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #282c34;
+  font-size: 2vmin;
+  font-family: JetBrains Mono, monospace;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #e4bb68;
+}
+
+.string {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  animation: move 4s infinite;
+}
+
+.greeting {
+  position: relative;
+  top: 8.6vmin;
+  animation: white-out 5s infinite;
+}
+
+.closure::after {
+  content: "";
+  position: absolute;
+  height: 25vmin;
+  width: 40vmin;
+  background: #282c34;
+  transform: translate(-45vmin, -24.5vmin);
+}
+
+.closure::before {
+  content: "";
+  position: absolute;
+  height: 25vmin;
+  width: 40vmin;
+  background: #282c34;
+  transform: translate(-40vmin, 5vmin);
+}
+
+.en {
+  color: #fa8231;
+}
+
+.es {
+  color: white;
+}
+
+.de {
+  color: #c678dd;
+}
+
+.it {
+  color: #a9b0bd;
+}
+
+@keyframes move {
+  25% {
+    transform: translatey(-5.8vmin);
+    opacity: 1;
+  }
+  50% {
+    transform: translatey(-11vmin);
+  }
+  75% {
+    transform: translatey(-16.5vmin);
+  }
+}
+@keyframes top-out {
+  0% {
+    transform: translatey(0);
+  }
+  100% {
+    transform: translatey(-1000px);
+  }
+}
+@keyframes bottom-in {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translatey(0);
+  }
 }/*# sourceMappingURL=styles.css.map */

@@ -111,3 +111,60 @@
 		opacity: 0;
 	}
 }
+
+@keyframes tracking-out-contract {
+	0% {
+		letter-spacing: 0;
+		opacity: 1;
+	}
+	50% {
+		letter-spacing: -0.5em;
+		opacity: 0;
+	}
+	100% {
+		letter-spacing: 0;
+		opacity: 1;
+	}
+}
+
+@keyframes animatinTwo {
+	0% {
+		background: red;
+	}
+
+	100% {
+		background: none;
+	}
+}
+@keyframes tracking-out-contract-reverse {
+	0% {
+		letter-spacing: -0.5em;
+	}
+	20% {
+		opacity: 0.25;
+		letter-spacing: -0.5em;
+	}
+
+	50% {
+		letter-spacing: -0.5em;
+		opacity: 1;
+	}
+
+	100% {
+		letter-spacing: -0.5em;
+		opacity: 0;
+	}
+}
+
+@keyframes tracking-in-expand {
+	0% {
+		letter-spacing: -0.5em;
+		opacity: 0;
+	}
+	40% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
