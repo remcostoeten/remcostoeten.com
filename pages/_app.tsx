@@ -1,16 +1,12 @@
-import '../styles/styles.css';
-import type { AppProps } from 'next/app';
-import MainLayout from '@/components/layout/MainLayout';
-import MyThemeContextProvider from '@/components/layout/MyThemeContext';
+import '@/styles/styles.css';
+import { ThemeProvider } from 'next-themes';
 
-function MyApp({ Component, pageProps }: AppProps) {
+import type { AppProps } from 'next/app';
+
+export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<MyThemeContextProvider>
-			<MainLayout>
-				<Component {...pageProps} />
-			</MainLayout>
-		</MyThemeContextProvider>
+		<ThemeProvider attribute='class'>
+			<Component {...pageProps} />
+		</ThemeProvider>
 	);
 }
-
-export default MyApp;
