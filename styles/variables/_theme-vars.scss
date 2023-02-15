@@ -4,3 +4,11 @@ $spacing-m: calc($spacing * 0.75);
 $spacing-xl: calc($spacing * 1.5);
 $input-height: 40px;
 $max-container: 1584px;
+
+$z-index-below-base: -10;
+$z-index-base: 1;
+$z-index-layer-two: 10;
+$z-index-layer-three: 20;
+$z-index-layer-four: 30;
+$z-index-layer-five: 40;
+$z-index-layer-six: 50;
