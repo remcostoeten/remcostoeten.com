@@ -26,3 +26,27 @@ $body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 body {
 	background: $body-gradient;
 }
+
+.desktop {
+	@include mobile {
+		display: none;
+	}
+}
+
+.mobile {
+	display: none;
+
+	@include mobile {
+		display: block;
+	}
+}
+
+.notice {
+	background-color: $color-white;
+	color: $gradient-background;
+	animation: $gradient-background;
+	border-bottom: 1px solid $border-color;
+	text-align: center;
+	padding: $spacing-xs;
+	font-size: 2rem;
+}

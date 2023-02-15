@@ -1,7 +1,6 @@
 @import url("https://fonts.cdnfonts.com/css/circular-std");
 @import url("https://fonts.cdnfonts.com/css/mark-pro");
 @import url("https://fonts.cdnfonts.com/css/d-din");
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;500&display=swap");
 * {
   font-family: "Circular Std", sans-serif;
 }
@@ -494,6 +493,31 @@ body {
   background: linear-gradient(180deg, #10101a, #23233a);
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .desktop {
+    display: none;
+  }
+}
+
+.mobile {
+  display: none;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .mobile {
+    display: block;
+  }
+}
+
+.notice {
+  background-color: #fff;
+  color: linear-gradient(180deg, rgb(33, 38, 46) 0%, rgb(133, 58, 118) 52%, rgb(189, 96, 138) 100%);
+  animation: linear-gradient(180deg, rgb(33, 38, 46) 0%, rgb(133, 58, 118) 52%, rgb(189, 96, 138) 100%);
+  border-bottom: 1px solid 1px solid hsla(0deg, 0%, 76.9%, 0.25);
+  text-align: center;
+  padding: 6.8571428571px;
+  font-size: 2rem;
+}
+
 @keyframes gradient {
   0% {
     background-position: 0 50%;
@@ -647,6 +671,34 @@ body {
     opacity: 1;
   }
 }
+@keyframes move {
+  25% {
+    transform: translatey(-5.8vmin);
+    opacity: 1;
+  }
+  50% {
+    transform: translatey(-11vmin);
+  }
+  75% {
+    transform: translatey(-16.5vmin);
+  }
+}
+@keyframes top-out {
+  0% {
+    transform: translatey(0);
+  }
+  100% {
+    transform: translatey(-1000px);
+  }
+}
+@keyframes bottom-in {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translatey(0);
+  }
+}
 .intro {
   font-family: "Mark Pro", sans-serif;
   color: white;
@@ -687,11 +739,13 @@ body {
 @keyframes fade-in {
   0% {
     opacity: 0;
+    scale: 0;
   }
   50% {
     opacity: 0;
   }
   100% {
+    scale: 1;
     opacity: 1;
   }
 }
@@ -713,95 +767,13 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  background: #282c34;
-  font-size: 2vmin;
-  font-family: JetBrains Mono, monospace;
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #e4bb68;
-}
-
-.string {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  animation: move 4s infinite;
-}
-
-.greeting {
-  position: relative;
-  top: 8.6vmin;
-  animation: white-out 5s infinite;
-}
-
-.closure::after {
-  content: "";
-  position: absolute;
-  height: 25vmin;
-  width: 40vmin;
-  background: #282c34;
-  transform: translate(-45vmin, -24.5vmin);
-}
-
-.closure::before {
-  content: "";
-  position: absolute;
-  height: 25vmin;
-  width: 40vmin;
-  background: #282c34;
-  transform: translate(-40vmin, 5vmin);
-}
-
-.en {
-  color: #fa8231;
-}
-
-.es {
-  color: white;
-}
-
-.de {
-  color: #c678dd;
-}
-
-.it {
-  color: #a9b0bd;
-}
-
-@keyframes move {
-  25% {
-    transform: translatey(-5.8vmin);
-    opacity: 1;
+@media (min-width: 0px) and (max-width: 767px) {
+  .intro__effect span {
+    top: 181px;
+    left: 110px;
   }
-  50% {
-    transform: translatey(-11vmin);
-  }
-  75% {
-    transform: translatey(-16.5vmin);
-  }
-}
-@keyframes top-out {
-  0% {
-    transform: translatey(0);
-  }
-  100% {
-    transform: translatey(-1000px);
-  }
-}
-@keyframes bottom-in {
-  0% {
-    transform: translateY(100px);
-  }
-  100% {
-    transform: translatey(0);
+  .intro__effect div {
+    top: 179px;
+    left: 107px;
   }
 }/*# sourceMappingURL=styles.css.map */

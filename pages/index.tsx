@@ -2,11 +2,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import Intro from '@/components/layout/Intro';
-import { motion } from 'framer-motion';
+import UnderConstruction from '@/components/layout/underConstruction';
 
 export default function Home() {
 	return (
 		<>
+			<UnderConstruction />
 			<Head>
 				<title>Create Next App</title>
 				<meta
