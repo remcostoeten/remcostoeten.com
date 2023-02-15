@@ -1,0 +1,47 @@
+@keyframes gradient {
+	0% {
+		background-position: 0 50%;
+	}
+
+	50% {
+		background-position: 100% 50%;
+	}
+
+	to {
+		background-position: 0 50%;
+	}
+}
+
+@-webkit-keyframes gradientAnimation {
+	0% {
+		background-position: 2% 0%;
+	}
+	50% {
+		background-position: 99% 100%;
+	}
+	100% {
+		background-position: 2% 0%;
+	}
+}
+@-moz-keyframes gradientAnimation {
+	0% {
+		background-position: 2% 0%;
+	}
+	50% {
+		background-position: 99% 100%;
+	}
+	100% {
+		background-position: 2% 0%;
+	}
+}
+@keyframes gradientAnimation {
+	0% {
+		background-position: 2% 0%;
+	}
+	50% {
+		background-position: 99% 100%;
+	}
+	100% {
+		background-position: 2% 0%;
+	}
+}

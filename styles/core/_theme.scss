@@ -1,0 +1,27 @@
+$gradient-background: linear-gradient(
+	180deg,
+	rgba(33, 38, 46, 1) 0%,
+	rgba(133, 58, 118, 1) 52%,
+	rgba(189, 96, 138, 1) 100%
+);
+$gradient-background-static: rgb(33, 38, 46);
+
+.header__hero--heading-gradient {
+	background: linear-gradient(
+		-45deg,
+		var($color-primary),
+		var($color-secondary),
+		var($color-primary),
+		var($color-secondary)
+	);
+	background-clip: text;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-size: 400% 400%;
+	-webkit-animation: gradient 3s ease infinite;
+	animation: gradient 3s ease infinite;
+}
+
+body {
+	background-color: $theme-black;
+}
