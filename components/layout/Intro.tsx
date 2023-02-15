@@ -5,7 +5,7 @@ export default function Intro() {
 		<>
 			<article className='container intro'>
 				<div className='intro__heading desktop'>
-					remcostoeten a,
+					remcostoeten, a
 					<br />
 					<span>
 						<div className='intro__effect'>
@@ -22,7 +22,7 @@ export default function Intro() {
 					</span>
 				</div>
 				<div className='intro__heading mobile'>
-					remcostoeten a,
+					remcostoeten, a
 					<br />
 					<span>
 						<div className='intro__effect'>
