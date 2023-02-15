@@ -89,23 +89,3 @@
 		padding: 4px;
 	}
 }
-
-.notice {
-	background-color: $color-white;
-	color: $gradient-background;
-	animation: $gradient-background;
-	border-bottom: 1px solid $border-color;
-	text-align: center;
-	padding: $spacing-xs;
-	font-size: 1.5rem;
-}
-
-@include mobile {
-	.notice {
-		padding-right: 60px;
-	}
-
-	.HamburgerMenu_hamburger__u7S_v {
-		padding-right: 20px !important;
-	}
-}

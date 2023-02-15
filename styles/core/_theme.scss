@@ -40,13 +40,3 @@ body {
 		display: block;
 	}
 }
-
-.notice {
-	background-color: $color-white;
-	color: $gradient-background;
-	animation: $gradient-background;
-	border-bottom: 1px solid $border-color;
-	text-align: center;
-	padding: $spacing-xs;
-	font-size: 1.5rem;
-}

@@ -3,9 +3,11 @@ import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import Intro from '@/components/layout/Intro';
 import UnderConstruction from '@/components/layout/UnderConstruction';
+import HamburgerMenu from '../components/HamburgerMenu/HamburgerMenu';
 export default function Home() {
 	return (
 		<>
+			<HamburgerMenu />
 			<UnderConstruction />
 			<Head>
 				<title>Create Next App</title>

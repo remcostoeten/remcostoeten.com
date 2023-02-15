@@ -508,16 +508,6 @@ body {
   }
 }
 
-.notice {
-  background-color: #fff;
-  color: linear-gradient(180deg, rgb(33, 38, 46) 0%, rgb(133, 58, 118) 52%, rgb(189, 96, 138) 100%);
-  animation: linear-gradient(180deg, rgb(33, 38, 46) 0%, rgb(133, 58, 118) 52%, rgb(189, 96, 138) 100%);
-  border-bottom: 1px solid 1px solid hsla(0deg, 0%, 76.9%, 0.25);
-  text-align: center;
-  padding: 6.8571428571px;
-  font-size: 2rem;
-}
-
 @keyframes gradient {
   0% {
     background-position: 0 50%;
@@ -697,6 +687,103 @@ body {
   }
   100% {
     transform: translatey(0);
+  }
+}
+.hamburger,
+.navigation {
+  transition: transform 0.3s 0.1s ease-in-out;
+}
+
+.hamburger {
+  padding: 10px;
+  display: inline-block;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+  margin: 0;
+  float: right;
+}
+.hamburgeractive {
+  transform: translateX(-250px);
+}
+.hamburger__box {
+  width: 40px;
+  height: 24px;
+  display: inline-block;
+  position: relative;
+}
+.hamburger__inner {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: background-color 0.1s 0.2s ease-in-out;
+}
+.hamburger__inner::before, .hamburger__inner::after {
+  width: 100%;
+  height: 3px;
+  background-color: black;
+  position: absolute;
+  left: 0;
+  content: "";
+  transition: transform 0.1s 0.2s ease-in-out;
+}
+.hamburger__inner::before {
+  top: -10px;
+}
+.hamburger__inner::after {
+  top: 10px;
+}
+.hamburgeractive .hamburger__inner {
+  background-color: transparent;
+}
+.hamburgeractive .hamburger__inner::before {
+  transform: translateY(10px) rotate(45deg);
+}
+.hamburgeractive .hamburger__inner::after {
+  transform: translateY(-10px) rotate(-45deg);
+}
+
+.navigation {
+  height: 100vh;
+  width: 250px;
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translateX(250px);
+}
+.navigationactive {
+  transform: translateX(0);
+}
+.navigation__list {
+  list-style: none;
+  margin-top: 50px;
+}
+.navigation__item {
+  margin: 20px;
+  padding: 4px;
+}
+
+.notice {
+  background-color: #fff;
+  color: linear-gradient(180deg, rgb(33, 38, 46) 0%, rgb(133, 58, 118) 52%, rgb(189, 96, 138) 100%);
+  animation: linear-gradient(180deg, rgb(33, 38, 46) 0%, rgb(133, 58, 118) 52%, rgb(189, 96, 138) 100%);
+  border-bottom: 1px solid 1px solid hsla(0deg, 0%, 76.9%, 0.25);
+  text-align: center;
+  padding: 6.8571428571px;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .notice {
+    padding-right: 60px;
+  }
+  .HamburgerMenu_hamburger__u7S_v {
+    padding-right: 20px !important;
   }
 }
 .intro {
