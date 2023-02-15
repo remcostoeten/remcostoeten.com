@@ -11,7 +11,8 @@ export default function UnderConstruction() {
 					rel='noreferrer'>
 					here
 				</a>
-				.
+				. And mail through
+				<a href='mailto:remcostoeten@hotmail'>here</a>.
 			</div>
 		</>
 	);
