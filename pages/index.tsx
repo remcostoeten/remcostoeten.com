@@ -2,8 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { Inter } from '@next/font/google';
 import Intro from '@/components/layout/Intro';
-import UnderConstruction from '@/components/layout/underConstruction';
-
+import UnderConstruction from '@/components/layout/UnderConstruction';
 export default function Home() {
 	return (
 		<>
