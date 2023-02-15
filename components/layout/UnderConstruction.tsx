@@ -12,7 +12,8 @@ export default function UnderConstruction() {
 					here
 				</a>
 				. And mail through
-				<a href='mailto:remcostoeten@hotmail'>here</a>.
+				<a href='mailto:remcostoeten@hotmail'>here</a> or{' '}
+				<a href='https://wa.me/0636590707'>text/whatsapp</a>.
 			</div>
 		</>
 	);
