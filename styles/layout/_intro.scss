@@ -1,0 +1,28 @@
+.intro {
+	font-family: $font-secondary;
+	color: white;
+	font: 9rem $font-secondary;
+
+	&__heading {
+		font-size: 8rem;
+		line-height: 100%;
+		letter-spacing: -0.2rem;
+		color: $color-white;
+		position: relative;
+		font-weight: $font-weight__bold;
+	}
+
+	&__hero--heading-gradient {
+		background: linear-gradient(
+			-45deg,
+			$theme-primary,
+			$theme-primary--accent,
+			$theme-primary,
+			$theme-primary--accent
+		);
+		background-size: 400% 400%;
+		animation: gradient 3s ease infinite;
+		background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
