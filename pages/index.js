@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import { Navbar, Dropdown, Button, Link, Text } from '@nextui-org/react';
-import Intro from '@/components/layout/Intro';
-import UnderConstruction from '@/components/layout/UnderConstruction';
-import { AcmeLogo } from './AcmeLogo';
-import { icons } from './Icons';
+import Navbar, Dropdown from '@nextui-org/react';
+import Intro from '../components/layout/Intro';
+import UnderConstruction from '../components/layout/UnderConstruction';
+import { AcmeLogo } from './AcmeLogo.js';
+import { icons } from './Icons.js';
 export default function Home() {
 	return (
 		<>
