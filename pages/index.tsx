@@ -1,14 +1,9 @@
 import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
 import Intro from '@/components/layout/Intro';
 import UnderConstruction from '@/components/layout/UnderConstruction';
-import HamburgerMenu from '../components/HamburgerMenu/HamburgerMenu';
 export default function Home() {
 	return (
 		<>
-			<HamburgerMenu />
-			<UnderConstruction />
 			<Head>
 				<title>Create Next App</title>
 				<meta
@@ -21,6 +16,7 @@ export default function Home() {
 				/>
 				<link rel='icon' href='/favicon/favicon.ico' />
 			</Head>
+			<UnderConstruction />
 			<main className='homepage'>
 				<Intro />
 			</main>
