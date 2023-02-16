@@ -14,6 +14,12 @@
 		"isolatedModules": true,
 		"jsx": "preserve"
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "pages/_appjs"],
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"pages/_appjs",
+		"components/LoginForm.jsx"
+	],
 	"exclude": ["node_modules"]
 }
