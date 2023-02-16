@@ -35,3 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 styles/styles.css.map
+
+# Local Netlify folder
+.netlify
