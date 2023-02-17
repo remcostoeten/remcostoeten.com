@@ -4,6 +4,7 @@ import Intro from '@/components/layout/Intro';
 import UnderConstruction from '@/components/layout/UnderConstruction';
 import { AcmeLogo } from './AcmeLogo';
 import { icons } from './Icons';
+import Login from './Login';
 export default function Home() {
 	return (
 		<>
@@ -112,6 +113,7 @@ export default function Home() {
 			</Navbar>
 			<main className='homepage'>
 				<Intro />
+				<Login />
 			</main>
 		</>
 	);
