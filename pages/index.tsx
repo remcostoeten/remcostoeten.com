@@ -106,14 +106,12 @@ export default function Home() {
 								</Dropdown.Item>
 							</Dropdown.Menu>
 						</Dropdown>
-						<Navbar.Link href='#'>Pricing</Navbar.Link>
-						<Navbar.Link href='#'>Company</Navbar.Link>
+						<Navbar.Link href='/Login'>Login</Navbar.Link>
 					</Navbar.Content>
 				</div>
 			</Navbar>
 			<main className='homepage'>
 				<Intro />
-				<Login />
 			</main>
 		</>
 	);
