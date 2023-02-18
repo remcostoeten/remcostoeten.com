@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { Navbar, Dropdown, Button, Link, Text } from '@nextui-org/react';
 import Intro from '@/components/layout/Intro';
 import UnderConstruction from '@/components/layout/UnderConstruction';
-import { AcmeLogo } from './AcmeLogo';
 export default function Home() {
 	return (
 		<>
@@ -22,12 +21,6 @@ export default function Home() {
 			<UnderConstruction />
 			<Navbar isBordered variant='sticky'>
 				<div className='container navbar'>
-					<Navbar.Brand>
-						<AcmeLogo />
-						<Text b color='inherit' hideIn='xs'>
-							ACME
-						</Text>
-					</Navbar.Brand>
 					<Navbar.Content
 						enableCursorHighlight
 						activeColor='secondary'

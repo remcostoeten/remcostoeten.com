@@ -1,16 +1,10 @@
 import { Navbar, Dropdown, Button, Link, Text } from '@nextui-org/react';
 import UnderConstruction from '@/components/layout/UnderConstruction';
-import { AcmeLogo } from '@/pages/AcmeLogo';
 
 function Header() {
 	return;
 	<Navbar isBordered variant='sticky'>
-		<Navbar.Brand>
-			<AcmeLogo />
-			<Text b color='inherit' hideIn='xs'>
-				ACME
-			</Text>
-		</Navbar.Brand>
+		<Navbar.Brand></Navbar.Brand>
 		<Navbar.Content
 			enableCursorHighlight
 			activeColor='secondary'
