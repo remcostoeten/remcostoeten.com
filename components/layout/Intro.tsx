@@ -9,7 +9,8 @@ export default function Intro() {
 					<br />
 					<span>
 						<div className='intro__effect'>
-							<div className='special'>divjesschuiver</div>
+							<div className='special'>blablawoord</div>
+							{/* <div className='special'>divjesschuiver</div> */}
 							<span className='intro__hero--heading-gradient'>
 								<div className='gradient'>front-end</div>
 							</span>
