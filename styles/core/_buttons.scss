@@ -77,6 +77,31 @@ a.btn,
 		@extend .btn-primary;
 		opacity: 50%;
 	}
+
+	&--arrow {
+		position: relative;
+		padding-right: 50px;
+		background: $color-white;
+		color: #000;
+		&:hover {
+			background: $color-white;
+			&:before {
+				animation: arrowFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+		}
+
+		&:before {
+			content: '';
+			display: block;
+			width: 25px;
+			height: 25px;
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+			right: 12px;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cg fill='none' fill-rule='evenodd' stroke='%231B1B1C' stroke-linecap='round' stroke-linejoin='round' stroke-width='2'%3E%3Cpath d='M2 12h20M15 19l7-7-7-7'/%3E%3C/g%3E%3C/svg%3E");
+		}
+	}
 }
 
 a.btn-primary {
