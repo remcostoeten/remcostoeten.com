@@ -24,7 +24,8 @@ $gradient-background-static: rgb(33, 38, 46);
 $body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
 body {
-	background: $body-gradient;
+	// background: $body-gradient;
+	background: white;
 }
 
 .desktop {

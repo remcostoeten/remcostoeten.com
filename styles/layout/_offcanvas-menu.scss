@@ -1,0 +1,107 @@
+.offcanvas {
+	display: flex;
+	justify-content: flex-end;
+	padding: $spacing;
+}
+
+.hamburger {
+	position: relative;
+	display: inline-block;
+	width: 1.25rem;
+	height: 0.875rem;
+	vertical-align: top;
+	transition: 500ms ease all;
+	transition: 250ms ease;
+	&:hover {
+		cursor: pointer;
+
+		&__line {
+			&:hover {
+				cursor: pointer;
+			}
+
+			&:nth-child(1) {
+				background: red;
+			}
+			&:after {
+				background: red;
+			}
+		}
+	}
+
+	&__line {
+		&:nth-child(2) {
+			&:after {
+				background: linear-gradient(70deg, black 50%, transparent 50%);
+				transition: 250ms ease all;
+				width: 100%;
+			}
+		}
+
+		&:after {
+			content: '';
+			display: block;
+			background: linear-gradient(40deg, black 98%, transparent 2%);
+			width: 100%;
+			height: 0.125rem;
+			margin-bottom: 2px;
+		}
+	}
+
+	&:hover {
+		.hamburger__line:nth-child(1)::after {
+			animation: grow 500ms;
+			animation-delay: 250ms
+			width: 100% * 2;
+		}
+
+		.hamburger__line:nth-child(2)::after {
+			width: 100% * 2;
+		}
+
+		.hamburger__line:nth-child(3)::after {
+			animation: grow 750ms;
+		}
+
+		@keyframes grow {
+			0% {
+				width: 100%;
+			}
+
+			25% {
+				width: 100% * 1.15;
+			}
+
+			100% {
+				width: 100%;
+			}
+		}
+	}
+}
+
+.hamburger {
+	&:hover {
+		.hamburger__line {
+			&:nth-child(2)::after {
+			}
+		}
+	}
+}
+
+.gradient {
+	background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
+	background-size: 400% 400%;
+	animation: gradient-bg 20s ease infinite;
+}
+
+@keyframes gradient-bg {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
