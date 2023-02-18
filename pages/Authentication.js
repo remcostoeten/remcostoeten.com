@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Navbar from '../comps/Navbar';
 import moment from 'moment';
 import { Flex, Box, Button, Text, Heading, Image } from '@chakra-ui/react';
-import { FcGoogle } from 'react-icons/fc';
 import EmojiCard from '../comps/EmojiCard';
 import EmojiPanel from '../comps/EmojiPanel';
 import Footer from '../comps/Footer';
@@ -205,7 +204,6 @@ function App() {
 						px={4}
 						mt={20}>
 						<Button
-							leftIcon={<FcGoogle />}
 							onClick={user ? logout : singInWithGoogle}
 							my={7}
 							mb={12}>
