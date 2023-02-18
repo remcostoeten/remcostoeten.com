@@ -217,12 +217,6 @@ function App() {
 							)}
 						</Button>
 
-						<img
-							width={'100%'}
-							alt=''
-							// src="https://raw.githubusercontent.com/virejdasani/Dailymoji/main/assets/img/dailymoji-macbook-preview.png"
-							src='https://raw.githubusercontent.com/virejdasani/Dailymoji/main/assets/img/dailymoji-mac-transparent.png'></img>
-
 						<Flex
 							flexDir='column'
 							maxW={800}
