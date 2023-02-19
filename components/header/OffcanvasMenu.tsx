@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function bodyClass() {}
+function bodyClass({}) {}
 function OffcanvasMenu() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [size, setSize] = useState({
