@@ -1,87 +1,102 @@
 $hamburger-stripe-width: 20px;
 
+.menuOpen {
+    position: relative;
+    background: #10101a;
+    transition: 250ms ease all;
+
+    .homepage {
+        transition: 250ms ease all;
+        height: 100vh;
+        background: white;
+        position: absolute;
+        right: 0;
+        max-width: 50%;
+        border-radius: 16px 0 0 16px
+    }
+}
+
 .offcanvas {
-	display: flex;
-	justify-content: flex-end;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .hamburger {
-	position: relative;
-	transition: 500ms ease all;
+    position: relative;
+    transition: 500ms ease all;
 
-	&:hover {
-		cursor: pointer;
-	}
+    &:hover {
+        cursor: pointer;
+    }
 
-	&__line {
-		&:nth-child(2) {
-			&:after {
-				background: linear-gradient(70deg, black 90%, transparent 10%);
-				transition: 250ms ease all;
-				width: calc($hamburger-stripe-width / 2);
-			}
-		}
+    &__line {
+        &:nth-child(2) {
+            &:after {
+                background: linear-gradient(70deg, black 90%, transparent 10%);
+                transition: 250ms ease all;
+                width: calc($hamburger-stripe-width / 2);
+            }
+        }
 
-		&:after {
-			content: '';
-			display: block;
-			background: linear-gradient(40deg, black 98%, transparent 2%);
-			width: $hamburger-stripe-width;
-			height: 2px;
-			margin-bottom: 4px;
-		}
-	}
+        &:after {
+            content: '';
+            display: block;
+            background: linear-gradient(40deg, black 98%, transparent 2%);
+            width: $hamburger-stripe-width;
+            height: 2px;
+            margin-bottom: 4px;
+        }
+    }
 
-	&:hover {
-		.hamburger__line:nth-child(1)::after {
-			transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
-		}
+    &:hover {
+        .hamburger__line:nth-child(1)::after {
+            transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
+        }
 
-		.hamburger__line:nth-child(2)::after {
-		}
+        .hamburger__line:nth-child(2)::after {}
 
-		.hamburger__line:nth-child(3)::after {
-		}
+        .hamburger__line:nth-child(3)::after {}
 
-		@keyframes grow {
-			0% {
-				width: $hamburger-stripe-width;
-			}
+        @keyframes grow {
+            0% {
+                width: $hamburger-stripe-width;
+            }
 
-			25% {
-				width: $hamburger-stripe-width * 1.15;
-			}
+            25% {
+                width: $hamburger-stripe-width * 1.15;
+            }
 
-			100% {
-				width: $hamburger-stripe-width;
-			}
-		}
-	}
+            100% {
+                width: $hamburger-stripe-width;
+            }
+        }
+    }
 
-	.hamburger {
-		&:hover {
-			.hamburger__line {
-				&:nth-child(2)::after {
-				}
-			}
-		}
-	}
+    .hamburger {
+        &:hover {
+            .hamburger__line {
+                &:nth-child(2)::after {}
+            }
+        }
+    }
 
-	.gradient {
-		background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
-		background-size: 400% 400%;
-		animation: gradient-bg 20s ease infinite;
-	}
+    .gradient {
+        background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
+        background-size: 400% 400%;
+        animation: gradient-bg 20s ease infinite;
+    }
 
-	@keyframes gradient-bg {
-		0% {
-			background-position: 0% 50%;
-		}
-		50% {
-			background-position: 100% 50%;
-		}
-		100% {
-			background-position: 0% 50%;
-		}
-	}
+    @keyframes gradient-bg {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
 }
