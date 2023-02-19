@@ -1,102 +1,139 @@
 $hamburger-stripe-width: 20px;
 
 .menuOpen {
-    position: relative;
-    background: #10101a;
-    transition: 250ms ease all;
+	position: relative;
+	background: #10101a;
+	transition: 250ms ease all;
 
-    .homepage {
-        transition: 250ms ease all;
-        height: 100vh;
-        background: white;
-        position: absolute;
-        right: 0;
-        max-width: 50%;
-        border-radius: 16px 0 0 16px
-    }
+	.homepage {
+		transition: 250ms ease all;
+		height: 100vh;
+		background: white;
+		position: absolute;
+		border-radius: 16px 0 0 16px;
+		transform: scale(0.65) translateX(170px);
+	}
 }
 
 .offcanvas {
-    display: flex;
-    justify-content: flex-end;
+	display: flex;
+	justify-content: flex-end;
 }
 
 .hamburger {
-    position: relative;
-    transition: 500ms ease all;
+	position: relative;
+	transition: 500ms ease all;
 
-    &:hover {
-        cursor: pointer;
-    }
+	&:hover {
+		cursor: pointer;
+	}
 
-    &__line {
-        &:nth-child(2) {
-            &:after {
-                background: linear-gradient(70deg, black 90%, transparent 10%);
-                transition: 250ms ease all;
-                width: calc($hamburger-stripe-width / 2);
-            }
-        }
+	&__line {
+		&:nth-child(2) {
+			&:after {
+				background: linear-gradient(70deg, black 90%, transparent 10%);
+				transition: 250ms ease all;
+				width: calc($hamburger-stripe-width * 0.75);
+			}
+		}
 
-        &:after {
-            content: '';
-            display: block;
-            background: linear-gradient(40deg, black 98%, transparent 2%);
-            width: $hamburger-stripe-width;
-            height: 2px;
-            margin-bottom: 4px;
-        }
-    }
+		&:last-child {
+			&:after {
+				width: calc($hamburger-stripe-width / 2);
+			}
+		}
 
-    &:hover {
-        .hamburger__line:nth-child(1)::after {
-            transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
-        }
+		&:after {
+			content: '';
+			display: block;
+			background: linear-gradient(40deg, black 98%, transparent 2%);
+			width: $hamburger-stripe-width;
+			height: 2px;
+			margin-bottom: 4px;
+		}
+	}
 
-        .hamburger__line:nth-child(2)::after {}
+	&:hover {
+		.hamburger__line:nth-child(1)::after {
+			transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
+		}
 
-        .hamburger__line:nth-child(3)::after {}
+		.hamburger__line:nth-child(2)::after {
+		}
 
-        @keyframes grow {
-            0% {
-                width: $hamburger-stripe-width;
-            }
+		.hamburger__line:nth-child(3)::after {
+		}
 
-            25% {
-                width: $hamburger-stripe-width * 1.15;
-            }
+		@keyframes grow {
+			0% {
+				width: $hamburger-stripe-width;
+			}
 
-            100% {
-                width: $hamburger-stripe-width;
-            }
-        }
-    }
+			25% {
+				width: $hamburger-stripe-width * 1.15;
+			}
 
-    .hamburger {
-        &:hover {
-            .hamburger__line {
-                &:nth-child(2)::after {}
-            }
-        }
-    }
+			100% {
+				width: $hamburger-stripe-width;
+			}
+		}
+	}
 
-    .gradient {
-        background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
-        background-size: 400% 400%;
-        animation: gradient-bg 20s ease infinite;
-    }
+	.hamburger {
+		&:hover {
+			.hamburger__line {
+				&:nth-child(2)::after {
+				}
+			}
+		}
+	}
 
-    @keyframes gradient-bg {
-        0% {
-            background-position: 0% 50%;
-        }
+	.gradient {
+		background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
+		background-size: 400% 400%;
+		animation: gradient-bg 20s ease infinite;
+	}
 
-        50% {
-            background-position: 100% 50%;
-        }
+	@keyframes gradient-bg {
+		0% {
+			background-position: 0% 50%;
+		}
 
-        100% {
-            background-position: 0% 50%;
-        }
-    }
+		50% {
+			background-position: 100% 50%;
+		}
+
+		100% {
+			background-position: 0% 50%;
+		}
+	}
+}
+
+@include mobile {
+	.menuOpen {
+		main.homepage {
+			article.container {
+				margin-top: 0;
+			}
+		}
+	}
+	main.homepage {
+		position: absolute;
+		top: 0;
+		z-index: 10;
+		max-width: 100%;
+		width: 100%;
+		height: 100%;
+		transition: border-radius cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
+			scale cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
+			transform cubic-bezier(0.77, 0, 0.175, 1) 01.6s;
+		transition-delay: 0s, 0s, 0s;
+		overflow-y: scroll;
+		transition: 350ms ease-in-out all;
+		left: 0;
+
+		article.container {
+			margin-top: 85px;
+		}
+	}
 }

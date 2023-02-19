@@ -90,16 +90,47 @@
 
 @include mobile {
 	.intro {
-		&__effect {
-			span {
-				top: 181px;
-				left: 110px;
+		&__heading {
+			color: $theme-black;
+			padding: $spacing-xs;
+			font-size: 5rem;
+
+			&.mobile {
+				.mobile__wrapper {
+					display: flex;
+					flex-wrap: wrap;
+					word-break: break-all;
+				}
+			}
+			&__effect {
+				span {
+				}
+
+				div {
+					top: 179px;
+					left: 107px;
+				}
 			}
 
-			div {
-				top: 179px;
-				left: 107px;
+			&__hero--heading-gradient {
 			}
+		}
+		.menuToggled {
+			display: none;
+		}
+
+		.menuClosed {
+			display: block;
+		}
+	}
+
+	body.menuToggled {
+		.menuClosed {
+			display: none;
+		}
+
+		.menuToggled {
+			display: block;
 		}
 	}
 }

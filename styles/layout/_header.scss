@@ -5,6 +5,7 @@ $header-height: 40px;
 	align-items: center;
 	justify-content: space-between;
 	transition: 0.3s ease all;
+	flex-direction: row-reverse;
 	padding: 20px 10px;
 
 	&__content {
@@ -20,14 +21,15 @@ $header-height: 40px;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-			background: $theme-black;
+			// background: $theme-black;
+			background: transparent;
 			backdrop-filter: blur(2px);
 			transform: translate(0);
 			transition: 0.3s ease transform;
 
 			&.isMenu {
 				z-index: 15;
-				transform: translate(50%);
+				transform: translate(40%);
 			}
 		}
 
