@@ -1,5 +1,47 @@
-.navbar {
+@import './offcanvas-menu';
+$header-height: 40px;
+.header {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	transition: 0.3s ease all;
+	padding: 20px 10px;
+
+	&__content {
+		&__nav {
+			top: 0;
+			right: 100%;
+			bottom: 0;
+			width: 100%;
+			height: 100vh;
+			position: fixed;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			text-align: center;
+			background: $theme-black;
+			backdrop-filter: blur(2px);
+			transform: translate(0);
+			transition: 0.3s ease transform;
+
+			&.isMenu {
+				z-index: 15;
+				transform: translate(50%);
+			}
+		}
+
+		&__toggle {
+			z-index: 20;
+
+			font-size: 2rem;
+			position: relative;
+		}
+	}
+}
+
+@include mobile {
+	.notice {
+		display: none;
+	}
 }

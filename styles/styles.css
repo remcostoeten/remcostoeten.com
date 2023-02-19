@@ -441,6 +441,7 @@ body {
   text-align: left;
   line-height: 24px;
   margin: 0;
+  bg: white;
 }
 body .modal-backdrop {
   background-color: #9aabb3;
@@ -516,7 +517,7 @@ input[type=text]:hover {
 }
 
 body {
-  background: linear-gradient(180deg, #10101a, #23233a);
+  background: white;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
@@ -727,12 +728,101 @@ body {
     transform: translate3d(0, -50%, 0);
   }
 }
-.navbar {
+.offcanvas {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hamburger {
+  position: relative;
+  transition: 500ms ease all;
+}
+.hamburger:hover {
+  cursor: pointer;
+}
+.hamburger__line:nth-child(2):after {
+  background: linear-gradient(70deg, black 90%, transparent 10%);
+  transition: 250ms ease all;
+  width: 10px;
+}
+.hamburger__line:after {
+  content: "";
+  display: block;
+  background: linear-gradient(40deg, black 98%, transparent 2%);
+  width: 20px;
+  height: 2px;
+  margin-bottom: 4px;
+}
+.hamburger:hover .hamburger__line:nth-child(1)::after {
+  transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
+}
+@keyframes grow {
+  0% {
+    width: 20px;
+  }
+  25% {
+    width: 23px;
+  }
+  100% {
+    width: 20px;
+  }
+}
+.hamburger .gradient {
+  background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
+  background-size: 400% 400%;
+  animation: gradient-bg 20s ease infinite;
+}
+@keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: 0.3s ease all;
+  padding: 20px 10px;
+}
+.header__content__nav {
+  top: 0;
+  right: 100%;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: #10101a;
+  backdrop-filter: blur(2px);
+  transform: translate(0);
+  transition: 0.3s ease transform;
+}
+.header__content__nav.isMenu {
+  z-index: 15;
+  transform: translate(50%);
+}
+.header__content__toggle {
+  z-index: 20;
+  font-size: 2rem;
+  position: relative;
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .notice {
+    display: none;
+  }
+}
 .intro {
   font-family: "Mark Pro", sans-serif;
   color: white;
