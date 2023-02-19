@@ -3,10 +3,16 @@ $header-height: 40px;
 .header {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	transition: 0.3s ease all;
 	flex-direction: row-reverse;
 	padding: 20px 10px;
+
+	.logo {
+		position: absolute;
+		top: 31px;
+		left: 10px;
+	}
 
 	li {
 		color: $color-white;
@@ -26,7 +32,7 @@ $header-height: 40px;
 
 		.close {
 			top: 31px;
-			right: 25px;
+			right: 10px;
 		}
 	}
 
