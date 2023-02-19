@@ -44,7 +44,7 @@ function OffcanvasMenu() {
           }`}>
 				<ul>
 					<li>
-						<a href='/Authentication'>Login</a>
+						<Link href='/Authentication'>Login</Link>
 					</li>
 					<li>
 						<a
