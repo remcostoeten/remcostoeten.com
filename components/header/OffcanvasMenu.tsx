@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 function bodyClass({}) {}
@@ -48,19 +49,21 @@ function OffcanvasMenu() {
 					<li>
 						<a
 							href='https://github.com/remcostoeten/'
-							target='_blank'>
+							target='_blank'
+							rel='noreferrer'>
 							Github
 						</a>
 					</li>
 					<li>
 						<a
 							href='https://www.linkedin.com/in/remco-stoeten-a2a453161/'
-							target='_blank'>
+							target='_blank'
+							rel='noreferrer'>
 							Linkedin
 						</a>
 					</li>
 					<li>
-						<a href='/Authentication'>Back to home</a>
+						<Link href='/Authentication'>Back to home</Link>
 					</li>
 					<li>
 						<a href=''>Contact</a>
