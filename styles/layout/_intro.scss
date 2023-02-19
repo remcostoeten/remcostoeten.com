@@ -58,7 +58,7 @@
 	.intro {
 		&__heading {
 			color: $theme-black;
-			padding: $spacing-xs;
+			padding: $spacing $spacing-xl;
 			font-size: 5rem;
 
 			&.mobile {

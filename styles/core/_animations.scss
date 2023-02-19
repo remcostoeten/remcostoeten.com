@@ -1,3 +1,4 @@
+$hamburger-stripe-width: 20px;
 $animationDuration: 250ms;
 @keyframes gradient {
 	0% {
@@ -10,6 +11,20 @@ $animationDuration: 250ms;
 
 	to {
 		background-position: 0 50%;
+	}
+}
+
+@keyframes grow {
+	0% {
+		width: $hamburger-stripe-width;
+	}
+
+	25% {
+		width: $hamburger-stripe-width * 1.15;
+	}
+
+	100% {
+		width: $hamburger-stripe-width;
 	}
 }
 

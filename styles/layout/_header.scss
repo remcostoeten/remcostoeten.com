@@ -58,9 +58,9 @@ $header-height: 40px;
 			&.isMenu {
 				display: flex;
 				justify-content: flex-start;
+				top: 22%;
 				z-index: 15;
 				transform: translate(60%);
-				top: 15%;
 			}
 		}
 	}
@@ -69,5 +69,15 @@ $header-height: 40px;
 @include mobile {
 	.notice {
 		display: none;
+	}
+
+	.header {
+		&__content {
+			&__nav {
+				&.isMenu {
+					top: 22%;
+				}
+			}
+		}
 	}
 }

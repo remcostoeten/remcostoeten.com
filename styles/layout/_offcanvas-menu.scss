@@ -3,22 +3,32 @@ $hamburger-stripe-width: 20px;
 .menuOpen {
 	position: relative;
 	background: #10101a;
-	transition: $animationDuration ease all;
+	transition: 250ms ease all;
 
-	main,
+	qmain,
 	.homepage {
-		transition: $animationDuration ease all;
+		transition: 250ms ease all;
 		height: 100vh;
 		background: $color-white;
 		position: absolute;
 		border-radius: 16px 0 0 16px;
-		transform: scale(0.65) translateX(170px);
+		transform: scale(0.55) translateX(45%);
 	}
 
 	.header {
 		flex-direction: row;
 
 		&__content {
+			ul {
+				margin: 0;
+
+				li {
+					&:not(:last-child) {
+						margin-bottom: $spacing-xs;
+					}
+				}
+			}
+
 			a {
 				color: $color-white;
 			}
@@ -50,11 +60,7 @@ $hamburger-stripe-width: 20px;
 
 .hamburger {
 	position: relative;
-	transition: $animationDuration * 2 ease all;
-
-	&:hover {
-		cursor: pointer;
-	}
+	transition: 250ms * 2 ease all;
 
 	&__line {
 		&:nth-child(2) {
@@ -90,6 +96,8 @@ $hamburger-stripe-width: 20px;
 	}
 
 	&:hover {
+		cursor: pointer;
+
 		.hamburger__line:nth-child(1)::after {
 			transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
 		}
@@ -98,20 +106,6 @@ $hamburger-stripe-width: 20px;
 		}
 
 		.hamburger__line:nth-child(3)::after {
-		}
-
-		@keyframes grow {
-			0% {
-				width: $hamburger-stripe-width;
-			}
-
-			25% {
-				width: $hamburger-stripe-width * 1.15;
-			}
-
-			100% {
-				width: $hamburger-stripe-width;
-			}
 		}
 	}
 
