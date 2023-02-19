@@ -1,13 +1,13 @@
 import React from 'react';
-
+import OffcanvasMenu from './OffcanvasMenu';
+import Logo from './Logo';
 export default function Header() {
 	return (
-		<div className='offcanvas'>
-			<div className='hamburger'>
-				<div className='hamburger__line'></div>
-				<div className='hamburger__line'></div>
-				<div className='hamburger__line'></div>
-			</div>
-		</div>
+		<>
+			<header className='header'>
+				<Logo />
+				<OffcanvasMenu />
+			</header>
+		</>
 	);
 }
