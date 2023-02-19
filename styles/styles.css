@@ -803,27 +803,19 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
-  background: rgba(32, 32, 32, 0.9);
+  background: #10101a;
   backdrop-filter: blur(2px);
   transform: translate(0);
   transition: 0.3s ease transform;
 }
 .header__content__nav.isMenu {
-  transform: translate(100%);
+  z-index: 15;
+  transform: translate(50%);
 }
 .header__content__toggle {
-  display: flex;
-  justify-content: flex-end;
-  align-self: center;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
+  z-index: 20;
   font-size: 2rem;
-  transition: 0.3s ease all;
   position: relative;
-}
-.header__content__toggle:hover {
-  color: rgb(162, 162, 246);
 }
 
 @media (min-width: 0px) and (max-width: 767px) {

@@ -20,31 +20,22 @@ $header-height: 40px;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-			background: rgba(rgb(32, 32, 32), 0.9);
+			background: $theme-black;
 			backdrop-filter: blur(2px);
 			transform: translate(0);
 			transition: 0.3s ease transform;
 
 			&.isMenu {
-				transform: translate(100%);
+				z-index: 15;
+				transform: translate(50%);
 			}
 		}
 
 		&__toggle {
-			display: flex;
-			justify-content: flex-end;
-			align-self: center;
+			z-index: 20;
 
-			cursor: pointer;
-			display: flex;
-			align-items: center;
 			font-size: 2rem;
-			transition: 0.3s ease all;
 			position: relative;
-
-			&:hover {
-				color: rgb(162, 162, 246);
-			}
 		}
 	}
 }
