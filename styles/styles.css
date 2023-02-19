@@ -741,6 +741,23 @@ body {
   border-radius: 16px 0 0 16px;
   transform: scale(0.65) translateX(170px);
 }
+.menuOpen .header {
+  flex-direction: row;
+}
+.menuOpen .hamburger__line:nth-child(2):after {
+  display: none;
+}
+.menuOpen .hamburger__line:after {
+  transform: rotate(-45deg);
+  width: 20px;
+  background: white;
+  margin: 0;
+}
+.menuOpen .hamburger__line:last-child:after {
+  transform: rotate(45deg);
+  background: white;
+  width: 20px;
+}
 
 .offcanvas {
   display: flex;
@@ -755,7 +772,7 @@ body {
   cursor: pointer;
 }
 .hamburger__line:nth-child(2):after {
-  background: linear-gradient(70deg, black 90%, transparent 10%);
+  background: linear-gradient(70deg, #1e1e28 90%, transparent 10%);
   transition: 250ms ease all;
   width: 15px;
 }
@@ -765,7 +782,7 @@ body {
 .hamburger__line:after {
   content: "";
   display: block;
-  background: linear-gradient(40deg, black 98%, transparent 2%);
+  background: linear-gradient(40deg, #1e1e28 98%, transparent 2%);
   width: 20px;
   height: 2px;
   margin-bottom: 4px;
@@ -801,6 +818,44 @@ body {
   }
 }
 
+.close {
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  transform: rotate(0deg);
+  transition: 0.5s ease-in-out;
+  cursor: pointer;
+}
+.close span {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 11.5px;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  border-radius: 4px;
+  transform: rotate(0deg);
+  transition: 0.2s ease-in-out;
+}
+.close span:nth-child(1), .close span:nth-child(3) {
+  width: 50%;
+  transform: rotate(45deg);
+}
+.close span:nth-child(1) {
+  left: 1.5px;
+  top: 7.5px;
+}
+.close span:nth-child(2) {
+  transform: rotate(-45deg);
+}
+.close span:nth-child(3) {
+  left: 10px;
+  top: 15.5px;
+}
+
 @media (min-width: 0px) and (max-width: 767px) {
   .menuOpen main.homepage article.container {
     margin-top: 0;
@@ -830,6 +885,19 @@ body {
   flex-direction: row-reverse;
   padding: 20px 10px;
 }
+.header h2 {
+  z-index: 20;
+  color: #fff;
+}
+.header__toggle:has(.hamburger) {
+  z-index: 20;
+  font-size: 2rem;
+  position: relative;
+}
+.header__toggle .close {
+  top: 31px;
+  right: 25px;
+}
 .header__content__nav {
   top: 0;
   right: 100%;
@@ -850,11 +918,6 @@ body {
 .header__content__nav.isMenu {
   z-index: 15;
   transform: translate(40%);
-}
-.header__content__toggle {
-  z-index: 20;
-  font-size: 2rem;
-  position: relative;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {

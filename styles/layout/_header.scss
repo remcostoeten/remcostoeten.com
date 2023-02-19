@@ -8,6 +8,24 @@ $header-height: 40px;
 	flex-direction: row-reverse;
 	padding: 20px 10px;
 
+	h2 {
+		z-index: $z-index-layer-three;
+		color: $color-white;
+	}
+
+	&__toggle {
+		&:has(.hamburger) {
+			z-index: 20;
+			font-size: 2rem;
+			position: relative;
+		}
+
+		.close {
+			top: 31px;
+			right: 25px;
+		}
+	}
+
 	&__content {
 		&__nav {
 			top: 0;
@@ -31,13 +49,6 @@ $header-height: 40px;
 				z-index: 15;
 				transform: translate(40%);
 			}
-		}
-
-		&__toggle {
-			z-index: 20;
-
-			font-size: 2rem;
-			position: relative;
 		}
 	}
 }
