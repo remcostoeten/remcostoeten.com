@@ -3,12 +3,13 @@ $hamburger-stripe-width: 20px;
 .menuOpen {
 	position: relative;
 	background: #10101a;
-	transition: 250ms ease all;
+	transition: $animationDuration ease all;
 
+	main,
 	.homepage {
-		transition: 250ms ease all;
+		transition: $animationDuration ease all;
 		height: 100vh;
-		background: white;
+		background: $color-white;
 		position: absolute;
 		border-radius: 16px 0 0 16px;
 		transform: scale(0.65) translateX(170px);
@@ -16,6 +17,12 @@ $hamburger-stripe-width: 20px;
 
 	.header {
 		flex-direction: row;
+
+		&__content {
+			a {
+				color: $color-white;
+			}
+		}
 	}
 
 	.hamburger__line:nth-child(2):after {
@@ -25,12 +32,13 @@ $hamburger-stripe-width: 20px;
 	.hamburger__line:after {
 		transform: rotate(-45deg);
 		width: 20px;
-		background: white;
+		background: $color-white;
 		margin: 0;
 	}
+
 	.hamburger__line:last-child:after {
 		transform: rotate(45deg);
-		background: white;
+		background: $color-white;
 		width: 20px;
 	}
 }
@@ -42,7 +50,7 @@ $hamburger-stripe-width: 20px;
 
 .hamburger {
 	position: relative;
-	transition: 500ms ease all;
+	transition: $animationDuration * 2 ease all;
 
 	&:hover {
 		cursor: pointer;
@@ -183,7 +191,24 @@ $hamburger-stripe-width: 20px;
 
 @include mobile {
 	.menuOpen {
+		z-index: $z-index-layer-three;
+
+		li {
+			list-style: none;
+			text-transform: none;
+			font-size: 2em;
+			padding-left: $spacing;
+
+			text-align: left;
+			a {
+				text-decoration: none;
+			}
+		}
+
 		main.homepage {
+			z-index: $z-index-layer-three;
+			.intro {
+			}
 			article.container {
 				margin-top: 0;
 			}

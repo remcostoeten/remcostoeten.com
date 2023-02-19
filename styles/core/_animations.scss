@@ -1,3 +1,4 @@
+$animationDuration: 250ms;
 @keyframes gradient {
 	0% {
 		background-position: 0 50%;
@@ -12,28 +13,37 @@
 	}
 }
 
-@-webkit-keyframes gradientAnimation {
+@keyframes scale-out {
 	0% {
-		background-position: 2% 0%;
+		scale: 1;
 	}
+
 	50% {
-		background-position: 99% 100%;
+		opacity: 1;
 	}
+
 	100% {
-		background-position: 2% 0%;
+		opacity: 0;
+		scale: 0.1;
 	}
 }
-@-moz-keyframes gradientAnimation {
+
+@keyframes fade-in {
 	0% {
-		background-position: 2% 0%;
+		opacity: 0;
+		scale: 0;
 	}
+
 	50% {
-		background-position: 99% 100%;
+		opacity: 0;
 	}
+
 	100% {
-		background-position: 2% 0%;
+		scale: 1;
+		opacity: 1;
 	}
 }
+
 @keyframes gradientAnimation {
 	0% {
 		background-position: 2% 0%;
@@ -46,26 +56,6 @@
 	}
 }
 
-@keyframes exitText {
-	0% {
-	}
-
-	100% {
-	}
-}
-
-@-webkit-keyframes flip-out-hor-top {
-	0% {
-		-webkit-transform: rotateX(0);
-		transform: rotateX(0);
-		opacity: 1;
-	}
-	100% {
-		-webkit-transform: rotateX(70deg);
-		transform: rotateX(70deg);
-		opacity: 0;
-	}
-}
 @keyframes slide-out-top {
 	0% {
 		-webkit-transform: translateY(0);

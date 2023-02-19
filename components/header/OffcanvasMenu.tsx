@@ -1,4 +1,3 @@
-import { Divider } from '@nextui-org/react';
 import React, { useEffect, useState } from 'react';
 
 function bodyClass() {}
@@ -43,7 +42,29 @@ function OffcanvasMenu() {
           ${menuOpen && size.width < 768 ? `${'isMenu'}` : ''} 
           }`}>
 				<ul>
-					<li>aa</li>
+					<li>
+						<a href='/Login'>Back to home</a>
+					</li>
+					<li>
+						<a
+							href='https://github.com/remcostoeten/'
+							target='_blank'>
+							Github
+						</a>
+					</li>
+					<li>
+						<a
+							href='https://www.linkedin.com/in/remco-stoeten-a2a453161/'
+							target='_blank'>
+							Linkedin
+						</a>
+					</li>
+					<li>
+						<a href='/Authentication'>Back to home</a>
+					</li>
+					<li>
+						<a href=''>Contact</a>
+					</li>
 				</ul>
 			</nav>
 			<div className='header__toggle'>
