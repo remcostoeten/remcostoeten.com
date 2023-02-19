@@ -46,7 +46,7 @@ export default function Intro() {
 						</span>
 					</div>
 					<div className='intro__effect menuClosed'>
-						<div className='special'>divjesschuiver</div>
+						<div className='special'>randomwoord</div>
 						<span className='intro__hero--heading-gradient'>
 							<div className='gradient'>front-end</div>
 						</span>
