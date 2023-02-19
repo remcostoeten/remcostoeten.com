@@ -44,7 +44,7 @@ function OffcanvasMenu() {
           }`}>
 				<ul>
 					<li>
-						<a href='/Login'>Back to home</a>
+						<a href='/Authentication'>Login</a>
 					</li>
 					<li>
 						<a
@@ -61,9 +61,6 @@ function OffcanvasMenu() {
 							rel='noreferrer'>
 							Linkedin
 						</a>
-					</li>
-					<li>
-						<Link href='/Authentication'>Back to home</Link>
 					</li>
 					<li>
 						<a href=''>Contact</a>
