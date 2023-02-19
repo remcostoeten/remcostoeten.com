@@ -10,8 +10,8 @@ $header-height: 40px;
 
 	.logo {
 		position: absolute;
-		top: 31px;
-		left: 10px;
+		top: $spacing;
+		left: $spacing;
 	}
 
 	li {
@@ -27,7 +27,8 @@ $header-height: 40px;
 		&:has(.hamburger) {
 			z-index: 20;
 			font-size: 2rem;
-			position: relative;
+			position: absolute;
+			right: 40px;
 		}
 
 		.close {

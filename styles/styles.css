@@ -903,8 +903,8 @@ body {
 }
 .header .logo {
   position: absolute;
-  top: 31px;
-  left: 10px;
+  top: 24px;
+  left: 24px;
 }
 .header li {
   color: #fff;
@@ -916,7 +916,8 @@ body {
 .header__toggle:has(.hamburger) {
   z-index: 20;
   font-size: 2rem;
-  position: relative;
+  position: absolute;
+  right: 40px;
 }
 .header__toggle .close {
   top: 31px;
