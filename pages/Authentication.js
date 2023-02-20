@@ -25,46 +25,23 @@ function App() {
 		};
 	}, [show]);
 
-
-
 	return (
 		<div className='container page-wrapper'>
-	
-<h1>Welcome {displayUserName()}</h1>
-				<Navbar
-					username={
-						auth.currentUser && auth.currentUser.displayName
-							? 'Welcome back, ' + auth?.currentUser.displayName
-							: ''
-					}
-					user={user}
-					logout={logout}
-					singInWithGoogle={singInWithGoogle}
-					auth={auth}
-				/>
-				 { isLoggedIn ? <h2>Logged in</h2> : <h3>Not loggedin</h3> }
-
-		
-
+			<h1>Welcome {displayUserName()}</h1>
+			<Navbar
+				username={
+					auth.currentUser && auth.currentUser.displayName
+						? 'Welcome back, ' + auth?.currentUser.displayName
+						: ''
+				}
+				user={user}
+				logout={logout}
+				singInWithGoogle={singInWithGoogle}
+				auth={auth}
+			/>
+			{isLoggedIn ? <h2>Logged in</h2> : <h3>Not loggedin</h3>}
 			{auth.currentUser ? (
 				<>
-				AAA
-					<Flex
-						flexDir='column'
-						maxW={800}
-						align='center'
-						mx='auto'
-						px={4}
-						mt={24}
-						mb={4}>
-						<Heading
-							fontFamily="'Work Sans', sans-serif"
-							id='dateText'
-							fontWeight='400'
-							fontSize={'4xl'}>
-							{moment().format('MMMM D, YYYY')}
-						</Heading>
-					</Flex>
 					<Flex
 						flexDir='column'
 						maxW={800}
@@ -89,8 +66,7 @@ function App() {
 						maxW={800}
 						align='center'
 						mx='auto'
-						px={4}>
-					</Flex>
+						px={4}></Flex>
 				</>
 			) : (
 				<>
