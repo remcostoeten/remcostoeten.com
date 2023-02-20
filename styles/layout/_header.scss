@@ -1,18 +1,14 @@
 @import './offcanvas-menu';
-$header-height: 40px;
+$header-height: 60px;
+
 .header {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	transition: 0.3s ease all;
-	flex-direction: row-reverse;
-	padding: 20px 10px;
-
-	.logo {
-		position: absolute;
-		top: $spacing;
-		left: $spacing;
-	}
+	justify-content: space-between;
+	transition: 0.1s ease all;
+	flex-direction: row;
+	padding: 20px $spacing-s;
+	min-height: $header-height;
 
 	li {
 		color: $color-white;
@@ -24,16 +20,10 @@ $header-height: 40px;
 	}
 
 	&__toggle {
+		padding: $spacing;
 		&:has(.hamburger) {
 			z-index: 20;
 			font-size: 2rem;
-			position: absolute;
-			right: 40px;
-		}
-
-		.close {
-			top: 31px;
-			right: 10px;
 		}
 	}
 
@@ -52,14 +42,14 @@ $header-height: 40px;
 			text-align: center;
 			// background: $theme-black;
 			background: transparent;
-			backdrop-filter: blur(2px);
 			transform: translate(0);
-			transition: 0.3s ease transform;
+			transition: 400ms ease transform;
+			animation: blur;
 
 			&.isMenu {
 				display: flex;
 				justify-content: flex-start;
-				top: 22%;
+				top: calc(13.2vh + 16px);
 				z-index: 15;
 				transform: translate(60%);
 			}
@@ -68,17 +58,10 @@ $header-height: 40px;
 }
 
 @include mobile {
-	.notice {
-		display: none;
-	}
-
 	.header {
-		&__content {
-			&__nav {
-				&.isMenu {
-					top: 22%;
-				}
-			}
-		}
+		border-bottom: 1px solid $border-color;
+		margin-bottom: 20px;
+		min-height: 13.2vh;
+		padding: 0;
 	}
 }

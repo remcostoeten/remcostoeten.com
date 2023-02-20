@@ -4,9 +4,8 @@ import Logo from './Logo';
 export default function Header() {
 	return (
 		<>
-			<header className='header'>
+			<header className='container header'>
 				<Logo />
-				<h2>remcostoeten</h2>
 				<OffcanvasMenu />
 			</header>
 		</>
