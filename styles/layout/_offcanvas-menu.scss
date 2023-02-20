@@ -1,5 +1,58 @@
 $hamburger-stripe-width: 20px;
 
+.menuOpen {
+	position: relative;
+	background: #10101a;
+	transition: 250ms ease all;
+
+	qmain,
+	.homepage {
+		transition: 250ms ease all;
+		height: 100vh;
+		background: $color-white;
+		position: absolute;
+		border-radius: 16px 0 0 16px;
+		transform: scale(0.55) translateX(45%);
+	}
+
+	.header {
+		flex-direction: row;
+
+		&__content {
+			ul {
+				margin: 0;
+
+				li {
+					&:not(:last-child) {
+						margin-bottom: $spacing-xs;
+					}
+				}
+			}
+
+			a {
+				color: $color-white;
+			}
+		}
+	}
+
+	.hamburger__line:nth-child(2):after {
+		display: none;
+	}
+
+	.hamburger__line:after {
+		transform: rotate(-45deg);
+		width: 20px;
+		background: $color-white;
+		margin: 0;
+	}
+
+	.hamburger__line:last-child:after {
+		transform: rotate(45deg);
+		background: $color-white;
+		width: 20px;
+	}
+}
+
 .offcanvas {
 	display: flex;
 	justify-content: flex-end;
@@ -7,17 +60,23 @@ $hamburger-stripe-width: 20px;
 
 .hamburger {
 	position: relative;
-	transition: 500ms ease all;
-
-	&:hover {
-		cursor: pointer;
-	}
+	transition: 250ms * 2 ease all;
 
 	&__line {
 		&:nth-child(2) {
 			&:after {
-				background: linear-gradient(70deg, black 90%, transparent 10%);
+				background: linear-gradient(
+					70deg,
+					$theme-black 90%,
+					transparent 10%
+				);
 				transition: 250ms ease all;
+				width: calc($hamburger-stripe-width * 0.75);
+			}
+		}
+
+		&:last-child {
+			&:after {
 				width: calc($hamburger-stripe-width / 2);
 			}
 		}
@@ -25,7 +84,11 @@ $hamburger-stripe-width: 20px;
 		&:after {
 			content: '';
 			display: block;
-			background: linear-gradient(40deg, black 98%, transparent 2%);
+			background: linear-gradient(
+				40deg,
+				$theme-black 98%,
+				transparent 2%
+			);
 			width: $hamburger-stripe-width;
 			height: 2px;
 			margin-bottom: 4px;
@@ -33,6 +96,8 @@ $hamburger-stripe-width: 20px;
 	}
 
 	&:hover {
+		cursor: pointer;
+
 		.hamburger__line:nth-child(1)::after {
 			transition: width 0.3s cubic-bezier(0.62, 0.01, 0.37, 0.99);
 		}
@@ -41,20 +106,6 @@ $hamburger-stripe-width: 20px;
 		}
 
 		.hamburger__line:nth-child(3)::after {
-		}
-
-		@keyframes grow {
-			0% {
-				width: $hamburger-stripe-width;
-			}
-
-			25% {
-				width: $hamburger-stripe-width * 1.15;
-			}
-
-			100% {
-				width: $hamburger-stripe-width;
-			}
 		}
 	}
 
@@ -77,11 +128,103 @@ $hamburger-stripe-width: 20px;
 		0% {
 			background-position: 0% 50%;
 		}
+
 		50% {
 			background-position: 100% 50%;
 		}
+
 		100% {
 			background-position: 0% 50%;
+		}
+	}
+}
+
+.close {
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	transform: rotate(0deg);
+	transition: 0.5s ease-in-out;
+	cursor: pointer;
+
+	span {
+		display: block;
+		position: absolute;
+		left: 0;
+		top: calc(23px / 2);
+		height: 2px;
+		width: 100%;
+		background: $color-white;
+		border-radius: 4px;
+		transform: rotate(0deg);
+		transition: 0.2s ease-in-out;
+
+		&:nth-child(1),
+		&:nth-child(3) {
+			width: 50%;
+			transform: rotate(45deg);
+		}
+
+		&:nth-child(1) {
+			left: 1.5px;
+			top: 7.5px;
+		}
+
+		&:nth-child(2) {
+			transform: rotate(-45deg);
+		}
+
+		&:nth-child(3) {
+			left: 10px;
+			top: calc(31px / 2);
+		}
+	}
+}
+
+@include mobile {
+	.menuOpen {
+		z-index: $z-index-layer-three;
+
+		li {
+			list-style: none;
+			text-transform: none;
+			font-size: 2em;
+			padding-left: $spacing;
+
+			text-align: left;
+			a {
+				text-decoration: none;
+			}
+		}
+
+		main.homepage {
+			z-index: $z-index-layer-three;
+			.intro {
+			}
+			article.container {
+				margin-top: 0;
+			}
+		}
+	}
+	main.homepage {
+		position: absolute;
+		top: 0;
+		z-index: 10;
+		max-width: 100%;
+		width: 100%;
+		height: 100%;
+		transition: border-radius cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
+			scale cubic-bezier(0.77, 0, 0.175, 1) 0.6s,
+			transform cubic-bezier(0.77, 0, 0.175, 1) 01.6s;
+		transition-delay: 0s, 0s, 0s;
+		overflow-y: scroll;
+		transition: 350ms ease-in-out all;
+		left: 0;
+
+		article.container {
+			margin-top: 85px;
 		}
 	}
 }

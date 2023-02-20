@@ -1,12 +1,14 @@
-import { Divider } from '@nextui-org/react';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
+function bodyClass({}) {}
 function OffcanvasMenu() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [size, setSize] = useState({
 		width: 0,
 		height: 0,
 	});
+
 	useEffect(() => {
 		const handleResize = () => {
 			setSize({
@@ -27,8 +29,13 @@ function OffcanvasMenu() {
 
 	const menuToggleHandler = () => {
 		setMenuOpen((p) => !p);
+		document.body.classList.add('menuOpen');
 	};
-
+	useEffect(() => {
+		if (menuOpen === false) {
+			document.body.classList.remove('menuOpen');
+		}
+	});
 	return (
 		<div className='header__content'>
 			<nav
@@ -36,10 +43,31 @@ function OffcanvasMenu() {
           ${menuOpen && size.width < 768 ? `${'isMenu'}` : ''} 
           }`}>
 				<ul>
-					<li>aa</li>
+					<li>
+						<Link href='/Authentication'>Login</Link>
+					</li>
+					<li>
+						<a
+							href='https://github.com/remcostoeten/'
+							target='_blank'
+							rel='noreferrer'>
+							Github
+						</a>
+					</li>
+					<li>
+						<a
+							href='https://www.linkedin.com/in/remco-stoeten-a2a453161/'
+							target='_blank'
+							rel='noreferrer'>
+							Linkedin
+						</a>
+					</li>
+					<li>
+						<a href=''>Contact</a>
+					</li>
 				</ul>
 			</nav>
-			<div className='header__content__toggle'>
+			<div className='header__toggle'>
 				{!menuOpen ? (
 					<div className='offcanvas' onClick={menuToggleHandler}>
 						<div className='hamburger'>
@@ -49,7 +77,13 @@ function OffcanvasMenu() {
 						</div>
 					</div>
 				) : (
-					<button onClick={menuToggleHandler}></button>
+					<div onClick={menuToggleHandler}>
+						<div className='close'>
+							<span></span>
+							<span></span>
+							<span></span>
+						</div>
+					</div>
 				)}
 			</div>
 		</div>

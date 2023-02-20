@@ -9,16 +9,14 @@ import { auth, db, singInWithGoogle, logout } from '../firebase';
 
 function App() {
 	const [emojiData, setEmojiData] = useState([]);
-
 	const [user, setUser] = useState(null);
 	const [username, setUsername] = useState('');
-
 	const [show, setShow] = useState(true);
+	const isLoggedIn = auth.currentUser;
+	const displayUserName = () => auth?.currentUser?.displayName;
 
-	// this is to show the alert notification when context is set
 	useEffect(() => {
 		const timeId = setTimeout(() => {
-			// After 3 seconds set the show value to false
 			setShow(false);
 		}, 1000);
 
@@ -27,143 +25,23 @@ function App() {
 		};
 	}, [show]);
 
-	// this is to gechakra-button css-1erdrhdt and set the auth user
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((authUser) => {
-			if (authUser) {
-				// user logged in
-				// console.log(authUser);
-				setUser(authUser);
-
-				if (authUser.displayName) {
-					// if they already have a username, don't do anything
-				} else {
-					// if they don't have a firebase displayName, set it to their username
-					return authUser.updateProfile({
-						displayName: username,
-					});
-				}
-			} else {
-				// user logged out
-				setUser(null);
-			}
-		});
-		return () => {
-			// cleanup the listener
-			unsubscribe();
-		};
-	}, [username, user]);
-
-	// this is to get data from firebase
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((authUser) => {
-			if (authUser) {
-				// console.log(authUser.displayName);
-
-				db.collection(auth.currentUser.uid)
-					.orderBy('timestamp', 'desc')
-					.onSnapshot((snapshot) => {
-						setEmojiData(
-							snapshot.docs.map((doc) => {
-								return {
-									id: doc.id,
-									emoji: doc.data().emoji,
-									emojiContext: doc.data().emojiContext,
-									timestamp: doc.data().timestamp,
-								};
-							}),
-						);
-					});
-			} else {
-				// user logged out
-			}
-		});
-		return () => {
-			// cleanup the listener
-			unsubscribe();
-		};
-	}, []);
-
-	const sendEmojiData = (emoji) => {
-		// console.log("sending", emoji);
-		db.collection(auth.currentUser.uid).doc().set({
-			emoji: emoji,
-			emojiContext: '',
-			timestamp: new Date().toISOString(),
-		});
-	};
-
-	const sendContextData = (context, id) => {
-		if (context) {
-			// console.log("sending", context, id);
-			db.collection(auth.currentUser.uid).doc(id).update({
-				emojiContext: context,
-			});
-			setShow(true);
-		}
-	};
-
-	const deleteEmoji = (id) => {
-		try {
-			db.collection(auth.currentUser.uid).doc(id).delete();
-			// console.log("deleted", id);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
 	return (
-		<div className='App'>
-			<Flex position='fixed' top='0' w='100%'>
-				<Navbar
-					username={
-						auth.currentUser && auth.currentUser.displayName
-							? 'Welcome back, ' + auth?.currentUser.displayName
-							: ''
-					}
-					user={user}
-					logout={logout}
-					singInWithGoogle={singInWithGoogle}
-					auth={auth}
-				/>
-			</Flex>
-
-			{/* test code here */}
-			{show ? (
-				<Flex
-					flexDir='column'
-					maxW={800}
-					align='center'
-					mx='auto'
-					px={4}>
-					<Flex
-						position='fixed'
-						left='10px'
-						top='80px'
-						zIndex={9}></Flex>
-				</Flex>
-			) : (
-				''
-			)}
-
+		<div className='container page-wrapper'>
+			<h1>Welcome {displayUserName()}</h1>
+			<Navbar
+				username={
+					auth.currentUser && auth.currentUser.displayName
+						? 'Welcome back, ' + auth?.currentUser.displayName
+						: ''
+				}
+				user={user}
+				logout={logout}
+				singInWithGoogle={singInWithGoogle}
+				auth={auth}
+			/>
+			{isLoggedIn ? <h2>Logged in</h2> : <h3>Not loggedin</h3>}
 			{auth.currentUser ? (
 				<>
-					<Flex
-						flexDir='column'
-						maxW={800}
-						align='center'
-						mx='auto'
-						px={4}
-						mt={24}
-						mb={4}>
-						<Heading
-							fontFamily="'Work Sans', sans-serif"
-							id='dateText'
-							fontWeight='400'
-							fontSize={'4xl'}>
-							{moment().format('MMMM D, YYYY')}
-						</Heading>
-					</Flex>
 					<Flex
 						flexDir='column'
 						maxW={800}
@@ -188,11 +66,7 @@ function App() {
 						maxW={800}
 						align='center'
 						mx='auto'
-						px={4}>
-						<Flex position='fixed' bottom='30px' zIndex={9}>
-							<EmojiPanel sendEmojiData={sendEmojiData} />
-						</Flex>
-					</Flex>
+						px={4}></Flex>
 				</>
 			) : (
 				<>

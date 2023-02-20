@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { Navbar, Dropdown, Button, Link, Text } from '@nextui-org/react';
 import Intro from '@/components/layout/Intro';
 import UnderConstruction from '@/components/layout/UnderConstruction';
 import Header from '@/components/header/Header';
