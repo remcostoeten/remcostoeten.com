@@ -1,12 +1,14 @@
 @import './offcanvas-menu';
-$header-height: 40px;
+$header-height: 60px;
+
 .header {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	transition: 0.3s ease all;
+	justify-content: end;
+	transition: 0.1s ease all;
 	flex-direction: row-reverse;
 	padding: 20px 10px;
+	min-height: $header-height;
 
 	.logo {
 		position: absolute;
@@ -27,13 +29,6 @@ $header-height: 40px;
 		&:has(.hamburger) {
 			z-index: 20;
 			font-size: 2rem;
-			position: absolute;
-			right: 40px;
-		}
-
-		.close {
-			top: 31px;
-			right: 10px;
 		}
 	}
 
@@ -54,7 +49,8 @@ $header-height: 40px;
 			background: transparent;
 			backdrop-filter: blur(2px);
 			transform: translate(0);
-			transition: 0.3s ease transform;
+			transition: 400ms ease transform;
+			animation: blur;
 
 			&.isMenu {
 				display: flex;
@@ -68,10 +64,6 @@ $header-height: 40px;
 }
 
 @include mobile {
-	.notice {
-		display: none;
-	}
-
 	.header {
 		&__content {
 			&__nav {

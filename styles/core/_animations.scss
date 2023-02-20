@@ -14,6 +14,16 @@ $animationDuration: 250ms;
 	}
 }
 
+@keyframes blur {
+	0% {
+		filter: blur(3px);
+	}
+
+	100% {
+		filter: blur(0);
+	}
+}
+
 @keyframes grow {
 	0% {
 		width: $hamburger-stripe-width;

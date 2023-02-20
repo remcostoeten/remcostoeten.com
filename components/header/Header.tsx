@@ -6,7 +6,6 @@ export default function Header() {
 		<>
 			<header className='header'>
 				<Logo />
-				<h2>remcostoeten</h2>
 				<OffcanvasMenu />
 			</header>
 		</>

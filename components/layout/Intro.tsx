@@ -22,7 +22,7 @@ export default function Intro() {
 						<br />
 					</span>
 				</div>
-				{/* <div className='intro__heading mobile'>
+				<div className='intro__heading mobile'>
 					remcostoeten, a
 					<br />
 					<span>
@@ -37,7 +37,7 @@ export default function Intro() {
 						to make cool stuff.
 						<br />
 					</span>
-				</div> */}
+				</div>
 				<div className='intro__heading mobile'>
 					<div className='mobile__wrapper'>
 						remcostoeten, a
