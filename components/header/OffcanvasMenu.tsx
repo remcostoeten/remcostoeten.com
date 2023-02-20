@@ -70,7 +70,7 @@ function OffcanvasMenu() {
 					</a>
 					<a
 						className='header__social--github'
-						href='#'
+						href='https://github.com/remcostoeten/'
 						target='_blank'
 						rel='noreferrer'>
 						<svg

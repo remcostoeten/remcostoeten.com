@@ -18,7 +18,7 @@ export default function Home() {
 				<link rel='icon' href='/favicon/favicon.ico' />
 			</Head>{' '}
 			<Header />
-			<main className='homepage'>
+			<main className='container homepage'>
 				<Intro />
 			</main>
 		</>

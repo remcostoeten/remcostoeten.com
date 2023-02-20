@@ -14,6 +14,27 @@ $animationDuration: 250ms;
 	}
 }
 
+@keyframes spinHover {
+	0% {
+		scale: 1;
+		transform: rotate(0);
+	}
+
+	20% {
+		scale: 1.05;
+		transform: rotate(-25deg);
+	}
+
+	60% {
+		scale: 1.09;
+		transform: rotate(15deg);
+	}
+
+	100% {
+		scale: 1;
+	}
+}
+
 @keyframes blur {
 	0% {
 		filter: blur(3px);

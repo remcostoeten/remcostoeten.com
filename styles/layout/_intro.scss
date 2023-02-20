@@ -54,11 +54,17 @@
 	}
 }
 
+.menuOpen {
+	.intro__heading {
+		padding: $spacing;
+	}
+}
+
 @include mobile {
 	.intro {
 		&__heading {
 			color: $theme-black;
-			padding: $spacing $spacing-xl;
+			padding: 0;
 			font-size: 5rem;
 
 			&.mobile {

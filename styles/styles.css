@@ -454,6 +454,11 @@ body .modal-backdrop.show {
   max-width: 1024px;
   margin: 0 auto;
 }
+@media (min-width: 0px) and (max-width: 767px) {
+  .container {
+    padding: 0 8px;
+  }
+}
 
 input {
   height: 40px;
@@ -483,7 +488,7 @@ input[type=text]:hover {
 }
 
 .loading {
-  border: 1px solid 1px solid hsla(0deg, 0%, 76.9%, 0.25);
+  border: 1px solid hsla(0deg, 0%, 76.9%, 0.2);
   top: 25px;
   display: block;
   height: 30px;
@@ -544,6 +549,23 @@ body {
   }
   to {
     background-position: 0 50%;
+  }
+}
+@keyframes spinHover {
+  0% {
+    scale: 1;
+    transform: rotate(0);
+  }
+  20% {
+    scale: 1.05;
+    transform: rotate(-25deg);
+  }
+  60% {
+    scale: 1.09;
+    transform: rotate(15deg);
+  }
+  100% {
+    scale: 1;
   }
 }
 @keyframes blur {
@@ -781,9 +803,17 @@ body {
   height: 100vh;
   background: #fff;
   border-radius: 16px 0 0 16px;
-  scale: 0.8;
-  right: -18%;
+  scale: 0.7;
+  right: -45%;
   animation: blur 250ms ease;
+  transform: translateY(-17%);
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .menuOpen main,
+  .menuOpen .homepage {
+    scale: 0.55;
+    right: -45%;
+  }
 }
 .menuOpen .header {
   flex-direction: row;
@@ -798,6 +828,9 @@ body {
 }
 .menuOpen .header__social svg {
   fill: #fff;
+}
+.menuOpen .header__social svg:hover {
+  animation: spinHover 900ms ease-in-out;
 }
 .menuOpen .header__content ul {
   display: flex;
@@ -905,23 +938,6 @@ body {
 .close:hover {
   animation: spinHover 1s ease-in-out;
 }
-@keyframes spinHover {
-  0% {
-    scale: 1;
-    transform: rotate(0);
-  }
-  20% {
-    scale: 1.05;
-    transform: rotate(-25deg);
-  }
-  60% {
-    scale: 1.09;
-    transform: rotate(15deg);
-  }
-  100% {
-    scale: 1;
-  }
-}
 @keyframes spin {
   0% {
     transform: rotate(0);
@@ -977,7 +993,7 @@ body {
   }
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  main.homepage {
+  .menuOpen main.homepage {
     position: absolute;
     top: 0;
     z-index: 10;
@@ -987,26 +1003,18 @@ body {
     transition: border-radius cubic-bezier(0.77, 0, 0.175, 1) 0.6s, scale cubic-bezier(0.77, 0, 0.175, 1) 0.6s, transform cubic-bezier(0.77, 0, 0.175, 1) 1.6s;
     transition-delay: 0s, 0s, 0s;
     overflow-y: scroll;
-    transition: 350ms ease-in-out all;
+    transition: 250ms ease-out all;
     left: 0;
-  }
-  main.homepage article.container {
-    margin-top: 85px;
   }
 }
 .header {
   display: flex;
   align-items: center;
-  justify-content: end;
+  justify-content: space-between;
   transition: 0.1s ease all;
-  flex-direction: row-reverse;
-  padding: 20px 10px;
+  flex-direction: row;
+  padding: 20px 8px;
   min-height: 60px;
-}
-.header .logo {
-  position: absolute;
-  top: 24px;
-  left: 24px;
 }
 .header li {
   color: #fff;
@@ -1014,6 +1022,9 @@ body {
 .header h2 {
   z-index: 20;
   color: #fff;
+}
+.header__toggle {
+  padding: 24px;
 }
 .header__toggle:has(.hamburger) {
   z-index: 20;
@@ -1032,7 +1043,6 @@ body {
   align-items: center;
   text-align: center;
   background: transparent;
-  backdrop-filter: blur(2px);
   transform: translate(0);
   transition: 400ms ease transform;
   animation: blur;
@@ -1040,14 +1050,17 @@ body {
 .header__content__nav.isMenu {
   display: flex;
   justify-content: flex-start;
-  top: 22%;
+  top: calc(13.2vh + 16px);
   z-index: 15;
   transform: translate(60%);
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
-  .header__content__nav.isMenu {
-    top: 22%;
+  .header {
+    border-bottom: 1px solid hsla(0deg, 0%, 76.9%, 0.2);
+    margin-bottom: 20px;
+    min-height: 13.2vh;
+    padding: 0;
   }
 }
 .intro {
@@ -1093,10 +1106,14 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
+.menuOpen .intro__heading {
+  padding: 24px;
+}
+
 @media (min-width: 0px) and (max-width: 767px) {
   .intro__heading {
     color: #1e1e28;
-    padding: 24px 36px;
+    padding: 0;
     font-size: 5rem;
   }
   .intro__heading.mobile .mobile__wrapper {
