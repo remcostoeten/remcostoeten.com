@@ -135,7 +135,8 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -159,10 +160,12 @@ select {
     scroll-behavior: auto;
   }
   *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+*::before,
+*::after {
+    -webkit-animation-duration: 0.01ms !important;
+            animation-duration: 0.01ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+            animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
@@ -381,7 +384,8 @@ a.btn--arrow:hover,
 }
 a.btn--arrow:hover:before,
 .btn--arrow:hover:before {
-  animation: arrowFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  -webkit-animation: arrowFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          animation: arrowFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 a.btn--arrow:before,
 .btn--arrow:before {
@@ -489,7 +493,8 @@ input[type=text]:hover {
   height: 30px;
   position: absolute;
   width: 30px;
-  animation: rotation 1.5s infinite linear;
+  -webkit-animation: rotation 1.5s infinite linear;
+          animation: rotation 1.5s infinite linear;
   border: 4px solid #0092d2;
   border-top-color: rgba(100, 125, 94, 0);
   border-radius: 50%;
@@ -535,6 +540,22 @@ body {
   }
 }
 
+.page-wrapper {
+  padding-top: 100px;
+}
+
+@-webkit-keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  to {
+    background-position: 0 50%;
+  }
+}
+
 @keyframes gradient {
   0% {
     background-position: 0 50%;
@@ -544,6 +565,17 @@ body {
   }
   to {
     background-position: 0 50%;
+  }
+}
+@-webkit-keyframes grow {
+  0% {
+    width: 20px;
+  }
+  25% {
+    width: 23px;
+  }
+  100% {
+    width: 20px;
   }
 }
 @keyframes grow {
@@ -557,6 +589,18 @@ body {
     width: 20px;
   }
 }
+@-webkit-keyframes scale-out {
+  0% {
+    scale: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    scale: 0.1;
+  }
+}
 @keyframes scale-out {
   0% {
     scale: 1;
@@ -567,6 +611,19 @@ body {
   100% {
     opacity: 0;
     scale: 0.1;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+    scale: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    scale: 1;
+    opacity: 1;
   }
 }
 @keyframes fade-in {
@@ -582,6 +639,17 @@ body {
     opacity: 1;
   }
 }
+@-webkit-keyframes gradientAnimation {
+  0% {
+    background-position: 2% 0%;
+  }
+  50% {
+    background-position: 99% 100%;
+  }
+  100% {
+    background-position: 2% 0%;
+  }
+}
 @keyframes gradientAnimation {
   0% {
     background-position: 2% 0%;
@@ -593,30 +661,34 @@ body {
     background-position: 2% 0%;
   }
 }
-@keyframes slide-out-top {
+@-webkit-keyframes slide-out-top {
   0% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
   100% {
-    -webkit-transform: translateY(-1000px);
+    transform: translateY(-1000px);
+    opacity: 0;
+  }
+}
+@keyframes slide-out-top {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
     transform: translateY(-1000px);
     opacity: 0;
   }
 }
 @-webkit-keyframes swing-out-top-bck {
   0% {
-    -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 1;
   }
   100% {
-    -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 0;
     top: 500px;
@@ -624,18 +696,28 @@ body {
 }
 @keyframes swing-out-top-bck {
   0% {
-    -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 1;
   }
   100% {
-    -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 0;
+  }
+}
+@-webkit-keyframes tracking-out-contract {
+  0% {
+    letter-spacing: 0;
+    opacity: 1;
+  }
+  50% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  100% {
+    letter-spacing: 0;
+    opacity: 1;
   }
 }
 @keyframes tracking-out-contract {
@@ -652,12 +734,37 @@ body {
     opacity: 1;
   }
 }
+@-webkit-keyframes animatinTwo {
+  0% {
+    background: red;
+  }
+  100% {
+    background: none;
+  }
+}
 @keyframes animatinTwo {
   0% {
     background: red;
   }
   100% {
     background: none;
+  }
+}
+@-webkit-keyframes tracking-out-contract-reverse {
+  0% {
+    letter-spacing: -0.5em;
+  }
+  20% {
+    opacity: 0.25;
+    letter-spacing: -0.5em;
+  }
+  50% {
+    letter-spacing: -0.5em;
+    opacity: 1;
+  }
+  100% {
+    letter-spacing: -0.5em;
+    opacity: 0;
   }
 }
 @keyframes tracking-out-contract-reverse {
@@ -677,6 +784,18 @@ body {
     opacity: 0;
   }
 }
+@-webkit-keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes tracking-in-expand {
   0% {
     letter-spacing: -0.5em;
@@ -687,6 +806,18 @@ body {
   }
   100% {
     opacity: 1;
+  }
+}
+@-webkit-keyframes move {
+  25% {
+    transform: translatey(-5.8vmin);
+    opacity: 1;
+  }
+  50% {
+    transform: translatey(-11vmin);
+  }
+  75% {
+    transform: translatey(-16.5vmin);
   }
 }
 @keyframes move {
@@ -701,12 +832,28 @@ body {
     transform: translatey(-16.5vmin);
   }
 }
+@-webkit-keyframes top-out {
+  0% {
+    transform: translatey(0);
+  }
+  100% {
+    transform: translatey(-1000px);
+  }
+}
 @keyframes top-out {
   0% {
     transform: translatey(0);
   }
   100% {
     transform: translatey(-1000px);
+  }
+}
+@-webkit-keyframes bottom-in {
+  0% {
+    transform: translateY(100px);
+  }
+  100% {
+    transform: translatey(0);
   }
 }
 @keyframes bottom-in {
@@ -717,15 +864,23 @@ body {
     transform: translatey(0);
   }
 }
-@keyframes arrowFade {
+@-webkit-keyframes arrowFade {
   0% {
     opacity: 0;
-    -webkit-transform: translate3d(-100%, -50%, 0);
     transform: translate3d(-100%, -50%, 0);
   }
   to {
     opacity: 1;
-    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+}
+@keyframes arrowFade {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, -50%, 0);
+  }
+  to {
+    opacity: 1;
     transform: translate3d(0, -50%, 0);
   }
 }
@@ -804,7 +959,19 @@ body {
 .hamburger .gradient {
   background: linear-gradient(-45deg, #ffeb3b, #74efff, #9c27b0);
   background-size: 400% 400%;
-  animation: gradient-bg 20s ease infinite;
+  -webkit-animation: gradient-bg 20s ease infinite;
+          animation: gradient-bg 20s ease infinite;
+}
+@-webkit-keyframes gradient-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 @keyframes gradient-bg {
   0% {
@@ -936,7 +1103,8 @@ body {
   align-items: center;
   text-align: center;
   background: transparent;
-  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+          backdrop-filter: blur(2px);
   transform: translate(0);
   transition: 0.3s ease transform;
 }
@@ -975,27 +1143,34 @@ body {
   overflow: hidden;
 }
 .intro__effect span {
-  animation: fade-in 1s 250ms;
-  animation-fill-mode: both;
+  -webkit-animation: fade-in 1s 250ms;
+          animation: fade-in 1s 250ms;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
   opacity: 0;
   position: absolute;
-  animation-timing-function: cubic-bezier(1, -0.71, 1, 1);
+  -webkit-animation-timing-function: cubic-bezier(1, -0.71, 1, 1);
+          animation-timing-function: cubic-bezier(1, -0.71, 1, 1);
 }
 .intro .special {
   position: absolute;
   font-size: 40px;
-  animation: scale-out 250ms 1s ease-out;
+  -webkit-animation: scale-out 250ms 1s ease-out;
+          animation: scale-out 250ms 1s ease-out;
   z-index: 50;
   width: 150px;
   min-width: 150px;
-  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 .intro__hero--heading-gradient,
 .intro .gradient {
   background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
   background-size: 400% 400%;
-  animation: gradient 3s ease infinite;
-  background-clip: text;
+  -webkit-animation: gradient 3s ease infinite;
+          animation: gradient 3s ease infinite;
+  -webkit-background-clip: text;
+          background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 

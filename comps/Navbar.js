@@ -19,13 +19,6 @@ import { ExternalLinkIcon, QuestionOutlineIcon } from '@chakra-ui//icons';
 
 function Navbar({ username, auth, user, logout, singInWithGoogle }) {
 	return (
-		<Box
-			w='100%'
-			bg={useColorModeValue('gray.100', 'gray.800')}
-			px={4}
-			borderBottom='1px'
-			borderColor={useColorModeValue('gray.200', 'gray.700')}
-			backdropFilter='saturate(180%) blur(5px)'>
 			<Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
 				<Box fontFamily="'Fredoka One', cursive" fontSize='3xl'>
 					Remco logboek
@@ -140,7 +133,6 @@ function Navbar({ username, auth, user, logout, singInWithGoogle }) {
 					</Menu>
 				</Flex>
 			</Flex>
-		</Box>
 	);
 }
 
