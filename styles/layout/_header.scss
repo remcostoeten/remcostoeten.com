@@ -3,9 +3,39 @@ $header-height: 40px;
 .header {
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	justify-content: center;
 	transition: 0.3s ease all;
+	flex-direction: row-reverse;
 	padding: 20px 10px;
+
+	.logo {
+		position: absolute;
+		top: $spacing;
+		left: $spacing;
+	}
+
+	li {
+		color: $color-white;
+	}
+
+	h2 {
+		z-index: $z-index-layer-three;
+		color: $color-white;
+	}
+
+	&__toggle {
+		&:has(.hamburger) {
+			z-index: 20;
+			font-size: 2rem;
+			position: absolute;
+			right: 40px;
+		}
+
+		.close {
+			top: 31px;
+			right: 10px;
+		}
+	}
 
 	&__content {
 		&__nav {
@@ -20,22 +50,19 @@ $header-height: 40px;
 			justify-content: center;
 			align-items: center;
 			text-align: center;
-			background: $theme-black;
+			// background: $theme-black;
+			background: transparent;
 			backdrop-filter: blur(2px);
 			transform: translate(0);
 			transition: 0.3s ease transform;
 
 			&.isMenu {
+				display: flex;
+				justify-content: flex-start;
+				top: 22%;
 				z-index: 15;
-				transform: translate(50%);
+				transform: translate(60%);
 			}
-		}
-
-		&__toggle {
-			z-index: 20;
-
-			font-size: 2rem;
-			position: relative;
 		}
 	}
 }
@@ -43,5 +70,15 @@ $header-height: 40px;
 @include mobile {
 	.notice {
 		display: none;
+	}
+
+	.header {
+		&__content {
+			&__nav {
+				&.isMenu {
+					top: 22%;
+				}
+			}
+		}
 	}
 }

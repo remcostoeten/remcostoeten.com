@@ -1,5 +1,5 @@
-import React from 'react';
-
+import React, { useEffect, useRef, useState } from 'react';
+import OffcanvasMenu from './OffcanvasMenu';
 export default function Logo() {
 	return (
 		<div className='logo'>
