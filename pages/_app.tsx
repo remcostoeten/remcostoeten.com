@@ -1,6 +1,16 @@
 import '@/styles/styles.css';
+import Header from '@/components/header/Header';
+import Footer from '@/components/Footer';
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
-	return <Component {...pageProps} />;
+	return (
+		<>
+			<Header />
+			<main className='container'>
+				<Component {...pageProps} />
+			</main>
+			<Footer />
+		</>
+	);
 }

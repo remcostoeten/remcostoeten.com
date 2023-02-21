@@ -1,24 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../comps/Navbar';
+import Navbar from '../../comps/Navbar';
 import moment from 'moment';
 import { Flex, Box, Button, Text, Heading, Image } from '@chakra-ui/react';
-import EmojiCard from '../comps/EmojiCard';
-import EmojiPanel from '../comps/EmojiPanel';
-import Footer from '../comps/Footer';
-import { auth, db, singInWithGoogle, logout } from '../firebase';
+import EmojiCard from '../../comps/EmojiCard';
+import EmojiPanel from '../../comps/EmojiPanel';
+import Footer from '../../comps/Footer';
+import { auth, db, singInWithGoogle, logout } from '../../firebase';
 
-function App() {
+function Login() {
 	const [emojiData, setEmojiData] = useState([]);
 	const [user, setUser] = useState(null);
 	const [username, setUsername] = useState('');
 	const [show, setShow] = useState(true);
 	const isLoggedIn = auth.currentUser;
 	const displayUserName = () => auth?.currentUser?.displayName;
-	const [count, setCount] = useState(false);
-
-	function toggleTest() {
-		setCount(count - 1);
-	}
 
 	useEffect(() => {
 		const timeId = setTimeout(() => {
@@ -45,9 +40,6 @@ function App() {
 				auth={auth}
 			/>
 			{isLoggedIn ? <h2>Logged in</h2> : <h3>Not loggedin</h3>}
-
-			<button onClick={toggleTest}>test</button>
-			<span>{count}</span>
 			{auth.currentUser ? (
 				<>
 					<Flex
@@ -112,4 +104,4 @@ function App() {
 	);
 }
 
-export default App;
+export default Login;
