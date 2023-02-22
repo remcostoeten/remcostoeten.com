@@ -1,7 +1,7 @@
 // www.youtube.com/watch?v=zx_879gAoYo
 import React, { useState } from 'react';
 import { Row } from './Row';
-import { Data } from './todolist';
+import { Data } from './todos';
 import { Todo } from './types';
 export const Todos = () => {
 	const [todos, setTodos] = useState<Todo[]>(Data);
@@ -21,7 +21,20 @@ export const Todos = () => {
 						task?: string;
 						isCompleted?: boolean;
 					}) => (
-						<Row key={todo.id} todo={todo} />
+						<Row
+							key={todo.id}
+							todo={{
+								id: '',
+								task: '',
+								isCompleted: false,
+							}}
+							handleCheckTodo={function (id: string): void {
+								throw new Error('Function not implemented.');
+							}}
+							handleDeleteTodo={function (id: string): void {
+								throw new Error('Function not implemented.');
+							}}
+						/>
 					),
 				)}
 			</section>
