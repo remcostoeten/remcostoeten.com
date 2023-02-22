@@ -24,7 +24,8 @@
 		"**/*.ts",
 		"**/*.tsx",
 		"pages/_Login.tsx",
-		"pages/Login.js"
+		"pages/Login.js",
+		"pages/Chat/ChatTest.tsx"
 	],
 	"exclude": ["node_modules"]
 }
