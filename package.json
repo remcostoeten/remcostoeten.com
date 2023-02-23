@@ -23,6 +23,7 @@
 		"faker": "^5.5.3",
 		"firebase": "^9.17.1",
 		"framer-motion": "^9.0.3",
+		"jotai": "^2.0.2",
 		"moment": "^2.29.4",
 		"netlify-identity-widget": "^1.9.2",
 		"next": "13.1.6",

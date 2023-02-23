@@ -25,7 +25,9 @@
 		"**/*.tsx",
 		"pages/_Login.tsx",
 		"pages/Login.js",
-		"pages/Chat/ChatTest.tsx"
+		"pages/Chat/ChatTest.tsx",
+		"pages/Chat/chatNavigation.js",
+		"pages/Chat/BlogPostList.jsx"
 	],
 	"exclude": ["node_modules"]
 }

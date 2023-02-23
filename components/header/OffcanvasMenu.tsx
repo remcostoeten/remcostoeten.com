@@ -46,6 +46,9 @@ function OffcanvasMenu() {
           }`}>
 				<ul>
 					<li>
+						<Link href='/'>Home</Link>
+					</li>
+					<li>
 						<Link href='/Authentication'>Login</Link>
 					</li>
 					<li>
@@ -55,6 +58,10 @@ function OffcanvasMenu() {
 					<li>
 						<a href=''>Contact</a>
 					</li>
+					<Link href='/Chat/Daphne75k'>75k</Link>
+					<Link href='/Chat/Daphne150k'>150k</Link>
+					<Link href='/Chat/Daphne225k'>225</Link>
+					<Link href='/Chat/Daphne400k'>400</Link>
 				</ul>
 				<div className='header__social'>
 					<a
