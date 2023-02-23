@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { daphData } from './remcostoeten-private-apiroutes/dData75k';
+import { daphData } from './remcostoeten-private-apiroutes/dData100k';
+import { auth, db, singInWithGoogle, logout } from '../../firebase';
+
 function Daphne() {
 	const [search, setSearch] = useState('');
+		const isLoggedIn = auth.currentUser;
+
 	return (
 		<>
+
 			<div className='chat'>
 				<div className='chat__side-panel'>
 					<input
@@ -27,9 +32,12 @@ function Daphne() {
 							})
 							.map((item) => (
 								<div className='bubble__message'>
-									<div className='bubble__bg'>
+											{isLoggedIn ? 			<div className='bubble__bg'>
+
 										{item.message}
-									</div>
+					</div>: <div></div>}
+
+						
 								</div>
 							))}
 					</div>

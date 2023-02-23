@@ -9,133 +9,132 @@ $border-color: #2e2e38;
 
 $gradient-one: #2d2f3e;
 $gradient-two: #323645;
-$gradient-bg: linear-gradient(
-	7deg,
-	rgba(45, 47, 62, 1) 0%,
-	rgba(45, 47, 62, 1) 100%
-);
+$gradient-bg: linear-gradient(7deg,
+    rgba(45, 47, 62, 1) 0%,
+    rgba(45, 47, 62, 1) 100%);
 $light-bg: #313646;
-.chat {
-	display: grid;
-	grid-template-columns: 1fr 5fr;
-	max-width: 75%;
-	margin: 0 auto;
 
-	&__side-panel {
-		height: 100%;
-		padding: $spacing;
-		border-right: 1px solid $border-color;
-	}
+// .chat {
+//     display: grid;
+//     grid-template-columns: 1fr 5fr;
+//     max-width: 75%;
+//     margin: 0 auto;
 
-	&__chat-panel {
-		height: 100%;
-		padding: $spacing * 4 0 $spacing * 4;
-	}
-}
+//     &__side-panel {
+//         height: 100%;
+//         padding: $spacing;
+//         border-right: 1px solid $border-color;
+//     }
+
+//     &__chat-panel {
+//         height: 100%;
+//         padding: $spacing * 4 0 $spacing * 4;
+//     }
+// }
 
 .search {
-	top: $header-height;
-	z-index: 10;
-	right: 100px;
-	width: 100%;
-	height: 45px;
-	border-radius: 9px;
-	padding: 0 9px;
+    top: $header-height;
+    z-index: 10;
+    right: 100px;
+    width: 100%;
+    height: 45px;
+    border-radius: 9px;
+    padding: 0 9px;
 
-	color: white;
-	border: 1px solid #fff;
+    color: white;
+    border: 1px solid #fff;
 }
 
 .bubble {
-	.bubble__bg {
-		max-width: 50%;
-		height: 45px;
-		background-color: transparent;
-		position: absolute;
-	}
+    .bubble__bg {
+        max-width: 50%;
+        padding: $spacing-s 0;
+        height: 45px;
+        background-color: transparent;
+        position: absolute;
+        font-size: 1.6em;
+        margin: $spacing-s 0;
+    }
 
-	&__message {
-		display: flex;
-		position: relative;
-		padding: $spacing $spacing * 5 $spacing $spacing;
-		position: relative;
-		transition: 125ms;
-		overflow: hidden;
-		margin-bottom: calc($spacing / 2);
-		position: relative;
-		border-radius: 16px 8px 8px 4px;
-		color: #fff;
-		z-index: 2;
+    &__message {
+        display: flex;
+        position: relative;
+        transition: 125ms;
+        overflow: hidden;
+        position: relative;
+        border-radius: 16px 8px 8px 4px;
+        color: #fff;
+        z-index: 2;
 
-		.timestamp {
-			margin-right: 3px;
-			border-radius: 4px;
-			border: 1px solid $border-color;
-			padding: 5px;
-			font-size: 12px;
-			position: absolute;
-			right: 15px;
-			top: -10px;
-			color: #fff;
-			background: $lighter-bg;
-			background-size: 400% 400%;
+        .timestamp {
+            margin-right: 3px;
+            border-radius: 4px;
+            border: 1px solid $border-color;
+            padding: 5px;
+            font-size: 12px;
+            position: absolute;
+            right: 15px;
+            top: -10px;
+            color: #fff;
+            background: $lighter-bg;
+            background-size: 400% 400%;
 
-			animation: bubble-hover-swipe 400ms,
-				bubble-gradient 15s ease infinite;
-		}
+            animation: bubble-hover-swipe 400ms,
+                bubble-gradient 15s ease infinite;
+        }
 
-		&:hover {
-			scale: 1.01;
+        &:hover {
+            scale: 1.01;
 
-			&:after {
-				content: '';
-				background: $lighter-bg;
-				background-size: 400% 400%;
-				position: absolute;
-				right: 0%;
-				opacity: 0.5;
-				top: 0;
-				width: 100vw;
-				animation: bubble-hover-swipe 400ms,
-					bubble-gradient 15s ease infinite;
-				transform: rotate(12deg);
-				scale: 7;
-				height: 100%;
-				position: absolute;
-			}
-		}
-	}
+            &:after {
+                content: '';
+                background: $lighter-bg;
+                background-size: 400% 400%;
+                position: absolute;
+                right: 0%;
+                opacity: 0.5;
+                top: 0;
+                width: 100vw;
+                animation: bubble-hover-swipe 400ms,
+                    bubble-gradient 15s ease infinite;
+                transform: rotate(12deg);
+                scale: 7;
+                height: 100%;
+                position: absolute;
+            }
+        }
+    }
 
-	&__bg {
-		&:hover {
-			position: relative;
-			cursor: pointer;
-		}
-	}
+    &__bg {
+        &:hover {
+            position: relative;
+            cursor: pointer;
+        }
+    }
 }
 
 .chat-history {
-	background: rgb(45, 47, 62);
-	background: $gradient-bg;
+    background: rgb(45, 47, 62);
+    background: $gradient-bg;
 
-	input {
-		border-radius: 1px;
-		border: 1px solid #fff;
-		margin-left: $spacing;
-		padding: 6px 10px;
-		color: white;
-	}
+    input {
+        border-radius: 1px;
+        border: 1px solid #fff;
+        margin-left: $spacing;
+        padding: 6px 10px;
+        color: white;
+    }
 
-	&__person {
-		color: #fff;
-		border-bottom: 1px solid $border-color;
-		line-height: 12px;
-		padding: $spacing;
-		margin-top: -8px;
-		margin-left: 5px;
-	}
+    &__person {
+        color: #fff;
+        border-bottom: 1px solid $border-color;
+        line-height: 12px;
+        padding: $spacing;
+        margin-top: -8px;
+        margin-left: 5px;
+    }
 
-	&__inner {
-		padding: $spacing;
-	}
+    &__inner {
+        padding: $spacing;
+    }
 }
