@@ -29,7 +29,8 @@
 		"pages/Chat/chatNavigation.js",
 		"pages/Chat/BlogPostList.jsx",
 		"pages/Chat/backups/WerkendeReactWindow.js",
-		"pages/Chat/backups/window.js"
+		"pages/Chat/backups/window.js",
+		"pages/Chat/Test.js"
 	],
 	"exclude": ["node_modules"]
 }
