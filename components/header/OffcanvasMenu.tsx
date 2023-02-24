@@ -54,7 +54,7 @@
 							<Link href='/aboutMe'>About me</Link>
 						</li>
 
-						<li>
+						<li>vgit
 							<a href=''>Contact</a>
 						</li>
 						<Link href='/Chat/Daphne100k'>100</Link>
