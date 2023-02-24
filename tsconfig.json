@@ -27,7 +27,9 @@
 		"pages/Login.js",
 		"pages/Chat/ChatTest.tsx",
 		"pages/Chat/chatNavigation.js",
-		"pages/Chat/BlogPostList.jsx"
+		"pages/Chat/BlogPostList.jsx",
+		"pages/Chat/backups/WerkendeReactWindow.js",
+		"pages/Chat/backups/window.js"
 	],
 	"exclude": ["node_modules"]
 }
