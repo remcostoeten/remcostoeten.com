@@ -93,7 +93,6 @@ function App() {
 					</li>
 
 					<li>
-						vgit
 						<a href=''>Contact</a>
 					</li>
 					{isLoggedIn ? (
