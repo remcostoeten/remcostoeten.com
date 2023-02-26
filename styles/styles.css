@@ -1234,6 +1234,8 @@ body {
 .chat-history {
   background: rgb(45, 47, 62);
   background: linear-gradient(7deg, rgb(45, 47, 62) 0%, rgb(45, 47, 62) 100%);
+  color: white;
+  font-size: 2em;
 }
 .chat-history input {
   border-radius: 1px;
