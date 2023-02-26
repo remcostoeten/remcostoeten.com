@@ -45,18 +45,22 @@ function DaphneFull({ handleKeyDown }) {
 						placeholder='zoeken'></input>
 				</div>
 				<div className='chat__chat-panel chat-history'>
-					<div className='chat-history__inner'></div>
 					{data.chat
 						.filter((item) => {
-							return search.toLowerCase() == ''
+							return search.toLowerCase() === ''
 								? item
 								: item.message.toLowerCase().includes(search);
-							<>
-								<div className='btn btn--primary'>btn</div>
-							</>;
 						})
 						.map((item, idx) => (
-							<div className='bubble__message' key={idx}>
+							<div
+								className={`bubble__message ${
+									item.message
+										.toLowerCase()
+										.includes('daphne hoitzing')
+										? 'bubble__second-person'
+										: ''
+								}`}
+								key={idx}>
 								{item.message}
 							</div>
 						))}

@@ -16,9 +16,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ chatData }) => {
 			{chatData.map((message: Message, index: number) => (
 				<div
 					className={`message ${
-						message.message.includes('urgent')
-							? 'urgent-message'
-							: ''
+						message.message.includes('Bob') ? 'urgent-message' : ''
 					}`}
 					key={index}>
 					<div className='sender'>{message.sender}</div>
