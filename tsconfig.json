@@ -30,7 +30,8 @@
 		"pages/Chat/BlogPostList.jsx",
 		"pages/Chat/backups/WerkendeReactWindow.js",
 		"pages/Chat/backups/window.js",
-		"pages/Chat/Test.js"
+		"pages/Chat/Test.js",
+		"components/header/Logo.js"
 	],
 	"exclude": ["node_modules"]
 }
