@@ -1,3 +1,5 @@
 [submodule "pages/Chat/remcostoeten-private-apiroutes"]
 	path = pages/Chat/remcostoeten-private-apiroutes
 	url = https://github.com/remcostoeten/remcostoeten-private-apiroutes.git
+[submodule ".\\pages\\Chat\\remcostoeten-private-apiroutes\\"]
+	url = https://github.com/remcostoeten/remcostoeten-private-apiroutes.git
