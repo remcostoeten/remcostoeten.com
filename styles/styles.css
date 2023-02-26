@@ -861,7 +861,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  margin: 0;
+  margin-top: 80px;
 }
 .menuOpen .header__content ul li:not(:last-child) {
   margin-bottom: 6.8571428571px;
