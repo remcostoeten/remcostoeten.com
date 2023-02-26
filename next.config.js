@@ -1,6 +1,13 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	reactStrictMode: true,
-};
+const withTM = require('next-transpile-modules')(['json-loader']);
 
-module.exports = nextConfig;
+module.exports = withTM({
+	webpack: (config) => {
+		config.module.rules.push({
+			test: /\.json$/,
+			loader: 'json-loader',
+			type: 'javascript/auto',
+		});
+
+		return config;
+	},
+});
