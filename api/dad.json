@@ -1,0 +1,17 @@
+// json
+[
+	{
+		"chat": {
+			"message": {
+				"user": "jan",
+				"timestamp": "12am"
+			}
+		},
+		"chat": {
+			"message": {
+				"user": "jan",
+				"timestamp": "12am"
+			}
+		}
+	}
+]

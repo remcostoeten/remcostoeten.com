@@ -1,0 +1,264 @@
+// Define variables
+$dark-background: #2e2f3e;
+$grey-text: #77787e;
+$accent-color: #8073fb;
+$blue: #272a37;
+$dark-blue: #1b1c24;
+$light-blue: #26282f;
+$white-text: #eaeaeb;
+$grey: #757889;
+$icon-color: $grey;
+$border-color: #2e2e38;
+
+$gradient-one: #2d2f3e;
+$gradient-two: #323645;
+
+$light-bg: #313646;
+.chat-ui {
+	background: $dark-background;
+
+	#text1,
+	#text2 {
+		color: white;
+	}
+}
+// Define styles
+.bubble__message {
+	display: flex;
+	justify-content: flex-end;
+}
+
+.bubble__second-person {
+	justify-content: flex-start;
+}
+
+.bubble__message {
+	max-width: 450px;
+	width: -moz-fit-content;
+	display: flex;
+	position: relative;
+	transition: 125ms;
+	position: relative;
+	border-radius: 16px 8px 8px 4px;
+	background-color: #1f2029;
+	background-clip: content-box;
+	border: 1px solid #2a2b38;
+	z-index: 2;
+	flex: 0;
+	font-size: 15px;
+	padding: 10px;
+	m: 4px;
+	color: #77787e;
+	align-items: initial;
+	flex: 1 0 auto;
+	position: relative;
+
+	.bubble__second-person p {
+		border-radius: 16px 8px 8px 4px;
+		background-color: #8073fb !important;
+		color: white;
+		padding: 15px 10px;
+	}
+}
+
+.bubble__second-person {
+	display: flex;
+	justify-content: flex-end;
+	align-items: flex-end;
+}
+
+aside {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	left: 0;
+	width: initial;
+	left: -100px;
+	width: 15%;
+	padding: $spacing;
+	position: -webkit-sticky; /* Safari */
+	position: sticky;
+	top: 0;
+	background: #1f2029;
+
+	input {
+		margin-bottom: 12px;
+	}
+
+	button {
+		margin: 4px 0;
+		background-color: transparent;
+		border: 1px solid #a2a2a3;
+		color: #a2a2a3;
+		border-radius: 6px;
+	}
+
+	input {
+		position: -webkit-sticky; /* Safari */
+		background: white;
+		position: sticky;
+		top: 0;
+	}
+}
+
+.chat {
+	display: flex;
+	background-color: $dark-background;
+	color: $grey-text;
+	padding: $spacing;
+	max-width: 520px;
+	margin: 0 auto;
+	border-radius: 16px 8px 8px 4px;
+	border-top: 1px solid lighten($dark-background, 10%);
+
+	p {
+		border-radius: 16px 8px 8px 4px;
+		color: white;
+		padding: 15px 20px;
+	}
+
+	button {
+		margin-bottom: 10px;
+		background-color: $dark-background;
+		color: $color-white;
+		border-radius: 16px 8px 8px 4px;
+		border: 1px solid $dark-background;
+		font-size: 1.5em;
+	}
+
+	input {
+		top: $header-height;
+		z-index: 10;
+		right: 100px;
+		width: 100%;
+		height: 45px;
+		border-radius: 9px;
+		padding: 0 9px;
+		border-radius: 16px 8px 8px 4px;
+		margin-bottom: $spacing-xs;
+		color: black;
+		width: 125px;
+		margin-left: -200px;
+		background-color: white;
+		border-color: $dark-background;
+	}
+
+	.bubble {
+		&__attachments {
+			display: flex;
+			font-size: 6px;
+			align-items: center;
+			margin-top: $spacing-xs;
+
+			span {
+				padding-right: 3px;
+			}
+
+			&:empty {
+				border: none;
+			}
+		}
+		&__second-person {
+			display: flex;
+			justify-content: flex-end;
+			align-items: flex-end;
+			background-color: $accent-color !important;
+			color: white !important;
+
+			&:after {
+				background-image: url('https://xsgames.co/randomusers/assets');
+			}
+		}
+
+		&__message {
+			max-width: 450px;
+			width: fit-content;
+			display: flex;
+			position: relative;
+			transition: 125ms;
+			position: relative;
+			border-radius: 30px;
+			background-color: #1f2029;
+			border: none;
+			z-index: 2;
+			color: #77787e;
+			position: relative;
+
+			&.z {
+				&:after {
+					background-position: 4px -35px !important;
+					background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg') !important;
+				}
+
+				&.d {
+					// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg')
+				}
+
+				&.y {
+					// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/y.jpg')
+				}
+			}
+
+			&:after {
+				content: '';
+				background-size: 125%;
+				background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
+				// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
+				height: 55px;
+				width: 55px;
+				display: block;
+				border-radius: 16px;
+				position: absolute;
+				top: 15px;
+				background-position: -5px -75px;
+				right: -100px;
+				top: 16px;
+			}
+
+			&.bubble__second-person {
+				&:after {
+					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
+					top: 15px;
+					background-position: -5px -75px;
+					left: -100px;
+					top: 16px;
+				}
+			}
+		}
+
+		&__bg {
+			&:hover {
+				position: relative;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.chat-history {
+		background: rgb(45, 47, 62);
+		color: white;
+		font-size: 2.5em;
+		padding: $spacing;
+
+		input {
+			border-radius: 1px;
+			border: 1px solid #fff;
+			margin-left: $spacing;
+			padding: 6px 10px;
+			color: white;
+		}
+
+		&__person {
+			color: #fff;
+			border-bottom: 1px solid $border-color;
+			line-height: 12px;
+			padding: $spacing;
+			margin-top: -8px;
+			margin-left: 5px;
+		}
+
+		&__inner {
+			padding: $spacing;
+		}
+	}
+}

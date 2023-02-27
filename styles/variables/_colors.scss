@@ -1,0 +1,60 @@
+@use './gradients';
+
+// Primary colors
+$color-primary: #0092d2;
+$color-secondary: #003247;
+$color-primary-gradient1: #009de0;
+$color-primary-gradient2: #0081c7;
+$primary-color: $color-primary;
+
+// Greys
+$color-extra-light-grey: #f6f9fc;
+$color-light-grey: #d8e3eb;
+$color-grey: #c7d2d9;
+$color-medium-grey: #9aabb3;
+$color-dark-grey: #74838a;
+$color-grey-border: #c7d2d9;
+
+//Colors Accent
+//Colors Accent
+$color-green: #0eae0e;
+$color-orange: #ff6400;
+$color-red: #d0021b;
+$color-blue-dark: #007bb8;
+$color-light-red: #fff1f3;
+$color-blue-disabeled: #72b4e0;
+
+$heading-color: $color-secondary;
+$color-white: #fff;
+$card-shadow: 0 8px 20px 0 rgba(22, 60, 92, 0.1);
+$menu-shadow: 0 2px 6px 0 rgba(22, 60, 92, 0.2),
+	0 4px 16px 0 rgba(22, 60, 92, 0.24);
+$popup-overlay: 0 2px 6px 0 rgba(38, 82, 104, 0.1),
+	0 8px 24px 0 rgba(22, 60, 92, 0.26);
+$overlay: rgba(154, 171, 179, 0.4);
+
+$border-color: $color-grey;
+
+// // Color palette
+// $theme-black: #21262e;
+// $theme-primary: #853a76;
+// $theme-secondary: #bd608a;
+// $theme-white: #e9e8e8;
+
+// Color palette adelaadof
+$pink: #c08af1;
+$purple: #8000ff;
+$light-blue: #57a3c7;
+$green: #6b9796;
+$theme-black: #1e1e28;
+$theme-gray: #c4c4c4;
+$theme-grey--accent: #8b8b8b;
+$theme-primary: $purple;
+$theme-primary--accent: #cf59e6;
+$theme-secondary: $light-blue;
+$theme-olive-green: $green;
+$theme-pink: $pink;
+$theme-blue: $light-blue;
+$color-white: #fff;
+
+$border-color: hsla(0, 0%, 76.9%, 0.2);
