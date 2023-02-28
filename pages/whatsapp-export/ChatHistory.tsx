@@ -17,13 +17,6 @@ interface ChatHistoryProps {
 }
 
 const ChatHistory: React.FC<ChatHistoryProps> = ({ chatHistory }) => {
-	const handleJumpTo = (index: number) => {
-		const element = document.getElementById(`chat-message-${index}`);
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
-
 	return (
 		<div className='chat'>
 			<div className='chat__chat-panel chat-history'>
