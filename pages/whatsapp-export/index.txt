@@ -1,0 +1,13 @@
+import React from 'react';
+import ChatHistory from '../../components/ChatHistory';
+import chatData from '../../api/chatDisplayData.json';
+
+const WhatsAppPage: React.FC = () => {
+	return (
+		<div className='app'>
+			<ChatHistory chatData={chatData} chatHistory={[]} />
+		</div>
+	);
+};
+
+export default WhatsAppPage;

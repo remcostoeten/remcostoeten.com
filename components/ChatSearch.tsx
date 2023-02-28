@@ -1,117 +1,77 @@
-import React, { useState, useEffect } from 'react';
-import chatData from '../api/chatDisplayData.json';
-import ChatSearch from './ChatSearch';
+import { useEffect, useState } from 'react';
 
-interface Message {
-	attachments: any;
-	sender: string;
-	timestamp: string;
-	message: string;
-	chatfrom: string;
-}
+const ChatSearch: React.FC<ChatSearchProps> = ({
+	chatHistory,
+	searchTerm,
+	setSearchTerm,
+	searchResults,
+	setSearchResults,
+	handleJumpTo,
+}) => {
+	const [isOpen, setIsOpen] = useState(false);
 
-interface ChatHistoryProps {
-	chatData: Message[];
-}
-
-const ChatHistory: React.FC<ChatHistoryProps> = ({ chatData }) => {
-	const [chatHistory, setChatHistory] = useState<Message[]>([]);
 	useEffect(() => {
-		document.body.classList.add('chat-ui');
+		const handleKeyPress = (event: KeyboardEvent) => {
+			if (event.key === '/') {
+				setIsOpen(true);
+			}
+			if (event.key === 'Escape') {
+				setIsOpen(false);
+			}
+		};
+
+		document.addEventListener('keydown', handleKeyPress);
+
 		return () => {
-			document.body.classList.remove('chat-ui');
+			document.removeEventListener('keydown', handleKeyPress);
 		};
 	}, []);
-	useEffect(() => {
-		setChatHistory(chatData);
-	}, [chatData]);
-	const [searchOpen, setMenuOpen] = useState(false);
-	const [searchTerm, setSearchTerm] = useState('');
-	const [searchResults, setSearchResults] = useState<number[]>([]);
-	const [size, setSize] = useState({
-		width: 0,
-		height: 0,
-	});
-
-	useEffect(() => {
-		setChatHistory(chatData);
-	}, [chatData]);
-
-	useEffect(() => {
-		if (chatHistory.length > 0) {
-			const results = chatHistory
-				.filter((message: Message) =>
-					message.message
-						.toLowerCase()
-						.includes(searchTerm.toLowerCase()),
-				)
-				.map((message: Message, index: number) => index);
-			setSearchResults(results);
-		}
-	}, [chatHistory, searchTerm]);
 
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const term = event.target.value;
-		setSearchTerm(term);
+		setSearchTerm(event.target.value);
 	};
 
-	const handleJumpTo = (index: number) => {
-		const element = document.getElementById(`chat-message-${index}`);
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
+	useEffect(() => {
+		if (chatHistory) {
+			const matches: number[] = [];
+			chatHistory.forEach((message, index) => {
+				if (
+					message.message
+						.toLowerCase()
+						.includes(searchTerm.toLowerCase())
+				) {
+					matches.push(index);
+				}
+			});
+			setSearchResults(matches);
 		}
-	};
+	}, [chatHistory, searchTerm, setSearchResults]);
 
 	return (
 		<>
-			<ChatSearch
-				searchTerm={searchTerm}
-				handleSearchChange={handleSearchChange}
-				searchResults={searchResults}
-				handleJumpTo={handleJumpTo}
+			<input
+				type='text'
+				value={searchTerm}
+				onChange={handleSearchChange}
+				placeholder='Search chat history'
+				className={`chat-search ${isOpen ? 'open' : ''}`}
 			/>
-			<div className='chat'>
-				<div className='chat__chat-panel chat-history'>
-					{chatHistory.map((message: Message, index: number) => (
-						<div
-							className={`bubble__message ${
-								message.sender.toLowerCase().includes('alice')
-									? 'bubble__second-person'
-									: ''
-							}`}
-							key={message}>
-							<div id={`chat-message-${index}`}>
-								<p>
-									<div>{message.sender}</div>
-									<div>{message.message}</div>
-									<div>
-										{message.attachments?.photo !==
-										undefined
-											? `Photo: ${message.attachments?.photo}`
-											: undefined}
-									</div>
-									<div className='bubble__attachments'>
-										<span>
-											{message.attachments?.format !==
-											undefined
-												? `Format: ${message.attachments?.format}`
-												: undefined}
-										</span>
-										<span>
-											{message.attachments?.device !==
-											undefined
-												? `Device: ${message.attachments?.device}`
-												: undefined}
-										</span>
-									</div>
-								</p>
-							</div>
-						</div>
+			{searchTerm.length > 0 && (
+				<div className={`chat-search-results ${isOpen ? 'open' : ''}`}>
+					{searchResults.map((index) => (
+						<button
+							key={index}
+							onClick={() => {
+								handleJumpTo(index);
+								setIsOpen(false);
+							}}>
+							Jump to result {index + 1}
+						</button>
 					))}
 				</div>
-			</div>
+			)}
 		</>
 	);
 };
 
-export default ChatHistory;
+export default ChatSearch;

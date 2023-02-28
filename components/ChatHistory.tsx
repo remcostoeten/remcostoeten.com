@@ -1,5 +1,5 @@
-import React from 'react';
-import chatData from '../../api/chatDisplayData.json';
+import React, { useEffect } from 'react';
+
 interface Message {
 	attachments?: {
 		photo?: string;
@@ -16,7 +16,15 @@ interface ChatHistoryProps {
 	chatHistory: Message[];
 }
 
-const ChatHistory: React.FC<ChatHistoryProps> = ({ chatHistory }) => {
+const ChatHistory: React.FC<ChatHistoryProps> = ({
+	chatHistory,
+	searchTerm,
+}) => {
+	console.log(chatHistory);
+	if (!chatHistory) {
+		return <p>Loading...</p>;
+	}
+
 	return (
 		<div className='chat'>
 			<div className='chat__chat-panel chat-history'>
@@ -55,8 +63,3 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ chatHistory }) => {
 };
 
 export default ChatHistory;
-
-export async function getStaticProps() {
-	const chatHistory = chatData.chat.slice(1); // ignore first item which is chatfrom
-	return { props: { chatHistory } };
-}
