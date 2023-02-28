@@ -109,11 +109,10 @@ aside {
 	max-width: 520px;
 	margin: 0 auto;
 	border-radius: 16px 8px 8px 4px;
-	border-top: 1px solid lighten($dark-background, 10%);
 
 	p {
 		border-radius: 16px 8px 8px 4px;
-		color: white;
+		color: $color-white;
 		padding: 15px 20px;
 	}
 
@@ -187,15 +186,15 @@ aside {
 			&.z {
 				&:after {
 					background-position: 4px -35px !important;
-					background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg') !important;
+					background-image: url('../api/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg') !important;
 				}
 
 				&.d {
-					// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg')
+					// background-image: url('../api/remcostoeten-private-apiroutes/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg')
 				}
 
 				&.y {
-					// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/y.jpg')
+					// background-image: url('../api/remcostoeten-private-apiroutes/proper/img/y.jpg')
 				}
 			}
 

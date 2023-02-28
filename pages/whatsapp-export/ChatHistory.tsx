@@ -1,74 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import chatData from './remcostoeten-private-apiroutes/proper/whatsapp-export';
-import ChatSearch from '@/components/ChatSearch';
+import React from 'react';
+import chatData from '../../api/chatDisplayData.json';
 interface Message {
-	attachments: any;
-	sender: string;
-	timestamp: string;
-	message: string;
-	chatfrom: string;
+	attachments?: {
+		photo?: string;
+		format?: string;
+		device?: string;
+	};
+	sender?: string;
+	timestamp?: string;
+	message?: string;
+	chatfrom?: string;
 }
 
 interface ChatHistoryProps {
-	chatData: Message[];
+	chatHistory: Message[];
 }
 
-const ChatHistory: React.FC<ChatHistoryProps> = ({ chatData }) => {
-	const [chatHistory, setChatHistory] = useState<Message[]>([]);
-	useEffect(() => {
-		document.body.classList.add('chat-ui');
-		return () => {};
-		document.body.classList.remove('chat-ui');
-	}, []);
-	useEffect(() => {
-		setChatHistory(chatData);
-	}, [chatData]);
+const ChatHistory: React.FC<ChatHistoryProps> = ({ chatHistory }) => {
+	const handleJumpTo = (index: number) => {
+		const element = document.getElementById(`chat-message-${index}`);
+		if (element) {
+			element.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
 
 	return (
-		<>
-			<ChatSearch />
-			<div className='chat'>
-				<div className='chat__chat-panel chat-history'>
-					{chatHistory.map((message: Message, index: number) => (
-						<div
-							className={`bubble__message ${
-								message.sender.toLowerCase().includes('alice')
-									? 'bubble__second-person'
-									: ''
-							}`}
-							key={message}>
-							<div id={`chat-message-${index}`}>
-								<p>
-									<div>{message.sender}</div>
-									<div>{message.message}</div>
-									<div>
-										{message.attachments?.photo !==
-										undefined
-											? `Photo: ${message.attachments?.photo}`
-											: undefined}
-									</div>
-									<div className='bubble__attachments'>
-										<span>
-											{message.attachments?.format !==
-											undefined
-												? `Format: ${message.attachments?.format}`
-												: undefined}
-										</span>
-										<span>
-											{message.attachments?.device !==
-											undefined
-												? `Device: ${message.attachments?.device}`
-												: undefined}
-										</span>
-									</div>
-								</p>
+		<div className='chat'>
+			<div className='chat__chat-panel chat-history'>
+				{chatHistory.map((message: Message, index: number) => (
+					<div
+						className={`bubble__message ${
+							message.sender?.toLowerCase().includes('alice')
+								? 'bubble__second-person'
+								: ''
+						}`}
+						key={index}>
+						<div id={`chat-message-${index}`}>
+							{message.sender && <p>{message.sender}</p>}
+							{message.message && <p>{message.message}</p>}
+							{message.attachments?.photo && (
+								<p>Photo: {message.attachments.photo}</p>
+							)}
+							<div className='bubble__attachments'>
+								{message.attachments?.format && (
+									<span>
+										Format: {message.attachments.format}
+									</span>
+								)}
+								{message.attachments?.device && (
+									<span>
+										Device: {message.attachments.device}
+									</span>
+								)}
 							</div>
 						</div>
-					))}
-				</div>
+					</div>
+				))}
 			</div>
-		</>
+		</div>
 	);
 };
 
 export default ChatHistory;
+
+export async function getStaticProps() {
+	const chatHistory = chatData.chat.slice(1); // ignore first item which is chatfrom
+	return { props: { chatHistory } };
+}

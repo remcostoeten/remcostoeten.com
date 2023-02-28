@@ -46,23 +46,6 @@ main.homepage {
 	}
 }
 
-main,
-.homepage {
-	transition: scale 600ms ease, border-radius 1s ease;
-	height: 100vh;
-	background: $color-white;
-	border-radius: 16px 0 0 16px;
-	scale: 0.7;
-	right: -45%;
-	animation: blur 250ms ease;
-	transform: translateY(-17%);
-
-	@include mobile {
-		scale: 0.55;
-		right: -45%;
-	}
-}
-
 .search {
 	flex-direction: row;
 
