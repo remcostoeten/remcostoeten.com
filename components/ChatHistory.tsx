@@ -16,10 +16,7 @@ interface ChatHistoryProps {
 	chatHistory: Message[];
 }
 
-const ChatHistory: React.FC<ChatHistoryProps> = ({
-	chatHistory,
-	searchTerm,
-}) => {
+const ChatHistory: React.FC<ChatHistoryProps> = ({ chatHistory }) => {
 	console.log(chatHistory);
 	if (!chatHistory) {
 		return <p>Loading...</p>;

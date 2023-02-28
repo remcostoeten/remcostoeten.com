@@ -438,7 +438,7 @@ button:hover {
 }
 .btn__cta a:hover:after {
   width: 100%;
-  background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
+  background: linear-gradient(-45deg, #8176fc, #cf59e6, #8176fc, #cf59e6);
 }
 .btn__cta a:after {
   content: "";
@@ -1387,7 +1387,7 @@ main.homepage article.container {
 }
 .intro__hero--heading-gradient,
 .intro .gradient {
-  background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
+  background: linear-gradient(-45deg, #8176fc, #cf59e6, #8176fc, #cf59e6);
   background-size: 400% 400%;
   animation: gradient 3s ease infinite;
   background-clip: text;
@@ -1432,6 +1432,13 @@ main.homepage article.container {
 .chat-ui #text1,
 .chat-ui #text2 {
   color: white;
+}
+
+.chat-search-results {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: fixed;
 }
 
 .bubble__message {
@@ -1634,4 +1641,27 @@ aside input {
 }
 .chat .chat-history__inner {
   padding: 24px;
+}
+
+.searchOpen main.container {
+  max-width: unset;
+}
+.searchOpen .offcanvas-menu {
+  position: absolute;
+  width: 30vw;
+  top: -110px;
+  height: 100vh;
+  transform: translateX(0);
+  background-color: #8176fc;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.searchOpen .close {
+  position: absolute;
+  right: 20px;
+  top: 50px;
+}
+
+.offcanvas-menu {
+  transition: 250ms ease all;
+  transform: translateX(-741px);
 }/*# sourceMappingURL=styles.css.map */

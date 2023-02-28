@@ -22,7 +22,14 @@ $light-bg: #313646;
 		color: white;
 	}
 }
-// Define styles
+
+.chat-search-results {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	position: fixed;
+}
+
 .bubble__message {
 	display: flex;
 	justify-content: flex-end;
@@ -260,4 +267,31 @@ aside {
 			padding: $spacing;
 		}
 	}
+}
+
+// offcanvas search
+.searchOpen {
+	main.container {
+		max-width: unset;
+	}
+	.offcanvas-menu {
+		position: absolute;
+		width: 30vw;
+		top: -110px;
+		height: 100vh;
+		transform: translateX(0);
+		background-color: $purple;
+		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	}
+
+	.close {
+		position: absolute;
+		right: 20px;
+		top: 50px;
+	}
+}
+
+.offcanvas-menu {
+	transition: 250ms ease all;
+	transform: translateX(-741px);
 }

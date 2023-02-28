@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import chatData from '../../api/chatDisplayData.json';
 import ChatHistory from '../../components/ChatHistory';
 import ChatSearch from '../../components/ChatSearch';
-
+import OffcanvasMenu from '@/components/OffcanvasSearch';
 interface Message {
 	attachments: any;
 	sender: string;
@@ -54,7 +54,8 @@ const ChatContainer: React.FC = () => {
 
 	return (
 		<>
-			<ChatSearch
+			<OffcanvasMenu />
+			{/* <ChatSearch
 				searchTerm={searchTerm}
 				setSearchTerm={setSearchTerm}
 				searchResults={searchResults}
@@ -66,7 +67,7 @@ const ChatContainer: React.FC = () => {
 						element.scrollIntoView({ behavior: 'smooth' });
 					}
 				}}
-			/>
+			/> */}
 			<ChatHistory chatHistory={chatHistory} searchTerm={searchTerm} />
 		</>
 	);
