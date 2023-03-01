@@ -1,12 +1,11 @@
 export interface ChatMessage {
 	id: string;
-	body: string;
+	message: string; // <-- add this property
 	type: 'sent' | 'received';
-	attachments?: Attachment[];
+	attachments: Attachment[];
 	sender: string;
 	timestamp: Date;
 }
-
 export interface Message extends ChatMessage {
 	message: string;
 	attachments: any;
