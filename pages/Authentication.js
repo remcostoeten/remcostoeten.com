@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../comps/Navbar';
+import Navbar from '../forkedrepos reference for auth/Navbar';
 import moment from 'moment';
 import { Flex, Box, Button, Text, Heading, Image } from '@chakra-ui/react';
-import EmojiCard from '../comps/EmojiCard';
-import EmojiPanel from '../comps/EmojiPanel';
-import Footer from '../comps/Footer';
+import EmojiCard from '../forkedrepos reference for auth/EmojiCard';
+import EmojiPanel from '../forkedrepos reference for auth/EmojiPanel';
+import Footer from '../forkedrepos reference for auth/Footer';
 import { auth, db, singInWithGoogle, logout } from '../firebase';
 
 function App() {
