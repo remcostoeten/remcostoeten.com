@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import data from './remcostoeten-private-apiroutes/proper/d100-200.json';
+import data from '../../apis-private/proper/d100-200.json';
+
 function DaphneFull({ handleKeyDown }) {
 	const [search, setSearch] = useState('');
 	const [name, setName] = useState('');
