@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import chatData from '../api/chatDisplayData.json';
-
+import chatData from './ChatHistory.json';
 interface Message {
 	sender: string;
 	timestamp: string;
