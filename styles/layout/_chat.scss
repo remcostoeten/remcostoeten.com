@@ -1,0 +1,305 @@
+// Define variables
+$dark-background: #2e2f3e;
+$grey-text: #77787e;
+$accent-color: #8073fb;
+$blue: #272a37;
+$dark-blue: #1b1c24;
+$light-blue: #26282f;
+$white-text: #eaeaeb;
+$grey: #757889;
+$icon-color: $grey;
+$border-color: #2e2e38;
+
+$gradient-one: #2d2f3e;
+$gradient-two: #323645;
+
+$light-bg: #313646;
+.chat-ui {
+	background: $dark-background;
+
+	#text1,
+	#text2 {
+		color: white;
+	}
+}
+
+.bubble {
+	&__message {
+		display: flex;
+		justify-content: flex-end;
+		max-width: 450px;
+		width: -moz-fit-content;
+		display: flex;
+		position: relative;
+		transition: 125ms;
+		position: relative;
+		border-radius: 16px 8px 8px 4px;
+		background-color: #1f2029;
+		background-clip: content-box;
+		border: 1px solid #2a2b38;
+		z-index: 2;
+		flex: 0;
+		font-size: 15px;
+		padding: 10px;
+		m: 4px;
+		color: #77787e;
+		align-items: initial;
+		flex: 1 0 auto;
+		position: relative;
+
+		span {
+			display: flex;
+		}
+
+		.bubble__second-person p {
+			border-radius: 16px 8px 8px 4px;
+			background-color: #8073fb !important;
+			color: white;
+			padding: 15px 10px;
+		}
+	}
+
+	&__second-person {
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+		justify-content: flex-start;
+	}
+}
+
+.chat-ui {
+	aside {
+		&:has(h3) {
+			padding-top: 40px;
+		}
+		display: flex;
+		flex-direction: column;
+		flex-wrap: wrap;
+		left: 0;
+		width: initial;
+		left: -100px;
+		width: 20%;
+		padding: $spacing;
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		background: #1f2029;
+
+		h3 {
+			position: absolute;
+			color: $color-white;
+			font-weight: 400;
+			top: -45px;
+		}
+
+		input {
+			width: 100%;
+			margin-bottom: 12px;
+			z-index: $z-index-layer-two;
+		}
+
+		button {
+			width: 100%;
+			border: none;
+			background-color: transparent;
+			border: none;
+			color: #a2a2a3;
+			// border-radius: 6px;
+			padding: $spacing-xs;
+			text-align: left;
+			border-bottom: 1px solid #1f2029;
+			background-color: white;
+		}
+
+		input {
+			position: -webkit-sticky;
+			background: white;
+			position: sticky;
+			top: 53px;
+		}
+	}
+}
+
+.chat {
+	display: flex;
+	color: $grey-text;
+	padding: $spacing;
+	max-width: 520px;
+	margin: 0 auto;
+	border-radius: 16px 8px 8px 4px;
+	border-top: 1px solid lighten($dark-background, 10%);
+	display: flex;
+
+	&__results {
+		position: absolute;
+		left: 0;
+		margin: 0 auto;
+		top: 53px;
+		padding: $spacing;
+
+		background-color: #1f2029;
+	}
+
+	&__sender {
+		position: relative;
+
+		&::after {
+			padding-right: 3px;
+			content: ':';
+		}
+	}
+
+	p {
+		border-radius: 16px 8px 8px 4px;
+		color: white;
+		padding: 15px 20px;
+	}
+
+	button {
+		border: none;
+		background-color: $dark-background;
+		color: $color-white;
+		border-radius: 16px 8px 8px 4px;
+		border: 1px solid $dark-background;
+		font-size: 1.5em;
+	}
+
+	input {
+		top: $header-height;
+		z-index: 10;
+		right: 100px;
+		width: 100%;
+		height: 45px;
+		border-radius: 9px;
+		padding: 0 9px;
+		border-radius: 16px 8px 8px 4px;
+		margin-bottom: $spacing-xs;
+		color: black;
+		width: 125px;
+		margin-left: -200px;
+		background-color: white;
+		border-color: $dark-background;
+	}
+
+	.bubble {
+		&__attachments {
+			display: flex;
+			font-size: 6px;
+			align-items: center;
+
+			span {
+				padding-right: 3px;
+			}
+
+			&:empty {
+				border: none;
+			}
+		}
+		&__second-person {
+			display: flex;
+			justify-content: flex-end;
+			align-items: flex-end;
+			background-color: $accent-color !important;
+			color: white !important;
+
+			&:after {
+				background-image: url('https://xsgames.co/randomusers/assets');
+			}
+		}
+
+		&__message {
+			max-width: 450px;
+			width: fit-content;
+			display: flex;
+			position: relative;
+			transition: 125ms;
+			position: relative;
+			border-radius: 30px;
+			background-color: #1f2029;
+			border: none;
+			z-index: 2;
+			color: #77787e;
+			position: relative;
+
+			> div {
+				display: flex;
+				flex-direction: column;
+			}
+
+			&.z {
+				&:after {
+					background-position: 4px -35px !important;
+					background-image: url('~/apis-private/proper/img/zgezichtsnap.jpg');
+				}
+
+				&.d {
+					// background-image: url('../../apis-private/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg');
+				}
+
+				&.y {
+					// background-image: url('../../apis-private/proper/img/y.jpg');
+				}
+			}
+
+			&:after {
+				content: '';
+				background-size: 125%;
+				background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
+				// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
+				height: 55px;
+				width: 55px;
+				display: block;
+				border-radius: 16px;
+				position: absolute;
+				top: 15px;
+				background-position: -5px -75px;
+				right: -70px;
+				top: 16px;
+			}
+
+			&.bubble__second-person {
+				&:after {
+					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
+					top: 15px;
+					background-position: -5px -75px;
+					left: -100px;
+					top: 16px;
+				}
+			}
+		}
+
+		&__bg {
+			&:hover {
+				position: relative;
+				cursor: pointer;
+			}
+		}
+	}
+
+	.chat-history {
+		background: rgb(45, 47, 62);
+		color: white;
+		font-size: 2.5em;
+		padding: $spacing;
+
+		input {
+			border-radius: 1px;
+			border: 1px solid #fff;
+			margin-left: $spacing;
+			padding: 6px 10px;
+			color: $color-white;
+		}
+
+		&__person {
+			border-bottom: 1px solid $border-color;
+			line-height: 12px;
+			padding: $spacing;
+			margin-top: -8px;
+			margin-left: 5px;
+		}
+
+		&__inner {
+			padding: $spacing;
+		}
+	}
+}

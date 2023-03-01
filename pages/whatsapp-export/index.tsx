@@ -12,13 +12,16 @@ const getChatHistory = (): ChatMessage[] => {
 			id: 'dummy-id',
 			message: message,
 			type: message.type === 'sent' ? 'sent' : 'received',
-			attachments: (attachments || []).map(
-				(att: any): Attachment => ({
-					id: 'dummy-id',
-					type: att.type,
-					data: att.data,
-				}),
-			),
+			attachments:
+				attachments && Array.isArray(attachments)
+					? attachments.map(
+							(att: any): Attachment => ({
+								id: 'dummy-id',
+								type: att.type,
+								data: att.data,
+							}),
+					  )
+					: [],
 			sender,
 			timestamp: new Date(timestamp),
 		};
