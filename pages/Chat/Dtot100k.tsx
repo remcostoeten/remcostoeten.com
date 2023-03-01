@@ -1,8 +1,8 @@
 import Dnav from '@/components/header/Dnav';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import data from '../../apis-private/proper/0-100k.json';
 
-import data from './remcostoeten-private-apiroutes/proper/0-100k.json';
 function DaphneFull({ handleKeyDown }) {
 	const [search, setSearch] = useState('');
 	const [name, setName] = useState('');
