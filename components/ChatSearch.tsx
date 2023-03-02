@@ -1,71 +1,81 @@
+import { ChatMessage } from '@/types';
 import React, { useState } from 'react';
-import { ChatMessage } from '../../types';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { FaExternalLinkAlt } from 'react-icons/fa';
 
-interface Props {
-	onSearch: (term: string) => void;
+type Props = {
+	onSearch: (query: string) => void;
 	searchResults: ChatMessage[];
 	onJumpTo: (index: number) => void;
 	chatHistory: ChatMessage[];
-	numResultsToShow: number;
-}
+};
 
 const ChatSearch: React.FC<Props> = ({
 	onSearch,
 	searchResults,
 	onJumpTo,
 	chatHistory,
-	numResultsToShow,
 }) => {
-	const [numResultsShown, setNumResultsShown] = useState(numResultsToShow);
+	const [searchTerm, setSearchTerm] = useState('');
+	const [showAllResults, setShowAllResults] = useState(false);
+	const maxResultsToShow = 10;
+	const results = chatHistory
+		.map((message: ChatMessage, index: number) => ({ message, index }))
+		.filter(({ message }) =>
+			message.message.toLowerCase().includes(searchTerm.toLowerCase()),
+		)
+		.map(({ index }) => index)
+		.slice(0, showAllResults ? results.length : maxResultsToShow);
 
-	const handleShowMore = () => {
-		setShowCount((prevCount) => prevCount + 5);
+	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const term = event.target.value.toLowerCase();
+		setSearchTerm(term);
+		onSearch(term);
 	};
 
+	const handleJumpTo = (index: number) => {
+		onJumpTo(index);
+	};
+
+	const tooltip = (
+		<Tooltip id='tooltip'>Click to jump to the search result</Tooltip>
+	);
+
 	return (
-		<div className='chat-search'>
-			<input
-				type='text'
-				className='chat-search__input'
-				placeholder='Search'
-				onChange={(e) => onSearch(e.target.value)}
-			/>
-			{searchResults.length > 0 && (
-				<div className='chat-search__results'>
-					<ul>
-						{searchResults
-							.slice(0, numResultsShown)
-							.map((result, index) => (
-								<li
-									key={result.id}
-									onClick={() =>
-										onJumpTo(chatHistory.indexOf(result))
-									}>
-									<span className='chat-search__sender'>
-										{result.sender}
+		<aside>
+			<div className='search'>
+				<input
+					type='text'
+					value={searchTerm}
+					className='search__icon'
+					onChange={handleSearchChange}
+					placeholder='Search chat history'
+				/>
+				{searchTerm.length > 0 && results.length > 0 && (
+					<div className='search__results'>
+						{results.map((index: number) => (
+							<OverlayTrigger
+								placement='left'
+								overlay={tooltip}
+								key={index}>
+								<div
+									className='search__result'
+									onClick={() => handleJumpTo(index)}>
+									<span className='search__text'>
+										{chatHistory[index]?.message?.substring(
+											0,
+											25,
+										)}
 									</span>
-									<span className='chat-search__message'>
-										Showing{' '}
-										{Math.min(
-											numResultsShown,
-											searchResults.length,
-										)}{' '}
-										of {searchResults.length} results
-										{result.message}
-									</span>
-								</li>
-							))}
-					</ul>
-					{searchResults.length > numResultsShown && (
-						<button onClick={handleShowMore}>Show More</button>
-					)}
-				</div>
-			)}
-		</div>
+									<FaExternalLinkAlt />
+								</div>
+							</OverlayTrigger>
+						))}
+					</div>
+				)}
+			</div>
+		</aside>
 	);
 };
 
 export default ChatSearch;
-function setShowCount(arg0: (prevCount: any) => any) {
-	throw new Error('Function not implemented.');
-}

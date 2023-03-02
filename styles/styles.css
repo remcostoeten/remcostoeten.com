@@ -1425,19 +1425,17 @@ body {
   padding: 6.8571428571px;
 }
 .search__results div {
+  display: flex;
+  align-items: center;
   margin: -6.8571428571px;
+  padding: 6.8571428571px;
   border-bottom: 1px solid #f0f1f6;
-  padding: 6.8571428571px 0;
+  justify-content: space-between;
   white-space: nowrap;
-  overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 6.8571428571px;
 }
 .search__results div:hover {
   border-radius: 6px;
   background-color: #f0f1f6;
   cursor: pointer;
-}
-.search__results span {
-  padding: 18px;
 }/*# sourceMappingURL=styles.css.map */

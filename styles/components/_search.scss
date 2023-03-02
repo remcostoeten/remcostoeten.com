@@ -31,23 +31,20 @@
 		padding: $spacing-xs;
 
 		div {
+			display: flex;
+			align-items: center;
 			margin: -$spacing-xs;
+			padding: $spacing-xs;
 			border-bottom: 1px solid #f0f1f6;
-			padding: $spacing-xs 0;
+			justify-content: space-between;
 			white-space: nowrap;
-			overflow: hidden;
 			text-overflow: ellipsis;
-			padding-right: $spacing-xs;
 
 			&:hover {
 				border-radius: 6px;
 				background-color: #f0f1f6;
 				cursor: pointer;
 			}
-		}
-
-		span {
-			padding: $spacing-m;
 		}
 	}
 }
