@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import ChatSearch from '@/components/ChatSearch';
-import { ChatMessage, Attachment, Message } from '../../types';
+import ChatSearch from '../../components/ChatSearch';
+import { ChatMessage, Attachment } from '../../types';
 
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
@@ -13,13 +13,17 @@ const getChatHistory = (): ChatMessage[] => {
 			type: message.type === 'sent' ? 'sent' : 'received',
 			attachments:
 				attachments && Array.isArray(attachments)
-					? attachments.map(
-							(att: any): Attachment => ({
+					? attachments.map((att) => {
+							const { photo, format, device } = att;
+							return {
 								id: 'dummy-id',
 								type: att.type,
 								data: att.data,
-							}),
-					  )
+								photo: photo || '',
+								format: format || '',
+								device: device || '',
+							};
+					  })
 					: [],
 			sender,
 			timestamp: new Date(timestamp),
@@ -28,8 +32,8 @@ const getChatHistory = (): ChatMessage[] => {
 };
 
 const ChatHistory: React.FC = () => {
-	const [searchResults, setSearchResults] = useState<Message[]>([]);
-	const [chatHistory, setChatHistory] = useState<Message[]>([]);
+	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
+	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
@@ -40,25 +44,26 @@ const ChatHistory: React.FC = () => {
 
 	useEffect(() => {
 		const chatHistoryRaw: ChatMessage[] = getChatHistory();
-		const messageHistory: Message[] = chatHistoryRaw.map((chatMessage) => ({
-			...chatMessage,
-			timestamp: new Date(chatMessage.timestamp),
-		}));
+		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
+			(chatMessage) => ({
+				...chatMessage,
+				timestamp: new Date(chatMessage.timestamp),
+			}),
+		);
 		setChatHistory(messageHistory);
 	}, []);
 
 	const handleSearch = (term: string) => {
 		if (term.length > 0) {
-			const results = chatHistory
-				.filter((message: Message) =>
-					message.message.toLowerCase().includes(term),
-				)
-				.map((message: Message) => message as ChatMessage);
+			const results = chatHistory.filter((message: ChatMessage) =>
+				message.message.toLowerCase().includes(term),
+			);
 			setSearchResults(results);
 		} else {
 			setSearchResults([]);
 		}
 	};
+
 	const handleJumpTo = (message?: ChatMessage) => {
 		const index = message
 			? chatHistory.findIndex((m) => m.timestamp === message.timestamp)
@@ -73,58 +78,60 @@ const ChatHistory: React.FC = () => {
 		<>
 			<ChatSearch
 				onSearch={handleSearch}
-				searchResults={searchResults as unknown as ChatMessage[]}
+				searchResults={searchResults}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
 				chatHistory={chatHistory}
 			/>
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
-						chatHistory.map((message: Message, index: number) => (
-							<div
-								className={`bubble__message ${
-									message.sender
-										.toLowerCase()
-										.includes('alice')
-										? 'bubble__second-person'
-										: ''
-								}`}
-								key={message.timestamp.getTime()}>
-								<div id={`chat-message-${index}`}>
-									<p>
-										<span>
-											<div className='chat__sender'>
-												{message.sender}
-											</div>
-											<div className='chat__message'>
-												{message.message}
-											</div>
-										</span>
+						chatHistory.map(
+							(message: ChatMessage, index: number) => (
+								<div
+									className={`bubble__message ${
+										message.sender
+											.toLowerCase()
+											.includes('alice')
+											? 'bubble__second-person'
+											: ''
+									}`}
+									key={message.timestamp.getTime()}>
+									<div id={`chat-message-${index}`}>
+										<p>
+											<span>
+												<div className='chat__sender'>
+													{message.sender}
+												</div>
+												<div className='chat__message'>
+													{message.message}
+												</div>
+											</span>
 
-										<div className='bubble__attachments'>
-											<span>
-												{message.attachments?.photo !==
-												undefined
-													? `Photo: ${message.attachments?.photo}`
-													: undefined}
-											</span>{' '}
-											<span>
-												{message.attachments?.format !==
-												undefined
-													? `Format: ${message.attachments?.format}`
-													: undefined}
-											</span>
-											<span>
-												{message.attachments?.device !==
-												undefined
-													? `Device: ${message.attachments?.device}`
-													: undefined}
-											</span>
-										</div>
-									</p>
+											<div className='bubble__attachments'>
+												<span>
+													{message.attachments
+														?.photo !== undefined
+														? `Photo: ${message.attachments?.photo}`
+														: undefined}
+												</span>{' '}
+												<span>
+													{message.attachments
+														?.format !== undefined
+														? `Format: ${message.attachments?.format}`
+														: undefined}
+												</span>
+												<span>
+													{message.attachments
+														?.device !== undefined
+														? `Device: ${message.attachments?.device}`
+														: undefined}
+												</span>
+											</div>
+										</p>
+									</div>
 								</div>
-							</div>
-						))}
+							),
+						)}
 				</div>
 			</div>
 		</>
