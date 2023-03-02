@@ -26,7 +26,7 @@
 	},
 	{
 		"sender": "Alice",
-		"message": "That sounds like fun! I've never been skiing before. Did you fall down a lot?",
+		"message": "That sounds like fun! ",
 		"timestamp": "2022-01-01 12:08:00"
 	},
 	{
@@ -46,7 +46,7 @@
 	},
 	{
 		"sender": "Alice",
-		"message": "It's called The Red Plate. Apparently they have amazing sushi!",
+		"message": "It's called The Red Plate. Apparently they have amazing sushi!  Apparently they have amazing sushi!  Apparently they have amazing sushi!",
 		"timestamp": "2022-01-01 12:16:00"
 	},
 	{

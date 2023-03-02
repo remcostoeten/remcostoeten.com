@@ -1,0 +1,53 @@
+.search {
+	position: relative;
+
+	input {
+		width: 100%;
+		margin-bottom: 12px;
+		z-index: $z-index-layer-two;
+		padding-left: 14px;
+		padding-left: 29px;
+		font-weight: 600;
+		height: $input-height;
+		border: 1px solid transparent;
+		transition: 255ms ease-in-out;
+		&:hover,
+		&:focus {
+			border: 1px solid $accent-color;
+		}
+	}
+
+	.search__icon {
+		background-image: url('https://www.freeiconspng.com/uploads/search-icon-png-21.png');
+		background-repeat: no-repeat;
+		background-size: 8%;
+		background-position: center left 8px;
+	}
+
+	&__results {
+		position: sticky;
+		background-color: $color-white;
+		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+		padding: $spacing-xs;
+
+		div {
+			margin: -$spacing-xs;
+			border-bottom: 1px solid #f0f1f6;
+			padding: $spacing-xs 0;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			padding-right: $spacing-xs;
+
+			&:hover {
+				border-radius: 6px;
+				background-color: #f0f1f6;
+				cursor: pointer;
+			}
+		}
+
+		span {
+			padding: $spacing-m;
+		}
+	}
+}

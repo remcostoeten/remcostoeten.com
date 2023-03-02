@@ -48,6 +48,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ chatData }) => {
 		<div className='chat'>
 			<aside className='chat__aside'>
 				<input
+					className='search__icon'
 					type='text'
 					value={searchTerm}
 					onChange={handleSearchChange}

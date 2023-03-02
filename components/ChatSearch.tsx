@@ -34,22 +34,27 @@ const ChatSearch: React.FC<Props> = ({
 	};
 	return (
 		<aside>
-			<div className='searchwrapper'>
+			<div className='search'>
 				<input
 					type='text'
 					value={searchTerm}
+					className='search__icon'
 					onChange={handleSearchChange}
 					placeholder='Search chat history'
 				/>
 				{searchTerm.length > 0 && results.length > 0 && (
-					<div className='chat__results'>
-						<h3>Click to jump to the result</h3>
+					<div className='search__results'>
 						{results.map((index: number) => (
-							<button
+							<div
 								key={index}
 								onClick={() => handleJumpTo(index)}>
-								{chatHistory[index]?.message?.substring(0, 50)}
-							</button>
+								<span>
+									{chatHistory[index]?.message?.substring(
+										0,
+										50,
+									)}
+								</span>
+							</div>
 						))}
 					</div>
 				)}
