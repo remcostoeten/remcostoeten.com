@@ -1,66 +1,71 @@
-import { ChatMessage } from '@/types';
 import React, { useState } from 'react';
+import { ChatMessage } from '../../types';
 
-type Props = {
-	onSearch: (query: string) => void;
+interface Props {
+	onSearch: (term: string) => void;
 	searchResults: ChatMessage[];
 	onJumpTo: (index: number) => void;
 	chatHistory: ChatMessage[];
-};
+	numResultsToShow: number;
+}
 
 const ChatSearch: React.FC<Props> = ({
 	onSearch,
 	searchResults,
 	onJumpTo,
 	chatHistory,
+	numResultsToShow,
 }) => {
-	const [searchTerm, setSearchTerm] = useState('');
+	const [numResultsShown, setNumResultsShown] = useState(numResultsToShow);
 
-	const results = chatHistory
-		.map((message: ChatMessage, index: number) => ({ message, index }))
-		.filter(({ message }) =>
-			message.message.toLowerCase().includes(searchTerm.toLowerCase()),
-		)
-		.map(({ index }) => index);
-
-	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const term = event.target.value.toLowerCase();
-		setSearchTerm(term);
-		onSearch(term);
+	const handleShowMore = () => {
+		setShowCount((prevCount) => prevCount + 5);
 	};
 
-	const handleJumpTo = (index: number) => {
-		onJumpTo(index);
-	};
 	return (
-		<aside>
-			<div className='search'>
-				<input
-					type='text'
-					value={searchTerm}
-					className='search__icon'
-					onChange={handleSearchChange}
-					placeholder='Search chat history'
-				/>
-				{searchTerm.length > 0 && results.length > 0 && (
-					<div className='search__results'>
-						{results.map((index: number) => (
-							<div
-								key={index}
-								onClick={() => handleJumpTo(index)}>
-								<span>
-									{chatHistory[index]?.message?.substring(
-										0,
-										50,
-									)}
-								</span>
-							</div>
-						))}
-					</div>
-				)}
-			</div>
-		</aside>
+		<div className='chat-search'>
+			<input
+				type='text'
+				className='chat-search__input'
+				placeholder='Search'
+				onChange={(e) => onSearch(e.target.value)}
+			/>
+			{searchResults.length > 0 && (
+				<div className='chat-search__results'>
+					<ul>
+						{searchResults
+							.slice(0, numResultsShown)
+							.map((result, index) => (
+								<li
+									key={result.id}
+									onClick={() =>
+										onJumpTo(chatHistory.indexOf(result))
+									}>
+									<span className='chat-search__sender'>
+										{result.sender}
+									</span>
+									<span className='chat-search__message'>
+										Showing{' '}
+										{Math.min(
+											numResultsShown,
+											searchResults.length,
+										)}{' '}
+										of {searchResults.length} results
+										{result.message}
+									</span>
+								</li>
+							))}
+					</ul>
+					{searchResults.length > numResultsShown && (
+						<button onClick={handleShowMore}>Show More</button>
+					)}
+				</div>
+			)}
+		</div>
 	);
 };
 
 export default ChatSearch;
+function setShowCount(arg0: (prevCount: any) => any) {
+	throw new Error('Function not implemented.');
+}
