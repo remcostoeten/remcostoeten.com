@@ -3,8 +3,7 @@ import ChatSearch from '@/components/ChatSearch';
 import { ChatMessage, Attachment, Message } from '../../types';
 
 const getChatHistory = (): ChatMessage[] => {
-	const chatHistoryRaw: any[] = require('./chatHistory.json');
-
+	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
 		const { attachments, sender, timestamp, message } = msg;
 
