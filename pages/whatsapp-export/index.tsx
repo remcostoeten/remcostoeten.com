@@ -60,7 +60,7 @@ const ChatHistory: React.FC = () => {
 			setSearchResults([]);
 		}
 	};
-	const handleJumpTo = (message: ChatMessage) => {
+	const handleJumpTo = (message: ChatMessage = {}) => {
 		const index = chatHistory.findIndex(
 			(m) => m.timestamp === message.timestamp,
 		);
