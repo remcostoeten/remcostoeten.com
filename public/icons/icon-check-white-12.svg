@@ -2,7 +2,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <title>Icons/12/icon-check-white-12</title>
-    <g id="Icons/12/icon-check-white-12" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+    <g id="Icons/12/icon-check-white-12" stroke="#000" stroke-width="1" fill="#000" fill-rule="#000">
         <path d="M2.61659466,5.11335153 C2.01315557,4.50995943 1.04649065,4.51230926 0.448820393,5.10993297 C-0.153016707,5.7117232 -0.147319202,6.6780267 0.452239214,7.27753843 L3.61292876,10.3803625 C3.91649038,10.6839005 4.30743587,10.8327936 4.6984168,10.8322084 C5.09226092,10.8320192 5.48243226,10.6820286 5.78070303,10.383781 L11.5476725,4.6172607 C12.1500111,4.014969 12.1499878,3.04605278 11.5523176,2.44842907 C10.9504805,1.84663884 9.98355268,1.85288488 9.38331701,2.4530738 L4.69852531,7.13750069 L2.61659466,5.11335153 Z" id="icon" fill="#FFFFFF" fill-rule="nonzero"></path>
     </g>
 </svg>
