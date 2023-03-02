@@ -60,10 +60,10 @@ const ChatHistory: React.FC = () => {
 			setSearchResults([]);
 		}
 	};
-	const handleJumpTo = (message: ChatMessage = {}) => {
-		const index = chatHistory.findIndex(
-			(m) => m.timestamp === message.timestamp,
-		);
+	const handleJumpTo = (message?: ChatMessage) => {
+		const index = message
+			? chatHistory.findIndex((m) => m.timestamp === message.timestamp)
+			: -1;
 		const messageElement = document.getElementById(`chat-message-${index}`);
 		if (messageElement) {
 			messageElement.scrollIntoView({ behavior: 'smooth' });
