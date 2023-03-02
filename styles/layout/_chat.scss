@@ -9,7 +9,7 @@ $white-text: #eaeaeb;
 $grey: #757889;
 $icon-color: $grey;
 $border-color: #2e2e38;
-
+$off-white: #f0f0f0;
 $gradient-one: #2d2f3e;
 $gradient-two: #323645;
 
@@ -20,6 +20,13 @@ $light-bg: #313646;
 	#text1,
 	#text2 {
 		color: white;
+	}
+
+	article {
+		max-width: 768px;
+		margin: 0 auto;
+		color: $off-white;
+		line-height: 2em;
 	}
 }
 
@@ -76,9 +83,8 @@ $light-bg: #313646;
 		display: flex;
 		flex-direction: column;
 		left: 0;
-		width: initial;
 		left: -100px;
-		width: 20%;
+
 		padding: $spacing;
 		position: -webkit-sticky;
 		position: sticky;
@@ -87,7 +93,7 @@ $light-bg: #313646;
 
 		h3 {
 			position: absolute;
-			color: $color-white;
+			color: $off-white;
 			font-weight: 400;
 			top: -45px;
 		}
@@ -98,7 +104,7 @@ $light-bg: #313646;
 			background-color: transparent;
 			border: none;
 			color: #a2a2a3;
-			// border-radius: 6px;
+
 			padding: $spacing-xs;
 			text-align: left;
 			border-bottom: 1px solid #1f2029;
@@ -122,7 +128,7 @@ $light-bg: #313646;
 	border-radius: 16px 8px 8px 4px;
 	border-top: 1px solid lighten($dark-background, 10%);
 	display: flex;
-
+	position: relative;
 	&__results {
 		position: absolute;
 		left: 0;
@@ -150,7 +156,7 @@ $light-bg: #313646;
 	button {
 		border: none;
 		background-color: $dark-background;
-		color: $color-white;
+		color: $off-white;
 		border-radius: 16px 8px 8px 4px;
 		border: 1px solid $dark-background;
 		font-size: 1.5em;
@@ -192,7 +198,7 @@ $light-bg: #313646;
 			justify-content: flex-end;
 			align-items: flex-end;
 			background-color: $accent-color !important;
-			color: white !important;
+			color: #f0f0f0 !important;
 
 			&:after {
 				background-image: url('https://xsgames.co/randomusers/assets');
@@ -270,16 +276,16 @@ $light-bg: #313646;
 
 	.chat-history {
 		background: rgb(45, 47, 62);
-		color: white;
+		color: #f0f0f0;
 		font-size: 2.5em;
 		padding: $spacing;
 
 		input {
 			border-radius: 1px;
-			border: 1px solid #fff;
+			border: 1px solid #f0f0f0;
 			margin-left: $spacing;
 			padding: 6px 10px;
-			color: $color-white;
+			color: $off-white;
 		}
 
 		&__person {

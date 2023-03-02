@@ -11,14 +11,14 @@ export interface Attachment {
 	data: string;
 	photo?: string;
 	format?: string;
-	device?: string; // Add device property
+	device?: string;
 }
 
 export interface ChatMessage {
 	id: string;
 	message: string;
 	type: 'sent' | 'received';
-	attachments?: Attachment[]; // updated attachments type
+	attachments?: Attachment[];
 	sender: string;
 	timestamp: Date;
 }

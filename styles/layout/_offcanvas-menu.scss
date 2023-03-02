@@ -121,6 +121,7 @@ body {
 .offcanvas {
 	display: flex;
 	justify-content: flex-end;
+	position: relative;
 }
 
 .hamburger {
@@ -187,15 +188,6 @@ body {
 
 				100% {
 					width: 20px;
-				}
-			}
-		}
-	}
-
-	.hamburger {
-		&:hover {
-			.hamburger__line {
-				&:nth-child(2)::after {
 				}
 			}
 		}

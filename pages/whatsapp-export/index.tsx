@@ -34,6 +34,7 @@ const getChatHistory = (): ChatMessage[] => {
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+	const [showSearch, setShowSearch] = useState(false);
 
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
@@ -76,6 +77,30 @@ const ChatHistory: React.FC = () => {
 
 	return (
 		<>
+			<article>
+				<p>
+					Feature for me to practice hooks and other react/nextJS
+					features. On whatsapp there's the possibility to export your
+					chats which generates a plain .txt. I converted the txt to
+					json objects (some chats had almost up to a million lines).
+					Once converted to JSON I fetched the data, mapped over it
+					and displayed it here. Besides that i've added a search
+					throug hthe map functionlaity. Initially it was a filter
+					functionaliy, but I much prefer a jump to toggle like this.
+					Also had to come up with a solution for mobile since there's
+					little space and flex-direction row wouldn't work so i've
+					made it that the search is toggleable in a offcanvas menu.
+					Code can be found
+					<a
+						href='https://github.com/remcostoeten/'
+						target='_blank'
+						rel='noreferrer'>
+						here
+					</a>
+					. The whataspp export is private for obvious reasons but to
+					showcase the feature i've made a dummy
+				</p>
+			</article>
 			<ChatSearch
 				onSearch={handleSearch}
 				searchResults={searchResults}
@@ -106,27 +131,6 @@ const ChatHistory: React.FC = () => {
 													{message.message}
 												</div>
 											</span>
-
-											<div className='bubble__attachments'>
-												<span>
-													{message.attachments
-														?.photo !== undefined
-														? `Photo: ${message.attachments?.photo}`
-														: undefined}
-												</span>{' '}
-												<span>
-													{message.attachments
-														?.format !== undefined
-														? `Format: ${message.attachments?.format}`
-														: undefined}
-												</span>
-												<span>
-													{message.attachments
-														?.device !== undefined
-														? `Device: ${message.attachments?.device}`
-														: undefined}
-												</span>
-											</div>
 										</p>
 									</div>
 								</div>
