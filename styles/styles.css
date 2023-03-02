@@ -1351,7 +1351,7 @@ body {
 }
 .chat .bubble__message.z:after {
   background-position: 4px -35px !important;
-  background-image: url("~/apis-private/proper/img/zgezichtsnap.jpg");
+  background-image: url("~/private/proper/img/zgezichtsnap.jpg");
 }
 .chat .bubble__message:after {
   content: "";
