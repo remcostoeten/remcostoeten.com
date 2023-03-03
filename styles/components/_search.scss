@@ -77,17 +77,24 @@
 		display: flex;
 		z-index: $z-index-layer-three;
 		justify-content: flex-start;
-		position: fixed;
+		position: sticky;
+		left: 0;
 		top: 0;
-		left: -500px;
 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 		padding: $spacing;
 		background-color: $off-white;
 		height: 100%;
 		transition: transform 0.25s ease-out;
 		padding: $spacing;
+		transform: translateX(10px) !important;
 		min-width: 250px;
 		opacity: 0;
+		transform: translateY(-150%) !important;
+
+		@include mobile {
+			transform: translateY(-5%) !important;
+			z-index: 15;
+		}
 
 		.close {
 			top: 0;
@@ -100,6 +107,9 @@
 }
 
 .searchOpen {
+	.showsearch {
+		display: none;
+	}
 	.offcanvas.search {
 		transform: translateX(500px);
 		opacity: 1;

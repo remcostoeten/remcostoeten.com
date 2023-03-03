@@ -1185,19 +1185,23 @@ body {
     display: block;
   }
 }
+.chat-header,
 .offcanvas {
-  position: fixed;
-  top: 50px; /* adjust this value as needed */
-  bottom: 50px; /* adjust this value as needed */
-}
-
-.chat-header {
-  position: fixed;
+  position: sticky;
+  left: 0;
+  top: 0;
   z-index: 20;
 }
 
 .search-open {
   overflow: hidden;
+}
+
+.scrolled .sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 
 .chat-ui {
@@ -1225,9 +1229,7 @@ body {
   max-width: 450px;
   width: -moz-fit-content;
   display: flex;
-  position: relative;
   transition: 125ms;
-  position: relative;
   border-radius: 16px 8px 8px 4px;
   background-color: #1f2029;
   background-clip: content-box;
@@ -1240,7 +1242,6 @@ body {
   color: #77787e;
   align-items: initial;
   flex: 1 0 auto;
-  position: relative;
 }
 .bubble__message span {
   display: flex;
@@ -1530,17 +1531,25 @@ body {
   display: flex;
   z-index: 20;
   justify-content: flex-start;
-  position: fixed;
+  position: sticky;
+  left: 0;
   top: 0;
-  left: -500px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 24px;
   background-color: #f0f0f0;
   height: 100%;
   transition: transform 0.25s ease-out;
   padding: 24px;
+  transform: translateX(10px) !important;
   min-width: 250px;
   opacity: 0;
+  transform: translateY(-150%) !important;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .chat-ui .offcanvas.search {
+    transform: translateY(-5%) !important;
+    z-index: 15;
+  }
 }
 .chat-ui .offcanvas.search .close {
   top: 0;
@@ -1550,6 +1559,9 @@ body {
   right: 10px;
 }
 
+.searchOpen .showsearch {
+  display: none;
+}
 .searchOpen .offcanvas.search {
   transform: translateX(500px);
   opacity: 1;

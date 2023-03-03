@@ -41,10 +41,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		showAllResults ? results.length : maxResultsToShow,
 	);
 
-	const displayedResults = results
-		.slice(0, showAllResults ? slicedResults.length : maxResultsToShow)
-		.map((index: number) => chatHistory[index]);
-
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const term = event.target.value.toLowerCase();
 		setSearchTerm(term);
@@ -84,13 +80,14 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 
 	return (
 		<>
-			<div className='chat-header'>
+			<div className='chat-header sticky'>
 				{showChatInput ? 'Hide Chat' : 'Show Chat'}
 				<svg
 					onClick={() => setShowChatInput(!showChatInput)}
 					width='16'
 					height='16'
 					fill='white'
+					className='showsearch'
 					viewBox='0 0 16 16'>
 					<path d='M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z' />
 				</svg>

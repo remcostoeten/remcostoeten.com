@@ -13,13 +13,12 @@ $off-white: #f0f0f0;
 $gradient-one: #2d2f3e;
 $gradient-two: #323645;
 $light-bg: #313646;
+
+.chat-header,
 .offcanvas {
-	position: fixed;
-	top: 50px; /* adjust this value as needed */
-	bottom: 50px; /* adjust this value as needed */
-}
-.chat-header {
-	position: fixed;
+	position: sticky;
+	left: 0;
+	top: 0;
 	z-index: $z-index-layer-three;
 }
 
@@ -27,17 +26,24 @@ $light-bg: #313646;
 	overflow: hidden;
 }
 
-// .scrolled {
-// 	.chat-header {
-// 		position: sticky !important;
-// 		z-index: $z-index-layer-three;
-// 		right: 0;
+.scrolled {
+	.sticky {
+		position: sticky;
+		top: 0;
+		left: 0;
+		width: 100%;
+	}
 
-// 		svg {
-// 			position: absolute;
-// 			right: 0;
-// 		}
-// 	}
+	// 	.chat-header {
+	// 		position: sticky !important;
+	// 		z-index: $z-index-layer-three;
+	// 		right: 0;
+
+	// 		svg {
+	// 			position: absolute;
+	// 			right: 0;
+	// 		}
+}
 
 // 	.search {
 // 		position: sticky !important;
@@ -75,9 +81,7 @@ $light-bg: #313646;
 		max-width: 450px;
 		width: -moz-fit-content;
 		display: flex;
-		position: relative;
 		transition: 125ms;
-		position: relative;
 		border-radius: 16px 8px 8px 4px;
 		background-color: #1f2029;
 		background-clip: content-box;
@@ -90,7 +94,6 @@ $light-bg: #313646;
 		color: #77787e;
 		align-items: initial;
 		flex: 1 0 auto;
-		position: relative;
 
 		span {
 			display: flex;
