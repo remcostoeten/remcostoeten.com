@@ -1,8 +1,11 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
-import ChatBubbleAlert from './AlertBubble';
+import ChatBubbleAlert from './Tooltip';
 import Icon from '@mdi/react';
-import { mdiNoteSearch, mdiCloseCircleOutline } from '@mdi/js';
+import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
+import { motion } from 'framer-motion';
+import Tooltip from './Tooltip';
+
 type Props = {
 	onSearch: (query: string) => void;
 	searchResults: ChatMessage[];
@@ -30,6 +33,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
 	const maxResultsToShow = 10;
+	const [showTooltip, setShowTooltip] = useState(false);
 
 	const results = chatHistory
 		.map((message: ChatMessage, index: number) => ({ message, index }))
@@ -78,17 +82,37 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			}
 		}
 	}, []);
+	const [showText, setShowText] = useState(true);
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setShowText(false);
+		}, 5000);
+		return () => clearTimeout(timer);
+	}, []);
 
 	return (
 		<>
 			<div className='chat-header sticky'>
-				<span
-					className='toggle'
-					onClick={() => setShowChatInput(!showChatInput)}
-					style={{ color: '#fffd' }}>
-					<Icon path={mdiNoteSearch} size={3} />
-				</span>
-
+				<div className='toggle-wrapper'>
+					<span
+						className='toggle'
+						onClick={() => setShowChatInput(!showChatInput)}
+						style={{ color: '#fffd' }}>
+						<Icon path={mdiMagnify} size={3} />
+						<span>
+							{showText && (
+								<motion.span
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ delay: 0.5 }}
+									style={{ marginLeft: '0.5rem' }}>
+									Click to toggle search functionality
+								</motion.span>
+							)}
+						</span>{' '}
+					</span>
+				</div>
 				{showChatInput && (
 					<div className='offcanvas search'>
 						<span

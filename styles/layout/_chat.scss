@@ -51,6 +51,11 @@ $light-bg: #313646;
 
 	#text1,
 	#text2 {
+		display: none;
+		color: $off-white;
+	}
+
+	.toggle-wrapper {
 		color: $off-white;
 	}
 }
@@ -360,4 +365,17 @@ $light-bg: #313646;
 		article {
 		}
 	}
+}
+
+.arrow {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-width: 8px;
+	border-style: solid;
+	border-color: transparent transparent white transparent;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: -16px;
+	animation: arrowBlink 1s ease-in-out infinite;
 }
