@@ -1563,6 +1563,11 @@ body {
   left: 250px;
   z-index: 30;
 }
+@media (min-width: 0px) and (max-width: 767px) {
+  .sticky .toggle {
+    left: 25px;
+  }
+}
 .sticky button {
   background-color: none;
   border: none;

@@ -95,6 +95,10 @@
 		position: absolute;
 		left: 250px;
 		z-index: $z-index-layer-four;
+
+		@include mobile {
+			left: 25px;
+		}
 	}
 
 	button {
