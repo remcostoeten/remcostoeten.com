@@ -22,3 +22,17 @@ export interface ChatMessage {
 	sender: string;
 	timestamp: Date;
 }
+
+export type Props = {
+	onSearch: (query: string) => void;
+	searchResults: ChatMessage[];
+	onJumpTo: (index: number) => void;
+	chatHistory: ChatMessage[];
+};
+
+export interface SearchResultListProps {
+	message: any;
+	maxResultsToShow: any;
+	results: any;
+	title: any;
+}

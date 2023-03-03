@@ -4,10 +4,8 @@ import { ChatMessage, Attachment } from '../../types';
 
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
-
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
 		const { attachments, sender, timestamp, message } = msg;
-
 		return {
 			id: 'dummy-id',
 			message: message,
@@ -34,9 +32,14 @@ const getChatHistory = (): ChatMessage[] => {
 
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
+	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [showFullContent, setShowFullContent] = useState(false);
-
+	const text =
+		"Feature for me to practice hooks and other react/nextJS features. On WhatsApp there's the possibility to export your chats which generates a plain .txt. I converted the txt to JSON objects (some chats had almost up to a million lines). Once converted to JSON I fetched the data, mapped over it and displayed it here. Besides that, I've added a search through the map functionality. Initially, it was a filter functionality, but I much prefer a jump to toggle like this. Also had to come up with a solution for mobile since there's little space and flex-direction row wouldn't work so I've made it that the search is toggleable in an off-canvas menu. Code can be found here. The WhatsApp export is private for obvious reasons but to showcase the feature, I've made a dummy.";
+	const handleReadMoreClick = () => {
+		setShowFullText(true);
+	};
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
 		return () => {
@@ -67,48 +70,27 @@ const ChatHistory: React.FC = () => {
 	};
 
 	const handleJumpTo = (message?: ChatMessage) => {
-		const index = message
-			? chatHistory.findIndex((m) => m.timestamp === message.timestamp)
-			: -1;
+		const index =
+			message && message.timestamp
+				? chatHistory.findIndex(
+						(m) => m.timestamp === message.timestamp,
+				  )
+				: -1;
 		const messageElement = document.getElementById(`chat-message-${index}`);
 		if (messageElement) {
 			messageElement.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
 
-	const fullContent = (
-		<>
-			Feature for me to practice hooks and other react/nextJS features. On
-			WhatsApp there's the possibility to export your chats which
-			generates a plain .txt. I converted the txt to JSON objects (some
-			chats had almost up to a million lines). Once converted to JSON I
-			fetched the data, mapped over it and displayed it here. Besides
-			that, I've added a search through the map functionality. Initially,
-			it was a filter functionality, but I much prefer a jump to toggle
-			like this. Also had to come up with a solution for mobile since
-			there's little space and flex-direction row wouldn't work so I've
-			made it that the search is toggleable in an off-canvas menu. Code
-			can be found{' '}
-			<a
-				href='https://github.com/remcostoeten/'
-				target='_blank'
-				rel='noreferrer'>
-				here
-			</a>
-			. The WhatsApp export is private for obvious reasons but to showcase
-			the feature, I've made a dummy.
-		</>
-	);
 	return (
 		<>
 			<article>
-				{React.Children.toArray(fullContent).join('').slice(0, 200)}
-				{fullContent.length > 200 && (
-					<button
-						onClick={() => setShowFullContent(!showFullContent)}>
-						{showFullContent ? 'Read Less' : 'Read More'}
-					</button>
-				)}
+				<p>
+					{showFullText ? text : `${text.slice(0, 150)}...`}
+					{!showFullText && (
+						<div onClick={handleReadMoreClick}>Read more</div>
+					)}
+				</p>
 			</article>
 			<ChatSearch
 				onSearch={handleSearch}

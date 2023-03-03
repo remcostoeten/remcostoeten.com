@@ -1185,6 +1185,21 @@ body {
     display: block;
   }
 }
+.offcanvas {
+  position: fixed;
+  top: 50px; /* adjust this value as needed */
+  bottom: 50px; /* adjust this value as needed */
+}
+
+.chat-header {
+  position: fixed;
+  z-index: 20;
+}
+
+.search-open {
+  overflow: hidden;
+}
+
 .chat-ui {
   background: #2e2f3e;
 }
@@ -1194,6 +1209,7 @@ body {
   margin: 0 auto;
   color: #f0f0f0;
   line-height: 2em;
+  font-size: 1.5em;
 }
 .chat-ui article a {
   color: #f0f0f0;
