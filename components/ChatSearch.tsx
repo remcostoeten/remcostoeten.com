@@ -1,10 +1,9 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
-import ChatBubbleAlert from './Tooltip';
+import Alert from './Tooltip';
 import Icon from '@mdi/react';
 import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
 import { motion } from 'framer-motion';
-import Tooltip from './Tooltip';
 
 type Props = {
 	onSearch: (query: string) => void;
@@ -13,9 +12,6 @@ type Props = {
 	chatHistory: ChatMessage[];
 };
 
-interface ChatBubbleAlert {
-	message: any;
-}
 interface ChatSearchProps {
 	onSearch: (term: string) => void;
 	searchResults: ChatMessage[];
@@ -137,9 +133,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 
 							{searchTerm.length > 0 && results.length > 0 && (
 								<div className='search__results'>
-									<div>
-										<ChatBubbleAlert />
-									</div>{' '}
 									{results.map((index: number) => (
 										<div
 											className='message'

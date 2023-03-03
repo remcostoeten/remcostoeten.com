@@ -1,62 +1,70 @@
-import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { mdiMagnify } from '@mdi/js';
 import Icon from '@mdi/react';
-
+import { motion, AnimatePresence } from 'framer-motion';
+import { useEffect, useState } from 'react';
 interface TooltipProps {
-	handleToggle: string;
+	handleToggle: () => void;
 	showText: string;
 	showChatInput: boolean;
-	setShowChatInput: React.Dispatch<React.SetStateAction<boolean>>;
+	setShowChatInput: (value: boolean) => void;
 }
 
-const Tooltip: React.FC<TooltipProps> = ({
+function Tooltip({
 	handleToggle,
 	showText,
 	showChatInput,
 	setShowChatInput,
-}) => {
-	const [typewriterText, setTypewriterText] = useState('');
+}: TooltipProps) {
+	const [showTooltip, setShowTooltip] = useState(false);
 
 	useEffect(() => {
-		if (showText) {
-			const text = 'Click to toggle search functionality';
-			let i = 0;
-			const interval = setInterval(() => {
-				if (i < text.length) {
-					setTypewriterText((prevText) => prevText + text.charAt(i));
-					i++;
-				} else {
-					clearInterval(interval);
-					setTimeout(() => {
-						setShowChatInput(false);
-					}, 5000);
-				}
-			}, 100);
-		} else {
-			setTypewriterText('');
-		}
-	}, [showText, setShowChatInput]);
+		setTimeout(() => {
+			setShowTooltip(false);
+		}, 50000);
+	}, []);
+
+	const containerVariants = {
+		hidden: { opacity: 0 },
+		visible: {
+			opacity: 1,
+			transition: { duration: 0.5, ease: 'easeInOut' },
+		},
+	};
+
+	const textVariants = {
+		hidden: { opacity: 0, x: -10 },
+		visible: {
+			opacity: 1,
+			x: 0,
+			transition: { duration: 0.5, ease: 'easeInOut' },
+		},
+		exit: {
+			opacity: 0,
+			x: 10,
+			transition: { duration: 0.5, ease: 'easeInOut' },
+		},
+	};
 
 	return (
-		<div className='toggle-wrapper'>
-			<span
-				className='toggle'
-				onClick={() => setShowChatInput(!showChatInput)}
-				style={{ color: '#fffd' }}>
-				<Icon path={mdiMagnify} size={3} />
-				{showText && (
+		<AnimatePresence>
+			{showTooltip && (
+				<motion.div
+					className='tooltip'
+					variants={containerVariants}
+					initial='hidden'
+					animate='visible'
+					exit='hidden'>
 					<motion.span
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1 }}
-						transition={{ delay: 0.5 }}
-						style={{ marginLeft: '0.5rem' }}>
-						{typewriterText}
+						className='text'
+						variants={textVariants}
+						initial='hidden'
+						animate='visible'
+						exit='exit'>
+						Click to toggle search functionality
 					</motion.span>
-				)}
-			</span>
-		</div>
+				</motion.div>
+			)}
+		</AnimatePresence>
 	);
-};
-
+}
 export default Tooltip;
