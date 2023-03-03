@@ -73,8 +73,17 @@
 	}
 
 	.header {
-		display: none;
+		position: absolute;
+		left: $spacing;
+		top: $spacing;
+		height: unset;
+		padding: 0;
+
+		&__toggle {
+			display: none;
+		}
 	}
+
 	.container {
 		max-width: 100%;
 	}

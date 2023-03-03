@@ -1529,6 +1529,13 @@ body {
   mix-blend-mode: multiply;
 }
 .chat-ui .header {
+  position: absolute;
+  left: 24px;
+  top: 24px;
+  height: unset;
+  padding: 0;
+}
+.chat-ui .header__toggle {
   display: none;
 }
 .chat-ui .container {
