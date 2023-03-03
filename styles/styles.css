@@ -1185,12 +1185,8 @@ body {
     display: block;
   }
 }
-.chat-header,
 .offcanvas {
-  position: sticky;
-  left: 0;
-  top: 0;
-  z-index: 20;
+  position: absolute;
 }
 
 .search-open {
@@ -1311,7 +1307,8 @@ body {
   position: relative;
 }
 .chat__results {
-  position: absolute;
+  position: sticky;
+  top: 0;
   left: 0;
   margin: 0 auto;
   padding: 24px;
@@ -1462,6 +1459,21 @@ body {
   padding: 24px;
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .chat-ui header.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: static;
+  }
+  .chat-ui header.header #text1,
+  .chat-ui header.header #text2 {
+    filter: unset;
+    text-align: center;
+    margin: 0 auto;
+    font-size: 3em;
+  }
+}
 .search {
   position: relative;
   width: 200px;
@@ -1487,7 +1499,9 @@ body {
   background-position: center left 8px;
 }
 .search__results {
-  position: relative;
+  position: sticky;
+  top: 0;
+  left: 0;
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   padding: 6.8571428571px;
@@ -1519,6 +1533,10 @@ body {
 
 .chat-header {
   margin: 0 auto;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
   max-width: 762px;
 }
 
@@ -1543,7 +1561,7 @@ body {
 }
 .chat-ui .offcanvas.search {
   display: flex;
-  z-index: 20;
+  z-index: 30;
   justify-content: flex-start;
   position: sticky;
   left: 0;
@@ -1554,13 +1572,14 @@ body {
   height: 100%;
   transition: transform 0.25s ease-out;
   padding: 24px;
-  transform: translateX(10px) !important;
+  transform: translateX(-200px) !important;
   min-width: 250px;
   opacity: 0;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
     z-index: 15;
+    transform: translateX(10px) !important;
   }
 }
 .chat-ui .offcanvas.search .close {

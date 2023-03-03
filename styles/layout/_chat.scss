@@ -14,12 +14,8 @@ $gradient-one: #2d2f3e;
 $gradient-two: #323645;
 $light-bg: #313646;
 
-.chat-header,
 .offcanvas {
-	position: sticky;
-	left: 0;
-	top: 0;
-	z-index: $z-index-layer-three;
+	position: absolute;
 }
 
 .search-open {
@@ -33,24 +29,7 @@ $light-bg: #313646;
 		left: 0;
 		width: 100%;
 	}
-
-	// 	.chat-header {
-	// 		position: sticky !important;
-	// 		z-index: $z-index-layer-three;
-	// 		right: 0;
-
-	// 		svg {
-	// 			position: absolute;
-	// 			right: 0;
-	// 		}
 }
-
-// 	.search {
-// 		position: sticky !important;
-// 		margin-top: $spacing;
-// 		position: sticky;
-// 	}
-// }
 
 .chat-ui {
 	background: $dark-background;
@@ -174,7 +153,8 @@ $light-bg: #313646;
 	position: relative;
 
 	&__results {
-		position: absolute;
+		position: sticky;
+		top: 0;
 		left: 0;
 		margin: 0 auto;
 		padding: $spacing;
@@ -356,6 +336,28 @@ $light-bg: #313646;
 
 		&__inner {
 			padding: $spacing;
+		}
+	}
+}
+
+@include mobile {
+	.chat-ui {
+		header.header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: static;
+
+			#text1,
+			#text2 {
+				filter: unset;
+				text-align: center;
+				margin: 0 auto;
+				font-size: 3em;
+			}
+		}
+
+		article {
 		}
 	}
 }
