@@ -89,10 +89,7 @@
 		transform: translateX(10px) !important;
 		min-width: 250px;
 		opacity: 0;
-		transform: translateY(-150%) !important;
-
 		@include mobile {
-			transform: translateY(-5%) !important;
 			z-index: 15;
 		}
 
@@ -236,5 +233,12 @@
 	}
 	to {
 		opacity: 1;
+	}
+}
+
+@include mobile {
+	.search {
+		width: calc(100% - 10px - $spacing-s) !important
+		;
 	}
 }

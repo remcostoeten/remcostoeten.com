@@ -1543,11 +1543,9 @@ body {
   transform: translateX(10px) !important;
   min-width: 250px;
   opacity: 0;
-  transform: translateY(-150%) !important;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
-    transform: translateY(-5%) !important;
     z-index: 15;
   }
 }
@@ -1685,5 +1683,10 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .search {
+    width: calc(100% - 10px - 8px) !important;
   }
 }/*# sourceMappingURL=styles.css.map */
