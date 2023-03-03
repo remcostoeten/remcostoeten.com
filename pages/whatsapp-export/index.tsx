@@ -31,6 +31,7 @@ const getChatHistory = (): ChatMessage[] => {
 };
 
 const ChatHistory: React.FC = () => {
+	const [bodyClass, setBodyClass] = useState('');
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
@@ -43,6 +44,21 @@ const ChatHistory: React.FC = () => {
 	const handleReadLessClick = () => {
 		setShowFullText(false);
 	};
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 100) {
+				document.body.classList.add('scrolled');
+			} else {
+				document.body.classList.remove('scrolled');
+			}
+		};
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
 		return () => {
