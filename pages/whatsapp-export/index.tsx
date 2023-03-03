@@ -4,6 +4,7 @@ import { ChatMessage, Attachment } from '../../types';
 
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
+
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
 		const { attachments, sender, timestamp, message } = msg;
 
@@ -34,7 +35,12 @@ const getChatHistory = (): ChatMessage[] => {
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-	const [showSearch, setShowSearch] = useState(false);
+	const [showFullContent, setShowFullContent] = useState(false);
+
+	const fullContent =
+		"Feature for me to practice hooks and other react/nextJS features. On whatsapp there's the possibility to export your chats which generates a plain .txt. I converted the txt to json objects (some chats had almost up to a million lines). Once converted to JSON I fetched the data, mapped over it and displayed it here. Besides that i've added a search through the map functionlaity. Initially it was a filter functionaliy, but I much prefer a jump to toggle like this. Also had to come up with a solution for mobile since there's little space and flex-direction row wouldn't work so i've made it that the search is toggleable in a offcanvas menu. Code can be found here. The whataspp export is private for obvious reasons but to showcase the feature i've made a dummy.";
+
+	const content = showFullContent ? fullContent : fullContent.slice(0, 200);
 
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
@@ -79,27 +85,14 @@ const ChatHistory: React.FC = () => {
 		<>
 			<article>
 				<p>
-					Feature for me to practice hooks and other react/nextJS
-					features. On whatsapp there's the possibility to export your
-					chats which generates a plain .txt. I converted the txt to
-					json objects (some chats had almost up to a million lines).
-					Once converted to JSON I fetched the data, mapped over it
-					and displayed it here. Besides that i've added a search
-					throug hthe map functionlaity. Initially it was a filter
-					functionaliy, but I much prefer a jump to toggle like this.
-					Also had to come up with a solution for mobile since there's
-					little space and flex-direction row wouldn't work so i've
-					made it that the search is toggleable in a offcanvas menu.
-					Code can be found
-					<a
-						href='https://github.com/remcostoeten/'
-						target='_blank'
-						rel='noreferrer'>
-						here
-					</a>
-					. The whataspp export is private for obvious reasons but to
-					showcase the feature i've made a dummy
+					{content}
+					{!showFullContent && <span>...</span>}
 				</p>
+				{fullContent.length > 200 && (
+					<div onClick={() => setShowFullContent(!showFullContent)}>
+						{showFullContent ? 'Read Less' : 'Read More'}
+					</div>
+				)}
 			</article>
 			<ChatSearch
 				onSearch={handleSearch}
