@@ -12,10 +12,16 @@ $border-color: #2e2e38;
 $off-white: #f0f0f0;
 $gradient-one: #2d2f3e;
 $gradient-two: #323645;
-
 $light-bg: #313646;
+
 .chat-ui {
 	background: $dark-background;
+
+	article {
+		max-width: 768px;
+		padding: $spacing;
+		margin: 0 auto;
+	}
 
 	#text1,
 	#text2 {
@@ -253,6 +259,13 @@ $light-bg: #313646;
 				background-position: -5px -75px;
 				right: -70px;
 				top: 16px;
+
+				@include mobile {
+					width: 45px;
+					height: 45px;
+					right: -40px;
+					background-position: center;
+				}
 			}
 
 			&.bubble__second-person {
@@ -262,6 +275,14 @@ $light-bg: #313646;
 					background-position: -5px -75px;
 					left: -70px;
 					top: 11px;
+
+					@include mobile {
+						width: 45px;
+						background-position: center;
+						height: 45px;
+						left: -40px;
+						object-fit: cover;
+					}
 				}
 			}
 		}

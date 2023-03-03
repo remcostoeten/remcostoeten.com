@@ -1188,6 +1188,11 @@ body {
 .chat-ui {
   background: #2e2f3e;
 }
+.chat-ui article {
+  max-width: 768px;
+  padding: 24px;
+  margin: 0 auto;
+}
 .chat-ui #text1,
 .chat-ui #text2 {
   color: #f0f0f0;
@@ -1387,12 +1392,29 @@ body {
   right: -70px;
   top: 16px;
 }
+@media (min-width: 0px) and (max-width: 767px) {
+  .chat .bubble__message:after {
+    width: 45px;
+    height: 45px;
+    right: -40px;
+    background-position: center;
+  }
+}
 .chat .bubble__message.bubble__second-person:after {
   background-image: url("https://xsgames.co/randomusers/assets/avatars/male/34.jpg");
   top: 15px;
   background-position: -5px -75px;
   left: -70px;
   top: 11px;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .chat .bubble__message.bubble__second-person:after {
+    width: 45px;
+    background-position: center;
+    height: 45px;
+    left: -40px;
+    object-fit: cover;
+  }
 }
 .chat .bubble__bg:hover {
   position: relative;
