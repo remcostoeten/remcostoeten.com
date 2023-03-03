@@ -1483,7 +1483,7 @@ body {
   margin-bottom: 12px;
   z-index: 10;
   padding-left: 14px;
-  padding-left: 29px;
+  padding-left: 35px;
   font-weight: 600;
   height: 40px;
   border: 1px solid transparent;
@@ -1497,6 +1497,11 @@ body {
   background-repeat: no-repeat;
   background-size: 8%;
   background-position: center left 8px;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .search .search__icon {
+    background-size: 4%;
+  }
 }
 .search__results {
   position: sticky;

@@ -7,11 +7,12 @@
 		margin-bottom: 12px;
 		z-index: $z-index-layer-two;
 		padding-left: 14px;
-		padding-left: 29px;
+		padding-left: 35px;
 		font-weight: 600;
 		height: $input-height;
 		border: 1px solid transparent;
 		transition: 255ms ease-in-out;
+
 		&:hover,
 		&:focus {
 			border: 1px solid $accent-color;
@@ -23,6 +24,10 @@
 		background-repeat: no-repeat;
 		background-size: 8%;
 		background-position: center left 8px;
+
+		@include mobile {
+			background-size: 4%;
+		}
 	}
 
 	&__results {
