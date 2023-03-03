@@ -40,6 +40,9 @@ const ChatHistory: React.FC = () => {
 	const handleReadMoreClick = () => {
 		setShowFullText(true);
 	};
+	const handleReadLessClick = () => {
+		setShowFullText(false);
+	};
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
 		return () => {
@@ -88,7 +91,10 @@ const ChatHistory: React.FC = () => {
 				<p>
 					{showFullText ? text : `${text.slice(0, 150)}...`}
 					{!showFullText && (
-						<div onClick={handleReadMoreClick}>Read more</div>
+						<a onClick={handleReadMoreClick}>Read more</a>
+					)}
+					{showFullText && (
+						<a onClick={handleReadLessClick}>Read less</a>
 					)}
 				</p>
 			</article>

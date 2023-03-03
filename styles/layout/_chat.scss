@@ -28,7 +28,7 @@ $light-bg: #313646;
 
 .scrolled {
 	.sticky {
-		position: sticky;
+		position: fixed;
 		top: 0;
 		left: 0;
 		width: 100%;
@@ -65,6 +65,8 @@ $light-bg: #313646;
 
 		a {
 			color: $off-white;
+			text-decoration: underline;
+			margin-left: 4px;
 		}
 	}
 
@@ -94,6 +96,7 @@ $light-bg: #313646;
 		color: #77787e;
 		align-items: initial;
 		flex: 1 0 auto;
+		position: relative;
 
 		span {
 			display: flex;
@@ -167,7 +170,6 @@ $light-bg: #313646;
 	max-width: 520px;
 	margin: 0 auto;
 	border-radius: 16px 8px 8px 4px;
-	border-top: 1px solid lighten($dark-background, 10%);
 	display: flex;
 	position: relative;
 

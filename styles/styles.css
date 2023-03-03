@@ -1198,7 +1198,7 @@ body {
 }
 
 .scrolled .sticky {
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -1217,6 +1217,8 @@ body {
 }
 .chat-ui article a {
   color: #f0f0f0;
+  text-decoration: underline;
+  margin-left: 4px;
 }
 .chat-ui #text1,
 .chat-ui #text2 {
@@ -1242,6 +1244,7 @@ body {
   color: #77787e;
   align-items: initial;
   flex: 1 0 auto;
+  position: relative;
 }
 .bubble__message span {
   display: flex;
@@ -1304,7 +1307,6 @@ body {
   max-width: 520px;
   margin: 0 auto;
   border-radius: 16px 8px 8px 4px;
-  border-top: 1px solid #44455b;
   display: flex;
   position: relative;
 }
@@ -1513,6 +1515,11 @@ body {
 .disable-transition *::before,
 .disable-transition *::after {
   transition: none !important;
+}
+
+.chat-header {
+  margin: 0 auto;
+  max-width: 762px;
 }
 
 .chat-ui {
