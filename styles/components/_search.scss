@@ -1,6 +1,5 @@
 .search {
 	position: relative;
-	width: 200px;
 
 	input {
 		width: 100%;
@@ -148,7 +147,6 @@
 		height: 100%;
 		transition: transform 0.25s ease-out;
 		padding: $spacing;
-		min-width: 250px;
 		opacity: 0;
 
 		@include mobile {
@@ -223,15 +221,15 @@
 	color: #333;
 }
 
+.close-offcanvas {
+	right: 0;
+	top: 0;
+	position: absolute;
+	z-index: $z-index-layer-four;
+}
+
 @include mobile {
 	.search {
 		width: 100%;
-	}
-
-	.close-offcanvas {
-		right: 0;
-		top: 0;
-		position: absolute;
-		z-index: $z-index-layer-four;
 	}
 }

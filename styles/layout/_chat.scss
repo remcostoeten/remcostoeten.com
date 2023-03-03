@@ -250,6 +250,8 @@ $light-bg: #313646;
 			.message {
 				display: flex;
 				flex-direction: column;
+				max-width: 200px;
+				width: 200px;
 			}
 
 			&.z {
