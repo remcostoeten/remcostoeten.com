@@ -1192,16 +1192,15 @@ body {
   max-width: 768px;
   padding: 24px;
   margin: 0 auto;
+  color: #f0f0f0;
+  line-height: 2em;
+}
+.chat-ui article a {
+  color: #f0f0f0;
 }
 .chat-ui #text1,
 .chat-ui #text2 {
   color: #f0f0f0;
-}
-.chat-ui article {
-  max-width: 768px;
-  margin: 0 auto;
-  color: #f0f0f0;
-  line-height: 2em;
 }
 
 .bubble__message {

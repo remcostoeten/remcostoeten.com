@@ -21,18 +21,17 @@ $light-bg: #313646;
 		max-width: 768px;
 		padding: $spacing;
 		margin: 0 auto;
+		color: $off-white;
+		line-height: 2em;
+
+		a {
+			color: $off-white;
+		}
 	}
 
 	#text1,
 	#text2 {
 		color: $off-white;
-	}
-
-	article {
-		max-width: 768px;
-		margin: 0 auto;
-		color: $off-white;
-		line-height: 2em;
 	}
 }
 
