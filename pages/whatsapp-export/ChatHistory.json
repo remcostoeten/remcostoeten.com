@@ -126,5 +126,145 @@
 		"message": "The Lakers beat the Celtics by 10 points. It was a pretty good game.",
 		"timestamp": "2022-02-26T09:50:00.000Z",
 		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "Hey, what's up?",
+		"timestamp": "2022-01-01 10:00:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "Not much, just chilling. How about you?",
+		"timestamp": "2022-01-01 10:01:00"
+	},
+	{
+		"sender": "John",
+		"message": "Same here. Did you do anything fun over the holidays?",
+		"timestamp": "2022-01-01 10:02:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "I went on a ski trip with my family. It was really nice.",
+		"timestamp": "2022-01-01 10:03:00"
+	},
+	{
+		"sender": "John",
+		"message": "That sounds awesome. I've always wanted to try skiing.",
+		"timestamp": "2022-01-01 10:04:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "You should definitely give it a try. It's so much fun!",
+		"timestamp": "2022-01-01 10:05:00"
+	},
+	{
+		"sender": "John",
+		"message": "Yeah, I'll have to do that sometime. Anyway, what are you up to today?",
+		"timestamp": "2022-01-01 10:06:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "I'm just hanging out at home. How about you?",
+		"timestamp": "2022-01-01 10:07:00"
+	},
+	{
+		"sender": "John",
+		"message": "I'm going to the gym later. Want to join me?",
+		"timestamp": "2022-01-01 10:08:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "Thanks for the invite, but I'm not really in the mood for working out today.",
+		"timestamp": "2022-01-01 10:09:00"
+	},
+	{
+		"sender": "John",
+		"message": "No problem. Maybe we can hang out later though?",
+		"timestamp": "2022-01-01 10:10:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "Sure, that sounds good. What did you have in mind?",
+		"timestamp": "2022-01-01 10:11:00"
+	},
+	{
+		"sender": "John",
+		"message": "How about we go see a movie or something?",
+		"timestamp": "2022-01-01 10:12:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "That sounds like fun. What movie do you want to see?",
+		"timestamp": "2022-01-01 10:13:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "Hey, how are you doing?",
+		"timestamp": "2022-02-01 15:00:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "I'm good, thanks for asking. How about you?",
+		"timestamp": "2022-02-01 15:02:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "I'm doing well too, thanks. What have you been up to lately?",
+		"timestamp": "2022-02-01 15:03:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Not much, just working and hanging out with friends. What about you?",
+		"timestamp": "2022-02-01 15:04:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "Same here. I've been trying to catch up on some reading in my free time.",
+		"timestamp": "2022-02-01 15:06:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Oh cool, what are you reading?",
+		"timestamp": "2022-02-01 15:07:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "I'm reading 'The Alchemist' by Paulo Coelho. Have you heard of it?",
+		"timestamp": "2022-02-01 15:09:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Yeah, I've heard great things about that book. How do you like it so far?",
+		"timestamp": "2022-02-01 15:10:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "I'm really enjoying it. The writing is beautiful and the story is so inspiring.",
+		"timestamp": "2022-02-01 15:12:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "That's awesome. Maybe I'll have to check it out for myself sometime.",
+		"timestamp": "2022-02-01 15:14:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "You definitely should. So, do you have any plans for the weekend?",
+		"timestamp": "2022-02-01 15:16:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Not yet. I was thinking about maybe going for a hike or something. What about you?",
+		"timestamp": "2022-02-01 15:18:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "That sounds like a great idea. I don't have any plans yet either, so maybe we could go hiking together?",
+		"timestamp": "2022-02-01 15:20:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Yeah, that would be awesome. How about we meet up at the park at 10am on Saturday?",
+		"timestamp": "2022-02-01 15:22:00"
 	}
 ]
