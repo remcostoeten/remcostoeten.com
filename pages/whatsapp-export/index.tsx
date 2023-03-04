@@ -158,6 +158,3 @@ const ChatHistory: React.FC = () => {
 };
 
 export default ChatHistory;
-function onJumpTo(message: ChatMessage) {
-	throw new Error('Function not implemented.');
-}
