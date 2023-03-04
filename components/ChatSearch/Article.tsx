@@ -10,19 +10,21 @@ const FeatureStory = () => {
 	return (
 		<>
 			<article>
-				<p>
-					{showFullStory ? story : truncatedStory}
-					{!showFullStory && story.length > 150 && (
-						<span onClick={() => setShowFullStory(true)}>
-							Show More
-						</span>
-					)}
-					{showFullStory && story.length > 150 && (
-						<span onClick={() => setShowFullStory(false)}>
-							Show less
-						</span>
-					)}
-				</p>
+				<p
+					dangerouslySetInnerHTML={{
+						__html: showFullStory ? story : truncatedStory,
+					}}
+				/>
+				{!showFullStory && story.length > 150 && (
+					<span onClick={() => setShowFullStory(true)}>
+						Show More
+					</span>
+				)}
+				{showFullStory && story.length > 150 && (
+					<span onClick={() => setShowFullStory(false)}>
+						Show less
+					</span>
+				)}
 			</article>
 		</>
 	);
