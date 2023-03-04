@@ -42,7 +42,8 @@ $light-bg: #313646;
 		line-height: 2em;
 		font-size: 1.9em;
 
-		span,a {
+		span,
+		a {
 			color: $off-white;
 			text-decoration: underline;
 			margin-left: 4px;
@@ -146,7 +147,31 @@ $light-bg: #313646;
 		}
 	}
 }
+.z {
+	&:after {
+		background-position: 4px -35px !important;
+		background-image: url('/apisprivate/proper/img/zgezichtsnap.jpg');
+		content: '';
+		background-size: 125%;
+		height: 55px;
+		width: 55px;
+		display: block;
+		border-radius: 16px;
+		position: absolute;
+		top: 15px;
+		background-position: -5px -75px;
+		right: -70px;
+		top: 16px;
+	}
 
+	&.d {
+		// background-image: url('../../apisprivate/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg');
+	}
+
+	&.y {
+		// background-image: url('../../apisprivate/proper/img/y.jpg');
+	}
+}
 .chat {
 	display: flex;
 	color: $grey-text;
@@ -252,21 +277,6 @@ $light-bg: #313646;
 				flex-direction: column;
 				max-width: 200px;
 				width: 200px;
-			}
-
-			&.z {
-				&:after {
-					background-position: 4px -35px !important;
-					background-image: url('/apisprivate/proper/img/zgezichtsnap.jpg');
-				}
-
-				&.d {
-					// background-image: url('../../apisprivate/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg');
-				}
-
-				&.y {
-					// background-image: url('../../apisprivate/proper/img/y.jpg');
-				}
 			}
 
 			&:after {

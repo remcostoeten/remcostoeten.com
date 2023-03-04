@@ -40,3 +40,4 @@ styles/styles.css.map
 
 # Local Netlify folder
 .netlify
+pages/z/*
