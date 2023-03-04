@@ -4,12 +4,12 @@ import Icon from '@mdi/react';
 import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
 import { motion } from 'framer-motion';
 interface ChatSearchProps {
-	onSearch: string
-	searchResults: string
-	chatHistory: string
-	onJumpTo: string
-	message:string
+	onSearch: (searchTerm: string) => void;
+	searchResults: string;
+	chatHistory: ChatMessage[];
+	onJumpTo: (index: number) => void;
 }
+
 const ChatSearch: React.FC<ChatSearchProps> = ({
 	onSearch,
 	searchResults,
@@ -19,21 +19,27 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const maxResultsToShow = 10;
-	const [showTooltip, setShowTooltip] = useState(false);
-const results = chatHistory
-  ? chatHistory
-      .map((message: ChatMessage, index: number) => ({ message, index }))
-      .filter(({ message }) =>
-        message.message.toLowerCase().includes(searchTerm.toLowerCase()),
-      )
-      .map(({ index }) => index)
-  : [];
 
-const slicedResults = results.slice(
-  0,
-  showAllResults ? results.length : maxResultsToShow,
-);
+	const maxResultsToShow = 10;
+
+	const results = chatHistory
+		? chatHistory
+				.map((message: ChatMessage, index: number) => ({
+					message,
+					index,
+				}))
+				.filter(({ message }) =>
+					message.message
+						.toLowerCase()
+						.includes(searchTerm.toLowerCase()),
+				)
+				.map(({ index }) => index)
+		: [];
+
+	const slicedResults = showAllResults
+		? results
+		: results.slice(0, maxResultsToShow);
+
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const term = event.target.value.toLowerCase();
 		setSearchTerm(term);
@@ -148,3 +154,6 @@ const slicedResults = results.slice(
 };
 
 export default ChatSearch;
+function onSearch(term: string) {
+	throw new Error('Function not implemented.');
+}

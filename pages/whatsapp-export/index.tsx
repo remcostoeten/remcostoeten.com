@@ -2,6 +2,7 @@ import FeatureStory from '@/components/ChatSearch/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '../../components/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
+
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
@@ -31,7 +32,6 @@ const getChatHistory = (): ChatMessage[] => {
 };
 
 const ChatHistory: React.FC = () => {
-	const [bodyClass, setBodyClass] = useState('');
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
@@ -39,7 +39,7 @@ const ChatHistory: React.FC = () => {
 	const githubLink =
 		'https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx';
 
-	<FeatureStory/>
+	<FeatureStory />;
 
 	const handleReadMoreClick = () => {
 		setShowFullText(true);
@@ -105,16 +105,23 @@ const ChatHistory: React.FC = () => {
 			messageElement.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
+	interface ChatSearchProps {
+		onSearch: (query: string) => void;
+		searchResults: string;
+		onJumpTo: (message: ChatMessage) => void;
+		chatHistory: ChatMessage[];
+	}
 
 	return (
 		<>
-		<FeatureStory/>
+			<FeatureStory />
 			<ChatSearch
 				onSearch={handleSearch}
-				searchResults={searchResults}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
 				chatHistory={chatHistory}
+				searchResults={''}
 			/>
+
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
@@ -151,3 +158,6 @@ const ChatHistory: React.FC = () => {
 };
 
 export default ChatHistory;
+function onJumpTo(message: ChatMessage) {
+	throw new Error('Function not implemented.');
+}

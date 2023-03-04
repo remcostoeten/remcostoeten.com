@@ -14,10 +14,10 @@ export interface Attachment {
 	device?: string;
 }
 export interface ChatSearchProps {
-	onSearch: (term: string) => void;
-	searchResults: ChatMessage[];
-	onJumpTo: (index: number) => void;
+	onSearch: (searchTerm: string) => void;
+	searchResults: ChatMessage[]; // fix the type to ChatMessage[]
 	chatHistory: ChatMessage[];
+	onJumpTo: (message: ChatMessage) => void;
 }
 
 export interface ChatMessage {
