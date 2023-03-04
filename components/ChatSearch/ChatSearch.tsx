@@ -154,6 +154,3 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 };
 
 export default ChatSearch;
-function onSearch(term: string) {
-	throw new Error('Function not implemented.');
-}
