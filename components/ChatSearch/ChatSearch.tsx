@@ -1,14 +1,15 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
-import Alert from './Tooltip';
 import Icon from '@mdi/react';
 import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
 import { motion } from 'framer-motion';
-import {ChatSearchProps, Props} from '../../types'
-
-
-
-
+interface ChatSearchProps {
+	onSearch: string
+	searchResults: string
+	chatHistory: string
+	onJumpTo: string
+	message:string
+}
 const ChatSearch: React.FC<ChatSearchProps> = ({
 	onSearch,
 	searchResults,
