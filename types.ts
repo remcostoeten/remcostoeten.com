@@ -13,6 +13,12 @@ export interface Attachment {
 	format?: string;
 	device?: string;
 }
+export interface ChatSearchProps {
+	onSearch: (term: string) => void;
+	searchResults: ChatMessage[];
+	onJumpTo: (index: number) => void;
+	chatHistory: ChatMessage[];
+}
 
 export interface ChatMessage {
 	id: string;
