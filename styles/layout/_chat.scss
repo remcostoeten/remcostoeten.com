@@ -34,6 +34,11 @@ $light-bg: #313646;
 .chat-ui {
 	background: $dark-background;
 
+	br {
+		display: block;
+		margin: 2px 0;
+	}
+
 	article {
 		max-width: 768px;
 		padding: $spacing;
