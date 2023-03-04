@@ -31,6 +31,9 @@ $light-bg: #313646;
 	}
 }
 
+.chat-ui-z {
+}
+
 .chat-ui {
 	background: $dark-background;
 
@@ -155,7 +158,7 @@ $light-bg: #313646;
 .z {
 	&:after {
 		background-position: 4px -35px !important;
-		background-image: url('/apisprivate/proper/img/zgezichtsnap.jpg');
+		background-image: url('~/apisprivate/proper/img/zgezichtsnap.jpg') !important;
 		content: '';
 		background-size: 125%;
 		height: 55px;

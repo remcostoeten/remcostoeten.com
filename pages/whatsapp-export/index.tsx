@@ -105,6 +105,7 @@ const ChatHistory: React.FC = () => {
 			messageElement.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
+
 	interface ChatSearchProps {
 		onSearch: (query: string) => void;
 		searchResults: string;

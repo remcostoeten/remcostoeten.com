@@ -1225,6 +1225,10 @@ body {
 .chat-ui {
   background: #2e2f3e;
 }
+.chat-ui br {
+  display: block;
+  margin: 2px 0;
+}
 .chat-ui article {
   max-width: 768px;
   padding: 24px;
@@ -1325,7 +1329,7 @@ body {
 
 .z:after {
   background-position: 4px -35px !important;
-  background-image: url("/apisprivate/proper/img/zgezichtsnap.jpg");
+  background-image: url("~/apisprivate/proper/img/zgezichtsnap.jpg") !important;
   content: "";
   background-size: 125%;
   height: 55px;
