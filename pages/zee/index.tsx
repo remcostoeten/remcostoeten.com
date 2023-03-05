@@ -15,19 +15,6 @@ const ChatHistory: React.FC = () => {
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [showFullContent, setShowFullContent] = useState(false);
 
-  const githubLink =
-    "https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx";
-
-  <FeatureStory />;
-
-  const handleReadMoreClick = () => {
-    setShowFullText(true);
-  };
-
-  const handleReadLessClick = () => {
-    setShowFullText(false);
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -52,7 +39,7 @@ const ChatHistory: React.FC = () => {
   }, []);
 
   useEffect(() => {
-	const chatHistoryRaw: any[] = require('../../apisprivate/zdata.json');
+	const chatHistoryRaw: any[] = require('../../apisprivate/proper/zdata.json');
     const messageHistory: ChatMessage[] = chatHistoryRaw.map((chatMessage) => ({
       ...chatMessage,
       timestamp: new Date(chatMessage.timestamp),
@@ -110,7 +97,6 @@ const ChatHistory: React.FC = () => {
 
 return (
   <>
-    <FeatureStory />
     <ChatSearch
       onSearch={handleSearch}
       onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
@@ -146,7 +132,7 @@ return (
           {searchResults.map((message: ChatMessage, index: number) => (
             <div
               className={`bubble__message ${
-                message.sender.toLowerCase().includes('alice')
+                message.message.toLowerCase().includes('alice')
                   ? 'bubble__second-person'
                   : ''
               }`}
