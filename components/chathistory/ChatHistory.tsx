@@ -1,66 +1,48 @@
 import FeatureStory from '@/components/chathistory/Article';
 import React, { useEffect, useState } from 'react';
-import ChatSearch from '../../components/ChatSearch';
+import ChatSearch from '../ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
-const getChatHistory = (): ChatMessage[] => {
-	const chatHistoryRaw: any[] = require('../../apisprivate/ZeenaNewwData.json');
-	return chatHistoryRaw.map((msg: any): ChatMessage => {
-		const { attachments, sender, timestamp, message } = msg;
-		return {
-			id: 'dummy-id',
-			message: message,
-			type: message.type === 'sent' ? 'sent' : 'received',
-			attachments:
-				attachments && Array.isArray(attachments)
-					? attachments.map((att) => {
-							const { photo, format, device } = att;
-							return {
-								id: 'dummy-id',
-								type: att.type,
-								data: att.data,
-								photo: photo || '',
-								format: format || '',
-								device: device || '',
-							};
-					  })
-					: [],
-			sender: sender || '', // add a check for the sender property
-			timestamp: new Date(timestamp),
-		};
-	});
+
+const getChatHistory = async (filePath: string): Promise<ChatMessage[]> => {
+	try {
+		const response = await fetch(filePath);
+		const chatHistoryRaw: any[] = await response.json();
+		return chatHistoryRaw.map((msg: any): ChatMessage => {
+			const { attachments, sender, timestamp, message } = msg;
+			return {
+				id: 'dummy-id',
+				message: message,
+				type: message.type === 'sent' ? 'sent' : 'received',
+				attachments:
+					attachments && Array.isArray(attachments)
+						? attachments.map((att) => {
+								const { photo, format, device } = att;
+								return {
+									id: 'dummy-id',
+									type: att.type,
+									data: att.data,
+									photo: photo || '',
+									format: format || '',
+									device: device || '',
+								};
+						  })
+						: [],
+				sender,
+				timestamp: new Date(timestamp),
+				content: '',
+			};
+		});
+	} catch (error) {
+		console.error(`Error fetching chat history data: ${error}`);
+		return [];
+	}
 };
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [showFullContent, setShowFullContent] = useState(false);
-	const githubLink =
-		'https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx';
-
 	<FeatureStory />;
-
-	const handleReadMoreClick = () => {
-		setShowFullText(true);
-	};
-	const handleReadLessClick = () => {
-		setShowFullText(false);
-	};
-
-	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 0) {
-				document.body.classList.add('scrolled');
-			} else {
-				document.body.classList.remove('scrolled');
-			}
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
 
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
@@ -79,17 +61,6 @@ const ChatHistory: React.FC = () => {
 		);
 		setChatHistory(messageHistory);
 	}, []);
-
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-	};
 
 	const handleJumpTo = (message?: ChatMessage) => {
 		const index =
@@ -110,6 +81,17 @@ const ChatHistory: React.FC = () => {
 		onJumpTo: (message: ChatMessage) => void;
 		chatHistory: ChatMessage[];
 	}
+
+	const handleSearch = (term: string) => {
+		if (term.length > 0) {
+			const results = chatHistory.filter((message: ChatMessage) =>
+				message.message.toLowerCase().includes(term),
+			);
+			setSearchResults(results);
+		} else {
+			setSearchResults([]);
+		}
+	};
 
 	return (
 		<>
