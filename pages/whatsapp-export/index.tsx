@@ -1,8 +1,8 @@
 import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
-import { ChatMessage, Attachment } from '@/types';
-
+import { ChatMessage } from '@/types';
+import Header from '@/components/Chat/Header';
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
@@ -110,6 +110,7 @@ const ChatHistory: React.FC = () => {
 	};
 	return (
 		<>
+			<Header />
 			<FeatureStory />
 			<ChatSearch
 				onSearch={handleSearch}

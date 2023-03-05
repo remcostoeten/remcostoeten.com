@@ -1,12 +1,13 @@
 import React from 'react';
-import { ChatMessage } from '../types';
+import { ChatMessage } from '@/types';
+import Bubble from './Bubble';
 
-interface BubbleProps {
+interface MessageProps {
 	message: ChatMessage;
 	index: number;
 }
 
-const Bubble: React.FC<BubbleProps> = ({ message, index }) => {
+const Message: React.FC<MessageProps> = ({ message, index }) => {
 	return (
 		<div
 			className={`bubble__message ${
@@ -22,9 +23,10 @@ const Bubble: React.FC<BubbleProps> = ({ message, index }) => {
 						<div className='chat__message'>{message.message}</div>
 					</span>
 				</p>
+				<Bubble message={message} index={index} />
 			</div>
 		</div>
 	);
 };
 
-export default Bubble;
+export default Message;
