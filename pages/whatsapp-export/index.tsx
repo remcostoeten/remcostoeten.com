@@ -82,17 +82,6 @@ const ChatHistory: React.FC = () => {
 		setChatHistory(messageHistory);
 	}, []);
 
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-	};
-
 	const handleJumpTo = (message?: ChatMessage) => {
 		const index =
 			message && message.timestamp

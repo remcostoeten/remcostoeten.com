@@ -28,6 +28,14 @@ export interface ChatMessage {
 	sender: string;
 	timestamp: Date;
 }
+export interface Chat {
+	id: string;
+	message: string;
+	type: 'sent' | 'received';
+	attachments?: Attachment[];
+	sender: string;
+	timestamp: Date;
+}
 
 export type Props = {
 	onSearch: (query: string) => void;
