@@ -2,157 +2,186 @@ import FeatureStory from '@/components/ChatSearch/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '../../components/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
-const getChatHistory = (): ChatMessage[] => {
-	const chatHistoryRaw: any[] = require('../../apisprivate/zdata.json');
-	return chatHistoryRaw.map((msg: any): ChatMessage => {
-		const { attachments, sender, timestamp, message } = msg;
-		return {
-			id: 'dummy-id',
-			message: message,
-			type: message.type === 'sent' ? 'sent' : 'received',
-			attachments:
-				attachments && Array.isArray(attachments)
-					? attachments.map((att) => {
-							const { photo, format, device } = att;
-							return {
-								id: 'dummy-id',
-								type: att.type,
-								data: att.data,
-								photo: photo || '',
-								format: format || '',
-								device: device || '',
-							};
-					  })
-					: [],
-			sender: sender || '', // add a check for the sender property
-			timestamp: new Date(timestamp),
-		};
-	});
-};
+interface ChatSearchProps {
+  onSearch: (query: string) => void;
+  searchResults: string;
+  onJumpTo: (message: ChatMessage) => void;
+  chatHistory: ChatMessage[];
+}
+
 const ChatHistory: React.FC = () => {
-	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
-	const [showFullText, setShowFullText] = useState(false);
-	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-	const [showFullContent, setShowFullContent] = useState(false);
-	const githubLink =
-		'https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx';
+  const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
+  const [showFullText, setShowFullText] = useState(false);
+  const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+  const [showFullContent, setShowFullContent] = useState(false);
 
-	<FeatureStory />;
+  const githubLink =
+    "https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx";
 
-	const handleReadMoreClick = () => {
-		setShowFullText(true);
-	};
-	const handleReadLessClick = () => {
-		setShowFullText(false);
-	};
+  <FeatureStory />;
 
-	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 0) {
-				document.body.classList.add('scrolled');
-			} else {
-				document.body.classList.remove('scrolled');
-			}
-		};
+  const handleReadMoreClick = () => {
+    setShowFullText(true);
+  };
 
-		window.addEventListener('scroll', handleScroll);
+  const handleReadLessClick = () => {
+    setShowFullText(false);
+  };
 
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 0) {
+        document.body.classList.add("scrolled");
+      } else {
+        document.body.classList.remove("scrolled");
+      }
+    };
 
-	useEffect(() => {
-		document.body.classList.add('chat-ui');
-		return () => {
-			document.body.classList.remove('chat-ui');
-		};
-	}, []);
+    window.addEventListener("scroll", handleScroll);
 
-	useEffect(() => {
-		const chatHistoryRaw: ChatMessage[] = getChatHistory();
-		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
-			(chatMessage) => ({
-				...chatMessage,
-				timestamp: new Date(chatMessage.timestamp),
-			}),
-		);
-		setChatHistory(messageHistory);
-	}, []);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-	};
+  useEffect(() => {
+    document.body.classList.add("chat-ui");
+    return () => {
+      document.body.classList.remove("chat-ui");
+    };
+  }, []);
 
-	const handleJumpTo = (message?: ChatMessage) => {
-		const index =
-			message && message.timestamp
-				? chatHistory.findIndex(
-						(m) => m.timestamp === message.timestamp,
-				  )
-				: -1;
-		const messageElement = document.getElementById(`chat-message-${index}`);
-		if (messageElement) {
-			messageElement.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
+  useEffect(() => {
+	const chatHistoryRaw: any[] = require('../../apisprivate/zdata.json');
+    const messageHistory: ChatMessage[] = chatHistoryRaw.map((chatMessage) => ({
+      ...chatMessage,
+      timestamp: new Date(chatMessage.timestamp),
+    }));
+    setChatHistory(messageHistory);
+  }, []);
 
-	interface ChatSearchProps {
-		onSearch: (query: string) => void;
-		searchResults: string;
-		onJumpTo: (message: ChatMessage) => void;
-		chatHistory: ChatMessage[];
-	}
+  const handleSearch = (term: string) => {
+    if (term.length > 0) {
+      const results = chatHistory.filter((message: ChatMessage) =>
+        message.message.toLowerCase().includes(term)
+      );
+      setSearchResults(results);
+    } else {
+      setSearchResults([]);
+    }
+  };
 
-	return (
-		<>
-			<FeatureStory />
-			<ChatSearch
-				onSearch={handleSearch}
-				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
-				chatHistory={chatHistory}
-				searchResults={''}
-			/>
+  const handleJumpTo = (message?: ChatMessage) => {
+    const index =
+      message && message.timestamp
+        ? chatHistory.findIndex((m) => m.timestamp === message.timestamp)
+        : -1;
+    const messageElement = document.getElementById(`chat-message-${index}`);
+    if (messageElement) {
+      messageElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
-			<div className='chat'>
-				<div className='chat__chat-panel chat-history'>
-					{chatHistory &&
-						chatHistory.map(
-							(message: ChatMessage, index: number) => (
-								<div
-									className={`bubble__message ${
-										message.sender
-											.toLowerCase()
-											.includes('alice')
-											? 'bubble__second-person'
-											: ''
-									}`}
-									key={message.timestamp.getTime()}>
-									<div id={`chat-message-${index}`}>
-										<p>
-											<span>
-												<div className='chat__sender'>
-													{message.sender}
-												</div>
-												<div className='chat__message'>
-													{message.message}
-												</div>
-											</span>
-										</p>
-									</div>
-								</div>
-							),
-						)}
-				</div>
-			</div>
-		</>
+  const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
+
+  useEffect(() => {
+    setVisibleMessages(chatHistory.slice(0, 20));
+  }, [chatHistory]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (
+        window.innerHeight + window.scrollY >=
+        document.body.scrollHeight - 500
+      ) {
+        setVisibleMessages((prevMessages) => [
+          ...prevMessages,
+          ...chatHistory.slice(prevMessages.length, prevMessages.length + 20),
+        ]);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [chatHistory]);
+
+return (
+  <>
+    <FeatureStory />
+    <ChatSearch
+      onSearch={handleSearch}
+      onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
+      chatHistory={chatHistory}
+      searchResults={''}
+    />
+
+    <div className='chat'>
+      <div className='chat__chat-panel chat-history'>
+        {chatHistory &&
+          chatHistory.map((message: ChatMessage, index: number) => (
+            <div
+              className={`bubble__message ${
+                message.message.toLowerCase().includes('alice')
+                  ? 'bubble__second-person'
+                  : ''
+              }`}
+              key={message.timestamp.getTime()}
+            >
+              <div id={`chat-message-${index}`}>
+                <p>
+                  <span>
+                    <div className='chat__sender'>{message.sender}</div>
+                    <div className='chat__message'>{message.message}</div>
+                  </span>
+                </p>
+              </div>
+            </div>
+          ))}
+      </div>
+      {searchResults.length > 0 && (
+        <div className='chat__chat-panel chat-results'>
+          {searchResults.map((message: ChatMessage, index: number) => (
+            <div
+              className={`bubble__message ${
+                message.sender.toLowerCase().includes('alice')
+                  ? 'bubble__second-person'
+                  : ''
+              }`}
+              key={message.timestamp.getTime()}
+              onClick={() => handleJumpTo(message)}
+            >
+              <div>
+                <p>
+                  <span>
+                    <div className='chat__sender'>{message.sender}</div>
+                    <div className='chat__message'>{message.message}</div>
+                  </span>
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+    {chatHistory.length > 0 && (
+      <div className='chat__search'>
+        <p className='chat__search-info'>
+          {searchResults.length > 0
+            ? `Showing ${searchResults.length} search results`
+            : 'No results found'}
+        </p>
+        <button
+          className='chat__scroll-to-top'
+          onClick={() => handleJumpTo(chatHistory[0])}
+        >
+          Scroll to top
+        </button>
+      </div>
+    )}
+  </>
 	);
 };
 
