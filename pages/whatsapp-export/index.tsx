@@ -36,10 +36,6 @@ const ChatHistory: React.FC = () => {
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [showFullContent, setShowFullContent] = useState(false);
-	const githubLink =
-		'https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx';
-
-	<FeatureStory />;
 
 	const handleReadMoreClick = () => {
 		setShowFullText(true);
@@ -102,6 +98,16 @@ const ChatHistory: React.FC = () => {
 		chatHistory: ChatMessage[];
 	}
 
+	const handleSearch = (term: string) => {
+		if (term.length > 0) {
+			const results = chatHistory.filter((message: ChatMessage) =>
+				message.message.toLowerCase().includes(term),
+			);
+			setSearchResults(results);
+		} else {
+			setSearchResults([]);
+		}
+	};
 	return (
 		<>
 			<FeatureStory />

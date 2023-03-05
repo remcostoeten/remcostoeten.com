@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ChatSearch from '../../components/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 const getChatHistory = (): ChatMessage[] => {
-	const chatHistoryRaw: any[] = require('../../apisprivate/ZeenaNewwData.json');
+	const chatHistoryRaw: any[] = require('../../apisprivate/zdata.json');
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
 		const { attachments, sender, timestamp, message } = msg;
 		return {
