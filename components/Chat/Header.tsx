@@ -1,55 +1,87 @@
+import { useState } from "react";
 import {
-	AppBar,
-	Button,
-	IconButton,
-	makeStyles,
-	Toolbar,
-	Typography,
-} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+  Box,
+  Flex,
+  IconButton,
+  Spacer,
+  Text,
+} from "@chakra-ui/react";
+import { motion } from "framer-motion";
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		flexGrow: 1,
-	},
-	menuButton: {
-		marginRight: theme.spacing(2),
-	},
-	title: {
-		flexGrow: 1,
-	},
-}));
+const iconVariants = {
+  hover: {
+    scale: 1.2,
+    transition: {
+      duration: 0.2,
+    },
+  },
+};
 
 const Header = () => {
-	const classes = useStyles();
+  const [isHovering, setIsHovering] = useState(false);
 
-	return (
-		<div className={classes.root}>
-			<AppBar position='static'>
-				<Toolbar>
-					<IconButton
-						edge='start'
-						className={classes.menuButton}
-						color='inherit'
-						aria-label='menu'>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant='h6' className={classes.title}>
-						Your Logo
-					</Typography>
-					<IconButton color='inherit' aria-label='search'>
-						<SearchIcon />
-					</IconButton>
-					<IconButton color='inherit' aria-label='shopping cart'>
-						<ShoppingCartIcon />
-					</IconButton>
-					<Button color='inherit'>Login</Button>
-				</Toolbar>
-			</AppBar>
-		</div>
-	);
+  const handleHoverStart = () => {
+    setIsHovering(true);
+  };
+
+  const handleHoverEnd = () => {
+    setIsHovering(false);
+  };
+
+  return (
+    <Box className="container-chat" bg="gray.800" color="white" py={3} px={5}>
+      <Flex alignItems="center">
+        <IconButton
+          aria-label="Menu"
+          variant="outline"
+          icon={
+            <motion.div
+              variants={iconVariants}
+              whileHover="hover"
+              onMouseEnter={handleHoverStart}
+              onMouseLeave={handleHoverEnd}
+            >
+              <img src="/hamburger.svg" alt="Menu icon" />
+            </motion.div>
+          }
+          mr={5}
+        />
+        <Text fontSize="xl" fontWeight="bold" flex={1}>
+          Your Logo
+        </Text>
+        <Spacer />
+        <IconButton
+          aria-label="Search"
+          variant="outline"
+          icon={
+            <motion.div
+              variants={iconVariants}
+              whileHover="hover"
+              onMouseEnter={handleHoverStart}
+              onMouseLeave={handleHoverEnd}
+            >
+              <img src="/search.svg" alt="Search icon" />
+            </motion.div>
+          }
+          mr={5}
+        />
+        <IconButton
+          aria-label="Cart"
+          variant="outline"
+          icon={
+            <motion.div
+              variants={iconVariants}
+              whileHover="hover"
+              onMouseEnter={handleHoverStart}
+              onMouseLeave={handleHoverEnd}
+            >
+              <img src="/cart.svg" alt="Cart icon" />
+            </motion.div>
+          }
+        />
+      </Flex>
+    </Box>
+  );
 };
 
 export default Header;

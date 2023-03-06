@@ -21,11 +21,14 @@ export interface ChatSearchProps {
 }
 
 export interface ChatMessage {
+	image: string | undefined;
 	id: string;
 	message: string;
+	name: string;
 	type: 'sent' | 'received';
 	attachments?: Attachment[];
 	sender: string;
+	photo?: string;
 	timestamp: Date;
 }
 export interface Chat {

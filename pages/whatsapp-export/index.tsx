@@ -124,15 +124,15 @@ const ChatHistory: React.FC = () => {
 					{chatHistory &&
 						chatHistory.map(
 							(message: ChatMessage, index: number) => (
-								<div
-									className={`bubble__message ${
-										message.sender
-											.toLowerCase()
-											.includes('alice')
-											? 'bubble__second-person'
-											: ''
-									}`}
-									key={message.timestamp.getTime()}>
+						<div
+  className={`bubble__message ${
+    message.sender && message.sender.toLowerCase().includes('alice')
+      ? 'bubble__second-person'
+      : ''
+  }`}
+  key={message.timestamp.getTime()}
+>
+
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>

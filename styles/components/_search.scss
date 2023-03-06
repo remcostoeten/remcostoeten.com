@@ -123,7 +123,7 @@
 	transition: 250ms ease all;
 
 	img {
-		mix-blend-mode: multiply;
+		// mix-blend-mode: multiply;
 	}
 
 	.header {
@@ -132,6 +132,7 @@
 		top: $spacing;
 		height: unset;
 		padding: 0;
+		
 
 		&__toggle {
 			display: none;

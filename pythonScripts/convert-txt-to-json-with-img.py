@@ -3,7 +3,7 @@ import json
 variables = ["timestamp", "name", "message", "image"]
 data = []
 
-with open("chat_history.txt", "r", encoding="utf8") as file:
+with open("chat_history.txt", "r", encoding="utf-8") as file:
     for line in file:
         try:
             timestamp, message = line.split("] ")
