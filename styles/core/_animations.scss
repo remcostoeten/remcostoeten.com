@@ -250,3 +250,26 @@ $animationDuration: 250ms;
 		transform: translate3d(0, -50%, 0);
 	}
 }
+
+@keyframes swipeIn {
+	from {
+		opacity: 0;
+		transform: translateY(-100%);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+	100% {
+		opacity: 1;
+	}
+}

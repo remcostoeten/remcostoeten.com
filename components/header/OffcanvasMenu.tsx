@@ -48,24 +48,32 @@ function OffcanvasMenu() {
 						<Link href='/'>Home</Link>
 					</li>
 					<li>
-						<Link href='/Authentication'>Login</Link>
+						<Link
+							href='/whatsapp-export'
+							onClick={() => setMenuOpen(false)}>
+							Whataspp export feature showcase
+						</Link>
 					</li>
 					<li>
-						<Link href='/aboutMe'>About me</Link>
+						<Link
+							href='/Authentication'
+							onClick={() => setMenuOpen(false)}>
+							Login
+						</Link>
+					</li>
+					<li>
+						<Link
+							href='/aboutMe'
+							onClick={() => setMenuOpen(false)}>
+							About me
+						</Link>
 					</li>
 
 					<li>
-						vgit
-						<a href=''>Contact</a>
+						<a href='' onClick={() => setMenuOpen(false)}>
+							Contact
+						</a>
 					</li>
-					<Link href='/Chat/Daphne100k'>100</Link>
-					<Link href='/Chat/Daphne200k'>200</Link>
-					<Link href='/Chat/Daphne100k'>100</Link>
-					<Link href='/Chat/Daphne200k'>200</Link>
-					<Link href='/Chat/Daphne300k'>300</Link>
-					<Link href='/Chat/Daphne225k'>225</Link>
-					<Link href='/Chat/Daphne225k'>225</Link>
-					<Link href='/Chat/Daphne400k'>400</Link>
 				</ul>
 				<div className='header__social'>
 					<a

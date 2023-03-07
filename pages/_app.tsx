@@ -1,6 +1,6 @@
 import '@/styles/styles.css';
 import Header from '@/components/header/Header';
-import Footer from '@/components/Footer';
+
 import type { AppProps } from 'next/app';
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -10,7 +10,6 @@ export default function App({ Component, pageProps }: AppProps) {
 			<main className='container'>
 				<Component {...pageProps} />
 			</main>
-			<Footer />
 		</>
 	);
 }

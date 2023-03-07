@@ -40,3 +40,9 @@ styles/styles.css.map
 
 # Local Netlify folder
 .netlify
+pages/z/*
+pages/whatsapp-export/*
+pythonScripts/chat_history.txt
+pythonScripts/y.json
+pythonScripts/y.txt
+pythonScripts/convert-txt-to-json-with-img.json
