@@ -3,9 +3,8 @@ import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
 import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
 import { motion } from 'framer-motion';
-
 interface ChatSearchProps {
-	onSearch: (term: string) => void;
+	onSearch: (searchTerm: string) => void;
 	searchResults: string;
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;
@@ -20,8 +19,8 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
+
 	const maxResultsToShow = 10;
-	const [showTooltip, setShowTooltip] = useState(false);
 
 	const results = chatHistory
 		? chatHistory
@@ -37,10 +36,9 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 				.map(({ index }) => index)
 		: [];
 
-	const slicedResults = results.slice(
-		0,
-		showAllResults ? results.length : maxResultsToShow,
-	);
+	const slicedResults = showAllResults
+		? results
+		: results.slice(0, maxResultsToShow);
 
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const term = event.target.value.toLowerCase();
@@ -51,7 +49,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const handleJumpTo = (index: number) => {
 		onJumpTo(index);
 	};
-
 	const handleClose = () => {
 		setSearchOpen(false);
 	};
@@ -79,7 +76,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			}
 		}
 	}, []);
-
 	const [showText, setShowText] = useState(true);
 
 	useEffect(() => {
@@ -88,6 +84,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		}, 5000);
 		return () => clearTimeout(timer);
 	}, []);
+
 	return (
 		<>
 			<div className='chat-header sticky'>
