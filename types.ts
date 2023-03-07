@@ -21,6 +21,8 @@ export interface ChatSearchProps {
 }
 
 export interface ChatMessage {
+	name: ReactNode;
+	image: ReactNode;
 	id: string;
 	message: string;
 	type: 'sent' | 'received';

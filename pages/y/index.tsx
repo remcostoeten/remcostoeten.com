@@ -1,7 +1,9 @@
 import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
-import ChatSearch from '../../components/ChatSearch';
+import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
+import Image from 'next/image';
+
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -128,8 +130,13 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
+												<Image
+													src='/apiprivate/compressed/{message.image}'
+													alt={''}
+													width={200}
+												/>
 												<div className='chat__sender'>
-													{message.sender}
+													{message.name}
 												</div>
 												<div className='chat__message'>
 													{message.message}
@@ -158,8 +165,13 @@ const ChatHistory: React.FC = () => {
 									<div>
 										<p>
 											<span>
+												return (
+												<Image
+													src='/apiprivate/compressed/{message.image}'
+													alt={''}
+												/>
 												<div className='chat__sender'>
-													{message.sender}
+													{message.name}
 												</div>
 												<div className='chat__message'>
 													{message.message}

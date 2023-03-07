@@ -110,7 +110,6 @@ const ChatHistory: React.FC = () => {
 	};
 	return (
 		<>
-			<Header />
 			<FeatureStory />
 			<ChatSearch
 				onSearch={handleSearch}
@@ -136,8 +135,13 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
+												<div className='chat__image'>
+													{/* <Image */}
+													{/* src={message.image} */}
+													{/* /> */}
+												</div>
 												<div className='chat__sender'>
-													{message.sender}
+													{message.name}
 												</div>
 												<div className='chat__message'>
 													{message.message}
