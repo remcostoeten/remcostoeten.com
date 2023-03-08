@@ -1,15 +1,26 @@
-import FeatureStory from '@/components/ChatSearch/Article';
+<<<<<<< HEAD
 import React, { useEffect, useState } from 'react';
-import ChatSearch from '../../components/ChatSearch';
-import { ChatMessage, Attachment } from '../../types';
+import ChatSearch from '@/components/ChatSearch';
+import { ChatMessage } from '@/types';
+import Bubble from '@/components/chathistory/Bubble';
 
+const getChatHistory = () => {
+	const chatHistoryRaw = require('./ChatHistory.json');
+	return chatHistoryRaw.map((msg) => {
+=======
+import FeatureStory from '@/components/Chat/Article';
+import React, { useEffect, useState } from 'react';
+import ChatSearch from '@/components/Chat/ChatSearch';
+import { ChatMessage } from '@/types';
+import Header from '@/components/Chat/Header';
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
 	return chatHistoryRaw.map((msg: any): ChatMessage => {
+>>>>>>> 1abbd673ff6afe44b08d9932d03caa3ae6838ee1
 		const { attachments, sender, timestamp, message } = msg;
 		return {
 			id: 'dummy-id',
-			message: message,
+			message,
 			type: message.type === 'sent' ? 'sent' : 'received',
 			attachments:
 				attachments && Array.isArray(attachments)
@@ -31,21 +42,33 @@ const getChatHistory = (): ChatMessage[] => {
 	});
 };
 
+<<<<<<< HEAD
+const ChatHistory = () => {
+	const [searchResults, setSearchResults] = useState([]);
+	const [chatHistory, setChatHistory] = useState([]);
+
+	const handleSearch = (term) => {
+		if (term.length > 0) {
+			const results = chatHistory.filter((message) =>
+				message.message.toLowerCase().includes(term),
+			);
+			setSearchResults(results);
+		} else {
+			setSearchResults([]);
+		}
+=======
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [showFullContent, setShowFullContent] = useState(false);
-	const githubLink =
-		'https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx';
-
-	<FeatureStory />;
 
 	const handleReadMoreClick = () => {
 		setShowFullText(true);
 	};
 	const handleReadLessClick = () => {
 		setShowFullText(false);
+>>>>>>> 1abbd673ff6afe44b08d9932d03caa3ae6838ee1
 	};
 
 	useEffect(() => {
@@ -72,26 +95,13 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: ChatMessage[] = getChatHistory();
-		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
-			(chatMessage) => ({
-				...chatMessage,
-				timestamp: new Date(chatMessage.timestamp),
-			}),
-		);
+		const chatHistoryRaw = getChatHistory();
+		const messageHistory = chatHistoryRaw.map((chatMessage) => ({
+			...chatMessage,
+			timestamp: new Date(chatMessage.timestamp),
+		}));
 		setChatHistory(messageHistory);
 	}, []);
-
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-	};
 
 	const handleJumpTo = (message?: ChatMessage) => {
 		const index =
@@ -113,16 +123,26 @@ const ChatHistory: React.FC = () => {
 		chatHistory: ChatMessage[];
 	}
 
+	const handleSearch = (term: string) => {
+		if (term.length > 0) {
+			const results = chatHistory.filter((message: ChatMessage) =>
+				message.message.toLowerCase().includes(term),
+			);
+			setSearchResults(results);
+		} else {
+			setSearchResults([]);
+		}
+	};
 	return (
-		<>
-			<FeatureStory />
+		<div className='chat-history'>
 			<ChatSearch
 				onSearch={handleSearch}
-				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
-				chatHistory={chatHistory}
-				searchResults={''}
+				searchResults=''
+				chatHistory={[]}
+				onJumpTo={() => {
+					throw new Error('Function not implemented.');
+				}}
 			/>
-
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
@@ -140,8 +160,13 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
+												<div className='chat__image'>
+													{/* <Image */}
+													{/* src={message.image} */}
+													{/* /> */}
+												</div>
 												<div className='chat__sender'>
-													{message.sender}
+													{message.name}
 												</div>
 												<div className='chat__message'>
 													{message.message}
@@ -154,7 +179,7 @@ const ChatHistory: React.FC = () => {
 						)}
 				</div>
 			</div>
-		</>
+		</div>
 	);
 };
 
