@@ -1,75 +1,21 @@
-<<<<<<< HEAD
-import React, { useEffect, useState } from 'react';
-import ChatSearch from '@/components/ChatSearch';
-import { ChatMessage } from '@/types';
-import Bubble from '@/components/chathistory/Bubble';
-
-const getChatHistory = () => {
-	const chatHistoryRaw = require('./ChatHistory.json');
-	return chatHistoryRaw.map((msg) => {
-=======
 import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
-import { ChatMessage } from '@/types';
-import Header from '@/components/Chat/Header';
-const getChatHistory = (): ChatMessage[] => {
-	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
-	return chatHistoryRaw.map((msg: any): ChatMessage => {
->>>>>>> 1abbd673ff6afe44b08d9932d03caa3ae6838ee1
-		const { attachments, sender, timestamp, message } = msg;
-		return {
-			id: 'dummy-id',
-			message,
-			type: message.type === 'sent' ? 'sent' : 'received',
-			attachments:
-				attachments && Array.isArray(attachments)
-					? attachments.map((att) => {
-							const { photo, format, device } = att;
-							return {
-								id: 'dummy-id',
-								type: att.type,
-								data: att.data,
-								photo: photo || '',
-								format: format || '',
-								device: device || '',
-							};
-					  })
-					: [],
-			sender,
-			timestamp: new Date(timestamp),
-		};
-	});
-};
+import { ChatMessage, Attachment } from '../../types';
+import Image from 'next/image';
 
-<<<<<<< HEAD
-const ChatHistory = () => {
-	const [searchResults, setSearchResults] = useState([]);
-	const [chatHistory, setChatHistory] = useState([]);
+interface ChatSearchProps {
+	onSearch: (query: string) => void;
+	searchResults: string;
+	onJumpTo: (message: ChatMessage) => void;
+	chatHistory: ChatMessage[];
+}
 
-	const handleSearch = (term) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-=======
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [showFullContent, setShowFullContent] = useState(false);
-
-	const handleReadMoreClick = () => {
-		setShowFullText(true);
-	};
-	const handleReadLessClick = () => {
-		setShowFullText(false);
->>>>>>> 1abbd673ff6afe44b08d9932d03caa3ae6838ee1
-	};
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -95,13 +41,26 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw = getChatHistory();
-		const messageHistory = chatHistoryRaw.map((chatMessage) => ({
-			...chatMessage,
-			timestamp: new Date(chatMessage.timestamp),
-		}));
+		const chatHistoryRaw: any[] = require('./ChatHistory.json');
+		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
+			(chatMessage) => ({
+				...chatMessage,
+				timestamp: new Date(chatMessage.timestamp),
+			}),
+		);
 		setChatHistory(messageHistory);
 	}, []);
+
+	const handleSearch = (term: string) => {
+		if (term.length > 0) {
+			const results = chatHistory.filter((message: ChatMessage) =>
+				message.message.toLowerCase().includes(term),
+			);
+			setSearchResults(results);
+		} else {
+			setSearchResults([]);
+		}
+	};
 
 	const handleJumpTo = (message?: ChatMessage) => {
 		const index =
@@ -116,33 +75,44 @@ const ChatHistory: React.FC = () => {
 		}
 	};
 
-	interface ChatSearchProps {
-		onSearch: (query: string) => void;
-		searchResults: string;
-		onJumpTo: (message: ChatMessage) => void;
-		chatHistory: ChatMessage[];
-	}
+	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
 
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-	};
+	useEffect(() => {
+		setVisibleMessages(chatHistory.slice(0, 20));
+	}, [chatHistory]);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (
+				window.innerHeight + window.scrollY >=
+				document.body.scrollHeight - 500
+			) {
+				setVisibleMessages((prevMessages) => [
+					...prevMessages,
+					...chatHistory.slice(
+						prevMessages.length,
+						prevMessages.length + 20,
+					),
+				]);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, [chatHistory]);
+
 	return (
-		<div className='chat-history'>
+		<>
 			<ChatSearch
 				onSearch={handleSearch}
-				searchResults=''
-				chatHistory={[]}
-				onJumpTo={() => {
-					throw new Error('Function not implemented.');
-				}}
+				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
+				chatHistory={chatHistory}
+				searchResults={''}
 			/>
+
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
@@ -150,7 +120,7 @@ const ChatHistory: React.FC = () => {
 							(message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
-										message.sender
+										message.message
 											.toLowerCase()
 											.includes('alice')
 											? 'bubble__second-person'
@@ -160,11 +130,12 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
-												<div className='chat__image'>
-													{/* <Image */}
-													{/* src={message.image} */}
-													{/* /> */}
-												</div>
+												<Image
+													src='/apiprivate/compressed/{message.image}'
+													alt={''}
+													width={200}
+													height={200}
+												/>
 												<div className='chat__sender'>
 													{message.name}
 												</div>
@@ -178,8 +149,58 @@ const ChatHistory: React.FC = () => {
 							),
 						)}
 				</div>
+				{searchResults.length > 0 && (
+					<div className='chat__chat-panel chat-results'>
+						{searchResults.map(
+							(message: ChatMessage, index: number) => (
+								<div
+									className={`bubble__message ${
+										message.message
+											.toLowerCase()
+											.includes('alice')
+											? 'bubble__second-person'
+											: ''
+									}`}
+									key={message.timestamp.getTime()}
+									onClick={() => handleJumpTo(message)}>
+									<div>
+										<p>
+											<span>
+												return (
+												<Image
+													src='/apiprivate/compressed/{message.image}'
+													alt={''}
+												/>
+												<div className='chat__sender'>
+													{message.name}
+												</div>
+												<div className='chat__message'>
+													{message.message}
+												</div>
+											</span>
+										</p>
+									</div>
+								</div>
+							),
+						)}
+					</div>
+				)}
 			</div>
-		</div>
+			{chatHistory.length > 0 && (
+				<div className='chat__search'>
+					<p className='chat__search-info'>
+						{searchResults.length > 0
+							? `Showing ${searchResults.length} search results`
+							: 'No results found'}
+					</p>
+					<button
+						className='chat__scroll-to-top'
+						onClick={() => handleJumpTo(chatHistory[0])}>
+						Scroll to top
+					</button>
+				</div>
+			)}
+		</>
 	);
 };
 

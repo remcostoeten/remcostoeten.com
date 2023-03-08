@@ -41,7 +41,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../apisprivate/proper/y.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -134,6 +134,7 @@ const ChatHistory: React.FC = () => {
 													src='/apiprivate/compressed/{message.image}'
 													alt={''}
 													width={200}
+													height={200}
 												/>
 												<div className='chat__sender'>
 													{message.name}
