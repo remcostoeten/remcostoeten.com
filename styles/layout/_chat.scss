@@ -28,6 +28,16 @@ $light-bg: #313646;
 .chat-ui {
 	background: $dark-background;
 
+	main {
+		color: $off-white;
+		line-height: 2em;
+		padding: 1em 0;
+
+		.contained {
+			margin: 20px auto;
+		}
+	}
+
 	br {
 		display: block;
 		margin: 2px 0;
@@ -172,7 +182,7 @@ $light-bg: #313646;
 	display: flex;
 	color: $grey-text;
 	padding: $spacing;
-	max-width: 520px;
+	max-width: $chat-container-width;
 	margin: 0 auto;
 	border-radius: 16px 8px 8px 4px;
 	display: flex;
@@ -346,7 +356,7 @@ $light-bg: #313646;
 			border: 1px solid #f0f0f0;
 			margin-left: $spacing;
 			padding: 6px 10px;
-			color: $off-white;
+			color: $dark-background;
 		}
 
 		&__person {
@@ -379,6 +389,11 @@ $light-bg: #313646;
 				font-size: 3em;
 			}
 		}
+	}
+}
+
+.scrolled {
+	.top-search {
 	}
 }
 

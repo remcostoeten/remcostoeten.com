@@ -1,8 +1,18 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
-import { mdiMagnify, mdiCloseCircleOutline, mdiClose } from '@mdi/js';
+import {
+	mdiMagnify,
+	mdiCloseCircleOutline,
+	mdiClose,
+	mdiSearchWeb,
+	mdiCarSearch,
+	mdiSeatReclineExtra,
+	mdiMapSearch,
+	mdiTextSearch,
+} from '@mdi/js';
 import { motion } from 'framer-motion';
+import Input from './Input';
 
 interface ChatSearchProps {
 	onSearch: (term: string) => void;
@@ -68,18 +78,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		}
 	}, [showChatInput]);
 
-	useEffect(() => {
-		const body = document.querySelector('body');
-		if (body) {
-			const scrollPosition = window.scrollY;
-			if (scrollPosition >= 100) {
-				body.classList.add('scrolled');
-			} else {
-				body.classList.remove('scrolled');
-			}
-		}
-	}, []);
-
 	const [showText, setShowText] = useState(true);
 
 	useEffect(() => {
@@ -92,6 +90,36 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		<>
 			<div className='chat-header sticky'>
 				<div className='toggle-wrapper'>
+					<div className='contained chat-header__top-search'>
+						<div className='top-search'>
+							<Icon path={mdiTextSearch} size={2} />
+							<input
+								type='text'
+								value={searchTerm}
+								className='search__icon'
+								onChange={handleSearchChange}
+								placeholder='Search chat history'
+							/>
+							<Input />
+
+							{searchTerm.length > 0 && results.length > 0 && (
+								<div className='search__results'>
+									{results.map((index: number) => (
+										<div
+											className='message'
+											key={index}
+											onClick={() => handleJumpTo(index)}>
+											<span>
+												{chatHistory[
+													index
+												]?.message?.substring(0, 50)}
+											</span>
+										</div>
+									))}
+								</div>
+							)}
+						</div>
+					</div>
 					<span
 						className='toggle'
 						onClick={() => setShowChatInput(!showChatInput)}

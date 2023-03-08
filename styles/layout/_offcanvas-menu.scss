@@ -68,7 +68,7 @@ body {
 			display: flex;
 			flex: 1 1;
 			margin: 0 auto;
-			transform: translateX(35%);
+			transform: translateX(65%);
 			transform: translateY(20);
 			gap: $spacing-s;
 
@@ -131,11 +131,7 @@ body {
 	&__line {
 		&:nth-child(2) {
 			&:after {
-				background: linear-gradient(
-					70deg,
-					$theme-black 90%,
-					transparent 10%
-				);
+				background: linear-gradient(70deg, #fff 90%, transparent 10%);
 				transition: 250ms ease all;
 				width: calc($hamburger-stripe-width * 0.75);
 			}
@@ -150,11 +146,7 @@ body {
 		&:after {
 			content: '';
 			display: block;
-			background: linear-gradient(
-				40deg,
-				$theme-black 98%,
-				transparent 2%
-			);
+			background: linear-gradient(40deg, #fff 98%, transparent 2%);
 			width: $hamburger-stripe-width;
 			height: 2px;
 			margin-bottom: 4px;

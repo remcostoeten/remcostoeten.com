@@ -9,7 +9,7 @@ const FeatureStory = () => {
 
 	return (
 		<>
-			<article>
+			<article className='contained'>
 				<p
 					dangerouslySetInnerHTML={{
 						__html: showFullStory ? story : truncatedStory,

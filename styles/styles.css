@@ -565,13 +565,19 @@ input[type=text]:hover {
 }
 
 body {
-  background: white;
+  background: linear-gradient(180deg, #10101a, #23233a);
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
   .desktop {
     display: none;
   }
+}
+
+.contained {
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .mobile {
@@ -890,7 +896,7 @@ body {
   display: flex;
   flex: 1 1;
   margin: 0 auto;
-  transform: translateX(35%);
+  transform: translateX(65%);
   transform: translateY(20);
   gap: 8px;
 }
@@ -939,7 +945,7 @@ body {
   transform: rotate(0deg);
 }
 .hamburger__line:nth-child(2):after {
-  background: linear-gradient(70deg, #1e1e28 90%, transparent 10%);
+  background: linear-gradient(70deg, #fff 90%, transparent 10%);
   transition: 250ms ease all;
   width: 15px;
 }
@@ -949,7 +955,7 @@ body {
 .hamburger__line:after {
   content: "";
   display: block;
-  background: linear-gradient(40deg, #1e1e28 98%, transparent 2%);
+  background: linear-gradient(40deg, #fff 98%, transparent 2%);
   width: 20px;
   height: 2px;
   margin-bottom: 4px;
@@ -1121,7 +1127,7 @@ body {
   justify-content: flex-start;
   top: calc(13.2vh + 16px);
   z-index: 15;
-  transform: translate(60%);
+  transform: translate(65%);
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
@@ -1142,7 +1148,7 @@ body {
   font-size: 6rem;
   line-height: 100%;
   letter-spacing: -0.2rem;
-  color: #1e1e28;
+  color: #fff;
   position: relative;
   font-weight: 700;
   padding: 16rem 8rem;
@@ -1217,6 +1223,14 @@ body {
 
 .chat-ui {
   background: #2e2f3e;
+}
+.chat-ui main {
+  color: #f0f0f0;
+  line-height: 2em;
+  padding: 1em 0;
+}
+.chat-ui main .contained {
+  margin: 20px auto;
 }
 .chat-ui br {
   display: block;
@@ -1482,7 +1496,7 @@ body {
   border: 1px solid #f0f0f0;
   margin-left: 24px;
   padding: 6px 10px;
-  color: #f0f0f0;
+  color: #2e2f3e;
 }
 .chat .chat-history__person {
   border-bottom: 1px solid #2e2e38;
@@ -1579,7 +1593,7 @@ body {
   display: flex;
   align-items: center;
   margin: -6.8571428571px;
-  padding: 10px;
+  padding: 1em;
   border-bottom: 1px solid #f0f1f6;
   justify-content: space-between;
   white-space: nowrap;
@@ -1610,13 +1624,26 @@ body {
   min-height: 100vh;
 }
 
-.sticky .toggle {
+.scrolled .sticky .toggle {
   display: flex;
+}
+.scrolled .top-search {
+  display: none;
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+.sticky .toggle {
+  display: none;
   align-items: center;
   color: #f0f0f0;
-  position: absolute;
   left: 340px;
   z-index: 30;
+  top: 0;
+  position: sticky;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .sticky .toggle {
@@ -1626,6 +1653,47 @@ body {
 .sticky button {
   background-color: none;
   border: none;
+}
+
+.chat-header .contained .close-offcanvas {
+  top: 0;
+  position: absolute;
+}
+.chat-header .contained .close-offcanvas {
+  color: #f0f0f0;
+  position: absolute;
+  background-color: #2e2f3e;
+}
+.chat-header .contained div svg {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+.chat-header__top-search {
+  color: #2e2f3e;
+}
+.chat-header__top-search input {
+  max-width: unset;
+  display: flex;
+  flex: 1;
+  max-height: 40px;
+  min-width: 75%;
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  transition: 250ms ease-in-out;
+  color: #f0f0f0;
+  padding-left: 50px;
+  font-weight: 400;
+  font-size: 1.5em;
+  width: 100%;
+}
+.chat-header__top-search input:focus, .chat-header__top-search input:hover {
+  color: red;
+  border-top: 3px solid #8073fb;
+  border-bottom: 3px solid #3d29f9;
+}
+.chat-header__top-search input svg {
+  fill: red;
 }
 
 .chat-ui {

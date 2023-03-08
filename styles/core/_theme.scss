@@ -5,6 +5,7 @@ $gradient-background: linear-gradient(
 	rgba(189, 96, 138, 1) 100%
 );
 $gradient-background-static: rgb(33, 38, 46);
+$chat-container-width: 520px;
 
 .header__hero--heading-gradient {
 	background: linear-gradient(
@@ -24,14 +25,20 @@ $gradient-background-static: rgb(33, 38, 46);
 $body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
 body {
-	// background: $body-gradient;
-	background: white;
+	background: $body-gradient;
+	// background: white;
 }
 
 .desktop {
 	@include mobile {
 		display: none;
 	}
+}
+
+.contained {
+	max-width: $chat-container-width;
+	margin: 0 auto;
+	position: relative;
 }
 
 .mobile {
@@ -41,7 +48,6 @@ body {
 		display: block;
 	}
 }
-
 
 .page-wrapper {
 	padding-top: 100px;
