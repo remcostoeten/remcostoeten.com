@@ -493,12 +493,12 @@ body .modal-backdrop.show {
   opacity: 0.2 !important;
 }
 
-.container, .z .chat__inner {
+.container, .chat__inner {
   max-width: 1024px;
   margin: 0 auto;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .container, .z .chat__inner {
+  .container, .chat__inner {
     padding: 0 8px;
   }
 }
@@ -862,7 +862,7 @@ body {
 .menuOpen main.homepage {
   z-index: 20;
 }
-.menuOpen main.homepage article.container, .menuOpen main.homepage .z article.chat__inner, .z .menuOpen main.homepage article.chat__inner {
+.menuOpen main.homepage article.container, .menuOpen main.homepage article.chat__inner {
   margin-top: 0;
 }
 .menuOpen main,
@@ -1215,6 +1215,13 @@ body {
   overflow: hidden;
 }
 
+.scrolled .sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
 .chat-ui {
   background: #2e2f3e;
 }
@@ -1322,7 +1329,7 @@ body {
 
 .z:after {
   background-position: 4px -35px !important;
-  background-image: url("../../../private-apis/img/z/zgezichtsnap.jpg");
+  background-image: url("/private-apis/zface.jpg");
   content: "";
   background-size: 125%;
   height: 55px;
@@ -1336,12 +1343,13 @@ body {
   top: 16px;
 }
 .z.d {
-  background-image: url("../../private-apis/img/d/WhatsApp Image 2023-01-06 at 23.03.07.jpg");
+  background-image: url("/private-apis/zface.jpg");
 }
 .z.y {
-  background-image: url("../../private-apis/img/y/IMG_20200315_200000.jpg");
+  background-image: url("/private-apis/zface.jpg");
 }
-.z .chat {
+
+.chat {
   display: flex;
   color: #77787e;
   padding: 24px;
@@ -1351,7 +1359,7 @@ body {
   display: flex;
   position: relative;
 }
-.z .chat__results {
+.chat__results {
   position: sticky;
   top: 0;
   left: 0;
@@ -1359,19 +1367,19 @@ body {
   padding: 24px;
   background-color: #1f2029;
 }
-.z .chat__sender {
+.chat__sender {
   position: relative;
 }
-.z .chat__sender::after {
+.chat__sender::after {
   padding-right: 3px;
   content: ":";
 }
-.z .chat p {
+.chat p {
   border-radius: 16px 8px 8px 4px;
   color: #f0f0f0;
   padding: 15px 20px;
 }
-.z .chat button {
+.chat button {
   border: none;
   background-color: #2e2f3e;
   color: #f0f0f0;
@@ -1379,7 +1387,7 @@ body {
   border: 1px solid #2e2f3e;
   font-size: 1.5em;
 }
-.z .chat input {
+.chat input {
   top: 60px;
   z-index: 10;
   right: 100px;
@@ -1391,32 +1399,32 @@ body {
   margin-bottom: 6.8571428571px;
   color: black;
   width: 125px;
-  margin-left: -170px;
+  margin-left: -200px;
   background-color: #f0f0f0;
   border-color: #2e2f3e;
 }
-.z .chat .bubble__attachments {
+.chat .bubble__attachments {
   display: flex;
   font-size: 6px;
   align-items: center;
 }
-.z .chat .bubble__attachments span {
+.chat .bubble__attachments span {
   padding-right: 3px;
 }
-.z .chat .bubble__attachments:empty {
+.chat .bubble__attachments:empty {
   border: none;
 }
-.z .chat .bubble__second-person {
+.chat .bubble__second-person {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   background-color: #8073fb !important;
   color: #f0f0f0 !important;
 }
-.z .chat .bubble__second-person:after {
+.chat .bubble__second-person:after {
   background-image: url("https://xsgames.co/randomusers/assets");
 }
-.z .chat .bubble__message {
+.chat .bubble__message {
   max-width: 450px;
   width: fit-content;
   display: flex;
@@ -1430,13 +1438,13 @@ body {
   color: #77787e;
   position: relative;
 }
-.z .chat .bubble__message .message {
+.chat .bubble__message .message {
   display: flex;
   flex-direction: column;
   max-width: 200px;
   width: 200px;
 }
-.z .chat .bubble__message:after {
+.chat .bubble__message:after {
   content: "";
   background-size: 125%;
   background-image: url("https://xsgames.co/randomusers/assets/avatars/male/35.jpg");
@@ -1451,14 +1459,14 @@ body {
   top: 16px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .z .chat .bubble__message:after {
+  .chat .bubble__message:after {
     width: 45px;
     height: 45px;
     right: -40px;
     background-position: center;
   }
 }
-.z .chat .bubble__message.bubble__second-person:after {
+.chat .bubble__message.bubble__second-person:after {
   background-image: url("https://xsgames.co/randomusers/assets/avatars/male/34.jpg");
   top: 15px;
   background-position: -5px -75px;
@@ -1466,7 +1474,7 @@ body {
   top: 11px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .z .chat .bubble__message.bubble__second-person:after {
+  .chat .bubble__message.bubble__second-person:after {
     width: 45px;
     background-position: center;
     height: 45px;
@@ -1474,49 +1482,50 @@ body {
     object-fit: cover;
   }
 }
-.z .chat .bubble__bg:hover {
+.chat .bubble__bg:hover {
   position: relative;
   cursor: pointer;
 }
-.z .chat .chat-history {
+.chat .chat-history {
   background: rgb(45, 47, 62);
   color: #f0f0f0;
   font-size: 2.5em;
   padding: 24px;
 }
-.z .chat .chat-history input {
+.chat .chat-history input {
   border-radius: 1px;
   border: 1px solid #f0f0f0;
   margin-left: 24px;
   padding: 6px 10px;
   color: #f0f0f0;
 }
-.z .chat .chat-history__person {
+.chat .chat-history__person {
   border-bottom: 1px solid #2e2e38;
   line-height: 12px;
   padding: 24px;
   margin-top: -8px;
   margin-left: 5px;
 }
-.z .chat .chat-history__inner {
+.chat .chat-history__inner {
   padding: 24px;
 }
+
 @media (min-width: 0px) and (max-width: 767px) {
-  .z .chat-ui header.header {
+  .chat-ui header.header {
     display: flex;
     align-items: center;
     justify-content: center;
     position: static;
   }
-  .z .chat-ui header.header #text1,
-  .z .chat-ui header.header #text2 {
+  .chat-ui header.header #text1,
+  .chat-ui header.header #text2 {
     filter: unset;
     text-align: center;
     margin: 0 auto;
     font-size: 3em;
   }
 }
-.z .arrow {
+.arrow {
   position: absolute;
   width: 0;
   height: 0;
@@ -1658,7 +1667,7 @@ body {
 .chat-ui .header__toggle {
   display: none;
 }
-.chat-ui .container, .chat-ui .z .chat__inner, .z .chat-ui .chat__inner {
+.chat-ui .container, .chat-ui .chat__inner {
   max-width: 100%;
 }
 .chat-ui .offcanvas.search {
