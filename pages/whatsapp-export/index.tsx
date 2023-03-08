@@ -130,12 +130,12 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
-												<Image
-													src='/apiprivate/compressed/{message.image}'
-													alt={''}
-													width={200}
-													height={200}
-												/>
+												{message.image && (
+													<Image
+														src={`/apiprivate/compressed/${message.image}`}
+														alt=''
+													/>
+												)}
 												<div className='chat__sender'>
 													{message.name}
 												</div>
@@ -164,21 +164,18 @@ const ChatHistory: React.FC = () => {
 									key={message.timestamp.getTime()}
 									onClick={() => handleJumpTo(message)}>
 									<div>
-										<p>
-											<span>
-												return (
-												<Image
-													src='/apiprivate/compressed/{message.image}'
-													alt={''}
-												/>
-												<div className='chat__sender'>
-													{message.name}
-												</div>
-												<div className='chat__message'>
-													{message.message}
-												</div>
-											</span>
-										</p>
+										{message.image && (
+											<Image
+												src={`/apiprivate/compressed/${message.image}`}
+												alt=''
+											/>
+										)}
+										<div className='chat__sender'>
+											{message.name}
+										</div>
+										<div className='chat__message'>
+											{message.message}
+										</div>
 									</div>
 								</div>
 							),
