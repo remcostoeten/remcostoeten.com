@@ -135,9 +135,10 @@ const ChatHistory: React.FC = () => {
 													<Image
 														width={100}
 														height={100}
-														src={/private-apis/img/y/{message.image}
+														src={`/apiprivate/compressed/${message.image}`}
 														alt=''
-/>												)}
+													/>
+												)}
 												<div className='chat__sender'>
 													{message.name}
 												</div>
