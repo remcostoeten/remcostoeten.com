@@ -1,7 +1,7 @@
 import { ChatMessage } from '@/types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Icon from '@mdi/react';
-import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
+import { mdiMagnify, mdiCloseCircleOutline, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
 interface ChatSearchProps {
 	onSearch: (searchTerm: string) => void;
@@ -19,6 +19,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
+	const searchRef = useRef(null);
 
 	const maxResultsToShow = 10;
 
@@ -36,10 +37,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 				.map(({ index }) => index)
 		: [];
 
-	const slicedResults = showAllResults
-		? results
-		: results.slice(0, maxResultsToShow);
-
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const term = event.target.value.toLowerCase();
 		setSearchTerm(term);
@@ -49,9 +46,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const handleJumpTo = (index: number) => {
 		onJumpTo(index);
 	};
-	const handleClose = () => {
-		setSearchOpen(false);
-	};
 
 	const [showChatInput, setShowChatInput] = useState(false);
 
@@ -60,6 +54,19 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			setTimeout(() => {
 				document.body.classList.add('searchOpen');
 			}, 1);
+
+			const handleClickOutside = (event: MouseEvent) => {
+				if (
+					searchRef.current &&
+					!searchRef.current.contains(event.target)
+				) {
+					setShowChatInput(false);
+				}
+			};
+			window.addEventListener('click', handleClickOutside);
+			return () => {
+				window.removeEventListener('click', handleClickOutside);
+			};
 		} else {
 			document.body.classList.remove('searchOpen');
 		}
@@ -76,6 +83,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			}
 		}
 	}, []);
+
 	const [showText, setShowText] = useState(true);
 
 	useEffect(() => {
@@ -108,19 +116,19 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 					</span>
 				</div>
 				{showChatInput && (
-					<div className='offcanvas search'>
+					<div
+						className='offcanvas search'
+						onClick={() => setShowChatInput(false)}>
 						<span
 							className='close-offcanvas'
-							onClick={() => setShowChatInput(!showChatInput)}
+							onClick={() => setShowChatInput(false)}
 							style={{ color: '#003247' }}>
-							<Icon
-								path={mdiCloseCircleOutline}
-								spin={-5}
-								size={3}
-							/>
+							<Icon path={mdiClose} size={3} />
 						</span>
 
-						<div className='search'>
+						<div
+							className='search'
+							onClick={(event) => event.stopPropagation()}>
 							<input
 								type='text'
 								value={searchTerm}

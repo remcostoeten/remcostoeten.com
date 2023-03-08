@@ -114,7 +114,7 @@ const ChatHistory: React.FC = () => {
 			/>
 
 			<div className='chat'>
-				<div className='chat__chat-panel chat-history'>
+				<div className='chat__inner chat-history'>
 					{chatHistory &&
 						chatHistory.map(
 							(message: ChatMessage, index: number) => (
@@ -149,7 +149,7 @@ const ChatHistory: React.FC = () => {
 						)}
 				</div>
 				{searchResults.length > 0 && (
-					<div className='chat__chat-panel chat-results'>
+					<div className='chat__inner chat-results'>
 						{searchResults.map(
 							(message: ChatMessage, index: number) => (
 								<div

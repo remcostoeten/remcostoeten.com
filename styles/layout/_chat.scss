@@ -22,18 +22,6 @@ $light-bg: #313646;
 	overflow: hidden;
 }
 
-.scrolled {
-	.sticky {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-}
-
-.chat-ui-z {
-}
-
 .chat-ui {
 	background: $dark-background;
 
@@ -155,10 +143,11 @@ $light-bg: #313646;
 		}
 	}
 }
+
 .z {
 	&:after {
 		background-position: 4px -35px !important;
-		// background-image: url('~/apisprivate/proper/img/zgezichtsnap.jpg') !important;
+		background-image: url('../../../private-apis/img/z/zgezichtsnap.jpg');
 		content: '';
 		background-size: 125%;
 		height: 55px;
@@ -173,229 +162,232 @@ $light-bg: #313646;
 	}
 
 	&.d {
-		// background-image: url('../../apisprivate/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg');
+		background-image: url('../../private-apis/img/d/WhatsApp Image 2023-01-06 at 23.03.07.jpg');
 	}
-
 	&.y {
-		// background-image: url('../../apisprivate/proper/img/y.jpg');
+		background-image: url('../../private-apis/img/y/IMG_20200315_200000.jpg');
 	}
-}
-.chat {
-	display: flex;
-	color: $grey-text;
-	padding: $spacing;
-	max-width: 520px;
-	margin: 0 auto;
-	border-radius: 16px 8px 8px 4px;
-	display: flex;
-	position: relative;
-
-	&__results {
-		position: sticky;
-		top: 0;
-		left: 0;
-		margin: 0 auto;
+	.chat {
+		display: flex;
+		color: $grey-text;
 		padding: $spacing;
-		background-color: #1f2029;
-	}
-
-	&__sender {
+		max-width: 520px;
+		margin: 0 auto;
+		border-radius: 16px 8px 8px 4px;
+		display: flex;
 		position: relative;
 
-		&::after {
-			padding-right: 3px;
-			content: ':';
-		}
-	}
-
-	p {
-		border-radius: 16px 8px 8px 4px;
-		color: $off-white;
-		padding: 15px 20px;
-	}
-
-	button {
-		border: none;
-		background-color: $dark-background;
-		color: $off-white;
-		border-radius: 16px 8px 8px 4px;
-		border: 1px solid $dark-background;
-		font-size: 1.5em;
-	}
-
-	input {
-		top: $header-height;
-		z-index: 10;
-		right: 100px;
-		width: 100%;
-		height: 45px;
-		border-radius: 9px;
-		padding: 0 9px;
-		border-radius: 16px 8px 8px 4px;
-		margin-bottom: $spacing-xs;
-		color: black;
-		width: 125px;
-		margin-left: -200px;
-		background-color: $off-white;
-		border-color: $dark-background;
-	}
-
-	.bubble {
-		&__attachments {
-			display: flex;
-			font-size: 6px;
-			align-items: center;
-
-			span {
-				padding-right: 3px;
-			}
-
-			&:empty {
-				border: none;
-			}
-		}
-		&__second-person {
-			display: flex;
-			justify-content: flex-end;
-			align-items: flex-end;
-			background-color: $accent-color !important;
-			color: #f0f0f0 !important;
-
-			&:after {
-				background-image: url('https://xsgames.co/randomusers/assets');
-			}
+		&__inner {
+			@extend .container;
 		}
 
-		&__message {
-			max-width: 450px;
-			width: fit-content;
-			display: flex;
-			position: relative;
-			transition: 125ms;
-			position: relative;
-			border-radius: 30px;
+		&__results {
+			position: sticky;
+			top: 0;
+			left: 0;
+			margin: 0 auto;
+			padding: $spacing;
 			background-color: #1f2029;
-			border: none;
-			z-index: 2;
-			color: #77787e;
+		}
+
+		&__sender {
 			position: relative;
 
-			.message {
-				display: flex;
-				flex-direction: column;
-				max-width: 200px;
-				width: 200px;
+			&::after {
+				padding-right: 3px;
+				content: ':';
 			}
+		}
 
-			&:after {
-				content: '';
-				background-size: 125%;
-				background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
-				// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
-				height: 55px;
-				width: 55px;
-				display: block;
-				border-radius: 16px;
-				position: absolute;
-				top: 15px;
-				background-position: -5px -75px;
-				right: -70px;
-				top: 16px;
+		p {
+			border-radius: 16px 8px 8px 4px;
+			color: $off-white;
+			padding: 15px 20px;
+		}
 
-				@include mobile {
-					width: 45px;
-					height: 45px;
-					right: -40px;
-					background-position: center;
+		button {
+			border: none;
+			background-color: $dark-background;
+			color: $off-white;
+			border-radius: 16px 8px 8px 4px;
+			border: 1px solid $dark-background;
+			font-size: 1.5em;
+		}
+
+		input {
+			top: $header-height;
+			z-index: 10;
+			right: 100px;
+			width: 100%;
+			height: 45px;
+			border-radius: 9px;
+			padding: 0 9px;
+			border-radius: 16px 8px 8px 4px;
+			margin-bottom: $spacing-xs;
+			color: black;
+			width: 125px;
+			margin-left: -170px;
+			background-color: $off-white;
+			border-color: $dark-background;
+		}
+
+		.bubble {
+			&__attachments {
+				display: flex;
+				font-size: 6px;
+				align-items: center;
+
+				span {
+					padding-right: 3px;
+				}
+
+				&:empty {
+					border: none;
+				}
+			}
+			&__second-person {
+				display: flex;
+				justify-content: flex-end;
+				align-items: flex-end;
+				background-color: $accent-color !important;
+				color: #f0f0f0 !important;
+
+				&:after {
+					background-image: url('https://xsgames.co/randomusers/assets');
 				}
 			}
 
-			&.bubble__second-person {
+			&__message {
+				max-width: 450px;
+				width: fit-content;
+				display: flex;
+				position: relative;
+				transition: 125ms;
+				position: relative;
+				border-radius: 30px;
+				background-color: #1f2029;
+				border: none;
+				z-index: 2;
+				color: #77787e;
+				position: relative;
+
+				.message {
+					display: flex;
+					flex-direction: column;
+					max-width: 200px;
+					width: 200px;
+				}
+
 				&:after {
-					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
+					content: '';
+					background-size: 125%;
+					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
+					// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
+					height: 55px;
+					width: 55px;
+					display: block;
+					border-radius: 16px;
+					position: absolute;
 					top: 15px;
 					background-position: -5px -75px;
-					left: -70px;
-					top: 11px;
+					right: -70px;
+					top: 16px;
 
 					@include mobile {
 						width: 45px;
-						background-position: center;
 						height: 45px;
-						left: -40px;
-						object-fit: cover;
+						right: -40px;
+						background-position: center;
 					}
+				}
+
+				&.bubble__second-person {
+					&:after {
+						background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
+						top: 15px;
+						background-position: -5px -75px;
+						left: -70px;
+						top: 11px;
+
+						@include mobile {
+							width: 45px;
+							background-position: center;
+							height: 45px;
+							left: -40px;
+							object-fit: cover;
+						}
+					}
+				}
+			}
+
+			&__bg {
+				&:hover {
+					position: relative;
+					cursor: pointer;
 				}
 			}
 		}
 
-		&__bg {
-			&:hover {
-				position: relative;
-				cursor: pointer;
+		.chat-history {
+			background: rgb(45, 47, 62);
+			color: #f0f0f0;
+			font-size: 2.5em;
+			padding: $spacing;
+
+			input {
+				border-radius: 1px;
+				border: 1px solid #f0f0f0;
+				margin-left: $spacing;
+				padding: 6px 10px;
+				color: $off-white;
+			}
+
+			&__person {
+				border-bottom: 1px solid $border-color;
+				line-height: 12px;
+				padding: $spacing;
+				margin-top: -8px;
+				margin-left: 5px;
+			}
+
+			&__inner {
+				padding: $spacing;
 			}
 		}
 	}
 
-	.chat-history {
-		background: rgb(45, 47, 62);
-		color: #f0f0f0;
-		font-size: 2.5em;
-		padding: $spacing;
+	@include mobile {
+		.chat-ui {
+			header.header {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				position: static;
 
-		input {
-			border-radius: 1px;
-			border: 1px solid #f0f0f0;
-			margin-left: $spacing;
-			padding: 6px 10px;
-			color: $off-white;
-		}
+				#text1,
+				#text2 {
+					filter: unset;
+					text-align: center;
+					margin: 0 auto;
+					font-size: 3em;
+				}
+			}
 
-		&__person {
-			border-bottom: 1px solid $border-color;
-			line-height: 12px;
-			padding: $spacing;
-			margin-top: -8px;
-			margin-left: 5px;
-		}
-
-		&__inner {
-			padding: $spacing;
-		}
-	}
-}
-
-@include mobile {
-	.chat-ui {
-		header.header {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			position: static;
-
-			#text1,
-			#text2 {
-				filter: unset;
-				text-align: center;
-				margin: 0 auto;
-				font-size: 3em;
+			article {
 			}
 		}
-
-		article {
-		}
 	}
-}
 
-.arrow {
-	position: absolute;
-	width: 0;
-	height: 0;
-	border-width: 8px;
-	border-style: solid;
-	border-color: transparent transparent white transparent;
-	left: 50%;
-	transform: translateX(-50%);
-	bottom: -16px;
-	animation: arrowBlink 1s ease-in-out infinite;
+	.arrow {
+		position: absolute;
+		width: 0;
+		height: 0;
+		border-width: 8px;
+		border-style: solid;
+		border-color: transparent transparent white transparent;
+		left: 50%;
+		transform: translateX(-50%);
+		bottom: -16px;
+		animation: arrowBlink 1s ease-in-out infinite;
+	}
 }

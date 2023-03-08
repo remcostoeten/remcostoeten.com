@@ -3,6 +3,7 @@
 	position: relative;
 	flex-direction: column;
 	flex: 1;
+
 	input {
 		width: 100%;
 		margin-bottom: 12px;
@@ -83,8 +84,10 @@
 		transform: translateX(-200px) !important;
 		top: 0;
 		min-height: 100vh;
+		padding-left: 60px !important;
 
 		@include mobile {
+			padding-left: unset !important;
 			transform: translateX(10px) !important;
 		}
 	}
@@ -92,10 +95,9 @@
 	.chat-header {
 		margin: 0 auto;
 		position: sticky;
-		top: 0;
-		left: 0;
 		z-index: 10;
 		max-width: 762px;
+		transform: translateY(-20%);
 	}
 }
 
@@ -147,7 +149,6 @@
 		z-index: $z-index-layer-four;
 		justify-content: flex-start;
 		position: absolute;
-		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 		padding: $spacing;
 		background-color: $off-white;
 		height: 100%;
@@ -155,9 +156,10 @@
 		padding: $spacing;
 		min-width: 315px;
 		opacity: 0;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 		@include mobile {
-			width: 100%;
+			width: auto;
 		}
 
 		.close {
@@ -241,5 +243,11 @@
 @include mobile {
 	.search {
 		width: 100%;
+	}
+
+	.searchOpen {
+		.offcanvas.search {
+			padding-top: 50px;
+		}
 	}
 }

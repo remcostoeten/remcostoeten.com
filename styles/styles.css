@@ -19,9 +19,7 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 5em;
   text-align: center;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 
 @font-face {
@@ -180,8 +178,7 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  -webkit-text-decoration-skip: ink;
-          text-decoration-skip-ink: auto;
+  text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -496,12 +493,12 @@ body .modal-backdrop.show {
   opacity: 0.2 !important;
 }
 
-.container {
+.container, .z .chat__inner {
   max-width: 1024px;
   margin: 0 auto;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .container {
+  .container, .z .chat__inner {
     padding: 0 8px;
   }
 }
@@ -563,6 +560,7 @@ input[type=text]:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
+  -webkit-animation: gradient 3s ease infinite;
   animation: gradient 3s ease infinite;
 }
 
@@ -674,22 +672,45 @@ body {
 }
 @keyframes slide-out-top {
   0% {
+    -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
   100% {
+    -webkit-transform: translateY(-1000px);
     transform: translateY(-1000px);
     opacity: 0;
   }
 }
-@keyframes swing-out-top-bck {
+@-webkit-keyframes swing-out-top-bck {
   0% {
+    -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
+    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 1;
   }
   100% {
+    -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 0;
+    top: 500px;
+  }
+}
+@keyframes swing-out-top-bck {
+  0% {
+    -webkit-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    -webkit-transform-origin: top;
+    transform-origin: top;
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: rotateX(-100deg);
+    transform: rotateX(-100deg);
+    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 0;
   }
@@ -776,10 +797,12 @@ body {
 @keyframes arrowFade {
   0% {
     opacity: 0;
+    -webkit-transform: translate3d(-100%, -50%, 0);
     transform: translate3d(-100%, -50%, 0);
   }
   to {
     opacity: 1;
+    -webkit-transform: translate3d(0, -50%, 0);
     transform: translate3d(0, -50%, 0);
   }
 }
@@ -839,7 +862,7 @@ body {
 .menuOpen main.homepage {
   z-index: 20;
 }
-.menuOpen main.homepage article.container {
+.menuOpen main.homepage article.container, .menuOpen main.homepage .z article.chat__inner, .z .menuOpen main.homepage article.chat__inner {
   margin-top: 0;
 }
 .menuOpen main,
@@ -1148,8 +1171,7 @@ body {
   background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
   background-size: 400% 400%;
   animation: gradient 3s ease infinite;
-  -webkit-background-clip: text;
-          background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1191,13 +1213,6 @@ body {
 
 .search-open {
   overflow: hidden;
-}
-
-.scrolled .sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
 }
 
 .chat-ui {
@@ -1274,6 +1289,7 @@ body {
   left: 0;
   left: -100px;
   padding: 24px;
+  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background: #1f2029;
@@ -1306,6 +1322,7 @@ body {
 
 .z:after {
   background-position: 4px -35px !important;
+  background-image: url("../../../private-apis/img/z/zgezichtsnap.jpg");
   content: "";
   background-size: 125%;
   height: 55px;
@@ -1318,7 +1335,13 @@ body {
   right: -70px;
   top: 16px;
 }
-.chat {
+.z.d {
+  background-image: url("../../private-apis/img/d/WhatsApp Image 2023-01-06 at 23.03.07.jpg");
+}
+.z.y {
+  background-image: url("../../private-apis/img/y/IMG_20200315_200000.jpg");
+}
+.z .chat {
   display: flex;
   color: #77787e;
   padding: 24px;
@@ -1328,7 +1351,7 @@ body {
   display: flex;
   position: relative;
 }
-.chat__results {
+.z .chat__results {
   position: sticky;
   top: 0;
   left: 0;
@@ -1336,19 +1359,19 @@ body {
   padding: 24px;
   background-color: #1f2029;
 }
-.chat__sender {
+.z .chat__sender {
   position: relative;
 }
-.chat__sender::after {
+.z .chat__sender::after {
   padding-right: 3px;
   content: ":";
 }
-.chat p {
+.z .chat p {
   border-radius: 16px 8px 8px 4px;
   color: #f0f0f0;
   padding: 15px 20px;
 }
-.chat button {
+.z .chat button {
   border: none;
   background-color: #2e2f3e;
   color: #f0f0f0;
@@ -1356,7 +1379,7 @@ body {
   border: 1px solid #2e2f3e;
   font-size: 1.5em;
 }
-.chat input {
+.z .chat input {
   top: 60px;
   z-index: 10;
   right: 100px;
@@ -1368,34 +1391,33 @@ body {
   margin-bottom: 6.8571428571px;
   color: black;
   width: 125px;
-  margin-left: -200px;
+  margin-left: -170px;
   background-color: #f0f0f0;
   border-color: #2e2f3e;
 }
-.chat .bubble__attachments {
+.z .chat .bubble__attachments {
   display: flex;
   font-size: 6px;
   align-items: center;
 }
-.chat .bubble__attachments span {
+.z .chat .bubble__attachments span {
   padding-right: 3px;
 }
-.chat .bubble__attachments:empty {
+.z .chat .bubble__attachments:empty {
   border: none;
 }
-.chat .bubble__second-person {
+.z .chat .bubble__second-person {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
   background-color: #8073fb !important;
   color: #f0f0f0 !important;
 }
-.chat .bubble__second-person:after {
+.z .chat .bubble__second-person:after {
   background-image: url("https://xsgames.co/randomusers/assets");
 }
-.chat .bubble__message {
+.z .chat .bubble__message {
   max-width: 450px;
-  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   position: relative;
@@ -1408,13 +1430,13 @@ body {
   color: #77787e;
   position: relative;
 }
-.chat .bubble__message .message {
+.z .chat .bubble__message .message {
   display: flex;
   flex-direction: column;
   max-width: 200px;
   width: 200px;
 }
-.chat .bubble__message:after {
+.z .chat .bubble__message:after {
   content: "";
   background-size: 125%;
   background-image: url("https://xsgames.co/randomusers/assets/avatars/male/35.jpg");
@@ -1429,14 +1451,14 @@ body {
   top: 16px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .chat .bubble__message:after {
+  .z .chat .bubble__message:after {
     width: 45px;
     height: 45px;
     right: -40px;
     background-position: center;
   }
 }
-.chat .bubble__message.bubble__second-person:after {
+.z .chat .bubble__message.bubble__second-person:after {
   background-image: url("https://xsgames.co/randomusers/assets/avatars/male/34.jpg");
   top: 15px;
   background-position: -5px -75px;
@@ -1444,59 +1466,57 @@ body {
   top: 11px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .chat .bubble__message.bubble__second-person:after {
+  .z .chat .bubble__message.bubble__second-person:after {
     width: 45px;
     background-position: center;
     height: 45px;
     left: -40px;
-    -o-object-fit: cover;
-       object-fit: cover;
+    object-fit: cover;
   }
 }
-.chat .bubble__bg:hover {
+.z .chat .bubble__bg:hover {
   position: relative;
   cursor: pointer;
 }
-.chat .chat-history {
+.z .chat .chat-history {
   background: rgb(45, 47, 62);
   color: #f0f0f0;
   font-size: 2.5em;
   padding: 24px;
 }
-.chat .chat-history input {
+.z .chat .chat-history input {
   border-radius: 1px;
   border: 1px solid #f0f0f0;
   margin-left: 24px;
   padding: 6px 10px;
   color: #f0f0f0;
 }
-.chat .chat-history__person {
+.z .chat .chat-history__person {
   border-bottom: 1px solid #2e2e38;
   line-height: 12px;
   padding: 24px;
   margin-top: -8px;
   margin-left: 5px;
 }
-.chat .chat-history__inner {
+.z .chat .chat-history__inner {
   padding: 24px;
 }
-
 @media (min-width: 0px) and (max-width: 767px) {
-  .chat-ui header.header {
+  .z .chat-ui header.header {
     display: flex;
     align-items: center;
     justify-content: center;
     position: static;
   }
-  .chat-ui header.header #text1,
-  .chat-ui header.header #text2 {
+  .z .chat-ui header.header #text1,
+  .z .chat-ui header.header #text2 {
     filter: unset;
     text-align: center;
     margin: 0 auto;
     font-size: 3em;
   }
 }
-.arrow {
+.z .arrow {
   position: absolute;
   width: 0;
   height: 0;
@@ -1588,19 +1608,20 @@ body {
   transform: translateX(-200px) !important;
   top: 0;
   min-height: 100vh;
+  padding-left: 60px !important;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .scrolled .offcanvas.search {
+    padding-left: unset !important;
     transform: translateX(10px) !important;
   }
 }
 .scrolled .chat-header {
   margin: 0 auto;
   position: sticky;
-  top: 0;
-  left: 0;
   z-index: 10;
   max-width: 762px;
+  transform: translateY(-20%);
 }
 
 .sticky .toggle {
@@ -1637,7 +1658,7 @@ body {
 .chat-ui .header__toggle {
   display: none;
 }
-.chat-ui .container {
+.chat-ui .container, .chat-ui .z .chat__inner, .z .chat-ui .chat__inner {
   max-width: 100%;
 }
 .chat-ui .offcanvas.search {
@@ -1645,7 +1666,6 @@ body {
   z-index: 30;
   justify-content: flex-start;
   position: absolute;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 24px;
   background-color: #f0f0f0;
   height: 100%;
@@ -1653,10 +1673,11 @@ body {
   padding: 24px;
   min-width: 315px;
   opacity: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
-    width: 100%;
+    width: auto;
   }
 }
 .chat-ui .offcanvas.search .close {
@@ -1733,5 +1754,8 @@ body {
 @media (min-width: 0px) and (max-width: 767px) {
   .search {
     width: 100%;
+  }
+  .searchOpen .offcanvas.search {
+    padding-top: 50px;
   }
 }/*# sourceMappingURL=styles.css.map */

@@ -119,7 +119,8 @@ const ChatHistory: React.FC = () => {
 			/>
 
 			<div className='chat'>
-				<div className='chat__chat-panel chat-history'>
+				<div className='chat__inner chat-history'>
+					<button>test</button>
 					{chatHistory &&
 						chatHistory.map(
 							(message: ChatMessage, index: number) => (
