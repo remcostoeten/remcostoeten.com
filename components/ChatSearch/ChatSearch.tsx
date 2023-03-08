@@ -1,7 +1,7 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
-import { mdiMagnify, mdiCloseCircleOutline } from '@mdi/js';
+import { mdiMagnify, mdiCloseCircleOutline, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
 interface ChatSearchProps {
 	onSearch: (searchTerm: string) => void;
@@ -113,11 +113,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 							className='close-offcanvas'
 							onClick={() => setShowChatInput(!showChatInput)}
 							style={{ color: '#003247' }}>
-							<Icon
-								path={mdiCloseCircleOutline}
-								spin={-5}
-								size={3}
-							/>
+							<Icon path={mdiClose} size={3} />
 						</span>
 
 						<div className='search'>

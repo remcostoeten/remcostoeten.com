@@ -1215,27 +1215,12 @@ body {
   overflow: hidden;
 }
 
-.scrolled .sticky {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
 .chat-ui {
   background: #2e2f3e;
 }
 .chat-ui br {
   display: block;
   margin: 2px 0;
-}
-.chat-ui article {
-  max-width: 768px;
-  padding: 24px;
-  margin: 0 auto;
-  color: #f0f0f0;
-  line-height: 2em;
-  font-size: 1.9em;
 }
 .chat-ui article span,
 .chat-ui article a {
@@ -1329,7 +1314,6 @@ body {
 
 .z:after {
   background-position: 4px -35px !important;
-  background-image: url("~/apisprivate/proper/img/zgezichtsnap.jpg") !important;
   content: "";
   background-size: 125%;
   height: 55px;
@@ -1351,6 +1335,14 @@ body {
   border-radius: 16px 8px 8px 4px;
   display: flex;
   position: relative;
+}
+.chat__inner {
+  max-width: 768px;
+  padding: 24px;
+  margin: 0 auto;
+  color: #f0f0f0;
+  line-height: 2em;
+  font-size: 1.9em;
 }
 .chat__results {
   position: sticky;
@@ -1536,9 +1528,15 @@ body {
   position: relative;
   flex-direction: column;
   flex: 1;
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 .search input {
   width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
   margin-bottom: 12px;
   z-index: 10;
   padding-left: 14px;
@@ -1581,7 +1579,7 @@ body {
   display: flex;
   align-items: center;
   margin: -6.8571428571px;
-  padding: 6.8571428571px;
+  padding: 10px;
   border-bottom: 1px solid #f0f1f6;
   justify-content: space-between;
   white-space: nowrap;
@@ -1604,25 +1602,12 @@ body {
   color: #f0f0f0;
 }
 
-.scrolled .offcanvas.search {
+.offcanvas.search {
   position: sticky;
   left: 0;
-  transform: translateX(-200px) !important;
   top: 0;
+  z-index: 25;
   min-height: 100vh;
-}
-@media (min-width: 0px) and (max-width: 767px) {
-  .scrolled .offcanvas.search {
-    transform: translateX(10px) !important;
-  }
-}
-.scrolled .chat-header {
-  margin: 0 auto;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 10;
-  max-width: 762px;
 }
 
 .sticky .toggle {
@@ -1667,7 +1652,6 @@ body {
   z-index: 30;
   justify-content: flex-start;
   position: absolute;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 24px;
   background-color: #f0f0f0;
   height: 100%;
@@ -1675,15 +1659,16 @@ body {
   padding: 24px;
   min-width: 315px;
   opacity: 0;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
-    width: 100%;
+    width: auto;
   }
 }
 .chat-ui .offcanvas.search .close {
   top: 0;
-  position: absolute;
+  position: sticky;
   z-index: 5;
   top: 15px;
   right: 10px;
@@ -1748,12 +1733,16 @@ body {
 .close-offcanvas {
   right: 0;
   top: 0;
-  position: absolute;
+  position: sticky;
+  text-align: end;
   z-index: 30;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
   .search {
     width: 100%;
+  }
+  .searchOpen .offcanvas.search {
+    padding-top: 50px;
   }
 }/*# sourceMappingURL=styles.css.map */
