@@ -1,8 +1,12 @@
 import { ReactNode } from 'react';
 
-export interface Message extends ChatMessage {
+export interface ChatMessage {
+	name: ReactNode;
+	image: ReactNode;
+	id: string;
 	message: string;
-	attachments: any;
+	type: 'sent' | 'received';
+	attachments?: Attachment[];
 	sender: string;
 	timestamp: Date;
 }
@@ -15,23 +19,14 @@ export interface Attachment {
 	format?: string;
 	device?: string;
 }
+
 export interface ChatSearchProps {
 	onSearch: (searchTerm: string) => void;
-	searchResults: ChatMessage[]; // fix the type to ChatMessage[]
-	chatHistory: ChatMessage[];
+	searchResults: ChatMessage[]; // Use ChatMessage instead of Message
+	chatHistory: ChatMessage[]; // Use ChatMessage instead of Message
 	onJumpTo: (message: ChatMessage) => void;
 }
 
-export interface ChatMessage {
-	name: ReactNode;
-	image: ReactNode;
-	id: string;
-	message: string;
-	type: 'sent' | 'received';
-	attachments?: Attachment[];
-	sender: string;
-	timestamp: Date;
-}
 export interface Chat {
 	id: string;
 	message: string;

@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Icon from '@mdi/react';
 import { mdiMagnify, mdiCloseCircleOutline, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
+
 interface ChatSearchProps {
 	onSearch: (searchTerm: string) => void;
 	searchResults: string;
@@ -19,7 +20,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const searchRef = useRef(null);
+	const searchRef = useRef<HTMLDivElement | null>(null);
 
 	const maxResultsToShow = 10;
 
@@ -58,7 +59,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			const handleClickOutside = (event: MouseEvent) => {
 				if (
 					searchRef.current &&
-					!searchRef.current.contains(event.target)
+					!searchRef.current.contains(event.target as Node)
 				) {
 					setShowChatInput(false);
 				}
@@ -92,7 +93,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		}, 5000);
 		return () => clearTimeout(timer);
 	}, []);
-
 	return (
 		<>
 			<div className='chat-header sticky'>

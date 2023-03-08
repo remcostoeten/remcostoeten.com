@@ -1,7 +1,7 @@
-import FeatureStory from '@/components/Chat/Article';
+import FeatureStory from '@/components/ChatSearch/Article';
 import React, { useEffect, useState } from 'react';
-import ChatSearch from '@/components/Chat/ChatSearch';
-import { ChatMessage, Attachment } from '@/types';
+import ChatSearch from '../../components/ChatSearch';
+import { ChatMessage, Attachment } from '../../types';
 
 const getChatHistory = (): ChatMessage[] => {
 	const chatHistoryRaw: any[] = require('../whatsapp-export/ChatHistory.json');
@@ -36,6 +36,10 @@ const ChatHistory: React.FC = () => {
 	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [showFullContent, setShowFullContent] = useState(false);
+	const githubLink =
+		'https://github.com/remcostoeten/remcostoeten.com/blob/develop/pages/whatsapp-export/index.tsx';
+
+	<FeatureStory />;
 
 	const handleReadMoreClick = () => {
 		setShowFullText(true);
@@ -78,6 +82,17 @@ const ChatHistory: React.FC = () => {
 		setChatHistory(messageHistory);
 	}, []);
 
+	const handleSearch = (term: string) => {
+		if (term.length > 0) {
+			const results = chatHistory.filter((message: ChatMessage) =>
+				message.message.toLowerCase().includes(term),
+			);
+			setSearchResults(results);
+		} else {
+			setSearchResults([]);
+		}
+	};
+
 	const handleJumpTo = (message?: ChatMessage) => {
 		const index =
 			message && message.timestamp
@@ -98,16 +113,6 @@ const ChatHistory: React.FC = () => {
 		chatHistory: ChatMessage[];
 	}
 
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
-			);
-			setSearchResults(results);
-		} else {
-			setSearchResults([]);
-		}
-	};
 	return (
 		<>
 			<FeatureStory />
@@ -119,8 +124,7 @@ const ChatHistory: React.FC = () => {
 			/>
 
 			<div className='chat'>
-				<div className='chat__inner chat-history'>
-					<button>test</button>
+				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
 						chatHistory.map(
 							(message: ChatMessage, index: number) => (
