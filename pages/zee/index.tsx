@@ -2,8 +2,6 @@ import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
-import Image from 'next/image';
-
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -41,7 +39,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('./ChatHistory.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/znew.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -130,14 +128,8 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
-												{message.image && (
-													<Image
-														src={`/apiprivate/compressed/${message.image}`}
-														alt=''
-													/>
-												)}
 												<div className='chat__sender'>
-													{message.name}
+													{message.sender}
 												</div>
 												<div className='chat__message'>
 													{message.message}
@@ -164,18 +156,16 @@ const ChatHistory: React.FC = () => {
 									key={message.timestamp.getTime()}
 									onClick={() => handleJumpTo(message)}>
 									<div>
-										{message.image && (
-											<Image
-												src={`/apiprivate/compressed/${message.image}`}
-												alt=''
-											/>
-										)}
-										<div className='chat__sender'>
-											{message.name}
-										</div>
-										<div className='chat__message'>
-											{message.message}
-										</div>
+										<p>
+											<span>
+												<div className='chat__sender'>
+													{message.sender}
+												</div>
+												<div className='chat__message'>
+													{message.message}
+												</div>
+											</span>
+										</p>
 									</div>
 								</div>
 							),

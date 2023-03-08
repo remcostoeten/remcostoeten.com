@@ -849,6 +849,11 @@ body {
   transition: 350ms ease all;
   overflow: hidden;
 }
+.menuOpen #text1,
+.menuOpen #text2 {
+  position: absolute;
+  color: #fff;
+}
 .menuOpen .header {
   justify-content: end;
 }
@@ -1134,10 +1139,18 @@ body {
   .header {
     border-bottom: 1px solid hsla(0, 0%, 76.9%, 0.2);
     margin-bottom: 20px;
-    min-height: 13.2vh;
+    min-height: 10em;
     padding: 0;
+    justify-content: center;
   }
 }
+#text1,
+#text2 {
+  transform: translateY(-100%);
+  bottom: -15px;
+  top: 0;
+}
+
 .intro {
   font-family: "Mark Pro", sans-serif;
   color: #fff;
@@ -1213,6 +1226,54 @@ body {
     display: block;
   }
 }
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+.logo img {
+  display: block;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+}
+
+.cta button {
+  margin-right: 20px;
+  background-color: #0080ff;
+  color: #fff;
+}
+
 .offcanvas {
   position: absolute;
 }
@@ -1542,15 +1603,9 @@ body {
   position: relative;
   flex-direction: column;
   flex: 1;
-  position: sticky;
-  top: 0;
-  left: 0;
 }
 .search input {
   width: 100%;
-  position: sticky;
-  top: 0;
-  left: 0;
   margin-bottom: 12px;
   z-index: 10;
   padding-left: 14px;
@@ -1593,7 +1648,11 @@ body {
   display: flex;
   align-items: center;
   margin: -6.8571428571px;
+<<<<<<< HEAD
   padding: 1em;
+=======
+  padding: 6.8571428571px;
+>>>>>>> 8f69aaa9647fd94716beeeccf0e88302388f9013
   border-bottom: 1px solid #f0f1f6;
   justify-content: space-between;
   white-space: nowrap;
@@ -1616,12 +1675,25 @@ body {
   color: #f0f0f0;
 }
 
-.offcanvas.search {
+.scrolled .offcanvas.search {
   position: sticky;
   left: 0;
+  transform: translateX(-200px) !important;
   top: 0;
-  z-index: 25;
   min-height: 100vh;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .scrolled .offcanvas.search {
+    transform: translateX(10px) !important;
+  }
+}
+.scrolled .chat-header {
+  margin: 0 auto;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  max-width: 762px;
 }
 
 .scrolled .sticky .toggle {
@@ -1720,6 +1792,7 @@ body {
   z-index: 30;
   justify-content: flex-start;
   position: absolute;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   padding: 24px;
   background-color: #f0f0f0;
   height: 100%;
@@ -1727,16 +1800,15 @@ body {
   padding: 24px;
   min-width: 315px;
   opacity: 0;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
-    width: auto;
+    width: 100%;
   }
 }
 .chat-ui .offcanvas.search .close {
   top: 0;
-  position: sticky;
+  position: absolute;
   z-index: 5;
   top: 15px;
   right: 10px;
@@ -1801,16 +1873,12 @@ body {
 .close-offcanvas {
   right: 0;
   top: 0;
-  position: sticky;
-  text-align: end;
+  position: absolute;
   z-index: 30;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
   .search {
     width: 100%;
-  }
-  .searchOpen .offcanvas.search {
-    padding-top: 50px;
   }
 }/*# sourceMappingURL=styles.css.map */

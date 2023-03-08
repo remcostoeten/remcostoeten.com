@@ -61,7 +61,15 @@ $header-height: 60px;
 	.header {
 		border-bottom: 1px solid $border-color;
 		margin-bottom: 20px;
-		min-height: 13.2vh;
+		min-height: 10em;
 		padding: 0;
+		justify-content: center;
 	}
+}
+
+#text1,
+#text2 {
+	transform: translateY(-100%);
+	bottom: -15px;
+	top: 0;
 }

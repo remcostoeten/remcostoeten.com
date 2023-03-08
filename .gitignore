@@ -42,3 +42,7 @@ styles/styles.css.map
 .netlify
 pages/z/*
 pages/whatsapp-export/*
+pythonScripts/chat_history.txt
+pythonScripts/y.json
+pythonScripts/y.txt
+pythonScripts/convert-txt-to-json-with-img.json

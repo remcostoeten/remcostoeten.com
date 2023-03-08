@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface Message extends ChatMessage {
 	message: string;
 	attachments: any;
@@ -21,6 +23,16 @@ export interface ChatSearchProps {
 }
 
 export interface ChatMessage {
+	name: ReactNode;
+	image: ReactNode;
+	id: string;
+	message: string;
+	type: 'sent' | 'received';
+	attachments?: Attachment[];
+	sender: string;
+	timestamp: Date;
+}
+export interface Chat {
 	id: string;
 	message: string;
 	type: 'sent' | 'received';

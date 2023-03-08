@@ -41,7 +41,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('./ChatHistory.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -116,14 +116,15 @@ const ChatHistory: React.FC = () => {
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
-						chatHistory.map(
-							(message: ChatMessage, index: number) => (
+						chatHistory
+							.slice(0, 300)
+							.map((message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('alice')
-											? 'bubble__second-person'
+											.includes('Yvette')
+											? 'bubble__second-person y'
 											: ''
 									}`}
 									key={message.timestamp.getTime()}>
@@ -132,6 +133,8 @@ const ChatHistory: React.FC = () => {
 											<span>
 												{message.image && (
 													<Image
+														width={100}
+														height={100}
 														src={`/apiprivate/compressed/${message.image}`}
 														alt=''
 													/>
@@ -146,8 +149,7 @@ const ChatHistory: React.FC = () => {
 										</p>
 									</div>
 								</div>
-							),
-						)}
+							))}
 				</div>
 				{searchResults.length > 0 && (
 					<div className='chat__chat-panel chat-results'>
@@ -164,18 +166,21 @@ const ChatHistory: React.FC = () => {
 									key={message.timestamp.getTime()}
 									onClick={() => handleJumpTo(message)}>
 									<div>
-										{message.image && (
-											<Image
-												src={`/apiprivate/compressed/${message.image}`}
-												alt=''
-											/>
-										)}
-										<div className='chat__sender'>
-											{message.name}
-										</div>
-										<div className='chat__message'>
-											{message.message}
-										</div>
+										<p>
+											<span>
+												return (
+												<Image
+													src='/apiprivate/compressed/{message.image}'
+													alt={''}
+												/>
+												<div className='chat__sender'>
+													{message.name}
+												</div>
+												<div className='chat__message'>
+													{message.message}
+												</div>
+											</span>
+										</p>
 									</div>
 								</div>
 							),

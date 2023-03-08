@@ -16,6 +16,12 @@ body {
 	transition: 350ms ease all;
 	overflow: hidden;
 
+	#text1,
+	#text2 {
+		position: absolute;
+		color: $color-white;
+	}
+
 	.header {
 		justify-content: end;
 	}
