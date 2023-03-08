@@ -19,7 +19,9 @@ body {
   font-family: "Raleway", sans-serif;
   font-size: 5em;
   text-align: center;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 
 @font-face {
@@ -178,7 +180,8 @@ body {
 
 /* A elements that don't have a class get default styles */
 a:not([class]) {
-  text-decoration-skip-ink: auto;
+  -webkit-text-decoration-skip: ink;
+          text-decoration-skip-ink: auto;
 }
 
 /* Make images easier to work with */
@@ -560,7 +563,6 @@ input[type=text]:hover {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-size: 400% 400%;
-  -webkit-animation: gradient 3s ease infinite;
   animation: gradient 3s ease infinite;
 }
 
@@ -672,45 +674,22 @@ body {
 }
 @keyframes slide-out-top {
   0% {
-    -webkit-transform: translateY(0);
     transform: translateY(0);
     opacity: 1;
   }
   100% {
-    -webkit-transform: translateY(-1000px);
     transform: translateY(-1000px);
     opacity: 0;
   }
 }
-@-webkit-keyframes swing-out-top-bck {
-  0% {
-    -webkit-transform: rotateX(0deg);
-    transform: rotateX(0deg);
-    -webkit-transform-origin: top;
-    transform-origin: top;
-    opacity: 1;
-  }
-  100% {
-    -webkit-transform: rotateX(-100deg);
-    transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
-    transform-origin: top;
-    opacity: 0;
-    top: 500px;
-  }
-}
 @keyframes swing-out-top-bck {
   0% {
-    -webkit-transform: rotateX(0deg);
     transform: rotateX(0deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 1;
   }
   100% {
-    -webkit-transform: rotateX(-100deg);
     transform: rotateX(-100deg);
-    -webkit-transform-origin: top;
     transform-origin: top;
     opacity: 0;
   }
@@ -797,12 +776,10 @@ body {
 @keyframes arrowFade {
   0% {
     opacity: 0;
-    -webkit-transform: translate3d(-100%, -50%, 0);
     transform: translate3d(-100%, -50%, 0);
   }
   to {
     opacity: 1;
-    -webkit-transform: translate3d(0, -50%, 0);
     transform: translate3d(0, -50%, 0);
   }
 }
@@ -1171,7 +1148,8 @@ body {
   background: linear-gradient(-45deg, #8000ff, #cf59e6, #8000ff, #cf59e6);
   background-size: 400% 400%;
   animation: gradient 3s ease infinite;
-  background-clip: text;
+  -webkit-background-clip: text;
+          background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -1281,7 +1259,6 @@ body {
   left: 0;
   left: -100px;
   padding: 24px;
-  position: -webkit-sticky;
   position: sticky;
   top: 0;
   background: #1f2029;
@@ -1411,6 +1388,7 @@ body {
 }
 .chat .bubble__message {
   max-width: 450px;
+  width: -moz-fit-content;
   width: fit-content;
   display: flex;
   position: relative;
@@ -1464,7 +1442,8 @@ body {
     background-position: center;
     height: 45px;
     left: -40px;
-    object-fit: cover;
+    -o-object-fit: cover;
+       object-fit: cover;
   }
 }
 .chat .bubble__bg:hover {

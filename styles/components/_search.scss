@@ -3,6 +3,7 @@
 	position: relative;
 	flex-direction: column;
 	flex: 1;
+<<<<<<< HEAD
 	position: sticky;
 	top: 0;
 	left: 0;
@@ -12,6 +13,10 @@
 		position: sticky;
 		top: 0;
 		left: 0;
+=======
+	input {
+		width: 100%;
+>>>>>>> master
 		margin-bottom: 12px;
 		z-index: $z-index-layer-two;
 		padding-left: 14px;
@@ -49,6 +54,7 @@
 		padding: $spacing-xs;
 		border-top: 3px solid $accent-color;
 		font-size: 1.3em;
+<<<<<<< HEAD
 
 		svg {
 			margin-right: $spacing-xs;
@@ -64,6 +70,22 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 
+=======
+		svg {
+			margin-right: $spacing-xs;
+		}
+
+		.message {
+			display: flex;
+			align-items: center;
+			margin: -$spacing-xs;
+			padding: $spacing-xs;
+			border-bottom: 1px solid #f0f1f6;
+			justify-content: space-between;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+
+>>>>>>> master
 			&:hover {
 				border-radius: 6px;
 				background-color: lighten($off-white, 1%);
@@ -84,12 +106,36 @@
 	color: $off-white;
 }
 
+<<<<<<< HEAD
 .offcanvas.search {
 	position: sticky;
 	left: 0;
 	top: 0;
 	z-index: 25;
 	min-height: 100vh;
+=======
+.scrolled {
+	.offcanvas.search {
+		position: sticky;
+		left: 0;
+		transform: translateX(-200px) !important;
+		top: 0;
+		min-height: 100vh;
+
+		@include mobile {
+			transform: translateX(10px) !important;
+		}
+	}
+
+	.chat-header {
+		margin: 0 auto;
+		position: sticky;
+		top: 0;
+		left: 0;
+		z-index: 10;
+		max-width: 762px;
+	}
+>>>>>>> master
 }
 
 .sticky {
@@ -140,6 +186,10 @@
 		z-index: $z-index-layer-four;
 		justify-content: flex-start;
 		position: absolute;
+<<<<<<< HEAD
+=======
+		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+>>>>>>> master
 		padding: $spacing;
 		background-color: $off-white;
 		height: 100%;
@@ -147,15 +197,25 @@
 		padding: $spacing;
 		min-width: 315px;
 		opacity: 0;
+<<<<<<< HEAD
 		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 		@include mobile {
 			width: auto;
+=======
+
+		@include mobile {
+			width: 100%;
+>>>>>>> master
 		}
 
 		.close {
 			top: 0;
+<<<<<<< HEAD
 			position: sticky;
+=======
+			position: absolute;
+>>>>>>> master
 			z-index: 5;
 			top: 15px;
 			right: 10px;
@@ -227,8 +287,12 @@
 .close-offcanvas {
 	right: 0;
 	top: 0;
+<<<<<<< HEAD
 	position: sticky;
 	text-align: end;
+=======
+	position: absolute;
+>>>>>>> master
 	z-index: $z-index-layer-four;
 }
 
@@ -236,10 +300,13 @@
 	.search {
 		width: 100%;
 	}
+<<<<<<< HEAD
 
 	.searchOpen {
 		.offcanvas.search {
 			padding-top: 50px;
 		}
 	}
+=======
+>>>>>>> master
 }
