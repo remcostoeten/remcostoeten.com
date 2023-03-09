@@ -1,8 +1,20 @@
+.scrolled {
+	height: 1500px;
+	background-color: blue;
+	.header {
+		padding: 8px 0;
+		position: sticky;
+		top: 0;
+		left: 0;
+		z-index: $z-index-layer-three;
+	}
+}
 .header {
 	background-color: $color-white;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	font-family: $font--alternative;
-	padding: $spacing-xl 0;
+	padding: $spacing 0;
+	transition: 250ms ease-out all;
 
 	&__inner {
 		display: flex;
@@ -15,10 +27,12 @@
 	&__user {
 		display: flex;
 		align-items: center;
-
+		position: relative;
 		img {
+			position: absolute;
 			border-radius: 50%;
 			scale: 0.4;
+			left: 0;
 		}
 	}
 
@@ -26,7 +40,7 @@
 		display: flex;
 		flex-direction: column;
 		line-height: 1;
-		margin-left: -10px;
+		padding-left: 80px;
 	}
 
 	a {

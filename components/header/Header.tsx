@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import IconButton from '@mui/material/IconButton';
 import { Info } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 import styled from '@emotion/styled';
 
@@ -25,10 +24,33 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
 });
 
 const Header = () => {
+	const [showTagline, setShowTagline] = useState(true);
+	const [minimalSticky, setmMinimalSticky] = useState(true);
+
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	};
+
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 0) {
+				document.body.classList.add('scrolled');
+				setShowTagline(false);
+				setmMinimalSticky(false);
+			} else {
+				document.body.classList.remove('scrolled');
+				setShowTagline(true);
+				setmMinimalSticky(true);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
 
 	return (
 		<>
@@ -41,17 +63,20 @@ const Header = () => {
 					<motion.div
 						className='header__user'
 						whileHover={{ scale: 1.05 }}>
-						<Image
-							src='/remco.png'
-							alt='Remco'
-							width={90}
-							height={90}
-						/>
-						<div className='header__tagline'>
-							<motion.div whileHover={{ scale: 1.05 }}>
-								<h3>remcostoeten</h3>
-							</motion.div>
-							<h4>front-end developer</h4>
+						{minimalSticky && (
+							<Image
+								src='/remco.png'
+								alt='Remco'
+								width={90}
+								height={90}
+							/>
+						)}
+						<div
+							className={`header__tagline ${
+								showTagline ? 'visible' : ''
+							}`}>
+							<h3>remcostoeten</h3>
+							{showTagline && <h4>front-end developer</h4>}
 						</div>
 					</motion.div>
 					<nav className='header__menu'>

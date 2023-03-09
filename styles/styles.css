@@ -964,11 +964,24 @@ body {
     opacity: 1;
   }
 }
+.scrolled {
+  height: 1500px;
+  background-color: blue;
+}
+.scrolled .header {
+  padding: 8px 0;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+
 .header {
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   font-family: "Poppins", sans-serif;
-  padding: 36px 0;
+  padding: 24px 0;
+  transition: 250ms ease-out all;
 }
 .header__inner {
   display: flex;
@@ -979,16 +992,19 @@ body {
 .header__user {
   display: flex;
   align-items: center;
+  position: relative;
 }
 .header__user img {
+  position: absolute;
   border-radius: 50%;
   scale: 0.4;
+  left: 0;
 }
 .header__tagline {
   display: flex;
   flex-direction: column;
   line-height: 1;
-  margin-left: -10px;
+  padding-left: 80px;
 }
 .header a {
   position: relative;
@@ -1103,13 +1119,6 @@ body {
   max-width: 1024px;
   margin: 0 auto;
   padding: 0 20px;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 70px;
 }
 
 nav ul {
