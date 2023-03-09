@@ -93,6 +93,10 @@ const ChatHistory: React.FC = () => {
 					),
 				]);
 			}
+
+			if (window.scrollY > 200) {
+				return;
+			}
 		};
 
 		window.addEventListener('scroll', handleScroll);

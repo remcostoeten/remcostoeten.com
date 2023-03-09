@@ -1,3 +1,4 @@
+@import 'dots';
 $gradient-background: linear-gradient(
 	180deg,
 	rgba(33, 38, 46, 1) 0%,
@@ -22,12 +23,8 @@ $chat-container-width: 520px;
 	-webkit-animation: gradient 3s ease infinite;
 	animation: gradient 3s ease infinite;
 }
-$body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
-body {
-	background: $body-gradient;
-	// background: white;
-}
+$body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
 .desktop {
 	@include mobile {

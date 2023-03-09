@@ -22,9 +22,6 @@ $light-bg: #313646;
 	overflow: hidden;
 }
 
-.chat-ui-z {
-}
-
 .chat-ui {
 	background: $dark-background;
 
@@ -231,7 +228,7 @@ $light-bg: #313646;
 	}
 
 	input {
-		top: $header-height;
+		margin: $spacing 0;
 		z-index: 10;
 		right: 100px;
 		width: 100%;

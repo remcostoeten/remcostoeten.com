@@ -12,7 +12,6 @@ import {
 	mdiTextSearch,
 } from '@mdi/js';
 import { motion } from 'framer-motion';
-import Input from './Input';
 
 interface ChatSearchProps {
 	onSearch: (term: string) => void;
@@ -100,7 +99,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 								onChange={handleSearchChange}
 								placeholder='Search chat history'
 							/>
-							<Input />
 
 							{searchTerm.length > 0 && results.length > 0 && (
 								<div className='search__results'>
