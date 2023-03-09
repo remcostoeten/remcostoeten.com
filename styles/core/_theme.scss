@@ -1,3 +1,4 @@
+@import 'dots';
 $gradient-background: linear-gradient(
 	180deg,
 	rgba(33, 38, 46, 1) 0%,
@@ -5,6 +6,7 @@ $gradient-background: linear-gradient(
 	rgba(189, 96, 138, 1) 100%
 );
 $gradient-background-static: rgb(33, 38, 46);
+$chat-container-width: 520px;
 
 .header__hero--heading-gradient {
 	background: linear-gradient(
@@ -21,17 +23,19 @@ $gradient-background-static: rgb(33, 38, 46);
 	-webkit-animation: gradient 3s ease infinite;
 	animation: gradient 3s ease infinite;
 }
-$body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
-body {
-	// background: $body-gradient;
-	background: white;
-}
+$body-gradient: linear-gradient(180deg, #10101a, lighten(#10101a, 10%));
 
 .desktop {
 	@include mobile {
 		display: none;
 	}
+}
+
+.contained {
+	max-width: $chat-container-width;
+	margin: 0 auto;
+	position: relative;
 }
 
 .mobile {
@@ -41,7 +45,6 @@ body {
 		display: block;
 	}
 }
-
 
 .page-wrapper {
 	padding-top: 100px;

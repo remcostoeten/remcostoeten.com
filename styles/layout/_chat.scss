@@ -22,20 +22,18 @@ $light-bg: #313646;
 	overflow: hidden;
 }
 
-.scrolled {
-	.sticky {
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-}
-
-.chat-ui-z {
-}
-
 .chat-ui {
 	background: $dark-background;
+
+	main {
+		color: $off-white;
+		line-height: 2em;
+		padding: 1em 0;
+
+		.contained {
+			margin: 20px auto;
+		}
+	}
 
 	br {
 		display: block;
@@ -43,13 +41,6 @@ $light-bg: #313646;
 	}
 
 	article {
-		max-width: 768px;
-		padding: $spacing;
-		margin: 0 auto;
-		color: $off-white;
-		line-height: 2em;
-		font-size: 1.9em;
-
 		span,
 		a {
 			color: $off-white;
@@ -114,9 +105,11 @@ $light-bg: #313646;
 .chat-ui {
 	aside {
 		overflow: hidden;
+
 		&:has(h3) {
 			padding-top: 40px;
 		}
+
 		display: flex;
 		flex-direction: column;
 		left: 0;
@@ -155,10 +148,11 @@ $light-bg: #313646;
 		}
 	}
 }
+
 .z {
 	&:after {
 		background-position: 4px -35px !important;
-		// background-image: url('~/apisprivate/proper/img/zgezichtsnap.jpg') !important;
+		// background-image: url('/private-apis/zface.jpg');
 		content: '';
 		background-size: 125%;
 		height: 55px;
@@ -173,22 +167,32 @@ $light-bg: #313646;
 	}
 
 	&.d {
-		// background-image: url('../../apisprivate/proper/img/WhatsApp Image 2023-01-06 at 23.03.07.jpg');
+		// background-image: url('/private-apis/zface.jpg');
 	}
 
 	&.y {
-		// background-image: url('../../apisprivate/proper/img/y.jpg');
+		// background-image: url('/private-apis/zface.jpg');
 	}
 }
+
 .chat {
 	display: flex;
 	color: $grey-text;
 	padding: $spacing;
-	max-width: 520px;
+	max-width: $chat-container-width;
 	margin: 0 auto;
 	border-radius: 16px 8px 8px 4px;
 	display: flex;
 	position: relative;
+
+	&__inner {
+		max-width: 768px;
+		padding: $spacing;
+		margin: 0 auto;
+		color: $off-white;
+		line-height: 2em;
+		font-size: 1.9em;
+	}
 
 	&__results {
 		position: sticky;
@@ -224,7 +228,7 @@ $light-bg: #313646;
 	}
 
 	input {
-		top: $header-height;
+		margin: $spacing 0;
 		z-index: 10;
 		right: 100px;
 		width: 100%;
@@ -254,6 +258,7 @@ $light-bg: #313646;
 				border: none;
 			}
 		}
+
 		&__second-person {
 			display: flex;
 			justify-content: flex-end;
@@ -348,7 +353,7 @@ $light-bg: #313646;
 			border: 1px solid #f0f0f0;
 			margin-left: $spacing;
 			padding: 6px 10px;
-			color: $off-white;
+			color: $dark-background;
 		}
 
 		&__person {
@@ -381,9 +386,11 @@ $light-bg: #313646;
 				font-size: 3em;
 			}
 		}
+	}
+}
 
-		article {
-		}
+.scrolled {
+	.top-search {
 	}
 }
 

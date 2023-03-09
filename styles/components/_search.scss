@@ -42,6 +42,7 @@
 		padding: $spacing-xs;
 		border-top: 3px solid $accent-color;
 		font-size: 1.3em;
+
 		svg {
 			margin-right: $spacing-xs;
 		}
@@ -50,7 +51,7 @@
 			display: flex;
 			align-items: center;
 			margin: -$spacing-xs;
-			padding: $spacing-xs;
+			padding: 1em;
 			border-bottom: 1px solid #f0f1f6;
 			justify-content: space-between;
 			white-space: nowrap;
@@ -99,15 +100,31 @@
 	}
 }
 
+.scrolled {
+	.sticky {
+		.toggle {
+			display: flex;
+		}
+	}
+
+	.top-search {
+		display: none;
+	}
+}
+
 .sticky {
+	position: sticky;
+	top: 0;
+	left: 0;
+
 	.toggle {
-		display: flex;
+		display: none;
 		align-items: center;
 		color: $off-white;
-		position: absolute;
 		left: 340px;
 		z-index: $z-index-layer-four;
-
+		top: 0;
+		position: sticky;
 		@include mobile {
 			left: 25px;
 		}
@@ -116,6 +133,54 @@
 	button {
 		background-color: none;
 		border: none;
+	}
+}
+
+.chat-header {
+	.contained {
+		.close-offcanvas {
+			top: 0;
+			position: absolute;
+		}
+
+		.close-offcanvas {
+			color: $off-white;
+			position: absolute;
+			background-color: $dark-background;
+		}
+
+		div {
+			svg {
+				position: absolute;
+				top: 33px;
+				left: 10px;
+			}
+		}
+	}
+
+	&__top-search {
+		color: $dark-background;
+		padding: $spacing 0;
+
+		input {
+			max-width: unset;
+			display: flex;
+			flex: 1;
+			max-height: 40px;
+			min-width: 75%;
+			border-top: 3px solid transparent;
+			border-bottom: 3px solid transparent;
+			transition: 250ms ease-in-out;
+			padding-left: 50px;
+			font-weight: 400;
+			font-size: 1.5em;
+			width: 100%;
+
+			&:focus,
+			&:hover {
+				border-top: 3px solid $accent-color;
+			}
+		}
 	}
 }
 

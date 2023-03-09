@@ -41,7 +41,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../apisprivate/proper/y.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -116,25 +116,29 @@ const ChatHistory: React.FC = () => {
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
-						chatHistory.map(
-							(message: ChatMessage, index: number) => (
+						chatHistory
+							.slice(0, 300)
+							.map((message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('alice')
-											? 'bubble__second-person'
+											.includes('Yvette')
+											? 'bubble__second-person y'
 											: ''
 									}`}
 									key={message.timestamp.getTime()}>
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
-												<Image
-													src='/apiprivate/compressed/{message.image}'
-													alt={''}
-													width={200}
-												/>
+												{message.image && (
+													<Image
+														width={100}
+														height={100}
+														src={`/apiprivate/compressed/${message.image}`}
+														alt=''
+													/>
+												)}
 												<div className='chat__sender'>
 													{message.name}
 												</div>
@@ -145,8 +149,7 @@ const ChatHistory: React.FC = () => {
 										</p>
 									</div>
 								</div>
-							),
-						)}
+							))}
 				</div>
 				{searchResults.length > 0 && (
 					<div className='chat__chat-panel chat-results'>

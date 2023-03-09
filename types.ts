@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export interface Message extends ChatMessage {
 	message: string;
 	attachments: any;
