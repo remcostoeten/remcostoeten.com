@@ -1,7 +1,16 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
-import { mdiMagnify, mdiClose } from '@mdi/js';
+import {
+	mdiMagnify,
+	mdiCloseCircleOutline,
+	mdiClose,
+	mdiSearchWeb,
+	mdiCarSearch,
+	mdiSeatReclineExtra,
+	mdiMapSearch,
+	mdiTextSearch,
+} from '@mdi/js';
 import { motion } from 'framer-motion';
 
 interface ChatSearchProps {
@@ -20,8 +29,12 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const maxResultsToShow = 5; // changed to show 5 results
-	const [showTooltip, setShowTooltip] = useState(false);
+	const [numResultsDisplayed, setNumResultsDisplayed] = useState(5); // state variable to keep track of number of results displayed
+	const [isMobile, setIsMobile] = useState(false); // state variable to keep track if the user is on a mobile device
+
+	useEffect(() => {
+		setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
+	}, []);
 
 	const results = chatHistory
 		? chatHistory
@@ -36,11 +49,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 				)
 				.map(({ index }) => index)
 		: [];
-
-	const slicedResults = results.slice(
-		0,
-		showAllResults ? results.length : maxResultsToShow,
-	);
 
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const term = event.target.value.toLowerCase();
@@ -76,6 +84,26 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		}, 5000);
 		return () => clearTimeout(timer);
 	}, []);
+
+	const showMoreButton = results.length > numResultsDisplayed && (
+		<>
+			<a
+				className='btn--results'
+				onClick={() => setNumResultsDisplayed(numResultsDisplayed + 5)}>
+				<span>Show 5 More</span>
+			</a>
+		</>
+	);
+
+	const searchResultsDisplay =
+		searchTerm.length === 1 ? (
+			<div className='search__total-results'>
+				A total of {results.length} results found for '{searchTerm}'
+				{showMoreButton}
+			</div>
+		) : null;
+
+	const resultsToDisplay = results.slice(0, numResultsDisplayed); // slice the results array to display only the specified number of results
 
 	return (
 		<>
@@ -116,20 +144,61 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 								onChange={handleSearchChange}
 								placeholder='Search chat history'
 							/>
-
+							{searchTerm.length === 1 && (
+								<div>
+									{results.length === 1 && (
+										<div className='search__total-results'>
+											A total of 1 result found for '
+											{searchTerm}'
+										</div>
+									)}
+									{results.length > 1 && (
+										<div className='search__total-results'>
+											A total of {results.length} results
+											found for '{searchTerm}'
+											{showMoreButton}
+										</div>
+									)}
+								</div>
+							)}
+							{searchTerm.length > 1 && (
+								<div>
+									{results.length > 0 && (
+										<div className='search__total-results'>
+											A total of {results.length} results
+											found for '{searchTerm}'
+											{showMoreButton}
+										</div>
+									)}
+								</div>
+							)}
 							{searchTerm.length > 0 && results.length > 0 && (
 								<div className='search__results'>
-									{results.map((index: number) => (
-										<div
-											className='message'
-											key={index}
-											onClick={() => handleJumpTo(index)}>
-											<span>
-												{chatHistory[
-													index
-												]?.message?.substring(0, 50)}
-											</span>
-										</div>
+									{resultsToDisplay.map((index: number) => (
+										<>
+											<div
+												className='message'
+												key={index}
+												onClick={() =>
+													handleJumpTo(index)
+												}>
+												<span className='date'>
+													{new Date(
+														chatHistory[
+															index
+														].timestamp,
+													).toLocaleString()}
+												</span>
+												<span>
+													{chatHistory[
+														index
+													]?.message?.substring(
+														0,
+														50,
+													)}
+												</span>
+											</div>
+										</>
 									))}
 								</div>
 							)}

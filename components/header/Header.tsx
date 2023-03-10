@@ -5,10 +5,6 @@ import { fb, auth, singInWithGoogle } from '../../firebase';
 import IconButton from '@mui/material/IconButton';
 import { Info } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-import { Button } from '@mui/material';
-import LoginModal from '../LoginModal';
-
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
 	const [minimalSticky, setmMinimalSticky] = useState(true);
