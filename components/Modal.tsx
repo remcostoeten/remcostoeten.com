@@ -1,11 +1,18 @@
+import { Modal, Box, Typography } from '@mui/material';
+
 const Modal = () => {
 	return (
-		<div id='modal' className='modal'>
-			<div className='modal-content'>
-				<span className='close'>&times;</span>
-				<p>This is a modal window</p>
-			</div>
-		</div>
+		<Modal open={showLoginModal} onClose={handleClose}>
+			<Box sx={style}>
+				<Typography id='modal-modal-title' variant='h6' component='h2'>
+					Text in a modal
+				</Typography>
+				<Typography id='modal-modal-description' sx={{ mt: 2 }}>
+					Duis mollis, est non commodo luctus, nisi erat porttitor
+					ligula.
+				</Typography>
+			</Box>
+		</Modal>
 	);
 };
 

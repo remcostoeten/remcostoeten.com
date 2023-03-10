@@ -151,54 +151,7 @@ const ChatHistory: React.FC = () => {
 							),
 						)}
 				</div>
-				{searchResults.length > 0 && (
-					<div className='chat__chat-panel chat-results'>
-						{searchResults.map(
-							(message: ChatMessage, index: number) => (
-								<div
-									className={`bubble__message ${
-										message.message
-											.toLowerCase()
-											.includes('alice')
-											? 'bubble__second-person'
-											: ''
-									}`}
-									key={message.timestamp.getTime()}
-									onClick={() => handleJumpTo(message)}>
-									<div>
-										{message.image && (
-											<Image
-												src={`/apiprivate/compressed/${message.image}`}
-												alt=''
-											/>
-										)}
-										<div className='chat__sender'>
-											{message.name}
-										</div>
-										<div className='chat__message'>
-											{message.message}
-										</div>
-									</div>
-								</div>
-							),
-						)}
-					</div>
-				)}
 			</div>
-			{chatHistory.length > 0 && (
-				<div className='chat__search'>
-					<p className='chat__search-info'>
-						{searchResults.length > 0
-							? `Showing ${searchResults.length} search results`
-							: 'No results found'}
-					</p>
-					<button
-						className='chat__scroll-to-top'
-						onClick={() => handleJumpTo(chatHistory[0])}>
-						Scroll to top
-					</button>
-				</div>
-			)}
 		</>
 	);
 };

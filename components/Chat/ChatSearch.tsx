@@ -89,35 +89,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		<>
 			<div className='chat-header sticky'>
 				<div className='toggle-wrapper'>
-					<div className='contained chat-header__top-search'>
-						<div className='top-search'>
-							<Icon path={mdiTextSearch} size={2} />
-							<input
-								type='text'
-								value={searchTerm}
-								className='search__icon'
-								onChange={handleSearchChange}
-								placeholder='Search chat history'
-							/>
-
-							{searchTerm.length > 0 && results.length > 0 && (
-								<div className='search__results'>
-									{results.map((index: number) => (
-										<div
-											className='message'
-											key={index}
-											onClick={() => handleJumpTo(index)}>
-											<span>
-												{chatHistory[
-													index
-												]?.message?.substring(0, 50)}
-											</span>
-										</div>
-									))}
-								</div>
-							)}
-						</div>
-					</div>
 					<span
 						className='toggle'
 						onClick={() => setShowChatInput(!showChatInput)}

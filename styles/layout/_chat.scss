@@ -25,7 +25,7 @@ $light-bg: #313646;
 .chat-ui {
 	background: $dark-background;
 
-	main {
+	article {
 		color: $off-white;
 		line-height: 2em;
 		padding: 1em 0;
@@ -343,8 +343,7 @@ $light-bg: #313646;
 	}
 
 	.chat-history {
-		background: rgb(45, 47, 62);
-		color: #f0f0f0;
+		color: $off-white;
 		font-size: 2.5em;
 		padding: $spacing;
 

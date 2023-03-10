@@ -16,6 +16,9 @@ const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [showWelcome, setShowWelcome] = useState(true);
 	const [showLoginModal, setShowLoginModal] = useState(false);
+	const handleOpen = () => setShowLoginModal(true);
+	const handleClose = () => setShowLoginModal(false);
+
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -137,10 +140,8 @@ const Header = () => {
 									Github
 								</a>
 							</motion.li>
-							<Button onClick={handleLoginClick}>Login</Button>
-							{showLoginModal && (
-								<LoginModal onClose={handleCloseModal} />
-							)}
+							<Button onClick={handleOpen}>Open modal</Button>
+							{showLoginModal && <LoginModal />}
 						</ul>
 					</nav>
 				</div>

@@ -979,6 +979,10 @@ body {
   padding-left: 0;
 }
 
+.chat-ui .header {
+  display: none;
+}
+
 .header {
   background-color: #fff;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -1170,12 +1174,12 @@ nav a:hover {
 .chat-ui {
   background: #2e2f3e;
 }
-.chat-ui main {
+.chat-ui article {
   color: #f0f0f0;
   line-height: 2em;
   padding: 1em 0;
 }
-.chat-ui main .contained {
+.chat-ui article .contained {
   margin: 20px auto;
 }
 .chat-ui br {
@@ -1432,7 +1436,6 @@ nav a:hover {
   cursor: pointer;
 }
 .chat .chat-history {
-  background: rgb(45, 47, 62);
   color: #f0f0f0;
   font-size: 2.5em;
   padding: 24px;
@@ -1556,24 +1559,15 @@ nav a:hover {
   color: #f0f0f0;
 }
 
-.scrolled .offcanvas.search {
+.offcanvas.search {
   position: sticky;
   left: 0;
-  transform: translateX(-200px) !important;
   top: 0;
   min-height: 100vh;
 }
-@media (min-width: 0px) and (max-width: 767px) {
-  .scrolled .offcanvas.search {
-    transform: translateX(10px) !important;
-  }
-}
 
-.scrolled .sticky .toggle {
+.toggle {
   display: flex;
-}
-.scrolled .top-search {
-  display: none;
 }
 
 .sticky {
@@ -1581,8 +1575,11 @@ nav a:hover {
   top: 0;
   left: 0;
 }
-.sticky .toggle {
-  display: none;
+
+.toggle {
+  position: sticky;
+  top: 0;
+  left: 0;
   align-items: center;
   color: #f0f0f0;
   left: 340px;
@@ -1591,11 +1588,12 @@ nav a:hover {
   position: sticky;
 }
 @media (min-width: 0px) and (max-width: 767px) {
-  .sticky .toggle {
+  .toggle {
     left: 25px;
   }
 }
-.sticky button {
+
+button {
   background-color: none;
   border: none;
 }
@@ -1618,6 +1616,7 @@ nav a:hover {
   transition: transform 0.25s ease-out;
   padding: 24px;
   min-width: 315px;
+  max-width: 25%;
   opacity: 0;
 }
 @media (min-width: 0px) and (max-width: 767px) {
