@@ -964,21 +964,6 @@ body {
     opacity: 1;
   }
 }
-.scrolled {
-  height: 1500px;
-  background-color: blue;
-}
-.scrolled .header {
-  padding: 8px 0;
-  position: sticky;
-  top: 0;
-  left: 0;
-  z-index: 20;
-}
-.scrolled .header__tagline {
-  padding-left: 0;
-}
-
 .chat-ui .header {
   display: none;
 }
@@ -1574,6 +1559,7 @@ nav a:hover {
   position: sticky;
   top: 0;
   left: 0;
+  z-index: 30;
 }
 
 .toggle {
@@ -1698,5 +1684,18 @@ button {
 @media (min-width: 0px) and (max-width: 767px) {
   .search {
     width: 100%;
+  }
+  .search__results :nth-child(n+8) {
+    display: none;
+  }
+  .chat-ui .offcanvas.search {
+    max-width: 50%;
+    min-width: unset;
+  }
+  .chat-ui .offcanvas.search {
+    opacity: 1;
+    top: 0;
+    padding: 8px;
+    overflow: hidden;
   }
 }/*# sourceMappingURL=styles.css.map */

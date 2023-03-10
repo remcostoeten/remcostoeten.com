@@ -1,16 +1,7 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
-import {
-	mdiMagnify,
-	mdiCloseCircleOutline,
-	mdiClose,
-	mdiSearchWeb,
-	mdiCarSearch,
-	mdiSeatReclineExtra,
-	mdiMapSearch,
-	mdiTextSearch,
-} from '@mdi/js';
+import { mdiMagnify, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
 
 interface ChatSearchProps {
@@ -29,7 +20,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const maxResultsToShow = 10;
+	const maxResultsToShow = 5; // changed to show 5 results
 	const [showTooltip, setShowTooltip] = useState(false);
 
 	const results = chatHistory
@@ -85,6 +76,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		}, 5000);
 		return () => clearTimeout(timer);
 	}, []);
+
 	return (
 		<>
 			<div className='chat-header sticky'>

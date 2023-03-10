@@ -140,8 +140,15 @@ const Header = () => {
 									Github
 								</a>
 							</motion.li>
-							<Button onClick={handleOpen}>Open modal</Button>
-							{showLoginModal && <LoginModal />}
+							{isLoggedIn ? (
+								<motion.li whileHover={{ scale: 1.05 }}>
+									<a onClick={() => auth.signOut()}>Logout</a>
+								</motion.li>
+							) : (
+								<motion.li whileHover={{ scale: 1.05 }}>
+									<a onClick={singInWithGoogle}>Login</a>
+								</motion.li>
+							)}
 						</ul>
 					</nav>
 				</div>
