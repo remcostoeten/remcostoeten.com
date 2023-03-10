@@ -1,93 +1,98 @@
 .scrolled {
-	height: 1500px;
-	background-color: blue;
-	.header {
-		padding: 8px 0;
-		position: sticky;
-		top: 0;
-		left: 0;
-		z-index: $z-index-layer-three;
-	}
+    height: 1500px;
+    background-color: blue;
+
+    .header {
+        padding: 8px 0;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: $z-index-layer-three;
+    }
 }
+
 .header {
-	background-color: $color-white;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	font-family: $font--alternative;
-	padding: $spacing 0;
-	transition: 250ms ease-out all;
+    background-color: $color-white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-family: $font--alternative;
+    padding: $spacing 0;
+    transition: 250ms ease-out all;
 
-	&__inner {
-		display: flex;
-		width: 100%;
+    &__inner {
+        display: flex;
+        width: 100%;
 
-		align-items: center;
-		justify-content: space-between;
-	}
+        align-items: center;
+        justify-content: space-between;
+    }
 
-	&__user {
-		display: flex;
-		align-items: center;
-		position: relative;
-		img {
-			position: absolute;
-			border-radius: 50%;
-			scale: 0.4;
-			left: 0;
-		}
-	}
+    &__user {
+        display: flex;
+        align-items: center;
+        position: relative;
 
-	&__tagline {
-		display: flex;
-		flex-direction: column;
-		line-height: 1;
-		padding-left: 80px;
-	}
+        img {
+            position: absolute;
+            border-radius: 50%;
+            scale: 0.4;
+            left: 0;
+            top: 0;
+            transform: translateY(-71%);
+            bottom: 0;
+        }
+    }
 
-	a {
-		position: relative;
-		font-size: 2.5em;
-	}
+    &__tagline {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        padding-left: 80px;
+    }
 
-	nav {
-		li {
-			font-size: 0.7em;
-			font-weight: 600;
-			position: relative;
-			transition: 250ms ease all;
+    a {
+        position: relative;
+        font-size: 2.5em;
+    }
 
-			a {
-				text-decoration: none;
+    nav {
+        li {
+            font-size: 0.7em;
+            font-weight: 600;
+            position: relative;
+            transition: 250ms ease all;
 
-				&:after {
-					content: '';
-					position: absolute;
-					left: 0;
-					bottom: -3px;
-					width: 0;
-					height: 2px;
-					background-color: $color-primary;
-					opacity: 0;
-					transition: 0.3s ease-in;
-				}
+            a {
+                text-decoration: none;
 
-				&:hover {
-					&::after {
-						opacity: 1;
-						width: 100%;
-					}
-				}
-			}
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: -3px;
+                    width: 0;
+                    height: 2px;
+                    background-color: $color-primary;
+                    opacity: 0;
+                    transition: 0.3s ease-in;
+                }
 
-			&:hover {
-			}
-		}
-	}
+                &:hover {
+                    &::after {
+                        opacity: 1;
+                        width: 100%;
+                    }
+                }
+            }
 
-	.tooltip {
-		top: -15px;
-		right: -15px;
-		position: absolute;
-	}
+            &:hover {}
+        }
+    }
+
+    .tooltip {
+        top: -15px;
+        right: -15px;
+        position: absolute;
+    }
 }
 
 // @import './offcanvas-menu';

@@ -26,10 +26,17 @@ const NoMaxWidthTooltip = styled(({ className, ...props }: TooltipProps) => (
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
 	const [minimalSticky, setmMinimalSticky] = useState(true);
+	const [imageVisible, setImageVisible] = useState(true);
 
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+	};
+
+	const imageVariants = {
+		hidden: { opacity: 0, y: -50 },
+		visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+		exit: { opacity: 0, y: -50, transition: { duration: 0.3 } },
 	};
 
 	useEffect(() => {
@@ -38,10 +45,12 @@ const Header = () => {
 				document.body.classList.add('scrolled');
 				setShowTagline(false);
 				setmMinimalSticky(false);
+				setImageVisible(false);
 			} else {
 				document.body.classList.remove('scrolled');
 				setShowTagline(true);
 				setmMinimalSticky(true);
+				setImageVisible(true);
 			}
 		};
 
@@ -62,23 +71,26 @@ const Header = () => {
 				<div className='container header__inner'>
 					<motion.div
 						className='header__user'
+						initial='visible'
+						animate={imageVisible ? 'visible' : 'exit'}
+						variants={imageVariants}
 						whileHover={{ scale: 1.05 }}>
-						{minimalSticky && (
-							<Image
-								src='/remco.png'
-								alt='Remco'
-								width={90}
-								height={90}
-							/>
-						)}
+						<Image
+							src='/remco.png'
+							alt='Remco'
+							width={90}
+							height={90}
+						/>
 						<div
 							className={`header__tagline ${
 								showTagline ? 'visible' : ''
 							}`}>
 							<h3>remcostoeten</h3>
-							{showTagline && <h4>front-end developer</h4>}
+							<h4>front-end developer</h4>}
 						</div>
 					</motion.div>
+
+
 					<nav className='header__menu'>
 						<ul>
 							<motion.li whileHover={{ scale: 1.05 }}>
@@ -90,11 +102,13 @@ const Header = () => {
 								<Link href='/Authentication'>
 									Login
 									<div className='tooltip'>
-										<Tooltip title='Still under construction so most likely will be broken.'>
+										<Tooltip
+										
+											title='Still under construction so most likely will be broken.'>
 											<IconButton>
-												<Info
-													sx={{ color: '#9742f6' }}
-												/>
+												<Info sx={{ color: '#9742f6' }} />
+											
+
 											</IconButton>
 										</Tooltip>
 									</div>
