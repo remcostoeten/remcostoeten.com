@@ -6,8 +6,6 @@ import IconButton from '@mui/material/IconButton';
 import { Info } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
-import { Button } from '@mui/material';
-import LoginModal from '../LoginModal';
 
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
@@ -15,18 +13,17 @@ const Header = () => {
 	const [userName, setUserName] = useState<string | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [showWelcome, setShowWelcome] = useState(true);
-	const [showLoginModal, setShowLoginModal] = useState(false);
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	};
 
 	const handleLoginClick = () => {
-		setShowLoginModal(true);
+		setIsLoginModalOpen(true);
 	};
 
 	const handleCloseModal = () => {
-		setShowLoginModal(false);
+		setIsLoginModalOpen(false);
 	};
 
 	useEffect(() => {
@@ -125,7 +122,20 @@ const Header = () => {
 									Chat feature
 								</Link>
 							</motion.li>
-
+							<motion.li whileHover={{ scale: 1.05 }}>
+								<Link href='/Authentication'>
+									Login
+									<div className='tooltip'>
+										<Tooltip title='Still under construction so most likely will be broken.'>
+											<IconButton>
+												<Info
+													sx={{ color: '#9742f6' }}
+												/>
+											</IconButton>
+										</Tooltip>
+									</div>
+								</Link>
+							</motion.li>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/contact'>Contact</Link>
 							</motion.li>
@@ -137,9 +147,14 @@ const Header = () => {
 									Github
 								</a>
 							</motion.li>
-							<Button onClick={handleLoginClick}>Login</Button>
-							{showLoginModal && (
-								<LoginModal onClose={handleCloseModal} />
+							{isLoggedIn ? (
+								<motion.li whileHover={{ scale: 1.05 }}>
+									<a onClick={() => auth.signOut()}>Logout</a>
+								</motion.li>
+							) : (
+								<motion.li whileHover={{ scale: 1.05 }}>
+									<a onClick={singInWithGoogle}>Login</a>
+								</motion.li>
 							)}
 						</ul>
 					</nav>

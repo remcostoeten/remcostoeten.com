@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 import Image from 'next/image';
-
+import Header from '@/components/header/Header';
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -106,6 +106,8 @@ const ChatHistory: React.FC = () => {
 
 	return (
 		<>
+			<Header />
+			<FeatureStory />
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}

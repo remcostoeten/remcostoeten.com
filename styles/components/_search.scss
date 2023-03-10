@@ -89,15 +89,6 @@
 			transform: translateX(10px) !important;
 		}
 	}
-
-	.chat-header {
-		margin: 0 auto;
-		position: sticky;
-		top: 0;
-		left: 0;
-		z-index: 10;
-		max-width: 762px;
-	}
 }
 
 .scrolled {
@@ -136,75 +127,10 @@
 	}
 }
 
-.chat-header {
-	.contained {
-		.close-offcanvas {
-			top: 0;
-			position: absolute;
-		}
-
-		.close-offcanvas {
-			color: $off-white;
-			position: absolute;
-			background-color: $dark-background;
-		}
-
-		div {
-			svg {
-				position: absolute;
-				top: 33px;
-				left: 10px;
-			}
-		}
-	}
-
-	&__top-search {
-		color: $dark-background;
-		padding: $spacing 0;
-
-		input {
-			max-width: unset;
-			display: flex;
-			flex: 1;
-			max-height: 40px;
-			min-width: 75%;
-			border-top: 3px solid transparent;
-			border-bottom: 3px solid transparent;
-			transition: 250ms ease-in-out;
-			padding-left: 50px;
-			font-weight: 400;
-			font-size: 1.5em;
-			width: 100%;
-
-			&:focus,
-			&:hover {
-				border-top: 3px solid $accent-color;
-			}
-		}
-	}
-}
-
 .chat-ui {
 	transition: 250ms ease all;
-
 	img {
 		mix-blend-mode: multiply;
-	}
-
-	.header {
-		position: absolute;
-		left: $spacing;
-		top: $spacing;
-		height: unset;
-		padding: 0;
-
-		&__toggle {
-			display: none;
-		}
-	}
-
-	.container {
-		max-width: 100%;
 	}
 
 	.offcanvas.search {
