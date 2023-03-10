@@ -98,7 +98,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const searchResultsDisplay =
 		searchTerm.length === 1 ? (
 			<div className='search__total-results'>
-				A total of {results.length} results found for '{searchTerm}'
+				A total of {results.length} results found for {searchTerm}
 				{showMoreButton}
 			</div>
 		) : null;
@@ -147,28 +147,29 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 							{searchTerm.length === 1 && (
 								<div>
 									{results.length === 1 && (
-										<div className='search__total-results'>
-											A total of 1 result found for '
-											{searchTerm}'
-										</div>
+										<p>
+											A total o 1 results found for &apos;
+											{searchTerm}&apos;
+											{showMoreButton}
+										</p>
 									)}
 									{results.length > 1 && (
-										<div className='search__total-results'>
+										<p>
 											A total of {results.length} results
-											found for '{searchTerm}'
+											found for &apos;{searchTerm}&apos;
 											{showMoreButton}
-										</div>
+										</p>
 									)}
 								</div>
 							)}
 							{searchTerm.length > 1 && (
 								<div>
 									{results.length > 0 && (
-										<div className='search__total-results'>
+										<p>
 											A total of {results.length} results
-											found for '{searchTerm}'
+											found for &apos;{searchTerm}&apos;
 											{showMoreButton}
-										</div>
+										</p>
 									)}
 								</div>
 							)}
