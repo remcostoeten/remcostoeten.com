@@ -27,3 +27,12 @@
 
 // components
 @import './components/search';
+@import './components/loader';
+
+.selected {
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	color: blue;
+	padding: 10px;
+}

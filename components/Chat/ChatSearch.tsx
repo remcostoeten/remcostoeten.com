@@ -57,7 +57,25 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	};
 
 	const handleJumpTo = (index: number) => {
-		setShowChatInput(true);
+		// Check if the clicked message index is still included in the search results
+		if (results.includes(index)) {
+			// Get all message elements
+			const messageElements = document.getElementsByClassName('message');
+
+			// Find the clicked message element using the index
+			const messageElement = Array.from(messageElements).find(
+				(element) =>
+					element.getAttribute('data-index') === index.toString(),
+			);
+
+			// If the element is found, add a CSS class to it
+			if (messageElement) {
+				messageElement.classList.add('selected');
+			}
+		}
+
+		// Call the onJumpTo function with the clicked message index
+		onJumpTo(index);
 	};
 
 	const handleClose = () => {

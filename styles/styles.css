@@ -1492,6 +1492,10 @@ nav a:hover {
   text-decoration: underlien;
 }
 .search .show span {
+  background-color: #8073fb;
+  padding: 6.8571428571px;
+  border-radius: 8px;
+  color: #f0f0f0;
   margin-right: 5px;
 }
 .search input {
@@ -1730,4 +1734,35 @@ button {
     padding: 8px;
     overflow: hidden;
   }
+}
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.spinner {
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.selected {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  color: blue;
+  padding: 10px;
 }/*# sourceMappingURL=styles.css.map */

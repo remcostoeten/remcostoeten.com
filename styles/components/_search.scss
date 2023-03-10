@@ -19,6 +19,10 @@
 
 	.show {
 		span {
+			background-color: $accent-color;
+			padding: $spacing-xs;
+			border-radius: 8px;
+			color: $off-white;
 			margin-right: 5px;
 		}
 	}
