@@ -17,6 +17,12 @@
 		}
 	}
 
+	.show {
+		span {
+			margin-right: 5px;
+		}
+	}
+
 	input {
 		width: 100%;
 		margin-bottom: 12px;
@@ -57,17 +63,19 @@
 		border-top: 3px solid $accent-color;
 		font-size: 1.3em;
 
+		span {
+			max-width: 75%;
+		}
+
 		.date {
-			border-radius: 10px;
 			background-color: white !important;
 			color: #000;
 			font-size: 0.8em;
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			position: absolute;
-			top: -5px;
-			right: 0;
+			position: relative;
+			padding-left: 10px;
 		}
 
 		svg {
@@ -76,15 +84,15 @@
 
 		.message {
 			display: flex;
+			flex-direction: row-reverse;
 			align-items: center;
 			margin: -$spacing-xs;
 			padding: 1em;
 			border-bottom: 1px solid #f0f1f6;
-			justify-content: space-between;
+			justify-content: left;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			position: relative;
-			padding-right: 40px;
 
 			&:hover {
 				border-radius: 6px;
@@ -110,7 +118,6 @@
 	position: sticky;
 	left: 0;
 	top: 0;
-	min-height: 100vh;
 }
 
 .toggle {
@@ -164,6 +171,7 @@ button {
 		min-width: 315px;
 		max-width: 25%;
 		opacity: 0;
+		height: auto;
 
 		@include mobile {
 			width: 100%;
@@ -260,8 +268,8 @@ button {
 
 	.chat-ui {
 		.offcanvas.search {
-			max-width: 50%;
-			min-width: unset;
+			min-width: 100%;
+			height: auto;
 		}
 
 		.offcanvas.search {

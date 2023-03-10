@@ -57,7 +57,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	};
 
 	const handleJumpTo = (index: number) => {
-		onJumpTo(index);
+		setShowChatInput(true);
 	};
 
 	const handleClose = () => {
@@ -94,6 +94,14 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			</a>
 		</>
 	);
+	const showLessResults =
+		numResultsDisplayed > 5 ? (
+			<a
+				className='btn--results'
+				onClick={() => setNumResultsDisplayed(numResultsDisplayed - 5)}>
+				<span>Show less</span>
+			</a>
+		) : null;
 
 	const searchResultsDisplay =
 		searchTerm.length === 1 ? (
@@ -105,6 +113,20 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 
 	const resultsToDisplay = results.slice(0, numResultsDisplayed); // slice the results array to display only the specified number of results
 
+	const handleResultClick = (indexToRemove: number) => {
+		const newResults = resultsToDisplay.filter(
+			(index) => index !== indexToRemove,
+		);
+		setNumResultsDisplayed(newResults.length);
+	};
+	const searchResultItems = resultsToDisplay.map((index) => (
+		<div
+			className='search__result-item'
+			key={index}
+			onClick={() => handleResultClick(index)}>
+			{chatHistory[index].message}
+		</div>
+	));
 	return (
 		<>
 			<div className='chat-header sticky'>
@@ -149,26 +171,33 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 									{results.length === 1 && (
 										<p className='search__total-results'>
 											A total o 1 results found for &apos;
-											{searchTerm}&apos;
+											{showLessResults}
 											{showMoreButton}
 										</p>
 									)}
-									{results.length > 1 && (
+									{results.length > 6 && (
 										<p className='search__total-results'>
 											A total of {results.length} results
 											found for &apos;{searchTerm}&apos;
-											{showMoreButton}
+											<div className='show'>
+												{showLessResults}
+												{showMoreButton}{' '}
+											</div>{' '}
 										</p>
 									)}
 								</div>
 							)}
+
 							{searchTerm.length > 1 && (
 								<div>
 									{results.length > 0 && (
 										<p className='search__total-results'>
 											A total of {results.length} results
 											found for &apos;{searchTerm}&apos;
-											{showMoreButton}
+											<div className='show'>
+												{showLessResults}
+												{showMoreButton}{' '}
+											</div>{' '}
 										</p>
 									)}
 								</div>
@@ -188,7 +217,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 														chatHistory[
 															index
 														].timestamp,
-													).toLocaleString()}
+													).toLocaleDateString()}
 												</span>
 												<span>
 													{chatHistory[

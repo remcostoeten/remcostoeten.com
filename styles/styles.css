@@ -555,6 +555,41 @@ input[type=text]:hover {
   padding: 4px 0 4px 28px !important;
 }
 
+.header__hero--heading-gradient {
+  background: linear-gradient(-45deg, var(#0092d2), var(#003247), var(#0092d2), var(#003247));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 400% 400%;
+  -webkit-animation: gradient 3s ease infinite;
+  animation: gradient 3s ease infinite;
+}
+
+@media (min-width: 0px) and (max-width: 767px) {
+  .desktop {
+    display: none;
+  }
+}
+
+.contained {
+  max-width: 520px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.mobile {
+  display: none;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .mobile {
+    display: block;
+  }
+}
+
+.page-wrapper {
+  padding-top: 100px;
+}
+
 body {
   font-family: "Exo", sans-serif;
 }
@@ -689,41 +724,6 @@ body {
     border-radius: 50%;
   }
 }
-.header__hero--heading-gradient {
-  background: linear-gradient(-45deg, var(#0092d2), var(#003247), var(#0092d2), var(#003247));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-size: 400% 400%;
-  -webkit-animation: gradient 3s ease infinite;
-  animation: gradient 3s ease infinite;
-}
-
-@media (min-width: 0px) and (max-width: 767px) {
-  .desktop {
-    display: none;
-  }
-}
-
-.contained {
-  max-width: 520px;
-  margin: 0 auto;
-  position: relative;
-}
-
-.mobile {
-  display: none;
-}
-@media (min-width: 0px) and (max-width: 767px) {
-  .mobile {
-    display: block;
-  }
-}
-
-.page-wrapper {
-  padding-top: 100px;
-}
-
 @keyframes gradient {
   0% {
     background-position: 0 50%;
@@ -1159,6 +1159,9 @@ nav a:hover {
 .chat-ui {
   background: #2e2f3e;
 }
+.chat-ui .header {
+  margin-bottom: 24px;
+}
 .chat-ui article {
   color: #f0f0f0;
   line-height: 2em;
@@ -1488,6 +1491,9 @@ nav a:hover {
   padding: 0;
   text-decoration: underlien;
 }
+.search .show span {
+  margin-right: 5px;
+}
 .search input {
   width: 100%;
   margin-bottom: 12px;
@@ -1525,32 +1531,33 @@ nav a:hover {
   border-top: 3px solid #8073fb;
   font-size: 1.3em;
 }
+.search__results span {
+  max-width: 75%;
+}
 .search__results .date {
-  border-radius: 10px;
   background-color: white !important;
   color: #000;
   font-size: 0.8em;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: -5px;
-  right: 0;
+  position: relative;
+  padding-left: 10px;
 }
 .search__results svg {
   margin-right: 6.8571428571px;
 }
 .search__results .message {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
   margin: -6.8571428571px;
   padding: 1em;
   border-bottom: 1px solid #f0f1f6;
-  justify-content: space-between;
+  justify-content: left;
   white-space: nowrap;
   text-overflow: ellipsis;
   position: relative;
-  padding-right: 40px;
 }
 .search__results .message:hover {
   border-radius: 6px;
@@ -1573,7 +1580,6 @@ nav a:hover {
   position: sticky;
   left: 0;
   top: 0;
-  min-height: 100vh;
 }
 
 .toggle {
@@ -1629,6 +1635,7 @@ button {
   min-width: 315px;
   max-width: 25%;
   opacity: 0;
+  height: auto;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
@@ -1714,8 +1721,8 @@ button {
     overflow: hidden;
   }
   .chat-ui .offcanvas.search {
-    max-width: 50%;
-    min-width: unset;
+    min-width: 100%;
+    height: auto;
   }
   .chat-ui .offcanvas.search {
     opacity: 1;
