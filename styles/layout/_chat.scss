@@ -25,6 +25,11 @@ $light-bg: #313646;
 .chat-ui {
 	background: $dark-background;
 
+	.header {
+		margin-bottom: $spacing;
+		
+	}
+
 	article {
 		color: $off-white;
 		line-height: 2em;
