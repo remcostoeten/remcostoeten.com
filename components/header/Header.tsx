@@ -109,7 +109,7 @@ const Header = () => {
 									className={`header__tagline ${
 										showTagline ? 'visible' : ''
 									}`}>
-									<h3>remcostoeten</h3>
+									{/* <h3>remcostoeten</h3> */}
 									{showTagline && (
 										<h4>front-end developer</h4>
 									)}

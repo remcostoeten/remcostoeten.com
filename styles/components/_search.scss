@@ -1,286 +1,286 @@
-.search {
-	display: flex;
-	position: relative;
-	flex-direction: column;
-	flex: 1;
+// .search {
+// 	display: flex;
+// 	position: relative;
+// 	flex-direction: column;
+// 	flex: 1;
 
-	&__total-results {
-		display: flex;
-		flex-direction: column;
-		justify-self: flex-start;
-		align-items: flex-start;
+// 	&__total-results {
+// 		display: flex;
+// 		flex-direction: column;
+// 		justify-self: flex-start;
+// 		align-items: flex-start;
 
-		span {
-			cursor: pointer;
-			padding: 0;
-			text-decoration: underlien;
-		}
-	}
+// 		span {
+// 			cursor: pointer;
+// 			padding: 0;
+// 			text-decoration: underlien;
+// 		}
+// 	}
 
-	.show {
-		span {
-			background-color: $accent-color;
-			padding: $spacing-xs;
-			border-radius: 8px;
-			color: $off-white;
-			margin-right: 5px;
-		}
-	}
+// 	.show {
+// 		span {
+// 			background-color: $accent-color;
+// 			padding: $spacing-xs;
+// 			border-radius: 8px;
+// 			color: $off-white;
+// 			margin-right: 5px;
+// 		}
+// 	}
 
-	input {
-		width: 100%;
-		margin-bottom: 12px;
-		z-index: $z-index-layer-two;
-		padding-left: 14px;
-		padding-left: 35px;
-		font-weight: 600;
-		font-size: 1.3em;
-		height: $input-height;
-		width: 100%;
-		border: 1px solid transparent;
-		transition: 255ms ease-in-out;
+// 	input {
+// 		width: 100%;
+// 		margin-bottom: 12px;
+// 		z-index: $z-index-layer-two;
+// 		padding-left: 14px;
+// 		padding-left: 35px;
+// 		font-weight: 600;
+// 		font-size: 1.3em;
+// 		height: $input-height;
+// 		width: 100%;
+// 		border: 1px solid transparent;
+// 		transition: 255ms ease-in-out;
 
-		&:hover,
-		&:focus {
-			border: 1px solid $accent-color;
-		}
-	}
+// 		&:hover,
+// 		&:focus {
+// 			border: 1px solid $accent-color;
+// 		}
+// 	}
 
-	.search__icon {
-		background-image: url('https://www.freeiconspng.com/uploads/search-icon-png-21.png');
-		background-repeat: no-repeat;
-		background-size: 8%;
-		background-position: center left 8px;
+// 	.search__icon {
+// 		background-image: url('https://www.freeiconspng.com/uploads/search-icon-png-21.png');
+// 		background-repeat: no-repeat;
+// 		background-size: 8%;
+// 		background-position: center left 8px;
 
-		@include mobile {
-			background-size: 4%;
-		}
-	}
+// 		@include mobile {
+// 			background-size: 4%;
+// 		}
+// 	}
 
-	&__results {
-		position: sticky;
-		top: 0;
-		left: 0;
-		background-color: $color-white;
-		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-		padding: $spacing-xs;
-		border-top: 3px solid $accent-color;
-		font-size: 1.3em;
+// 	&__results {
+// 		position: sticky;
+// 		top: 0;
+// 		left: 0;
+// 		background-color: $color-white;
+// 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+// 		padding: $spacing-xs;
+// 		border-top: 3px solid $accent-color;
+// 		font-size: 1.3em;
 
-		span {
-			max-width: 75%;
-		}
+// 		span {
+// 			max-width: 75%;
+// 		}
 
-		.date {
-			background-color: white !important;
-			color: #000;
-			font-size: 0.8em;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			position: relative;
-			padding-left: 10px;
-		}
+// 		.date {
+// 			background-color: white !important;
+// 			color: #000;
+// 			font-size: 0.8em;
+// 			display: flex;
+// 			align-items: center;
+// 			justify-content: center;
+// 			position: relative;
+// 			padding-left: 10px;
+// 		}
 
-		svg {
-			margin-right: $spacing-xs;
-		}
+// 		svg {
+// 			margin-right: $spacing-xs;
+// 		}
 
-		.message {
-			display: flex;
-			flex-direction: row-reverse;
-			align-items: center;
-			margin: -$spacing-xs;
-			padding: 1em;
-			border-bottom: 1px solid #f0f1f6;
-			justify-content: left;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			position: relative;
+// 		.message {
+// 			display: flex;
+// 			flex-direction: row-reverse;
+// 			align-items: center;
+// 			margin: -$spacing-xs;
+// 			padding: 1em;
+// 			border-bottom: 1px solid #f0f1f6;
+// 			justify-content: left;
+// 			white-space: nowrap;
+// 			text-overflow: ellipsis;
+// 			position: relative;
 
-			&:hover {
-				border-radius: 6px;
-				background-color: lighten($off-white, 1%);
-				cursor: pointer;
-			}
-		}
-	}
-}
+// 			&:hover {
+// 				border-radius: 6px;
+// 				background-color: lighten($off-white, 1%);
+// 				cursor: pointer;
+// 			}
+// 		}
+// 	}
+// }
 
-.disable-transition *,
-.disable-transition *::before,
-.disable-transition *::after {
-	transition: none !important;
-}
+// .disable-transition *,
+// .disable-transition *::before,
+// .disable-transition *::after {
+// 	transition: none !important;
+// }
 
-.material-symbols-outlined {
-	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
-	color: $off-white;
-}
+// .material-symbols-outlined {
+// 	font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+// 	color: $off-white;
+// }
 
-.offcanvas.search {
-	position: sticky;
-	left: 0;
-	top: 0;
-}
+// .offcanvas.search {
+// 	position: sticky;
+// 	left: 0;
+// 	top: 0;
+// }
 
-.toggle {
-	display: flex;
-}
+// .toggle {
+// 	display: flex;
+// }
 
-.sticky {
-	position: sticky;
-	top: 0;
-	left: 0;
-	z-index: $z-index-layer-four;
-}
+// .sticky {
+// 	position: sticky;
+// 	top: 0;
+// 	left: 0;
+// 	z-index: $z-index-layer-four;
+// }
 
-.toggle {
-	position: sticky;
-	top: 0;
-	left: 0;
-	align-items: center;
-	color: $off-white;
-	left: 340px;
-	z-index: $z-index-layer-four;
-	top: 0;
-	position: sticky;
-	@include mobile {
-		left: 25px;
-	}
-}
+// .toggle {
+// 	position: sticky;
+// 	top: 0;
+// 	left: 0;
+// 	align-items: center;
+// 	color: $off-white;
+// 	left: 340px;
+// 	z-index: $z-index-layer-four;
+// 	top: 0;
+// 	position: sticky;
+// 	@include mobile {
+// 		left: 25px;
+// 	}
+// }
 
-button {
-	background-color: none;
-	border: none;
-}
+// button {
+// 	background-color: none;
+// 	border: none;
+// }
 
-.chat-ui {
-	transition: 250ms ease all;
-	img {
-		mix-blend-mode: multiply;
-	}
+// .chat-ui {
+// 	transition: 250ms ease all;
+// 	img {
+// 		mix-blend-mode: multiply;
+// 	}
 
-	.offcanvas.search {
-		display: flex;
-		z-index: $z-index-layer-four;
-		justify-content: flex-start;
-		position: absolute;
-		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-		padding: $spacing;
-		background-color: $off-white;
-		height: 100%;
-		transition: transform 0.25s ease-out;
-		padding: $spacing;
-		min-width: 315px;
-		max-width: 25%;
-		opacity: 0;
-		height: auto;
+// 	.offcanvas.search {
+// 		display: flex;
+// 		z-index: $z-index-layer-four;
+// 		justify-content: flex-start;
+// 		position: absolute;
+// 		box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+// 		padding: $spacing;
+// 		background-color: $off-white;
+// 		height: 100%;
+// 		transition: transform 0.25s ease-out;
+// 		padding: $spacing;
+// 		min-width: 315px;
+// 		max-width: 25%;
+// 		opacity: 0;
+// 		height: auto;
 
-		@include mobile {
-			width: 100%;
-		}
+// 		@include mobile {
+// 			width: 100%;
+// 		}
 
-		.close {
-			top: 0;
-			position: absolute;
-			z-index: 5;
-			top: 15px;
-			right: 10px;
-		}
-	}
-}
+// 		.close {
+// 			top: 0;
+// 			position: absolute;
+// 			z-index: 5;
+// 			top: 15px;
+// 			right: 10px;
+// 		}
+// 	}
+// }
 
-.searchOpen {
-	.showsearch {
-		display: none;
-	}
+// .searchOpen {
+// 	.showsearch {
+// 		display: none;
+// 	}
 
-	.offcanvas.search {
-		opacity: 1;
-		top: 0;
-	}
-}
+// 	.offcanvas.search {
+// 		opacity: 1;
+// 		top: 0;
+// 	}
+// }
 
-.chat-bubble-alert {
-	display: none;
+// .chat-bubble-alert {
+// 	display: none;
 
-	border-radius: 20px;
-	padding: 10px 20px;
-	animation-duration: 0.8s;
-	animation-timing-function: ease-out;
-	animation-fill-mode: forwards;
+// 	border-radius: 20px;
+// 	padding: 10px 20px;
+// 	animation-duration: 0.8s;
+// 	animation-timing-function: ease-out;
+// 	animation-fill-mode: forwards;
 
-	img {
-		transform: rotate(180deg);
-	}
-}
+// 	img {
+// 		transform: rotate(180deg);
+// 	}
+// }
 
-.alert-message {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	z-index: 9999;
-	background-color: #f5f5f5;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-	padding: 16px;
-	animation: fade-in 0.5s ease-in-out;
-}
+// .alert-message {
+// 	position: fixed;
+// 	top: 50%;
+// 	left: 50%;
+// 	transform: translate(-50%, -50%);
+// 	z-index: 9999;
+// 	background-color: #f5f5f5;
+// 	border: 1px solid #ddd;
+// 	border-radius: 4px;
+// 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+// 	padding: 16px;
+// 	animation: fade-in 0.5s ease-in-out;
+// }
 
-.alert-message p {
-	margin: 0 0 16px;
-	font-size: 18px;
-	color: #333;
-}
+// .alert-message p {
+// 	margin: 0 0 16px;
+// 	font-size: 18px;
+// 	color: #333;
+// }
 
-.alert-message button {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	background-color: transparent;
-	border: none;
-	font-size: 24px;
-	color: #666;
-	cursor: pointer;
-	transition: color 0.3s ease-in-out;
-}
+// .alert-message button {
+// 	position: absolute;
+// 	top: 8px;
+// 	right: 8px;
+// 	background-color: transparent;
+// 	border: none;
+// 	font-size: 24px;
+// 	color: #666;
+// 	cursor: pointer;
+// 	transition: color 0.3s ease-in-out;
+// }
 
-.alert-message button:hover {
-	color: #333;
-}
+// .alert-message button:hover {
+// 	color: #333;
+// }
 
-.close-offcanvas {
-	right: 0;
-	top: 0;
-	position: absolute;
-	z-index: $z-index-layer-four;
-}
+// .close-offcanvas {
+// 	right: 0;
+// 	top: 0;
+// 	position: absolute;
+// 	z-index: $z-index-layer-four;
+// }
 
-@include mobile {
-	.search {
-		width: 100%;
+// @include mobile {
+// 	.search {
+// 		width: 100%;
 
-		&__results {
-			.message {
-				overflow: hidden;
-			}
-		}
-	}
+// 		&__results {
+// 			.message {
+// 				overflow: hidden;
+// 			}
+// 		}
+// 	}
 
-	.chat-ui {
-		.offcanvas.search {
-			min-width: 100%;
-			height: auto;
-		}
+// 	.chat-ui {
+// 		.offcanvas.search {
+// 			min-width: 100%;
+// 			height: auto;
+// 		}
 
-		.offcanvas.search {
-			opacity: 1;
-			top: 0;
-			padding: $spacing-s;
-			overflow: hidden;
-		}
-	}
-}
+// 		.offcanvas.search {
+// 			opacity: 1;
+// 			top: 0;
+// 			padding: $spacing-s;
+// 			overflow: hidden;
+// 		}
+// 	}
+// }

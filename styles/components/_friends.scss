@@ -1,0 +1,63 @@
+$light-grey: #737579;
+$ligt-grey--alternative: #f1f3f4;
+$dark-blue: #242730;
+
+$pink: #eb727f;
+$orange: #ffaf87;
+$purple: #715b85;
+$cyan: #385d84;
+$border: #f3f3f3;
+
+$primary-color: $pink;
+$primary-color--accent: $purple;
+$secondary-color: $cyan;
+
+$text-dark: $dark-blue;
+$text-light: $light-grey;
+
+.chat-previews {
+	border-top: 1px solid $border;
+}
+
+.chat {
+	display: flex;
+	flex-direction: column;
+	border-left: 5px solid transparent;
+
+	&.unread {
+		.chat-previews__friend {
+			border-left: 5px solid $primary-color;
+		}
+	}
+
+	&__friend {
+		padding: 25px 15px;
+		display: flex;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid $border;
+		}
+		img {
+			margin-right: $spacing-s;
+			// max-width: 60px;
+			border-radius: 100%;
+		}
+	}
+
+	&__info {
+		h3 {
+			font-size: 1.5em;
+			margin: 0;
+			color: $text-dark;
+		}
+
+		p {
+			color: $text-light;
+			font-size: 1.15em;
+			line-height: normal;
+		}
+	}
+
+	&__timestamp {
+	}
+}

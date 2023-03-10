@@ -1,0 +1,19 @@
+.chat-ui {
+	background-color: #f7f7f7;
+}
+
+.messenger {
+	display: flex;
+	padding: $spacing;
+}
+
+aside {
+	width: 40%;
+}
+
+main {
+	display: flex;
+	flex: 1;
+	background: darken(#f7f7f7, 5%);
+	height: 100vh;
+}

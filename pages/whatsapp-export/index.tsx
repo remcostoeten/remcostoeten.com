@@ -4,6 +4,7 @@ import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 import Image from 'next/image';
 import Header from '@/components/header/Header';
+import Friends from '@/components/Messenger/Friends';
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -112,6 +113,23 @@ const ChatHistory: React.FC = () => {
 				chatHistory={chatHistory}
 				searchResults={''}
 			/>
+
+			<div className='messenger'>
+				<aside className='messenger__friends'>
+					<h2>Inbox</h2>
+					<Friends />
+					<ChatSearch
+						onSearch={handleSearch}
+						onJumpTo={(index: number) =>
+							handleJumpTo(searchResults[index])
+						}
+						chatHistory={chatHistory}
+						searchResults={''}
+					/>
+					<nav></nav>
+				</aside>
+				<main className='messenger__chat'>main</main>
+			</div>
 
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
