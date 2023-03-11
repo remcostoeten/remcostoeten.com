@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { fb, auth, singInWithGoogle } from '../../firebase';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
+
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
 	const [minimalSticky, setmMinimalSticky] = useState(true);
@@ -11,8 +12,6 @@ const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [showWelcome, setShowWelcome] = useState(true);
 	const [showLoginModal, setShowLoginModal] = useState(false);
-	const handleOpen = () => setShowLoginModal(true);
-	const handleClose = () => setShowLoginModal(false);
 
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
@@ -66,6 +65,18 @@ const Header = () => {
 		return () => clearTimeout(timeout);
 	}, []);
 
+	useEffect(() => {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(true);
+				setUserName(user.displayName);
+			} else {
+				setIsLoggedIn(false);
+				setUserName(null);
+			}
+		});
+	}, []);
+
 	return (
 		<>
 			<motion.header
@@ -78,35 +89,39 @@ const Header = () => {
 						<motion.div
 							className='header__user'
 							whileHover={{ scale: 1.05 }}>
-							{minimalSticky && (
+							<div className='header__user-image-wrapper'>
 								<Image
-									src='/remco.png'
-									alt='Remco'
-									width={90}
-									height={90}
+									src={
+										auth.currentUser &&
+										auth.currentUser.photoURL
+											? auth.currentUser.photoURL
+											: ''
+									}
+									width={48}
+									height={48}
+									className='header__user-image'
+									alt={''}
 								/>
-							)}
-							{userName ? (
-								<div>
-									<p>Logged in as {userName}</p>
-								</div>
-							) : (
-								<div
-									className={`header__tagline ${
-										showTagline ? 'visible' : ''
-									}`}>
-									{/* <h3>remcostoeten</h3> */}
-									{showTagline && (
-										<h4>front-end developer</h4>
-									)}
-								</div>
-							)}
+							</div>
+
+							<motion.div
+								className='header__user-name-wrapper'
+								whileHover={{ scale: 1.05 }}>
+								<span className='header__user-name'>
+									<span>{userName} </span>
+									<span className='email'>
+										{auth.currentUser?.email
+											? `${auth.currentUser?.email}`
+											: ''}
+									</span>
+								</span>
+							</motion.div>
 						</motion.div>
 					</Link>
 					<nav className='header__menu'>
 						<ul>
 							<motion.li whileHover={{ scale: 1.05 }}>
-									<Link href='/message-history'>Messenger</Link>
+								<Link href='/message-history'>Messenger</Link>
 							</motion.li>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/whatsapp-export'>
