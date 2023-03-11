@@ -1,3 +1,0 @@
-[submodule "privateapis"]
-	path = private-apis
-	url = git@github.com:remcostoeten/private-apis.git
