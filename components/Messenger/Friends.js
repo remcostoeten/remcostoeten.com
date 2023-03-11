@@ -42,7 +42,7 @@ export default function Friends() {
 
 	return (
 		<>
-			<div className='chat-previews'>
+			{/* <div className='chat-previews'>
 				<div className='chat'>
 					{chats.map((chatData) => (
 						<MessagePreview
@@ -51,7 +51,7 @@ export default function Friends() {
 						/>
 					))}
 				</div>
-			</div>
+			</div> */}
 			<div className='messenger__chat'></div>
 		</>
 	);

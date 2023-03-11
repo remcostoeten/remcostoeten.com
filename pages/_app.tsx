@@ -3,11 +3,12 @@ import type { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+
 Router.events.on('routeChangeStart', () => {
 	const loader = document.createElement('div');
-	loader.classList.add('loader');
+	loader.classList.add('loader'); // use your custom loader class
 	const spinner = document.createElement('div');
-	spinner.classList.add('spinner');
+	spinner.classList.add('spinner'); // use your custom spinner class
 	loader.appendChild(spinner);
 	document.body.appendChild(loader);
 });
