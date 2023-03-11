@@ -1,52 +1,72 @@
 import React from 'react';
 import Image from 'next/image';
-import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import MessagePreview from './MessagePreview';
+import yData from '../../private-apis/data/y.json';
+import znewData from '../../private-apis/data/znew.json';
+import zoldData from '../../private-apis/data/zold.json';
+import whatsappData from '../../pages/whatsapp-export/ChatHistory.json';
+
+interface Chat {
+	timestamp: string;
+	name?: string;
+	firstName?: string;
+	message?: string;
+	text?: string;
+	Avatar?: string;
+}
+
+interface ChatSummary {
+	firstName: string;
+	avatar: string;
+	lastMessage: string;
+	timestamp: string;
+}
+
+const avatarSize = 45;
 
 export default function Friends() {
+	const chats: Chat[] = [
+		yData[yData.length - 1],
+		whatsappData[whatsappData.length - 1],
+		znewData[znewData.length - 1],
+		zoldData[zoldData.length - 1],
+	];
+
+	function getChatSummaries(chats: Chat[]): Record<string, ChatSummary> {
+		const chatSummaries: Record<string, ChatSummary> = {};
+
+		chats.forEach((chat) => {
+			const name = chat.name ?? chat.firstName;
+			if (!chatSummaries[name]) {
+				chatSummaries[name] = {
+					firstName: chat.firstName ?? chat.name ?? '',
+					avatar: chat.Avatar ?? '',
+					lastMessage: chat.message ?? chat.text ?? '',
+					timestamp: chat.timestamp,
+				};
+			}
+		});
+
+		return chatSummaries;
+	}
+
+	const yChatSummaries = getChatSummaries([yData[yData.length - 1]]);
+	const whatsappChatSummaries = getChatSummaries([
+		whatsappData[whatsappData.length - 1],
+	]);
+	const znewChatSummaries = getChatSummaries([znewData[znewData.length - 1]]);
+	const zoldChatSummaries = getChatSummaries([zoldData[zoldData.length - 1]]);
+
 	return (
 		<>
 			<div className='chat-previews'>
 				<div className='chat'>
-					<div className='chat__friend unread'>
-						<Image
-							// src='/majin-buu-happy.jpg'
-							src='/buu.webp'
-							alt='Majin Buu'
-							width={40}
-							height={40}
+					{chats.map((chatData) => (
+						<MessagePreview
+							key={chatData.timestamp}
+							chatData={chatData}
 						/>
-						<div className='chat__info'>
-							<h3>Majin Buu</h3>
-							<p>
-								Hey, how are you? I have fowardewd you the
-								message of last week.
-							</p>
-						</div>
-						<div className='chat__timestamp'></div>
-						<div className='chat__pin'>
-							<FavoriteBorderIcon color='disabled' />
-						</div>
-					</div>
-					<div className='chat__friend'>
-						<Image
-							// src='/majin-buu-happy.jpg'
-							src='/peter.jpg'
-							alt='Peter Griffin'
-							width={40}
-							height={40}
-						/>
-						<div className='chat__info'>
-							<h3>Majin Buu</h3>
-							<p>
-								Hey, how are you? I have fowardewd you the
-								message of last week.
-							</p>
-						</div>
-						<div className='chat__timestamp'></div>
-						<div className='chat__pin'>
-							<FavoriteBorderIcon color='disabled' />
-						</div>
-					</div>
+					))}
 				</div>
 			</div>
 			<div className='messenger__chat'></div>

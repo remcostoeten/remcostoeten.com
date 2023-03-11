@@ -1,6 +1,13 @@
-$light-grey: #737579;
+$light-grey: #bcbcbd;
 $ligt-grey--alternative: #f1f3f4;
-$dark-blue: #242730;
+$color-black: #282829;
+$color-white: #fff;
+
+$dark-blue: #1b1543;
+$dark-blue--alternative: #332d57;
+
+$heading-color: $dark-blue;
+$heading--alternative: $dark-blue--alternative;
 
 $pink: #eb727f;
 $orange: #ffaf87;
@@ -12,6 +19,7 @@ $primary-color: $pink;
 $primary-color--accent: $purple;
 $secondary-color: $cyan;
 
+$text-paragraph: $color-black;
 $text-dark: $dark-blue;
 $text-light: $light-grey;
 
@@ -31,8 +39,9 @@ $text-light: $light-grey;
 	}
 
 	&__friend {
-		padding: 25px 15px;
 		display: flex;
+		align-items: center;
+		padding: 25px 15px;
 
 		&:not(:last-child) {
 			border-bottom: 1px solid $border;
@@ -48,7 +57,7 @@ $text-light: $light-grey;
 		h3 {
 			font-size: 1.5em;
 			margin: 0;
-			color: $text-dark;
+			color: $heading-color;
 		}
 
 		p {

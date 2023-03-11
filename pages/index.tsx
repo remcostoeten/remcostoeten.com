@@ -17,7 +17,9 @@ export default function Home() {
 				<div className='dots'></div>
 			</ul>
 			<Header />
-			<div className='container'>{/* <Intro /> */}</div>
+			<div className='container'>
+				<Intro />
+			</div>
 		</div>
 	);
 }

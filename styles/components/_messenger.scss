@@ -1,19 +1,21 @@
-.chat-ui {
-	background-color: #f7f7f7;
-}
+$aside-color: #fafafe;
+$heading-color: #1b1543;
 
-.messenger {
-	display: flex;
-	padding: $spacing;
-}
+.messenger-ui {
+	.messenger {
+		display: flex;
+		padding: $spacing;
+	}
 
-aside {
-	width: 40%;
-}
+	aside {
+		width: 40%;
+		background-color: $aside-color;
+	}
 
-main {
-	display: flex;
-	flex: 1;
-	background: darken(#f7f7f7, 5%);
-	height: 100vh;
+	main {
+		display: flex;
+		flex: 1;
+		background: darken(#f7f7f7, 5%);
+		height: 100vh;
+	}
 }

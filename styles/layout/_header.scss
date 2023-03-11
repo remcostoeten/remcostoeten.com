@@ -1,19 +1,19 @@
-// .scrolled {
-// 	height: 1500px;
-// 	background-color: blue;
+.scrolled {
+	height: 1500px;
+	background-color: blue;
 
-// 	.header {
-// 		padding: 8px 0;
-// 		position: sticky;
-// 		top: 0;
-// 		left: 0;
-// 		z-index: $z-index-layer-three;
+	.header {
+		padding: 8px 0;
+		position: sticky;
+		top: 0;
+		left: 0;
+		z-index: $z-index-layer-three;
 
-// 		&__tagline {
-// 			padding-left: 0;
-// 		}
-// 	}
-// }
+		&__tagline {
+			padding-left: 0;
+		}
+	}
+}
 .chat-ui {
 	.header {
 		display: none;

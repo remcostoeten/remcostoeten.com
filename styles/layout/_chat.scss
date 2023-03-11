@@ -1,406 +1,406 @@
-// // Define variables
-// $dark-background: #2e2f3e;
-// $grey-text: #77787e;
-// $accent-color: #8073fb;
-// $blue: #272a37;
-// $dark-blue: #1b1c24;
-// $light-blue: #26282f;
-// $white-text: #eaeaeb;
-// $grey: #757889;
-// $icon-color: $grey;
-// $border-color: #2e2e38;
-// $off-white: #f0f0f0;
-// $gradient-one: #2d2f3e;
-// $gradient-two: #323645;
-// $light-bg: #313646;
+// Define variables
+$dark-background: #2e2f3e;
+$grey-text: #77787e;
+$accent-color: #8073fb;
+$blue: #272a37;
+$dark-blue: #1b1c24;
+$light-blue: #26282f;
+$white-text: #eaeaeb;
+$grey: #757889;
+$icon-color: $grey;
+$border-color: #2e2e38;
+$off-white: #f0f0f0;
+$gradient-one: #2d2f3e;
+$gradient-two: #323645;
+$light-bg: #313646;
 
-// .offcanvas {
-// 	position: absolute;
-// }
+.offcanvas {
+	position: absolute;
+}
 
-// .search-open {
-// 	overflow: hidden;
-// }
+.search-open {
+	overflow: hidden;
+}
 
-// .chat-ui {
-// 	background: $dark-background;
+.chat-ui {
+	background: $dark-background;
 
-// 	.header {
-// 		margin-bottom: $spacing;
-// 	}
+	.header {
+		margin-bottom: $spacing;
+	}
 
-// 	article {
-// 		color: $off-white;
-// 		line-height: 2em;
-// 		padding: 1em 0;
+	article {
+		color: $off-white;
+		line-height: 2em;
+		padding: 1em 0;
 
-// 		.contained {
-// 			margin: 20px auto;
-// 		}
-// 	}
+		.contained {
+			margin: 20px auto;
+		}
+	}
 
-// 	br {
-// 		display: block;
-// 		margin: 2px 0;
-// 	}
+	br {
+		display: block;
+		margin: 2px 0;
+	}
 
-// 	article {
-// 		span,
-// 		a {
-// 			color: $off-white;
-// 			text-decoration: underline;
-// 			margin-left: 4px;
-// 		}
-// 	}
+	article {
+		span,
+		a {
+			color: $off-white;
+			text-decoration: underline;
+			margin-left: 4px;
+		}
+	}
 
-// 	#text1,
-// 	#text2 {
-// 		display: none;
-// 		color: $off-white;
-// 	}
+	#text1,
+	#text2 {
+		display: none;
+		color: $off-white;
+	}
 
-// 	.toggle-wrapper {
-// 		color: $off-white;
-// 	}
-// }
+	.toggle-wrapper {
+		color: $off-white;
+	}
+}
 
-// .bubble {
-// 	&__message {
-// 		display: flex;
-// 		justify-content: flex-end;
-// 		max-width: 450px;
-// 		width: -moz-fit-content;
-// 		display: flex;
-// 		transition: 125ms;
-// 		border-radius: 16px 8px 8px 4px;
-// 		background-color: #1f2029;
-// 		background-clip: content-box;
-// 		border: 1px solid #2a2b38;
-// 		z-index: 2;
-// 		flex: 0;
-// 		font-size: 15px;
-// 		padding: 10px;
-// 		m: 4px;
-// 		color: #77787e;
-// 		align-items: initial;
-// 		flex: 1 0 auto;
-// 		position: relative;
+.bubble {
+	&__message {
+		display: flex;
+		justify-content: flex-end;
+		max-width: 450px;
+		width: -moz-fit-content;
+		display: flex;
+		transition: 125ms;
+		border-radius: 16px 8px 8px 4px;
+		background-color: #1f2029;
+		background-clip: content-box;
+		border: 1px solid #2a2b38;
+		z-index: 2;
+		flex: 0;
+		font-size: 15px;
+		padding: 10px;
+		m: 4px;
+		color: #77787e;
+		align-items: initial;
+		flex: 1 0 auto;
+		position: relative;
 
-// 		span {
-// 			display: flex;
-// 		}
+		span {
+			display: flex;
+		}
 
-// 		.bubble__second-person p {
-// 			border-radius: 16px 8px 8px 4px;
-// 			background-color: #8073fb !important;
-// 			color: $off-white;
-// 			padding: 15px 10px;
-// 		}
-// 	}
+		.bubble__second-person p {
+			border-radius: 16px 8px 8px 4px;
+			background-color: #8073fb !important;
+			color: $off-white;
+			padding: 15px 10px;
+		}
+	}
 
-// 	&__second-person {
-// 		display: flex;
-// 		justify-content: flex-end;
-// 		align-items: flex-end;
-// 		justify-content: flex-start;
-// 	}
-// }
+	&__second-person {
+		display: flex;
+		justify-content: flex-end;
+		align-items: flex-end;
+		justify-content: flex-start;
+	}
+}
 
-// .chat-ui {
-// 	aside {
-// 		overflow: hidden;
+.chat-ui {
+	aside {
+		overflow: hidden;
 
-// 		&:has(h3) {
-// 			padding-top: 40px;
-// 		}
+		&:has(h3) {
+			padding-top: 40px;
+		}
 
-// 		display: flex;
-// 		flex-direction: column;
-// 		left: 0;
-// 		left: -100px;
+		display: flex;
+		flex-direction: column;
+		left: 0;
+		left: -100px;
 
-// 		padding: $spacing;
-// 		position: -webkit-sticky;
-// 		position: sticky;
-// 		top: 0;
-// 		background: #1f2029;
+		padding: $spacing;
+		position: -webkit-sticky;
+		position: sticky;
+		top: 0;
+		background: #1f2029;
 
-// 		h3 {
-// 			position: absolute;
-// 			color: $off-white;
-// 			font-weight: 400;
-// 			top: -45px;
-// 		}
+		h3 {
+			position: absolute;
+			color: $off-white;
+			font-weight: 400;
+			top: -45px;
+		}
 
-// 		button {
-// 			width: 100%;
-// 			border: none;
-// 			background-color: transparent;
-// 			border: none;
-// 			color: #a2a2a3;
+		button {
+			width: 100%;
+			border: none;
+			background-color: transparent;
+			border: none;
+			color: #a2a2a3;
 
-// 			padding: $spacing-xs;
-// 			text-align: left;
-// 			border-bottom: 1px solid #1f2029;
-// 			background-color: $off-white;
-// 		}
+			padding: $spacing-xs;
+			text-align: left;
+			border-bottom: 1px solid #1f2029;
+			background-color: $off-white;
+		}
 
-// 		input {
-// 			position: -webkit-sticky;
-// 			background: $off-white;
-// 			position: sticky;
-// 		}
-// 	}
-// }
+		input {
+			position: -webkit-sticky;
+			background: $off-white;
+			position: sticky;
+		}
+	}
+}
 
-// .z {
-// 	&:after {
-// 		background-position: 4px -35px !important;
-// 		// background-image: url('/private-apis/zface.jpg');
-// 		content: '';
-// 		background-size: 125%;
-// 		height: 55px;
-// 		width: 55px;
-// 		display: block;
-// 		border-radius: 16px;
-// 		position: absolute;
-// 		top: 15px;
-// 		background-position: -5px -75px;
-// 		right: -70px;
-// 		top: 16px;
-// 	}
+.z {
+	&:after {
+		background-position: 4px -35px !important;
+		// background-image: url('/private-apis/zface.jpg');
+		content: '';
+		background-size: 125%;
+		height: 55px;
+		width: 55px;
+		display: block;
+		border-radius: 16px;
+		position: absolute;
+		top: 15px;
+		background-position: -5px -75px;
+		right: -70px;
+		top: 16px;
+	}
 
-// 	&.d {
-// 		// background-image: url('/private-apis/zface.jpg');
-// 	}
+	&.d {
+		// background-image: url('/private-apis/zface.jpg');
+	}
 
-// 	&.y {
-// 		// background-image: url('/private-apis/zface.jpg');
-// 	}
-// }
+	&.y {
+		// background-image: url('/private-apis/zface.jpg');
+	}
+}
 
-// .chat {
-// 	display: flex;
-// 	color: $grey-text;
-// 	padding: $spacing;
-// 	max-width: $chat-container-width;
-// 	margin: 0 auto;
-// 	border-radius: 16px 8px 8px 4px;
-// 	display: flex;
-// 	position: relative;
+.chat {
+	display: flex;
+	color: $grey-text;
+	padding: $spacing;
+	max-width: $chat-container-width;
+	margin: 0 auto;
+	border-radius: 16px 8px 8px 4px;
+	display: flex;
+	position: relative;
 
-// 	&__inner {
-// 		max-width: 768px;
-// 		padding: $spacing;
-// 		margin: 0 auto;
-// 		color: $off-white;
-// 		line-height: 2em;
-// 		font-size: 1.9em;
-// 	}
+	&__inner {
+		max-width: 768px;
+		padding: $spacing;
+		margin: 0 auto;
+		color: $off-white;
+		line-height: 2em;
+		font-size: 1.9em;
+	}
 
-// 	&__results {
-// 		position: sticky;
-// 		top: 0;
-// 		left: 0;
-// 		margin: 0 auto;
-// 		padding: $spacing;
-// 		background-color: #1f2029;
-// 	}
+	&__results {
+		position: sticky;
+		top: 0;
+		left: 0;
+		margin: 0 auto;
+		padding: $spacing;
+		background-color: #1f2029;
+	}
 
-// 	&__sender {
-// 		position: relative;
+	&__sender {
+		position: relative;
 
-// 		&::after {
-// 			padding-right: 3px;
-// 			content: ':';
-// 		}
-// 	}
+		&::after {
+			padding-right: 3px;
+			content: ':';
+		}
+	}
 
-// 	p {
-// 		border-radius: 16px 8px 8px 4px;
-// 		color: $off-white;
-// 		padding: 15px 20px;
-// 	}
+	p {
+		border-radius: 16px 8px 8px 4px;
+		color: $off-white;
+		padding: 15px 20px;
+	}
 
-// 	button {
-// 		border: none;
-// 		background-color: $dark-background;
-// 		color: $off-white;
-// 		border-radius: 16px 8px 8px 4px;
-// 		border: 1px solid $dark-background;
-// 		font-size: 1.5em;
-// 	}
+	button {
+		border: none;
+		background-color: $dark-background;
+		color: $off-white;
+		border-radius: 16px 8px 8px 4px;
+		border: 1px solid $dark-background;
+		font-size: 1.5em;
+	}
 
-// 	input {
-// 		margin: $spacing 0;
-// 		z-index: 10;
-// 		right: 100px;
-// 		width: 100%;
-// 		height: 45px;
-// 		border-radius: 9px;
-// 		padding: 0 9px;
-// 		border-radius: 16px 8px 8px 4px;
-// 		margin-bottom: $spacing-xs;
-// 		color: black;
-// 		width: 125px;
-// 		margin-left: -200px;
-// 		background-color: $off-white;
-// 		border-color: $dark-background;
-// 	}
+	input {
+		margin: $spacing 0;
+		z-index: 10;
+		right: 100px;
+		width: 100%;
+		height: 45px;
+		border-radius: 9px;
+		padding: 0 9px;
+		border-radius: 16px 8px 8px 4px;
+		margin-bottom: $spacing-xs;
+		color: black;
+		width: 125px;
+		margin-left: -200px;
+		background-color: $off-white;
+		border-color: $dark-background;
+	}
 
-// 	.bubble {
-// 		&__attachments {
-// 			display: flex;
-// 			font-size: 6px;
-// 			align-items: center;
+	.bubble {
+		&__attachments {
+			display: flex;
+			font-size: 6px;
+			align-items: center;
 
-// 			span {
-// 				padding-right: 3px;
-// 			}
+			span {
+				padding-right: 3px;
+			}
 
-// 			&:empty {
-// 				border: none;
-// 			}
-// 		}
+			&:empty {
+				border: none;
+			}
+		}
 
-// 		&__second-person {
-// 			display: flex;
-// 			justify-content: flex-end;
-// 			align-items: flex-end;
-// 			background-color: $accent-color !important;
-// 			color: #f0f0f0 !important;
+		&__second-person {
+			display: flex;
+			justify-content: flex-end;
+			align-items: flex-end;
+			background-color: $accent-color !important;
+			color: #f0f0f0 !important;
 
-// 			&:after {
-// 				background-image: url('https://xsgames.co/randomusers/assets');
-// 			}
-// 		}
+			&:after {
+				background-image: url('https://xsgames.co/randomusers/assets');
+			}
+		}
 
-// 		&__message {
-// 			max-width: 450px;
-// 			width: fit-content;
-// 			display: flex;
-// 			position: relative;
-// 			transition: 125ms;
-// 			position: relative;
-// 			border-radius: 30px;
-// 			background-color: #1f2029;
-// 			border: none;
-// 			z-index: 2;
-// 			color: #77787e;
-// 			position: relative;
+		&__message {
+			max-width: 450px;
+			width: fit-content;
+			display: flex;
+			position: relative;
+			transition: 125ms;
+			position: relative;
+			border-radius: 30px;
+			background-color: #1f2029;
+			border: none;
+			z-index: 2;
+			color: #77787e;
+			position: relative;
 
-// 			.message {
-// 				display: flex;
-// 				flex-direction: column;
-// 				max-width: 200px;
-// 				width: 200px;
-// 			}
+			.message {
+				display: flex;
+				flex-direction: column;
+				max-width: 200px;
+				width: 200px;
+			}
 
-// 			&:after {
-// 				content: '';
-// 				background-size: 125%;
-// 				background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
-// 				// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
-// 				height: 55px;
-// 				width: 55px;
-// 				display: block;
-// 				border-radius: 16px;
-// 				position: absolute;
-// 				top: 15px;
-// 				background-position: -5px -75px;
-// 				right: -70px;
-// 				top: 16px;
+			&:after {
+				content: '';
+				background-size: 125%;
+				background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
+				// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
+				height: 55px;
+				width: 55px;
+				display: block;
+				border-radius: 16px;
+				position: absolute;
+				top: 15px;
+				background-position: -5px -75px;
+				right: -70px;
+				top: 16px;
 
-// 				@include mobile {
-// 					width: 45px;
-// 					height: 45px;
-// 					right: -40px;
-// 					background-position: center;
-// 				}
-// 			}
+				@include mobile {
+					width: 45px;
+					height: 45px;
+					right: -40px;
+					background-position: center;
+				}
+			}
 
-// 			&.bubble__second-person {
-// 				&:after {
-// 					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
-// 					top: 15px;
-// 					background-position: -5px -75px;
-// 					left: -70px;
-// 					top: 11px;
+			&.bubble__second-person {
+				&:after {
+					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
+					top: 15px;
+					background-position: -5px -75px;
+					left: -70px;
+					top: 11px;
 
-// 					@include mobile {
-// 						width: 45px;
-// 						background-position: center;
-// 						height: 45px;
-// 						left: -40px;
-// 						object-fit: cover;
-// 					}
-// 				}
-// 			}
-// 		}
+					@include mobile {
+						width: 45px;
+						background-position: center;
+						height: 45px;
+						left: -40px;
+						object-fit: cover;
+					}
+				}
+			}
+		}
 
-// 		&__bg {
-// 			&:hover {
-// 				position: relative;
-// 				cursor: pointer;
-// 			}
-// 		}
-// 	}
+		&__bg {
+			&:hover {
+				position: relative;
+				cursor: pointer;
+			}
+		}
+	}
 
-// 	.chat-history {
-// 		color: $off-white;
-// 		font-size: 2.5em;
-// 		padding: $spacing;
+	.chat-history {
+		color: $off-white;
+		font-size: 2.5em;
+		padding: $spacing;
 
-// 		input {
-// 			border-radius: 1px;
-// 			border: 1px solid #f0f0f0;
-// 			margin-left: $spacing;
-// 			padding: 6px 10px;
-// 			color: $dark-background;
-// 		}
+		input {
+			border-radius: 1px;
+			border: 1px solid #f0f0f0;
+			margin-left: $spacing;
+			padding: 6px 10px;
+			color: $dark-background;
+		}
 
-// 		&__person {
-// 			border-bottom: 1px solid $border-color;
-// 			line-height: 12px;
-// 			padding: $spacing;
-// 			margin-top: -8px;
-// 			margin-left: 5px;
-// 		}
+		&__person {
+			border-bottom: 1px solid $border-color;
+			line-height: 12px;
+			padding: $spacing;
+			margin-top: -8px;
+			margin-left: 5px;
+		}
 
-// 		&__inner {
-// 			padding: $spacing;
-// 		}
-// 	}
-// }
+		&__inner {
+			padding: $spacing;
+		}
+	}
+}
 
-// @include mobile {
-// 	.chat-ui {
-// 		header.header {
-// 			display: flex;
-// 			align-items: center;
-// 			justify-content: center;
-// 			position: static;
+@include mobile {
+	.chat-ui {
+		header.header {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			position: static;
 
-// 			#text1,
-// 			#text2 {
-// 				filter: unset;
-// 				text-align: center;
-// 				margin: 0 auto;
-// 				font-size: 3em;
-// 			}
-// 		}
-// 	}
-// }
+			#text1,
+			#text2 {
+				filter: unset;
+				text-align: center;
+				margin: 0 auto;
+				font-size: 3em;
+			}
+		}
+	}
+}
 
-// .arrow {
-// 	position: absolute;
-// 	width: 0;
-// 	height: 0;
-// 	border-width: 8px;
-// 	border-style: solid;
-// 	border-color: transparent transparent white transparent;
-// 	left: 50%;
-// 	transform: translateX(-50%);
-// 	bottom: -16px;
-// 	animation: arrowBlink 1s ease-in-out infinite;
-// }
+.arrow {
+	position: absolute;
+	width: 0;
+	height: 0;
+	border-width: 8px;
+	border-style: solid;
+	border-color: transparent transparent white transparent;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: -16px;
+	animation: arrowBlink 1s ease-in-out infinite;
+}
