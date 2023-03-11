@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { fb, auth, singInWithGoogle } from '../../firebase';
-import IconButton from '@mui/material/IconButton';
-import { Info } from '@mui/icons-material';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { motion } from 'framer-motion';
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
@@ -107,7 +106,7 @@ const Header = () => {
 					<nav className='header__menu'>
 						<ul>
 							<motion.li whileHover={{ scale: 1.05 }}>
-								<Link href='/message-history'>Messenger</Link>
+									<Link href='/message-history'>Messenger</Link>
 							</motion.li>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/whatsapp-export'>

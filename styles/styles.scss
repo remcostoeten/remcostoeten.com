@@ -15,6 +15,7 @@
 @import './core/base';
 @import './core/theme';
 @import './core/alert';
+@import './core/error';
 // @import './core/dots';
 @import './core/body';
 @import './core/animations';
@@ -34,9 +35,9 @@
 @import './components/messenger';
 
 .selected {
-	width: 100px;
-	height: 100px;
-	background-color: red;
-	color: blue;
-	padding: 10px;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    color: blue;
+    padding: 10px;
 }

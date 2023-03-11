@@ -1,14 +1,18 @@
 import React, { useEffect } from 'react';
 import Friends from '@/components/Messenger/Friends';
 import Header from '@/components/header/Header';
+import PrivateRoute from '@/components/PrivateModal';
+import { db } from '../../firebase';
+import withAuth from '../withAuth';
 
-export default function index() {
+const MessengerPage = () => {
 	useEffect(() => {
 		document.body.classList.add('messenger-ui');
 		return () => {
 			document.body.classList.remove('messenger-ui');
 		};
 	}, []);
+
 	return (
 		<>
 			<Header />
@@ -23,4 +27,6 @@ export default function index() {
 			</div>
 		</>
 	);
-}
+};
+
+export default withAuth(MessengerPage);
