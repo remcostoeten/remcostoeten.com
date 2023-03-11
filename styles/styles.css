@@ -15,7 +15,6 @@ body {
 #text1,
 #text2 {
   position: absolute;
-  width: 100%;
   display: inline-block;
   font-family: "Raleway", sans-serif;
   font-size: 5em;
@@ -1488,6 +1487,9 @@ h1 {
   transition: 250ms ease-out all;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
+.header h2 {
+  margin-right: 36px;
+}
 .header span,
 .header a {
   text-decoration: none !important;
@@ -2322,6 +2324,10 @@ button {
   flex: 1;
   background: #eaeaea;
   height: 100vh;
+}
+
+.body-big {
+  height: 200vh;
 }
 
 .widget {

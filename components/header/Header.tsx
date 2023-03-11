@@ -109,7 +109,7 @@ const Header = () => {
 										</span>
 									</motion.div>
 								) : (
-									<Logo />
+									<h2>Logo</h2>
 								)}
 							</motion.div>
 						</motion.div>

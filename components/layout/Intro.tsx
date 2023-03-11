@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 export default function Intro() {
+	useEffect(() => {
+		document.body.classList.add('body-big');
+		return () => {
+			document.body.classList.remove('body-big');
+		};
+	}, []);
 	return (
 		<>
 			<article className='container intro'>
