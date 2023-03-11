@@ -69,19 +69,6 @@ const Header = () => {
 
 	return (
 		<>
-			<div>
-				{showWelcome && userName && (
-					<motion.div
-						className='welcome-message'
-						initial={{ opacity: 0, y: -50 }}
-						animate={{ opacity: 1, y: 0 }}
-						exit={{ opacity: 0, y: -50 }}
-						transition={{ duration: 0.5 }}>
-						<p>Welcome, {userName}!</p>
-					</motion.div>
-				)}
-				{/* Your other code here */}
-			</div>
 			<motion.header
 				className='header top-header'
 				variants={headerVariants}
@@ -119,6 +106,9 @@ const Header = () => {
 					</Link>
 					<nav className='header__menu'>
 						<ul>
+							<motion.li whileHover={{ scale: 1.05 }}>
+								<Link href='/message-history'>Messenger</Link>
+							</motion.li>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/whatsapp-export'>
 									Chat feature

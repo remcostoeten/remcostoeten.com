@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import Friends from '@/components/Messenger/Friends';
+import Header from '@/components/header/Header';
 
 export default function index() {
 	useEffect(() => {
@@ -9,8 +10,8 @@ export default function index() {
 		};
 	}, []);
 	return (
-		<div>
-			{' '}
+		<>
+			<Header />
 			<div className='messenger'>
 				<aside className='messenger__friends'>
 					<h2>Inbox</h2>
@@ -20,6 +21,6 @@ export default function index() {
 				</aside>
 				<main className='messenger__chat'></main>
 			</div>
-		</div>
+		</>
 	);
 }

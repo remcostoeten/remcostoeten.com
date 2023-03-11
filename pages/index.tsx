@@ -3,23 +3,15 @@ import Intro from '@/components/layout/Intro';
 import React from 'react';
 export default function Home() {
 	return (
-		<div className='area'>
-			<ul className='circles'>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-				<div className='dots'></div>
-			</ul>
+		<>
+			<div className='bg'></div>
+			<div className='bg bg2'></div>
+			<div className='bg bg3'></div>
+			<div className='content'></div>
 			<Header />
 			<div className='container'>
 				<Intro />
 			</div>
-		</div>
+		</>
 	);
 }
