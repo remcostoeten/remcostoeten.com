@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth, singInWithGoogle } from '../../firebase';
 import { motion } from 'framer-motion';
-import Logo from './Logo';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
@@ -12,6 +14,14 @@ const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [showWelcome, setShowWelcome] = useState(true);
 	const [showLoginModal, setShowLoginModal] = useState(false);
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
 
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
@@ -116,6 +126,54 @@ const Header = () => {
 					</Link>
 					<nav className='header__menu'>
 						<ul>
+							{isLoggedIn &&
+							auth.currentUser?.email ===
+								'stoetenremco.rs@gmail.com' ? (
+								<div>
+									<Button
+										id='demo-positioned-button'
+										aria-controls={
+											open
+												? 'demo-positioned-menu'
+												: undefined
+										}
+										aria-haspopup='true'
+										aria-expanded={
+											open ? 'true' : undefined
+										}
+										onClick={handleClick}>
+										Dashboard
+									</Button>
+									<Menu
+										id='demo-positioned-menu'
+										aria-labelledby='demo-positioned-button'
+										anchorEl={anchorEl}
+										open={open}
+										onClose={handleClose}
+										anchorOrigin={{
+											vertical: 'top',
+											horizontal: 'left',
+										}}
+										transformOrigin={{
+											vertical: 'top',
+											horizontal: 'left',
+										}}>
+										<MenuItem>
+											<Link href='/zold'>z old</Link>{' '}
+										</MenuItem>
+										<MenuItem>
+											<Link href='/znew'>znew</Link>{' '}
+										</MenuItem>
+										<MenuItem>
+											<Link href='/y'>y</Link>{' '}
+										</MenuItem>{' '}
+										<MenuItem>
+											<Link href='/d'>d</Link>{' '}
+										</MenuItem>
+									</Menu>
+								</div>
+							) : null}
+							<Link href='/test-history'>Messenger</Link>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/message-history'>Messenger</Link>
 							</motion.li>
