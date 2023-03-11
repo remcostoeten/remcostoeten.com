@@ -1,55 +1,78 @@
 $color-one: #e97f6b;
 $color-two: #703d38;
 $color-three: #e5b088;
+$color-four: #a898dc;
 
 $color-one-b: #a898dc;
 $color-two-b: #d1f7d5;
 $color-three-b: #fefed2;
+$color-four-b: #37306b;
 
 $color-one-c: #37306b;
 $color-two-c: #66347f;
 $color-three-c: #9e4784;
 $color-four-c: #d27685;
 
-$color-one-d: #191825;
+$color-one-d: #e97f6b;
 $color-two-d: #865dff;
 $color-three-d: #e384ff;
-$color-three-d: #ffa3fd;
-
-// .bg {
-// 	animation: slide 3s ease-in-out infinite alternate;
-// 	background-image: linear-gradient(
-// 		-60deg,
-// 		$color-one 33%,
-// 		$color-two 33%,
-// 		$color-three 33%
-// 	);
-// 	bottom: 0;
-// 	left: -50%;
-// 	opacity: 0.5;
-// 	position: fixed;
-// 	right: -50%;
-// 	top: 0;
-// 	z-index: -1;
-// }
-// .bg {
-// 	animation: slide 3s ease-in-out infinite alternate;
-// 	background-image: linear-gradient(
-// 		-60deg,
-// 		$color-one-b 33%,
-// 		$color-two-b 33%,
-// 		$color-three-b 33%
-// 	);
-// 	bottom: 0;
-// 	left: -50%;
-// 	opacity: 0.5;
-// 	position: fixed;
-// 	right: -50%;
-// 	top: 0;
-// 	z-index: -1;
-// }
+$color-four-d: #ffa3fd;
 
 .bg {
+	animation: slide 3s ease-in-out infinite alternate;
+	background-image: linear-gradient(
+		-60deg,
+		$color-one 25%,
+		$color-two 25%,
+		$color-three 25%,
+		$color-four 25%
+	);
+	bottom: 0;
+	left: -50%;
+	opacity: 0.5;
+	position: fixed;
+	right: -50%;
+	top: 0;
+	z-index: -1;
+}
+
+// .bg {
+// 	animation: slide 3s ease-in-out infinite alternate;
+// 	background-image: linear-gradient(
+// 		-60deg,
+// 		$color-one-c 25%,
+// 		$color-two-c 25%,
+// 		$color-three-c 25%,
+// 		$color-four-c 25%
+// 	);
+// 	bottom: 0;
+// 	left: -50%;
+// 	opacity: 0.5;
+// 	position: fixed;
+// 	right: -50%;
+// 	top: 0;
+// 	z-index: -1;
+// }
+
+.bg-variant {
+	animation: slide 3s ease-in-out infinite alternate;
+	background-image: linear-gradient(
+		-60deg,
+		$color-one-b 25%,
+		$color-two-b 25%,
+		$color-three-b 25%,
+		$color-four-b 25%
+	);
+	bottom: 0;
+	left: -50%;
+	opacity: 0.5;
+	position: fixed;
+	right: -50%;
+	top: 0;
+	z-index: -1;
+}
+
+.bg-variant-three {
 	animation: slide 3s ease-in-out infinite alternate;
 	background-image: linear-gradient(
 		-60deg,
@@ -67,23 +90,23 @@ $color-three-d: #ffa3fd;
 	z-index: -1;
 }
 
-// .bg {
-// 	animation: slide 3s ease-in-out infinite alternate;
-// 	background-image: linear-gradient(
-// 		-60deg,
-// 		$color-one-d 25%,
-// 		$color-two-d 25%,
-// 		$color-threed 25%,
-// 		$color-four-d 25%
-// 	);
-// 	bottom: 0;
-// 	left: -50%;
-// 	opacity: 0.5;
-// 	position: fixed;
-// 	right: -50%;
-// 	top: 0;
-// 	z-index: -1;
-// }
+.bg-variant-four {
+	animation: slide 3s ease-in-out infinite alternate;
+	background-image: linear-gradient(
+		-60deg,
+		$color-one-d 25%,
+		$color-two-d 25%,
+		$color-three-d 25%,
+		$color-four-d 25%
+	);
+	bottom: 0;
+	left: -50%;
+	opacity: 0.5;
+	position: fixed;
+	right: -50%;
+	top: 0;
+	z-index: -1;
+}
 
 .bg2 {
 	animation-direction: alternate-reverse;

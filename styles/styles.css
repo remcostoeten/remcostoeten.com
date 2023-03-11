@@ -1090,7 +1090,43 @@ body {
 
 .bg {
   animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #e97f6b 25%, #703d38 25%, #e5b088 25%, #a898dc 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.bg-variant {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #a898dc 25%, #d1f7d5 25%, #fefed2 25%, #37306b 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.bg-variant-three {
+  animation: slide 3s ease-in-out infinite alternate;
   background-image: linear-gradient(-60deg, #37306b 25%, #66347f 25%, #9e4784 25%, #d27685 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.bg-variant-four {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #e97f6b 25%, #865dff 25%, #e384ff 25%, #ffa3fd 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2288,6 +2324,111 @@ button {
   flex: 1;
   background: #eaeaea;
   height: 100vh;
+}
+
+.theme--variant {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #e97f6b 25%, #703d38 25%, #e5b088 25%, #a898dc 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+.theme--variant-two {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #e97f6b 25%, #703d38 25%, #e5b088 25%, #a898dc 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+.theme--variant-three {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #a898dc 25%, #d1f7d5 25%, #fefed2 25%, #37306b 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+.theme--variant-four {
+  animation: slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #37306b 25%, #66347f 25%, #9e4784 25%, #d27685 25%);
+  bottom: 0;
+  left: -50%;
+  opacity: 0.5;
+  position: fixed;
+  right: -50%;
+  top: 0;
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.bg2 {
+  animation-direction: alternate-reverse;
+  animation-duration: 4s;
+}
+
+.bg3 {
+  animation-duration: 5s;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-25%);
+  }
+  100% {
+    transform: translateX(25%);
+  }
+}
+.dial {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  position: relative;
+  background-color: #fff;
+}
+
+.theme--variant .dial {
+  border: 10px solid #e97f6b;
+  border-right-color: #703d38;
+  border-bottom-color: #e5b088;
+}
+
+.theme--variant-two .dial {
+  border: 10px solid #703d38;
+  border-right-color: #e5b088;
+  border-bottom-color: #a898dc;
+}
+
+.theme--variant-three .dial {
+  border: 10px solid #fefed2;
+  border-right-color: #37306b;
+  border-bottom-color: #a898dc;
+}
+
+.theme--variant-four .dial {
+  border: 10px solid #d27685;
+  border-right-color: #37306b;
+  border-bottom-color: #66347f;
+}
+
+.MuiSpeedDial-root button {
+  border: 10px solid #d27685;
+  border-right-color: #37306b;
+  border-bottom-color: #66347f;
 }
 
 .selected {

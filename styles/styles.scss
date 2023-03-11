@@ -33,11 +33,12 @@
 @import './components/loader';
 @import './components/friends';
 @import './components/messenger';
+@import './components/toggle-colors';
 
 .selected {
-    width: 100px;
-    height: 100px;
-    background-color: red;
-    color: blue;
-    padding: 10px;
+	width: 100px;
+	height: 100px;
+	background-color: red;
+	color: blue;
+	padding: 10px;
 }

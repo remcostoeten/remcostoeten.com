@@ -1,0 +1,155 @@
+$color-one: #e97f6b;
+$color-two: #703d38;
+$color-three: #e5b088;
+$color-four: #a898dc;
+
+$color-one-b: #a898dc;
+$color-two-b: #d1f7d5;
+$color-three-b: #fefed2;
+$color-four-b: #37306b;
+
+$color-one-c: #37306b;
+$color-two-c: #66347f;
+$color-three-c: #9e4784;
+$color-four-c: #d27685;
+
+$color-one-d: #e97f6b;
+$color-two-d: #865dff;
+$color-three-d: #e384ff;
+$color-four-d: #ffa3fd;
+
+.theme {
+	&--variant {
+		animation: slide 3s ease-in-out infinite alternate;
+		background-image: linear-gradient(
+			-60deg,
+			$color-one 25%,
+			$color-two 25%,
+			$color-three 25%,
+			$color-four 25%
+		);
+		bottom: 0;
+		left: -50%;
+		opacity: 0.5;
+		position: fixed;
+		right: -50%;
+		top: 0;
+		z-index: -1;
+	}
+
+	&--variant-two {
+		animation: slide 3s ease-in-out infinite alternate;
+		background-image: linear-gradient(
+			-60deg,
+			$color-one 25%,
+			$color-two 25%,
+			$color-three 25%,
+			$color-four 25%
+		);
+		bottom: 0;
+		left: -50%;
+		opacity: 0.5;
+		position: fixed;
+		right: -50%;
+		top: 0;
+		z-index: -1;
+	}
+
+	&--variant-three {
+		animation: slide 3s ease-in-out infinite alternate;
+		background-image: linear-gradient(
+			-60deg,
+			$color-one-b 25%,
+			$color-two-b 25%,
+			$color-three-b 25%,
+			$color-four-b 25%
+		);
+		bottom: 0;
+		left: -50%;
+		opacity: 0.5;
+		position: fixed;
+		right: -50%;
+		top: 0;
+		z-index: -1;
+	}
+
+	&--variant-four {
+		animation: slide 3s ease-in-out infinite alternate;
+		background-image: linear-gradient(
+			-60deg,
+			$color-one-c 25%,
+			$color-two-c 25%,
+			$color-three-c 25%,
+			$color-four-c 25%
+		);
+		bottom: 0;
+		left: -50%;
+		opacity: 0.5;
+		position: fixed;
+		right: -50%;
+		top: 0;
+		z-index: -1;
+	}
+}
+.content {
+	position: relative;
+	z-index: 1;
+}
+
+.bg2 {
+	animation-direction: alternate-reverse;
+	animation-duration: 4s;
+}
+
+.bg3 {
+	animation-duration: 5s;
+}
+
+@keyframes slide {
+	0% {
+		transform: translateX(-25%);
+	}
+	100% {
+		transform: translateX(25%);
+	}
+}
+
+.dial {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	position: relative;
+	background-color: #fff;
+}
+
+.theme--variant .dial {
+	border: 10px solid $color-one;
+	border-right-color: $color-two;
+	border-bottom-color: $color-three;
+}
+
+.theme--variant-two .dial {
+	border: 10px solid $color-two;
+	border-right-color: $color-three;
+	border-bottom-color: $color-four;
+}
+
+.theme--variant-three .dial {
+	border: 10px solid $color-three-b;
+	border-right-color: $color-four-b;
+	border-bottom-color: $color-one-b;
+}
+
+.theme--variant-four .dial {
+	border: 10px solid $color-four-c;
+	border-right-color: $color-one-c;
+	border-bottom-color: $color-two-c;
+}
+
+.MuiSpeedDial-root {
+	button {
+		border: 10px solid $color-four-c;
+		border-right-color: $color-one-c;
+		border-bottom-color: $color-two-c;
+	}
+}

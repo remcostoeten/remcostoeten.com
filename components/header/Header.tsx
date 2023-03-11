@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { auth, singInWithGoogle } from '../../firebase';
+import { auth, signInWithGoogle, singInWithGoogle } from '../../firebase';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
 
@@ -65,18 +65,6 @@ const Header = () => {
 		return () => clearTimeout(timeout);
 	}, []);
 
-	useEffect(() => {
-		auth.onAuthStateChanged((user) => {
-			if (user) {
-				setIsLoggedIn(true);
-				setUserName(user.displayName);
-			} else {
-				setIsLoggedIn(false);
-				setUserName(null);
-			}
-		});
-	}, []);
-
 	return (
 		<>
 			<motion.header
@@ -90,18 +78,17 @@ const Header = () => {
 							className='header__user'
 							whileHover={{ scale: 1.05 }}>
 							<div className='header__user-image-wrapper'>
-								<Image
-									src={
-										auth.currentUser &&
-										auth.currentUser.photoURL
-											? auth.currentUser.photoURL
-											: ''
-									}
-									width={48}
-									height={48}
-									className='header__user-image'
-									alt={''}
-								/>
+								{isLoggedIn && auth.currentUser?.photoURL ? (
+									<div className='header__user-image-wrapper'>
+										<Image
+											src={auth.currentUser.photoURL}
+											width={48}
+											height={48}
+											className='header__user-image'
+											alt={''}
+										/>
+									</div>
+								) : null}
 							</div>
 							<motion.div
 								className='header__user-wrapper'
