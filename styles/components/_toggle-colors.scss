@@ -18,6 +18,15 @@ $color-two-d: #865dff;
 $color-three-d: #e384ff;
 $color-four-d: #ffa3fd;
 
+.widget {
+	width: 50px;
+	height: 50px;
+	border-radius: 8px;
+	padding: $spacing;
+	background-color: $color-primary;
+	position: absolute;
+}
+
 .theme {
 	&--variant {
 		animation: slide 3s ease-in-out infinite alternate;

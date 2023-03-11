@@ -52,6 +52,7 @@ export default function Home() {
 
 	return (
 		<>
+			<div className='widget'>Click to change background</div>
 			<SpeedDial
 				ariaLabel='Change color palette'
 				sx={{ position: 'absolute', bottom: 16, right: 16 }}
