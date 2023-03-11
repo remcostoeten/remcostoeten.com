@@ -2,7 +2,6 @@ import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
-import Image from 'next/image';
 import withAuth from '../withAuth';
 
 interface ChatSearchProps {
@@ -42,7 +41,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/znew.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -96,6 +95,10 @@ const ChatHistory: React.FC = () => {
 					),
 				]);
 			}
+
+			if (window.scrollY > 200) {
+				return;
+			}
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -117,31 +120,22 @@ const ChatHistory: React.FC = () => {
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&
-						chatHistory
-							.slice(0, 300)
-							.map((message: ChatMessage, index: number) => (
+						chatHistory.map(
+							(message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('Yvette')
-											? 'bubble__second-person y'
+											.includes('alice')
+											? 'bubble__second-person'
 											: ''
 									}`}
 									key={message.timestamp.getTime()}>
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
-												{message.image && (
-													<Image
-														width={100}
-														height={100}
-														src={`/private-apis/img//y/${message.image}`}
-														alt=''
-													/>
-												)}
 												<div className='chat__sender'>
-													{message.name}
+													{message.sender}
 												</div>
 												<div className='chat__message'>
 													{message.message}
@@ -150,7 +144,8 @@ const ChatHistory: React.FC = () => {
 										</p>
 									</div>
 								</div>
-							))}
+							),
+						)}
 				</div>
 				{searchResults.length > 0 && (
 					<div className='chat__chat-panel chat-results'>
@@ -158,9 +153,9 @@ const ChatHistory: React.FC = () => {
 							(message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
-										message.sender
+										message.message
 											.toLowerCase()
-											.includes('Yvette')
+											.includes('alice')
 											? 'bubble__second-person'
 											: ''
 									}`}
@@ -169,13 +164,8 @@ const ChatHistory: React.FC = () => {
 									<div>
 										<p>
 											<span>
-												return (
-												<Image
-													src='/apiprivate/compressed/{message.image}'
-													alt={''}
-												/>
 												<div className='chat__sender'>
-													{message.name}
+													{message.sender}
 												</div>
 												<div className='chat__message'>
 													{message.message}

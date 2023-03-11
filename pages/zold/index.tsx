@@ -2,6 +2,8 @@ import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
+import withAuth from '../withAuth';
+
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -39,7 +41,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../private-apis/data/znew.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/zold.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -153,7 +155,7 @@ const ChatHistory: React.FC = () => {
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('alice')
+											.includes('zeen')
 											? 'bubble__second-person'
 											: ''
 									}`}
@@ -195,4 +197,4 @@ const ChatHistory: React.FC = () => {
 	);
 };
 
-export default ChatHistory;
+export default withAuth(ChatHistory);

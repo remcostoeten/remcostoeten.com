@@ -42,7 +42,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/d.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -136,7 +136,7 @@ const ChatHistory: React.FC = () => {
 													<Image
 														width={100}
 														height={100}
-														src={`/private-apis/img//y/${message.image}`}
+														src={`/private-apis/img//d/${message.image}`}
 														alt=''
 													/>
 												)}
@@ -160,7 +160,7 @@ const ChatHistory: React.FC = () => {
 									className={`bubble__message ${
 										message.sender
 											.toLowerCase()
-											.includes('Yvette')
+											.includes('daph')
 											? 'bubble__second-person'
 											: ''
 									}`}
