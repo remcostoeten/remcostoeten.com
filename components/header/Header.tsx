@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { auth, signInWithGoogle, singInWithGoogle } from '../../firebase';
+import { auth, singInWithGoogle } from '../../firebase';
 import { motion } from 'framer-motion';
 import Logo from './Logo';
 
