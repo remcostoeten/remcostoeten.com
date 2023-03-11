@@ -28,8 +28,8 @@ export default function Friends() {
 	const chats: Chat[] = [
 		yData[yData.length - 1],
 		whatsappData[whatsappData.length - 1],
-		znewData[znewData.length - 1],
-		zoldData[zoldData.length - 1],
+		znewData[znewData.length - 3],
+		zoldData[zoldData.length - 2],
 	];
 
 	function getChatSummaries(chats: Chat[]): Record<string, ChatSummary> {
