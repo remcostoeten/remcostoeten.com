@@ -7,12 +7,13 @@ const withAuth = (WrappedComponent) => {
 	const Wrapper = (props) => {
 		const [user, setUser] = useState(null);
 		const router = useRouter();
+		const [yAxis, setYAxis] = useState(0);
+		const [xAxis, setXAxis] = useState(0);
 
 		useEffect(() => {
 			const unsubscribe = auth.onAuthStateChanged((user) => {
-				return setUser(user);
+				setUser(user);
 			});
-
 			return unsubscribe;
 		}, []);
 
@@ -27,14 +28,11 @@ const withAuth = (WrappedComponent) => {
 			if (user && user.email !== 'stoetenremco.rs@gmail.com') {
 				router.push('/');
 			}
-		}, [user]);
+		}, [user, router]);
 
 		if (user && user.email === 'stoetenremco.rs@gmail.com') {
 			return <WrappedComponent {...props} user={user} />;
 		}
-
-		const [yAxis, setYAxis] = useState(0);
-		const [xAxis, setXAxis] = useState(0);
 
 		const handleMouseMove = (event) => {
 			const pageX = document.documentElement.clientWidth;
@@ -50,13 +48,6 @@ const withAuth = (WrappedComponent) => {
 			const newAxisX = -((mouseX / pageX) * 100) - 100;
 			setXAxis(newAxisX);
 		};
-
-		useEffect(() => {
-			document.addEventListener('mousemove', handleMouseMove);
-			return () => {
-				document.removeEventListener('mousemove', handleMouseMove);
-			};
-		}, []);
 
 		return (
 			<div className='error'>
@@ -75,12 +66,10 @@ const withAuth = (WrappedComponent) => {
 					<div className='error__description-container'>
 						<div className='error__description-title'>Sorry!</div>
 						<div className='error__description-text'>
-							You're not allowed to view this page! {''}
-							{''}No need to be sad, you can still view the public
-							demo
+							You&apos;re not allowed to view this page! No need
+							to be sad, you can still view the public demo
 							<Link href='/whatsapp-export'> here</Link>.
 						</div>
-
 						<Link href='/' className='error__button'>
 							or return to home
 						</Link>

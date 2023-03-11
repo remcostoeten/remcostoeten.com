@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { fb, auth, singInWithGoogle } from '../../firebase';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { auth, singInWithGoogle } from '../../firebase';
 import { motion } from 'framer-motion';
+import Logo from './Logo';
 
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
@@ -103,18 +103,27 @@ const Header = () => {
 									alt={''}
 								/>
 							</div>
-
 							<motion.div
-								className='header__user-name-wrapper'
-								whileHover={{ scale: 1.05 }}>
-								<span className='header__user-name'>
-									<span>{userName} </span>
-									<span className='email'>
-										{auth.currentUser?.email
-											? `${auth.currentUser?.email}`
-											: ''}
-									</span>
-								</span>
+								className='header__user-wrapper'
+								initial={{ opacity: 0 }}
+								animate={{ opacity: 1 }}
+								transition={{ delay: 0.3 }}>
+								{auth.currentUser ? (
+									<motion.div
+										className='header__user-name-wrapper'
+										whileHover={{ scale: 1.05 }}>
+										<span className='header__user-name'>
+											<span>{userName} </span>
+											<span className='email'>
+												{auth.currentUser?.email
+													? `${auth.currentUser?.email}`
+													: ''}
+											</span>
+										</span>
+									</motion.div>
+								) : (
+									<Logo />
+								)}
 							</motion.div>
 						</motion.div>
 					</Link>

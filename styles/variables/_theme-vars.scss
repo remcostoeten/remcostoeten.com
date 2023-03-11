@@ -20,7 +20,7 @@ body {
 }
 
 #logo-container {
-	size: 50%;
+	font-size: 30%;
 	filter: url(#threshold) blur(0.6px);
 }
 
@@ -32,6 +32,5 @@ body {
 	font-family: 'Raleway', sans-serif;
 	font-size: 5em;
 	text-align: center;
-
 	user-select: none;
 }
