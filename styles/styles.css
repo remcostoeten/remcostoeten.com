@@ -1463,7 +1463,7 @@ h1 {
   left: 0;
   z-index: 20;
   transform: 500ms ease padding;
-  padding: 0;
+  padding: 4px 0;
 }
 .scrolled .header__user-name {
   transition: 250ms ease all;

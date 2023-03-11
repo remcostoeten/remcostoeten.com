@@ -31,7 +31,7 @@ export default function Home() {
 		{
 			icon: false,
 			name: 'Palette one',
-			onClick: () => setVariant('theme--variant'),
+			onClick: () => setVariant('theme--variant            '),
 		},
 		{
 			icon: false,
