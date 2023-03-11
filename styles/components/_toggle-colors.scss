@@ -1,22 +1,22 @@
-$color-one: #e97f6b;
-$color-two: #703d38;
-$color-three: #e5b088;
-$color-four: #a898dc;
+$color-one: #cdb4db;
+$color-two: #ffc8dd;
+$color-three: #ffafcc;
+$color-four: #bde0fe;
 
-$color-one-b: #a898dc;
-$color-two-b: #d1f7d5;
-$color-three-b: #fefed2;
-$color-four-b: #37306b;
+$color-one-b: #ef7c8e;
+$color-two-b: #fae8e0;
+$color-three-b: #b6e2d3;
+$color-four-b: #d8a7b1;
 
-$color-one-c: #37306b;
-$color-two-c: #66347f;
-$color-three-c: #9e4784;
-$color-four-c: #d27685;
+$color-one-c: #a3b18a;
+$color-two-c: #588157;
+$color-three-c: #3a5a40;
+$color-four-c: #344e41;
 
-$color-one-d: #e97f6b;
-$color-two-d: #865dff;
-$color-three-d: #e384ff;
-$color-four-d: #ffa3fd;
+$color-one-d: #355070;
+$color-two-d: #6d597a;
+$color-three-d: #b56576;
+$color-four-d: #e56b6f;
 
 .widget {
 	width: 50px;
@@ -50,24 +50,6 @@ $color-four-d: #ffa3fd;
 		animation: slide 3s ease-in-out infinite alternate;
 		background-image: linear-gradient(
 			-60deg,
-			$color-one 25%,
-			$color-two 25%,
-			$color-three 25%,
-			$color-four 25%
-		);
-		bottom: 0;
-		left: -50%;
-		opacity: 0.5;
-		position: fixed;
-		right: -50%;
-		top: 0;
-		z-index: -1;
-	}
-
-	&--variant-three {
-		animation: slide 3s ease-in-out infinite alternate;
-		background-image: linear-gradient(
-			-60deg,
 			$color-one-b 25%,
 			$color-two-b 25%,
 			$color-three-b 25%,
@@ -82,7 +64,7 @@ $color-four-d: #ffa3fd;
 		z-index: -1;
 	}
 
-	&--variant-four {
+	&--variant-three {
 		animation: slide 3s ease-in-out infinite alternate;
 		background-image: linear-gradient(
 			-60deg,
@@ -90,6 +72,24 @@ $color-four-d: #ffa3fd;
 			$color-two-c 25%,
 			$color-three-c 25%,
 			$color-four-c 25%
+		);
+		bottom: 0;
+		left: -50%;
+		opacity: 0.5;
+		position: fixed;
+		right: -50%;
+		top: 0;
+		z-index: -1;
+	}
+
+	&--variant-four {
+		animation: slide 3s ease-in-out infinite alternate;
+		background-image: linear-gradient(
+			-60deg,
+			$color-one-d 25%,
+			$color-two-d 25%,
+			$color-three-d 25%,
+			$color-four-d 25%
 		);
 		bottom: 0;
 		left: -50%;

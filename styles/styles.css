@@ -2335,7 +2335,7 @@ button {
 
 .theme--variant {
   animation: slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #e97f6b 25%, #703d38 25%, #e5b088 25%, #a898dc 25%);
+  background-image: linear-gradient(-60deg, #cdb4db 25%, #ffc8dd 25%, #ffafcc 25%, #bde0fe 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2346,7 +2346,7 @@ button {
 }
 .theme--variant-two {
   animation: slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #e97f6b 25%, #703d38 25%, #e5b088 25%, #a898dc 25%);
+  background-image: linear-gradient(-60deg, #ef7c8e 25%, #fae8e0 25%, #b6e2d3 25%, #d8a7b1 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2357,7 +2357,7 @@ button {
 }
 .theme--variant-three {
   animation: slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #a898dc 25%, #d1f7d5 25%, #fefed2 25%, #37306b 25%);
+  background-image: linear-gradient(-60deg, #a3b18a 25%, #588157 25%, #3a5a40 25%, #344e41 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2368,7 +2368,7 @@ button {
 }
 .theme--variant-four {
   animation: slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #37306b 25%, #66347f 25%, #9e4784 25%, #d27685 25%);
+  background-image: linear-gradient(-60deg, #355070 25%, #6d597a 25%, #b56576 25%, #e56b6f 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2409,33 +2409,33 @@ button {
 }
 
 .theme--variant .dial {
-  border: 10px solid #e97f6b;
-  border-right-color: #703d38;
-  border-bottom-color: #e5b088;
+  border: 10px solid #cdb4db;
+  border-right-color: #ffc8dd;
+  border-bottom-color: #ffafcc;
 }
 
 .theme--variant-two .dial {
-  border: 10px solid #703d38;
-  border-right-color: #e5b088;
-  border-bottom-color: #a898dc;
+  border: 10px solid #ffc8dd;
+  border-right-color: #ffafcc;
+  border-bottom-color: #bde0fe;
 }
 
 .theme--variant-three .dial {
-  border: 10px solid #fefed2;
-  border-right-color: #37306b;
-  border-bottom-color: #a898dc;
+  border: 10px solid #b6e2d3;
+  border-right-color: #d8a7b1;
+  border-bottom-color: #ef7c8e;
 }
 
 .theme--variant-four .dial {
-  border: 10px solid #d27685;
-  border-right-color: #37306b;
-  border-bottom-color: #66347f;
+  border: 10px solid #344e41;
+  border-right-color: #a3b18a;
+  border-bottom-color: #588157;
 }
 
 .MuiSpeedDial-root button {
-  border: 10px solid #d27685;
-  border-right-color: #37306b;
-  border-bottom-color: #66347f;
+  border: 10px solid #344e41;
+  border-right-color: #a3b18a;
+  border-bottom-color: #588157;
 }
 
 .selected {

@@ -11,16 +11,16 @@ export default function Home() {
 	const handleVariantToggle = () => {
 		switch (variant) {
 			case 'theme--variant':
-				setVariant('theme--variant-two');
+				setVariant('theme--variant');
 				break;
 			case 'theme--variant-two':
-				setVariant('theme--variant-three');
+				setVariant('theme--variant-two');
 				break;
 			case 'theme--variant-three':
-				setVariant('theme--variant-four');
+				setVariant('theme--variant-three');
 				break;
 			case 'theme--variant-four':
-				setVariant('theme--variant');
+				setVariant('theme--variant--four');
 				break;
 			default:
 				setVariant('theme--variant');
@@ -31,7 +31,7 @@ export default function Home() {
 		{
 			icon: false,
 			name: 'Palette one',
-			onClick: () => setVariant('theme--variant-one'),
+			onClick: () => setVariant('theme--variant'),
 		},
 		{
 			icon: false,
