@@ -909,7 +909,7 @@ body {
     height: 0px;
   }
 }
-.not-authenticated .box {
+.not-authenticated .error {
   width: 350px;
   height: 100%;
   max-height: 800px;
@@ -919,118 +919,14 @@ body {
   padding: 24px 36px;
   position: relative;
 }
-.not-authenticated .box .box__ghost {
+.not-authenticated .error .error__ghost {
   padding: 15px 25px 25px;
   position: absolute;
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
 }
-.not-authenticated .box .box__ghost .symbol:nth-child(1) {
-  opacity: 0.2;
-  animation: shine 4s ease-in-out 3s infinite;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(1):before, .not-authenticated .box .box__ghost .symbol:nth-child(1):after {
-  content: "";
-  width: 12px;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  border-radius: 5px;
-  bottom: 65px;
-  left: 0;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(1):before {
-  transform: rotate(45deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(1):after {
-  transform: rotate(-45deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(2) {
-  position: absolute;
-  left: -5px;
-  top: 30px;
-  height: 18px;
-  width: 18px;
-  border: 4px solid;
-  border-radius: 50%;
-  border-color: #fff;
-  opacity: 0.2;
-  animation: shine 4s ease-in-out 1.3s infinite;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(3) {
-  opacity: 0.2;
-  animation: shine 3s ease-in-out 0.5s infinite;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(3):before, .not-authenticated .box .box__ghost .symbol:nth-child(3):after {
-  content: "";
-  width: 12px;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  border-radius: 5px;
-  top: 5px;
-  left: 40px;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(3):before {
-  transform: rotate(90deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(3):after {
-  transform: rotate(180deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(4) {
-  opacity: 0.2;
-  animation: shine 6s ease-in-out 1.6s infinite;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(4):before, .not-authenticated .box .box__ghost .symbol:nth-child(4):after {
-  content: "";
-  width: 15px;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  border-radius: 5px;
-  top: 10px;
-  right: 30px;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(4):before {
-  transform: rotate(45deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(4):after {
-  transform: rotate(-45deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(5) {
-  position: absolute;
-  right: 5px;
-  top: 40px;
-  height: 12px;
-  width: 12px;
-  border: 3px solid;
-  border-radius: 50%;
-  border-color: #fff;
-  opacity: 0.2;
-  animation: shine 1.7s ease-in-out 7s infinite;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(6) {
-  opacity: 0.2;
-  animation: shine 2s ease-in-out 6s infinite;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(6):before, .not-authenticated .box .box__ghost .symbol:nth-child(6):after {
-  content: "";
-  width: 15px;
-  height: 4px;
-  background: #fff;
-  position: absolute;
-  border-radius: 5px;
-  bottom: 65px;
-  right: -5px;
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(6):before {
-  transform: rotate(90deg);
-}
-.not-authenticated .box .box__ghost .symbol:nth-child(6):after {
-  transform: rotate(180deg);
-}
-.not-authenticated .box .box__ghost .box__ghost-container {
+.not-authenticated .error .error__ghost .error__ghost-container {
   background: #fff;
   width: 100px;
   height: 100px;
@@ -1039,14 +935,14 @@ body {
   margin: 0 auto;
   animation: upndown 3s ease-in-out infinite;
 }
-.not-authenticated .box .box__ghost .box__ghost-container .box__ghost-eyes {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes {
   position: absolute;
   left: 50%;
   top: 45%;
   height: 12px;
   width: 70px;
 }
-.not-authenticated .box .box__ghost .box__ghost-container .box__ghost-eyes .box__eye-left {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-left {
   width: 12px;
   height: 12px;
   background: #332f63;
@@ -1055,7 +951,7 @@ body {
   position: absolute;
   left: 0;
 }
-.not-authenticated .box .box__ghost .box__ghost-container .box__ghost-eyes .box__eye-right {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-right {
   width: 12px;
   height: 12px;
   background: #332f63;
@@ -1064,14 +960,14 @@ body {
   position: absolute;
   right: 0;
 }
-.not-authenticated .box .box__ghost .box__ghost-container .box__ghost-bottom {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom {
   display: flex;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
 }
-.not-authenticated .box .box__ghost .box__ghost-container .box__ghost-bottom div {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom div {
   flex-grow: 1;
   position: relative;
   top: -10px;
@@ -1079,43 +975,43 @@ body {
   border-radius: 100%;
   background-color: #fff;
 }
-.not-authenticated .box .box__ghost .box__ghost-container .box__ghost-bottom div:nth-child(2n) {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom div:nth-child(2n) {
   top: -12px;
   margin: 0 0px;
   border-top: 15px solid #332f63;
   background: transparent;
 }
-.not-authenticated .box .box__ghost .box__ghost-shadow {
+.not-authenticated .error .error__ghost .error__ghost-shadow {
   height: 20px;
-  box-shadow: 0 50px 15px 5px #3b3769;
+  error-shadow: 0 50px 15px 5px #3b3769;
   border-radius: 50%;
   margin: 0 auto;
   animation: smallnbig 3s ease-in-out infinite;
 }
-.not-authenticated .box .box__description {
+.not-authenticated .error .error__description {
   position: absolute;
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
 }
-.not-authenticated .box .box__description .box__description-container {
+.not-authenticated .error .error__description .error__description-container {
   color: #fff;
   text-align: center;
   width: 200px;
   font-size: 16px;
   margin: 0 auto;
 }
-.not-authenticated .box .box__description .box__description-container .box__description-title {
+.not-authenticated .error .error__description .error__description-container .error__description-title {
   font-size: 32px;
   letter-spacing: 0.5px;
   font-weight: 800;
 }
-.not-authenticated .box .box__description .box__description-container .box__description-text {
+.not-authenticated .error .error__description .error__description-container .error__description-text {
   color: #8c8aa7;
   line-height: 20px;
   margin-top: 20px;
 }
-.not-authenticated .box .box__description .box__button {
+.not-authenticated .error .error__description .error__button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1136,7 +1032,7 @@ body {
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
-.not-authenticated .box .box__description .box__button:before {
+.not-authenticated .error .error__description .error__button:before {
   content: "";
   position: absolute;
   width: 20px;
@@ -1148,11 +1044,11 @@ body {
   transform: translateX(-50px) rotate(45deg);
   transition: transform 0.5s ease;
 }
-.not-authenticated .box .box__description .box__button:hover {
+.not-authenticated .error .error__description .error__button:hover {
   background: transparent;
   border-color: #fff;
 }
-.not-authenticated .box .box__description .box__button:hover:before {
+.not-authenticated .error .error__description .error__button:hover:before {
   transform: translateX(250px) rotate(45deg);
 }
 @keyframes upndown {
@@ -1211,19 +1107,6 @@ body {
 
 .bg3 {
   animation-duration: 5s;
-}
-
-.content {
-  background-color: rgba(255, 255, 255, 0.8);
-  border-radius: 0.25em;
-  box-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
-  box-sizing: border-box;
-  left: 50%;
-  padding: 10vmin;
-  position: fixed;
-  text-align: center;
-  top: 50%;
-  transform: translate(-50%, -50%);
 }
 
 h1 {
@@ -1521,7 +1404,7 @@ h1 {
   scale: 0.4;
   left: 0;
 }
-.header__tagline {
+.header__user-name {
   display: flex;
   flex-direction: column;
   line-height: 1;

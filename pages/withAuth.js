@@ -59,7 +59,7 @@ const withAuth = (WrappedComponent) => {
 		}, []);
 
 		return (
-			<div className='box'>
+			<div className='error'>
 				<div className='wrap'>
 					<div className='tear'></div>
 					<div className='tear2'></div>
@@ -71,40 +71,17 @@ const withAuth = (WrappedComponent) => {
 						<div className='mouth'></div>
 					</div>
 				</div>
-				{/* <div className='box__ghost'>
-					<div className='symbol'></div>
-					<div className='symbol'></div>
-					<div className='symbol'></div>
-					<div className='symbol'></div>
-					<div className='symbol'></div>
-					<div className='symbol'></div>
-
-					<div className='box__ghost-container'>
-						<div className='box__ghost-eyes'>
-							<div className='box__eye-left'></div>
-							<div className='box__eye-right'></div>
-						</div>
-						<div className='box__ghost-bottom'>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-							<div></div>
-						</div>
-					</div>
-					<div className='box__ghost-shadow'></div>
-				</div>{' '} */}
-				<div className='box__description'>
-					<div className='box__description-container'>
-						<div className='box__description-title'>Sorry!</div>
-						<div className='box__description-text'>
+				<div className='error__description'>
+					<div className='error__description-container'>
+						<div className='error__description-title'>Sorry!</div>
+						<div className='error__description-text'>
 							You're not allowed to view this page! {''}
 							{''}No need to be sad, you can still view the public
 							demo
 							<Link href='/whatsapp-export'> here</Link>.
 						</div>
 
-						<Link href='/' className='box__button'>
+						<Link href='/' className='error__button'>
 							or return to home
 						</Link>
 					</div>
