@@ -73,4 +73,13 @@ const logout = () => {
 		});
 };
 
-export { db, auth, storage, fb, singInWithGoogle, logout };
+export {
+	db,
+	auth,
+	storage,
+	fb,
+	singInWithGoogle,
+	logout,
+	signInWithPopup,
+	GoogleAuthProvider,
+};

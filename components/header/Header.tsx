@@ -6,6 +6,7 @@ import { motion } from 'framer-motion';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Login from '../Login';
 
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
@@ -22,7 +23,6 @@ const Header = () => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -159,16 +159,36 @@ const Header = () => {
 											horizontal: 'left',
 										}}>
 										<MenuItem>
-											<Link href='/zold'>z old</Link>{' '}
+											<Link href='/zold'>
+												{
+													process.env
+														.NEXT_PUBLIC_USER_THREE
+												}
+											</Link>
 										</MenuItem>
 										<MenuItem>
-											<Link href='/znew'>znew</Link>{' '}
+											<Link href='/znew'>
+												{
+													process.env
+														.NEXT_PUBLIC_USER_THREE
+												}
+											</Link>
 										</MenuItem>
 										<MenuItem>
-											<Link href='/y'>y</Link>{' '}
-										</MenuItem>{' '}
+											<Link href='/y'>
+												{
+													process.env
+														.NEXT_PUBLIC_USER_ONE
+												}
+											</Link>
+										</MenuItem>
 										<MenuItem>
-											<Link href='/d'>d</Link>{' '}
+											<Link href='/d'>
+												{
+													process.env
+														.NEXT_PUBLIC_USER_TWO
+												}
+											</Link>
 										</MenuItem>
 									</Menu>
 								</div>
@@ -200,7 +220,7 @@ const Header = () => {
 								</motion.li>
 							) : (
 								<motion.li whileHover={{ scale: 1.05 }}>
-									<a onClick={singInWithGoogle}>Login</a>
+									<Login />
 								</motion.li>
 							)}
 						</ul>

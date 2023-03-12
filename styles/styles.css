@@ -1297,10 +1297,6 @@ h1 {
     opacity: 1;
   }
 }
-.header__user-wrapper {
-  max-height: 40px;
-}
-
 .scrolled {
   height: 1500px;
   background-color: blue;
@@ -1326,19 +1322,29 @@ h1 {
   align-items: center;
   justify-content: space-between;
 }
+.header__user-name {
+  display: flex;
+  flex-direction: column;
+}
 .header__user {
   display: flex;
   align-items: center;
   position: relative;
 }
 .header__user img {
-  position: absolute;
   border-radius: 50%;
-  scale: 0.4;
-  left: 0;
-  top: 0;
-  transform: translateY(-71%);
-  bottom: 0;
+  margin-right: 18px;
+}
+.header__user span,
+.header__user a {
+  color: #333;
+  text-decoration: none;
+}
+.header__user span:focus, .header__user span:visited, .header__user span:active,
+.header__user a:focus,
+.header__user a:visited,
+.header__user a:active {
+  text-decoration: none;
 }
 .header__tagline {
   display: flex;
@@ -1348,7 +1354,9 @@ h1 {
 }
 .header a {
   position: relative;
-  font-size: 2.5em;
+  font-size: 2em;
+  text-decoration: none;
+  font-weight: 600;
 }
 .header nav li {
   font-size: 0.7em;
@@ -2164,7 +2172,7 @@ button {
 
 .theme--variant {
   animation: slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #69f0ad 25%, #6efadc 25%, #6fdbe3 25%, #6eccfa 25%);
+  background-image: linear-gradient(-60deg, #ff0738 25%, #ff5f4b 25%, #fe374a 25%, #e40980 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2175,7 +2183,7 @@ button {
 }
 .theme--variant-two {
   animation: slide 3s ease-in-out infinite alternate;
-  background-image: linear-gradient(-60deg, #ef7c8e 25%, #fae8e0 25%, #b6e2d3 25%, #d8a7b1 25%);
+  background-image: linear-gradient(-60deg, #e8b693 25%, #e7909f 25%, #e86daa 25%, #7234cd 25%);
   bottom: 0;
   left: -50%;
   opacity: 0.5;
@@ -2238,33 +2246,34 @@ button {
 }
 
 .theme--variant .dial {
-  border: 10px solid #69f0ad;
-  border-right-color: #6efadc;
-  border-bottom-color: #6fdbe3;
+  border: 10px solid #ff0738;
+  border-right-color: #ff5f4b;
+  border-bottom-color: #fe374a;
 }
 
 .theme--variant-two .dial {
-  border: 10px solid #6efadc;
-  border-right-color: #6fdbe3;
-  border-bottom-color: #6eccfa;
+  border: 10px solid #ff5f4b;
+  border-right-color: #fe374a;
+  border-bottom-color: #e40980;
 }
 
 .theme--variant-three .dial {
-  border: 10px solid #b6e2d3;
-  border-right-color: #d8a7b1;
-  border-bottom-color: #ef7c8e;
-}
-
-.theme--variant-four .dial {
-  border: 10px solid #344e41;
-  border-right-color: #a3b18a;
-  border-bottom-color: #588157;
+  border: 10px solid #e86daa;
+  border-right-color: #7234cd;
+  border-bottom-color: #e8b693;
 }
 
 .MuiSpeedDial-root button {
-  border: 10px solid #344e41;
-  border-right-color: #a3b18a;
-  border-bottom-color: #588157;
+  background-image: linear-gradient(-60deg, #ff0738 25%, #ff5f4b 25%, #fe374a 25%, #e40980 25%);
+}
+.MuiSpeedDial-root button:nth-child(2) {
+  background-image: linear-gradient(-60deg, #e8b693 25%, #e7909f 25%, #e86daa 25%, #7234cd 25%);
+}
+.MuiSpeedDial-root button:nth-child(3) {
+  background-image: linear-gradient(-60deg, #a3b18a 25%, #588157 25%, #3a5a40 25%, #344e41 25%);
+}
+.MuiSpeedDial-root button:nth-child(4) {
+  background-image: linear-gradient(-60deg, #355070 25%, #6d597a 25%, #b56576 25%, #e56b6f 25%);
 }
 
 .selected {

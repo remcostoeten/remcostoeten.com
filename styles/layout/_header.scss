@@ -1,6 +1,3 @@
-.header__user-wrapper {
-	max-height: 40px;
-}
 .scrolled {
 	height: 1500px;
 	background-color: blue;
@@ -29,19 +26,31 @@
 		justify-content: space-between;
 	}
 
+	&__user-name {
+		display: flex;
+		flex-direction: column;
+	}
+
 	&__user {
 		display: flex;
 		align-items: center;
 		position: relative;
 
 		img {
-			position: absolute;
 			border-radius: 50%;
-			scale: 0.4;
-			left: 0;
-			top: 0;
-			transform: translateY(-71%);
-			bottom: 0;
+			margin-right: $spacing-m;
+		}
+
+		span,
+		a {
+			color: #333;
+			text-decoration: none;
+
+			&:focus,
+			&:visited,
+			&:active {
+				text-decoration: none;
+			}
 		}
 	}
 
@@ -54,7 +63,9 @@
 
 	a {
 		position: relative;
-		font-size: 2.5em;
+		font-size: 2em;
+		text-decoration: none;
+		font-weight: 600;
 	}
 
 	nav {
