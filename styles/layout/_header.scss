@@ -1,4 +1,5 @@
 .scrolled {
+<<<<<<< HEAD
 	height: 1500px;
 	background-color: blue;
 	transition: 250ms ease-in-out all;
@@ -9,6 +10,30 @@
 		left: 0;
 		z-index: $z-index-layer-three;
 	}
+=======
+    height: 1500px;
+    background-color: blue;
+
+    .header {
+        padding: 8px 0;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: $z-index-layer-three;
+
+		&__user-name-wrapper {
+			display: flex;
+			justify-content: center;
+		}
+    }
+
+    img,
+    .email {
+        animation: slide-out-top 0.5s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
+
+    }
+}
+>>>>>>> a49903236f88e3b42c41f0ce853b259fa6cbeeaf
 
 	.email {
 		transform: rotateX(90deg) !important;
@@ -51,12 +76,13 @@
 	transform: translateY(-50%);
 }
 .header {
-	background-color: $color-white;
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-	font-family: $font--alternative;
-	padding: $spacing 0;
-	transition: 250ms ease-out all;
+    background-color: $color-white;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    font-family: $font--alternative;
+    padding: $spacing 0;
+    transition: 250ms ease-out all;
 
+<<<<<<< HEAD
 	.email {
 		opacity: 1;
 		transition: 250ms ease-in-out all;
@@ -68,21 +94,27 @@
 	&__inner {
 		display: flex;
 		width: 100%;
+=======
+    &__inner {
+        display: flex;
+        width: 100%;
+>>>>>>> a49903236f88e3b42c41f0ce853b259fa6cbeeaf
 
-		align-items: center;
-		justify-content: space-between;
-	}
+        align-items: center;
+        justify-content: space-between;
+    }
 
-	&__user-name {
-		display: flex;
-		flex-direction: column;
-	}
+    &__user-name {
+        display: flex;
+        flex-direction: column;
+    }
 
-	&__user {
-		display: flex;
-		align-items: center;
-		position: relative;
+    &__user {
+        display: flex;
+        align-items: center;
+        position: relative;
 
+<<<<<<< HEAD
 		img {
 			border-radius: 50%;
 			transform: rotateY(0);
@@ -95,69 +127,79 @@
 			line-height: 0.9;
 			color: #333;
 			text-decoration: none;
+=======
+        img {
+            border-radius: 50%;
+            margin-right: 12px;
+        }
 
-			&:focus,
-			&:visited,
-			&:active {
-				text-decoration: none;
-			}
-		}
-	}
+        span,
+        a {
+            color: #333;
+            text-decoration: none;
+>>>>>>> a49903236f88e3b42c41f0ce853b259fa6cbeeaf
 
-	&__tagline {
-		display: flex;
-		flex-direction: column;
-		line-height: 1;
-		padding-left: 80px;
-	}
+            &:focus,
+            &:visited,
+            &:active {
+                text-decoration: none;
+            }
+        }
+    }
 
-	a {
-		position: relative;
-		font-size: 2em;
-		text-decoration: none;
-		font-weight: 600;
-	}
+    &__tagline {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+        padding-left: 80px;
+    }
 
-	nav {
-		li {
-			font-size: 0.7em;
-			font-weight: 600;
-			position: relative;
-			transition: 250ms ease all;
+    a {
+        position: relative;
+        font-size: 2em;
+        text-decoration: none;
+        font-weight: 600;
+    }
 
-			a {
-				text-decoration: none;
+    nav {
+        li {
+            font-size: 0.7em;
+            font-weight: 600;
+            position: relative;
+            transition: 250ms ease all;
 
-				&:after {
-					content: '';
-					position: absolute;
-					left: 0;
-					bottom: -3px;
-					width: 0;
-					height: 2px;
-					background-color: $color-primary;
-					opacity: 0;
-					transition: 0.3s ease-in;
-				}
+            a {
+                text-decoration: none;
 
-				&:hover {
-					&::after {
-						opacity: 1;
-						width: 100%;
-					}
-				}
-			}
+                &:after {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    bottom: -3px;
+                    width: 0;
+                    height: 2px;
+                    background-color: $color-primary;
+                    opacity: 0;
+                    transition: 0.3s ease-in;
+                }
 
-			&:hover {
-			}
-		}
-	}
+                &:hover {
+                    &::after {
+                        opacity: 1;
+                        width: 100%;
+                    }
+                }
+            }
 
-	.tooltip {
-		top: -15px;
-		right: -15px;
-		position: absolute;
-	}
+            &:hover {}
+        }
+    }
+
+    .tooltip {
+        top: -15px;
+        right: -15px;
+        position: absolute;
+    }
 }
 
 // @import './offcanvas-menu';

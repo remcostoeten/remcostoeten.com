@@ -7,6 +7,8 @@ import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Login from '../Login';
+import ActionAlerts from '../Notification';
+import BasicAlerts from '../Notification';
 
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
@@ -77,6 +79,7 @@ const Header = () => {
 
 	return (
 		<>
+		<BasicAlerts/>
 			<motion.header
 				className='header top-header'
 				variants={headerVariants}

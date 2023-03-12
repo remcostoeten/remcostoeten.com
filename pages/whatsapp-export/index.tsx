@@ -106,6 +106,7 @@ const ChatHistory: React.FC = () => {
 
 	return (
 		<>
+		<Header/>
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
