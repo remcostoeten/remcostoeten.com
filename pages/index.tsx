@@ -57,7 +57,7 @@ export default function Home() {
 
 	return (
 		<>
-			{/* <div className='widget'>Click to change background</div> */}
+			{/* <div className='widget'>Click to change background</div>
 
 			<div className='speeddial'>
 				<SpeedDial
@@ -84,7 +84,7 @@ export default function Home() {
 				<div className={`${variant} bg2`}></div>
 				<div className={`${variant} bg3`}></div>
 				<div className='content'></div>
-			</div>
+			</div> */}
 			<Header />
 			<div className='container'>
 				<Intro />

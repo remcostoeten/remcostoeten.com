@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
 const BlinkingArrow = () => {
 	const [isBlinking, setIsBlinking] = useState(true);
+	const [showText, setShowText] = useState(true);
 
 	// Animation variants
 	const arrowVariants = {
@@ -24,9 +25,16 @@ const BlinkingArrow = () => {
 
 	return (
 		<>
-			<div onClick={() => setIsBlinking(false)}>
-				<span className='text'>X</span>
-				<span className='text'>Click to change color palette</span>
+			<div
+				className={`speeddial__inner ${showText ? '' : 'fade-out'}`}
+				onClick={() => {
+					setIsBlinking(false);
+					setShowText(false);
+				}}>
+				<span className='text'>
+					<HighlightOffIcon />
+					Click to change color palette
+				</span>
 				<motion.div
 					className='blinking-arrow'
 					animate={isBlinking ? 'animate' : 'hidden'}
@@ -34,6 +42,12 @@ const BlinkingArrow = () => {
 					<span className='icon'>➔</span>
 				</motion.div>
 			</div>
+			<style jsx>{`
+				.fade-out {
+					opacity: 0;
+					transition: opacity 0.5s ease-in-out;
+				}
+			`}</style>
 		</>
 	);
 };
