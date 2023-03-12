@@ -30,7 +30,9 @@ const Login = () => {
 			{isLoggedIn ? (
 				<div>You have successfully logged in!</div>
 			) : (
-				<button onClick={signIn}>Sign in with Google</button>
+				<div className='login-btn' onClick={signIn}>
+					<span>Sign in with Google</span>
+				</div>
 			)}
 			{isLoggedIn && <button onClick={signOut}>Sign out</button>}
 		</div>

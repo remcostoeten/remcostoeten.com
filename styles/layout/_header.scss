@@ -34,6 +34,7 @@
 		transform: rotateY(90deg) !important;
 	}
 }
+
 .header__speeddial {
 	div,
 	svg {
@@ -172,6 +173,139 @@
 		position: absolute;
 	}
 }
+
+.login-btn {
+	border-radius: 8px;
+	position: relative;
+	overflow: hidden;
+	z-index: 10;
+	animation: rad 3s ease-in-out infinite alternate;
+	display: flex;
+	align-items: center;
+	color: $color-white;
+	padding: 3px 21px;
+	justify-content: center;
+
+	span {
+		z-index: 2;
+	}
+
+	&:hover {
+		cursor: pointer;
+	}
+
+	&:after {
+		content: '';
+		width: 100%;
+		height: 48px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		scale: 1.3;
+		z-index: 1;
+		display: block;
+		opacity: 1;
+		animation: slidetwo 3s ease-in-out infinite alternate;
+	}
+}
+
+.variant {
+	header {
+		.login-btn {
+			&:after {
+				background-image: linear-gradient(
+					-60deg,
+					$color-one 25%,
+					$color-two 25%,
+					$color-three 25%,
+					$color-four 25%
+				);
+			}
+		}
+	}
+}
+
+.variant-two {
+	header {
+		.login-btn {
+			&:after {
+				background-image: linear-gradient(
+					-60deg,
+					$color-one-b 25%,
+					$color-two-b 25%,
+					$color-three-b 25%,
+					$color-four-b 25%
+				);
+			}
+		}
+	}
+}
+
+.variant-three {
+	header {
+		.login-btn {
+			&:after {
+				background-image: linear-gradient(
+					-60deg,
+					$color-one-c 25%,
+					$color-two-c 25%,
+					$color-three-c 25%,
+					$color-four-c 25%
+				);
+			}
+		}
+	}
+}
+
+.variant-four {
+	header {
+		.login-btn {
+			&:after {
+				background-image: linear-gradient(
+					-60deg,
+					$color-one-d 25%,
+					$color-two-d 25%,
+					$color-three-d 25%,
+					$color-four-d 25%
+				);
+			}
+		}
+	}
+}
+
+@keyframes slidetwo {
+	0% {
+		transform: translateX(-5%);
+	}
+	100% {
+		transform: translateX(5%);
+	}
+}
+
+.variant-three {
+	button {
+		background-image: linear-gradient(
+			-60deg,
+			$color-one 25%,
+			$color-two 25%,
+			$color-three 25%,
+			$color-four 25%
+		);
+	}
+}
+
+.variant-four {
+	button {
+		background-image: linear-gradient(
+			-60deg,
+			$color-one 25%,
+			$color-two 25%,
+			$color-three 25%,
+			$color-four 25%
+		);
+	}
+}
+
 .dropdown {
 	position: relative;
 }

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/header/Header';
 import Intro from '@/components/layout/Intro';
 import React from 'react';
@@ -11,54 +11,112 @@ import { motion } from 'framer-motion';
 import BlinkingArrow from '@/components/ui-elements/BlinkingArrow';
 export default function Home() {
 	const [variant, setVariant] = useState('theme--variant');
-	const [isBlinking, setIsBlinking] = useState(true);
+
+	useEffect(() => {
+		document.body.classList.add('variant');
+	}, []);
 
 	const handleVariantToggle = () => {
 		switch (variant) {
 			case 'theme--variant':
 				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
 				break;
 			case 'theme--variant-two':
 				setVariant('theme--variant-two');
+				document.body.classList.remove(
+					'variant',
+					'variant-three',
+					'variant-four',
+				);
 				break;
 			case 'theme--variant-three':
 				setVariant('theme--variant-three');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-four',
+				);
 				break;
 			case 'theme--variant-four':
-				setVariant('theme--variant--four');
+				setVariant('theme--variant-four');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-three',
+				);
 				break;
 			default:
 				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
 				break;
 		}
 	};
+
 	const actions = [
 		{
 			icon: false,
 			name: 'Palette one',
-			onClick: () => setVariant('theme--variant            '),
+			onClick: () => {
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				document.body.classList.add('variant');
+			},
 		},
 		{
 			icon: false,
 			name: 'Palette two',
-			onClick: () => setVariant('theme--variant-two'),
+			onClick: () => {
+				setVariant('theme--variant-two');
+				document.body.classList.remove(
+					'variant',
+					'variant-three',
+					'variant-four',
+				);
+				document.body.classList.add('variant-two');
+			},
 		},
 		{
 			icon: false,
 			name: 'Palette three',
-			onClick: () => setVariant('theme--variant-three'),
+			onClick: () => {
+				setVariant('theme--variant-three');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-four',
+				);
+				document.body.classList.add('variant-three');
+			},
 		},
 		{
 			icon: false,
 			name: 'Palette four',
-			onClick: () => setVariant('theme--variant-four'),
+			onClick: () => {
+				setVariant('theme--variant-four');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-three',
+				);
+				document.body.classList.add('variant-four');
+			},
 		},
 	];
-
 	return (
 		<>
-			<div className='widget'>Click to change background</div>
-
 			<div className='speeddial'>
 				<SpeedDial
 					ariaLabel='Change color palette'
