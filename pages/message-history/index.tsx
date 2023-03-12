@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import Friends from '@/components/Messenger/Friends';
 import Header from '@/components/header/Header';
-import PrivateRoute from '@/components/PrivateModal';
-import { db } from '../../firebase';
 import withAuth from '../withAuth';
 
 const MessengerPage = () => {
