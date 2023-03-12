@@ -42,7 +42,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../private-apis/data/d.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,

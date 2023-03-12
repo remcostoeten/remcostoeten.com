@@ -627,10 +627,25 @@ input[type=text]:hover {
   padding: 10px;
 }
 .not-authenticated a {
-  text-decoration: underline;
+  text-decoration: none;
+  position: relative;
 }
-.not-authenticated a:visited, .not-authenticated a:focus,
-.not-authenticated a :active {
+.not-authenticated a:before {
+  content: "";
+  width: 0;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  background-color: transparent;
+  left: 2px;
+  z-index: 2;
+  transition: 250ms ease-in;
+}
+.not-authenticated a:hover:before {
+  width: 100%;
+  background-color: #ff5e65;
+}
+.not-authenticated a:visited, .not-authenticated a:focus, .not-authenticated a:active {
   color: #8c8aa7;
 }
 .not-authenticated .face {
