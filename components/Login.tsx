@@ -26,16 +26,14 @@ const Login = () => {
 	};
 
 	return (
-		<>
+		<div>
 			{isLoggedIn ? (
 				<div>You have successfully logged in!</div>
 			) : (
-				<button className='btn btn--small btn--header' onClick={signIn}>
-					Sign in with Google
-				</button>
+				<button onClick={signIn}>Sign in with Google</button>
 			)}
 			{isLoggedIn && <button onClick={signOut}>Sign out</button>}
-		</>
+		</div>
 	);
 };
 
