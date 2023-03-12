@@ -4,12 +4,14 @@ import Intro from '@/components/layout/Intro';
 import React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import Github from '@mui/icons-material/GitHub';
-import { Link, Mail, WhatsApp } from '@mui/icons-material';
+import { Mail, WhatsApp } from '@mui/icons-material';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { motion } from 'framer-motion';
+import BlinkingArrow from '@/components/ui-elements/BlinkingArrow';
 export default function Home() {
 	const [variant, setVariant] = useState('theme--variant');
+	const [isBlinking, setIsBlinking] = useState(true);
 
 	const handleVariantToggle = () => {
 		switch (variant) {
@@ -57,21 +59,25 @@ export default function Home() {
 		<>
 			{/* <div className='widget'>Click to change background</div> */}
 
-			<SpeedDial
-				ariaLabel='Change color palette'
-				sx={{ position: 'absolute', bottom: 16, right: 16 }}
-				// icon={<SpeedDialIcon />}
-				className='color-palette'>
-				{actions.map((action) => (
-					<SpeedDialAction
-						key={action.name}
-						icon={action.icon}
-						tooltipTitle={action.name}
-						onClick={action.onClick} // use the onClick function defined for this action
-						className='my-speed-dial-action'
-					/>
-				))}
-			</SpeedDial>
+			<div className='speeddial'>
+				<SpeedDial
+					ariaLabel='Change color palette'
+					sx={{ position: 'absolute', bottom: 16, right: 16 }}
+					className='color-palette'>
+					{actions.map((action) => (
+						<SpeedDialAction
+							key={action.name}
+							icon={action.icon}
+							tooltipTitle={action.name}
+							onClick={action.onClick}
+							className='my-speed-dial-action'
+						/>
+					))}
+				</SpeedDial>
+				<div className='speeeddial__text'>
+					<BlinkingArrow />
+				</div>
+			</div>
 
 			<div className='theme'>
 				<div className={variant}></div>
@@ -84,23 +90,23 @@ export default function Home() {
 				<Intro />
 			</div>
 			<div className='header__speeddial'>
-				<motion.div whileHover={{ scale: 1.09 }}>
+				<div>
 					<a
-						className='header__social--github'
 						href='https://github.com/remcostoeten/'
 						target='_blank'
 						rel='noreferrer'>
 						<Github />
 					</a>
-				</motion.div>
-
-				<motion.div whileHover={{ scale: 1.09 }}>
+				</div>
+				<div>
+					{' '}
 					<WhatsApp />
-				</motion.div>
+				</div>
 
-				<motion.div whileHover={{ scale: 1.09 }}>
+				<div>
+					{' '}
 					<Mail />
-				</motion.div>
+				</div>
 			</div>
 		</>
 	);
