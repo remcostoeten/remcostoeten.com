@@ -14,12 +14,17 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
+import OffcanvasMenu from './OffcanvasMenu';
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 const Header = () => {
-	const [showTagline, setShowTagline] = useState(true);
-	const [minimalSticky, setmMinimalSticky] = useState(true);
+	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [showTagline, setShowTagline] = useState(true);
+	const [minimalSticky, setmMinimalSticky] = useState(true);
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const isMobile = useMediaQuery('(max-width: 768px)');
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
@@ -27,6 +32,11 @@ const Header = () => {
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
+
+	const handleMenu = () => {
+		setOpenMenu(true);
+	};
+
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -112,9 +122,11 @@ const Header = () => {
 							</motion.div>
 						</motion.div>
 					</Link>
-					<nav className='header__menu'>
-						<ul>
-							{/* {isLoggedIn &&
+					{!isMobile && (
+						<>
+							<nav className='header__menu'>
+								<ul>
+									{/* {isLoggedIn &&
 							auth.currentUser?.email ===
 								'stoetenremco.rs@gmail.com' ? (
 								<div>
@@ -181,120 +193,132 @@ const Header = () => {
 									</Menu>
 								</div>
 							) : null} */}
-							<motion.li whileHover={{ scale: 1.05 }}>
-								<Link href='/message-history'>
-									Messenger feature
-								</Link>
-							</motion.li>
-							<motion.li whileHover={{ scale: 1.05 }}>
-								<Link href='/whatsapp-export'>
-									Chat feature
-								</Link>
-							</motion.li>
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<Link href='/message-history'>
+											Messenger feature
+										</Link>
+									</motion.li>
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<Link href='/whatsapp-export'>
+											Chat feature
+										</Link>
+									</motion.li>
 
-							<motion.li whileHover={{ scale: 1.05 }}>
-								<a
-									href='https://github.com/remcostoeten/'
-									target='_blank'
-									rel='noreferrer'>
-									Github
-								</a>
-							</motion.li>
-						</ul>
-					</nav>
-					<div className='header__login'>
-						{isLoggedIn ? (
-							<motion.li whileHover={{ scale: 1.05 }}>
-								<React.Fragment>
-									<Box
-										sx={{
-											display: 'flex',
-											alignItems: 'center',
-											textAlign: 'center',
-										}}>
-										<Tooltip title='Click to logout'>
-											<IconButton
-												onClick={handleClick}
-												size='small'
-												sx={{ ml: 2 }}
-												aria-controls={
-													open
-														? 'account-menu'
-														: undefined
-												}
-												aria-haspopup='true'
-												aria-expanded={
-													open ? 'true' : undefined
-												}>
-												<Avatar
-													sx={{
-														width: 32,
-														height: 32,
-													}}>
-													{userName?.slice(0, 1)}
-												</Avatar>
-											</IconButton>
-										</Tooltip>
-									</Box>
-									<Menu
-										anchorEl={anchorEl}
-										id='account-menu'
-										open={open}
-										onClose={handleClose}
-										onClick={handleClose}
-										PaperProps={{
-											elevation: 0,
-											sx: {
-												overflow: 'visible',
-												filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-												mt: 1.5,
-												'& .MuiAvatar-root': {
-													width: 32,
-													height: 32,
-													ml: -0.5,
-													mr: 1,
-												},
-												'&:before': {
-													content: '""',
-													display: 'block',
-													position: 'absolute',
-													top: 0,
-													right: 14,
-													width: 10,
-													height: 10,
-													bgcolor: 'background.paper',
-													transform:
-														'translateY(-50%) rotate(45deg)',
-													zIndex: 0,
-												},
-											},
-										}}
-										transformOrigin={{
-											horizontal: 'right',
-											vertical: 'top',
-										}}
-										anchorOrigin={{
-											horizontal: 'right',
-											vertical: 'bottom',
-										}}>
-										<Divider />
-										<MenuItem
-											onClick={() => auth.signOut()}>
-											<ListItemIcon>
-												<Logout fontSize='small' />
-											</ListItemIcon>
-											Logout
-										</MenuItem>
-									</Menu>
-								</React.Fragment>
-								<a onClick={() => auth.signOut()}></a>
-							</motion.li>
-						) : (
-							<motion.li whileHover={{ scale: 1.05 }}>
-								<Login />
-							</motion.li>
-						)}
-					</div>
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<a
+											href='https://github.com/remcostoeten/'
+											target='_blank'
+											rel='noreferrer'>
+											Github
+										</a>
+									</motion.li>
+								</ul>
+							</nav>
+							<div className='header__login'>
+								{isLoggedIn ? (
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<React.Fragment>
+											<Box
+												sx={{
+													display: 'flex',
+													alignItems: 'center',
+													textAlign: 'center',
+												}}>
+												<Tooltip title='Click to logout'>
+													<IconButton
+														onClick={handleClick}
+														size='small'
+														sx={{ ml: 2 }}
+														aria-controls={
+															open
+																? 'account-menu'
+																: undefined
+														}
+														aria-haspopup='true'
+														aria-expanded={
+															open
+																? 'true'
+																: undefined
+														}>
+														<Avatar
+															sx={{
+																width: 32,
+																height: 32,
+															}}>
+															{userName?.slice(
+																0,
+																1,
+															)}
+														</Avatar>
+													</IconButton>
+												</Tooltip>
+											</Box>
+											<Menu
+												anchorEl={anchorEl}
+												id='account-menu'
+												open={open}
+												onClose={handleClose}
+												onClick={handleClose}
+												PaperProps={{
+													elevation: 0,
+													sx: {
+														overflow: 'visible',
+														filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+														mt: 1.5,
+														'& .MuiAvatar-root': {
+															width: 32,
+															height: 32,
+															ml: -0.5,
+															mr: 1,
+														},
+														'&:before': {
+															content: '""',
+															display: 'block',
+															position:
+																'absolute',
+															top: 0,
+															right: 14,
+															width: 10,
+															height: 10,
+															bgcolor:
+																'background.paper',
+															transform:
+																'translateY(-50%) rotate(45deg)',
+															zIndex: 0,
+														},
+													},
+												}}
+												transformOrigin={{
+													horizontal: 'right',
+													vertical: 'top',
+												}}
+												anchorOrigin={{
+													horizontal: 'right',
+													vertical: 'bottom',
+												}}>
+												<Divider />
+												<MenuItem
+													onClick={() =>
+														auth.signOut()
+													}>
+													<ListItemIcon>
+														<Logout fontSize='small' />
+													</ListItemIcon>
+													Logout
+												</MenuItem>
+											</Menu>
+										</React.Fragment>
+										<a onClick={() => auth.signOut()}></a>
+									</motion.li>
+								) : (
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<Login />
+									</motion.li>
+								)}
+							</div>
+						</>
+					)}
+					<OffcanvasMenu />
 				</div>
 			</motion.header>
 		</>

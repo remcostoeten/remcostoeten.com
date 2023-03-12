@@ -157,13 +157,21 @@ export default function Home() {
 					</a>
 				</div>
 				<div>
-					{' '}
-					<WhatsApp />
+					<a
+						href='https://wa.me/31636590707'
+						target='_blank'
+						rel='noreferrer'>
+						<WhatsApp />
+					</a>
 				</div>
 
 				<div>
-					{' '}
-					<Mail />
+					<a
+						href='mailto:remcostoeten@hotmail.com'
+						target='_blank'
+						rel='noreferrer'>
+						<Mail />
+					</a>
 				</div>
 			</div>
 		</>
