@@ -231,7 +231,7 @@ const Header = () => {
 											alignItems: 'center',
 											textAlign: 'center',
 										}}>
-										<Tooltip title='Account settings'>
+										<Tooltip title='Click to logout'>
 											<IconButton
 												onClick={handleClick}
 												size='small'
@@ -250,7 +250,7 @@ const Header = () => {
 														width: 32,
 														height: 32,
 													}}>
-													M
+													{userName?.slice(0, 1)}
 												</Avatar>
 											</IconButton>
 										</Tooltip>
@@ -297,13 +297,6 @@ const Header = () => {
 											vertical: 'bottom',
 										}}>
 										<Divider />
-
-										<MenuItem onClick={handleClose}>
-											<ListItemIcon>
-												<Settings fontSize='small' />
-											</ListItemIcon>
-											Settings
-										</MenuItem>
 										<MenuItem
 											onClick={() => auth.signOut()}>
 											<ListItemIcon>
