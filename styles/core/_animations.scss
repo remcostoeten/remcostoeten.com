@@ -159,6 +159,26 @@ $animationDuration: 250ms;
 		background-position: 2% 0%;
 	}
 }
+@keyframes slide-btn {
+	0% {
+		background-image: linear-gradient(
+			-15deg,
+			$color-one-d 25%,
+			$color-two-d 25%,
+			$color-three-d 25%,
+			$color-four-d 25%
+		);
+	}
+	100% {
+		background-image: linear-gradient(
+			-15deg,
+			$color-two-d 25%,
+			$color-one-d 25%,
+			$color-three-d 25%,
+			$color-four-d 25%
+		);
+	}
+}
 
 @keyframes slide-out-top {
 	0% {

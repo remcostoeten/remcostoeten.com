@@ -193,9 +193,8 @@ const Header = () => {
 									</Menu>
 								</div>
 							) : null}
-							<Link href='/test-history'>Messenger</Link>
 							<motion.li whileHover={{ scale: 1.05 }}>
-								<Link href='/message-history'>Messenger</Link>
+								<Link href='/messenger'>Messenger feature</Link>
 							</motion.li>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/whatsapp-export'>
@@ -204,9 +203,6 @@ const Header = () => {
 							</motion.li>
 
 							<motion.li whileHover={{ scale: 1.05 }}>
-								<Link href='/contact'>Contact</Link>
-							</motion.li>
-							<motion.li whileHover={{ scale: 1.05 }}>
 								<a
 									href='https://github.com/remcostoeten/'
 									target='_blank'
@@ -214,17 +210,19 @@ const Header = () => {
 									Github
 								</a>
 							</motion.li>
-							{isLoggedIn ? (
-								<motion.li whileHover={{ scale: 1.05 }}>
-									<a onClick={() => auth.signOut()}>Logout</a>
-								</motion.li>
-							) : (
-								<motion.li whileHover={{ scale: 1.05 }}>
-									<Login />
-								</motion.li>
-							)}
 						</ul>
 					</nav>
+					<div className='header__login'>
+						{isLoggedIn ? (
+							<motion.li whileHover={{ scale: 1.05 }}>
+								<a onClick={() => auth.signOut()}>Logout</a>
+							</motion.li>
+						) : (
+							<motion.li whileHover={{ scale: 1.05 }}>
+								<Login />
+							</motion.li>
+						)}
+					</div>
 				</div>
 			</motion.header>
 		</>

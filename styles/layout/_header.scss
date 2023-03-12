@@ -1,22 +1,69 @@
 .scrolled {
 	height: 1500px;
 	background-color: blue;
-
+	transition: 250ms ease-in-out all;
 	.header {
-		padding: 8px 0;
+		padding: 0;
 		position: sticky;
 		top: 0;
 		left: 0;
 		z-index: $z-index-layer-three;
 	}
-}
 
+	.email {
+		transform: rotateX(90deg) !important;
+		opacity: 0 !important;
+		animation: hide 1s 1s foward;
+	}
+	@keyframes hide {
+		0% {
+		}
+
+		100% {
+			display: none;
+		}
+	}
+
+	img {
+		opacity: 0 !important;
+		transform: rotateY(90deg) !important;
+	}
+}
+.header__speeddial {
+	div,
+	svg {
+		font-size: 22px;
+		&:not(:last-child) {
+			margin-bottom: $spacing-m;
+		}
+	}
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: $spacing $spacing-s;
+	border-radius: 0 12px 12px 0;
+	background: $color-white;
+	font-size: 30px;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	position: sticky;
+	width: fit-content;
+	top: 50%;
+	transform: translateY(-50%);
+}
 .header {
 	background-color: $color-white;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	font-family: $font--alternative;
 	padding: $spacing 0;
 	transition: 250ms ease-out all;
+
+	.email {
+		opacity: 1;
+		transition: 250ms ease-in-out all;
+	}
+
+	.container {
+	}
 
 	&__inner {
 		display: flex;
@@ -38,11 +85,14 @@
 
 		img {
 			border-radius: 50%;
+			transform: rotateY(0);
+			transition: 250ms ease-in-out all;
 			margin-right: $spacing-m;
 		}
 
 		span,
 		a {
+			line-height: 0.9;
 			color: #333;
 			text-decoration: none;
 

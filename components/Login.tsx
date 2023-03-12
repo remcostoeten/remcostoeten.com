@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { auth, signInWithPopup, GoogleAuthProvider } from '../firebase';
 
-const L = () => {
+const Login = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	const signIn = async () => {
@@ -26,14 +26,16 @@ const L = () => {
 	};
 
 	return (
-		<div>
+		<>
 			{isLoggedIn ? (
 				<div>You have successfully logged in!</div>
 			) : (
-				<button onClick={signIn}>Sign in with Google</button>
+				<button className='btn btn--small btn--header' onClick={signIn}>
+					Sign in with Google
+				</button>
 			)}
 			{isLoggedIn && <button onClick={signOut}>Sign out</button>}
-		</div>
+		</>
 	);
 };
 

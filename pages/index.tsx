@@ -4,7 +4,10 @@ import Intro from '@/components/layout/Intro';
 import React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-
+import GitHubIcon from '@mui/icons-material/GitHub';
+import Github from '@mui/icons-material/GitHub';
+import { Link, Mail, WhatsApp } from '@mui/icons-material';
+import { motion } from 'framer-motion';
 export default function Home() {
 	const [variant, setVariant] = useState('theme--variant');
 
@@ -53,6 +56,7 @@ export default function Home() {
 	return (
 		<>
 			{/* <div className='widget'>Click to change background</div> */}
+
 			<SpeedDial
 				ariaLabel='Change color palette'
 				sx={{ position: 'absolute', bottom: 16, right: 16 }}
@@ -78,6 +82,25 @@ export default function Home() {
 			<Header />
 			<div className='container'>
 				<Intro />
+			</div>
+			<div className='header__speeddial'>
+				<motion.div whileHover={{ scale: 1.09 }}>
+					<a
+						className='header__social--github'
+						href='https://github.com/remcostoeten/'
+						target='_blank'
+						rel='noreferrer'>
+						<Github color='#000' />
+					</a>
+				</motion.div>
+
+				<motion.div whileHover={{ scale: 1.09 }}>
+					<WhatsApp color='#1fbf45' />
+				</motion.div>
+
+				<motion.div whileHover={{ scale: 1.09 }}>
+					<Mail color='#000' />
+				</motion.div>
 			</div>
 		</>
 	);
