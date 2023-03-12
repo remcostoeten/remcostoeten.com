@@ -90,16 +90,16 @@ export default function Home() {
 						href='https://github.com/remcostoeten/'
 						target='_blank'
 						rel='noreferrer'>
-						<Github color='#000' />
+						<Github />
 					</a>
 				</motion.div>
 
 				<motion.div whileHover={{ scale: 1.09 }}>
-					<WhatsApp color='#1fbf45' />
+					<WhatsApp />
 				</motion.div>
 
 				<motion.div whileHover={{ scale: 1.09 }}>
-					<Mail color='#000' />
+					<Mail />
 				</motion.div>
 			</div>
 		</>
