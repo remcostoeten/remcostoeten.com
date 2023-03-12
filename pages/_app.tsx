@@ -3,30 +3,52 @@ import type { AppProps } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
+import { useEffect, useState } from 'react';
 
-Router.events.on('routeChangeStart', () => {
-	const loader = document.createElement('div');
-	loader.classList.add('loader'); // use your custom loader class
-	const spinner = document.createElement('div');
-	spinner.classList.add('spinner'); // use your custom spinner class
-	loader.appendChild(spinner);
-	document.body.appendChild(loader);
-});
+const Loader = () => {
+	const [isLoading, setIsLoading] = useState(false);
 
-Router.events.on('routeChangeComplete', () => {
-	const loader = document.querySelector('.loader');
-	if (loader) {
-		loader.remove();
-	}
-});
+	useEffect(() => {
+		const startLoading = () => setIsLoading(true);
+		const endLoading = () => setIsLoading(false);
 
-Router.events.on('routeChangeError', () => {
-	const loader = document.querySelector('.loader');
-	if (loader) {
-		loader.remove();
-	}
-});
+		Router.events.on('routeChangeStart', startLoading);
+		Router.events.on('routeChangeComplete', endLoading);
+		Router.events.on('routeChangeError', endLoading);
+
+		return () => {
+			Router.events.off('routeChangeStart', startLoading);
+			Router.events.off('routeChangeComplete', endLoading);
+			Router.events.off('routeChangeError', endLoading);
+		};
+	}, []);
+
+	useEffect(() => {
+		let timer: NodeJS.Timeout;
+		if (isLoading) {
+			timer = setTimeout(() => {
+				const loader = document.querySelector('.loader');
+				if (loader) {
+					loader.remove();
+				}
+			}, 1000);
+		}
+		return () => clearTimeout(timer);
+	}, [isLoading]);
+
+	return (
+		<div className={`loader${isLoading ? ' show' : ''}`}>
+			<div className='backdrop'></div>
+			<div className='spinner'></div>
+		</div>
+	);
+};
 
 export default function App({ Component, pageProps }: AppProps) {
-	return <Component {...pageProps} />;
+	return (
+		<>
+			<Loader />
+			<Component {...pageProps} />
+		</>
+	);
 }
