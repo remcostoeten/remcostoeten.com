@@ -32,7 +32,7 @@ const BlinkingArrow = () => {
 					setShowText(false);
 				}}>
 				<span className='text'>
-					<HighlightOffIcon />
+					<HighlightOffIcon className='close' />
 					Click to change color palette
 				</span>
 				<motion.div

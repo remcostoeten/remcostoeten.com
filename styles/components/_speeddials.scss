@@ -7,6 +7,7 @@
 	font-size: 2.1em;
 	animation: slide-in-bottom 0.5s 5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 	opacity: 0.6;
+
 	svg {
 		font-size: 26px;
 	}
@@ -18,7 +19,22 @@
 			cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 		animation-iteration-count: 5;
 	}
+	.close {
+		transition: 250ms ease all;
 
+		&:hover {
+			animation: bg-pan-left 8s both;
+			cursor: pointer;
+		}
+	}
+	@keyframes bg-pan-left {
+		0% {
+			background-position: 100% 50%;
+		}
+		100% {
+			background-position: 0% 50%;
+		}
+	}
 	span {
 		display: flex;
 		align-items: center;

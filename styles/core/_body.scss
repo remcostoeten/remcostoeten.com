@@ -129,3 +129,12 @@ h1 {
 		transform: translateX(25%);
 	}
 }
+
+@keyframes slide-btn {
+	0% {
+		transform: translateX(-5%);
+	}
+	100% {
+		transform: translateX(5%);
+	}
+}
