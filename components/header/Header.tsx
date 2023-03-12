@@ -13,17 +13,12 @@ import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import Tooltip from '@mui/material/Tooltip';
-import PersonAdd from '@mui/icons-material/PersonAdd';
-import Settings from '@mui/icons-material/Settings';
 const Header = () => {
 	const [showTagline, setShowTagline] = useState(true);
 	const [minimalSticky, setmMinimalSticky] = useState(true);
 	const [userName, setUserName] = useState<string | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [showWelcome, setShowWelcome] = useState(true);
-	const [showLoginModal, setShowLoginModal] = useState(false);
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -35,14 +30,6 @@ const Header = () => {
 	const headerVariants = {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-	};
-
-	const handleLoginClick = () => {
-		setShowLoginModal(true);
-	};
-
-	const handleCloseModal = () => {
-		setShowLoginModal(false);
 	};
 
 	useEffect(() => {
@@ -57,7 +44,6 @@ const Header = () => {
 				setmMinimalSticky(true);
 			}
 		};
-
 		window.addEventListener('scroll', handleScroll);
 
 		return () => {
@@ -75,13 +61,6 @@ const Header = () => {
 				setUserName(null);
 			}
 		});
-	}, []);
-
-	useEffect(() => {
-		const timeout = setTimeout(() => {
-			setShowWelcome(false);
-		}, 3000); // Hide the welcome message after 3 seconds
-		return () => clearTimeout(timeout);
 	}, []);
 
 	return (
@@ -203,7 +182,9 @@ const Header = () => {
 								</div>
 							) : null} */}
 							<motion.li whileHover={{ scale: 1.05 }}>
-								<Link href='/messenger'>Messenger feature</Link>
+								<Link href='/message-history'>
+									Messenger feature
+								</Link>
 							</motion.li>
 							<motion.li whileHover={{ scale: 1.05 }}>
 								<Link href='/whatsapp-export'>

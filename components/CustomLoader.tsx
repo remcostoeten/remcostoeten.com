@@ -13,9 +13,14 @@ const CustomLoader: React.FC = () => {
 				.loader {
 					position: fixed;
 					z-index: 999;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
+					top: 0;
+					left: 0;
+					width: 100%;
+					height: 100%;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					background-color: #fff;
 				}
 				.spinner {
 					width: 50px;
@@ -23,10 +28,6 @@ const CustomLoader: React.FC = () => {
 					border-radius: 50%;
 					border: 5px solid #ccc;
 					border-top-color: #333;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
 				}
 			`}</style>
 		</div>

@@ -10,14 +10,18 @@
 		left: 0;
 		z-index: $z-index-layer-three;
 	}
-
+	.header__user-image-wrapper,
 	.email {
 		transform: rotateX(90deg) !important;
+		visibility: hidden !important;
 		opacity: 0 !important;
-		animation: hide 1s 1s foward;
+		transition: height 0.5s, visibility 0s, opacity 0.5s linear;
+		height: 0;
 	}
+
 	@keyframes hide {
 		0% {
+			display: none;
 		}
 
 		100% {
@@ -61,6 +65,8 @@
 	.email {
 		opacity: 1;
 		transition: 250ms ease-in-out all;
+		visibility: visible;
+		opacity: 1;
 	}
 
 	.container {
@@ -169,7 +175,19 @@
 .dropdown {
 	position: relative;
 }
-
+#globalLoader {
+	position: fixed;
+	z-index: 9999;
+	top: 50%;
+	left: 50%;
+	background-color: #fff;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
+}
 .menu {
 	position: absolute;
 

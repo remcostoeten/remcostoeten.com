@@ -573,42 +573,6 @@ input[type=text]:hover {
   padding: 4px 0 4px 28px !important;
 }
 
-.loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-.backdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: -1;
-}
-
-.spinner {
-  width: 80px;
-  height: 80px;
-  border: 5px solid #ccc;
-  border-top-color: #333;
-  border-radius: 50%;
-  animation: spin 1s infinite linear;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
 .header__hero--heading-gradient {
   background: linear-gradient(-45deg, var(#0092d2), var(#003247), var(#0092d2), var(#003247));
   background-clip: text;
@@ -1445,12 +1409,18 @@ h1 {
   left: 0;
   z-index: 20;
 }
+.scrolled .header__user-image-wrapper,
 .scrolled .email {
   transform: rotateX(90deg) !important;
+  visibility: hidden !important;
   opacity: 0 !important;
-  animation: hide 1s 1s foward;
+  transition: height 0.5s, visibility 0s, opacity 0.5s linear;
+  height: 0;
 }
 @keyframes hide {
+  0% {
+    display: none;
+  }
   100% {
     display: none;
   }
@@ -1493,6 +1463,8 @@ h1 {
 .header .email {
   opacity: 1;
   transition: 250ms ease-in-out all;
+  visibility: visible;
+  opacity: 1;
 }
 .header__inner {
   display: flex;
@@ -1574,6 +1546,20 @@ h1 {
 
 .dropdown {
   position: relative;
+}
+
+#globalLoader {
+  position: fixed;
+  z-index: 9999;
+  top: 50%;
+  left: 50%;
+  background-color: #fff;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
 }
 
 .menu {
