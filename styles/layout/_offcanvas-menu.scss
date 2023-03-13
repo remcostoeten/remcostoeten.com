@@ -18,6 +18,30 @@ $hamburger-stripe-width: 20px;
 	}
 
 	.menuOpen {
+		a,
+		li {
+			color: $color-white;
+			font-size: 2em;
+			font-weight: 600;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 48px;
+
+			&:visited,
+			&:active,
+			&:focus {
+				color: $color-white;
+			}
+		}
+		.actions {
+			svg {
+				display: block !important;
+				color: $color-white;
+			}
+		}
+
 		.offcanvas {
 			box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
 				rgba(0, 0, 0, 0.12) 0px -12px 30px,
@@ -30,21 +54,37 @@ $hamburger-stripe-width: 20px;
 			position: absolute;
 			width: 100%;
 			z-index: $z-index-layer-six;
-			height: 50vh;
+			height: auto;
 			top: 0;
 			left: 0;
 			width: 100%;
-			transition: 250ms ease all;
+			transition: 500ms ease all;
+
+			.login-btn {
+				margin-bottom: $spacing;
+			}
+
+			.header-offcanvas {
+				display: flex;
+				flex-direction: column;
+			}
+
 			&__inner {
 				.header__offcanvas {
 					display: flex;
-					justify-content: flex-end;
+					justify-content: center;
+					flex-direction: column;
 				}
 
 				svg {
-					font-size: 2.8em;
+					font-size: 1.7em;
 				}
 			}
+		}
+
+		.header__offcanvas__inner {
+			display: flex;
+			flex-direction: column;
 		}
 	}
 }

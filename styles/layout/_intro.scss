@@ -61,6 +61,8 @@
 
 @include mobile {
 	.intro {
+		padding-top: 10vh !important;
+		font-size: 30px;
 		&__heading {
 			color: darken($color-white, 10%);
 			opacity: 0.9;

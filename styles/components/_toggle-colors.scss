@@ -1,9 +1,5 @@
 // https://coolors.co/ceec97-f4b393-f88a9e-fc60a8-7a28cb-494368
 
-.body-big {
-	height: 200vh;
-}
-
 .widget {
 	width: 50px;
 	height: 50px;
@@ -48,6 +44,17 @@
 		right: -50%;
 		top: 0;
 		z-index: -1;
+
+		.intro__heading,
+		h1,
+		h2,
+		h3,
+		h4,
+		h5,
+		h6,
+		p {
+			color: black !important;
+		}
 	}
 
 	&--variant-three {

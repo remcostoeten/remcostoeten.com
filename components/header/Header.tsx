@@ -117,7 +117,7 @@ const Header = () => {
 										</span>
 									</motion.div>
 								) : (
-									<h2>Logo</h2>
+									<h2>remcostoeten</h2>
 								)}
 							</motion.div>
 						</motion.div>
@@ -195,12 +195,12 @@ const Header = () => {
 							) : null} */}
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/message-history'>
-											Messenger feature
+											Messenger
 										</Link>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/whatsapp-export'>
-											Chat feature
+											Chat
 										</Link>
 									</motion.li>
 

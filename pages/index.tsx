@@ -146,8 +146,9 @@ export default function Home() {
 			<Header />
 			<div className='container'>
 				<Intro />
+				<Intro />
 			</div>
-			<div className='header__speeddial'>
+			{/* <div className='header__speeddial'>
 				<div>
 					<a
 						href='https://github.com/remcostoeten/'
@@ -173,7 +174,7 @@ export default function Home() {
 						<Mail />
 					</a>
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 }

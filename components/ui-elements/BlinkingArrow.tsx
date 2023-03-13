@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import { CloseIcon } from '@chakra-ui/icons';
+import { CloseOutlined } from '@mui/icons-material';
 const BlinkingArrow = () => {
 	const [isBlinking, setIsBlinking] = useState(true);
 	const [showText, setShowText] = useState(true);
@@ -32,7 +34,7 @@ const BlinkingArrow = () => {
 					setShowText(false);
 				}}>
 				<span className='text'>
-					<HighlightOffIcon className='close' />
+					<CloseOutlined className='close' />
 					Click to change color palette
 				</span>
 				<motion.div
