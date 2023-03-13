@@ -63,18 +63,12 @@
 	padding: $spacing 0;
 	transition: 250ms ease-out all;
 
-    button {
-        font-size: 2em;
-    }
 
 	.email {
 		opacity: 1;
 		transition: 250ms ease-in-out all;
 		visibility: visible;
 		opacity: 1;
-	}
-
-	.container {
 	}
 
 	&__inner {
@@ -120,6 +114,10 @@
 		li {
 			display: flex;
 		}
+
+        span {
+            font-size: 1.4em;
+        }
 	}
 
 	&__tagline {
@@ -138,7 +136,7 @@
 
 	nav {
 		li {
-			font-size: 1.1em;
+			font-size: 1em;
 			font-weight: 600;
 			position: relative;
 			transition: 250ms ease all;
@@ -187,7 +185,7 @@
 	display: flex;
 	align-items: center;
 	color: $color-white;
-    padding: 3px 12px;
+    padding: 8px 20px;
     justify-content: center;
 
 	span {

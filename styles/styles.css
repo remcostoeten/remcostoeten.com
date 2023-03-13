@@ -2128,10 +2128,6 @@ h1 {
   transition: 250ms ease-out all;
 }
 
-.header button {
-  font-size: 2em;
-}
-
 .header .email {
   opacity: 1;
   -webkit-transition: 250ms ease-in-out all;
@@ -2202,6 +2198,10 @@ h1 {
   display: flex;
 }
 
+.header__login span {
+  font-size: 1.4em;
+}
+
 .header__tagline {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2222,7 +2222,7 @@ h1 {
 }
 
 .header nav li {
-  font-size: 1.1em;
+  font-size: 1em;
   font-weight: 600;
   position: relative;
   -webkit-transition: 250ms ease all;
@@ -2271,7 +2271,7 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   color: #fff;
-  padding: 3px 12px;
+  padding: 8px 20px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
