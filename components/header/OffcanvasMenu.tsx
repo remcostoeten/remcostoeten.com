@@ -3,7 +3,13 @@
 import Link from 'next/link';
 import CancelIcon from '@mui/icons-material/Cancel';
 import React, { useEffect, useState } from 'react';
-import { CancelOutlined, Email, Logout, Menu, WhatsApp } from '@mui/icons-material';
+import {
+	CancelOutlined,
+	Email,
+	Logout,
+	Menu,
+	WhatsApp,
+} from '@mui/icons-material';
 import Login from '../Login';
 import { auth } from '@/firebase';
 import {
@@ -73,37 +79,36 @@ function OffcanvasMenu() {
 						</div>
 						<div className='offcanvas__inner'>
 							<div className='header__offcanvas'>
-								<div className='header__offcanvas__inner'>
-								onClick={menuToggleHandler}>
+								<div
+									className='header__offcanvas__inner'
+									onClick={menuToggleHandler}>
 									<div className='header__close'>
 										<CancelOutlined />
 									</div>
 									<Login />
 
-							
 									<Link href='/message-history'>
-										Messenger 
+										Messenger
 									</Link>
-									<Link href='/whatsapp-export'>
-										Chat 
-										</Link>
-										<Link 	href='https://github.com/remcostoeten/'
-											target='_blank'
-											rel='noreferrer'> 
-										Github 
-										</Link>
-									</div>
-									<div className='actions'>
-											<a href="https://wa.me/31636590707">
-											 	<WhatsApp />
-											</a>
-											<a
-												href='mailto:remcostoeten@hotmail.com'
-												target='_blank'
-												rel='noreferrer'>
+									<Link href='/whatsapp-export'>Chat</Link>
+									<Link
+										href='https://github.com/remcostoeten/'
+										target='_blank'
+										rel='noreferrer'>
+										Github
+									</Link>
+								</div>
+								<div className='actions'>
+									<a href='https://wa.me/31636590707'>
+										<WhatsApp />
+									</a>
+									<a
+										href='mailto:remcostoeten@hotmail.com'
+										target='_blank'
+										rel='noreferrer'>
 										<Email />
-										</a>
-							</div>
+									</a>
+								</div>
 							</div>
 						</div>
 					</>
