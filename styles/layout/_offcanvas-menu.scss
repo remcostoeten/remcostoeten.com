@@ -1,56 +1,41 @@
 $hamburger-stripe-width: 20px;
 
 @include mobile {
+	.header {
+		.header__content__nav {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+		}
+	}
 	.offcanvas {
-		// &__inner {
-		// // Vertical version
-		// 	width: 45vw;
-		// 	height: 100vh;
-		// 	position: sticky;
-		// 	right: -20px;
-		// 	top: -20px;
-		// 	background-color: $off-white;
-		// 	border-radius: 0 0 8px 8px;
-		// 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-		// 		rgba(0, 0, 0, 0.12) 0px -12px 30px,
-		// 		rgba(0, 0, 0, 0.12) 0px 4px 6px,
-		// 		rgba(0, 0, 0, 0.17) 0px 12px 13px,
-		// 		rgba(0, 0, 0, 0.09) 0px -3px 5px;
+		position: unset;
+		position: relative;
 		transition: 250ms ease all;
-		// 	transform: translateX(200%);
 		z-index: $z-index-layer-three;
-		// }
-		position: fixed;
-		top: 0;
-		left: 0;
-		width: 100%;
-		height: 100%;
-		background-color: #000;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-between;
-		padding: var(--padding);
-		touch-action: manipulation;
-		z-index: 9;
-		// &__inner {
-		// 	width: 100vw;
-		// 	height: 40vh;
-		// 	background-color: $color-white;
-		// 	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
-		// 		rgba(0, 0, 0, 0.12) 0px -12px 30px,
-		// 		rgba(0, 0, 0, 0.12) 0px 4px 6px,
-		// 		rgba(0, 0, 0, 0.17) 0px 12px 13px,
-		// 		rgba(0, 0, 0, 0.09) 0px -3px 5px;
-		// }
-		// transform: translateY(0);
+		height: 0vh;
+		transition: 250ms ease all;
 	}
 
 	.menuOpen {
 		.offcanvas {
+			box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+				rgba(0, 0, 0, 0.12) 0px -12px 30px,
+				rgba(0, 0, 0, 0.12) 0px 4px 6px,
+				rgba(0, 0, 0, 0.17) 0px 12px 13px,
+				rgba(0, 0, 0, 0.09) 0px -3px 5px;
+			top: 0;
+			background-color: #000;
+			padding: $spacing;
+			position: absolute;
+			width: 100%;
+			z-index: $z-index-layer-six;
+			height: 50vh;
+			top: 0;
+			left: 0;
+			width: 100%;
+			transition: 250ms ease all;
 			&__inner {
-				transform: translateY(-10px) translateX(20px); // horizontal
-				padding: $spacing;
-
 				.header__offcanvas {
 					display: flex;
 					justify-content: flex-end;
@@ -86,12 +71,6 @@ $hamburger-stripe-width: 20px;
 		background: $color-white;
 		width: 20px;
 	}
-}
-
-.offcanvas {
-	display: flex;
-	justify-content: flex-end;
-	position: relative;
 }
 
 .hamburger {
