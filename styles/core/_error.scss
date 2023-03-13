@@ -7,8 +7,9 @@ $white: #fff;
 .not-authenticated {
 	background-color: $purple;
 	display: flex;
-	align-items: center;
+	align-items: baseline;
 	justify-content: center;
+	padding-top: $spacing;
 
 	.wrap {
 		position: absolute;
@@ -219,6 +220,21 @@ $white: #fff;
 		border-radius: 20px;
 		padding: $spacing $spacing-xl;
 		position: relative;
+
+		&__description-text {
+			a {
+				position: relative;
+				&::after {
+					content: '';
+					width: 100%;
+					height: 1px;
+					bottom: 0;
+					position: absolute;
+					left: 5px;
+					background-color: #8c8aa7;
+				}
+			}
+		}
 
 		.error__ghost {
 			padding: 15px 25px 25px;

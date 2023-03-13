@@ -611,8 +611,9 @@ input[type=text]:hover {
 .not-authenticated {
   background-color: #28254c;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
+  padding-top: 24px;
 }
 .not-authenticated .wrap {
   position: absolute;
@@ -798,6 +799,18 @@ input[type=text]:hover {
   border-radius: 20px;
   padding: 24px 36px;
   position: relative;
+}
+.not-authenticated .error__description-text a {
+  position: relative;
+}
+.not-authenticated .error__description-text a::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  position: absolute;
+  left: 5px;
+  background-color: #8c8aa7;
 }
 .not-authenticated .error .error__ghost {
   padding: 15px 25px 25px;
