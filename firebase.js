@@ -1,7 +1,8 @@
 import fb from 'firebase/compat/app';
-import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/storage';
+import 'firebase/compat/firestore';
+import 'firebase/compat/database';
 import { initializeApp } from 'firebase/app';
 
 import {
@@ -17,23 +18,13 @@ const firebaseApp = fb.initializeApp({
 	projectId: 'remcostoeten-9c477',
 	storageBucket: 'remcostoeten-9c477.appspot.com',
 	messagingSenderId: '219575679617',
+	databaseURL:
+		'https://remcostoeten-9c477-default-rtdb.europe-west1.firebasedatabase.app',
 	appId: '1:219575679617:web:7cc9080c85726f9ea1eb80',
 });
 
-if (!firebaseApp) {
-	firebase = fb.initializeApp({
-		apiKey: 'AIzaSyDaMvYTCKlOHLI8pdheiMGI9xAJ2XFSwXE',
-		authDomain: 'remcostoeten-9c477.firebaseapp.com',
-		projectId: 'remcostoeten-9c477',
-		storageBucket: 'remcostoeten-9c477.appspot.com',
-		messagingSenderId: '219575679617',
-		appId: '1:219575679617:web:7cc9080c85726f9ea1eb80',
-	});
-	console.log('!firebase');
-}
-
 const db = firebaseApp.firestore();
-const storage = fb.storage();
+const storage = firebaseApp.storage();
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();

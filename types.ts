@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 
+export type Todo = {
+	id: string;
+	text: string;
+	completed: boolean;
+};
+
 export interface Message extends ChatMessage {
 	message: string;
 	attachments: any;

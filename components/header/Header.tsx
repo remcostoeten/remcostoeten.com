@@ -199,6 +199,9 @@ const Header = () => {
 										</Link>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
+										<Link href='/todo'>Todo list app</Link>
+									</motion.li>
+									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/whatsapp-export'>
 											Chat
 										</Link>
