@@ -11,7 +11,6 @@ export default function Intro() {
 		<>
 			<article className='container intro'>
 				<div className='intro__heading desktop'>
-					somewords blabla
 					<br />
 					<span>
 						<div className='intro__effect'>

@@ -17,6 +17,7 @@ import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
+import { Button } from '@mui/material';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -131,9 +132,8 @@ const Header = () => {
 						<>
 							<nav className='header__menu'>
 								<ul>
-									{/* {isLoggedIn &&
-							auth.currentUser?.email ===
-								'stoetenremco.rs@gmail.com' ? (
+									{isLoggedIn &&
+					      			auth.currentUser?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
 								<div>
 									<Button
 										id='demo-positioned-button'
@@ -165,34 +165,26 @@ const Header = () => {
 										}}>
 										<MenuItem>
 											<Link href='/zold'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_THREE
-												}
+											{process.env.NEXT_PUBLIC_CHAT_ONE}
+
 											</Link>
 										</MenuItem>
 										<MenuItem>
 											<Link href='/znew'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_THREE
-												}
+																				{process.env.NEXT_PUBLIC_CHAT_TWO}
+
 											</Link>
 										</MenuItem>
 										<MenuItem>
 											<Link href='/y'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_ONE
-												}
+																					{process.env.NEXT_PUBLIC_CHAT_THREE}
+
 											</Link>
 										</MenuItem>
 										<MenuItem>
 											<Link href='/d'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_TWO
-												}
+																						{process.env.NEXT_PUBLIC_CHAT_FOUR}
+
 											</Link>
 										</MenuItem>
 									</Menu>

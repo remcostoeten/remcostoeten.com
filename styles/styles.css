@@ -2988,7 +2988,19 @@ button {
 }
 .modal__new-user p,
 .modal__new-user a {
-  font-size: 1.5em;
+  font-size: 1.8em;
+}
+.modal__previous {
+  position: absolute;
+  font-size: 30px;
+  cursor: pointer;
+}
+.modal__previous svg {
+  position: absolute;
+  font-size: 35px;
+  top: -28px;
+  left: -52px;
+  z-index: 30;
 }
 .modal__close {
   position: absolute;

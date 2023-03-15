@@ -7,22 +7,41 @@ import {
 	browserLocalPersistence,
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { FacebookRounded, Google, KeyboardReturn } from '@mui/icons-material';
+import { FacebookRounded, Google } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Login from '../Login';
-interface SignupModalProps {
+import SignupModal from './SignupModal';
+interface SigninModalProps {
 	onClose: () => void;
 }
 
-export default function SignupModal({ onClose }: SignupModalProps) {
+export default function SigninModal({ onClose }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
 	const [registered, setRegistered] = useState(false);
 	const [showModal, setShowModal] = useState(false);
+	const [showSignupModal, setShowSignupModal] = useState(false);
+	const [showRegister, setShowRegister] = useState(false);
+	const handleOpenSignupModal = () => {
+		setShowSignupModal(true);
+	};
 
-	const handleOpenModal = () => setShowModal(true);
+	const showRegisterForm = () => {
+		setShowRegister(true);
+	};
+
+	const handleCloseSignupModal = () => {
+		setShowSignupModal(false);
+		setShowModal(false);
+	};
+
+	const handleOpenModal = () => {
+		setShowModal(true);
+		console.log('test');
+	};
+
 	const handleCloseModal = () => setShowModal(false);
 	useEffect(() => {
 		const savedEmail = localStorage.getItem('email');
@@ -34,12 +53,7 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 		}
 	}, []);
 
-	const goBack = (e) => {
-		e.preventDefault();
-		console.log('The link was clicked.');
-	};
-
-	const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
+	const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		try {
 			const auth = getAuth();
@@ -66,8 +80,14 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 	};
 	return (
 		<div className='modal'>
+			<div>
+				{showSignupModal && (
+					<SignupModal onClose={handleCloseSignupModal} />
+				)}
+			</div>
+
 			<div className='modal__inner'>
-				<h2 className='modal__title'>Register</h2>
+				<h2 className='modal__title'>Login</h2>
 				<div className='modal__social'>
 					<motion.div
 						className='header__user'
@@ -75,6 +95,7 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 						<span className='facebook'></span>
 						<FacebookRounded />
 					</motion.div>
+
 					<motion.div
 						className='header__user'
 						whileHover={{ scale: 1.05 }}>
@@ -83,18 +104,12 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 						</span>
 					</motion.div>
 				</div>
-				<motion.div
-					className='modal__previous'
-					onClick={goBack}
-					whileHover={{ scale: 1.05 }}>
-					<KeyboardReturn />
-				</motion.div>
 				<div className='modal__divider'>or</div>
 				{!registered ? (
 					<>
 						<form
 							className='modal__register'
-							onSubmit={handleSignup}>
+							onSubmit={handleSignin}>
 							<motion.div
 								className='modal__close'
 								onClick={onClose}
@@ -144,8 +159,14 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 							</button>
 						</form>
 						<div className='modal__new-user'>
-							<p>Not registered yet?</p> <a href='#'>Sign up</a>
+							<p>Not registered yet?</p>{' '}
+							<a onClick={handleOpenSignupModal} href='#'>
+								Sign up
+							</a>
 						</div>
+						{showSignupModal && (
+							<SignupModal onClose={handleCloseSignupModal} />
+						)}
 					</>
 				) : (
 					<div className='modal__success-message'>
