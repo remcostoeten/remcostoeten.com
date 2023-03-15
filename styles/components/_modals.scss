@@ -1,18 +1,18 @@
-$checkbox-size: 24px;
+$checkbox-size: 16px;
 
 .modal {
 	&__inner {
 		display: flex;
 		flex-direction: column;
-		width: 500px;
-		height: 900px;
+		max-width: 500px;
+		min-width: 400px;
+		max-height: 900px;
 		padding: 40px 72px 40px 70px;
 		border-radius: 24px;
 		background-color: $color-white;
 	}
 
 	&__title {
-		// font-family: 'Outfit';
 		font-weight: 700;
 		font-size: 40px;
 		line-height: 48px;
@@ -32,9 +32,7 @@ $checkbox-size: 24px;
 	&__input {
 		position: relative;
 		overflow: hidden;
-		input {
-			border-radius: 8px;
-		}
+		position: relative;
 
 		&:not(:last-child) {
 			margin-bottom: $spacing-s;
@@ -61,18 +59,12 @@ $checkbox-size: 24px;
 			padding-left: calc(32px + $spacing-s);
 			width: 100%;
 			font-size: 1.5em;
-
-			&:focus,
-			&:active,
-			&:hover {
-				border: 1px solid;
-			}
+			transition: 250ms ease-in-out all;
 		}
 	}
 
 	&__social {
 		display: flex;
-		padding: $spacing 0;
 		justify-content: center;
 
 		svg {
@@ -97,8 +89,21 @@ $checkbox-size: 24px;
 	&__remember-me {
 		display: flex;
 		align-items: center;
-		justify-content: flex-start;
-		padding: $spacing 0;
+		justify-content: space-between;
+		padding: $spacing-s 0;
+
+		span {
+			display: flex;
+			align-items: center;
+			font-size: 1.3em;
+		}
+
+		a {
+			font-size: 1.3em;
+			text-decoration: underline;
+			color: $link-color;
+			font-weight: 800;
+		}
 
 		input {
 			border-radius: 16px;
@@ -108,6 +113,25 @@ $checkbox-size: 24px;
 		}
 	}
 
+	&__new-user {
+		display: flex;
+		justify-content: center;
+
+		p {
+			margin-right: 6px;
+		}
+
+		a {
+			margin-left: 6px;
+			text-decoration: underline;
+			color: $link-color;
+		}
+
+		p,
+		a {
+			font-size: 1.3em;
+		}
+	}
 	&__success-message {
 	}
 

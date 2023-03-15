@@ -67,44 +67,58 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 						<Google />
 					</span>
 				</div>
-				<div className='modal__divider'></div>
+				<div className='modal__divider'>or</div>
 				{!registered ? (
-					<form className='modal__register' onSubmit={handleSignup}>
-						<div className='modal__input'>
-							<EmailIcon />
-							<input
-								type='email'
-								placeholder='email address'
-								value={email}
-								onChange={(event) =>
-									setEmail(event.target.value)
-								}
-							/>
+					<>
+						<form
+							className='modal__register'
+							onSubmit={handleSignup}>
+							<div className='modal__input'>
+								<EmailIcon />
+								<input
+									type='email'
+									placeholder='email address'
+									value={email}
+									onChange={(event) =>
+										setEmail(event.target.value)
+									}
+								/>
+							</div>
+							<div className='modal__input'>
+								<LockIcon />
+								<input
+									type='password'
+									value={password}
+									placeholder='password'
+									onChange={(event) =>
+										setPassword(event.target.value)
+									}
+								/>
+							</div>
+							<div className='modal__remember-me'>
+								<span>
+									<input
+										type='checkbox'
+										id='rememberMe'
+										checked={rememberMe}
+										onChange={handleRememberMeChange}
+									/>
+									<label htmlFor='rememberMe'>
+										Remember Me
+									</label>
+								</span>
+								<span>
+									<a href='#'>Forgot Password?</a>
+								</span>
+							</div>
+							<button className='login-btn' type='submit'>
+								<span>Sign up</span>
+							</button>
+						</form>
+						<div className='modal__new-user'>
+							<p>Not registered yet?</p> <a href='#'>Sign up</a>
 						</div>
-						<div className='modal__input'>
-							<LockIcon />
-							<input
-								type='password'
-								value={password}
-								placeholder='password'
-								onChange={(event) =>
-									setPassword(event.target.value)
-								}
-							/>
-						</div>
-						<div className='modal__remember-me'>
-							<input
-								type='checkbox'
-								id='rememberMe'
-								checked={rememberMe}
-								onChange={handleRememberMeChange}
-							/>
-							<label htmlFor='rememberMe'>Remember Me</label>
-						</div>
-						<button className='login-btn' type='submit'>
-							<span>Sign up</span>
-						</button>
-					</form>
+					</>
 				) : (
 					<div className='modal__success-message'>
 						<p>You have successfully registered!</p>
