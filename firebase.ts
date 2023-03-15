@@ -11,20 +11,13 @@ import {
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyB2tLKvc95MRm1VXNPzLbDt-yevSoyOQbU',
-
 	authDomain: 'remcostoeten-dev-60bbc.firebaseapp.com',
-
 	databaseURL:
 		'https://remcostoeten-dev-60bbc-default-rtdb.europe-west1.firebasedatabase.app',
-
 	projectId: 'remcostoeten-dev-60bbc',
-
 	storageBucket: 'remcostoeten-dev-60bbc.appspot.com',
-
 	messagingSenderId: '587234212127',
-
 	appId: '1:587234212127:web:2524077b122b8aa4bad82a',
-
 	measurementId: 'G-TL2990YLCG',
 };
 
@@ -40,7 +33,7 @@ const singInWithGoogle = () => {
 		.then((result) => {
 			// This gives you a Google Access Token. You can use it to access the Google API.
 			const credential = GoogleAuthProvider.credentialFromResult(result);
-			const token = credential.accessToken;
+			const token = credential?.accessToken;
 			// The signed-in user info.
 			const user = result.user;
 			console.log('a');
