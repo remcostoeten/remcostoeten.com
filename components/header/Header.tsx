@@ -16,6 +16,7 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import SignupLink from './SignupLink';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -26,6 +27,10 @@ const Header = () => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const open = Boolean(anchorEl);
+	const [showModal, setShowModal] = useState(false);
+
+	const handleOpenModal = () => setShowModal(true);
+	const handleCloseModal = () => setShowModal(false);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -211,6 +216,10 @@ const Header = () => {
 											rel='noreferrer'>
 											Github
 										</a>
+									</motion.li>
+
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<SignupLink />{' '}
 									</motion.li>
 								</ul>
 							</nav>

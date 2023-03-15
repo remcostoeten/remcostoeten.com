@@ -1,8 +1,6 @@
-import fb from 'firebase/compat/app';
-import 'firebase/compat/firestore';
-import 'firebase/compat/auth';
-import 'firebase/compat/storage';
-import { initializeApp } from 'firebase/app';
+import { initializeApp } from '@firebase/app';
+import { getFirestore } from '@firebase/firestore';
+import firebase from 'firebase/compat';
 
 import {
 	getAuth,
@@ -11,29 +9,27 @@ import {
 	signOut,
 } from 'firebase/auth';
 
-const firebaseApp = fb.initializeApp({
-	apiKey: 'AIzaSyDaMvYTCKlOHLI8pdheiMGI9xAJ2XFSwXE',
-	authDomain: 'remcostoeten-9c477.firebaseapp.com',
-	projectId: 'remcostoeten-9c477',
-	storageBucket: 'remcostoeten-9c477.appspot.com',
-	messagingSenderId: '219575679617',
-	appId: '1:219575679617:web:7cc9080c85726f9ea1eb80',
-});
+const firebaseConfig = {
+	apiKey: 'AIzaSyB2tLKvc95MRm1VXNPzLbDt-yevSoyOQbU',
 
-if (!firebaseApp) {
-	firebase = fb.initializeApp({
-		apiKey: 'AIzaSyDaMvYTCKlOHLI8pdheiMGI9xAJ2XFSwXE',
-		authDomain: 'remcostoeten-9c477.firebaseapp.com',
-		projectId: 'remcostoeten-9c477',
-		storageBucket: 'remcostoeten-9c477.appspot.com',
-		messagingSenderId: '219575679617',
-		appId: '1:219575679617:web:7cc9080c85726f9ea1eb80',
-	});
-	console.log('!firebase');
-}
+	authDomain: 'remcostoeten-dev-60bbc.firebaseapp.com',
 
-const db = firebaseApp.firestore();
-const storage = fb.storage();
+	databaseURL:
+		'https://remcostoeten-dev-60bbc-default-rtdb.europe-west1.firebasedatabase.app',
+
+	projectId: 'remcostoeten-dev-60bbc',
+
+	storageBucket: 'remcostoeten-dev-60bbc.appspot.com',
+
+	messagingSenderId: '587234212127',
+
+	appId: '1:587234212127:web:2524077b122b8aa4bad82a',
+
+	measurementId: 'G-TL2990YLCG',
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
@@ -76,8 +72,6 @@ const logout = () => {
 export {
 	db,
 	auth,
-	storage,
-	fb,
 	singInWithGoogle,
 	logout,
 	signInWithPopup,
