@@ -9,9 +9,9 @@ export default function SignupLink() {
 
 	return (
 		<>
-			<a href='#' onClick={handleOpenModal}>
-				Sign up
-			</a>
+			<div className='login-btn' onClick={handleOpenModal}>
+				<span>Sign in with Google</span>
+			</div>
 			{showModal && <SignupModal onClose={handleCloseModal} />}
 		</>
 	);

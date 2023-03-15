@@ -1561,8 +1561,13 @@ h1 {
   position: absolute;
 }
 
+.variant header .login-btn {
+  transition: 250ms ease all;
+  background: linear-gradient(-60deg, #080348 0%, #a22460 0%, #d33167 0%, #ea6ca0 0%);
+}
 .variant header .login-btn:after {
-  background-image: linear-gradient(-60deg, #080348 25%, #a22460 25%, #d33167 25%, #ea6ca0 25%);
+  transition: 250ms ease all;
+  background: linear-gradient(-60deg, #080348 25%, #a22460 25%, #d33167 25%, #ea6ca0 25%);
 }
 .variant .modal__input:hover:after, .variant .modal__input:active:after, .variant .modal__input:focus:after {
   content: "";
@@ -1572,7 +1577,7 @@ h1 {
   border-radius: 100px;
   animation: slidetwo 1s ease-in-out infinite alternate;
   position: absolute;
-  background-image: linear-gradient(-60deg, #080348 25%, #a22460 25%, #d33167 25%, #ea6ca0 25%);
+  background: linear-gradient(-60deg, #080348 25%, #a22460 25%, #d33167 25%, #ea6ca0 25%);
 }
 
 .variant-two header .login-btn:after {
@@ -2865,6 +2870,9 @@ button {
   }
 }
 
+.modal {
+  background-color: rgba(0, 0, 0, 0.5);
+}
 .modal__inner {
   display: flex;
   flex-direction: column;
@@ -2873,7 +2881,9 @@ button {
   max-height: 900px;
   padding: 40px 72px 40px 70px;
   border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #fff;
+  position: relative;
 }
 .modal__title {
   font-weight: 700;
@@ -2888,7 +2898,7 @@ button {
 .modal__divider {
   text-align: center;
   font-size: 1.5em;
-  padding-bottom: 24px;
+  padding: 24px 0;
 }
 .modal__input {
   position: relative;
@@ -2922,17 +2932,20 @@ button {
 .modal__social {
   display: flex;
   justify-content: center;
+  gap: 8px;
 }
 .modal__social svg {
   font-size: 28px;
 }
+.modal__social svg:hover {
+  cursor: pointer;
+}
 .modal__social .facebook {
   color: #2474e1;
-  padding-right: 8px;
 }
 .modal__social .google {
-  padding-left: 8px;
-  color: #fbbc05;
+  font-size: 12px;
+  margin-top: 2px;
 }
 .modal .login-btn {
   margin: 24px 0;
@@ -2974,10 +2987,14 @@ button {
 }
 .modal__new-user p,
 .modal__new-user a {
-  font-size: 1.3em;
+  font-size: 1.5em;
 }
 .modal__close {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 15px;
+  right: 20px;
+}
+.modal__close svg {
+  font-size: 4em;
+  cursor: pointer;
 }/*# sourceMappingURL=styles.css.map */

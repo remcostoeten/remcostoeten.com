@@ -216,7 +216,6 @@ const Header = () => {
 											Github
 										</a>
 									</motion.li>
-									<SignupLink />{' '}
 								</ul>
 							</nav>
 							<div className='header__login'>
@@ -316,9 +315,9 @@ const Header = () => {
 										<a onClick={() => auth.signOut()}></a>
 									</motion.li>
 								) : (
-									<motion.li whileHover={{ scale: 1.05 }}>
-										<Login />
-									</motion.li>
+									// <motion.li whileHover={{ scale: 1.05 }}>
+									<SignupLink />
+									// </motion.li>
 								)}
 							</div>
 						</>

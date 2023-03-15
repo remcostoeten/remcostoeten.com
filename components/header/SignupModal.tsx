@@ -8,6 +8,9 @@ import {
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
+import { motion } from 'framer-motion';
+import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
+import Login from '../Login';
 
 interface SignupModalProps {
 	onClose: () => void;
@@ -18,7 +21,10 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
 	const [registered, setRegistered] = useState(false);
+	const [showModal, setShowModal] = useState(false);
 
+	const handleOpenModal = () => setShowModal(true);
+	const handleCloseModal = () => setShowModal(false);
 	useEffect(() => {
 		const savedEmail = localStorage.getItem('email');
 		const savedPassword = localStorage.getItem('password');
@@ -60,12 +66,20 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 			<div className='modal__inner'>
 				<h2 className='modal__title'>Login</h2>
 				<div className='modal__social'>
-					<span className='facebook'>
+					<motion.div
+						className='header__user'
+						whileHover={{ scale: 1.05 }}>
+						<span className='facebook'></span>
 						<FacebookRounded />
-					</span>
-					<span className='google'>
-						<Google />
-					</span>
+					</motion.div>
+
+					<motion.div
+						className='header__user'
+						whileHover={{ scale: 1.05 }}>
+						<span className='google'>
+							<Login />
+						</span>
+					</motion.div>
 				</div>
 				<div className='modal__divider'>or</div>
 				{!registered ? (
@@ -73,6 +87,12 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 						<form
 							className='modal__register'
 							onSubmit={handleSignup}>
+							<motion.div
+								className='modal__close'
+								onClick={onClose}
+								whileHover={{ scale: 1.05 }}>
+								<HighlightOffSharpIcon />
+							</motion.div>
 							<div className='modal__input'>
 								<EmailIcon />
 								<input
@@ -124,10 +144,6 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 						<p>You have successfully registered!</p>
 					</div>
 				)}
-				<div className='modal__close' onClick={onClose}>
-					Close
-					<CloseIcon />
-				</div>
 			</div>
 		</div>
 	);

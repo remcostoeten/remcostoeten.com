@@ -180,8 +180,18 @@
 .variant {
 	header {
 		.login-btn {
+			transition: 250ms ease all;
+			background: linear-gradient(
+				-60deg,
+				$color-one 0%,
+				$color-two 0%,
+				$color-three 0%,
+				$color-four 0%
+			);
 			&:after {
-				background-image: linear-gradient(
+				transition: 250ms ease all;
+
+				background: linear-gradient(
 					-60deg,
 					$color-one 25%,
 					$color-two 25%,
@@ -204,7 +214,7 @@
 				border-radius: 100px;
 				animation: slidetwo 1s ease-in-out infinite alternate;
 				position: absolute;
-				background-image: linear-gradient(
+				background: linear-gradient(
 					-60deg,
 					$color-one 25%,
 					$color-two 25%,
