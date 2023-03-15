@@ -35,7 +35,7 @@ const Login = () => {
 					<svg
 						onClick={signIn}
 						xmlns='http://www.w3.org/2000/svg'
-						height={24}
+						height={32}
 						viewBox='0 0 186.69 190.5'>
 						<g transform='translate(1184.583 765.171)'>
 							<path

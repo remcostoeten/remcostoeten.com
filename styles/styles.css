@@ -2927,15 +2927,16 @@ button {
   padding-left: 40px;
   width: 100%;
   font-size: 1.5em;
+  border-radius: 8px;
   transition: 250ms ease-in-out all;
 }
 .modal__social {
   display: flex;
   justify-content: center;
-  gap: 8px;
+  gap: 16px;
 }
 .modal__social svg {
-  font-size: 28px;
+  font-size: 38px;
 }
 .modal__social svg:hover {
   cursor: pointer;
