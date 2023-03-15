@@ -208,7 +208,6 @@ const Header = () => {
 											Chat
 										</Link>
 									</motion.li>
-
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<a
 											href='https://github.com/remcostoeten/'
@@ -217,10 +216,7 @@ const Header = () => {
 											Github
 										</a>
 									</motion.li>
-
-									<motion.li whileHover={{ scale: 1.05 }}>
-										<SignupLink />{' '}
-									</motion.li>
+									<SignupLink />{' '}
 								</ul>
 							</nav>
 							<div className='header__login'>

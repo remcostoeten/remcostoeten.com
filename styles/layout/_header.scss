@@ -180,46 +180,33 @@
 	}
 }
 
-.login-btn {
-	border-radius: 50px;
-	position: relative;
-	overflow: hidden;
-	z-index: 10;
-	animation: rad 3s ease-in-out infinite alternate;
-	display: flex;
-	align-items: center;
-	color: $color-white;
-	padding: 8px 20px;
-	justify-content: center;
-	font-size: 1.5em;
-
-	span {
-		z-index: 2;
-	}
-
-	&:hover {
-		cursor: pointer;
-	}
-
-	&:after {
-		content: '';
-		width: 100%;
-		height: 48px;
-		position: absolute;
-		top: 0;
-		left: 0;
-		scale: 1.8;
-		z-index: 1;
-		display: block;
-		opacity: 1;
-		animation: slidetwo 1s ease-in-out infinite alternate;
-	}
-}
-
 .variant {
 	header {
 		.login-btn {
 			&:after {
+				background-image: linear-gradient(
+					-60deg,
+					$color-one 25%,
+					$color-two 25%,
+					$color-three 25%,
+					$color-four 25%
+				);
+			}
+		}
+	}
+
+	.modal__input {
+		&:hover,
+		&:active,
+		&:focus {
+			&:after {
+				content: '';
+				width: 140%;
+				height: 2px;
+				bottom: 0;
+				border-radius: 100px;
+				animation: slidetwo 1s ease-in-out infinite alternate;
+				position: absolute;
 				background-image: linear-gradient(
 					-60deg,
 					$color-one 25%,

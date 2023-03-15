@@ -1,0 +1,119 @@
+$checkbox-size: 24px;
+
+.modal {
+	&__inner {
+		display: flex;
+		flex-direction: column;
+		width: 500px;
+		height: 900px;
+		padding: 40px 72px 40px 70px;
+		border-radius: 24px;
+		background-color: $color-white;
+	}
+
+	&__title {
+		// font-family: 'Outfit';
+		font-weight: 700;
+		font-size: 40px;
+		line-height: 48px;
+		color: $theme-black;
+		margin: 0;
+		padding: 0;
+		padding-bottom: $spacing;
+		text-align: center;
+	}
+
+	&__divider {
+		text-align: center;
+		font-size: 1.5em;
+		padding-bottom: $spacing;
+	}
+
+	&__input {
+		position: relative;
+		overflow: hidden;
+		input {
+			border-radius: 8px;
+		}
+
+		&:not(:last-child) {
+			margin-bottom: $spacing-s;
+		}
+
+		svg {
+			position: absolute;
+			left: 16px;
+			font-size: 14px;
+			top: 50%;
+			color: #5b5b5d;
+			transform: translateY(-50%);
+			z-index: 2;
+		}
+	}
+
+	&__register {
+		display: flex;
+		flex-direction: column;
+
+		input {
+			display: flex;
+			align-items: center;
+			padding-left: calc(32px + $spacing-s);
+			width: 100%;
+			font-size: 1.5em;
+
+			&:focus,
+			&:active,
+			&:hover {
+				border: 1px solid;
+			}
+		}
+	}
+
+	&__social {
+		display: flex;
+		padding: $spacing 0;
+		justify-content: center;
+
+		svg {
+			font-size: 28px;
+		}
+
+		.facebook {
+			color: #2474e1;
+			padding-right: $spacing-s;
+		}
+
+		.google {
+			padding-left: $spacing-s;
+			color: #fbbc05;
+		}
+	}
+
+	.login-btn {
+		margin: $spacing 0;
+	}
+
+	&__remember-me {
+		display: flex;
+		align-items: center;
+		justify-content: flex-start;
+		padding: $spacing 0;
+
+		input {
+			border-radius: 16px;
+			width: $checkbox-size;
+			height: $checkbox-size;
+			margin-right: $spacing-s;
+		}
+	}
+
+	&__success-message {
+	}
+
+	&__close {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+}
