@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import AddTodo from '@/components/todo/AddTodo';
+import AddTodo from '@/components/Todo/AddTodo';
 import Todo from '@/components/Todo/Todo';
 import {
 	collection,
@@ -29,7 +29,12 @@ export default function Index() {
 		const unsub = onSnapshot(q, (querySnapshot) => {
 			const todosArray: TodoItem[] = [];
 			querySnapshot.forEach((doc) => {
-				todosArray.push({ ...doc.data(), id: doc.id });
+				todosArray.push({
+					title: '',
+					completed: false,
+					...doc.data(),
+					id: doc.id,
+				});
 			});
 			setTodos(todosArray);
 		});

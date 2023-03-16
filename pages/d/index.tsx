@@ -126,7 +126,8 @@ const ChatHistory: React.FC = () => {
 											.toLowerCase()
 											.includes(
 												process.env
-													.NEXT_PUBLIC_CHAT_THREE,
+													.NEXT_PUBLIC_CHAT_FOUR ??
+													'',
 											)
 											? 'bubble__second-person y'
 											: ''
