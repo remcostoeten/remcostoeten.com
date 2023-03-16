@@ -148,7 +148,7 @@ const Header = () => {
 													open ? 'true' : undefined
 												}
 												onClick={handleClick}>
-												Dashboard
+												Personal exports
 											</Button>
 											<Menu
 												id='demo-positioned-menu'
