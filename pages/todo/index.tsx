@@ -10,6 +10,7 @@ import {
 	deleteDoc,
 } from 'firebase/firestore';
 import { db } from '@/base';
+import { auth } from '@/firebase';
 
 interface TodoItem {
 	title: string;
@@ -25,7 +26,12 @@ export default function Index() {
 	}, []);
 
 	useEffect(() => {
-		const q = query(collection(db, 'todos'));
+		const user = auth.currentUser;
+		if (!user) {
+			return;
+		}
+		const userId = user.uid;
+		const q = query(collection(db, 'todos', userId, 'userTodos'));
 		const unsub = onSnapshot(q, (querySnapshot) => {
 			const todosArray: TodoItem[] = [];
 			querySnapshot.forEach((doc) => {
@@ -40,7 +46,6 @@ export default function Index() {
 		});
 		return () => unsub();
 	}, []);
-
 	const handleEdit = async (todo: TodoItem, title: string) => {
 		await updateDoc(doc(db, 'todos', todo.id), { title: title });
 	};
@@ -61,7 +66,7 @@ export default function Index() {
 				<div>
 					<AddTodo />
 				</div>
-				<div className='todo__wrapper'>
+				<div className='todo_container'>
 					{todos.map((todo) => (
 						<Todo
 							key={todo.id}

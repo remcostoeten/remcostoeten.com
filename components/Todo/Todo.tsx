@@ -2,15 +2,11 @@ import React from 'react';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
-export interface TodoProps {
-	todo: {
-		title: string;
-		completed: boolean;
-		id: string;
-	};
-	toggleComplete: (todo: TodoProps['todo']) => void;
-	handleDelete: (id: string) => void;
-	handleEdit: (todo: TodoProps['todo'], newTitle: string) => void;
+interface TodoProps {
+	todo: TodoItem;
+	toggleComplete: (todo: TodoItem) => Promise<void>;
+	handleDelete: (id: string) => Promise<void>;
+	handleEdit: (todo: TodoItem, title: string) => Promise<void>;
 }
 export default function Todo({
 	todo,
