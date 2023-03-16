@@ -34,10 +34,6 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 		}
 	}, []);
 
-	const goBack = (e) => {
-		e.preventDefault();
-	};
-
 	const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		try {
