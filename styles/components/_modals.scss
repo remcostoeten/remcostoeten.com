@@ -130,6 +130,16 @@ $checkbox-size: 16px;
 		}
 	}
 
+	&__checkbox {
+		display: flex;
+		align-items: center;
+
+		input {
+			width: unset;
+			height: unset;
+		}
+	}
+
 	&__new-user {
 		display: flex;
 		justify-content: center;

@@ -2973,6 +2973,14 @@ button {
   height: 16px;
   margin-right: 8px;
 }
+.modal__checkbox {
+  display: flex;
+  align-items: center;
+}
+.modal__checkbox input {
+  width: unset;
+  height: unset;
+}
 .modal__new-user {
   display: flex;
   justify-content: center;

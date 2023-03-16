@@ -10,15 +10,15 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyB2tLKvc95MRm1VXNPzLbDt-yevSoyOQbU',
-	authDomain: 'remcostoeten-dev-60bbc.firebaseapp.com',
+	apiKey: 'AIzaSyDaMvYTCKlOHLI8pdheiMGI9xAJ2XFSwXE',
+	authDomain: 'remcostoeten-9c477.firebaseapp.com',
 	databaseURL:
-		'https://remcostoeten-dev-60bbc-default-rtdb.europe-west1.firebasedatabase.app',
-	projectId: 'remcostoeten-dev-60bbc',
-	storageBucket: 'remcostoeten-dev-60bbc.appspot.com',
-	messagingSenderId: '587234212127',
-	appId: '1:587234212127:web:2524077b122b8aa4bad82a',
-	measurementId: 'G-TL2990YLCG',
+		'https://remcostoeten-9c477-default-rtdb.europe-west1.firebasedatabase.app',
+	projectId: 'remcostoeten-9c477',
+	storageBucket: 'remcostoeten-9c477.appspot.com',
+	messagingSenderId: '219575679617',
+	appId: '1:219575679617:web:7cc9080c85726f9ea1eb80',
+	measurementId: 'G-MR2Z96ZE7H',
 };
 
 const app = initializeApp(firebaseConfig);
@@ -31,20 +31,15 @@ const singInWithGoogle = () => {
 	console.log('signing in with google');
 	signInWithPopup(auth, provider)
 		.then((result) => {
-			// This gives you a Google Access Token. You can use it to access the Google API.
 			const credential = GoogleAuthProvider.credentialFromResult(result);
 			const token = credential?.accessToken;
-			// The signed-in user info.
 			const user = result.user;
 			console.log('a');
 		})
 		.catch((error) => {
-			// Handle Errors here.
 			const errorCode = error.code;
 			const errorMessage = error.message;
-			// The email of the user's account used.
 			const email = error.email;
-			// The AuthCredential type that was used.
 			const credential = GoogleAuthProvider.credentialFromError(error);
 			console.log(error.code);
 			console.log(error);
