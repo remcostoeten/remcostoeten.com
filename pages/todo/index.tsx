@@ -16,6 +16,7 @@ interface TodoItem {
 	title: string;
 	id: string;
 	completed: boolean;
+	description: string; // <-- added new field
 }
 
 export default function Index() {
@@ -35,18 +36,24 @@ export default function Index() {
 		const unsub = onSnapshot(q, (querySnapshot) => {
 			const todosArray: TodoItem[] = [];
 			querySnapshot.forEach((doc) => {
-				todosArray.push({
+				return todosArray.push({
 					title: '',
 					completed: false,
 					...doc.data(),
 					id: doc.id,
+					description: '',
 				});
 			});
 			setTodos(todosArray);
 		});
 		return () => unsub();
 	}, []);
-	const handleEdit = async (todo: TodoItem, title: string) => {
+
+	const handleEdit = async (
+		todo: TodoItem,
+		title: string,
+		description: string,
+	) => {
 		await updateDoc(doc(db, 'todos', todo.id), { title: title });
 	};
 
@@ -64,7 +71,17 @@ export default function Index() {
 		<>
 			<div className='todo'>
 				<div>
-					<AddTodo />
+					<AddTodo
+						todo={{
+							id: '',
+							title: '',
+							description: '',
+							completed: false,
+						}}
+						toggleComplete={() => {}}
+						handleDelete={() => {}}
+						handleEdit={() => {}}
+					/>{' '}
 				</div>
 				<div className='todo_container'>
 					{todos.map((todo) => (

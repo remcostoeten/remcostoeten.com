@@ -1,60 +1,58 @@
 import React from 'react';
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import EditIcon from '@mui/icons-material/Edit';
-import DeleteIcon from '@mui/icons-material/Delete';
-interface TodoProps {
+
+export interface TodoItem {
+	id: string;
+	title: string;
+	description?: string;
+	completed: boolean;
+}
+
+export interface TodoProps {
 	todo: TodoItem;
 	toggleComplete: (todo: TodoItem) => Promise<void>;
 	handleDelete: (id: string) => Promise<void>;
-	handleEdit: (todo: TodoItem, title: string) => Promise<void>;
 }
+
 export default function Todo({
 	todo,
 	toggleComplete,
 	handleDelete,
-	handleEdit,
 }: TodoProps) {
-	const [newTitle, setNewTitle] = React.useState(todo.title);
+	const [title, setTitle] = React.useState(todo.title);
+	const [description, setDescription] = React.useState('');
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		e.preventDefault();
-		if (todo.completed === true) {
-			setNewTitle(todo.title);
-		} else {
-			todo.title = '';
-			setNewTitle(e.target.value);
-		}
+	const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setTitle(event.target.value);
 	};
+
+	const handleDescriptionChange = (
+		event: React.ChangeEvent<HTMLInputElement>,
+	) => {
+		setDescription(event.target.value);
+	};
+
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		await toggleComplete(todo);
+	};
+
+	const handleDeleteClick = async () => {
+		await handleDelete(todo.id);
+	};
+
 	return (
-		<div className='todo'>
+		<div>
+			<h2>{title}</h2>
+			<p>{description}</p>
+			<form onSubmit={handleSubmit}>
+				<button type='submit'>Complete</button>
+			</form>
+			<button onClick={handleDeleteClick}>Delete</button>
 			<input
-				style={{
-					textDecorationLine: todo.completed
-						? 'line-through'
-						: undefined,
-				}}
 				type='text'
-				value={todo.title === '' ? newTitle : todo.title}
-				className='list'
-				onChange={handleChange}
+				value={description}
+				onChange={handleDescriptionChange}
 			/>
-			<div>
-				<button
-					className='button-complete'
-					onClick={() => toggleComplete(todo)}>
-					<CheckCircleIcon id='i' />
-				</button>
-				<button
-					className='button-edit'
-					onClick={() => handleEdit(todo, newTitle)}>
-					<EditIcon id='i' />
-				</button>
-				<button
-					className='button-delete'
-					onClick={() => handleDelete(todo.id)}>
-					<DeleteIcon id='i' />
-				</button>
-			</div>
 		</div>
 	);
 }
