@@ -17,7 +17,7 @@ interface TodoItem {
 	completed: boolean;
 }
 
-export default function index() {
+export default function Index() {
 	const [todos, setTodos] = React.useState<TodoItem[]>([]);
 
 	useEffect(() => {

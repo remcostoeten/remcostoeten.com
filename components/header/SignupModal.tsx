@@ -34,10 +34,6 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 		}
 	}, []);
 
-	const goBack = (e) => {
-		e.preventDefault();
-	};
-
 	const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		try {
@@ -55,11 +51,8 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 			setRegistered(true);
 			localStorage.setItem('email', email);
 			localStorage.setItem('password', password);
-		} catch (error) {
+		} catch (error: typeof error) {
 			console.error(error);
-			if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
-				setUserExists(true);
-			}
 		}
 	};
 
