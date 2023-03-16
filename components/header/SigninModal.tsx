@@ -26,10 +26,7 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 	const [showRegister, setShowRegister] = useState(false);
 	const handleOpenSignupModal = () => {
 		setShowSignupModal(true);
-	};
-
-	const showRegisterForm = () => {
-		setShowRegister(true);
+		handleCloseModal(true);
 	};
 
 	const handleCloseSignupModal = () => {
