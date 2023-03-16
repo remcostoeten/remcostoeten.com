@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { db } from '@/firebase';
-import { CollectionReference, addDoc, collection } from '@firebase/firestore';
+import { collection, addDoc } from 'firebase/firestore';
 
 export default function AddTodo() {
-	const [title, setTitle] = useState('');
+	const [title, setTitle] = React.useState('');
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -12,17 +12,21 @@ export default function AddTodo() {
 				title,
 				completed: false,
 			});
+			setTitle('');
 		}
 	};
-
 	return (
-		<form className='todo' onSubmit={handleSubmit}>
-			<div className='todo__container'>
+		<form onSubmit={handleSubmit}>
+			<div className='input_container'>
 				<input
 					type='text'
-					placeholder='Enter todo..'
+					placeholder='Enter todo...'
 					value={title}
-					onChange={(e) => setTitle(e.target.value)}></input>
+					onChange={(e) => setTitle(e.target.value)}
+				/>
+			</div>
+			<div className='btn_container'>
+				<button>Add</button>
 			</div>
 		</form>
 	);

@@ -33,7 +33,10 @@
 		"pages/Chat/Test.js",
 		"components/header/Logo.js",
 		"pages/Authentication/index.js",
-		"components/Alertjs"
-, "pages/withAuth.js", "components/Messenger/Friends.js"	],
+		"components/Alertjs",
+		"pages/withAuth.js",
+		"components/Messenger/Friends.js",
+		"base.js"
+	],
 	"exclude": ["node_modules"]
 }
