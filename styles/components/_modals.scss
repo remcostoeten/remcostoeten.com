@@ -1,8 +1,16 @@
 $checkbox-size: 16px;
 
-.modal {
+.modal-backdrop {
 	background-color: rgba($color: #000000, $alpha: 0.5);
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	top: 0;
+	left: 0;
+	z-index: $z-index-layer-three;
+}
 
+.modal {
 	&__inner {
 		display: flex;
 		flex-direction: column;

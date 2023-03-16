@@ -5,12 +5,14 @@ import {
 	setPersistence,
 	browserSessionPersistence,
 	browserLocalPersistence,
+	AuthErrorCodes,
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { FacebookRounded, Google, KeyboardReturn } from '@mui/icons-material';
+import { FacebookRounded, KeyboardReturn } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Login from '../Login';
+
 interface SignupModalProps {
 	onClose: () => void;
 }
@@ -20,10 +22,8 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
 	const [registered, setRegistered] = useState(false);
-	const [showModal, setShowModal] = useState(false);
+	const [userExists, setUserExists] = useState(false);
 
-	const handleOpenModal = () => setShowModal(true);
-	const handleCloseModal = () => setShowModal(false);
 	useEffect(() => {
 		const savedEmail = localStorage.getItem('email');
 		const savedPassword = localStorage.getItem('password');
@@ -36,7 +36,6 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 
 	const goBack = (e) => {
 		e.preventDefault();
-		console.log('The link was clicked.');
 	};
 
 	const handleSignup = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -54,16 +53,20 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 			);
 			console.log(result);
 			setRegistered(true);
-			console.log(registered); // add this line to check registered state
 			localStorage.setItem('email', email);
 			localStorage.setItem('password', password);
 		} catch (error) {
 			console.error(error);
+			if (error.code === AuthErrorCodes.EMAIL_EXISTS) {
+				setUserExists(true);
+			}
 		}
 	};
+
 	const handleRememberMeChange = () => {
 		setRememberMe(!rememberMe);
 	};
+
 	return (
 		<div className='modal'>
 			<div className='modal__inner'>
@@ -85,12 +88,16 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 				</div>
 				<motion.div
 					className='modal__previous'
-					onClick={goBack}
+					onClick={onClose}
 					whileHover={{ scale: 1.05 }}>
 					<KeyboardReturn />
 				</motion.div>
 				<div className='modal__divider'>or</div>
-				{!registered ? (
+				{userExists ? (
+					<div className='modal__warning-message'>
+						<p>A user with this email already exists.</p>
+					</div>
+				) : !registered ? (
 					<>
 						<form
 							className='modal__register'
@@ -143,14 +150,10 @@ export default function SignupModal({ onClose }: SignupModalProps) {
 								<span>Sign up</span>
 							</button>
 						</form>
-						<div className='modal__new-user'>
-							<p>Not registered yet?</p> <a href='#'>Sign up</a>
-						</div>
 					</>
 				) : (
 					<div className='modal__success-message'>
-						<p>You have successfully registered!</p>
-						<button onClick={() => setRegistered(false)}>OK</button>
+						<h1>awdwadwawads</h1>
 					</div>
 				)}
 			</div>

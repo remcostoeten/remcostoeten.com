@@ -133,63 +133,72 @@ const Header = () => {
 							<nav className='header__menu'>
 								<ul>
 									{isLoggedIn &&
-					      			auth.currentUser?.email === process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
-								<div>
-									<Button
-										id='demo-positioned-button'
-										aria-controls={
-											open
-												? 'demo-positioned-menu'
-												: undefined
-										}
-										aria-haspopup='true'
-										aria-expanded={
-											open ? 'true' : undefined
-										}
-										onClick={handleClick}>
-										Dashboard
-									</Button>
-									<Menu
-										id='demo-positioned-menu'
-										aria-labelledby='demo-positioned-button'
-										anchorEl={anchorEl}
-										open={open}
-										onClose={handleClose}
-										anchorOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}
-										transformOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}>
-										<MenuItem>
-											<Link href='/zold'>
-											{process.env.NEXT_PUBLIC_CHAT_ONE}
-
-											</Link>
-										</MenuItem>
-										<MenuItem>
-											<Link href='/znew'>
-																				{process.env.NEXT_PUBLIC_CHAT_TWO}
-
-											</Link>
-										</MenuItem>
-										<MenuItem>
-											<Link href='/y'>
-																					{process.env.NEXT_PUBLIC_CHAT_THREE}
-
-											</Link>
-										</MenuItem>
-										<MenuItem>
-											<Link href='/d'>
-																						{process.env.NEXT_PUBLIC_CHAT_FOUR}
-
-											</Link>
-										</MenuItem>
-									</Menu>
-								</div>
-							) : null} */}
+									auth.currentUser?.email ===
+										process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
+										<li>
+											<Button
+												id='demo-positioned-button'
+												aria-controls={
+													open
+														? 'demo-positioned-menu'
+														: undefined
+												}
+												aria-haspopup='true'
+												aria-expanded={
+													open ? 'true' : undefined
+												}
+												onClick={handleClick}>
+												Dashboard
+											</Button>
+											<Menu
+												id='demo-positioned-menu'
+												aria-labelledby='demo-positioned-button'
+												anchorEl={anchorEl}
+												open={open}
+												onClose={handleClose}
+												anchorOrigin={{
+													vertical: 'top',
+													horizontal: 'left',
+												}}
+												transformOrigin={{
+													vertical: 'top',
+													horizontal: 'left',
+												}}>
+												<MenuItem>
+													<Link href='/zold'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_ONE
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/znew'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_TWO
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/y'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_THREE
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/d'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_FOUR
+														}
+													</Link>
+												</MenuItem>
+											</Menu>
+										</li>
+									) : null}
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/message-history'>
 											Messenger

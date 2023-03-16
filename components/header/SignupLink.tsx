@@ -13,7 +13,12 @@ export default function SignupLink() {
 			<div className='login-btn' onClick={handleOpenModal}>
 				<span>Sign in with Google</span>
 			</div>
-			{showModal && <SigninModal onClose={handleCloseModal} />}
+			{showModal && (
+				<>
+					<SigninModal onClose={handleCloseModal} />
+					<div className='modal-backdrop'></div>
+				</>
+			)}
 		</>
 	);
 }

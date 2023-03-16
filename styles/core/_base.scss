@@ -9,10 +9,6 @@ body {
 	line-height: 24px;
 	margin: 0;
 
-	.modal-backdrop {
-		background-color: $color-medium-grey;
-	}
-
 	.modal-backdrop.show {
 		opacity: 0.2 !important;
 	}

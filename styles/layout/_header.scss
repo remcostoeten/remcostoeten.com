@@ -64,6 +64,17 @@
 	padding: $spacing 0;
 	transition: 250ms ease-out all;
 
+	.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+		position: relative;
+		font-size: 2em;
+		text-decoration: none;
+		padding: 0;
+		font-weight: 600;
+		text-transform: none;
+		color: $theme-black;
+		// all: unset;
+	}
+
 	h2 {
 		color: $theme-black;
 	}
