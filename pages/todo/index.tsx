@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '@/firebase';
 import {
 	collection,
@@ -7,6 +7,8 @@ import {
 	deleteDoc,
 	doc,
 	getDocs,
+	where,
+	query,
 } from 'firebase/firestore';
 import Header from '../../components/header/Header';
 import AddTodo from '../../components/Todo/AddTodo';
@@ -20,32 +22,47 @@ interface Todo {
 }
 
 export default function IndexPage() {
-	const [todos, setTodos] = React.useState<Todo[]>([]);
-	const [loading, setLoading] = React.useState<boolean>(false);
+	const [todos, setTodos] = useState<Todo[]>([]);
+	const [loading, setLoading] = useState<boolean>(false);
 
 	useEffect(() => {
 		document.body.classList.add('todo-app');
 	}, []);
 
-	React.useEffect(() => {
-		// Fetch todos from the 'todos' collection
+	useEffect(() => {
 		const getTodos = async () => {
 			setLoading(true);
-			const todosSnapshot = await getDocs(collection(db, 'todos'));
-			setTodos(
-				todosSnapshot.docs.map((doc) => ({
-					id: doc.id,
-					...doc.data(),
-				})) as Todo[],
-			);
-			setLoading(false);
+			try {
+				const user = firebase.auth().currentUser;
+				if (user) {
+					const todosSnapshot = await getDocs(
+						query(
+							collection(db, 'todos'),
+							where('userId', '==', user.uid),
+						),
+					);
+					const fetchedTodos = todosSnapshot.docs.map((doc) => ({
+						id: doc.id,
+						...doc.data(),
+					})) as Todo[];
+					setTodos(fetchedTodos);
+				} else {
+					setTodos([]);
+				}
+			} catch (error) {
+				console.error('Error fetching todos:', error);
+			} finally {
+				setLoading(false);
+			}
 		};
 
 		getTodos();
 	}, []);
 
 	const addNewTodo = async (title: string, description: string) => {
-		if (title.trim() !== '' && description) {
+		if (!title.trim() || !description.trim()) return;
+
+		try {
 			const docRef = await addDoc(collection(db, 'todos'), {
 				title,
 				description,
@@ -57,26 +74,40 @@ export default function IndexPage() {
 				description,
 				completed: false,
 			};
-			setTodos([...todos, newTodo]);
+			setTodos((prevTodos) => [...prevTodos, newTodo]);
+		} catch (error) {
+			console.error('Error adding todo:', error);
 		}
 	};
 
 	const toggleComplete = async (id: string) => {
-		const todo = todos.find((todo) => todo.id === id);
-		if (!todo) return;
-		await updateDoc(doc(db, 'todos', id), {
-			completed: !todo.completed,
-		});
-		setTodos((prevTodos) =>
-			prevTodos.map((todo) =>
-				todo.id === id ? { ...todo, completed: !todo.completed } : todo,
-			),
-		);
+		try {
+			const todo = todos.find((todo) => todo.id === id);
+			if (!todo) return;
+
+			await updateDoc(doc(db, 'todos', id), {
+				completed: !todo.completed,
+			});
+
+			setTodos((prevTodos) =>
+				prevTodos.map((todo) =>
+					todo.id === id
+						? { ...todo, completed: !todo.completed }
+						: todo,
+				),
+			);
+		} catch (error) {
+			console.error('Error updating todo:', error);
+		}
 	};
 
 	const deleteTodo = async (id: string) => {
-		await deleteDoc(doc(db, 'todos', id));
-		setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+		try {
+			await deleteDoc(doc(db, 'todos', id));
+			setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+		} catch (error) {
+			console.error('Error deleting todo:', error);
+		}
 	};
 
 	return (
