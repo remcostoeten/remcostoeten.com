@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '@/firebase';
+import { auth, db } from '@/firebase';
 import {
 	collection,
 	addDoc,
@@ -24,7 +24,16 @@ interface Todo {
 export default function IndexPage() {
 	const [todos, setTodos] = useState<Todo[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
-
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	useEffect(() => {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+		});
+	}, []);
 	useEffect(() => {
 		document.body.classList.add('todo-app');
 	}, []);
@@ -33,7 +42,7 @@ export default function IndexPage() {
 		const getTodos = async () => {
 			setLoading(true);
 			try {
-				const user = firebase.auth().currentUser;
+				const user = auth.currentUser;
 				if (user) {
 					const todosSnapshot = await getDocs(
 						query(
@@ -63,10 +72,14 @@ export default function IndexPage() {
 		if (!title.trim() || !description.trim()) return;
 
 		try {
+			const user = auth.currentUser;
+			if (!user) return;
+
 			const docRef = await addDoc(collection(db, 'todos'), {
 				title,
 				description,
 				completed: false,
+				userId: user.uid,
 			});
 			const newTodo = {
 				id: docRef.id,

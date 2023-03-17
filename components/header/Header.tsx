@@ -78,6 +78,7 @@ const Header = () => {
 			}
 		});
 	}, []);
+
 	const [variant, setVariant] = useState('theme--variant');
 
 	useEffect(() => {
