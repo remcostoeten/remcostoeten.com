@@ -2,20 +2,18 @@ import React from 'react';
 import { db } from '@/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 
-export default function AddTodo() {
+interface AddTodoProps {
+	addNewTodo: (title: string) => Promise<void>;
+}
+
+export default function AddTodo({ addNewTodo }: AddTodoProps) {
 	const [title, setTitle] = React.useState('');
-	const [description, setDescription] = React.useState('');
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		if (title !== '') {
-			await addDoc(collection(db, 'todos'), {
-				title,
-				description, // include the description in the document data
-				completed: false,
-			});
+			await addNewTodo(title);
 			setTitle('');
-			setDescription('');
 		}
 	};
 
@@ -27,12 +25,6 @@ export default function AddTodo() {
 					placeholder='Enter todo title...'
 					value={title}
 					onChange={(e) => setTitle(e.target.value)}
-				/>
-				<input
-					type='text'
-					placeholder='Enter todo description...'
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
 				/>
 			</div>
 			<div className='btn_container'>

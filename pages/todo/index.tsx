@@ -1,78 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import Todo from '@/components/Todo/Todo';
-import AddTodo from '@/components/Todo/AddTodo';
-import {
-	collection,
-	addDoc,
-	updateDoc,
-	deleteDoc,
-	query,
-	onSnapshot,
-} from 'firebase/firestore';
-import { db } from '../../firebase';
-import Header from '@/components/header/Header';
+import React from 'react';
+import { db } from '@/firebase';
+import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import Header from '../../components/header/Header';
+import AddTodo from '../../components/Todo/AddTodo';
+import TodoList from '@/components/Todo/TodoList';
 
-interface TodoItem {
+interface Todo {
 	id: string;
 	title: string;
 	completed: boolean;
 }
 
-const TodoList: React.FC = () => {
-	const [todos, setTodos] = useState<TodoItem[]>([]);
-	const [loading, setLoading] = useState<boolean>(true);
+export default function IndexPage() {
+	const [todos, setTodos] = React.useState<Todo[]>([]);
+	const [loading, setLoading] = React.useState<boolean>(false);
 
-	useEffect(() => {
-		const q = query(collection(db, 'todos'));
-		const unsubscribe = onSnapshot(q, (snapshot) => {
-			const newTodos: TodoItem[] = [];
-			snapshot.forEach((doc) => {
-				const todo = doc.data() as TodoItem;
-				todo.id = doc.id;
-				newTodos.push(todo);
-			});
-			setTodos(newTodos);
+	React.useEffect(() => {
+		// Fetch todos from the 'todos' collection
+		const getTodos = async () => {
+			setLoading(true);
+			const todosSnapshot = await getDocs(collection(db, 'todos'));
+			setTodos(
+				todosSnapshot.docs.map((doc) => ({
+					id: doc.id,
+					...doc.data(),
+				})) as Todo[]
+			);
 			setLoading(false);
-		});
+		};
 
-		return () => unsubscribe();
+		getTodos();
 	}, []);
 
 	const addNewTodo = async (title: string) => {
-		const docRef = await addDoc(collection(db, 'todos'), {
-			title,
-			completed: false,
-		});
-		setTodos([
-			...todos,
-			{
+		if (title.trim() !== '') {
+			const docRef = await addDoc(collection(db, 'todos'), {
+				title,
+				completed: false,
+			});
+			const newTodo = {
 				id: docRef.id,
 				title,
 				completed: false,
-			},
-		]);
+			};
+			setTodos([...todos, newTodo]);
+		}
 	};
 
 	const toggleComplete = async (id: string) => {
-		const todo = todos.find((t) => t.id === id);
+		const todo = todos.find((todo) => todo.id === id);
 		if (!todo) return;
-
 		await updateDoc(doc(db, 'todos', id), {
 			completed: !todo.completed,
 		});
 		setTodos((prevTodos) =>
-			prevTodos.map((t) => {
-				if (t.id === id) {
-					return { ...t, completed: !t.completed };
-				}
-				return t;
-			}),
+			prevTodos.map((todo) =>
+				todo.id === id ? { ...todo, completed: !todo.completed } : todo
+			)
 		);
 	};
 
 	const deleteTodo = async (id: string) => {
 		await deleteDoc(doc(db, 'todos', id));
-		setTodos((prevTodos) => prevTodos.filter((t) => t.id !== id));
+		setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
 	};
 
 	return (
@@ -83,19 +73,14 @@ const TodoList: React.FC = () => {
 			{loading ? (
 				<p>Loading todos...</p>
 			) : todos.length > 0 ? (
-				todos.map((todo) => (
-					<Todo
-						key={todo.id}
-						todo={todo}
-						toggleComplete={toggleComplete}
-						deleteTodo={deleteTodo}
-					/>
-				))
+				<TodoList
+					todos={todos}
+					toggleComplete={toggleComplete}
+					deleteTodo={deleteTodo}
+				/>
 			) : (
-				<p>No todos yet. Add one above!</p>
+				<p>No todos yet</p>
 			)}
 		</>
 	);
-};
-
-export default TodoList;
+}
