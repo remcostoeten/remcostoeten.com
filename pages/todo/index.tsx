@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
 import { db } from '@/firebase';
-import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs } from 'firebase/firestore';
+import {
+	collection,
+	addDoc,
+	updateDoc,
+	deleteDoc,
+	doc,
+	getDocs,
+} from 'firebase/firestore';
 import Header from '../../components/header/Header';
 import AddTodo from '../../components/Todo/AddTodo';
 import TodoList from '@/components/Todo/TodoList';
@@ -8,6 +15,7 @@ import TodoList from '@/components/Todo/TodoList';
 interface Todo {
 	id: string;
 	title: string;
+	description: string;
 	completed: boolean;
 }
 
@@ -19,7 +27,6 @@ export default function IndexPage() {
 		document.body.classList.add('todo-app');
 	}, []);
 
-
 	React.useEffect(() => {
 		// Fetch todos from the 'todos' collection
 		const getTodos = async () => {
@@ -29,7 +36,7 @@ export default function IndexPage() {
 				todosSnapshot.docs.map((doc) => ({
 					id: doc.id,
 					...doc.data(),
-				})) as Todo[]
+				})) as Todo[],
 			);
 			setLoading(false);
 		};
@@ -37,15 +44,17 @@ export default function IndexPage() {
 		getTodos();
 	}, []);
 
-	const addNewTodo = async (title: string) => {
-		if (title.trim() !== '') {
+	const addNewTodo = async (title: string, description: string) => {
+		if (title.trim() !== '' && description) {
 			const docRef = await addDoc(collection(db, 'todos'), {
 				title,
+				description,
 				completed: false,
 			});
 			const newTodo = {
 				id: docRef.id,
 				title,
+				description,
 				completed: false,
 			};
 			setTodos([...todos, newTodo]);
@@ -60,8 +69,8 @@ export default function IndexPage() {
 		});
 		setTodos((prevTodos) =>
 			prevTodos.map((todo) =>
-				todo.id === id ? { ...todo, completed: !todo.completed } : todo
-			)
+				todo.id === id ? { ...todo, completed: !todo.completed } : todo,
+			),
 		);
 	};
 
@@ -73,7 +82,7 @@ export default function IndexPage() {
 	return (
 		<>
 			<Header />
-			<div className="container todo">
+			<div className='container todo'>
 				<h1>Todo List</h1>
 				<AddTodo addNewTodo={addNewTodo} />
 				{loading ? (
