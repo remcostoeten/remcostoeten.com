@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { db } from '@/firebase';
 import { collection, addDoc, updateDoc, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import Header from '../../components/header/Header';
@@ -14,6 +14,11 @@ interface Todo {
 export default function IndexPage() {
 	const [todos, setTodos] = React.useState<Todo[]>([]);
 	const [loading, setLoading] = React.useState<boolean>(false);
+
+	useEffect(() => {
+		document.body.classList.add('todo-app');
+	}, []);
+
 
 	React.useEffect(() => {
 		// Fetch todos from the 'todos' collection
@@ -68,19 +73,21 @@ export default function IndexPage() {
 	return (
 		<>
 			<Header />
-			<h1>Todo List</h1>
-			<AddTodo addNewTodo={addNewTodo} />
-			{loading ? (
-				<p>Loading todos...</p>
-			) : todos.length > 0 ? (
-				<TodoList
-					todos={todos}
-					toggleComplete={toggleComplete}
-					deleteTodo={deleteTodo}
-				/>
-			) : (
-				<p>No todos yet</p>
-			)}
+			<div className="container todo">
+				<h1>Todo List</h1>
+				<AddTodo addNewTodo={addNewTodo} />
+				{loading ? (
+					<p>Loading todos...</p>
+				) : todos.length > 0 ? (
+					<TodoList
+						todos={todos}
+						toggleComplete={toggleComplete}
+						deleteTodo={deleteTodo}
+					/>
+				) : (
+					<p>No todos yet</p>
+				)}
+			</div>
 		</>
 	);
 }
