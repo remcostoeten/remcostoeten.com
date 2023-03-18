@@ -20,16 +20,8 @@ export default function AddTodo({ addNewTodo }: AddTodoProps) {
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<div className='input_container'>
-				<input
-					type='text'
-					placeholder='description...'
-					value={description}
-					onChange={(e) => setDescription(e.target.value)}
-				/>
-			</div>
-			<hr></hr>
-			<div className='input_container'>
+			<div className='todo__task-section'>
+				<h4>Title task</h4>
 				<input
 					type='text'
 					placeholder='Enter todo title...'
@@ -37,9 +29,16 @@ export default function AddTodo({ addNewTodo }: AddTodoProps) {
 					onChange={(e) => setTitle(e.target.value)}
 				/>
 			</div>
-			<div className='btn_container'>
-				<button>Add</button>
+			<div className='todo__task-section'>
+
+			<h4>description task</h4>
+				<textarea
+					placeholder='description...'
+					value={description}
+					onChange={(e) => setDescription(e.target.value)}
+				/>
 			</div>
+			<button className='btn btn--ghost'>Add</button>
 		</form>
 	);
 }

@@ -14,6 +14,7 @@ import Header from '../../components/header/Header';
 import AddTodo from '../../components/Todo/AddTodo';
 import TodoList from '@/components/Todo/TodoList';
 import Login from '@/components/Login';
+import { Skeleton } from '@mui/material';
 
 interface Todo {
 	id: string;
@@ -25,20 +26,30 @@ interface Todo {
 export default function IndexPage() {
 	const [todos, setTodos] = useState<Todo[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
+	const [userName, setUserName] = useState<string | null>(null);
+
 	useEffect(() => {
 		auth.onAuthStateChanged((user) => {
 			if (user) {
 				setIsLoggedIn(true);
+				setUserName(user.displayName);
 			} else {
 				setIsLoggedIn(false);
+				setUserName(null);
 			}
 		});
 	}, []);
+
+	useEffect(() => {
+		auth.onAuthStateChanged((user) => {
+			setIsLoggedIn(Boolean(user));
+		});
+	}, []);
+
 	useEffect(() => {
 		document.body.classList.add('todo-app');
 	}, []);
-
 	useEffect(() => {
 		const getTodos = async () => {
 			setLoading(true);
@@ -67,14 +78,18 @@ export default function IndexPage() {
 		};
 
 		getTodos();
-	}, []);
+	}, [loading, isLoggedIn]);
 
 	const addNewTodo = async (title: string, description: string) => {
-		if (!title.trim() || !description.trim()) return;
+		if (!title.trim() || !description.trim()) {
+			return;
+		}
 
 		try {
 			const user = auth.currentUser;
-			if (!user) return;
+			if (!user) {
+				return;
+			}
 
 			const docRef = await addDoc(collection(db, 'todos'), {
 				title,
@@ -97,7 +112,9 @@ export default function IndexPage() {
 	const toggleComplete = async (id: string) => {
 		try {
 			const todo = todos.find((todo) => todo.id === id);
-			if (!todo) return;
+			if (!todo) {
+				return;
+			}
 
 			await updateDoc(doc(db, 'todos', id), {
 				completed: !todo.completed,
@@ -105,10 +122,8 @@ export default function IndexPage() {
 
 			setTodos((prevTodos) =>
 				prevTodos.map((todo) =>
-					todo.id === id
-						? { ...todo, completed: !todo.completed }
-						: todo,
-				),
+					todo.id === id ? { ...todo, completed: !todo.completed } : todo
+				)
 			);
 		} catch (error) {
 			console.error('Error updating todo:', error);
@@ -126,10 +141,7 @@ export default function IndexPage() {
 
 	const signIn = async () => {
 		try {
-			const result = await signInWithPopup(
-				auth,
-				new GoogleAuthProvider(),
-			);
+			await signInWithPopup(auth, new GoogleAuthProvider());
 			setIsLoggedIn(true);
 		} catch (error) {
 			console.log(error);
@@ -141,21 +153,49 @@ export default function IndexPage() {
 			<Header />
 			<div className='container todo'>
 				{isLoggedIn ? (
-					<>
-						<h1>Todo List</h1>
-						<AddTodo addNewTodo={addNewTodo} />
-						{loading ? (
-							<p>Loading todos...</p>
-						) : todos.length > 0 ? (
-							<TodoList
-								todos={todos}
-								toggleComplete={toggleComplete}
-								deleteTodo={deleteTodo}
-							/>
-						) : (
-							<p>No todos yet</p>
-						)}
-					</>
+					<div className='todo'>
+						<div className="todo__intro">
+							<div className='text'>	
+								<h1>Welcome back, { }
+								{userName}
+							</h1>
+								<p>You've got {todos.length} task(s) left. But no pressure, I wont judge you slacking.</p>
+								<div className="todo__add">
+									{loading ? (
+										<>
+										
+											<TodoList
+												todos={todos}
+												toggleComplete={toggleComplete}
+												deleteTodo={deleteTodo}
+											/>
+										</>
+									) : (
+										<>
+											{todos.length > 0 ? (
+													<>	
+														<div className='todo__load'>
+															<Skeleton animation="wave" height={48} />
+														</div>
+													</>
+											) : (
+												<>
+													<h1>No todos yet</h1>
+												</>
+											)}
+										</>
+									)}
+								</div>
+							</div>
+							</div>
+							<div className="todo__add">
+															<AddTodo addNewTodo={addNewTodo} />
+						</div>
+						</div>
+					
+
+					
+
 				) : (
 					<div className='authenticate-please'>
 						<h2>
