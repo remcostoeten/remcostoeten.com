@@ -122,8 +122,10 @@ export default function IndexPage() {
 
 			setTodos((prevTodos) =>
 				prevTodos.map((todo) =>
-					todo.id === id ? { ...todo, completed: !todo.completed } : todo
-				)
+					todo.id === id
+						? { ...todo, completed: !todo.completed }
+						: todo,
+				),
 			);
 		} catch (error) {
 			console.error('Error updating todo:', error);
@@ -154,48 +156,87 @@ export default function IndexPage() {
 			<div className='container todo'>
 				{isLoggedIn ? (
 					<div className='todo'>
-						<div className="todo__intro">
-							<div className='text'>	
-								<h1>Welcome back, { }
-								{userName}
-							</h1>
-								<p>You've got {todos.length} task(s) left. But no pressure, I wont judge you slacking.</p>
-								<div className="todo__add">
-									{loading ? (
-										<>
-										
-											<TodoList
-												todos={todos}
-												toggleComplete={toggleComplete}
-												deleteTodo={deleteTodo}
-											/>
-										</>
-									) : (
-										<>
-											{todos.length > 0 ? (
-													<>	
-														<div className='todo__load'>
-															<Skeleton animation="wave" height={48} />
-														</div>
+						<div className='todo__intro'>
+							<div className='text'>
+								<h1>
+									Welcome back, {}
+									{userName}
+								</h1>
+
+								<div className='todo__add'>
+									<>
+										<TodoList
+											todos={todos}
+											toggleComplete={toggleComplete}
+											deleteTodo={deleteTodo}
+										/>
+									</>
+									<>
+										{todos.length > 0 ? (
+											<>
+												<div className='todo__load'>
+													load
+												</div>
+											</>
+										) : (
+											<>
+												{todos.length === 0 && (
+													<>
+														<p>
+															You have no tasks
+															left. Time to relax.
+															🥳 Or get busy and
+															create some new
+															ones!
+														</p>
 													</>
-											) : (
-												<>
-													<h1>No todos yet</h1>
-												</>
-											)}
-										</>
-									)}
+												)}
+												{todos.length === 1 && (
+													<>
+														<p>
+															You've got{' '}
+															{todos.length} task
+															left. Good luck
+															nailing it! 🤑
+														</p>
+													</>
+												)}
+												{todos.length >= 1 &&
+													todos.length <= 4 && (
+														<>
+															<p>
+																You've got{' '}
+																{todos.length}{' '}
+																task
+																{todos.length ===
+																1
+																	? ''
+																	: 's'}{' '}
+																left. Better
+																start working
+																then! 😳
+															</p>
+														</>
+													)}
+												{todos.length > 4 && (
+													<p>
+														You've got{' '}
+														{todos.length} task(s)
+														left. 😵‍💫 But no
+														pressure, I wont judge
+														you slacking. 🫣
+													</p>
+												)}{' '}
+											</>
+										)}
+									</>
 								</div>
 							</div>
-							</div>
-							<div className="todo__add">
-															<AddTodo addNewTodo={addNewTodo} />
 						</div>
+						<div className='todo__add'>
+							<AddTodo addNewTodo={addNewTodo} />
 						</div>
-					
-
-					
-
+					</div>
 				) : (
 					<div className='authenticate-please'>
 						<h2>
