@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { auth, db } from '@/firebase';
+import { auth, db, GoogleAuthProvider, signInWithPopup } from '@/firebase';
 import {
 	collection,
 	addDoc,
@@ -13,6 +13,7 @@ import {
 import Header from '../../components/header/Header';
 import AddTodo from '../../components/Todo/AddTodo';
 import TodoList from '@/components/Todo/TodoList';
+import Login from '@/components/Login';
 
 interface Todo {
 	id: string;
@@ -123,22 +124,45 @@ export default function IndexPage() {
 		}
 	};
 
+	const signIn = async () => {
+		try {
+			const result = await signInWithPopup(
+				auth,
+				new GoogleAuthProvider(),
+			);
+			setIsLoggedIn(true);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<>
 			<Header />
 			<div className='container todo'>
-				<h1>Todo List</h1>
-				<AddTodo addNewTodo={addNewTodo} />
-				{loading ? (
-					<p>Loading todos...</p>
-				) : todos.length > 0 ? (
-					<TodoList
-						todos={todos}
-						toggleComplete={toggleComplete}
-						deleteTodo={deleteTodo}
-					/>
+				{isLoggedIn ? (
+					<>
+						<h1>Todo List</h1>
+						<AddTodo addNewTodo={addNewTodo} />
+						{loading ? (
+							<p>Loading todos...</p>
+						) : todos.length > 0 ? (
+							<TodoList
+								todos={todos}
+								toggleComplete={toggleComplete}
+								deleteTodo={deleteTodo}
+							/>
+						) : (
+							<p>No todos yet</p>
+						)}
+					</>
 				) : (
-					<p>No todos yet</p>
+					<div className='authenticate-please'>
+						<h2>
+							In order to use the to-do app you need to be logged
+							in. <Login />.
+						</h2>
+					</div>
 				)}
 			</div>
 		</>

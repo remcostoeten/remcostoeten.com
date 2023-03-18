@@ -3128,4 +3128,8 @@ form input {
 input:focus,
 button:focus {
   outline: none;
+}
+
+.authenticate-please {
+  padding: 24px;
 }/*# sourceMappingURL=styles.css.map */
