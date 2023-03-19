@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { db, auth } from '@/firebase';
-import { collection, addDoc, onSnapshot } from '@firebase/firestore';
+import { collection, addDoc, onSnapshot, deleteDoc, doc, updateDoc } from '@firebase/firestore';
 import Header from '@/components/header/Header';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type Task = {
     id: string;
@@ -37,7 +40,7 @@ export default function Index() {
         const unsubscribe = onSnapshot(
             collection(db, `tasks-${auth.currentUser?.uid}`),
             (snapshot) => {
-                setTasks(
+                return setTasks(
                     snapshot.docs.map((doc) => ({
                         id: doc.id,
                         ...doc.data(),
@@ -57,6 +60,29 @@ export default function Index() {
         const newTask = { id: docRef.id, title, description, category };
         setTasks((prevTasks) => [...prevTasks, newTask]);
     };
+    const removeTask = async (taskId: string) => {
+        try {
+            const taskRef = doc(db, `tasks-${auth.currentUser?.uid}/${taskId}`);
+            await deleteDoc(taskRef);
+            setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+            toast.success('Task removed successfully');
+        } catch (error) {
+            console.error('Error removing task:', error);
+        }
+    };
+
+
+    const updateTask = async (taskId: string, newTaskData: Partial<Task>) => {
+        await updateDoc(doc(db, `tasks-${auth.currentUser?.uid}`, taskId), newTaskData);
+        setTasks((prevTasks) =>
+            prevTasks.map((task) => {
+                if (task.id === taskId) {
+                    return { ...task, ...newTaskData };
+                }
+                return task;
+            })
+        );
+    };
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -65,6 +91,16 @@ export default function Index() {
         const category = e.currentTarget.category.value;
         addTask(title, description, category);
         e.currentTarget.reset();
+    };
+
+    const handleDragEnd = (result: any) => {
+        if (!result.destination) return;
+
+        const items = Array.from(tasks);
+        const [reorderedItem] = items.splice(result.source.index, 1);
+        items.splice(result.destination.index, 0, reorderedItem);
+
+        setTasks(items);
     };
 
     return (
@@ -79,11 +115,13 @@ export default function Index() {
                                 You've got {tasks.length} task(s) left. But no pressure, I won't judge you slacking.
                             </p>
                             <div className="tasks">
-                                {tasks.map((task) => (
+  <ToastContainer autoClose={false} />
+                                {tasks.map((task, index) => (
                                     <div className="tasks__task" key={task.id}>
                                         <h2 className="title">{task.title}</h2>
                                         <p className="description">{task.description}</p>
                                         <span className="category">{task.category}</span>
+                                        <button onClick={() => removeTask(task.id)}>Remove</button>
                                     </div>
                                 ))}
                             </div>
@@ -95,7 +133,7 @@ export default function Index() {
                     )}
                 </div>
                 <div className="todo__task-section">
-                    <form onSubmit={handleSubmit} className='todo__add'>
+                    <form onSubmit={handleSubmit} className="todo__add">
                         <label>
                             Title:
                             <input type="text" name="title" required />
@@ -112,6 +150,7 @@ export default function Index() {
                     </form>
                 </div>
             </div>
-        </>
+           </>
     );
+
 }
