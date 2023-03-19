@@ -1,5 +1,11 @@
 import { ReactNode } from 'react';
 
+export interface Task {
+	id: string;
+	title: string;
+	category: 'todo' | 'inprogress' | 'done';
+}
+
 export interface Message extends ChatMessage {
 	message: string;
 	attachments: any;
