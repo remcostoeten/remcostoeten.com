@@ -9,21 +9,13 @@ import {
 	updateDoc,
 } from '@firebase/firestore';
 import Header from '@/components/header/Header';
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
 import DraggableContainer from '@/components/DraggableContainer';
-import TaskCategorys from '@/components/Todo/TaskCategories';
 import TaskCategories from '@/components/Todo/TaskCategories';
-
-type Task = {
-	id: string;
-	title: string;
-	description: string;
-	category: 'todo' | 'inprogress' | 'done';
-	status: 'todo' | 'inProgress' | 'done';
-};
+import { DropResult } from 'react-beautiful-dnd';
+import { Task } from '@/types';
 
 type DraggableContainerProps = {
 	tasks: Task[];
@@ -34,6 +26,8 @@ export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
+	const [tasksInProgress, setTasksInProgress] = useState<Task[]>([]);
+	const [tasksDone, setTasksDone] = useState<Task[]>([]);
 
 	useEffect(() => {
 		auth.onAuthStateChanged((user) => {
@@ -58,10 +52,13 @@ export default function Index() {
 			collection(db, `tasks-${auth.currentUser?.uid}`),
 			(snapshot) => {
 				return setTasks(
-					snapshot.docs.map((doc) => ({
-						id: doc.id,
-						...doc.data(),
-					})),
+					snapshot.docs.map(
+						(doc) =>
+							({
+								id: doc.id,
+								...doc.data(),
+							} as Task),
+					), // <-- Add this cast
 				);
 			},
 		);
@@ -121,10 +118,16 @@ export default function Index() {
 
 	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const title = e.currentTarget.title.value;
-		const description = e.currentTarget.description.value;
-		addTask(title, description, 'todo');
-		e.currentTarget.reset();
+		const form = e.currentTarget;
+		const title = form.elements.namedItem('title') as HTMLInputElement;
+		const description = form.elements.namedItem(
+			'description',
+		) as HTMLTextAreaElement;
+		const category = form.elements.namedItem(
+			'category',
+		) as HTMLInputElement;
+		addTask(title.value, description.value, category.value);
+		form.reset();
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -134,16 +137,15 @@ export default function Index() {
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
 
-		// Update the status of the task based on the droppableId of the destination
 		reorderedItem.status = result.destination.droppableId as
 			| 'todo'
-			| 'inProgress'
+			| 'inprogress'
 			| 'done';
 
 		// Update the tasks in the parent component
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
 
-		setTasksInProgress(items.filter((t) => t.status === 'inProgress'));
+		setTasksInProgress(items.filter((t) => t.status === 'inprogress'));
 		setTasksDone(items.filter((t) => t.status === 'done'));
 	};
 

@@ -23,7 +23,13 @@ interface LocaleProviderProps {
 	children: React.ReactNode;
 }
 
-const translations = {
+interface Translations {
+	[key: string]: {
+		[key: string]: string;
+	};
+}
+
+const translations: Translations = {
 	en,
 	nl,
 	fries,

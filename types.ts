@@ -3,9 +3,11 @@ import { ReactNode } from 'react';
 export interface Task {
 	id: string;
 	title: string;
-	category: 'todo' | 'inprogress' | 'done';
+	description: string;
+	status: 'todo' | 'inprogress' | 'deleted' | 'done';
+	// status: 'todo' | 'inProgress' | 'done';
+	category: string;
 }
-
 export interface Message extends ChatMessage {
 	message: string;
 	attachments: any;

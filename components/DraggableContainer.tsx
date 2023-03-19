@@ -5,15 +5,15 @@ import {
 	Draggable,
 	DropResult,
 } from 'react-beautiful-dnd';
-import { Task } from '@/types';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Task } from '@/types';
 
-type DraggableContainerProps = {
+interface DraggableContainerProps {
 	tasks: Task[];
-	updateTask: (taskId: string, newTaskData: Partial<Task>) => void;
+	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
 	removeTask: (taskId: string) => void;
-};
+}
 
 const DraggableContainer = ({
 	tasks,
@@ -27,13 +27,10 @@ const DraggableContainer = ({
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
 
-		// Update the status of the task based on the droppableId of the destination
 		reorderedItem.status = result.destination.droppableId as
 			| 'todo'
-			| 'inProgress'
+			| 'inprogress'
 			| 'done';
-
-		// Update the tasks in the parent component
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
 	};
 
@@ -88,8 +85,7 @@ const DraggableContainer = ({
 						</div>
 					)}
 				</Droppable>
-
-				<Droppable droppableId='inProgress'>
+				<Droppable droppableId='inprogress'>
 					{(provided) => (
 						<div
 							className='tasks__lane'
@@ -98,7 +94,7 @@ const DraggableContainer = ({
 							<h2 className='tasks__lane-title'>In Progress</h2>
 
 							{tasks
-								.filter((task) => task.status === 'inProgress')
+								.filter((task) => task.status === 'inprogress') // <-- change 'inProgress' to 'inprogress'
 								.map((task, index) => (
 									<Draggable
 										key={task.id}
@@ -184,5 +180,4 @@ const DraggableContainer = ({
 		</DragDropContext>
 	);
 };
-
 export default DraggableContainer;

@@ -23,8 +23,10 @@ export default function TaskCategories() {
 				<option value='fries'>Frisian</option>
 			</select>
 			<header className='categories'>
-				{categories.map((category) => (
-					<div className='categories__category'>{category}</div>
+				{categories.map((category, index) => (
+					<div key={index} className='categories__category'>
+						{category}
+					</div>
 				))}
 			</header>
 		</>
