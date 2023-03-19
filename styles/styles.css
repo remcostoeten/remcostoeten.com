@@ -4312,7 +4312,7 @@ button {
 }
 
 .todo__intro p {
-  color: #rgba 40, 40, 40, 1;
+  color: #282828;
   font-size: 1.5em;
   font-weight: 400;
 }
