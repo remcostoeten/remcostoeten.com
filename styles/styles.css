@@ -4286,6 +4286,12 @@ button {
   font-style: italic;
 }
 
+.todo__task-section input:focus,
+.todo__task-section textarea:focus {
+  border: none;
+  outline: none;
+}
+
 .todo__task-section textarea {
   padding: calc(24px / 3);
 }
@@ -4318,12 +4324,29 @@ button {
 }
 
 .todo form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   padding: 10px 20px;
   border-radius: 5px;
   min-width: 300px;
+}
+
+.todo form label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .todo__wrapper {

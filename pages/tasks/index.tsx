@@ -94,7 +94,7 @@ export default function Index() {
                         </div>
                     )}
                 </div>
-                <div className="todo__add">
+                <div className="todo__task-section">
                     <form onSubmit={handleSubmit} className='todo__add'>
                         <label>
                             Title:

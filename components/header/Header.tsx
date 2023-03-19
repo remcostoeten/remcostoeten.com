@@ -305,7 +305,7 @@ const Header = () => {
 										</li>
 									) : null}
 									<motion.li whileHover={{ scale: 1.05 }}>
-										<Link href='/todo'>
+										<Link href='/tasks'>
 											Todo list creator
 										</Link>
 									</motion.li>
