@@ -26,7 +26,6 @@ interface Todo {
 export default function IndexPage() {
 	const [todos, setTodos] = useState<Todo[]>([]);
 	const [loading, setLoading] = useState<boolean>(false);
-	const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 	const [userName, setUserName] = useState<string | null>(null);
 
 	useEffect(() => {

@@ -1,109 +1,129 @@
 .todo-app {
-	background-color: #cbcbf3;
+    background-color: #cbcbf3;
 }
 
 .todo {
-	display: flex;
-	margin-top: 20px;
-	background: #f6f6f6;
-	padding: 10px 20px;
-	border-radius: 5px;
-	box-shadow: 1px 2px 10px #ddd;
+    display: flex;
+    margin-top: 20px;
+    background: $color-white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 10px #ddd;
 
-	&__add {
-		display: flex;
+    &__add {
+        display: flex;
 
-		.todos {
-			display: flex;
-		}
-	}
+        .todos {
+            display: flex;
+        }
+    }
 
-	&__task-section {
-		padding: 4px;
+    &__task-section {
+        padding: 4px;
 
-		h4 {
-			margin-bottom: $spacing-s;
-		}
+        h4 {
+            margin-bottom: $spacing-s;
+        }
 
-		input,
-		textarea {
-			background: #eff3f4;
-			border: none;
-			width: 100%;
-			border-radius: 8px;
-			padding: $spacing-s;
-			font-size: 1em;
-			font-style: italic;
-		}
+        input,
+        textarea {
+            background: #eff3f4;
+            border: none;
+            width: 100%;
+            border-radius: 8px;
+            padding: $spacing-s;
+            font-size: 1em;
+            font-style: italic;
+        }
 
-		textarea {
-			padding: $spacing-s;
-		}
-	}
+        textarea {
+            padding: $spacing-s;
+        }
+    }
 
-	&__intro {
-		display: flex;
-		align-items: baseline;
-		padding: $spacing-s;
+    &__intro {
+        display: flex;
+        align-items: baseline;
 
-		.text {
-			padding-right: $spacing;
-		}
+        padding: $spacing-s;
 
-		h1 {
-			color: $theme-black;
-			letter-spacing: 1px;
-			font-family: $font--primary;
-			padding-bottom: $spacing-s;
-		}
+        .text {
+            padding-right: $spacing;
+        }
 
-		p {
-			color: #rgba(40, 40, 40, 1);
-			font-size: 1.5em;
-			font-weight: 400;
-		}
-	}
+        h1 {
+            color: $theme-black;
+            letter-spacing: 1px;
+            font-family: $font--primary;
+            padding-bottom: $spacing-s;
+        }
 
-	form {
-		width: fit-content;
-		padding: 10px 20px;
-		border-radius: 5px;
-		min-width: 300px;
-	}
+        p {
+            color: #rgba(40, 40, 40, 1);
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+    }
 
-	&__wrapper {
-		width: 50%;
-		margin: 0 auto;
-	}
+    form {
+        width: fit-content;
+        padding: 10px 20px;
+        border-radius: 5px;
+        min-width: 300px;
+    }
 
-	.button-complete,
-	.button-delete,
-	.button-edit {
-		border: none;
-		outline: none;
-		cursor: pointer;
-		background-color: red;
-		border-radius: 50%;
-	}
+    &__wrapper {
+        width: 50%;
+        margin: 0 auto;
+    }
 
-	button {
-		background: #333;
+    .button-complete,
+    .button-delete,
+    .button-edit {
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background-color: red;
+        border-radius: 50%;
+    }
 
-		color: $color-white;
-		padding: 10px 20px;
-		outline: none;
-		border: none;
-		border-radius: 5px;
-		font-size: 16px;
-		cursor: pointer;
-		font-weight: 500;
-	}
+    button {
+        background: #333;
+
+        color: $color-white;
+        padding: 10px 20px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        font-weight: 500;
+    }
+}
+
+.tasks {
+    &__task {
+        padding: $spacing-s;
+        background: #f6f6f6;
+        border-radius: 8px;
+        margin-bottom: 8px;
+
+        .title {
+            font-size: 1.5em;
+        }
+
+        .description {
+            color: #rgba(40, 40, 40, 1);
+            font-size: 1.5em;
+            font-weight: 400;
+        }
+    }
 }
 
 form h3 {
-	text-align: center;
+    text-align: center;
 }
 
 .authenticate-please {
-	padding: $spacing;
+    padding: $spacing;
 }

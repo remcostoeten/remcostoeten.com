@@ -1,65 +1,65 @@
-import { initializeApp } from '@firebase/app';
-import { getFirestore } from '@firebase/firestore';
-import firebase from 'firebase/compat';
+	import { initializeApp } from '@firebase/app';
+	import { getFirestore } from '@firebase/firestore';
+	import firebase from 'firebase/compat';
 
-import {
-	getAuth,
-	signInWithPopup,
-	GoogleAuthProvider,
-	signOut,
-} from 'firebase/auth';
+	import {
+		getAuth,
+		signInWithPopup,
+		GoogleAuthProvider,
+		signOut,
+	} from 'firebase/auth';
 
-const firebaseConfig = {
-	apiKey: 'AIzaSyBfhtHl3y6KE4N6EFeBskDnEgirKzd6jr0',
-	authDomain: 'remcostoeten-auth-database.firebaseapp.com',
-	projectId: 'remcostoeten-auth-database',
-	storageBucket: 'remcostoeten-auth-database.appspot.com',
-	messagingSenderId: '9004316576',
-	appId: '1:9004316576:web:23ab65d1969d436e0cd6c5',
-	measurementId: 'G-J91KKF6LF1',
-};
+	const firebaseConfig = {
+  apiKey: "AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es",
+  authDomain: "task-41e05.firebaseapp.com",
+  projectId: "task-41e05",
+  storageBucket: "task-41e05.appspot.com",
+  messagingSenderId: "482137951796",
+  appId: "1:482137951796:web:c64e6f41ad5d0e60b28461",
+  measurementId: "G-STSWFTFM63"
+	};
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+	const app = initializeApp(firebaseConfig);
+	const db = getFirestore(app);
 
-const provider = new GoogleAuthProvider();
-const auth = getAuth();
+	const provider = new GoogleAuthProvider();
+	const auth = getAuth();
 
-const singInWithGoogle = () => {
-	console.log('signing in with google');
-	signInWithPopup(auth, provider)
-		.then((result) => {
-			const credential = GoogleAuthProvider.credentialFromResult(result);
-			const token = credential?.accessToken;
-			const user = result.user;
-			console.log('a');
-		})
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			const email = error.email;
-			const credential = GoogleAuthProvider.credentialFromError(error);
-			console.log(error.code);
-			console.log(error);
-		});
-};
+	const singInWithGoogle = () => {
+		console.log('signing in with google');
+		signInWithPopup(auth, provider)
+			.then((result) => {
+				const credential = GoogleAuthProvider.credentialFromResult(result);
+				const token = credential?.accessToken;
+				const user = result.user;
+				console.log('a');
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				const email = error.email;
+				const credential = GoogleAuthProvider.credentialFromError(error);
+				console.log(error.code);
+				console.log(error);
+			});
+	};
 
-const logout = () => {
-	console.log('loggin out');
-	signOut(auth)
-		.then(() => {
-			// Sign-out successful.
-		})
-		.catch((error) => {
-			// An error happened.
-		});
-};
+	const logout = () => {
+		console.log('loggin out');
+		signOut(auth)
+			.then(() => {
+				// Sign-out successful.
+			})
+			.catch((error) => {
+				// An error happened.
+			});
+	};
 
-export {
-	db,
-	auth,
-	singInWithGoogle,
-	logout,
-	signInWithPopup,
-	GoogleAuthProvider,
-};
+	export {
+		db,
+		auth,
+		singInWithGoogle,
+		logout,
+		signInWithPopup,
+		GoogleAuthProvider,
+	};
