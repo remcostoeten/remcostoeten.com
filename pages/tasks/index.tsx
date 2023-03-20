@@ -16,6 +16,7 @@ import DraggableContainer from '@/components/DraggableContainer';
 import { Task } from '@/types';
 import TaskModal from '@/components/Task/TaskModal';
 import { Button } from '@mui/material';
+import { AddCircle } from '@mui/icons-material';
 
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -211,11 +212,25 @@ export default function Index() {
 								<button className='add task'>Add task</button>
 							</div>
 						</div>
+						<span className='add'>
+							<AddCircle onClick={() => setIsModalOpen(true)} />
+							Add new task
+						</span>
+
+						<TaskModal
+							isOpen={isModalOpen}
+							onClose={() => setIsModalOpen(false)}
+							onSubmit={addTask}
+						/>
 						<div className={`view-container ${view}-view`}>
 							{/* Board View */}
 							{view === 'board' && (
-								<div className='board-view'>
-									{/* Board view content */}
+								<div className='tasks'>
+									<DraggableContainer
+										tasks={tasks}
+										updateTask={updateTask}
+										removeTask={removeTask}
+									/>
 								</div>
 							)}
 							{/* List View */}
@@ -224,54 +239,6 @@ export default function Index() {
 									{/* List view content */}
 								</div>
 							)}
-						</div>
-						<div className='tasks'>
-							<div className='tasks__lane'>
-								<div className='tasks__lane-title'>
-									<h2>
-										Todo<span>({tasks.length})</span>
-									</h2>
-									<Button
-										variant='outlined'
-										color='primary'
-										onClick={() => setIsModalOpen(true)}>
-										Add new task
-									</Button>
-									<TaskModal
-										isOpen={isModalOpen}
-										onClose={() => setIsModalOpen(false)}
-										onSubmit={addTask}
-									/>
-								</div>
-								<DraggableContainer
-									tasks={tasks.filter(
-										(task) => task.status === 'todo',
-									)}
-									status='todo'
-									updateTask={updateTask}
-									removeTask={removeTask}
-									addTask={addTask}
-								/>
-								<DraggableContainer
-									tasks={tasks.filter(
-										(task) => task.status === 'inprogress',
-									)}
-									status='inprogress'
-									updateTask={updateTask}
-									removeTask={removeTask}
-									addTask={addTask}
-								/>
-
-								<DraggableContainer
-									tasks={tasks.filter(
-										(task) => task.status === 'done',
-									)}
-									status='done'
-									updateTask={updateTask}
-									removeTask={removeTask}
-									addTask={addTask}
-								/>
-							</div>
 						</div>
 					</main>
 				</div>

@@ -45,7 +45,17 @@ $dark-blue: #282a30;
 
 	&__lane-title {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
+
+		.add {
+			display: flex;
+			align-items: center;
+
+			svg {
+				margin: 0 $spacing-s;
+			}
+		}
 
 		h2 {
 			font-size: 14px;
@@ -80,11 +90,11 @@ $dark-blue: #282a30;
 .tasks {
 	display: flex;
 	justify-content: space-between;
-	background-color: $aside-background;
-	padding: 16px 20px;
-	border-radius: 12px;
-
 	&__lane {
+		background-color: #24262c;
+		padding: 16px 20px;
+		border-radius: 12px;
+		min-width: 200px;
 		h4 {
 			font-size: 14px;
 			opacity: 0.5;

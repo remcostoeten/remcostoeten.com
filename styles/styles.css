@@ -3314,7 +3314,15 @@ form h3 {
 }
 .tasks__lane-title {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+}
+.tasks__lane-title .add {
+  display: flex;
+  align-items: center;
+}
+.tasks__lane-title .add svg {
+  margin: 0 8px;
 }
 .tasks__lane-title h2 {
   font-size: 14px;
@@ -3343,9 +3351,12 @@ form h3 {
 .tasks {
   display: flex;
   justify-content: space-between;
-  background-color: #222327;
+}
+.tasks__lane {
+  background-color: #24262c;
   padding: 16px 20px;
   border-radius: 12px;
+  min-width: 200px;
 }
 .tasks__lane h4 {
   font-size: 14px;
