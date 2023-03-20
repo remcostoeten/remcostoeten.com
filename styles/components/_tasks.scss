@@ -42,18 +42,49 @@ $dark-blue: #282a30;
 	button {
 		color: $white;
 	}
+
+	&__lane-title {
+		display: flex;
+		justify-content: space-between;
+
+		h2 {
+			font-size: 14px;
+			opacity: 0.5;
+			letter-spacing: 1.1px;
+		}
+	}
+
+	&__add {
+		display: flex;
+		align-items: center;
+		transition: 125ms ease all;
+		cursor: pointer;
+
+		svg {
+			font-size: 16px;
+			transition: 125ms ease all;
+
+			&:hover {
+				color: lighten($blue, 25%);
+			}
+		}
+
+		span {
+			font-size: 12px;
+			margin-left: 4px;
+			opacity: 1;
+		}
+	}
 }
 
 .tasks {
 	display: flex;
 	justify-content: space-between;
+	background-color: $aside-background;
+	padding: 16px 20px;
+	border-radius: 12px;
 
 	&__lane {
-		width: calc(100% / 3);
-		background-color: $aside-background;
-		padding: 16px 20px;
-		border-radius: 12px;
-
 		h4 {
 			font-size: 14px;
 			opacity: 0.5;
@@ -147,6 +178,14 @@ $dark-blue: #282a30;
 			background-color: $blue;
 			border-radius: 19px;
 			font-size: 14px;
+		}
+	}
+}
+
+@include above-mobile {
+	.tasks {
+		&__lane {
+			min-width: 200px;
 		}
 	}
 }

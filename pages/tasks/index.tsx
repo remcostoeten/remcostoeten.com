@@ -13,17 +13,19 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
 import DraggableContainer from '@/components/DraggableContainer';
-import TaskCategories from '@/components/Todo/TaskCategories';
-import { DropResult } from 'react-beautiful-dnd';
 import { Task } from '@/types';
+import TaskModal from '@/components/Task/TaskModal';
 import Aside from '@/components/Task/Aside';
 import SortIcon from '@mui/icons-material/Sort';
 import ViewComfyIcon from '@mui/icons-material/ViewComfy';
+import TodoList from '@/components/Todo/TodoList';
+import { AddCircle } from '@mui/icons-material';
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
 	const [view, setView] = useState<ViewType>('board');
+	const [isModalOpen, setIsModalOpen] = useState(false);
 
 	type ViewType = 'board' | 'list';
 
@@ -48,22 +50,24 @@ export default function Index() {
 	}, []);
 
 	useEffect(() => {
-		const unsubscribe = onSnapshot(
-			collection(db, `tasks-${auth.currentUser?.uid}`),
-			(snapshot) => {
-				setTasks(
-					snapshot.docs.map(
-						(doc) =>
-							({
-								id: doc.id,
-								...doc.data(),
-							} as Task),
-					),
-				);
-			},
-		);
-		return () => unsubscribe();
-	}, []);
+		if (auth.currentUser) {
+			const unsubscribe = onSnapshot(
+				collection(db, `tasks-${auth.currentUser?.uid}`),
+				(snapshot) => {
+					setTasks(
+						snapshot.docs.map(
+							(doc) =>
+								({
+									id: doc.id,
+									...doc.data(),
+								} as Task),
+						),
+					);
+				},
+			);
+			return () => unsubscribe();
+		}
+	}, [auth.currentUser]);
 
 	const addTask = async (
 		title: string,
@@ -124,42 +128,13 @@ export default function Index() {
 		);
 	};
 
-	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-		const form = e.currentTarget;
-		const title = form.elements.namedItem('title') as HTMLInputElement;
-		const description = form.elements.namedItem(
-			'description',
-		) as HTMLTextAreaElement;
-		const category = form.elements.namedItem(
-			'category',
-		) as HTMLInputElement;
-		await addTask(title.value, description.value, category.value);
-	};
-
-	const handleDragEnd = (result: DropResult) => {
-		if (!result.destination) return;
-
-		const items = Array.from(tasks);
-		const [reorderedItem] = items.splice(result.source.index, 1);
-		items.splice(result.destination.index, 0, reorderedItem);
-
-		reorderedItem.status = result.destination.droppableId as
-			| 'todo'
-			| 'inprogress'
-			| 'done';
-
-		// Update the tasks in the parent component
-		updateTask(reorderedItem.id, { status: reorderedItem.status });
-	};
-
 	return (
 		<>
 			<Header />
 			{/* <div className='container'><TaskCategories /></div> */}
 			<div className='todo'>
 				<div className='todo__inner'>
-					<Aside />
+					{/* <Aside /> */}
 					<main>
 						<div className='todo__header'>
 							<h2>
@@ -248,7 +223,6 @@ export default function Index() {
 									{/* Board view content */}
 								</div>
 							)}
-
 							{/* List View */}
 							{view === 'list' && (
 								<div className='list-view'>
@@ -257,51 +231,44 @@ export default function Index() {
 							)}
 						</div>
 						<div className='tasks'>
-							<div className='tasks__lane lane'>
-								<h4>To do</h4>
-								<div className='lane__item'>
+							<div className='tasks__lane'>
+								<div className='tasks__lane-title'>
+									<h2>
+										Todo<span>({TodoList.length})</span>
+									</h2>
+									<div className='tasks__add'>
+										<AddCircle />
+										<span
+											onClick={() =>
+												setIsModalOpen(true)
+											}>
+											Add new task
+										</span>
+									</div>
+
+									<TaskModal
+										isOpen={isModalOpen}
+										onClose={() => setIsModalOpen(false)}
+										onSubmit={addTask}
+									/>
 									{tasks.map((task) => (
-										<div
-											className='todo__task'
-											key={task.id}>
-											<div className='todo__date'>
-												{task.date}
-											</div>
-											<DraggableContainer
-												tasks={tasks}
-												updateTask={updateTask}
-												removeTask={removeTask}
-											/>
-										</div>
+										<DraggableContainer
+											tasks={tasks}
+											updateTask={updateTask}
+											removeTask={removeTask}
+											addTask={addTask}
+										/>
 									))}
 								</div>
-							</div>
-							<div className='tasks__lane lane'>
+
+								{/* <div className='tasks__lane lane'>
 								<h4>In progress</h4>
 							</div>
 							<div className='tasks__lane lane'>
 								<h4>Done</h4>
+							</div> */}
 							</div>
-							<form onSubmit={handleSubmit} className='todo__add'>
-								<label>
-									Title:
-									<input type='text' name='title' required />
-								</label>
-								<label>
-									Description:
-									<textarea name='description' required />
-								</label>
-								<label>
-									Category:
-									<input
-										type='text'
-										name='category'
-										required
-									/>
-								</label>
-								<button type='submit'>Add Task</button>
-							</form>
-						</div>{' '}
+						</div>
 					</main>
 				</div>
 			</div>
