@@ -1,9 +1,9 @@
 import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
-import { ChatMessage, Attachment } from '../../types';
-import Image from 'next/image';
-import Header from '@/components/header/Header';
+import { ChatMessage, Attachment } from '@/types';
+import withAuth from '../withAuth';
+
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -39,7 +39,7 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('./ChatHistory.json');
+		const chatHistoryRaw: any[] = require('../../private-apis/data/znew.json');
 		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
 			(chatMessage) => ({
 				...chatMessage,
@@ -93,6 +93,10 @@ const ChatHistory: React.FC = () => {
 					),
 				]);
 			}
+
+			if (window.scrollY > 200) {
+				return;
+			}
 		};
 
 		window.addEventListener('scroll', handleScroll);
@@ -104,7 +108,6 @@ const ChatHistory: React.FC = () => {
 
 	return (
 		<>
-			<Header />
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
@@ -121,7 +124,10 @@ const ChatHistory: React.FC = () => {
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('alice')
+											.includes(
+												process.env
+													.NEXT_PUBLIC_CHAT_TWO ?? '',
+											)
 											? 'bubble__second-person'
 											: ''
 									}`}
@@ -129,14 +135,8 @@ const ChatHistory: React.FC = () => {
 									<div id={`chat-message-${index}`}>
 										<p>
 											<span>
-												{message.image && (
-													<Image
-														src={`/apiprivate/compressed/${message.image}`}
-														alt=''
-													/>
-												)}
 												<div className='chat__sender'>
-													{message.name}
+													{message.sender}
 												</div>
 												<div className='chat__message'>
 													{message.message}
@@ -148,9 +148,54 @@ const ChatHistory: React.FC = () => {
 							),
 						)}
 				</div>
+				{searchResults.length > 0 && (
+					<div className='chat__chat-panel chat-results'>
+						{searchResults.map(
+							(message: ChatMessage, index: number) => (
+								<div
+									className={`bubble__message ${
+										message.message
+											.toLowerCase()
+											.includes('alice')
+											? 'bubble__second-person'
+											: ''
+									}`}
+									key={message.timestamp.getTime()}
+									onClick={() => handleJumpTo(message)}>
+									<div>
+										<p>
+											<span>
+												<div className='chat__sender'>
+													{message.sender}
+												</div>
+												<div className='chat__message'>
+													{message.message}
+												</div>
+											</span>
+										</p>
+									</div>
+								</div>
+							),
+						)}
+					</div>
+				)}
 			</div>
+			{chatHistory.length > 0 && (
+				<div className='chat__search'>
+					<p className='chat__search-info'>
+						{searchResults.length > 0
+							? `Showing ${searchResults.length} search results`
+							: 'No results found'}
+					</p>
+					<button
+						className='chat__scroll-to-top'
+						onClick={() => handleJumpTo(chatHistory[0])}>
+						Scroll to top
+					</button>
+				</div>
+			)}
 		</>
 	);
 };
 
-export default ChatHistory;
+export default withAuth(ChatHistory);
