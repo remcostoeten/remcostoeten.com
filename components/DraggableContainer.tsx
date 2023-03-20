@@ -61,146 +61,158 @@ const DraggableContainer = ({
 	};
 
 	return (
-		<DragDropContext onDragEnd={handleDragEnd}>
-			<div className='tasks'>
-				<ToastContainer autoClose={false} />
+		<>
+			<h1>tet</h1>
+			<DragDropContext onDragEnd={handleDragEnd}>
+				<h1>test</h1>
+				<div className='tasks'>
+					<ToastContainer autoClose={false} />
 
-				<Droppable droppableId='todo'>
-					{(provided) => (
-						<div
-							className='tasks__lane'
-							ref={provided.innerRef}
-							{...provided.droppableProps}>
-							<h2 className='tasks__lane-title'>Todo</h2>
+					<Droppable droppableId='todo'>
+						{(provided) => (
+							<div
+								className='tasks__lane'
+								ref={provided.innerRef}
+								{...provided.droppableProps}>
+								<h2 className='tasks__lane-title'>Todo</h2>
 
-							{tasks
-								.filter((task) => task.status === 'todo')
-								.map((task, index) => (
-									<Draggable
-										key={task.id}
-										draggableId={task.id}
-										index={index}>
-										{(provided) => (
-											<div
-												className='tasks__task'
-												ref={provided.innerRef}
-												{...provided.draggableProps}
-												{...provided.dragHandleProps}>
-												<h2 className='title'>
-													{task.title}
-												</h2>
-												<p className='description'>
-													{task.description}
-												</p>
-												<span className='category'>
-													{task.category}
-												</span>
-												<button
-													onClick={() => {
-														handleTaskDelete(task);
-													}}>
-													<RemoveOutlined />
-												</button>
-											</div>
-										)}
-									</Draggable>
-								))}
-							{provided.placeholder}
-						</div>
-					)}
-				</Droppable>
-				<Droppable droppableId='inprogress'>
-					{(provided) => (
-						<div
-							className='tasks__lane'
-							ref={provided.innerRef}
-							{...provided.droppableProps}>
-							<h2 className='tasks__lane-title'>In Progress</h2>
+								{tasks
+									.filter((task) => task.status === 'todo')
+									.map((task, index) => (
+										<Draggable
+											key={task.id}
+											draggableId={task.id}
+											index={index}>
+											{(provided) => (
+												<div
+													className='tasks__task'
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}>
+													<h2 className='title'>
+														{task.title}
+													</h2>
+													<p className='description'>
+														{task.description}
+													</p>
+													<span className='category'>
+														{task.category}
+													</span>
+													<button
+														onClick={() => {
+															handleTaskDelete(
+																task,
+															);
+														}}>
+														<RemoveOutlined />
+													</button>
+												</div>
+											)}
+										</Draggable>
+									))}
+								{provided.placeholder}
+							</div>
+						)}
+					</Droppable>
+					<Droppable droppableId='inprogress'>
+						{(provided) => (
+							<div
+								className='tasks__lane'
+								ref={provided.innerRef}
+								{...provided.droppableProps}>
+								<h2 className='tasks__lane-title'>
+									In Progress
+								</h2>
 
-							{tasks
-								.filter((task) => task.status === 'inprogress') // <-- change 'inProgress' to 'inprogress'
-								.map((task, index) => (
-									<Draggable
-										key={task.id}
-										draggableId={task.id}
-										index={index}>
-										{(provided) => (
-											<div
-												className='tasks__task'
-												ref={provided.innerRef}
-												{...provided.draggableProps}
-												{...provided.dragHandleProps}>
-												<span className='tasks__category'>
-													{task.category}
-												</span>{' '}
-												<h2 className='tasks__title'>
-													{task.title}
-												</h2>
-												<p className='tasks__description'>
-													{task.description}
-												</p>
-												<button
-													onClick={() => {
-														handleTaskDelete(task);
-													}}>
-													<RemoveOutlined />
-												</button>
-											</div>
-										)}
-									</Draggable>
-								))}
-							{provided.placeholder}
-						</div>
-					)}
-				</Droppable>
+								{tasks
+									.filter(
+										(task) => task.status === 'inprogress',
+									) // <-- change 'inProgress' to 'inprogress'
+									.map((task, index) => (
+										<Draggable
+											key={task.id}
+											draggableId={task.id}
+											index={index}>
+											{(provided) => (
+												<div
+													className='tasks__task'
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}>
+													<span className='tasks__category'>
+														{task.category}
+													</span>{' '}
+													<h2 className='tasks__title'>
+														{task.title}
+													</h2>
+													<p className='tasks__description'>
+														{task.description}
+													</p>
+													<button
+														onClick={() => {
+															handleTaskDelete(
+																task,
+															);
+														}}>
+														<RemoveOutlined />
+													</button>
+												</div>
+											)}
+										</Draggable>
+									))}
+								{provided.placeholder}
+							</div>
+						)}
+					</Droppable>
 
-				<Droppable droppableId='done'>
-					{(provided) => (
-						<div
-							className='tasks__lane'
-							ref={provided.innerRef}
-							{...provided.droppableProps}>
-							<h2 className='tasks__lane-title'>Done</h2>
+					<Droppable droppableId='done'>
+						{(provided) => (
+							<div
+								className='tasks__lane'
+								ref={provided.innerRef}
+								{...provided.droppableProps}>
+								<h2 className='tasks__lane-title'>Done</h2>
 
-							{tasks
-								.filter((task) => task.status === 'done')
-								.map((task, index) => (
-									<Draggable
-										key={task.id}
-										draggableId={task.id}
-										index={index}>
-										{(provided) => (
-											<div
-												className='tasks__task'
-												ref={provided.innerRef}
-												{...provided.draggableProps}
-												{...provided.dragHandleProps}>
-												<h2 className='title'>
-													{task.title}
-												</h2>
-												<p className='description'>
-													{task.description}
-												</p>
-												<span className='category'>
-													{task.category}
-												</span>
-												<span
-													onClick={() =>
-														removeTask(task.id)
-													}>
-													Remove
-													<DeleteForeverIcon />
-												</span>
-											</div>
-										)}
-									</Draggable>
-								))}
-							{provided.placeholder}
-						</div>
-					)}
-				</Droppable>
-			</div>
-		</DragDropContext>
+								{tasks
+									.filter((task) => task.status === 'done')
+									.map((task, index) => (
+										<Draggable
+											key={task.id}
+											draggableId={task.id}
+											index={index}>
+											{(provided) => (
+												<div
+													className='tasks__task'
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}>
+													<h2 className='title'>
+														{task.title}
+													</h2>
+													<p className='description'>
+														{task.description}
+													</p>
+													<span className='category'>
+														{task.category}
+													</span>
+													<span
+														onClick={() =>
+															removeTask(task.id)
+														}>
+														Remove
+														<DeleteForeverIcon />
+													</span>
+												</div>
+											)}
+										</Draggable>
+									))}
+								{provided.placeholder}
+							</div>
+						)}
+					</Droppable>
+				</div>
+			</DragDropContext>
+		</>
 	);
 };
 export default DraggableContainer;

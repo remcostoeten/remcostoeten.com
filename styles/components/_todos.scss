@@ -10,11 +10,16 @@ $white: white;
 		background-color: $dark-lighter;
 		color: $white;
 		box-shadow: none;
+
 		span,
 		li,
 		button,
 		a {
 			color: $white;
+		}
+
+		&__user {
+			display: none;
 		}
 	}
 
@@ -29,6 +34,7 @@ $white: white;
 		display: flex;
 		flex-direction: columns;
 		width: 25%;
+		margin-right: 45px;
 	}
 
 	main {
@@ -36,13 +42,19 @@ $white: white;
 		flex: 1;
 		flex-direction: column;
 	}
+
+	&__header {
+		padding: $spacing 0;
+	}
+
+	h2 {
+		font-size: 20px;
+		margin-bottom: 4px;
+	}
 }
 
 .todo {
-	display: flex;
-	margin-top: 20px;
 	background: $color-white;
-	padding: 10px 20px;
 	border-radius: 5px;
 	box-shadow: 1px 2px 10px #ddd;
 
@@ -57,12 +69,12 @@ $white: white;
 		justify-content: space-between;
 		flex-direction: column;
 		width: 100%;
-		padding: $spacing-m;
 	}
 
 	&__add {
 		display: flex;
 		background-color: $dark-lighter;
+
 		.todos {
 			display: flex;
 		}
@@ -84,7 +96,7 @@ $white: white;
 			padding: $spacing-s $spacing-m;
 			font-size: 1.3m;
 			font-style: italic;
-			color: #fff;
+			color: $white;
 
 			&:focus {
 				border: none;
@@ -114,7 +126,6 @@ $white: white;
 	&__intro {
 		display: flex;
 		align-items: baseline;
-		padding: $spacing-s;
 
 		.text {
 			padding-right: $spacing;

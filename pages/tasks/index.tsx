@@ -17,11 +17,19 @@ import TaskCategories from '@/components/Todo/TaskCategories';
 import { DropResult } from 'react-beautiful-dnd';
 import { Task } from '@/types';
 import Aside from '@/components/Task/Aside';
-
+import SortIcon from '@mui/icons-material/Sort';
+import ViewComfyIcon from '@mui/icons-material/ViewComfy';
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
+	const [view, setView] = useState<ViewType>('board');
+
+	type ViewType = 'board' | 'list';
+
+	const toggleView = () => {
+		setView((prevView) => (prevView === 'board' ? 'list' : 'board'));
+	};
 
 	useEffect(() => {
 		document.body.classList.add('dark-theme');
@@ -148,103 +156,153 @@ export default function Index() {
 	return (
 		<>
 			<Header />
-			<div className='container'>{/* <TaskCategories /> */}</div>
+			{/* <div className='container'><TaskCategories /></div> */}
 			<div className='todo'>
-				<Aside />
-				<div className='container todo__inner'>
-					<div className='todo__intro'>
-						{isLoggedIn ? (
-							<div className='text'>
-								<h1>
-									Welcome back,{' '}
-									<span>{auth.currentUser?.displayName}</span>
-									!
-								</h1>
-								{tasks.length === 0 && (
+				<div className='todo__inner'>
+					<Aside />
+					<main>
+						<div className='todo__header'>
+							<h2>
+								Welcome back,{' '}
+								<span>{auth.currentUser?.displayName} 👋</span>
+							</h2>
+							<div className='todo__intro'>
+								{isLoggedIn ? (
 									<>
-										<p>
-											You have no tasks left. Time to
-											relax. 🥳 Or get busy and create
-											some new ones!
-										</p>
+										<div className='text'>
+											{tasks.length === 0 && (
+												<>
+													<p>
+														You have no tasks left.
+														Time to relax. 🥳 Or get
+														busy and create some new
+														ones!
+													</p>
+												</>
+											)}
+											{tasks.length === 1 && (
+												<>
+													<p>
+														You've got{' '}
+														{tasks.length} task
+														left. Good luck nailing
+														it! 🤑
+													</p>
+												</>
+											)}
+											{tasks.length >= 1 &&
+												tasks.length <= 4 && (
+													<>
+														<p>
+															You've got{' '}
+															{tasks.length} task
+															{tasks.length === 1
+																? ''
+																: 's'}{' '}
+															left. Better start
+															working then! 😳
+														</p>
+													</>
+												)}
+											{tasks.length > 4 && (
+												<p>
+													You've got {tasks.length}{' '}
+													task(s) left. 😵‍💫 But no
+													pressure, I wont judge you
+													slacking. 🫣
+												</p>
+											)}
+										</div>
 									</>
+								) : (
+									<div className='authenticate-please'>
+										<h2>
+											In order to use the to-do app you
+											need to be logged in. You can{' '}
+											<Login /> here.
+										</h2>
+									</div>
 								)}
-								{tasks.length === 1 && (
-									<>
-										<p>
-											You've got {tasks.length} task left.
-											Good luck nailing it! 🤑
-										</p>
-									</>
-								)}
-								{tasks.length >= 1 && tasks.length <= 4 && (
-									<>
-										<p>
-											You've got {tasks.length} task
-											{tasks.length === 1 ? '' : 's'}{' '}
-											left. Better start working then! 😳
-										</p>
-									</>
-								)}
-								{tasks.length > 4 && (
-									<p>
-										You've got {tasks.length} task(s) left.
-										😵‍💫 But no pressure, I wont judge you
-										slacking. 🫣
-									</p>
-								)}{' '}
-								<div className='todo__task-section'>
-									<form
-										onSubmit={handleSubmit}
-										className='todo__add'>
-										<label>
-											Title:
-											<input
-												type='text'
-												name='title'
-												required
+							</div>
+							<div
+								className={`toggle-view ${
+									view === 'board' ? 'grid' : 'list'
+								}`}>
+								<div className='view'>
+									<button onClick={toggleView}>
+										<SortIcon />
+										Board view
+									</button>
+									<button onClick={toggleView}>
+										<ViewComfyIcon />
+										List view
+									</button>
+								</div>
+								<button className='add task'>Add task</button>
+							</div>
+						</div>
+						<div className={`view-container ${view}-view`}>
+							{/* Board View */}
+							{view === 'board' && (
+								<div className='board-view'>
+									{/* Board view content */}
+								</div>
+							)}
+
+							{/* List View */}
+							{view === 'list' && (
+								<div className='list-view'>
+									{/* List view content */}
+								</div>
+							)}
+						</div>
+						<div className='tasks'>
+							<div className='tasks__lane lane'>
+								<h4>To do</h4>
+								<div className='lane__item'>
+									{tasks.map((task) => (
+										<div
+											className='todo__task'
+											key={task.id}>
+											<div className='todo__date'>
+												{task.date}
+											</div>
+											<DraggableContainer
+												tasks={tasks}
+												updateTask={updateTask}
+												removeTask={removeTask}
 											/>
-										</label>
-										<label>
-											Description:
-											<textarea
-												name='description'
-												required
-											/>
-										</label>
-										<label>
-											Category:
-											<input
-												type='text'
-												name='category'
-												required
-											/>
-										</label>
-										<button type='submit'>Add Task</button>
-									</form>
+										</div>
+									))}
 								</div>
 							</div>
-						) : (
-							<div className='authenticate-please'>
-								<h2>
-									In order to use the to-do app you need to be
-									logged in. You can <Login /> here.
-								</h2>
+							<div className='tasks__lane lane'>
+								<h4>In progress</h4>
 							</div>
-						)}
-					</div>
-					<div className='todo__tasks'>
-						{tasks.map((task) => (
-							<div className='todo__task' key={task.id}>
-								<div className='todo__date'>{task.date}</div>
-								<DraggableContainer
-									tasks={tasks}
-									updateTask={updateTask}
-									removeTask={removeTask}
-								/>
+							<div className='tasks__lane lane'>
+								<h4>Done</h4>
 							</div>
-						))}
-					</div>
+							<form onSubmit={handleSubmit} className='todo__add'>
+								<label>
+									Title:
+									<input type='text' name='title' required />
+								</label>
+								<label>
+									Description:
+									<textarea name='description' required />
+								</label>
+								<label>
+									Category:
+									<input
+										type='text'
+										name='category'
+										required
+									/>
+								</label>
+								<button type='submit'>Add Task</button>
+							</form>
+						</div>{' '}
+					</main>
 				</div>
 			</div>
 		</>
