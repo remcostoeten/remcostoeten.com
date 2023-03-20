@@ -9,9 +9,11 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Task } from '@/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { RemoveOutlined } from '@mui/icons-material';
 
 interface DraggableContainerProps {
 	tasks: Task[];
+	task: Task[];
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
 	removeTask: (taskId: string) => void;
 }
@@ -34,7 +36,24 @@ const DraggableContainer = ({
 			| 'done';
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
 	};
+	const createTask = async (newTaskData: Partial<Task>) => {
+		toast.success(`Task "${newTaskData.title}" created`);
+	};
 
+	const handleTaskDelete = (task: Task) => {
+		toast.success(`Task "${task.title}" deleted`, {
+			onClose: () => removeTask(task.id),
+			closeButton: (
+				<button
+					onClick={() => {
+						toast.dismiss();
+						removeTask(task.id);
+					}}>
+					Undo
+				</button>
+			),
+		});
+	};
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className='tasks'>
@@ -71,12 +90,10 @@ const DraggableContainer = ({
 													{task.category}
 												</span>
 												<button
-													onClick={() =>
-														updateTask(task.id, {
-															status: 'deleted',
-														})
-													}>
-													Remove
+													onClick={() => {
+														handleTaskDelete(task);
+													}}>
+													<RemoveOutlined />
 												</button>
 											</div>
 										)}
@@ -117,12 +134,10 @@ const DraggableContainer = ({
 													{task.description}
 												</p>
 												<button
-													onClick={() =>
-														updateTask(task.id, {
-															status: 'deleted',
-														})
-													}>
-													Remove
+													onClick={() => {
+														handleTaskDelete(task);
+													}}>
+													<RemoveOutlined />
 												</button>
 											</div>
 										)}
@@ -146,9 +161,7 @@ const DraggableContainer = ({
 								.map((task, index) => (
 									<Draggable
 										key={task.id}
-										wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwbleId={
-											task.id
-										}
+										draggableId={task.id}
 										index={index}>
 										{(provided) => (
 											<div

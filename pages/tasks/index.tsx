@@ -17,18 +17,10 @@ import TaskCategories from '@/components/Todo/TaskCategories';
 import { DropResult } from 'react-beautiful-dnd';
 import { Task } from '@/types';
 
-type DraggableContainerProps = {
-	tasks: Task[];
-	updateTask: (taskId: string, newTaskData: Partial<Task>) => void;
-};
-
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
-	const [tasksInProgress, setTasksInProgress] = useState<Task[]>([]);
-	const [tasksDone, setTasksDone] = useState<Task[]>([]);
-	const [lastAddedTaskId, setLastAddedTaskId] = useState<string | null>(null);
 
 	useEffect(() => {
 		document.body.classList.add('dark-theme');
@@ -47,28 +39,22 @@ export default function Index() {
 	}, []);
 
 	useEffect(() => {
-		auth.onAuthStateChanged((user) => {
-			setIsLoggedIn(Boolean(user));
-		});
-	}, []);
-
-	useEffect(() => {
 		const unsubscribe = onSnapshot(
 			collection(db, `tasks-${auth.currentUser?.uid}`),
 			(snapshot) => {
-				return setTasks(
+				setTasks(
 					snapshot.docs.map(
 						(doc) =>
 							({
 								id: doc.id,
 								...doc.data(),
 							} as Task),
-					), // <-- Add this cast
+					),
 				);
 			},
 		);
 		return () => unsubscribe();
-	}, [auth.currentUser]);
+	}, []);
 
 	const addTask = async (
 		title: string,
@@ -87,7 +73,7 @@ export default function Index() {
 				description,
 				category,
 				status: 'todo',
-				date: formattedDate, // Add the date property to the task object
+				date: formattedDate,
 			},
 		);
 		const newTask = {
@@ -95,14 +81,15 @@ export default function Index() {
 			title,
 			description,
 			category,
-			status: 'todo',
-			date: formattedDate, // Include the date in the new task object
+			status: 'todo' as 'todo' | 'inprogress' | 'done',
+			date: formattedDate,
 		};
-		setLastAddedTaskId(docRef.id); // Set the ID of the last added task
+		setTasks((prevTasks) => [...prevTasks, newTask]);
 	};
+
 	const removeTask = async (taskId: string) => {
 		try {
-			const taskRef = doc(db, `tasks-${auth.currentUser?.uid}/${taskId}`);
+			const taskRef = doc(db, `tasks-${auth.currentUser?.uid}`, taskId);
 			await deleteDoc(taskRef);
 			setTasks((prevTasks) =>
 				prevTasks.filter((task) => task.id !== taskId),
@@ -138,10 +125,7 @@ export default function Index() {
 		const category = form.elements.namedItem(
 			'category',
 		) as HTMLInputElement;
-
 		await addTask(title.value, description.value, category.value);
-
-		form.reset();
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -158,9 +142,6 @@ export default function Index() {
 
 		// Update the tasks in the parent component
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
-
-		setTasksInProgress(items.filter((t) => t.status === 'inprogress'));
-		setTasksDone(items.filter((t) => t.status === 'done'));
 	};
 
 	return (
@@ -257,10 +238,9 @@ export default function Index() {
 							<div className='todo__task' key={task.id}>
 								<div className='todo__date'>{task.date}</div>
 								<DraggableContainer
-									task={task}
+									tasks={tasks}
 									updateTask={updateTask}
 									removeTask={removeTask}
-									tasks={tasks}
 								/>
 							</div>
 						))}
