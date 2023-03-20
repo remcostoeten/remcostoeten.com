@@ -17,6 +17,7 @@ import TaskCategories from '@/components/Todo/TaskCategories';
 import { DropResult } from 'react-beautiful-dnd';
 import { Task } from '@/types';
 
+
 type DraggableContainerProps = {
 	tasks: Task[];
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => void;
@@ -256,17 +257,16 @@ export default function Index() {
 						{tasks.map((task) => (
 							<div className='todo__task' key={task.id}>
 								<div className='todo__date'>{task.date}</div>
-                                <DraggableContainer
-                                    tasks={[task]} // pass an array with the single task object
-                                    updateTask={updateTask}
-                                    removeTask={removeTask}
-                                    status={status} deleted={''}                                />
-
+								<DraggableContainer
+									tasks={[task]} // pass an array with the single task object
+									updateTask={updateTask}
+									removeTask={removeTask}
+								/>
 							</div>
 						))}
 					</div>
 				</div>
 			</div>
-		</>
-	);
+    </>
+  );
 }

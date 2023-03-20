@@ -12,11 +12,10 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 interface DraggableContainerProps {
 	tasks: Task[];
-	deleted: string;
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
 	removeTask: (taskId: string) => void;
-	status: string;
 }
+
 
 const DraggableContainer = ({
 	tasks,
@@ -30,7 +29,7 @@ const DraggableContainer = ({
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
 
-		reorderedItem.status = (result.destination.droppableId === 'deleted' ? undefined : result.destination.droppableId as 'todo' | 'inprogress' | 'done') as 'todo' | 'inprogress' | 'done';
+		reorderedItem.status = result.destination.droppableId as 'todo' | 'inprogress' | 'done';
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
 	};
 	return (
@@ -85,6 +84,7 @@ const DraggableContainer = ({
 				</Droppable>
 				<Droppable droppableId='inprogress'>
 					{(provided) => (
+
 						<div
 							className='tasks__lane'
 							ref={provided.innerRef}
