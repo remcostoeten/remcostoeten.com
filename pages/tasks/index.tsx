@@ -17,15 +17,6 @@ import TaskCategories from '@/components/Todo/TaskCategories';
 import { DropResult } from 'react-beautiful-dnd';
 import { Task } from '@/types';
 
-<<<<<<< HEAD
-=======
-
-type DraggableContainerProps = {
-	tasks: Task[];
-	updateTask: (taskId: string, newTaskData: Partial<Task>) => void;
-};
-
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -54,29 +45,16 @@ export default function Index() {
 				setTasks(
 					snapshot.docs.map(
 						(doc) =>
-<<<<<<< HEAD
 							({
 								id: doc.id,
 								...doc.data(),
 							} as Task),
 					),
-=======
-						({
-							id: doc.id,
-							...doc.data(),
-						} as Task),
-					), 
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 				);
 			},
 		);
 		return () => unsubscribe();
-<<<<<<< HEAD
 	}, []);
-=======
-	}, []); 
-
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 
 	const addTask = async (
 		title: string,
@@ -260,11 +238,7 @@ export default function Index() {
 							<div className='todo__task' key={task.id}>
 								<div className='todo__date'>{task.date}</div>
 								<DraggableContainer
-<<<<<<< HEAD
 									tasks={tasks}
-=======
-									tasks={[task]} // pass an array with the single task object
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 									updateTask={updateTask}
 									removeTask={removeTask}
 								/>
@@ -273,6 +247,6 @@ export default function Index() {
 					</div>
 				</div>
 			</div>
-    </>
-  );
+		</>
+	);
 }

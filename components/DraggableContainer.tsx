@@ -18,7 +18,6 @@ interface DraggableContainerProps {
 	removeTask: (taskId: string) => void;
 }
 
-
 const DraggableContainer = ({
 	tasks,
 	updateTask,
@@ -31,10 +30,12 @@ const DraggableContainer = ({
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
 
-		reorderedItem.status = result.destination.droppableId as 'todo' | 'inprogress' | 'done';
+		reorderedItem.status = result.destination.droppableId as
+			| 'todo'
+			| 'inprogress'
+			| 'done';
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
 	};
-<<<<<<< HEAD
 	const createTask = async (newTaskData: Partial<Task>) => {
 		toast.success(`Task "${newTaskData.title}" created`);
 	};
@@ -53,8 +54,6 @@ const DraggableContainer = ({
 			),
 		});
 	};
-=======
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className='tasks'>
@@ -67,6 +66,7 @@ const DraggableContainer = ({
 							ref={provided.innerRef}
 							{...provided.droppableProps}>
 							<h2 className='tasks__lane-title'>Todo</h2>
+
 							{tasks
 								.filter((task) => task.status === 'todo')
 								.map((task, index) => (
@@ -90,19 +90,10 @@ const DraggableContainer = ({
 													{task.category}
 												</span>
 												<button
-<<<<<<< HEAD
 													onClick={() => {
 														handleTaskDelete(task);
 													}}>
 													<RemoveOutlined />
-=======
-													onClick={() =>
-														updateTask(task.id, {
-															status: undefined,
-														})
-													}>
-													Remove
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 												</button>
 											</div>
 										)}
@@ -114,7 +105,6 @@ const DraggableContainer = ({
 				</Droppable>
 				<Droppable droppableId='inprogress'>
 					{(provided) => (
-
 						<div
 							className='tasks__lane'
 							ref={provided.innerRef}
@@ -144,19 +134,10 @@ const DraggableContainer = ({
 													{task.description}
 												</p>
 												<button
-<<<<<<< HEAD
 													onClick={() => {
 														handleTaskDelete(task);
 													}}>
 													<RemoveOutlined />
-=======
-													onClick={() =>
-														updateTask(task.id, {
-															status: undefined,
-														})
-													}>
-													Remove
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 												</button>
 											</div>
 										)}
@@ -172,32 +153,35 @@ const DraggableContainer = ({
 						<div
 							className='tasks__lane'
 							ref={provided.innerRef}
-							{...provided.droppableProps}
-						>
+							{...provided.droppableProps}>
 							<h2 className='tasks__lane-title'>Done</h2>
+
 							{tasks
 								.filter((task) => task.status === 'done')
 								.map((task, index) => (
 									<Draggable
 										key={task.id}
 										draggableId={task.id}
-<<<<<<< HEAD
 										index={index}>
-=======
-										index={index}
-									>
->>>>>>> 59d7e372a95f4b80c22467a325ef75dd95b2831b
 										{(provided) => (
 											<div
 												className='tasks__task'
 												ref={provided.innerRef}
 												{...provided.draggableProps}
-												{...provided.dragHandleProps}
-											>
-												<h2 className='title'>{task.title}</h2>
-												<p className='description'>{task.description}</p>
-												<span className='category'>{task.category}</span>
-												<span onClick={() => removeTask(task.id)}>
+												{...provided.dragHandleProps}>
+												<h2 className='title'>
+													{task.title}
+												</h2>
+												<p className='description'>
+													{task.description}
+												</p>
+												<span className='category'>
+													{task.category}
+												</span>
+												<span
+													onClick={() =>
+														removeTask(task.id)
+													}>
 													Remove
 													<DeleteForeverIcon />
 												</span>
@@ -209,7 +193,6 @@ const DraggableContainer = ({
 						</div>
 					)}
 				</Droppable>
-
 			</div>
 		</DragDropContext>
 	);
