@@ -13,7 +13,6 @@ import { RemoveOutlined } from '@mui/icons-material';
 
 interface DraggableContainerProps {
 	tasks: Task[];
-	task: Task[];
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
 	removeTask: (taskId: string) => void;
 }
