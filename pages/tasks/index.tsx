@@ -60,16 +60,17 @@ export default function Index() {
 				return setTasks(
 					snapshot.docs.map(
 						(doc) =>
-							({
-								id: doc.id,
-								...doc.data(),
-							} as Task),
-					), // <-- Add this cast
+						({
+							id: doc.id,
+							...doc.data(),
+						} as Task),
+					), 
 				);
 			},
 		);
 		return () => unsubscribe();
-	}, [auth.currentUser]);
+	}, []); 
+
 
 	const addTask = async (
 		title: string,
