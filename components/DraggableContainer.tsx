@@ -8,6 +8,7 @@ import {
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Task } from '@/types';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 interface DraggableContainerProps {
 	tasks: Task[];
@@ -106,15 +107,15 @@ const DraggableContainer = ({
 												ref={provided.innerRef}
 												{...provided.draggableProps}
 												{...provided.dragHandleProps}>
-												<h2 className='title'>
+												<span className='tasks__category'>
+													{task.category}
+												</span>{' '}
+												<h2 className='tasks__title'>
 													{task.title}
 												</h2>
-												<p className='description'>
+												<p className='tasks__description'>
 													{task.description}
 												</p>
-												<span className='category'>
-													{task.category}
-												</span>
 												<button
 													onClick={() =>
 														updateTask(task.id, {
@@ -145,7 +146,9 @@ const DraggableContainer = ({
 								.map((task, index) => (
 									<Draggable
 										key={task.id}
-										draggableId={task.id}
+										wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwbleId={
+											task.id
+										}
 										index={index}>
 										{(provided) => (
 											<div
@@ -162,12 +165,13 @@ const DraggableContainer = ({
 												<span className='category'>
 													{task.category}
 												</span>
-												<button
+												<span
 													onClick={() =>
 														removeTask(task.id)
 													}>
 													Remove
-												</button>
+													<DeleteForeverIcon />
+												</span>
 											</div>
 										)}
 									</Draggable>

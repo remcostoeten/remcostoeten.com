@@ -4,9 +4,9 @@ export interface Task {
 	id: string;
 	title: string;
 	description: string;
-	status: 'todo' | 'inprogress' | 'deleted' | 'done';
-	// status: 'todo' | 'inProgress' | 'done';
 	category: string;
+	status: 'todo' | 'inprogress' | 'done';
+	date: string;
 }
 export interface Message extends ChatMessage {
 	message: string;

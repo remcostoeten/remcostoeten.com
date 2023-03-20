@@ -28,6 +28,11 @@ export default function Index() {
 	const [userName, setUserName] = useState<string | null>(null);
 	const [tasksInProgress, setTasksInProgress] = useState<Task[]>([]);
 	const [tasksDone, setTasksDone] = useState<Task[]>([]);
+	const [lastAddedTaskId, setLastAddedTaskId] = useState<string | null>(null);
+
+	useEffect(() => {
+		document.body.classList.add('dark-theme');
+	}, []);
 
 	useEffect(() => {
 		auth.onAuthStateChanged((user) => {
@@ -70,6 +75,11 @@ export default function Index() {
 		description: string,
 		category: string,
 	) => {
+		const now = new Date();
+		const formattedDate = `${now.getDate()}/${
+			now.getMonth() + 1
+		}/${now.getFullYear()}`;
+
 		const docRef = await addDoc(
 			collection(db, `tasks-${auth.currentUser?.uid}`),
 			{
@@ -77,6 +87,7 @@ export default function Index() {
 				description,
 				category,
 				status: 'todo',
+				date: formattedDate, // Add the date property to the task object
 			},
 		);
 		const newTask = {
@@ -85,9 +96,10 @@ export default function Index() {
 			description,
 			category,
 			status: 'todo',
+			date: formattedDate, // Include the date in the new task object
 		};
+		setLastAddedTaskId(docRef.id); // Set the ID of the last added task
 	};
-
 	const removeTask = async (taskId: string) => {
 		try {
 			const taskRef = doc(db, `tasks-${auth.currentUser?.uid}/${taskId}`);
@@ -116,7 +128,7 @@ export default function Index() {
 		);
 	};
 
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const form = e.currentTarget;
 		const title = form.elements.namedItem('title') as HTMLInputElement;
@@ -126,7 +138,9 @@ export default function Index() {
 		const category = form.elements.namedItem(
 			'category',
 		) as HTMLInputElement;
-		addTask(title.value, description.value, category.value);
+
+		await addTask(title.value, description.value, category.value);
+
 		form.reset();
 	};
 
@@ -169,7 +183,6 @@ export default function Index() {
 									You've got {tasks.length} task(s) left. But
 									no pressure, I won't judge you slacking.
 								</p>
-
 								<div className='todo__task-section'>
 									<form
 										onSubmit={handleSubmit}
@@ -211,11 +224,17 @@ export default function Index() {
 						)}
 					</div>
 					<div className='todo__tasks'>
-						<DraggableContainer
-							tasks={tasks}
-							updateTask={updateTask}
-							removeTask={removeTask}
-						/>
+						{tasks.map((task) => (
+							<div className='todo__task' key={task.id}>
+								<div className='todo__date'>{task.date}</div>
+								<DraggableContainer
+									task={task}
+									updateTask={updateTask}
+									removeTask={removeTask}
+									tasks={tasks}
+								/>
+							</div>
+						))}
 					</div>
 				</div>
 			</div>

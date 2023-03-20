@@ -1,5 +1,9 @@
-.todo-app {
-	background-color: #cbcbf3;
+@import 'todo-categories';
+$color-white: $dark;
+$white: white;
+
+.dark-theme {
+	color: $white;
 }
 
 .todo {
@@ -13,17 +17,20 @@
 	&__inner {
 		display: flex;
 		justify-content: space-between;
+		width: 100%;
 	}
 
 	&__tasks {
 		display: flex;
 		justify-content: space-between;
+		flex-direction: column;
 		width: 100%;
+		padding: $spacing-m;
 	}
 
 	&__add {
 		display: flex;
-
+		background-color: $dark-lighter;
 		.todos {
 			display: flex;
 		}
@@ -38,13 +45,14 @@
 
 		input,
 		textarea {
-			background: #eff3f4;
+			background: $color-black;
 			border: none;
 			width: 100%;
 			border-radius: 8px;
-			padding: $spacing-s;
-			font-size: 1em;
+			padding: $spacing-s $spacing-m;
+			font-size: 1.3m;
 			font-style: italic;
+			color: #fff;
 
 			&:focus {
 				border: none;
@@ -52,15 +60,28 @@
 			}
 		}
 
+		button {
+			margin-top: $spacing-s;
+		}
+
 		textarea {
 			padding: $spacing-s;
 		}
 	}
 
+	&__date {
+		width: 91px;
+		height: 22px;
+		color: $white;
+		border: 1px solid #2c2d37;
+		border-radius: 4px;
+		min-height: 22px;
+		min-width: 91px;
+	}
+
 	&__intro {
 		display: flex;
 		align-items: baseline;
-
 		padding: $spacing-s;
 
 		.text {
@@ -68,7 +89,6 @@
 		}
 
 		h1 {
-			color: $theme-black;
 			letter-spacing: 2px;
 			font-family: $font--primary;
 			padding-bottom: $spacing-s;
@@ -79,7 +99,6 @@
 		}
 
 		p {
-			color: rgba(40, 40, 40, 1);
 			font-size: 1.5em;
 			font-weight: 400;
 		}
@@ -115,7 +134,7 @@
 	}
 
 	button {
-		background: #333;
+		background-color: white;
 
 		color: $color-white;
 		padding: 10px 20px;
@@ -130,19 +149,34 @@
 
 .tasks {
 	&__task {
-		padding: $spacing-s;
+		padding: $spacing-m;
 		background: #f6f6f6;
 		border-radius: 8px;
 		margin-bottom: 8px;
+		color: $white;
 
 		.title {
+			color: $white;
 			font-size: 1.5em;
 		}
 
 		.description {
-			color: #rgba(40, 40, 40, 1);
+			color: $white;
 			font-size: 1.5em;
 			font-weight: 400;
+		}
+
+		.category {
+			color: $white;
+		}
+
+		button {
+			padding: 0;
+			color: $dark !important;
+		}
+
+		svg {
+			color: $white;
 		}
 	}
 }
