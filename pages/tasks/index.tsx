@@ -256,12 +256,12 @@ export default function Index() {
 						{tasks.map((task) => (
 							<div className='todo__task' key={task.id}>
 								<div className='todo__date'>{task.date}</div>
-								<DraggableContainer
-									task={task}
-									updateTask={updateTask}
-									removeTask={removeTask}
-									tasks={tasks}
-								/>
+                                <DraggableContainer
+                                    tasks={[task]} // pass an array with the single task object
+                                    updateTask={updateTask}
+                                    removeTask={removeTask}
+                                    status={status} deleted={''}                                />
+
 							</div>
 						))}
 					</div>

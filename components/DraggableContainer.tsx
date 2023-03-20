@@ -12,8 +12,10 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
 interface DraggableContainerProps {
 	tasks: Task[];
+	deleted: string;
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
 	removeTask: (taskId: string) => void;
+	status: string;
 }
 
 const DraggableContainer = ({
@@ -28,13 +30,9 @@ const DraggableContainer = ({
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
 
-		reorderedItem.status = result.destination.droppableId as
-			| 'todo'
-			| 'inprogress'
-			| 'done';
+		reorderedItem.status = (result.destination.droppableId === 'deleted' ? undefined : result.destination.droppableId as 'todo' | 'inprogress' | 'done') as 'todo' | 'inprogress' | 'done';
 		updateTask(reorderedItem.id, { status: reorderedItem.status });
 	};
-
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className='tasks'>
@@ -47,7 +45,6 @@ const DraggableContainer = ({
 							ref={provided.innerRef}
 							{...provided.droppableProps}>
 							<h2 className='tasks__lane-title'>Todo</h2>
-
 							{tasks
 								.filter((task) => task.status === 'todo')
 								.map((task, index) => (
@@ -73,7 +70,7 @@ const DraggableContainer = ({
 												<button
 													onClick={() =>
 														updateTask(task.id, {
-															status: 'deleted',
+															status: undefined,
 														})
 													}>
 													Remove
@@ -119,7 +116,7 @@ const DraggableContainer = ({
 												<button
 													onClick={() =>
 														updateTask(task.id, {
-															status: 'deleted',
+															status: undefined,
 														})
 													}>
 													Remove
@@ -138,37 +135,28 @@ const DraggableContainer = ({
 						<div
 							className='tasks__lane'
 							ref={provided.innerRef}
-							{...provided.droppableProps}>
+							{...provided.droppableProps}
+						>
 							<h2 className='tasks__lane-title'>Done</h2>
-
 							{tasks
 								.filter((task) => task.status === 'done')
 								.map((task, index) => (
 									<Draggable
 										key={task.id}
-										wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwbleId={
-											task.id
-										}
-										index={index}>
+										draggableId={task.id}
+										index={index}
+									>
 										{(provided) => (
 											<div
 												className='tasks__task'
 												ref={provided.innerRef}
 												{...provided.draggableProps}
-												{...provided.dragHandleProps}>
-												<h2 className='title'>
-													{task.title}
-												</h2>
-												<p className='description'>
-													{task.description}
-												</p>
-												<span className='category'>
-													{task.category}
-												</span>
-												<span
-													onClick={() =>
-														removeTask(task.id)
-													}>
+												{...provided.dragHandleProps}
+											>
+												<h2 className='title'>{task.title}</h2>
+												<p className='description'>{task.description}</p>
+												<span className='category'>{task.category}</span>
+												<span onClick={() => removeTask(task.id)}>
 													Remove
 													<DeleteForeverIcon />
 												</span>
@@ -180,6 +168,7 @@ const DraggableContainer = ({
 						</div>
 					)}
 				</Droppable>
+
 			</div>
 		</DragDropContext>
 	);
