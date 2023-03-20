@@ -15,11 +15,8 @@ import Login from '@/components/Login';
 import DraggableContainer from '@/components/DraggableContainer';
 import { Task } from '@/types';
 import TaskModal from '@/components/Task/TaskModal';
-import Aside from '@/components/Task/Aside';
-import SortIcon from '@mui/icons-material/Sort';
-import ViewComfyIcon from '@mui/icons-material/ViewComfy';
-import TodoList from '@/components/Todo/TodoList';
-import { AddCircle } from '@mui/icons-material';
+import { Button } from '@mui/material';
+
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -205,11 +202,9 @@ export default function Index() {
 								}`}>
 								<div className='view'>
 									<button onClick={toggleView}>
-										<SortIcon />
 										Board view
 									</button>
 									<button onClick={toggleView}>
-										<ViewComfyIcon />
 										List view
 									</button>
 								</div>
@@ -234,39 +229,48 @@ export default function Index() {
 							<div className='tasks__lane'>
 								<div className='tasks__lane-title'>
 									<h2>
-										Todo<span>({TodoList.length})</span>
+										Todo<span>({tasks.length})</span>
 									</h2>
-									<div className='tasks__add'>
-										<AddCircle />
-										<span
-											onClick={() =>
-												setIsModalOpen(true)
-											}>
-											Add new task
-										</span>
-									</div>
-
+									<Button
+										variant='outlined'
+										color='primary'
+										onClick={() => setIsModalOpen(true)}>
+										Add new task
+									</Button>
 									<TaskModal
 										isOpen={isModalOpen}
 										onClose={() => setIsModalOpen(false)}
 										onSubmit={addTask}
 									/>
-									{tasks.map((task) => (
-										<DraggableContainer
-											tasks={tasks}
-											updateTask={updateTask}
-											removeTask={removeTask}
-											addTask={addTask}
-										/>
-									))}
 								</div>
+								<DraggableContainer
+									tasks={tasks.filter(
+										(task) => task.status === 'todo',
+									)}
+									status='todo'
+									updateTask={updateTask}
+									removeTask={removeTask}
+									addTask={addTask}
+								/>
+								<DraggableContainer
+									tasks={tasks.filter(
+										(task) => task.status === 'inprogress',
+									)}
+									status='inprogress'
+									updateTask={updateTask}
+									removeTask={removeTask}
+									addTask={addTask}
+								/>
 
-								{/* <div className='tasks__lane lane'>
-								<h4>In progress</h4>
-							</div>
-							<div className='tasks__lane lane'>
-								<h4>Done</h4>
-							</div> */}
+								<DraggableContainer
+									tasks={tasks.filter(
+										(task) => task.status === 'done',
+									)}
+									status='done'
+									updateTask={updateTask}
+									removeTask={removeTask}
+									addTask={addTask}
+								/>
 							</div>
 						</div>
 					</main>

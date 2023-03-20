@@ -42,7 +42,7 @@ const TaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
 					value={category}
 					onChange={(e) => setCategory(e.target.value)}
 				/>
-				<button onClick={handleSubmit}>Add Task</button>
+				<span onClick={handleSubmit}>Add Task</span>
 				<CloseIcon onClick={onClose} />
 			</div>
 		</div>
