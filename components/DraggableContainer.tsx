@@ -17,6 +17,11 @@ interface DraggableContainerProps {
 	removeTask: (taskId: string) => void;
 }
 
+interface Category {
+	id: string;
+	name: string;
+}
+
 const DraggableContainer = ({
 	tasks,
 	updateTask,
@@ -40,19 +45,21 @@ const DraggableContainer = ({
 	};
 
 	const handleTaskDelete = (task: Task) => {
+		removeTask(task.id);
+
 		toast.success(`Task "${task.title}" deleted`, {
-			onClose: () => removeTask(task.id),
 			closeButton: (
 				<button
 					onClick={() => {
+						updateTask(task.id, { status: task.status });
 						toast.dismiss();
-						removeTask(task.id);
 					}}>
 					Undo
 				</button>
 			),
 		});
 	};
+
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			<div className='tasks'>

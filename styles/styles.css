@@ -3034,8 +3034,40 @@ button {
   color: #fff;
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .todo__inner {
+    flex-direction: column;
+  }
+}
 .dark-theme {
   color: white;
+  background-color: #131517;
+}
+.dark-theme .header {
+  background-color: #1e1f25;
+  color: white;
+  box-shadow: none;
+}
+.dark-theme .header span,
+.dark-theme .header li,
+.dark-theme .header button,
+.dark-theme .header a {
+  color: white;
+}
+.dark-theme .todo {
+  box-shadow: none;
+  background-color: #1e1f25;
+}
+
+.todo aside {
+  display: flex;
+  flex-direction: columns;
+  width: 25%;
+}
+.todo main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }
 
 .todo {
@@ -3204,6 +3236,62 @@ form h3 {
 }
 
 @foward "todo-cateogries";
+.todo aside {
+  display: flex;
+  flex-direction: column;
+  background-color: #222327;
+  padding: 24px;
+  min-width: 25%;
+}
+.todo aside h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 40px;
+}
+.todo aside a {
+  color: white;
+  opacity: 0.5;
+  display: flex;
+  justify-content: space-between;
+  padding: relative;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+.todo aside h3 {
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 18px;
+  color: white;
+}
+.todo aside li,
+.todo aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.todo aside li {
+  position: relative;
+  padding-left: 18px;
+  padding-bottom: 8px;
+  opacity: 0.5;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+}
+.todo aside li:before {
+  position: absolute;
+  content: "-";
+  color: white;
+  left: 0;
+}
+.todo aside li.active {
+  opacity: 1;
+}
+
 .tasks__task {
   margin-top: 8px;
   background-color: #1e1f25;

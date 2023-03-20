@@ -16,6 +16,7 @@ import DraggableContainer from '@/components/DraggableContainer';
 import TaskCategories from '@/components/Todo/TaskCategories';
 import { DropResult } from 'react-beautiful-dnd';
 import { Task } from '@/types';
+import Aside from '@/components/Task/Aside';
 
 export default function Index() {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -147,10 +148,9 @@ export default function Index() {
 	return (
 		<>
 			<Header />
-			<div className='container'>
-				<TaskCategories />
-			</div>
+			<div className='container'>{/* <TaskCategories /> */}</div>
 			<div className='todo'>
+				<Aside />
 				<div className='container todo__inner'>
 					<div className='todo__intro'>
 						{isLoggedIn ? (

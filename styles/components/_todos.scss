@@ -4,6 +4,38 @@ $white: white;
 
 .dark-theme {
 	color: $white;
+	background-color: $dark;
+
+	.header {
+		background-color: $dark-lighter;
+		color: $white;
+		box-shadow: none;
+		span,
+		li,
+		button,
+		a {
+			color: $white;
+		}
+	}
+
+	.todo {
+		box-shadow: none;
+		background-color: $dark-lighter;
+	}
+}
+
+.todo {
+	aside {
+		display: flex;
+		flex-direction: columns;
+		width: 25%;
+	}
+
+	main {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+	}
 }
 
 .todo {
