@@ -179,10 +179,39 @@ export default function Index() {
 									<span>{auth.currentUser?.displayName}</span>
 									!
 								</h1>
-								<p>
-									You've got {tasks.length} task(s) left. But
-									no pressure, I won't judge you slacking.
-								</p>
+								{tasks.length === 0 && (
+									<>
+										<p>
+											You have no tasks left. Time to
+											relax. 🥳 Or get busy and create
+											some new ones!
+										</p>
+									</>
+								)}
+								{tasks.length === 1 && (
+									<>
+										<p>
+											You've got {tasks.length} task left.
+											Good luck nailing it! 🤑
+										</p>
+									</>
+								)}
+								{tasks.length >= 1 && tasks.length <= 4 && (
+									<>
+										<p>
+											You've got {tasks.length} task
+											{tasks.length === 1 ? '' : 's'}{' '}
+											left. Better start working then! 😳
+										</p>
+									</>
+								)}
+								{tasks.length > 4 && (
+									<p>
+										You've got {tasks.length} task(s) left.
+										😵‍💫 But no pressure, I wont judge you
+										slacking. 🫣
+									</p>
+								)}{' '}
 								<div className='todo__task-section'>
 									<form
 										onSubmit={handleSubmit}
