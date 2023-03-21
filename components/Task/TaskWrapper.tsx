@@ -72,7 +72,7 @@ export default function TaskWrapper() {
 			);
 			return () => unsubscribe();
 		}
-	}, [auth.currentUser]);
+	}, []);
 
 	const addTask = async (
 		title: string,
