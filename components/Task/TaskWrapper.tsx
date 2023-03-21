@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db, auth } from '@/authentication/firebase';
+import { db, auth } from '@/utils/firebase';
 import {
 	collection,
 	addDoc,
@@ -16,7 +16,7 @@ import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
 import { AddCircle } from '@mui/icons-material';
 import Aside from '@/components/Task/AsideSmall';
-import { signIn, signOut } from '@/authentication/LoginLogic';
+import { signIn, signOut } from '@/utils/LoginLogic';
 import Modal from '../Modal';
 
 export default function TaskWrapper() {

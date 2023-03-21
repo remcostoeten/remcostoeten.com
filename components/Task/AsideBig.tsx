@@ -10,7 +10,7 @@ import {
 	VerifiedUserSharp,
 	ViewList,
 } from '@mui/icons-material';
-import { signIn, signOut } from '@/authentication/LoginLogic';
+import { signIn, signOut } from '@/utils/LoginLogic';
 
 export default function AsideBig() {
 	return (

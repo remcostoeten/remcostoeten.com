@@ -11,7 +11,7 @@ import {
 	WhatsApp,
 } from '@mui/icons-material';
 import Login from '../Login';
-import { auth } from '@/authentication/firebase';
+import { auth } from '@/utils/firebase';
 import {
 	Tooltip,
 	IconButton,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { db } from '@/authentication/firebase';
+import { db } from '@/utils/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { Description } from '@mui/icons-material';
 

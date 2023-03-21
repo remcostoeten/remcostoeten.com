@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { auth } from '../authentication/firebase';
+import { auth } from '../utils/firebase';
 
 export interface AuthData {
 	authenticated: boolean;

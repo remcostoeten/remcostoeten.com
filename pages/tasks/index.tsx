@@ -1,6 +1,6 @@
 import TaskWrapper from '@/components/Task/TaskWrapper';
 import React from 'react';
-import { signIn, signOut } from '@/authentication/LoginLogic';
+import { signIn, signOut } from '@/utils/LoginLogic';
 import AsideSmall from '@/components/Task/AsideSmall';
 import AsideBig from '@/components/Task/AsideBig';
 import { CheckCircle, KeyboardBackspace } from '@mui/icons-material';
