@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 import Image from 'next/image';
-import Header from '@/components/header/Header';
+import Header from '@/components/Header/Header';
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -13,9 +13,7 @@ interface ChatSearchProps {
 
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
-	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-	const [showFullContent, setShowFullContent] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -106,7 +104,7 @@ const ChatHistory: React.FC = () => {
 
 	return (
 		<>
-		<Header/>
+			<Header />
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}

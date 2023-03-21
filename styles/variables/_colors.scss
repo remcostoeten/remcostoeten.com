@@ -45,6 +45,7 @@ $color-secondary: #003247;
 $color-primary-gradient1: #009de0;
 $color-primary-gradient2: #0081c7;
 $primary-color: $color-primary;
+$link-color: $color-primary;
 
 // Greys
 $color-extra-light-grey: #f6f9fc;
@@ -64,7 +65,9 @@ $color-light-red: #fff1f3;
 $color-blue-disabeled: #72b4e0;
 
 $heading-color: $color-secondary;
-$color-white: #fff;
+// $color-white: #fff;
+$dark: #131517;
+$color-white: $dark;
 $card-shadow: 0 8px 20px 0 rgba(22, 60, 92, 0.1);
 $menu-shadow: 0 2px 6px 0 rgba(22, 60, 92, 0.2),
 	0 4px 16px 0 rgba(22, 60, 92, 0.24);
@@ -85,7 +88,8 @@ $pink: #c08af1;
 $purple: #8000ff;
 $light-blue: #57a3c7;
 $green: #6b9796;
-$theme-black: #1e1e28;
+$theme-black: rgb(40, 40, 40);
+
 $theme-gray: #c4c4c4;
 $theme-grey--accent: #8b8b8b;
 $theme-primary: $purple;

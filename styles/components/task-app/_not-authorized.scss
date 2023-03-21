@@ -1,0 +1,69 @@
+@use 'variables' as *;
+@use 'typography' as *;
+@use 'buttons' as *;
+.not-authorized {
+	display: flex;
+	align-items: center;
+	padding: 80px;
+
+	&__inner {
+		max-width: 500px;
+		position: relative;
+	}
+
+	h2 {
+		color: $white;
+		font-family: $font-family-raleway;
+		max-width: 270px;
+		letter-spacing: 1.1px;
+		margin: 0;
+		padding-bottom: $spacing;
+	}
+
+	p,
+	li {
+		color: $off-white;
+		font-family: $font-family-open-sans;
+		font-size: 14px;
+		padding-bottom: $spacing;
+	}
+
+	ul,
+	li {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	li {
+		display: flex;
+		align-items: center;
+
+		svg {
+			font-size: 14px;
+			margin-right: $spacing;
+			margin-top: 2px;
+			transition: 250ms ease all;
+
+			&:hover {
+				color: $primary;
+			}
+		}
+	}
+
+	&__buttons {
+		display: flex;
+
+		.cta {
+			margin-right: $spacing * 2;
+		}
+	}
+
+	.cta {
+		margin-bottom: $spacing * 2;
+	}
+
+	ul {
+		padding-bottom: $spacing * 2;
+	}
+}

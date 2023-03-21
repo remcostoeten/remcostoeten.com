@@ -1,7 +1,7 @@
 import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
-import { ChatMessage, Attachment } from '../../types';
+import { ChatMessage, Attachment } from '@/types';
 import withAuth from '../withAuth';
 
 interface ChatSearchProps {
@@ -13,9 +13,7 @@ interface ChatSearchProps {
 
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
-	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-	const [showFullContent, setShowFullContent] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -126,7 +124,10 @@ const ChatHistory: React.FC = () => {
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('alice')
+											.includes(
+												process.env
+													.NEXT_PUBLIC_CHAT_TWO ?? '',
+											)
 											? 'bubble__second-person'
 											: ''
 									}`}

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { auth } from '../firebase';
+import { auth } from '../utils/firebase';
 
 const withAuth = (WrappedComponent) => {
 	const Wrapper = (props) => {

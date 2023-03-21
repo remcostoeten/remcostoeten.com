@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { auth, singInWithGoogle } from '../../firebase';
+import { auth, singInWithGoogle } from '../../utils/firebase';
 import { motion } from 'framer-motion';
 import Login from '../Login';
 import PersonIcon from '@mui/icons-material/Person';
@@ -16,6 +16,8 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
+import SignupLink from './SignupLink';
+import { Button } from '@mui/material';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -26,6 +28,10 @@ const Header = () => {
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const open = Boolean(anchorEl);
+	const [showModal, setShowModal] = useState(false);
+
+	const handleOpenModal = () => setShowModal(true);
+	const handleCloseModal = () => setShowModal(false);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -73,6 +79,111 @@ const Header = () => {
 		});
 	}, []);
 
+	const [variant, setVariant] = useState('theme--variant');
+
+	useEffect(() => {
+		document.body.classList.add('variant');
+	}, []);
+
+	const handleVariantToggle = () => {
+		switch (variant) {
+			case 'theme--variant':
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				break;
+			case 'theme--variant-two':
+				setVariant('theme--variant-two');
+				document.body.classList.remove(
+					'variant',
+					'variant-three',
+					'variant-four',
+				);
+				break;
+			case 'theme--variant-three':
+				setVariant('theme--variant-three');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-four',
+				);
+				break;
+			case 'theme--variant-four':
+				setVariant('theme--variant-four');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-three',
+				);
+				break;
+			default:
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				break;
+		}
+	};
+
+	const actions = [
+		{
+			icon: false,
+			name: 'Palette one',
+			onClick: () => {
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				document.body.classList.add('variant');
+			},
+		},
+		{
+			icon: false,
+			name: 'Palette two',
+			onClick: () => {
+				setVariant('theme--variant-two');
+				document.body.classList.remove(
+					'variant',
+					'variant-three',
+					'variant-four',
+				);
+				document.body.classList.add('variant-two');
+			},
+		},
+		{
+			icon: false,
+			name: 'Palette three',
+			onClick: () => {
+				setVariant('theme--variant-three');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-four',
+				);
+				document.body.classList.add('variant-three');
+			},
+		},
+		{
+			icon: false,
+			name: 'Palette four',
+			onClick: () => {
+				setVariant('theme--variant-four');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-three',
+				);
+				document.body.classList.add('variant-four');
+			},
+		},
+	];
 	return (
 		<>
 			<motion.header
@@ -126,73 +237,78 @@ const Header = () => {
 						<>
 							<nav className='header__menu'>
 								<ul>
-									{/* {isLoggedIn &&
-							auth.currentUser?.email ===
-								'stoetenremco.rs@gmail.com' ? (
-								<div>
-									<Button
-										id='demo-positioned-button'
-										aria-controls={
-											open
-												? 'demo-positioned-menu'
-												: undefined
-										}
-										aria-haspopup='true'
-										aria-expanded={
-											open ? 'true' : undefined
-										}
-										onClick={handleClick}>
-										Dashboard
-									</Button>
-									<Menu
-										id='demo-positioned-menu'
-										aria-labelledby='demo-positioned-button'
-										anchorEl={anchorEl}
-										open={open}
-										onClose={handleClose}
-										anchorOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}
-										transformOrigin={{
-											vertical: 'top',
-											horizontal: 'left',
-										}}>
-										<MenuItem>
-											<Link href='/zold'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_THREE
+									{isLoggedIn &&
+									auth.currentUser?.email ===
+										process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
+										<li>
+											<Button
+												id='demo-positioned-button'
+												aria-controls={
+													open
+														? 'demo-positioned-menu'
+														: undefined
 												}
-											</Link>
-										</MenuItem>
-										<MenuItem>
-											<Link href='/znew'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_THREE
+												aria-haspopup='true'
+												aria-expanded={
+													open ? 'true' : undefined
 												}
-											</Link>
-										</MenuItem>
-										<MenuItem>
-											<Link href='/y'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_ONE
-												}
-											</Link>
-										</MenuItem>
-										<MenuItem>
-											<Link href='/d'>
-												{
-													process.env
-														.NEXT_PUBLIC_USER_TWO
-												}
-											</Link>
-										</MenuItem>
-									</Menu>
-								</div>
-							) : null} */}
+												onClick={handleClick}>
+												Personal exports
+											</Button>
+											<Menu
+												id='demo-positioned-menu'
+												aria-labelledby='demo-positioned-button'
+												anchorEl={anchorEl}
+												open={open}
+												onClose={handleClose}
+												anchorOrigin={{
+													vertical: 'top',
+													horizontal: 'left',
+												}}
+												transformOrigin={{
+													vertical: 'top',
+													horizontal: 'left',
+												}}>
+												<MenuItem>
+													<Link href='/zold'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_ONE
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/znew'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_TWO
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/y'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_THREE
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/d'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_FOUR
+														}
+													</Link>
+												</MenuItem>
+											</Menu>
+										</li>
+									) : null}
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<Link href='/tasks'>
+											Todo list creator
+										</Link>
+									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/message-history'>
 											Messenger
@@ -203,7 +319,6 @@ const Header = () => {
 											Chat
 										</Link>
 									</motion.li>
-
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<a
 											href='https://github.com/remcostoeten/'
@@ -311,9 +426,9 @@ const Header = () => {
 										<a onClick={() => auth.signOut()}></a>
 									</motion.li>
 								) : (
-									<motion.li whileHover={{ scale: 1.05 }}>
-										<Login />
-									</motion.li>
+									// <motion.li whileHover={{ scale: 1.05 }}>
+									<SignupLink />
+									// </motion.li>
 								)}
 							</div>
 						</>

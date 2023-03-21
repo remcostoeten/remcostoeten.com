@@ -126,7 +126,10 @@ const ChatHistory: React.FC = () => {
 									className={`bubble__message ${
 										message.message
 											.toLowerCase()
-											.includes('alice')
+											.includes(
+												process.env
+													.NEXT_PUBLIC_CHAT_TWO ?? '',
+											)
 											? 'bubble__second-person'
 											: ''
 									}`}

@@ -1,0 +1,211 @@
+@import 'todo-categories';
+@import 'todo-dark-theme';
+$color-white: $dark;
+$white: white;
+
+.todo {
+	aside {
+		display: flex;
+		flex-direction: columns;
+		margin-right: 45px;
+	}
+
+	main {
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+	}
+
+	&__header {
+		padding: $spacing 0;
+	}
+}
+
+.todo {
+	background: $color-white;
+	border-radius: 5px;
+	box-shadow: 1px 2px 10px #ddd;
+
+	&__inner {
+		display: flex;
+		width: 100%;
+	}
+
+	&__tasks {
+		display: flex;
+		justify-content: space-between;
+		flex-direction: column;
+		width: 100%;
+	}
+
+	&__add {
+		display: flex;
+		background-color: $dark-lighter;
+
+		.todos {
+			display: flex;
+		}
+	}
+
+	&__task-section {
+		padding: 4px;
+
+		h4 {
+			margin-bottom: $spacing-s;
+		}
+
+		input,
+		textarea {
+			background: $color-black;
+			border: none;
+			width: 100%;
+			border-radius: 8px;
+			padding: $spacing-s $spacing-m;
+			font-size: 1.3m;
+			font-style: italic;
+			color: $white;
+
+			&:focus {
+				border: none;
+				outline: none;
+			}
+		}
+
+		button {
+			margin-top: $spacing-s;
+		}
+
+		textarea {
+			padding: $spacing-s;
+		}
+	}
+
+	&__date {
+		width: 91px;
+		height: 22px;
+		color: $white;
+		border: 1px solid #2c2d37;
+		border-radius: 4px;
+		min-height: 22px;
+		min-width: 91px;
+	}
+
+	&__intro {
+		display: flex;
+		align-items: baseline;
+
+		.text {
+			padding-right: $spacing;
+		}
+
+		h1 {
+			letter-spacing: 2px;
+			font-family: $font--primary;
+			padding-bottom: $spacing-s;
+
+			span {
+				text-transform: lowercase;
+			}
+		}
+
+		p {
+			font-size: 1.5em;
+			font-weight: 400;
+		}
+	}
+
+	form {
+		display: flex;
+		flex-direction: column;
+		width: fit-content;
+		padding: 10px 20px;
+		border-radius: 5px;
+		min-width: 300px;
+
+		label {
+			display: flex;
+			flex-direction: column;
+		}
+	}
+
+	&__wrapper {
+		width: 50%;
+		margin: 0 auto;
+	}
+
+	.button-complete,
+	.button-delete,
+	.button-edit {
+		border: none;
+		outline: none;
+		cursor: pointer;
+		background-color: red;
+		border-radius: 50%;
+	}
+
+	button {
+		background-color: white;
+
+		color: $color-white;
+		padding: 10px 20px;
+		outline: none;
+		border: none;
+		border-radius: 5px;
+		font-size: 16px;
+		cursor: pointer;
+		font-weight: 500;
+	}
+}
+
+.tasks {
+	&__task {
+		padding: $spacing-m;
+		background: #f6f6f6;
+		border-radius: 8px;
+		margin-bottom: 8px;
+		color: $white;
+
+		.title {
+			color: $white;
+			font-size: 1.5em;
+		}
+
+		.description {
+			color: $white;
+			font-size: 1.5em;
+			font-weight: 400;
+		}
+
+		.category {
+			color: $white;
+		}
+
+		button {
+			padding: 0;
+			color: $dark !important;
+		}
+
+		svg {
+			color: $white;
+		}
+	}
+}
+
+form h3 {
+	text-align: center;
+}
+
+.authenticate-please {
+	padding: $spacing;
+
+	span {
+		text-transform: lowercase;
+		color: $link-color;
+		text-decoration: underline;
+		cursor: pointer;
+
+		&:hover {
+			color: darken($link-color, 10%);
+		}
+	}
+}

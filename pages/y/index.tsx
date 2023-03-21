@@ -14,9 +14,7 @@ interface ChatSearchProps {
 
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
-	const [showFullText, setShowFullText] = useState(false);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-	const [showFullContent, setShowFullContent] = useState(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -160,7 +158,11 @@ const ChatHistory: React.FC = () => {
 									className={`bubble__message ${
 										message.sender
 											.toLowerCase()
-											.includes('Yvette')
+											.includes(
+												process.env
+													.NEXT_PUBLIC_CHAT_THREE ??
+													'',
+											)
 											? 'bubble__second-person'
 											: ''
 									}`}
