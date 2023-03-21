@@ -7,7 +7,6 @@ $white: white;
 	aside {
 		display: flex;
 		flex-direction: columns;
-		width: 25%;
 		margin-right: 45px;
 	}
 
@@ -29,7 +28,6 @@ $white: white;
 
 	&__inner {
 		display: flex;
-		justify-content: space-between;
 		width: 100%;
 	}
 

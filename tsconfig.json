@@ -31,7 +31,7 @@
 		"pages/Chat/backups/WerkendeReactWindow.js",
 		"pages/Chat/backups/window.js",
 		"pages/Chat/Test.js",
-		"components/header/Logo.js",
+		"components/Header/Logo.js",
 		"pages/Authentication/index.js",
 		"components/Alertjs",
 		"pages/withAuth.js",

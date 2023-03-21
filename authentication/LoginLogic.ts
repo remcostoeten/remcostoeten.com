@@ -8,15 +8,15 @@ export const signIn = async () => {
 	try {
 		const result = await signInWithPopup(auth, new GoogleAuthProvider());
 		return result.user;
-	} catch (error) {
-		throw new Error(error.message);
+	} catch (error: any) {
+		throw new Error((error as Error).message);
 	}
 };
 
 export const signOut = async () => {
 	try {
 		await auth.signOut();
-	} catch (error) {
-		throw new Error(error.message);
+	} catch (error: any) {
+		throw new Error((error as Error).message);
 	}
 };

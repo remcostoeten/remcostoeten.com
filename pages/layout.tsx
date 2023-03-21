@@ -1,4 +1,4 @@
-import Header from '@/components/header/Header';
+import Header from '@/components/Header/Header';
 import Intro from '@/components/layout/Intro';
 import React from 'react';
 export default function Home() {

@@ -1,9 +1,9 @@
-@foward 'todo-cateogries';
+@use 'typography';
+@use 'not-authorized';
 @import 'task-aside';
 $blue: #5051f9;
 $border-color: #2a2b2f;
 $dark-blue: #282a30;
-
 .tasks {
 	&__task {
 		margin-top: $spacing-s;
@@ -11,7 +11,6 @@ $dark-blue: #282a30;
 		border-radius: 10px;
 		color: $color-white;
 	}
-
 	&__lane {
 		&:not(:last-child) {
 			margin-right: $spacing-s;

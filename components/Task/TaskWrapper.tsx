@@ -8,28 +8,36 @@ import {
 	doc,
 	updateDoc,
 } from '@firebase/firestore';
-import Header from '@/components/header/Header';
+import Header from '@/components/Header/Header';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
 import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
 import { AddCircle } from '@mui/icons-material';
-import Aside from '@/components/Task/Aside';
+import Aside from '@/components/Task/AsideSmall';
+import { signIn, signOut } from '@/authentication/LoginLogic';
+import Modal from '../Modal';
 
 export default function TaskWrapper() {
 	const [tasks, setTasks] = useState<Task[]>([]);
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
-	const [view, setView] = useState<ViewType>('board');
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [view, setView] = useState('board');
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	type ViewType = 'board' | 'list';
-
+	interface Task {
+		id: string;
+		title: string;
+		description: string;
+		category: string;
+		status: 'todo' | 'inprogress' | 'done';
+		date: string;
+	}
 	const toggleView = () => {
-		setView((prevView) => (prevView === 'board' ? 'list' : 'board'));
+		setView(view === 'board' ? 'list' : 'board');
 	};
-
 	useEffect(() => {
 		document.body.classList.add('dark-theme');
 	}, []);
@@ -92,12 +100,11 @@ export default function TaskWrapper() {
 			setTasks((prevTasks) =>
 				prevTasks.filter((task) => task.id !== taskId),
 			);
-			toast.success('Task removed successfully');
+			toast.success('Task emoved successfully');
 		} catch (error) {
 			console.error('Error removing task:', error);
 		}
 	};
-
 	const updateTask = async (taskId: string, newTaskData: Partial<Task>) => {
 		await updateDoc(
 			doc(db, `tasks-${auth.currentUser?.uid}`, taskId),
@@ -112,14 +119,13 @@ export default function TaskWrapper() {
 			}),
 		);
 	};
-
 	return (
 		<>
 			<Header />
 			{/* <div className='container'><TaskCategories /></div> */}
 			<div className='todo'>
 				<div className='todo__inner'>
-					<Aside />
+					<Aside view={view} isLoggedIn={isLoggedIn} />
 					<main>
 						<div className='todo__header'>
 							<h2>
@@ -127,62 +133,44 @@ export default function TaskWrapper() {
 								<span>{auth.currentUser?.displayName} 👋</span>
 							</h2>
 							<div className='todo__intro'>
-								{isLoggedIn ? (
-									<>
-										<div className='text'>
-											{tasks.length === 0 && (
-												<>
-													<p>
-														You have no tasks left.
-														Time to relax. 🥳 Or get
-														busy and create some new
-														ones!
-													</p>
-												</>
-											)}
-											{tasks.length === 1 && (
-												<>
-													<p>
-														You've got{' '}
-														{tasks.length} task
-														left. Good luck nailing
-														it! 🤑
-													</p>
-												</>
-											)}
-											{tasks.length >= 1 &&
-												tasks.length <= 4 && (
-													<>
-														<p>
-															You've got{' '}
-															{tasks.length} task
-															{tasks.length === 1
-																? ''
-																: 's'}{' '}
-															left. Better start
-															working then! 😳
-														</p>
-													</>
-												)}
-											{tasks.length > 4 && (
-												<p>
-													You've got {tasks.length}{' '}
-													task(s) left. 😵‍💫 But no
-													pressure, I wont judge you
-													slacking. 🫣
-												</p>
-											)}
-										</div>
-									</>
-								) : (
-									<div className='authenticate-please'>
-										<h2>
-											In order to use the to-do app you
-											need to be logged in. You can{' '}
-											<Login /> here.
-										</h2>
-									</div>
-								)}
+								<div className='text'>
+									{tasks.length === 0 && (
+										<>
+											<p>
+												You have no tasks left. Time to
+												relax. 🥳 Or get busy and create
+												some new ones!
+											</p>
+										</>
+									)}
+									{tasks.length === 1 && (
+										<>
+											<p>
+												You've got {tasks.length} task
+												left. Good luck nailing it! 🤑
+											</p>
+										</>
+									)}
+									{tasks.length >= 1 && tasks.length <= 4 && (
+										<>
+											<p>
+												You've got {tasks.length} task
+												{tasks.length === 1
+													? ''
+													: 's'}{' '}
+												left. Better start working then!
+												😳
+											</p>
+										</>
+									)}
+									{tasks.length > 4 && (
+										<p>
+											You've got {tasks.length} task(s)
+											left. 😵‍💫 But no pressure, I wont
+											judge you slacking. 🫣
+										</p>
+									)}
+								</div>
 							</div>
 							<div
 								className={`toggle-view ${

@@ -4,6 +4,17 @@
 @import url("https://fonts.cdnfonts.com/css/d-din");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;600&display=swap");
 @import url("https://fonts.cdnfonts.com/css/geomanist");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
+@import url("https://fonts.googleapis.com/css?family=Lato");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
+@import url("https://fonts.googleapis.com/css?family=Nunito+Sans");
+@import url("https://fonts.googleapis.com/css?family=Playfair+Display");
+@import url("https://fonts.googleapis.com/css?family=Oswald");
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Roboto");
 body {
   margin: 0px;
 }
@@ -639,30 +650,30 @@ input[type=text]:hover {
   padding-top: 100px;
 }
 
-.not-authenticated {
+.n {
   background-color: #28254c;
   display: flex;
   align-items: baseline;
   justify-content: center;
   padding-top: 24px;
 }
-.not-authenticated .wrap {
+.n .wrap {
   position: absolute;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.not-authenticated .text {
+.n .text {
   text-align: Center;
   color: #3498db;
   font-size: 30px;
   padding: 10px;
 }
-.not-authenticated a {
+.n a {
   text-decoration: none;
   position: relative;
 }
-.not-authenticated a:before {
+.n a:before {
   content: "";
   width: 0;
   height: 1px;
@@ -673,14 +684,14 @@ input[type=text]:hover {
   z-index: 2;
   transition: 250ms ease-in;
 }
-.not-authenticated a:hover:before {
+.n a:hover:before {
   width: 100%;
   background-color: #ff5e65;
 }
-.not-authenticated a:visited, .not-authenticated a:focus, .not-authenticated a:active {
+.n a:visited, .n a:focus, .n a:active {
   color: #8c8aa7;
 }
-.not-authenticated .face {
+.n .face {
   width: 150px;
   height: 150px;
   border: 9px solid #bdc3c7;
@@ -690,7 +701,7 @@ input[type=text]:hover {
   position: relative;
   z-index: 9999;
 }
-.not-authenticated .mouth {
+.n .mouth {
   height: 10px;
   width: 35px;
   margin: 0 auto;
@@ -699,7 +710,7 @@ input[type=text]:hover {
   animation: mouth 7s infinite;
   animation-delay: 2s;
 }
-.not-authenticated .tear {
+.n .tear {
   position: absolute;
   background-color: #3498db;
   height: 0px;
@@ -710,7 +721,7 @@ input[type=text]:hover {
   animation: tear 7s infinite;
   animation-delay: 2s;
 }
-.not-authenticated .tear2 {
+.n .tear2 {
   position: absolute;
   background-color: #3498db;
   height: 0px;
@@ -721,7 +732,7 @@ input[type=text]:hover {
   animation: tear 7s infinite;
   animation-delay: 2s;
 }
-.not-authenticated .eye {
+.n .eye {
   height: 10px;
   width: 45px;
   background-color: #bdc3c7;
@@ -731,7 +742,7 @@ input[type=text]:hover {
   animation: cry 7s infinite;
   animation-delay: 2s;
 }
-.not-authenticated .eyebrow {
+.n .eyebrow {
   width: 30px;
   font-size: 40px;
   font-weight: bold;
@@ -743,10 +754,10 @@ input[type=text]:hover {
   animation: eyebrow 7s infinite;
   animation-delay: 2s;
 }
-.not-authenticated .eyebrow:nth-child(1) {
+.n .eyebrow:nth-child(1) {
   transform: rotate(-20deg);
 }
-.not-authenticated .eyebrow:nth-child(2) {
+.n .eyebrow:nth-child(2) {
   transform: rotate(20deg);
 }
 @keyframes mouth {
@@ -821,7 +832,7 @@ input[type=text]:hover {
     height: 0px;
   }
 }
-.not-authenticated .error {
+.n .error {
   width: 350px;
   height: 100%;
   max-height: 800px;
@@ -831,10 +842,10 @@ input[type=text]:hover {
   padding: 24px 36px;
   position: relative;
 }
-.not-authenticated .error__description-text a {
+.n .error__description-text a {
   position: relative;
 }
-.not-authenticated .error__description-text a::after {
+.n .error__description-text a::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -843,14 +854,14 @@ input[type=text]:hover {
   left: 5px;
   background-color: #8c8aa7;
 }
-.not-authenticated .error .error__ghost {
+.n .error .error__ghost {
   padding: 15px 25px 25px;
   position: absolute;
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
 }
-.not-authenticated .error .error__ghost .error__ghost-container {
+.n .error .error__ghost .error__ghost-container {
   background: #fff;
   width: 100px;
   height: 100px;
@@ -859,14 +870,14 @@ input[type=text]:hover {
   margin: 0 auto;
   animation: upndown 3s ease-in-out infinite;
 }
-.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes {
+.n .error .error__ghost .error__ghost-container .error__ghost-eyes {
   position: absolute;
   left: 50%;
   top: 45%;
   height: 12px;
   width: 70px;
 }
-.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-left {
+.n .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-left {
   width: 12px;
   height: 12px;
   background: #332f63;
@@ -875,7 +886,7 @@ input[type=text]:hover {
   position: absolute;
   left: 0;
 }
-.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-right {
+.n .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-right {
   width: 12px;
   height: 12px;
   background: #332f63;
@@ -884,14 +895,14 @@ input[type=text]:hover {
   position: absolute;
   right: 0;
 }
-.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom {
+.n .error .error__ghost .error__ghost-container .error__ghost-bottom {
   display: flex;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
 }
-.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom div {
+.n .error .error__ghost .error__ghost-container .error__ghost-bottom div {
   flex-grow: 1;
   position: relative;
   top: -10px;
@@ -899,43 +910,43 @@ input[type=text]:hover {
   border-radius: 100%;
   background-color: #fff;
 }
-.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom div:nth-child(2n) {
+.n .error .error__ghost .error__ghost-container .error__ghost-bottom div:nth-child(2n) {
   top: -12px;
   margin: 0 0px;
   border-top: 15px solid #332f63;
   background: transparent;
 }
-.not-authenticated .error .error__ghost .error__ghost-shadow {
+.n .error .error__ghost .error__ghost-shadow {
   height: 20px;
   error-shadow: 0 50px 15px 5px #3b3769;
   border-radius: 50%;
   margin: 0 auto;
   animation: smallnbig 3s ease-in-out infinite;
 }
-.not-authenticated .error .error__description {
+.n .error .error__description {
   position: absolute;
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
 }
-.not-authenticated .error .error__description .error__description-container {
+.n .error .error__description .error__description-container {
   color: #fff;
   text-align: center;
   width: 200px;
   font-size: 16px;
   margin: 0 auto;
 }
-.not-authenticated .error .error__description .error__description-container .error__description-title {
+.n .error .error__description .error__description-container .error__description-title {
   font-size: 32px;
   letter-spacing: 0.5px;
   font-weight: 800;
 }
-.not-authenticated .error .error__description .error__description-container .error__description-text {
+.n .error .error__description .error__description-container .error__description-text {
   color: #8c8aa7;
   line-height: 20px;
   margin-top: 20px;
 }
-.not-authenticated .error .error__description .error__button {
+.n .error .error__description .error__button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -956,7 +967,7 @@ input[type=text]:hover {
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
-.not-authenticated .error .error__description .error__button:before {
+.n .error .error__description .error__button:before {
   content: "";
   position: absolute;
   width: 20px;
@@ -968,11 +979,11 @@ input[type=text]:hover {
   transform: translateX(-50px) rotate(45deg);
   transition: transform 0.5s ease;
 }
-.not-authenticated .error .error__description .error__button:hover {
+.n .error .error__description .error__button:hover {
   background: transparent;
   border-color: #fff;
 }
-.not-authenticated .error .error__description .error__button:hover:before {
+.n .error .error__description .error__button:hover:before {
   transform: translateX(250px) rotate(45deg);
 }
 @keyframes upndown {
@@ -3127,7 +3138,6 @@ button {
 .todo aside {
   display: flex;
   flex-direction: columns;
-  width: 25%;
   margin-right: 45px;
 }
 .todo main {
@@ -3146,7 +3156,6 @@ button {
 }
 .todo__inner {
   display: flex;
-  justify-content: space-between;
   width: 100%;
 }
 .todo__tasks {
@@ -3299,7 +3308,175 @@ form h3 {
   color: #006f9f;
 }
 
-@foward "todo-cateogries";
+.todo h1,
+.todo h2,
+.todo h3,
+.todo h4,
+.todo h5,
+.todo h6 {
+  font-family: "Playfair Display", serif;
+}
+
+.todo p {
+  font-family: "Raleway", sans-serif;
+}
+
+.cta {
+  font-size: 16px;
+  color: #ffa048;
+  background-color: #131517;
+  border: 2px solid #ffa048;
+  padding: 10px 30px;
+  display: flex;
+  align-items: baseline;
+  width: fit-content;
+  clip-path: polygon(100% 0, 84% 100%, 100% 100%, 0 100%, 0 0);
+  transition: 250ms ease all;
+  display: flex;
+  align-items: center;
+}
+
+.cta:hover {
+  clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+  transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.cta svg {
+  font-size: 28px;
+  margin-right: 20px;
+  margin-top: 3px;
+}
+
+.cta.cta-two {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 26% 100%, 0 49%);
+}
+
+.cta.cta-two svg {
+  margin-right: 0;
+  margin-left: 20px;
+  transform: rotate(180deg);
+}
+
+.cta.cta-two a {
+  color: #ffa048;
+  text-decoration: none;
+}
+
+.cta:hovr svg {
+  animation: swipeLeftBlur 0.5s ease-in-out;
+}
+
+.cta.cta-two:hover svg {
+  animation: swipeRightBlur 0.5s ease-in-out;
+}
+
+@keyframes swipeLeftBlur {
+  0% {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(-60px);
+    filter: blur(2px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(100px);
+  }
+  100% {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+@keyframes swipeRightBlur {
+  0% {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+  50% {
+    transform: translateX(60px);
+    filter: blur(2px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-200px);
+  }
+  100% {
+    transform: translateX(0);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+.not-authorized {
+  display: flex;
+  align-items: center;
+  padding: 80px;
+}
+
+.not-authorized__inner {
+  max-width: 500px;
+  position: relative;
+}
+
+.not-authorized h2 {
+  color: white;
+  font-family: "Raleway", sans-serif;
+  max-width: 270px;
+  letter-spacing: 1.1px;
+  margin: 0;
+  padding-bottom: 16px;
+}
+
+.not-authorized p,
+.not-authorized li {
+  color: #f9f9f9;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  padding-bottom: 16px;
+}
+
+.not-authorized ul,
+.not-authorized li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.not-authorized li {
+  display: flex;
+  align-items: center;
+}
+
+.not-authorized li svg {
+  font-size: 14px;
+  margin-right: 16px;
+  margin-top: 2px;
+  transition: 250ms ease all;
+}
+
+.not-authorized li svg:hover {
+  color: #ffa048;
+}
+
+.not-authorized__buttons {
+  display: flex;
+}
+
+.not-authorized__buttons .cta {
+  margin-right: 32px;
+}
+
+.not-authorized .cta {
+  margin-bottom: 32px;
+}
+
+.not-authorized ul {
+  padding-bottom: 32px;
+}
+
 .todo aside {
   display: flex;
 }
@@ -3352,9 +3529,7 @@ form h3 {
   padding: 24px 18px;
   flex-direction: column;
   background-color: #1c1d22;
-  flex: 1;
   justify-content: space-between;
-  height: 100vh;
 }
 .todo aside h1 {
   font-size: 30px;

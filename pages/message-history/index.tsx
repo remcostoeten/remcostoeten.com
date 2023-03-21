@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Friends from '@/components/Messenger/Friends';
-import Header from '@/components/header/Header';
+import Header from '@/components/Header/Header';
 import withAuth from '../withAuth';
 
 const MessengerPage = () => {
