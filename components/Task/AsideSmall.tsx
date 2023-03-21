@@ -1,4 +1,5 @@
 import React from 'react';
+import Logo from '../Header/Logo';
 import Link from 'next/link';
 import {
 	AppsOutlined,
@@ -9,7 +10,7 @@ import {
 	VerifiedUserSharp,
 	ViewList,
 } from '@mui/icons-material';
-import { signIn, signOut } from '@/utils/LoginLogic';
+import { signIn, signOut } from '@/authentication/LoginLogic';
 
 interface AsideSmallProps {
 	view: string;
