@@ -1,9 +1,7 @@
 $aside-background: #222327;
 $nav-background: #1c1d22;
 $button-active-background: #323338;
-
 $nav-item-size: 48px;
-
 .todo {
 	aside {
 		display: flex;
@@ -20,10 +18,10 @@ $nav-item-size: 48px;
 			background-color: transparent;
 			border-radius: 50%;
 			box-sizing: inherit;
-			padding: $spacing-s;
+			padding: 8px;
 
 			&:not(:last-child) {
-				margin-bottom: $spacing-s;
+				margin-bottom: 8px;
 			}
 
 			&.logo {
@@ -57,7 +55,7 @@ $nav-item-size: 48px;
 			transition: 250ms ease all;
 
 			&:hover {
-				color: $color-primary;
+				color: #ffa048;
 				opacity: 1;
 				scale: 1.1;
 				transform: rotate(3deg);
@@ -70,7 +68,7 @@ $nav-item-size: 48px;
 
 			&__small {
 				display: flex;
-				padding: $spacing $spacing-m;
+				padding: 16px 8px;
 				flex-direction: column;
 				background-color: $nav-background;
 				justify-content: space-between;
@@ -100,7 +98,7 @@ $nav-item-size: 48px;
 		h3 {
 			font-size: 16px;
 			font-weight: bold;
-			padding-bottom: $spacing-s;
+			padding-bottom: 8px;
 			color: $white;
 		}
 
@@ -113,8 +111,8 @@ $nav-item-size: 48px;
 
 		li {
 			position: relative;
-			padding-left: $spacing-m;
-			padding-bottom: $spacing-s;
+			padding-left: 12px;
+			padding-bottom: 8px;
 			opacity: 0.5;
 			cursor: pointer;
 			font-size: 16px;
@@ -123,6 +121,7 @@ $nav-item-size: 48px;
 			&:before {
 				position: absolute;
 				content: '-';
+
 				color: $white;
 				left: 0;
 			}

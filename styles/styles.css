@@ -3146,7 +3146,7 @@ button {
   flex-direction: column;
 }
 .todo__header {
-  padding: 24px 0;
+  padding: 16px 0;
 }
 
 .todo {
@@ -3175,7 +3175,7 @@ button {
   padding: 4px;
 }
 .todo__task-section h4 {
-  margin-bottom: 8px;
+  margin-bottom: 16px-s;
 }
 .todo__task-section input,
 .todo__task-section textarea {
@@ -3183,7 +3183,7 @@ button {
   border: none;
   width: 100%;
   border-radius: 8px;
-  padding: 8px 18px;
+  padding: 16px-s 16px-m;
   font-size: 1.3m;
   font-style: italic;
   color: white;
@@ -3194,10 +3194,10 @@ button {
   outline: none;
 }
 .todo__task-section button {
-  margin-top: 8px;
+  margin-top: 16px-s;
 }
 .todo__task-section textarea {
-  padding: 8px;
+  padding: 16px-s;
 }
 .todo__date {
   width: 91px;
@@ -3213,12 +3213,12 @@ button {
   align-items: baseline;
 }
 .todo__intro .text {
-  padding-right: 24px;
+  padding-right: 16px;
 }
 .todo__intro h1 {
   letter-spacing: 2px;
   font-family: "Geomanist", sans-serif;
-  padding-bottom: 8px;
+  padding-bottom: 16px-s;
 }
 .todo__intro h1 span {
   text-transform: lowercase;
@@ -3265,7 +3265,7 @@ button {
 }
 
 .tasks__task {
-  padding: 18px;
+  padding: 16px-m;
   background: #f6f6f6;
   border-radius: 8px;
   margin-bottom: 8px;
@@ -3296,7 +3296,7 @@ form h3 {
 }
 
 .authenticate-please {
-  padding: 24px;
+  padding: 16px;
 }
 .authenticate-please span {
   text-transform: lowercase;
@@ -3323,8 +3323,8 @@ form h3 {
 
 .cta {
   font-size: 16px;
-  color: #ffa048;
-  border: 2px solid #ffa048;
+  color: ffa048;
+  border: 2px solid ffa048;
   padding: 10px 30px;
   display: flex;
   align-items: baseline;
@@ -3357,7 +3357,7 @@ form h3 {
 }
 
 .cta.cta-two a {
-  color: #ffa048;
+  color: ffa048;
   text-decoration: none;
 }
 
@@ -3422,7 +3422,7 @@ form h3 {
 }
 
 .not-authorized h2 {
-  color: white;
+  color: #fff;
   font-family: "Raleway", sans-serif;
   max-width: 270px;
   letter-spacing: 1.1px;
@@ -3583,7 +3583,7 @@ form h3 {
   transition: 250ms ease all;
 }
 .todo aside svg:hover {
-  color: #0092d2;
+  color: #ffa048;
   opacity: 1;
   scale: 1.1;
   transform: rotate(3deg);
@@ -3594,7 +3594,7 @@ form h3 {
 }
 .todo aside .nav__small {
   display: flex;
-  padding: 24px 18px;
+  padding: 16px 8px;
   flex-direction: column;
   background-color: #1c1d22;
   justify-content: space-between;
@@ -3631,7 +3631,7 @@ form h3 {
 }
 .todo aside li {
   position: relative;
-  padding-left: 18px;
+  padding-left: 12px;
   padding-bottom: 8px;
   opacity: 0.5;
   cursor: pointer;
@@ -3733,14 +3733,14 @@ form h3 {
 .lane__item {
   border-radius: 12px;
   background-color: #292b31;
-  padding: 18px;
+  padding: 12px;
 }
 
 .toggle-view {
   display: flex;
   padding: 8px;
   align-items: center;
-  margin-top: 24px;
+  margin-top: 16px;
   justify-content: space-between;
   position: relative;
   transform: 250ms ease all;
@@ -3801,7 +3801,7 @@ form h3 {
   background: none;
   color: white;
   padding: 0;
-  margin-right: 18px;
+  margin-right: 12px;
 }
 .toggle-view button svg {
   margin-right: 8px;

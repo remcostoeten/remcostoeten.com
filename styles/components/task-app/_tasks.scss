@@ -6,14 +6,14 @@ $border-color: #2a2b2f;
 $dark-blue: #282a30;
 .tasks {
 	&__task {
-		margin-top: $spacing-s;
+		margin-top: 8px;
 		background-color: $dark-lighter;
 		border-radius: 10px;
 		color: $color-white;
 	}
 	&__lane {
 		&:not(:last-child) {
-			margin-right: $spacing-s;
+			margin-right: 8px;
 		}
 	}
 
@@ -53,7 +53,7 @@ $dark-blue: #282a30;
 			align-items: center;
 
 			svg {
-				margin: 0 $spacing-s;
+				margin: 0 8px;
 			}
 		}
 
@@ -107,15 +107,15 @@ $dark-blue: #282a30;
 	&__item {
 		border-radius: 12px;
 		background-color: #292b31;
-		padding: $spacing-m;
+		padding: 12px;
 	}
 }
 
 .toggle-view {
 	display: flex;
-	padding: $spacing-s;
+	padding: 8px;
 	align-items: center;
-	margin-top: $spacing;
+	margin-top: 16px;
 	justify-content: space-between;
 	position: relative;
 	transform: 250ms ease all;
@@ -194,10 +194,9 @@ $dark-blue: #282a30;
 		background: none;
 		color: $white;
 		padding: 0;
-		margin-right: $spacing-m;
-
+		margin-right: 12px;
 		svg {
-			margin-right: $spacing-s;
+			margin-right: 8px;
 		}
 
 		&.add {

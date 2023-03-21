@@ -1,6 +1,8 @@
+@use 'variables';
 @import 'todo-categories';
 @import 'todo-dark-theme';
 $color-white: $dark;
+
 $white: white;
 
 .todo {
@@ -17,7 +19,7 @@ $white: white;
 	}
 
 	&__header {
-		padding: $spacing 0;
+		padding: 16px 0;
 	}
 }
 
@@ -51,7 +53,7 @@ $white: white;
 		padding: 4px;
 
 		h4 {
-			margin-bottom: $spacing-s;
+			margin-bottom: 16px-s;
 		}
 
 		input,
@@ -60,7 +62,7 @@ $white: white;
 			border: none;
 			width: 100%;
 			border-radius: 8px;
-			padding: $spacing-s $spacing-m;
+			padding: 16px-s 16px-m;
 			font-size: 1.3m;
 			font-style: italic;
 			color: $white;
@@ -72,11 +74,11 @@ $white: white;
 		}
 
 		button {
-			margin-top: $spacing-s;
+			margin-top: 16px-s;
 		}
 
 		textarea {
-			padding: $spacing-s;
+			padding: 16px-s;
 		}
 	}
 
@@ -95,13 +97,13 @@ $white: white;
 		align-items: baseline;
 
 		.text {
-			padding-right: $spacing;
+			padding-right: 16px;
 		}
 
 		h1 {
 			letter-spacing: 2px;
 			font-family: $font--primary;
-			padding-bottom: $spacing-s;
+			padding-bottom: 16px-s;
 
 			span {
 				text-transform: lowercase;
@@ -159,7 +161,7 @@ $white: white;
 
 .tasks {
 	&__task {
-		padding: $spacing-m;
+		padding: 16px-m;
 		background: #f6f6f6;
 		border-radius: 8px;
 		margin-bottom: 8px;
@@ -196,7 +198,7 @@ form h3 {
 }
 
 .authenticate-please {
-	padding: $spacing;
+	padding: 16px;
 
 	span {
 		text-transform: lowercase;
