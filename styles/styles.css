@@ -3324,7 +3324,6 @@ form h3 {
 .cta {
   font-size: 16px;
   color: #ffa048;
-  background-color: #131517;
   border: 2px solid #ffa048;
   padding: 10px 30px;
   display: flex;
@@ -3410,6 +3409,12 @@ form h3 {
     opacity: 1;
   }
 }
+#__next {
+  display: flex;
+  flex: 1;
+  height: 100vh;
+}
+
 .not-authorized {
   display: flex;
   align-items: center;
@@ -3418,10 +3423,7 @@ form h3 {
 
 .not-authorized__inner {
   max-width: 500px;
-  background-image: url("~/public/illustration.png");
-  background-position: right;
-  background-size: contain;
-  background-repeat: no-repeat;
+  z-index: 3;
   position: relative;
 }
 
@@ -3481,8 +3483,57 @@ form h3 {
   padding-bottom: 32px;
 }
 
+.todo__inner {
+  position: relative;
+  z-index: 2;
+}
+
+.todo__inner:after {
+  content: url("~/public/illutwo.png");
+  width: 350px;
+  transition: 250ms ease all;
+  transform: rotate(3deg);
+  z-index: 1;
+  animation: backgroundblur 999s ease infinite;
+}
+
+.todo__illustration {
+  background-image: url("~/public/illutwo.png");
+  background-position: right;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 350px;
+  transition: 250ms ease all;
+  transform: rotate(3deg);
+  z-index: 2;
+}
+
+.todo__illustration:hover {
+  transform: rotate(4deg);
+  scale: 1.03;
+}
+
+.illu.bg:hover {
+  transform: rotate(4deg);
+  scale: 1.03;
+}
+
+@keyframes backgroundblur {
+  0% {
+    scale: 15;
+    filter: blur(10px);
+    opacity: 0.2;
+  }
+  100% {
+    scale: 15;
+    filter: blur(9.8);
+    opacity: 0.1;
+  }
+}
 .todo aside {
   display: flex;
+  z-index: 3;
+  height: 100vh;
 }
 .todo aside span {
   display: flex;

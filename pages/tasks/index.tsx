@@ -79,6 +79,8 @@ export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
 									</p>
 								</div>
 							</div>
+							<div className='todo__illustration'></div>
+							<div className='illu'></div>
 						</>
 					)}
 				</div>

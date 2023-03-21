@@ -1,16 +1,21 @@
 @use 'variables' as *;
 @use 'typography' as *;
 @use 'buttons' as *;
+
+#__next {
+	display: flex;
+	flex: 1;
+	height: 100vh;
+}
+
 .not-authorized {
 	display: flex;
 	align-items: center;
 	padding: 80px;
+
 	&__inner {
 		max-width: 500px;
-		background-image: url('~/public/illustration.png');
-		background-position: right;
-		background-size: contain;
-		background-repeat: no-repeat;
+		z-index: 3;
 		position: relative;
 	}
 
@@ -68,5 +73,64 @@
 
 	ul {
 		padding-bottom: $spacing * 2;
+	}
+}
+
+.todo__inner {
+	position: relative;
+	z-index: 2;
+	&:after {
+		content: url('~/public/illutwo.png');
+		width: 350px;
+		transition: 250ms ease all;
+		transform: rotate(3deg);
+		z-index: 1;
+		animation: backgroundblur 999s ease infinite;
+	}
+}
+
+.todo__illustration {
+	background-image: url('~/public/illutwo.png');
+	background-position: right;
+	background-size: contain;
+	background-repeat: no-repeat;
+	width: 350px;
+	transition: 250ms ease all;
+	transform: rotate(3deg);
+	z-index: 2;
+	//
+
+	&:hover {
+		transform: rotate(4deg);
+		scale: 1.03;
+	}
+}
+.illu.bg {
+	// background-image: url('~/public/illutwo.png');
+	// background-position: right;
+	// background-size: contain;
+	// background-repeat: no-repeat;
+	// width: 350px;
+	// transition: 250ms ease all;
+	// transform: rotate(3deg);
+	// z-index: 2;
+	// animation: backgroundblur 5s ease infinite;
+
+	&:hover {
+		transform: rotate(4deg);
+		scale: 1.03;
+	}
+}
+@keyframes backgroundblur {
+	0% {
+		scale: 15;
+		filter: blur(10px);
+		opacity: 0.2;
+	}
+
+	100% {
+		scale: 15;
+		filter: blur(9.8);
+		opacity: 0.1;
 	}
 }

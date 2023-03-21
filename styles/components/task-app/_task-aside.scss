@@ -7,6 +7,8 @@ $nav-item-size: 48px;
 .todo {
 	aside {
 		display: flex;
+		z-index: 3;
+		height: 100vh;
 
 		span {
 			display: flex;
