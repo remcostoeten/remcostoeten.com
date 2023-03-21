@@ -1,5 +1,9 @@
 import { useState } from 'react';
-import { auth, signInWithPopup, GoogleAuthProvider } from '../firebase';
+import {
+	auth,
+	signInWithPopup,
+	GoogleAuthProvider,
+} from '../authentication/firebase';
 
 const Login = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);

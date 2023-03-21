@@ -1,5 +1,5 @@
 import React from 'react';
-import { db } from '@/firebase';
+import { db } from '@/authentication/firebase';
 import { collection, addDoc } from 'firebase/firestore';
 import { Description } from '@mui/icons-material';
 
@@ -30,8 +30,7 @@ export default function AddTodo({ addNewTodo }: AddTodoProps) {
 				/>
 			</div>
 			<div className='todo__task-section'>
-
-			<h4>description task</h4>
+				<h4>description task</h4>
 				<textarea
 					placeholder='description...'
 					value={description}

@@ -3015,31 +3015,106 @@ button {
   cursor: pointer;
 }
 
+.task-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  animation: fadeIn 0.3s;
+}
+.task-modal svg {
+  color: #131517;
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+}
+.task-modal__content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 500px;
+  padding: 20px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.task-modal__content h2 {
+  margin-bottom: 20px;
+}
+.task-modal__content input,
+.task-modal__content textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+.task-modal__content input:focus,
+.task-modal__content textarea:focus {
+  border-color: #a3d3ff;
+}
+.task-modal__content textarea {
+  min-height: 100px;
+  resize: none;
+}
+.task-modal__content span {
+  display: inline-block;
+  margin: 10px 0;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  user-select: none;
+}
+.task-modal__content span:hover {
+  background-color: #2980b9;
+}
+.task-modal__content svg {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+.task-modal__content svg:hover {
+  color: #999;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .tasks {
   display: flex;
   justify-content: space-between;
   width: 100%;
   align-items: baseline;
 }
-@media (min-width: 0px) and (max-width: 767px) {
-  .todo__inner {
-    flex-direction: column;
-  }
-}
 .dark-theme {
-  color: white;
+  color: #fff;
   background-color: #131517;
 }
 .dark-theme .header {
   background-color: #2a2b2f;
-  color: white;
+  color: #fff;
   box-shadow: none;
 }
 .dark-theme .header span,
 .dark-theme .header li,
 .dark-theme .header button,
 .dark-theme .header a {
-  color: white;
+  color: #fff;
 }
 .dark-theme .header__user {
   display: none;
@@ -3227,10 +3302,59 @@ form h3 {
 @foward "todo-cateogries";
 .todo aside {
   display: flex;
+}
+.todo aside span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+  background-color: transparent;
+  border-radius: 50%;
+  box-sizing: inherit;
+  padding: 8px;
+}
+.todo aside span:not(:last-child) {
+  margin-bottom: 8px;
+}
+.todo aside span.logo svg {
+  opacity: 1;
+}
+.todo aside span.active {
+  background-color: #323338;
+}
+.todo aside span.active svg {
+  opacity: 1;
+}
+.todo aside span:nth-child(odd) svg:hover {
+  transform: rotate(-3deg);
+}
+.todo aside svg {
+  font-size: 22px;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 250ms ease all;
+}
+.todo aside svg:hover {
+  color: #0092d2;
+  opacity: 1;
+  scale: 1.1;
+  transform: rotate(3deg);
+}
+.todo aside .nav {
+  display: flex;
   flex-direction: column;
-  background-color: #222327;
-  padding: 24px;
-  min-width: 25%;
+}
+.todo aside .nav__small {
+  display: flex;
+  padding: 24px 18px;
+  flex-direction: column;
+  background-color: #1c1d22;
+  flex: 1;
+  justify-content: space-between;
+  height: 100vh;
 }
 .todo aside h1 {
   font-size: 30px;
@@ -3379,6 +3503,18 @@ form h3 {
   transform: 250ms ease all;
   opacity: 0.5;
 }
+.toggle-view.grid {
+  opacity: 1;
+}
+.toggle-view.grid .list-view {
+  opacity: 0.5;
+}
+.toggle-view.list {
+  opacity: 1;
+}
+.toggle-view.list .board-view {
+  opacity: 0.5;
+}
 .toggle-view:after {
   content: "";
   width: 100%;
@@ -3399,15 +3535,15 @@ form h3 {
 }
 .toggle-view.grid:before {
   z-index: 2;
-  width: 120px;
+  width: 95px;
   background: white;
   left: 0;
 }
 .toggle-view.list:before {
   z-index: 3;
-  width: 120px;
+  width: 67px;
   background: white;
-  left: 120px;
+  left: 105px;
 }
 .toggle-view .view {
   display: flex;

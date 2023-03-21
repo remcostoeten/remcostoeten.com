@@ -22,9 +22,3 @@ $text-accent: #768396;
 		// color: $color-white;
 	}
 }
-
-@include mobile {
-	.todo__inner {
-		flex-direction: column;
-	}
-}

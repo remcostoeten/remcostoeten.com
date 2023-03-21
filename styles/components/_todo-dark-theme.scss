@@ -1,0 +1,26 @@
+.dark-theme {
+	color: $white;
+	background-color: $dark;
+
+	.header {
+		background-color: $dark-lighter;
+		color: $white;
+		box-shadow: none;
+
+		span,
+		li,
+		button,
+		a {
+			color: $white;
+		}
+
+		&__user {
+			display: none;
+		}
+	}
+
+	.todo {
+		box-shadow: none;
+		background-color: $dark-lighter;
+	}
+}
