@@ -141,9 +141,10 @@
 	}
 }
 
-@include below-desktop {
+@media (max-width: 1280px) {
 	.not-authorized {
-		padding: $space;
+		padding: 12px;
+		position: relative;
 		&__inner {
 			max-width: 100%;
 		}
@@ -155,5 +156,13 @@
 		h2 {
 			max-width: unset;
 		}
+	}
+
+	.todo__illustration {
+		right: 40px;
+		top: 0;
+		bottom: 0;
+		z-index: 10;
+		position: absolute;
 	}
 }
