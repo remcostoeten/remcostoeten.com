@@ -30,7 +30,6 @@ export default function AsideSmall({ view, isLoggedIn }: AsideSmallProps) {
 									height='32'
 									viewBox='0 0 36 32'
 									fill='none'
-									class='css-1170n61'>
 									<path
 										fill-rule='evenodd'
 										clip-rule='evenodd'
