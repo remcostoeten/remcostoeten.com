@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Friends from '@/components/Messenger/Friends';
-import Header from '@/components/Header/Header';
+// import Header from '@/components/Header/Header';
 import withAuth from '../withAuth';
 
 const MessengerPage = () => {
@@ -13,7 +13,7 @@ const MessengerPage = () => {
 
 	return (
 		<>
-			<Header />
+			{/* <Header /> */}
 			<div className='messenger'>
 				<aside className='messenger__friends'>
 					<h2>Inbox</h2>
