@@ -8,7 +8,6 @@ import {
 	doc,
 	updateDoc,
 } from '@firebase/firestore';
-import Header from '@/components/Header/Header';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
@@ -121,7 +120,6 @@ export default function TaskWrapper() {
 	};
 	return (
 		<>
-			<Header />
 			{/* <div className='container'><TaskCategories /></div> */}
 			<div className='todo'>
 				<div className='todo__inner'>
