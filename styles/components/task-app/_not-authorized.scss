@@ -1,12 +1,7 @@
 @use 'variables' as *;
 @use 'typography' as *;
 @use 'buttons' as *;
-
-#__next {
-	display: flex;
-	flex: 1;
-	height: 100vh;
-}
+@import '../../variables/responsive';
 
 .not-authorized {
 	display: flex;
@@ -132,5 +127,33 @@
 		scale: 15;
 		filter: blur(9.8);
 		opacity: 0.1;
+	}
+}
+@mixin below-desktop {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__l}) {
+		@content;
+	}
+}
+
+@media (max-width: 768px) {
+	.todo__illustration {
+		display: none;
+	}
+}
+
+@include below-desktop {
+	.not-authorized {
+		padding: $spacing;
+		&__inner {
+			max-width: 100%;
+		}
+
+		&__buttons {
+			flex-direction: column;
+		}
+
+		h2 {
+			max-width: unset;
+		}
 	}
 }

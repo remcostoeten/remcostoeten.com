@@ -3409,12 +3409,6 @@ form h3 {
     opacity: 1;
   }
 }
-#__next {
-  display: flex;
-  flex: 1;
-  height: 100vh;
-}
-
 .not-authorized {
   display: flex;
   align-items: center;
@@ -3528,6 +3522,25 @@ form h3 {
     scale: 15;
     filter: blur(9.8);
     opacity: 0.1;
+  }
+}
+@media (max-width: 768px) {
+  .todo__illustration {
+    display: none;
+  }
+}
+@media (min-width: 0px) and (max-width: 1024px) {
+  .not-authorized {
+    padding: 16px;
+  }
+  .not-authorized__inner {
+    max-width: 100%;
+  }
+  .not-authorized__buttons {
+    flex-direction: column;
+  }
+  .not-authorized h2 {
+    max-width: unset;
   }
 }
 .todo aside {
