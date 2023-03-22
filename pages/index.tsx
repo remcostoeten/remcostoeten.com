@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Header from '@/components/Header/Header';
 import Intro from '@/components/layout/Intro';
 import React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
@@ -143,7 +142,7 @@ export default function Home() {
 				<div className={`${variant} bg3`}></div>
 				<div className='content'></div>
 			</div>
-			<Header />
+			{/* <Header /> */}
 			<div className='container'>
 				<Intro />
 				<Intro />

@@ -1,4 +1,3 @@
-import Header from '@/components/Header/Header';
 import Intro from '@/components/layout/Intro';
 import React from 'react';
 export default function Home() {
@@ -16,7 +15,7 @@ export default function Home() {
 				<div className='dots'></div>
 				<div className='dots'></div>
 			</ul>
-			<Header />
+			{/* <Header /> */}
 			<div className='container'>
 				<Intro />
 			</div>
