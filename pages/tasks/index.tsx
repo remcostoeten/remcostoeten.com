@@ -7,30 +7,38 @@ import { CheckCircle, KeyboardBackspace } from '@mui/icons-material';
 import Link from 'next/link';
 import Image from 'next/image';
 import Lost from '@/components/Lost';
+import { GoogleAuthProvider, auth, signInWithPopup } from '@/utils/firebase';
 
 interface AsideSmallProps {
 	isLoggedIn: boolean;
 	view?: string;
 }
 
-export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
-	const [theme, setTheme] = useState('light'); // default theme is 'light'
-	const toggleTheme = () => {
-		setTheme(theme === 'light' ? 'dark' : 'light');
+export default function index() {
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const signIn = async () => {
+		try {
+			const result = await signInWithPopup(
+				auth,
+				new GoogleAuthProvider(),
+			);
+			setIsLoggedIn(true);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const signOut = async () => {
+		try {
+			await auth.signOut();
+			setIsLoggedIn(false);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 	return (
 		<>
 			<div className='todo'>
-				<div className='theme-switcher' onClick={toggleTheme}>
-					Switch to {theme === 'light' ? 'dark' : 'light'} theme
-				</div>
-				<div className='theme-switcher' onClick={toggleTheme}>
-					Switch to {theme === 'light' ? 'dark' : 'light'} theme
-				</div>
-				<div className='todo' data-theme={theme}>
-					{/* ... */}
-				</div>
-				<div className='todo'>{/* ... */}</div>
 				<div className='todo__inner'>
 					<AsideSmall isLoggedIn={isLoggedIn} view='someView' />
 					{isLoggedIn ? (
@@ -51,29 +59,6 @@ export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
 										obviously don't want another user to
 										edit your tasks, do you?
 									</p>
-
-									{/* <ul>
-										<li>
-											<CheckCircle />
-											Save your tasks and access them from
-											any device
-										</li>
-										<li>
-											<CheckCircle />
-											Set reminders for important tasks
-											and receive notifications*
-										</li>
-										<li>
-											<CheckCircle />
-											Categorize your tasks by project,
-											deadline, priority, or tag
-										</li>
-										<li>
-											<CheckCircle />
-											Collaborate with others on shared
-											tasks or projects*
-										</li>
-									</ul> */}
 									<div className='not-authorized__buttons'>
 										<div className='item item--arrow'>
 											<div
