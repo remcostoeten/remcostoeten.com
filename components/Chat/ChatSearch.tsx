@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
 import { mdiMagnify, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 
 interface ChatSearchProps {
 	searchResults: ChatMessage[];
@@ -200,32 +201,33 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 							)}
 							{searchTerm.length > 0 && results.length > 0 && (
 								<div className='search__results'>
-									{resultsToDisplay.map((index: number) => (
-										<>
-											<div
-												className='message'
-												key={index}
-												onClick={() =>
-													handleJumpTo(index)
-												}>
-												<span className='date'>
-													{new Date(
-														chatHistory[
+									{resultsToDisplay.map((index: number) => {
+										const formattedDate = moment(
+											chatHistory[index].timestamp,
+										).format('MM/DD/YYYY');
+										return (
+											<>
+												<div
+													className='message'
+													key={index}
+													onClick={() =>
+														handleJumpTo(index)
+													}>
+													<span className='date'>
+														{formattedDate}
+													</span>
+													<span>
+														{chatHistory[
 															index
-														].timestamp,
-													).toLocaleDateString()}
-												</span>
-												<span>
-													{chatHistory[
-														index
-													]?.message?.substring(
-														0,
-														50,
-													)}
-												</span>
-											</div>
-										</>
-									))}
+														]?.message?.substring(
+															0,
+															50,
+														)}
+													</span>
+												</div>
+											</>
+										);
+									})}
 								</div>
 							)}
 						</div>

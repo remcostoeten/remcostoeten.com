@@ -48,7 +48,7 @@ $nav-item-size: 48px;
 		}
 
 		svg {
-			font-size: 22px;
+			font-size: 28px;
 			color: $white;
 			opacity: 0.5;
 			cursor: pointer;
@@ -68,7 +68,7 @@ $nav-item-size: 48px;
 
 			&__small {
 				display: flex;
-				padding: 16px 8px;
+				padding: 16px 24px;
 				flex-direction: column;
 				background-color: $nav-background;
 				justify-content: space-between;

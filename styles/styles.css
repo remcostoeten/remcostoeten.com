@@ -3349,7 +3349,7 @@ form h3 {
 .todo h4,
 .todo h5,
 .todo h6 {
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .todo p {
@@ -3358,8 +3358,8 @@ form h3 {
 
 .cta {
   font-size: 16px;
-  color: #ffa048;
-  border: 2px solid #ffa048;
+  color: #21b7a9;
+  border: 2px solid #21b7a9;
   padding: 10px 30px;
   display: flex;
   align-items: baseline;
@@ -3396,7 +3396,7 @@ form h3 {
 }
 
 .cta.cta-two a {
-  color: #ffa048;
+  color: #21b7a9;
   text-decoration: none;
 }
 
@@ -3459,10 +3459,11 @@ form h3 {
   position: relative;
 }
 .not-authorized h2 {
-  color: #fff;
-  max-width: 270px;
+  color: #f9f9f9;
+  max-width: 370px;
   letter-spacing: 1.1px;
   margin: 0;
+  font-size: 32px;
   padding-bottom: 12px;
 }
 .not-authorized p,
@@ -3501,51 +3502,6 @@ form h3 {
 }
 .not-authorized ul {
   padding-bottom: 24px;
-}
-
-.todo__inner {
-  position: relative;
-  z-index: 2;
-}
-.todo__inner:after {
-  content: url("~/public/illutwo.png");
-  width: 350px;
-  transition: 250ms ease all;
-  transform: rotate(3deg);
-  z-index: 1;
-  animation: backgroundblur 999s ease infinite;
-}
-
-.todo__illustration {
-  background-image: url("~/public/illutwo.png");
-  background-position: right;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 350px;
-  transition: 250ms ease all;
-  transform: rotate(3deg);
-  z-index: 2;
-}
-.todo__illustration:hover {
-  transform: rotate(4deg);
-  scale: 1.03;
-}
-
-.illu {
-  background-image: url("~/public/illutwo.png");
-  background-position: right;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 350px;
-  transition: 250ms ease all;
-  transform: rotate(3deg);
-  z-index: 2;
-  filter: blur(8px);
-  animation: backgroundblur 5s ease infinite;
-}
-.illu:hover {
-  transform: rotate(4deg);
-  scale: 1.03;
 }
 
 @keyframes backgroundblur {
@@ -3587,13 +3543,162 @@ form h3 {
     position: absolute;
   }
 }
+.lost svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  transform: scale(0.5);
+}
+.lost [id^=plant-leaf-] {
+  animation: leaf 2s infinite ease-in-out;
+}
+.lost #plant-leaf-2 {
+  animation-delay: 0.5s;
+}
+.lost #plant-leaf-3 {
+  animation-delay: 0.75s;
+}
+.lost #plant-leaf-4 {
+  animation-delay: 1s;
+}
+@keyframes leaf {
+  0%, 100% {
+    transform-origin: 100% 100%;
+    transform: translateX(-129.4999px) translateY(-59.99983px) rotate(0);
+  }
+  50% {
+    transform: translateX(-129.4999px) translateY(-59.99983px) rotate(6deg);
+  }
+}
+.lost #bb1 {
+  animation: chat1 12s infinite ease-in-out;
+}
+.lost #bb2 {
+  animation: chat2 12s infinite ease-in-out;
+}
+.lost #bb3 {
+  animation: chat3 12s infinite ease-in-out;
+}
+.lost #bb4 {
+  animation: chat4 12s infinite ease-in-out;
+}
+@keyframes chat1 {
+  0%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  10%, 20% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  21% {
+    transform: translateY(450px);
+    opacity: 0;
+  }
+  30%, 40% {
+    transform: translateY(350px);
+    opacity: 1;
+  }
+  50%, 60% {
+    transform: translateY(176px);
+    opacity: 1;
+  }
+  70%, 80% {
+    transform: translateY(176px);
+    opacity: 1;
+  }
+}
+@keyframes chat2 {
+  0%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  10%, 20% {
+    transform: translateY(-176px);
+    opacity: 1;
+  }
+  30%, 40% {
+    transform: translateY(-356px);
+    opacity: 0;
+  }
+  41% {
+    transform: translateY(274px);
+    opacity: 0;
+  }
+  50%, 60% {
+    transform: translateY(174px);
+    opacity: 1;
+  }
+  70%, 80% {
+    transform: translateY(174px);
+    opacity: 1;
+  }
+}
+@keyframes chat3 {
+  0%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  10%, 20% {
+    transform: translateY(-176px);
+    opacity: 1;
+  }
+  30%, 40% {
+    transform: translateY(-342px);
+    opacity: 1;
+  }
+  50%, 60% {
+    transform: translateY(-528px);
+    opacity: 0;
+  }
+  61% {
+    transform: translateY(274px);
+    opacity: 0;
+  }
+  70%, 80% {
+    transform: translateY(174px);
+    opacity: 0;
+  }
+}
+@keyframes chat4 {
+  0%, 100% {
+    transform: translateY(-704px);
+    opacity: 0;
+  }
+  1% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10%, 20% {
+    transform: translateY(-176px);
+    opacity: 1;
+  }
+  30%, 40% {
+    transform: translateY(-342px);
+    opacity: 1;
+  }
+  50%, 60% {
+    transform: translateY(-528px);
+    opacity: 1;
+  }
+  70%, 80% {
+    transform: translateY(-528px);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(-704px);
+    opacity: 0;
+  }
+}
+
 .todo h1,
 .todo h2,
 .todo h3,
 .todo h4,
 .todo h5,
 .todo h6 {
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", sans-serif;
 }
 .todo p {
   font-family: "Raleway", sans-serif;
@@ -3605,7 +3710,7 @@ form h3 {
 .todo h4,
 .todo h5,
 .todo h6 {
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .todo p {
@@ -3614,8 +3719,8 @@ form h3 {
 
 .cta {
   font-size: 16px;
-  color: #ffa048;
-  border: 2px solid #ffa048;
+  color: #21b7a9;
+  border: 2px solid #21b7a9;
   padding: 10px 30px;
   display: flex;
   align-items: baseline;
@@ -3652,7 +3757,7 @@ form h3 {
 }
 
 .cta.cta-two a {
-  color: #ffa048;
+  color: #21b7a9;
   text-decoration: none;
 }
 
@@ -3717,10 +3822,11 @@ form h3 {
 }
 
 .not-authorized h2 {
-  color: #fff;
-  max-width: 270px;
+  color: #f9f9f9;
+  max-width: 370px;
   letter-spacing: 1.1px;
   margin: 0;
+  font-size: 32px;
   padding-bottom: 12px;
 }
 
@@ -3770,54 +3876,6 @@ form h3 {
   padding-bottom: 24px;
 }
 
-.todo__inner {
-  position: relative;
-  z-index: 2;
-}
-
-.todo__inner:after {
-  content: url("~/public/illutwo.png");
-  width: 350px;
-  transition: 250ms ease all;
-  transform: rotate(3deg);
-  z-index: 1;
-  animation: backgroundblur 999s ease infinite;
-}
-
-.todo__illustration {
-  background-image: url("~/public/illutwo.png");
-  background-position: right;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 350px;
-  transition: 250ms ease all;
-  transform: rotate(3deg);
-  z-index: 2;
-}
-
-.todo__illustration:hover {
-  transform: rotate(4deg);
-  scale: 1.03;
-}
-
-.illu {
-  background-image: url("~/public/illutwo.png");
-  background-position: right;
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 350px;
-  transition: 250ms ease all;
-  transform: rotate(3deg);
-  z-index: 2;
-  filter: blur(8px);
-  animation: backgroundblur 5s ease infinite;
-}
-
-.illu:hover {
-  transform: rotate(4deg);
-  scale: 1.03;
-}
-
 @keyframes backgroundblur {
   0% {
     scale: 15;
@@ -3855,6 +3913,163 @@ form h3 {
     bottom: 0;
     z-index: 10;
     position: absolute;
+  }
+}
+.lost svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  transform: scale(0.5);
+}
+
+.lost [id^=plant-leaf-] {
+  animation: leaf 2s infinite ease-in-out;
+}
+
+.lost #plant-leaf-2 {
+  animation-delay: 0.5s;
+}
+
+.lost #plant-leaf-3 {
+  animation-delay: 0.75s;
+}
+
+.lost #plant-leaf-4 {
+  animation-delay: 1s;
+}
+
+@keyframes leaf {
+  0%, 100% {
+    transform-origin: 100% 100%;
+    transform: translateX(-129.4999px) translateY(-59.99983px) rotate(0);
+  }
+  50% {
+    transform: translateX(-129.4999px) translateY(-59.99983px) rotate(6deg);
+  }
+}
+.lost #bb1 {
+  animation: chat1 12s infinite ease-in-out;
+}
+
+.lost #bb2 {
+  animation: chat2 12s infinite ease-in-out;
+}
+
+.lost #bb3 {
+  animation: chat3 12s infinite ease-in-out;
+}
+
+.lost #bb4 {
+  animation: chat4 12s infinite ease-in-out;
+}
+
+@keyframes chat1 {
+  0%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  10%, 20% {
+    transform: translateY(-150px);
+    opacity: 0;
+  }
+  21% {
+    transform: translateY(450px);
+    opacity: 0;
+  }
+  30%, 40% {
+    transform: translateY(350px);
+    opacity: 1;
+  }
+  50%, 60% {
+    transform: translateY(176px);
+    opacity: 1;
+  }
+  70%, 80% {
+    transform: translateY(176px);
+    opacity: 1;
+  }
+}
+@keyframes chat2 {
+  0%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  10%, 20% {
+    transform: translateY(-176px);
+    opacity: 1;
+  }
+  30%, 40% {
+    transform: translateY(-356px);
+    opacity: 0;
+  }
+  41% {
+    transform: translateY(274px);
+    opacity: 0;
+  }
+  50%, 60% {
+    transform: translateY(174px);
+    opacity: 1;
+  }
+  70%, 80% {
+    transform: translateY(174px);
+    opacity: 1;
+  }
+}
+@keyframes chat3 {
+  0%, 90% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  10%, 20% {
+    transform: translateY(-176px);
+    opacity: 1;
+  }
+  30%, 40% {
+    transform: translateY(-342px);
+    opacity: 1;
+  }
+  50%, 60% {
+    transform: translateY(-528px);
+    opacity: 0;
+  }
+  61% {
+    transform: translateY(274px);
+    opacity: 0;
+  }
+  70%, 80% {
+    transform: translateY(174px);
+    opacity: 0;
+  }
+}
+@keyframes chat4 {
+  0%, 100% {
+    transform: translateY(-704px);
+    opacity: 0;
+  }
+  1% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10%, 20% {
+    transform: translateY(-176px);
+    opacity: 1;
+  }
+  30%, 40% {
+    transform: translateY(-342px);
+    opacity: 1;
+  }
+  50%, 60% {
+    transform: translateY(-528px);
+    opacity: 1;
+  }
+  70%, 80% {
+    transform: translateY(-528px);
+    opacity: 1;
+  }
+  90% {
+    transform: translateY(-704px);
+    opacity: 0;
   }
 }
 .todo aside {
@@ -3890,7 +4105,7 @@ form h3 {
   transform: rotate(-3deg);
 }
 .todo aside svg {
-  font-size: 22px;
+  font-size: 28px;
   color: white;
   opacity: 0.5;
   cursor: pointer;
@@ -3908,7 +4123,7 @@ form h3 {
 }
 .todo aside .nav__small {
   display: flex;
-  padding: 16px 8px;
+  padding: 16px 24px;
   flex-direction: column;
   background-color: #1c1d22;
   justify-content: space-between;

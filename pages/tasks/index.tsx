@@ -5,6 +5,8 @@ import AsideSmall from '@/components/Task/AsideSmall';
 import AsideBig from '@/components/Task/AsideBig';
 import { CheckCircle, KeyboardBackspace } from '@mui/icons-material';
 import Link from 'next/link';
+import Image from 'next/image';
+import Lost from '@/components/Lost';
 
 interface AsideSmallProps {
 	isLoggedIn: boolean;
@@ -78,8 +80,10 @@ export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
 										organizing your tasks today!
 									</p>
 								</div>
-							</div>
-							<div className='todo__illustration'></div>
+								<div className='lost'>
+									<Lost />
+								</div>{' '}
+							</div>{' '}
 						</>
 					)}
 				</div>
