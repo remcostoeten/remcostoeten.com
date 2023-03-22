@@ -1,5 +1,5 @@
 import TaskWrapper from '@/components/Task/TaskWrapper';
-import React from 'react';
+import React, { useState } from 'react';
 import { signIn, signOut } from '@/utils/LoginLogic';
 import AsideSmall from '@/components/Task/AsideSmall';
 import AsideBig from '@/components/Task/AsideBig';
@@ -14,9 +14,23 @@ interface AsideSmallProps {
 }
 
 export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
+	const [theme, setTheme] = useState('light'); // default theme is 'light'
+	const toggleTheme = () => {
+		setTheme(theme === 'light' ? 'dark' : 'light');
+	};
 	return (
 		<>
 			<div className='todo'>
+				<div className='theme-switcher' onClick={toggleTheme}>
+					Switch to {theme === 'light' ? 'dark' : 'light'} theme
+				</div>
+				<div className='theme-switcher' onClick={toggleTheme}>
+					Switch to {theme === 'light' ? 'dark' : 'light'} theme
+				</div>
+				<div className='todo' data-theme={theme}>
+					{/* ... */}
+				</div>
+				<div className='todo'>{/* ... */}</div>
 				<div className='todo__inner'>
 					<AsideSmall isLoggedIn={isLoggedIn} view='someView' />
 					{isLoggedIn ? (
@@ -27,14 +41,18 @@ export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
 						<>
 							<div className='not-authorized'>
 								<div className='not-authorized__inner'>
-									<h2>Oops! Not authorized for this page.</h2>
+									<h2>
+										Oops! Not authorized<br></br>for this
+										page.
+									</h2>
 									<p>
-										You should be logged in in order to use
-										the task/to-do app. You obviously don't
-										want another user to edit your tasks, do
-										you?
+										You should be logged in in order to use{' '}
+										the task/to-do app.<br></br> You
+										obviously don't want another user to
+										edit your tasks, do you?
 									</p>
-									<ul>
+
+									{/* <ul>
 										<li>
 											<CheckCircle />
 											Save your tasks and access them from
@@ -55,7 +73,7 @@ export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
 											Collaborate with others on shared
 											tasks or projects*
 										</li>
-									</ul>
+									</ul> */}
 									<div className='not-authorized__buttons'>
 										<div className='item item--arrow'>
 											<div
@@ -74,16 +92,13 @@ export default function index({ isLoggedIn }: { isLoggedIn: boolean }) {
 											</div>
 										</div>
 									</div>
-									<p>
-										Don't miss out on the benefits of using
-										our app. Please log in to start
-										organizing your tasks today!
-									</p>
 								</div>
 								<div className='lost'>
-									<Lost />
-								</div>{' '}
-							</div>{' '}
+									<div className='lost__animation'>
+										<Lost />
+									</div>
+								</div>
+							</div>
 						</>
 					)}
 				</div>
