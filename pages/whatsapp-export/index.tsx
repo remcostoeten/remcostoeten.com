@@ -129,7 +129,7 @@ const ChatHistory: React.FC = () => {
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
 				chatHistory={chatHistory}
-				searchResults={''}
+				searchResults={searchResults}
 			/>
 
 			<div className='chat'>
