@@ -1,5 +1,4 @@
 @use 'typography' as *;
-@use 'buttons' as *;
 @import '../../variables/responsive';
 $off-white: #f9f9f9;
 
@@ -10,7 +9,6 @@ $space: 12px;
 	padding: 80px;
 
 	&__inner {
-		max-width: 500px;
 		z-index: 3;
 		position: relative;
 	}
@@ -50,7 +48,7 @@ $space: 12px;
 			transition: 250ms ease all;
 
 			&:hover {
-				color: #ffa048;
+				color: #7a44fd;
 			}
 		}
 	}
@@ -91,12 +89,6 @@ $space: 12px;
 	}
 }
 
-@media (max-width: 768px) {
-	.todo__illustration {
-		display: none;
-	}
-}
-
 @media (max-width: 1280px) {
 	.not-authorized {
 		padding: 12px;
@@ -122,6 +114,7 @@ $space: 12px;
 		position: absolute;
 	}
 }
+
 .lost {
 	svg {
 		display: block;

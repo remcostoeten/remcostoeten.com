@@ -8,7 +8,7 @@ import { Mail, WhatsApp } from '@mui/icons-material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { motion } from 'framer-motion';
 import BlinkingArrow from '@/components/ui-elements/BlinkingArrow';
-// import Header from '@/components/Header/Header';
+import Header from '../components/Header/Header';
 export default function Home() {
 	const [variant, setVariant] = useState('theme--variant');
 
@@ -117,7 +117,7 @@ export default function Home() {
 	];
 	return (
 		<>
-			{/* <Header /> */}
+			<Header />
 			<div className='speeddial'>
 				<SpeedDial
 					ariaLabel='Change color palette'
