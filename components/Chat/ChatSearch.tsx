@@ -1,25 +1,15 @@
 import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
-import {
-	mdiMagnify,
-	mdiCloseCircleOutline,
-	mdiClose,
-	mdiSearchWeb,
-	mdiCarSearch,
-	mdiSeatReclineExtra,
-	mdiMapSearch,
-	mdiTextSearch,
-} from '@mdi/js';
+import { mdiMagnify, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
 
 interface ChatSearchProps {
+	searchResults: ChatMessage[];
 	onSearch: (term: string) => void;
-	searchResults: string;
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;
 }
-
 const ChatSearch: React.FC<ChatSearchProps> = ({
 	onSearch,
 	searchResults,
@@ -29,8 +19,8 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const [numResultsDisplayed, setNumResultsDisplayed] = useState(5); // state variable to keep track of number of results displayed
-	const [isMobile, setIsMobile] = useState(false); // state variable to keep track if the user is on a mobile device
+	const [numResultsDisplayed, setNumResultsDisplayed] = useState(5);
+	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {
 		setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
@@ -57,10 +47,8 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	};
 
 	const handleJumpTo = (index: number) => {
-		// Close the search panel
-		setShowChatInput(false);
+		setSearchOpen(false);
 
-		// Scroll to the target message element
 		const messageElement = document.getElementById(`chat-message-${index}`);
 		if (messageElement) {
 			messageElement.scrollIntoView({ behavior: 'smooth' });
@@ -114,18 +102,10 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		searchTerm.length === 1 ? (
 			<div className='search__total-results'>
 				A total of {results.length} results found for {searchTerm}
-				{showMoreButton}
 			</div>
 		) : null;
 
-	const resultsToDisplay = results.slice(0, numResultsDisplayed); // slice the results array to display only the specified number of results
-
-	const handleResultClick = (indexToRemove: number) => {
-		const newResults = resultsToDisplay.filter(
-			(index) => index !== indexToRemove,
-		);
-		setNumResultsDisplayed(newResults.length);
-	};
+	const resultsToDisplay = results.slice(0, numResultsDisplayed);
 
 	const searchResultItems = resultsToDisplay.map((index) => (
 		<div
@@ -135,6 +115,13 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			{chatHistory[index].message}
 		</div>
 	));
+
+	const handleResultClick = (indexToRemove: number) => {
+		const newResults = resultsToDisplay.filter(
+			(index) => index !== indexToRemove,
+		);
+		setNumResultsDisplayed(newResults.length);
+	};
 
 	return (
 		<>
