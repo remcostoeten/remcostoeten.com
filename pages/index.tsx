@@ -8,6 +8,7 @@ import { Mail, WhatsApp } from '@mui/icons-material';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import { motion } from 'framer-motion';
 import BlinkingArrow from '@/components/ui-elements/BlinkingArrow';
+import Header from '@/components/header/Header';
 export default function Home() {
 	const [variant, setVariant] = useState('theme--variant');
 
@@ -142,7 +143,7 @@ export default function Home() {
 				<div className={`${variant} bg3`}></div>
 				<div className='content'></div>
 			</div>
-			{/* <Header /> */}
+			<Header />
 			<div className='container'>
 				<Intro />
 				<Intro />
