@@ -15,7 +15,6 @@ interface AsideSmallProps {
 }
 
 export default function index() {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const signIn = async () => {
 		try {
 			const result = await signInWithPopup(
