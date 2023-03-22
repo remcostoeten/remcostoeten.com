@@ -1,4 +1,3 @@
-import { ChatMessage } from '@/types';
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
 import {

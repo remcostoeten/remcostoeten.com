@@ -1,4 +1,3 @@
-import FeatureStory from '@/components/Chat/Article';
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
