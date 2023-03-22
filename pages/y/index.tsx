@@ -3,11 +3,13 @@
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import Image from 'next/image';
-import { getDownloadURL, ref } from 'firebase/storage';
-import { storage } from '@/utils/firebase';
+import { getDownloadURL } from 'firebase/storage';
+import { storage, database } from '@/utils/firebase';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This is the default Lightbox stylesheet.
 import Header from '@/components/Header/Header';
+import { ref as storageRef } from 'firebase/storage';
+import { ChatMessage } from '@/types';
 
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
@@ -15,12 +17,6 @@ interface ChatSearchProps {
 	onJumpTo: (message: ChatMessage) => void;
 	chatHistory: ChatMessage[];
 }
-type ChatMessage = {
-	name: string;
-	message: string;
-	timestamp: Date;
-	image?: string;
-};
 
 interface ChatHistoryProps {
 	pageSize: number;
@@ -42,8 +38,9 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 	async function fetchChatHistoryFromStorage() {
 		try {
 			const chatHistoryUrl = await getDownloadURL(
-				ref(storage, '/y.json'),
+				storageRef(storage, '/y.json'),
 			);
+
 			const response = await fetch(chatHistoryUrl);
 			const chatHistoryData = await response.json();
 			return chatHistoryData;
@@ -181,53 +178,55 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 													<b>{message.name}:</b>
 													{message.message}
 												</div>
-												{message.image && (
-													<div
-														onClick={() => {
-															setIsViewerOpen(
-																true,
-															);
-															setCurrentImageIndex(
-																index,
-															);
-														}}>
-														<img
-															src={`/private-images/img/y/${message.image.slice(
-																0,
-																message.image.lastIndexOf(
-																	'.',
-																),
-															)}.jpg`}
-															alt={message.name}
-															width={300}
-															height={300}
-														/>
-
-														{isViewerOpen && (
-															<Lightbox
-																mainSrc={`/private-images/img/y/${message.image.slice(
+												{message.image &&
+													typeof message.image ===
+														'string' && (
+														<div
+															onClick={() => {
+																setIsViewerOpen(
+																	true,
+																);
+																setCurrentImageIndex(
+																	index,
+																);
+															}}>
+															<img
+																src={`/private-images/img/y/${message.image.slice(
 																	0,
 																	message.image.lastIndexOf(
 																		'.',
 																	),
 																)}.jpg`}
-																onCloseRequest={() =>
-																	setIsViewerOpen(
-																		false,
-																	)
-																}
-																enableZoom={
-																	false
-																}
-																reactModalStyle={{
-																	overlay: {
-																		zIndex: 1000,
-																	},
-																}} // Adjust the zIndex value according to your needs.
+																alt={message.name.toString()}
+																width={300}
+																height={300}
 															/>
-														)}
-													</div>
-												)}
+															{isViewerOpen && (
+																<Lightbox
+																	mainSrc={`/private-images/img/y/${message.image.slice(
+																		0,
+																		message.image.lastIndexOf(
+																			'.',
+																		),
+																	)}.jpg`}
+																	onCloseRequest={() =>
+																		setIsViewerOpen(
+																			false,
+																		)
+																	}
+																	enableZoom={
+																		false
+																	}
+																	reactModalStyle={{
+																		overlay:
+																			{
+																				zIndex: 1000,
+																			},
+																	}} // Adjust the zIndex value according to your needs.
+																/>
+															)}
+														</div>
+													)}
 											</span>
 										</div>
 									</div>

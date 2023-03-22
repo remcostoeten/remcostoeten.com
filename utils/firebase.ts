@@ -1,6 +1,8 @@
 import { initializeApp } from '@firebase/app';
 import { getFirestore } from '@firebase/firestore';
 import { getStorage } from 'firebase/storage';
+import { getDatabase } from 'firebase/database';
+
 import {
 	getAuth,
 	signInWithPopup,
@@ -23,6 +25,7 @@ const db = getFirestore(app);
 
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
+const database = getDatabase(app);
 
 const singInWithGoogle = () => {
 	console.log('signing in with google');
@@ -64,4 +67,5 @@ export {
 	logout,
 	signInWithPopup,
 	GoogleAuthProvider,
+	database,
 };
