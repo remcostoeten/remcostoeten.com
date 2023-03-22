@@ -5,7 +5,6 @@ import ChatSearch from '@/components/Chat/ChatSearch';
 import Image from 'next/image';
 import { getDownloadURL } from 'firebase/storage';
 import { storage, database } from '@/utils/firebase';
-import Header from '@/components/Header/Header';
 import { ref as storageRef } from 'firebase/storage';
 import { ChatMessage } from '@/types';
 
@@ -144,7 +143,6 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 	);
 	return (
 		<>
-			<Header />
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
