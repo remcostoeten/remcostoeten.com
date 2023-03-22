@@ -1,3 +1,5 @@
+/* eslint-disable @next/next/no-img-element */
+/* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import Image from 'next/image';
@@ -186,15 +188,26 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 																index,
 															);
 														}}>
-														<Image
-															src={`/private-images/img/y/${message.image}`}
+														<img
+															src={`/private-images/img/y/${message.image.slice(
+																0,
+																message.image.lastIndexOf(
+																	'.',
+																),
+															)}.jpg`}
 															alt={message.name}
 															width={300}
 															height={300}
 														/>
+
 														{isViewerOpen && (
 															<Lightbox
-																mainSrc={`/private-images/img/y/${message.image}`}
+																mainSrc={`/private-images/img/y/${message.image.slice(
+																	0,
+																	message.image.lastIndexOf(
+																		'.',
+																	),
+																)}.jpg`}
 																onCloseRequest={() =>
 																	setIsViewerOpen(
 																		false,
@@ -265,10 +278,10 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 												width={300}
 												height={300}
 											/>
-											<div className='chat__sender'>
-												{message.name}
-											</div>
 											<div className='chat__message'>
+												<span className='chat__sender'>
+													{message.name}
+												</span>{' '}
 												{message.message}
 											</div>
 										</span>
