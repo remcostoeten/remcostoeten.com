@@ -9,7 +9,6 @@ import { storage } from '@/utils/firebase';
 
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
-	searchResults: string;
 	onJumpTo: (message: ChatMessage) => void;
 	chatHistory: ChatMessage[];
 }
@@ -81,19 +80,17 @@ const ChatHistory: React.FC = () => {
 		}
 	};
 
-	const handleJumpTo = (message?: ChatMessage) => {
-		const index =
-			message && message.timestamp
-				? chatHistory.findIndex(
-						(m) => m.timestamp === message.timestamp,
-				  )
-				: -1;
+	const handleJumpTo = (message: ChatMessage) => {
+		const index = chatHistory.findIndex(
+			(chatMessage) =>
+				chatMessage.timestamp.getTime() === message.timestamp.getTime(),
+		);
+
 		const messageElement = document.getElementById(`chat-message-${index}`);
 		if (messageElement) {
 			messageElement.scrollIntoView({ behavior: 'smooth' });
 		}
 	};
-
 	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
 
 	useEffect(() => {
@@ -140,32 +137,37 @@ const ChatHistory: React.FC = () => {
 							.map((message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
-										message.message
+										message.name
 											.toLowerCase()
-											.includes('Yvette')
+											.includes('yv')
 											? 'bubble__second-person y'
 											: ''
 									}`}
 									key={message.timestamp.getTime()}>
 									<div id={`chat-message-${index}`}>
-										<p>
+										<div className='space-bubble'>
 											<span>
-												{message.image && (
-													<Image
-														width={100}
-														height={100}
-														src={`/private-apis/img//y/${message.image}`}
-														alt=''
-													/>
-												)}
 												<div className='chat__sender'>
 													{message.name}
 												</div>
 												<div className='chat__message'>
 													{message.message}
 												</div>
+												{message.image && (
+													<div className='chat__image'>
+														<img
+															src={`/private-images/img/y/${message.image.slice(
+																0,
+																-1,
+															)}`}
+															alt={message.name}
+															width={300}
+															height={300}
+														/>
+													</div>
+												)}
 											</span>
-										</p>
+										</div>
 									</div>
 								</div>
 							))}
@@ -176,13 +178,10 @@ const ChatHistory: React.FC = () => {
 							(message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
-										(
-											message.sender?.toLowerCase() ?? ''
-										).includes(
-											process.env
-												.NEXT_PUBLIC_CHAT_THREE ?? '',
-										)
-											? 'bubble__second-person'
+										message.name
+											.toLowerCase()
+											.includes('yv')
+											? 'bubble__second-person y'
 											: ''
 									}`}
 									key={message.timestamp.getTime()}
@@ -194,6 +193,8 @@ const ChatHistory: React.FC = () => {
 												<Image
 													src='/apiprivate/compressed/{message.image}'
 													alt={''}
+													width={300}
+													height={300}
 												/>
 												<div className='chat__sender'>
 													{message.name}

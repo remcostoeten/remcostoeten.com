@@ -25,6 +25,14 @@ $light-bg: #313646;
 .chat-ui {
 	background: $dark-background;
 
+	&.scrolled {
+		.chat {
+			img {
+				all: unset !important;
+			}
+		}
+	}
+
 	.header {
 		margin-bottom: $spacing;
 	}

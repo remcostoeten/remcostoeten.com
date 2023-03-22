@@ -1915,6 +1915,9 @@ nav a:hover {
 .chat-ui {
   background: #2e2f3e;
 }
+.chat-ui.scrolled .chat img {
+  all: unset !important;
+}
 .chat-ui .header {
   margin-bottom: 24px;
 }

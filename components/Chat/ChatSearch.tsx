@@ -57,25 +57,14 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	};
 
 	const handleJumpTo = (index: number) => {
-		// Check if the clicked message index is still included in the search results
-		if (results.includes(index)) {
-			// Get all message elements
-			const messageElements = document.getElementsByClassName('message');
+		// Close the search panel
+		setShowChatInput(false);
 
-			// Find the clicked message element using the index
-			const messageElement = Array.from(messageElements).find(
-				(element) =>
-					element.getAttribute('data-index') === index.toString(),
-			);
-
-			// If the element is found, add a CSS class to it
-			if (messageElement) {
-				messageElement.classList.add('selected');
-			}
+		// Scroll to the target message element
+		const messageElement = document.getElementById(`chat-message-${index}`);
+		if (messageElement) {
+			messageElement.scrollIntoView({ behavior: 'smooth' });
 		}
-
-		// Call the onJumpTo function with the clicked message index
-		onJumpTo(index);
 	};
 
 	const handleClose = () => {
@@ -137,14 +126,16 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		);
 		setNumResultsDisplayed(newResults.length);
 	};
+
 	const searchResultItems = resultsToDisplay.map((index) => (
 		<div
 			className='search__result-item'
 			key={index}
-			onClick={() => handleResultClick(index)}>
+			onClick={() => handleJumpTo(index)}>
 			{chatHistory[index].message}
 		</div>
 	));
+
 	return (
 		<>
 			<div className='chat-header sticky'>
