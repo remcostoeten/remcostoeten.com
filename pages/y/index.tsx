@@ -7,6 +7,7 @@ import { getDownloadURL, ref } from 'firebase/storage';
 import { storage } from '@/utils/firebase';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This is the default Lightbox stylesheet.
+import Header from '@/components/Header/Header';
 
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
@@ -69,6 +70,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
+		document.body.classList.add('private-chat');
 		return () => {
 			document.body.classList.remove('chat-ui');
 		};
@@ -147,6 +149,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 	);
 	return (
 		<>
+			<Header />
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
@@ -169,13 +172,13 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 											: ''
 									}`}
 									key={message.timestamp.getTime()}>
-									<div id={`chat-message-${index}`}>
+									<div
+										className='unique'
+										id={`unique chat-message-${index}`}>
 										<div className='space-bubble'>
 											<span>
-												<div className='chat__sender'>
-													{message.name}
-												</div>
 												<div className='chat__message'>
+													<b>{message.name}:</b>
 													{message.message}
 												</div>
 												{message.image && (
@@ -270,21 +273,17 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 									}`}
 									key={message.timestamp.getTime()}
 									onClick={() => handleJumpTo(message)}>
-									<div>
-										<span>
-											<Image
-												src={`/apiprivate/compressed/${message.image}`}
-												alt={''}
-												width={300}
-												height={300}
-											/>
-											<div className='chat__message'>
-												<span className='chat__sender'>
-													{message.name}
-												</span>{' '}
-												{message.message}
-											</div>
-										</span>
+									<Image
+										src={`/apiprivate/compressed/${message.image}`}
+										alt={''}
+										width={300}
+										height={300}
+									/>
+									<div className='chat__message'>
+										<span className='chat__sender'>
+											{message.name}
+										</span>{' '}
+										{message.message}
 									</div>
 								</div>
 							),
