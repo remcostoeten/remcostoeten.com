@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { auth, singInWithGoogle } from '../../utils/firebase';
+import { auth, singInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
-import Login from '../Login';
-import PersonIcon from '@mui/icons-material/Person';
 import { Logout } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';

@@ -4,6 +4,8 @@ import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 import Image from 'next/image';
 import withAuth from '../withAuth';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '@/utils/firebase';
 
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
@@ -15,6 +17,20 @@ interface ChatSearchProps {
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+
+	async function fetchChatHistoryFromStorage() {
+		try {
+			const chatHistoryUrl = await getDownloadURL(
+				ref(storage, '/y.json'),
+			);
+			const response = await fetch(chatHistoryUrl);
+			const chatHistoryData = await response.json();
+			return chatHistoryData;
+		} catch (error) {
+			console.error('Error fetching chat history:', error);
+			return [];
+		}
+	}
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -40,14 +56,18 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('../../private-apis/data/y.json');
-		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
-			(chatMessage) => ({
-				...chatMessage,
-				timestamp: new Date(chatMessage.timestamp),
-			}),
-		);
-		setChatHistory(messageHistory);
+		const fetchChatHistory = async () => {
+			const chatHistoryData = await fetchChatHistoryFromStorage();
+			const messageHistory: ChatMessage[] = chatHistoryData.map(
+				(chatMessage: any) => ({
+					...chatMessage,
+					timestamp: new Date(chatMessage.timestamp),
+				}),
+			);
+			setChatHistory(messageHistory);
+		};
+
+		fetchChatHistory();
 	}, []);
 
 	const handleSearch = (term: string) => {
@@ -156,13 +176,12 @@ const ChatHistory: React.FC = () => {
 							(message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
-										message.sender
-											.toLowerCase()
-											.includes(
-												process.env
-													.NEXT_PUBLIC_CHAT_THREE ??
-													'',
-											)
+										(
+											message.sender?.toLowerCase() ?? ''
+										).includes(
+											process.env
+												.NEXT_PUBLIC_CHAT_THREE ?? '',
+										)
 											? 'bubble__second-person'
 											: ''
 									}`}

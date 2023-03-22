@@ -1,7 +1,6 @@
 import { initializeApp } from '@firebase/app';
 import { getFirestore } from '@firebase/firestore';
-import firebase from 'firebase/compat';
-
+import { getStorage } from 'firebase/storage';
 import {
 	getAuth,
 	signInWithPopup,
@@ -10,13 +9,13 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-apiKey: "AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es",
-  authDomain: "task-41e05.firebaseapp.com",
-  projectId: "task-41e05",
-  storageBucket: "task-41e05.appspot.com",
-  messagingSenderId: "482137951796",
-  appId: "1:482137951796:web:c64e6f41ad5d0e60b28461",
-  measurementId: "G-STSWFTFM63"
+	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',
+	authDomain: 'task-41e05.firebaseapp.com',
+	projectId: 'task-41e05',
+	storageBucket: 'task-41e05.appspot.com',
+	messagingSenderId: '482137951796',
+	appId: '1:482137951796:web:c64e6f41ad5d0e60b28461',
+	measurementId: 'G-STSWFTFM63',
 };
 
 const app = initializeApp(firebaseConfig);
@@ -55,9 +54,12 @@ const logout = () => {
 		});
 };
 
+const storage = getStorage();
+
 export {
 	db,
 	auth,
+	storage,
 	singInWithGoogle,
 	logout,
 	signInWithPopup,

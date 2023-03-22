@@ -1,9 +1,9 @@
-@use 'variables' as *;
 @use 'typography' as *;
 @use 'buttons' as *;
 @import '../../variables/responsive';
+$off-white: #f9f9f9;
 
-
+$space: 12px;
 .not-authorized {
 	display: flex;
 	align-items: center;
@@ -27,10 +27,8 @@
 	p,
 	li {
 		color: $off-white;
-	
-		// font-family: $font-family-open-sans;
 		font-size: 14px;
-		padding-bottom: $spacing;
+		padding-bottom: 12px;
 	}
 
 	ul,

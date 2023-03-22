@@ -3,6 +3,9 @@ import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 import Image from 'next/image';
+import { storage } from '@/utils/firebase';
+import { getDownloadURL, ref } from 'firebase/storage';
+
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -14,12 +17,26 @@ const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 
+	async function fetchChatHistoryFromStorage() {
+		try {
+			const chatHistoryUrl = await getDownloadURL(
+				ref(storage, '/ChatHistory.json'),
+			);
+			const response = await fetch(chatHistoryUrl);
+			const chatHistoryData = await response.json();
+			return chatHistoryData;
+		} catch (error) {
+			console.error('Error fetching chat history:', error);
+			return [];
+		}
+	}
+
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 0) {
 				document.body.classList.add('scrolled');
 			} else {
-				 document.body.classList.remove('scrolled');
+				document.body.classList.remove('scrolled');
 			}
 		};
 
@@ -38,14 +55,18 @@ const ChatHistory: React.FC = () => {
 	}, []);
 
 	useEffect(() => {
-		const chatHistoryRaw: any[] = require('./ChatHistory.json');
-		const messageHistory: ChatMessage[] = chatHistoryRaw.map(
-			(chatMessage) => ({
-				...chatMessage,
-				timestamp: new Date(chatMessage.timestamp),
-			}),
-		);
-		setChatHistory(messageHistory);
+		const fetchChatHistory = async () => {
+			const chatHistoryData = await fetchChatHistoryFromStorage();
+			const messageHistory: ChatMessage[] = chatHistoryData.map(
+				(chatMessage: any) => ({
+					...chatMessage,
+					timestamp: new Date(chatMessage.timestamp),
+				}),
+			);
+			setChatHistory(messageHistory);
+		};
+
+		fetchChatHistory();
 	}, []);
 
 	const handleSearch = (term: string) => {
@@ -126,7 +147,7 @@ const ChatHistory: React.FC = () => {
 									}`}
 									key={message.timestamp.getTime()}>
 									<div id={`chat-message-${index}`}>
-										<p>
+										<div className='space-bubble'>
 											<span>
 												{message.image && (
 													<Image
@@ -141,7 +162,7 @@ const ChatHistory: React.FC = () => {
 													{message.message}
 												</div>
 											</span>
-										</p>
+										</div>
 									</div>
 								</div>
 							),
