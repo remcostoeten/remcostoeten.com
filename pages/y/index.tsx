@@ -5,8 +5,6 @@ import ChatSearch from '@/components/Chat/ChatSearch';
 import Image from 'next/image';
 import { getDownloadURL } from 'firebase/storage';
 import { storage, database } from '@/utils/firebase';
-import Lightbox from 'react-image-lightbox';
-import 'react-image-lightbox/style.css'; // This is the default Lightbox stylesheet.
 import Header from '@/components/Header/Header';
 import { ref as storageRef } from 'firebase/storage';
 import { ChatMessage } from '@/types';
@@ -201,30 +199,6 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 																width={300}
 																height={300}
 															/>
-															{isViewerOpen && (
-																<Lightbox
-																	mainSrc={`/private-images/img/y/${message.image.slice(
-																		0,
-																		message.image.lastIndexOf(
-																			'.',
-																		),
-																	)}.jpg`}
-																	onCloseRequest={() =>
-																		setIsViewerOpen(
-																			false,
-																		)
-																	}
-																	enableZoom={
-																		false
-																	}
-																	reactModalStyle={{
-																		overlay:
-																			{
-																				zIndex: 1000,
-																			},
-																	}} // Adjust the zIndex value according to your needs.
-																/>
-															)}
 														</div>
 													)}
 											</span>
