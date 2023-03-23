@@ -82,13 +82,11 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	}, []);
 
 	const showMoreButton = results.length > numResultsDisplayed && (
-		<>
-			<a
-				className='btn--results'
-				onClick={() => setNumResultsDisplayed(numResultsDisplayed + 5)}>
-				<span>Show 5 More</span>
-			</a>
-		</>
+		<a
+			className='btn--results'
+			onClick={() => setNumResultsDisplayed(numResultsDisplayed + 5)}>
+			<span>Show 5 More</span>
+		</a>
 	);
 	const showLessResults =
 		numResultsDisplayed > 5 ? (
@@ -99,23 +97,19 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			</a>
 		) : null;
 
-	const searchResultsDisplay =
-		searchTerm.length === 1 ? (
-			<div className='search__total-results'>
-				A total of {results.length} results found for {searchTerm}
-			</div>
-		) : null;
+	const searchResultItems =
+		results.length > 0
+			? results.slice(0, numResultsDisplayed).map((index) => (
+					<div
+						className='search__result-item'
+						key={index}
+						onClick={() => handleJumpTo(index)}>
+						{chatHistory[index].message}
+					</div>
+			  ))
+			: null;
 
 	const resultsToDisplay = results.slice(0, numResultsDisplayed);
-
-	const searchResultItems = resultsToDisplay.map((index) => (
-		<div
-			className='search__result-item'
-			key={index}
-			onClick={() => handleJumpTo(index)}>
-			{chatHistory[index].message}
-		</div>
-	));
 
 	const handleResultClick = (indexToRemove: number) => {
 		const newResults = resultsToDisplay.filter(
@@ -204,7 +198,9 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 									{resultsToDisplay.map((index: number) => {
 										const formattedDate = moment(
 											chatHistory[index].timestamp,
-										).format('MM/DD/YYYY');
+											'DD/MM/YYYY, HH:mm:ss',
+										).format('MM/DD/YYYY hh:mm A');
+
 										return (
 											<>
 												<div

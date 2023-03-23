@@ -84,7 +84,6 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 			);
 			setChatHistory(messageHistory);
 		};
-
 		fetchChatHistory();
 	}, []);
 
