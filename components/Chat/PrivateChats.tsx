@@ -8,8 +8,6 @@ import { ChatMessage } from '@/types';
 import { storage } from '@/utils/firebase';
 import { ref, getDownloadURL } from '@firebase/storage';
 
-const storageRef = ref(storage, 'zold.json');
-
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: ChatMessage[];
@@ -21,7 +19,6 @@ interface ChatHistoryProps {
 	pageSize: number;
 	filename: string;
 }
-
 const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
@@ -30,7 +27,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const messagesPerPage = 20;
+	const messagesPerPage = 200;
 	const storageInstance = storage;
 	const storageRef = ref(storageInstance, `/${filename}.json`);
 	const fetchChatHistoryFromStorage = async (): Promise<ChatMessage[]> => {
@@ -44,29 +41,6 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 			return [];
 		}
 	};
-	useEffect(() => {
-		const handleScroll = () => {
-			if (
-				window.innerHeight + window.scrollY >=
-				document.body.scrollHeight - 500
-			) {
-				setVisibleMessages((prevMessages) => [
-					...prevMessages,
-					...chatHistory.slice(
-						prevMessages.length,
-						prevMessages.length + messagesPerPage,
-					),
-				]);
-			}
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, [chatHistory]);
-
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
 		document.body.classList.add('private-chat');
@@ -91,7 +65,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 		};
 
 		fetchChatHistory();
-	}, [fetchChatHistoryFromStorage]);
+	}, []);
 
 	const handleSearch = (term: string) => {
 		if (term.length > 0) {
@@ -104,17 +78,28 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 		}
 	};
 
-	const handleJumpTo = (message: ChatMessage) => {
-		const index = chatHistory.findIndex(
-			(chatMessage) =>
-				chatMessage.timestamp.getTime() === message.timestamp.getTime(),
-		);
+	// const handleJumpTo = (index: number) => {
+	// 	onJumpTo(searchResults[index]);
+	// };
 
-		const messageElement = document.getElementById(`chat-message-${index}`);
-		if (messageElement) {
-			messageElement.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
+	// const handleJumpTo = (message: ChatMessage) => {
+	// 	const index = chatHistory.findIndex(
+	// 		(chatMessage) =>
+	// 			chatMessage.timestamp.getTime() === message.timestamp.getTime(),
+	// 	);
+
+	// 	if (index >= 0 && index < visibleMessages.length) {
+	// 		const messageElement = document.getElementById(
+	// 			`chat-message-${index}`,
+	// 		);
+	// 		if (messageElement) {
+	// 			messageElement.scrollIntoView({ behavior: 'smooth' });
+	// 		}
+	// 	} else {
+	// 		const page = Math.ceil((index + 1) / messagesPerPage);
+	// 		setCurrentPage(page);
+	// 	}
+	// };
 
 	useEffect(() => {
 		setVisibleMessages(chatHistory.slice(0, 20));
@@ -172,7 +157,8 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 											? 'bubble__second-person y'
 											: ''
 									}`}
-									key={message.timestamp.getTime()}>
+									key={`${message.timestamp.getTime()}-${index}`}>
+									...
 									<div
 										className='unique'
 										id={`unique chat-message-${index}`}>

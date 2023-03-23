@@ -11,6 +11,7 @@ interface ChatSearchProps {
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;
 }
+
 const ChatSearch: React.FC<ChatSearchProps> = ({
 	onSearch,
 	searchResults,
@@ -26,7 +27,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	useEffect(() => {
 		setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
 	}, []);
-
 	const results = chatHistory
 		? chatHistory
 				.map((message: ChatMessage, index: number) => ({
@@ -59,7 +59,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const handleClose = () => {
 		setSearchOpen(false);
 	};
-
 	const [showChatInput, setShowChatInput] = useState(false);
 
 	useEffect(() => {
@@ -117,7 +116,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		);
 		setNumResultsDisplayed(newResults.length);
 	};
-
 	return (
 		<>
 			<div className='chat-header sticky'>
