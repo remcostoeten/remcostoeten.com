@@ -31,7 +31,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 	const [isLoading, setIsLoading] = useState<boolean>(true);
 	const messagesPerPage = 20; //
 	const storageInstance = storage;
-	const storageRef = ref(storageInstance, '/y.json');
+	const storageRef = ref(storageInstance, '/znew.json');
 
 	useEffect(() => {
 		fetchChatHistoryFromStorage();
