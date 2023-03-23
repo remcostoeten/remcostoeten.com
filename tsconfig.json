@@ -16,7 +16,8 @@
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"@/*": ["./*"]
+			"@/*": ["./*"],
+			"firebase/storage": ["node_modules/firebase/storage/dist/index.cjs"]
 		}
 	},
 	"include": [

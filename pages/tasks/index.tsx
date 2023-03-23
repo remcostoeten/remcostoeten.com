@@ -14,7 +14,7 @@ interface AsideSmallProps {
 	view?: string;
 }
 
-export default function index() {
+export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	const signIn = async () => {

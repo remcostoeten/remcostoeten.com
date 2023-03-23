@@ -1,12 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react/jsx-no-comment-textnodes */
 import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import Image from 'next/image';
-import { getDownloadURL } from 'firebase/storage';
-import { storage, database } from '@/utils/firebase';
-import { ref as storageRef } from 'firebase/storage';
 import { ChatMessage } from '@/types';
+import { storage } from '@/utils/firebase';
+import { ref, getDownloadURL } from '@firebase/storage';
+
+const storageRef = ref(storage, '/y.json');
 
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
@@ -18,25 +20,26 @@ interface ChatSearchProps {
 interface ChatHistoryProps {
 	pageSize: number;
 }
+
 const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize }) => {
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
 	const [isViewerOpen, setIsViewerOpen] = useState<boolean>(false);
 	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
-	const [currentPage, setCurrentPage] = useState<number>(1); // current page number
-	const [isLoading, setIsLoading] = useState<boolean>(true); // loading state for chat history
-	const messagesPerPage = 20; // Or any number of messages per page that you prefer
+	const [currentPage, setCurrentPage] = useState<number>(1);
+	const [isLoading, setIsLoading] = useState<boolean>(true);
+	const messagesPerPage = 20; //
+	const storageInstance = storage;
+	const storageRef = ref(storageInstance, '/y.json');
 
 	useEffect(() => {
-		setVisibleMessages(chatHistory.slice(0, pageSize));
-	}, [chatHistory, pageSize]);
+		fetchChatHistoryFromStorage();
+	}, [fetchChatHistoryFromStorage]);
 
-	async function fetchChatHistoryFromStorage() {
+	async function fetchChatHistoryFromStorage(): Promise<ChatMessage[]> {
 		try {
-			const chatHistoryUrl = await getDownloadURL(
-				storageRef(storage, '/y.json'),
-			);
+			const chatHistoryUrl = await getDownloadURL(storageRef);
 
 			const response = await fetch(chatHistoryUrl);
 			const chatHistoryData = await response.json();

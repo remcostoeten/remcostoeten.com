@@ -1,8 +1,7 @@
-import { initializeApp } from '@firebase/app';
-import { getFirestore } from '@firebase/firestore';
-import { getStorage } from 'firebase/storage';
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getStorage } from '@firebase/storage';
 import { getDatabase } from 'firebase/database';
-
 import {
 	getAuth,
 	signInWithPopup,
@@ -22,12 +21,11 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
+const storage = getStorage(app);
+const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
-const database = getDatabase(app);
-
-const singInWithGoogle = () => {
+const signInWithGoogle = () => {
 	console.log('signing in with google');
 	signInWithPopup(auth, provider)
 		.then((result) => {
@@ -47,7 +45,7 @@ const singInWithGoogle = () => {
 };
 
 const logout = () => {
-	console.log('loggin out');
+	console.log('logging out');
 	signOut(auth)
 		.then(() => {
 			// Sign-out successful.
@@ -57,13 +55,11 @@ const logout = () => {
 		});
 };
 
-const storage = getStorage();
-
 export {
 	db,
 	auth,
 	storage,
-	singInWithGoogle,
+	signInWithGoogle,
 	logout,
 	signInWithPopup,
 	GoogleAuthProvider,
