@@ -19,7 +19,7 @@
 		"@mui/icons-material": "^5.11.11",
 		"@mui/material": "^5.11.12",
 		"eslint": "8.34.0",
-		"eslint-config-next": "13.1.6",
+		"eslint-config-next": "13.2.3",
 		"firebase": "^9.17.2",
 		"framer-motion": "^9.1.7",
 		"moment": "^2.29.4",
