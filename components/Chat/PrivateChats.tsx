@@ -78,29 +78,15 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 		}
 	};
 
-	// const handleJumpTo = (index: number) => {
-	// 	onJumpTo(searchResults[index]);
-	// };
+	const handleJumpTo = (index: number) => {
+		console.log('Jumping to index:', index); // Add this line for debugging
+		setSearchOpen(false);
 
-	// const handleJumpTo = (message: ChatMessage) => {
-	// 	const index = chatHistory.findIndex(
-	// 		(chatMessage) =>
-	// 			chatMessage.timestamp.getTime() === message.timestamp.getTime(),
-	// 	);
-
-	// 	if (index >= 0 && index < visibleMessages.length) {
-	// 		const messageElement = document.getElementById(
-	// 			`chat-message-${index}`,
-	// 		);
-	// 		if (messageElement) {
-	// 			messageElement.scrollIntoView({ behavior: 'smooth' });
-	// 		}
-	// 	} else {
-	// 		const page = Math.ceil((index + 1) / messagesPerPage);
-	// 		setCurrentPage(page);
-	// 	}
-	// };
-
+		const messageElement = document.getElementById(`chat-message-${index}`);
+		if (messageElement) {
+			messageElement.scrollIntoView({ behavior: 'smooth' });
+		}
+	};
 	useEffect(() => {
 		setVisibleMessages(chatHistory.slice(0, 20));
 	}, [chatHistory]);
@@ -138,7 +124,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 		<>
 			<ChatSearch
 				onSearch={handleSearch}
-				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
+				onJumpTo={handleJumpTo} // Pass the handleJumpTo function as a prop here
 				chatHistory={chatHistory}
 				searchResults={searchResults}
 			/>

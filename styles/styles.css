@@ -669,30 +669,30 @@ input[type=text]:hover {
   padding-top: 100px;
 }
 
-.n {
+.not-authenticated {
   background-color: #28254c;
   display: flex;
   align-items: baseline;
   justify-content: center;
   padding-top: 24px;
 }
-.n .wrap {
+.not-authenticated .wrap {
   position: absolute;
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.n .text {
+.not-authenticated .text {
   text-align: Center;
   color: #3498db;
   font-size: 30px;
   padding: 10px;
 }
-.n a {
+.not-authenticated a {
   text-decoration: none;
   position: relative;
 }
-.n a:before {
+.not-authenticated a:before {
   content: "";
   width: 0;
   height: 1px;
@@ -703,14 +703,14 @@ input[type=text]:hover {
   z-index: 2;
   transition: 250ms ease-in;
 }
-.n a:hover:before {
+.not-authenticated a:hover:before {
   width: 100%;
   background-color: #ff5e65;
 }
-.n a:visited, .n a:focus, .n a:active {
+.not-authenticated a:visited, .not-authenticated a:focus, .not-authenticated a:active {
   color: #8c8aa7;
 }
-.n .face {
+.not-authenticated .face {
   width: 150px;
   height: 150px;
   border: 9px solid #bdc3c7;
@@ -720,7 +720,7 @@ input[type=text]:hover {
   position: relative;
   z-index: 9999;
 }
-.n .mouth {
+.not-authenticated .mouth {
   height: 10px;
   width: 35px;
   margin: 0 auto;
@@ -729,7 +729,7 @@ input[type=text]:hover {
   animation: mouth 7s infinite;
   animation-delay: 2s;
 }
-.n .tear {
+.not-authenticated .tear {
   position: absolute;
   background-color: #3498db;
   height: 0px;
@@ -740,7 +740,7 @@ input[type=text]:hover {
   animation: tear 7s infinite;
   animation-delay: 2s;
 }
-.n .tear2 {
+.not-authenticated .tear2 {
   position: absolute;
   background-color: #3498db;
   height: 0px;
@@ -751,7 +751,7 @@ input[type=text]:hover {
   animation: tear 7s infinite;
   animation-delay: 2s;
 }
-.n .eye {
+.not-authenticated .eye {
   height: 10px;
   width: 45px;
   background-color: #bdc3c7;
@@ -761,7 +761,7 @@ input[type=text]:hover {
   animation: cry 7s infinite;
   animation-delay: 2s;
 }
-.n .eyebrow {
+.not-authenticated .eyebrow {
   width: 30px;
   font-size: 40px;
   font-weight: bold;
@@ -773,10 +773,10 @@ input[type=text]:hover {
   animation: eyebrow 7s infinite;
   animation-delay: 2s;
 }
-.n .eyebrow:nth-child(1) {
+.not-authenticated .eyebrow:nth-child(1) {
   transform: rotate(-20deg);
 }
-.n .eyebrow:nth-child(2) {
+.not-authenticated .eyebrow:nth-child(2) {
   transform: rotate(20deg);
 }
 @keyframes mouth {
@@ -851,7 +851,7 @@ input[type=text]:hover {
     height: 0px;
   }
 }
-.n .error {
+.not-authenticated .error {
   width: 350px;
   height: 100%;
   max-height: 800px;
@@ -861,10 +861,10 @@ input[type=text]:hover {
   padding: 24px 36px;
   position: relative;
 }
-.n .error__description-text a {
+.not-authenticated .error__description-text a {
   position: relative;
 }
-.n .error__description-text a::after {
+.not-authenticated .error__description-text a::after {
   content: "";
   width: 100%;
   height: 1px;
@@ -873,14 +873,14 @@ input[type=text]:hover {
   left: 5px;
   background-color: #8c8aa7;
 }
-.n .error .error__ghost {
+.not-authenticated .error .error__ghost {
   padding: 15px 25px 25px;
   position: absolute;
   left: 50%;
   top: 30%;
   transform: translate(-50%, -30%);
 }
-.n .error .error__ghost .error__ghost-container {
+.not-authenticated .error .error__ghost .error__ghost-container {
   background: #fff;
   width: 100px;
   height: 100px;
@@ -889,14 +889,14 @@ input[type=text]:hover {
   margin: 0 auto;
   animation: upndown 3s ease-in-out infinite;
 }
-.n .error .error__ghost .error__ghost-container .error__ghost-eyes {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes {
   position: absolute;
   left: 50%;
   top: 45%;
   height: 12px;
   width: 70px;
 }
-.n .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-left {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-left {
   width: 12px;
   height: 12px;
   background: #332f63;
@@ -905,7 +905,7 @@ input[type=text]:hover {
   position: absolute;
   left: 0;
 }
-.n .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-right {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-eyes .error__eye-right {
   width: 12px;
   height: 12px;
   background: #332f63;
@@ -914,14 +914,14 @@ input[type=text]:hover {
   position: absolute;
   right: 0;
 }
-.n .error .error__ghost .error__ghost-container .error__ghost-bottom {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom {
   display: flex;
   position: absolute;
   top: 100%;
   left: 0;
   right: 0;
 }
-.n .error .error__ghost .error__ghost-container .error__ghost-bottom div {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom div {
   flex-grow: 1;
   position: relative;
   top: -10px;
@@ -929,43 +929,43 @@ input[type=text]:hover {
   border-radius: 100%;
   background-color: #fff;
 }
-.n .error .error__ghost .error__ghost-container .error__ghost-bottom div:nth-child(2n) {
+.not-authenticated .error .error__ghost .error__ghost-container .error__ghost-bottom div:nth-child(2n) {
   top: -12px;
   margin: 0 0px;
   border-top: 15px solid #332f63;
   background: transparent;
 }
-.n .error .error__ghost .error__ghost-shadow {
+.not-authenticated .error .error__ghost .error__ghost-shadow {
   height: 20px;
   error-shadow: 0 50px 15px 5px #3b3769;
   border-radius: 50%;
   margin: 0 auto;
   animation: smallnbig 3s ease-in-out infinite;
 }
-.n .error .error__description {
+.not-authenticated .error .error__description {
   position: absolute;
   bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
 }
-.n .error .error__description .error__description-container {
+.not-authenticated .error .error__description .error__description-container {
   color: #fff;
   text-align: center;
   width: 200px;
   font-size: 16px;
   margin: 0 auto;
 }
-.n .error .error__description .error__description-container .error__description-title {
+.not-authenticated .error .error__description .error__description-container .error__description-title {
   font-size: 32px;
   letter-spacing: 0.5px;
   font-weight: 800;
 }
-.n .error .error__description .error__description-container .error__description-text {
+.not-authenticated .error .error__description .error__description-container .error__description-text {
   color: #8c8aa7;
   line-height: 20px;
   margin-top: 20px;
 }
-.n .error .error__description .error__button {
+.not-authenticated .error .error__description .error__button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -986,7 +986,7 @@ input[type=text]:hover {
   overflow: hidden;
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 }
-.n .error .error__description .error__button:before {
+.not-authenticated .error .error__description .error__button:before {
   content: "";
   position: absolute;
   width: 20px;
@@ -998,11 +998,11 @@ input[type=text]:hover {
   transform: translateX(-50px) rotate(45deg);
   transition: transform 0.5s ease;
 }
-.n .error .error__description .error__button:hover {
+.not-authenticated .error .error__description .error__button:hover {
   background: transparent;
   border-color: #fff;
 }
-.n .error .error__description .error__button:hover:before {
+.not-authenticated .error .error__description .error__button:hover:before {
   transform: translateX(250px) rotate(45deg);
 }
 @keyframes upndown {
@@ -4265,5 +4265,17 @@ form h3 {
 @media (min-width: 768px) {
   .tasks__lane {
     min-width: 200px;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .todo aside {
+    margin-right: 0;
+  }
+  .todo .not-authorized {
+    align-items: flex-start;
+    justify-content: normal;
+    flex-direction: column;
+    padding: 24px;
+    margin: 0;
   }
 }/*# sourceMappingURL=styles.css.map */

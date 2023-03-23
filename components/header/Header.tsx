@@ -202,7 +202,7 @@ const Header = () => {
 										</>
 									) : null}
 									<motion.li whileHover={{ scale: 1.05 }}>
-										<Link href=   '/tasks'>
+										<Link href='/tasks'>
 											Todo list creator
 										</Link>
 									</motion.li>
@@ -212,9 +212,7 @@ const Header = () => {
 										</Link>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
-										<Link href='/whatsapp-export'>
-											Chat
-										</Link>
+										<Link href='/whatsapp'>Chat</Link>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<a
