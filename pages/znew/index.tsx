@@ -6,7 +6,7 @@ const PrivateChat = () => {
 		<>
 			<Header />
 			<div>
-				<ChatHistory pageSize={20} filename='y' />
+				<ChatHistory pageSize={20} filename='zold' />
 			</div>
 		</>
 	);
