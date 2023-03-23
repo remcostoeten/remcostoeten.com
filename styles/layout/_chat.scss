@@ -154,6 +154,12 @@ $avatar-size: 70px;
 	}
 }
 
+.chat-warning {
+	div {
+		font-size: 1.3em;
+	}
+}
+
 .chat {
 	display: flex;
 	color: $grey-text;
@@ -181,12 +187,19 @@ $avatar-size: 70px;
 		background-color: #1f2029;
 	}
 
+	&__message {
+		padding: 0 $spacing-s;
+	}
+
 	&__sender {
 		position: relative;
+		padding: 0 8px;
 
-		&::after {
-			padding-right: 3px;
-			content: ':';
+		&:not(:empty) {
+			&:after {
+				padding-right: 3px;
+				content: ':';
+			}
 		}
 	}
 

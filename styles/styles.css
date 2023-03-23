@@ -2016,6 +2016,10 @@ nav a:hover {
   position: sticky;
 }
 
+.chat-warning div {
+  font-size: 1.3em;
+}
+
 .chat {
   display: flex;
   color: #77787e;
@@ -2041,10 +2045,14 @@ nav a:hover {
   padding: 24px;
   background-color: #1f2029;
 }
+.chat__message {
+  padding: 0 8px;
+}
 .chat__sender {
   position: relative;
+  padding: 0 8px;
 }
-.chat__sender::after {
+.chat__sender:not(:empty):after {
   padding-right: 3px;
   content: ":";
 }
