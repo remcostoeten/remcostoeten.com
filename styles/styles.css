@@ -2169,7 +2169,7 @@ nav a:hover {
 }
 .chat .bubble__message.bubble__second-person.y:before {
   content: "";
-  background-image: url("~/public/private-images/img/y/y.jpg") !important;
+  background-image: url("/../public/private-imaages/img/y/y.jpg") !important;
   height: 70px;
   width: 70px;
   background-position: center;
@@ -3398,7 +3398,7 @@ form h3 {
 .not-authorized p,
 .not-authorized li {
   color: #e1e1e1;
-  font-size: 14px;
+  font-size: 2.4em;
   padding-bottom: 12px;
 }
 .not-authorized p {
@@ -3425,6 +3425,7 @@ form h3 {
 }
 .not-authorized__buttons {
   display: flex;
+  font-size: 2.4em;
 }
 .not-authorized__buttons .cta {
   margin-right: 24px;
@@ -3754,7 +3755,7 @@ form h3 {
 .not-authorized p,
 .not-authorized li {
   color: #e1e1e1;
-  font-size: 14px;
+  font-size: 2.4em;
   padding-bottom: 12px;
 }
 
@@ -3787,6 +3788,7 @@ form h3 {
 
 .not-authorized__buttons {
   display: flex;
+  font-size: 2.4em;
 }
 
 .not-authorized__buttons .cta {
