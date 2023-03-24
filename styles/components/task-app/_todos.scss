@@ -3,20 +3,6 @@
 @import 'todo-dark-theme';
 @import 'todo-white-theme';
 $color-white: $dark;
-:root {
-	--bg-color: #fff;
-	--text-color: #000;
-}
-
-/* Dark theme */
-[data-theme='white'] {
-	--bg-color: #1d1d1d;
-	--text-color: #fff;
-
-	.todo {
-		display: none;
-	}
-}
 
 $white: white;
 

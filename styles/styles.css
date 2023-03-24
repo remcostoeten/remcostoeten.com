@@ -3235,20 +3235,6 @@ button {
   background-color: #2a2b2f;
 }
 
-:root {
-  --bg-color: #fff;
-  --text-color: #000;
-}
-
-/* Dark theme */
-[data-theme=white] {
-  --bg-color: #1d1d1d;
-  --text-color: #fff;
-}
-[data-theme=white] .todo {
-  display: none;
-}
-
 .todo aside {
   display: flex;
   flex-direction: columns;

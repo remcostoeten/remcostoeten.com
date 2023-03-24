@@ -4,10 +4,11 @@
 		transition: 500ms ease-in-out all;
 	}
 }
+
 .theme-white {
 	.todo {
-		background-color: var(--bg-color);
-		color: var(--text-color);
+		background-color: $bg-color;
+		color: $text-color;
 	}
 
 	.not-authorized {
