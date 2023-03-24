@@ -4177,14 +4177,17 @@ form h3 {
   padding: 18px;
 }
 .tasks__lane .inner {
-  background-color: #292b31;
   padding: 8px;
 }
 .tasks__lane:not(:last-child) {
   margin-right: 8px;
 }
 .tasks .task {
+  height: 100%;
   position: relative;
+  margin-bottom: 24px;
+  padding: 31.2px 18px;
+  background-color: #292b31;
 }
 .tasks__top h3 {
   margin-bottom: 8px;
@@ -4199,6 +4202,7 @@ form h3 {
   font-size: 24px;
 }
 .tasks__bottom {
+  z-index: 10;
   display: flex;
   align-self: center;
   justify-content: center;
@@ -4211,8 +4215,8 @@ form h3 {
   padding: 0 8px;
   min-height: 16px;
   position: absolute;
-  right: 0;
-  bottom: -40px;
+  top: 8px;
+  right: 8px;
 }
 .tasks__title {
   font-weight: 200;
@@ -4273,7 +4277,6 @@ form h3 {
   background-color: #24262c;
 }
 .tasks__lane .inner {
-  background-color: #292b31;
   padding-bottom: 48px;
   position: relative;
 }
@@ -4282,6 +4285,8 @@ form h3 {
   opacity: 0.5;
 }
 .tasks__list {
+  display: flex !important;
+  flex-direction: column;
   padding: 8px;
   color: var(--text-color);
 }

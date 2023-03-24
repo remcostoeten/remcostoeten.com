@@ -114,14 +114,6 @@ export default function DraggableContainer({
 														ref={provided.innerRef}
 														{...provided.draggableProps}
 														{...provided.dragHandleProps}>
-														<DeleteForeverIcon
-															className='remove'
-															onClick={() =>
-																removeTask(
-																	task.id,
-																)
-															}
-														/>
 														<div className='tasks__bottom'>
 															{task.category}
 														</div>
@@ -134,6 +126,14 @@ export default function DraggableContainer({
 																	task.description
 																}
 															</p>
+															<DeleteForeverIcon
+																className='remove'
+																onClick={() =>
+																	removeTask(
+																		task.id,
+																	)
+																}
+															/>
 														</div>
 													</div>
 												)}
