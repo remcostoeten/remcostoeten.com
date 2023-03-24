@@ -4189,6 +4189,11 @@ form h3 {
   padding: 31.2px 18px;
   background-color: #292b31;
 }
+@media (min-width: 768px) {
+  .tasks .task {
+    padding: 12px 90px 12px 12px;
+  }
+}
 .tasks__top h3 {
   margin-bottom: 8px;
 }
@@ -4215,8 +4220,8 @@ form h3 {
   padding: 0 8px;
   min-height: 16px;
   position: absolute;
-  top: 8px;
-  right: 8px;
+  top: 16px;
+  right: 16px;
 }
 .tasks__title {
   font-weight: 200;
