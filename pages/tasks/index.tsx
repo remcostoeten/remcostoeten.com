@@ -44,7 +44,9 @@ export default function Index() {
 					<AsideSmall isLoggedIn={isLoggedIn} view='someView' />
 					{isLoggedIn ? (
 						<>
-							<TaskWrapper />
+							<div className='authenticated'>
+								<TaskWrapper />
+							</div>
 						</>
 					) : (
 						<>

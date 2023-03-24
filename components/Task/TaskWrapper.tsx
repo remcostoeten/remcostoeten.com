@@ -123,7 +123,6 @@ export default function TaskWrapper() {
 			{/* <div className='container'><TaskCategories /></div> */}
 			<div className='todo'>
 				<div className='todo__inner'>
-					<Aside view={view} isLoggedIn={isLoggedIn} />
 					<main>
 						<div className='todo__header'>
 							<h2>

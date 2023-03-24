@@ -9,6 +9,7 @@ import {
 	ViewList,
 } from '@mui/icons-material';
 import { signIn, signOut } from '@/utils/LoginLogic';
+import TaskWrapper from './TaskWrapper';
 
 interface AsideSmallProps {
 	view: string;
@@ -19,10 +20,16 @@ export default function AsideSmall({ view, isLoggedIn }: AsideSmallProps) {
 	return (
 		<>
 			<aside className='nav'>
+				<div className='authenticated'>
+					<TaskWrapper />
+				</div>
 				<nav className='nav__small'>
 					<div className='nav__top'>
 						<Link href='/'>
-							<span className='logo'>
+							<span
+								className={`logo ${
+									isLoggedIn ? 'authenticated-logo' : ''
+								}`}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									width='30'
@@ -45,7 +52,7 @@ export default function AsideSmall({ view, isLoggedIn }: AsideSmallProps) {
 						<span className={view === 'list' ? 'active' : ''}>
 							<ViewList />
 						</span>
-					
+
 						<span>
 							<CalendarToday />
 						</span>
