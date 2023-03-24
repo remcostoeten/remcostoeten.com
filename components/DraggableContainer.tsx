@@ -7,6 +7,11 @@ import {
 } from 'react-beautiful-dnd';
 import { Task } from '@/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { AddCircle } from '@mui/icons-material';
+import TaskModal from './Task/TaskModal';
+import { collection, addDoc } from 'firebase/firestore';
+import { auth, db } from '@/utils/firebase';
+import { useAuth } from './useAuth';
 
 interface DraggableContainerProps {
 	tasks: Task[];
@@ -19,6 +24,27 @@ export default function DraggableContainer({
 	updateTask,
 	removeTask,
 }: DraggableContainerProps) {
+	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const addTask = async (
+		title: string,
+		description: string,
+		category: string,
+	) => {
+		const now = new Date();
+		const formattedDate = `${now.getDate()}/${
+			now.getMonth() + 1
+		}/${now.getFullYear()}`;
+
+		await addDoc(collection(db, `tasks-${auth.currentUser?.uid}`), {
+			title,
+			description,
+			category,
+			status: 'todo',
+			date: formattedDate,
+		});
+	};
+
 	const handleDragEnd = (result: DropResult) => {
 		if (!result.destination) return;
 
@@ -43,21 +69,30 @@ export default function DraggableContainer({
 		<DragDropContext onDragEnd={handleDragEnd}>
 			{lanes.map((lane) => (
 				<div key={lane.id} className='tasks__lane'>
-					<div className='inner'>
-						<div className='tasks__lane-title'>
-							<h2>
-								{lane.title}{' '}
-								<span>
-									(
-									{
-										tasks.filter(
-											(task) => task.status === lane.id,
-										).length
-									}
-									)
-								</span>
-							</h2>
+					<div className='tasks__header'>
+						<div className='title'>
+							{lane.title}{' '}
+							<span>
+								(
+								{
+									tasks.filter(
+										(task) => task.status === lane.id,
+									).length
+								}
+								)
+							</span>
 						</div>
+						<span className='add'>
+							<AddCircle onClick={() => setIsModalOpen(true)} />
+							Add new task
+						</span>
+					</div>
+					<TaskModal
+						isOpen={isModalOpen}
+						onClose={() => setIsModalOpen(false)}
+						onSubmit={addTask} // Make sure this is correctly bound
+					/>
+					<div className='inner'>
 						<Droppable droppableId={lane.id}>
 							{(provided) => (
 								<div
@@ -79,14 +114,27 @@ export default function DraggableContainer({
 														ref={provided.innerRef}
 														{...provided.draggableProps}
 														{...provided.dragHandleProps}>
-														<h3>{task.title}</h3>
 														<DeleteForeverIcon
+															className='remove'
 															onClick={() =>
 																removeTask(
 																	task.id,
 																)
 															}
 														/>
+														<div className='tasks__bottom'>
+															{task.category}
+														</div>
+														<div className='tasks__top'>
+															<h3>
+																{task.title}
+															</h3>
+															<p>
+																{
+																	task.description
+																}
+															</p>
+														</div>
 													</div>
 												)}
 											</Draggable>
