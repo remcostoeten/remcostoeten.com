@@ -1,0 +1,53 @@
+.theme-white,
+.dark-theme {
+	* {
+		transition: 500ms ease-in-out all;
+	}
+}
+.theme-white {
+	.todo {
+		background-color: var(--bg-color);
+		color: var(--text-color);
+	}
+
+	.not-authorized {
+		p,
+		h1,
+		h2 {
+			color: var(--text-color);
+		}
+	}
+}
+
+.toggleTheme {
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+.dark-theme {
+	color: $white;
+	background-color: $dark;
+
+	.header {
+		background-color: $dark-lighter;
+		color: $white;
+		box-shadow: none;
+
+		span,
+		li,
+		button,
+		a {
+			color: $white;
+		}
+
+		&__user {
+			display: none;
+		}
+	}
+
+	.todo {
+		box-shadow: none;
+		background-color: $dark-lighter;
+	}
+}

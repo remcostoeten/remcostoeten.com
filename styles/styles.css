@@ -3191,6 +3191,64 @@ button {
   background-color: #2a2b2f;
 }
 
+.theme-white *,
+.dark-theme * {
+  transition: 500ms ease-in-out all;
+}
+
+.theme-white .todo {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.theme-white .not-authorized p,
+.theme-white .not-authorized h1,
+.theme-white .not-authorized h2 {
+  color: var(--text-color);
+}
+
+.toggleTheme {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.dark-theme {
+  color: #fff;
+  background-color: #131517;
+}
+.dark-theme .header {
+  background-color: #2a2b2f;
+  color: #fff;
+  box-shadow: none;
+}
+.dark-theme .header span,
+.dark-theme .header li,
+.dark-theme .header button,
+.dark-theme .header a {
+  color: #fff;
+}
+.dark-theme .header__user {
+  display: none;
+}
+.dark-theme .todo {
+  box-shadow: none;
+  background-color: #2a2b2f;
+}
+
+:root {
+  --bg-color: #fff;
+  --text-color: #000;
+}
+
+/* Dark theme */
+[data-theme=white] {
+  --bg-color: #1d1d1d;
+  --text-color: #fff;
+}
+[data-theme=white] .todo {
+  display: none;
+}
+
 .todo aside {
   display: flex;
   flex-direction: columns;

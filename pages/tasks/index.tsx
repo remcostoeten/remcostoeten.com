@@ -17,6 +17,16 @@ interface AsideSmallProps {
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+	const toggleTheme = () => {
+		if (document.body.classList.contains('theme-white')) {
+			document.body.classList.remove('theme-white');
+			document.body.classList.add('theme-dark');
+		} else {
+			document.body.classList.remove('theme-dark');
+			document.body.classList.add('theme-white');
+		}
+	};
+
 	const signIn = async () => {
 		try {
 			const result = await signInWithPopup(
@@ -51,6 +61,11 @@ export default function Index() {
 					) : (
 						<>
 							<div className='not-authorized'>
+								<button
+									className='toggleTheme'
+									onClick={toggleTheme}>
+									Toggle dark/light mode
+								</button>
 								<div className='not-authorized__inner'>
 									<h2>
 										Oops! Not authorized<br></br>for this
