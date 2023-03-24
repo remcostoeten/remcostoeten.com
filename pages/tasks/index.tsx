@@ -41,9 +41,12 @@ export default function Index() {
 		<>
 			<div className='todo'>
 				<div className='todo__inner'>
-					<AsideSmall isLoggedIn={isLoggedIn} view='someView' />
 					{isLoggedIn ? (
 						<>
+							<AsideSmall
+								isLoggedIn={isLoggedIn}
+								view='someView'
+							/>
 							<div className='authenticated'>
 								<TaskWrapper />
 							</div>
