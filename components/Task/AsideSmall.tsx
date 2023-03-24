@@ -20,9 +20,6 @@ export default function AsideSmall({ view, isLoggedIn }: AsideSmallProps) {
 	return (
 		<>
 			<aside className='nav'>
-				<div className='authenticated'>
-					<TaskWrapper />
-				</div>
 				<nav className='nav__small'>
 					<div className='nav__top'>
 						<Link href='/'>
