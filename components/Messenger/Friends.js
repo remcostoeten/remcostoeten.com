@@ -1,19 +1,49 @@
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import MessagePreview from './MessagePreview';
-import yData from '../../private-apis/data/y.json';
-import znewData from '../../private-apis/data/znew.json';
-import zoldData from '../../private-apis/data/zold.json';
-import whatsappData from '../../pages/whatsapp-export/ChatHistory.json';
-
+import { getDownloadURL } from 'firebase/storage';
+import { storage, storageRef } from '@/utils/firebase';
 const avatarSize = 45;
 
 export default function Friends() {
-	const chats = [
-		yData[yData.length - 1],
-		whatsappData[whatsappData.length - 1],
-		znewData[znewData.length - 1],
-		zoldData[zoldData.length - 1],
-	];
+	const [chats, setChats] = useState([]);
+	async function fetchJSONDataFromStorage(filename) {
+		try {
+			const downloadURL = await getDownloadURL(
+				storageRef(storage, filename),
+			);
+			const response = await fetch(downloadURL);
+			const jsonData = await response.json();
+			return jsonData;
+		} catch (error) {
+			console.error('Error fetching data:', error);
+			return [];
+		}
+	}
+	useEffect(() => {
+		async function fetchData() {
+			const yData = await fetchJSONDataFromStorage(
+				'/private-apis/data/y.json',
+			);
+			const whatsappData = await fetchJSONDataFromStorage(
+				'/private-apis/data/ChatHistory.json',
+			);
+			const znewData = await fetchJSONDataFromStorage(
+				'/private-apis/data/znew.json',
+			);
+			const zoldData = await fetchJSONDataFromStorage(
+				'/private-apis/data/zold.json',
+			);
+			setChats([
+				yData[yData.length - 1],
+				whatsappData[whatsappData.length - 1],
+				znewData[znewData.length - 1],
+				zoldData[zoldData.length - 1],
+			]);
+		}
+
+		fetchData();
+	}, []);
 
 	function getChatSummaries(chats) {
 		const chatSummaries = {};

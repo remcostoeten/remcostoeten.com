@@ -11,6 +11,7 @@ $dark-blue: #282a30;
 		border-radius: 10px;
 		color: $color-white;
 	}
+
 	&__lane {
 		&:not(:last-child) {
 			margin-right: 8px;
@@ -212,6 +213,22 @@ $dark-blue: #282a30;
 	.tasks {
 		&__lane {
 			min-width: 200px;
+		}
+	}
+}
+
+@include mobile {
+	.todo {
+		aside {
+			margin-right: 0;
+		}
+
+		.not-authorized {
+			align-items: flex-start;
+			justify-content: normal;
+			flex-direction: column;
+			padding: $spacing;
+			margin: 0;
 		}
 	}
 }

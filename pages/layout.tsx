@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // import Header from '@/components/Header/Header';
+=======
+>>>>>>> task
 import Intro from '@/components/layout/Intro';
 import React from 'react';
 export default function Home() {

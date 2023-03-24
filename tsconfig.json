@@ -16,7 +16,12 @@
 		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
+<<<<<<< HEAD
 			"@/*": ["./src/*"]
+=======
+			"@/*": ["./*"],
+			"firebase/storage": ["node_modules/firebase/storage/dist/index.cjs"]
+>>>>>>> task
 		}
 	},
 	"include": [

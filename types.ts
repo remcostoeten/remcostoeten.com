@@ -31,7 +31,7 @@ export interface ChatSearchProps {
 }
 
 export interface ChatMessage {
-	name: ReactNode;
+	name: string;
 	image: ReactNode;
 	id: string;
 	message: string;

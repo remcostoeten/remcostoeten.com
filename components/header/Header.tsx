@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { auth, singInWithGoogle } from '../../utils/firebase';
+import { auth, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
-import Login from '../Login';
-import PersonIcon from '@mui/icons-material/Person';
 import { Logout } from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
@@ -18,6 +16,7 @@ import OffcanvasMenu from './OffcanvasMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
+import AdminMenu from './AdminMenu';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -192,7 +191,8 @@ const Header = () => {
 				initial='hidden'
 				animate='visible'>
 				<div className='container header__inner'>
-					<Link href='/'>
+					<AdminMenu />
+	<Link href='/'>
 						<motion.div
 							className='header__user'
 							whileHover={{ scale: 1.05 }}>
@@ -238,7 +238,7 @@ const Header = () => {
 							<nav className='header__menu'>
 								<ul>
 									{isLoggedIn &&
-									auth.currentUser?.email ===
+										auth.currentUser?.email ===
 										process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
 										<li>
 											<Button

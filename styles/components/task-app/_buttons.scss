@@ -1,9 +1,8 @@
-@use 'variables' as *;
-
+@import '../../variables/colors';
 .cta {
 	font-size: 16px;
-	color: #ffa048;
-	border: 2px solid #ffa048;
+	color: #7a44fd;
+	border: 2px solid #7a44fd;
 	padding: 10px 30px;
 	display: flex;
 	align-items: baseline;
@@ -40,7 +39,7 @@
 		}
 
 		a {
-			color: #ffa048;
+			color: #7a44fd;
 			text-decoration: none;
 		}
 	}

@@ -1,20 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
-import {
-	mdiMagnify,
-	mdiCloseCircleOutline,
-	mdiClose,
-	mdiSearchWeb,
-	mdiCarSearch,
-	mdiSeatReclineExtra,
-	mdiMapSearch,
-	mdiTextSearch,
-} from '@mdi/js';
+import { mdiMagnify, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
+import moment from 'moment';
 
 interface ChatSearchProps {
+	searchResults: ChatMessage[];
 	onSearch: (term: string) => void;
-	searchResults: string;
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;
 }
@@ -28,13 +20,12 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const [numResultsDisplayed, setNumResultsDisplayed] = useState(5); // state variable to keep track of number of results displayed
-	const [isMobile, setIsMobile] = useState(false); // state variable to keep track if the user is on a mobile device
+	const [numResultsDisplayed, setNumResultsDisplayed] = useState(5);
+	const [isMobile, setIsMobile] = useState(false);
 
 	useEffect(() => {
 		setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
 	}, []);
-
 	const results = chatHistory
 		? chatHistory
 				.map((message: ChatMessage, index: number) => ({
@@ -56,31 +47,17 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	};
 
 	const handleJumpTo = (index: number) => {
-		// Check if the clicked message index is still included in the search results
-		if (results.includes(index)) {
-			// Get all message elements
-			const messageElements = document.getElementsByClassName('message');
+		setSearchOpen(false);
 
-			// Find the clicked message element using the index
-			const messageElement = Array.from(messageElements).find(
-				(element) =>
-					element.getAttribute('data-index') === index.toString(),
-			);
-
-			// If the element is found, add a CSS class to it
-			if (messageElement) {
-				messageElement.classList.add('selected');
-			}
+		const messageElement = document.getElementById(`chat-message-${index}`);
+		if (messageElement) {
+			messageElement.scrollIntoView({ behavior: 'smooth' });
 		}
-
-		// Call the onJumpTo function with the clicked message index
-		onJumpTo(index);
 	};
 
 	const handleClose = () => {
 		setSearchOpen(false);
 	};
-
 	const [showChatInput, setShowChatInput] = useState(false);
 
 	useEffect(() => {
@@ -103,13 +80,11 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	}, []);
 
 	const showMoreButton = results.length > numResultsDisplayed && (
-		<>
-			<a
-				className='btn--results'
-				onClick={() => setNumResultsDisplayed(numResultsDisplayed + 5)}>
-				<span>Show 5 More</span>
-			</a>
-		</>
+		<a
+			className='btn--results'
+			onClick={() => setNumResultsDisplayed(numResultsDisplayed + 5)}>
+			<span>Show 5 More</span>
+		</a>
 	);
 	const showLessResults =
 		numResultsDisplayed > 5 ? (
@@ -120,15 +95,19 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 			</a>
 		) : null;
 
-	const searchResultsDisplay =
-		searchTerm.length === 1 ? (
-			<div className='search__total-results'>
-				A total of {results.length} results found for {searchTerm}
-				{showMoreButton}
-			</div>
-		) : null;
+	const searchResultItems =
+		results.length > 0
+			? results.slice(0, numResultsDisplayed).map((index) => (
+					<div
+						className='search__result-item'
+						key={index}
+						onClick={() => handleJumpTo(index)}>
+						{chatHistory[index].message}
+					</div>
+			  ))
+			: null;
 
-	const resultsToDisplay = results.slice(0, numResultsDisplayed); // slice the results array to display only the specified number of results
+	const resultsToDisplay = results.slice(0, numResultsDisplayed);
 
 	const handleResultClick = (indexToRemove: number) => {
 		const newResults = resultsToDisplay.filter(
@@ -136,14 +115,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		);
 		setNumResultsDisplayed(newResults.length);
 	};
-	const searchResultItems = resultsToDisplay.map((index) => (
-		<div
-			className='search__result-item'
-			key={index}
-			onClick={() => handleResultClick(index)}>
-			{chatHistory[index].message}
-		</div>
-	));
 	return (
 		<>
 			<div className='chat-header sticky'>
@@ -221,32 +192,35 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 							)}
 							{searchTerm.length > 0 && results.length > 0 && (
 								<div className='search__results'>
-									{resultsToDisplay.map((index: number) => (
-										<>
-											<div
-												className='message'
-												key={index}
-												onClick={() =>
-													handleJumpTo(index)
-												}>
-												<span className='date'>
-													{new Date(
-														chatHistory[
+									{resultsToDisplay.map((index: number) => {
+										const formattedDate = moment(
+											chatHistory[index].timestamp,
+											'DD/MM/YYYY, HH:mm:ss',
+										).format('MM/DD/YYYY hh:mm A');
+
+										return (
+											<>
+												<div
+													className='message'
+													key={index}
+													onClick={() =>
+														handleJumpTo(index)
+													}>
+													<span className='date'>
+														{formattedDate}
+													</span>
+													<span>
+														{chatHistory[
 															index
-														].timestamp,
-													).toLocaleDateString()}
-												</span>
-												<span>
-													{chatHistory[
-														index
-													]?.message?.substring(
-														0,
-														50,
-													)}
-												</span>
-											</div>
-										</>
-									))}
+														]?.message?.substring(
+															0,
+															50,
+														)}
+													</span>
+												</div>
+											</>
+										);
+									})}
 								</div>
 							)}
 						</div>

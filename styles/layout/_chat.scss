@@ -13,6 +13,7 @@ $off-white: #f0f0f0;
 $gradient-one: #2d2f3e;
 $gradient-two: #323645;
 $light-bg: #313646;
+$avatar-size: 70px;
 
 .offcanvas {
 	position: absolute;
@@ -68,9 +69,9 @@ $light-bg: #313646;
 	&__message {
 		display: flex;
 		justify-content: flex-end;
+		align-items: center;
 		max-width: 450px;
 		width: -moz-fit-content;
-		display: flex;
 		transition: 125ms;
 		border-radius: 16px 8px 8px 4px;
 		background-color: #1f2029;
@@ -79,12 +80,12 @@ $light-bg: #313646;
 		z-index: 2;
 		flex: 0;
 		font-size: 15px;
-		padding: 10px;
-		m: 4px;
+		padding: 5px 10px;
 		color: #77787e;
-		align-items: initial;
-		flex: 1 0 auto;
-		position: relative;
+
+		b {
+			margin-right: 3px;
+		}
 
 		span {
 			display: flex;
@@ -153,29 +154,9 @@ $light-bg: #313646;
 	}
 }
 
-.z {
-	&:after {
-		background-position: 4px -35px !important;
-		// background-image: url('/private-apis/zface.jpg');
-		content: '';
-		background-size: 125%;
-		height: 55px;
-		width: 55px;
-		display: block;
-		border-radius: 16px;
-		position: absolute;
-		top: 15px;
-		background-position: -5px -75px;
-		right: -70px;
-		top: 16px;
-	}
-
-	&.d {
-		// background-image: url('/private-apis/zface.jpg');
-	}
-
-	&.y {
-		// background-image: url('/private-apis/zface.jpg');
+.chat-warning {
+	div {
+		font-size: 1.3em;
 	}
 }
 
@@ -186,7 +167,6 @@ $light-bg: #313646;
 	max-width: $chat-container-width;
 	margin: 0 auto;
 	border-radius: 16px 8px 8px 4px;
-	display: flex;
 	position: relative;
 
 	&__inner {
@@ -207,19 +187,31 @@ $light-bg: #313646;
 		background-color: #1f2029;
 	}
 
+	&__message {
+		padding: 0 $spacing-s;
+	}
+
 	&__sender {
 		position: relative;
+		padding: 0 8px;
 
-		&::after {
-			padding-right: 3px;
-			content: ':';
+		&:not(:empty) {
+			&:after {
+				padding-right: 3px;
+				content: ':';
+			}
 		}
 	}
 
-	p {
+	.space-bubble {
 		border-radius: 16px 8px 8px 4px;
 		color: $off-white;
-		padding: 15px 20px;
+		padding: 10px 12px;
+
+		img {
+			all: unset;
+			max-width: 350px !important;
+		}
 	}
 
 	button {
@@ -273,21 +265,26 @@ $light-bg: #313646;
 			&:after {
 				background-image: url('https://xsgames.co/randomusers/assets');
 			}
+
+			&.y {
+				&:after {
+				}
+			}
 		}
 
 		&__message {
 			max-width: 450px;
+			align-items: center;
 			width: fit-content;
 			display: flex;
 			position: relative;
 			transition: 125ms;
-			position: relative;
 			border-radius: 30px;
 			background-color: #1f2029;
 			border: none;
 			z-index: 2;
 			color: #77787e;
-			position: relative;
+			word-break: break-all;
 
 			.message {
 				display: flex;
@@ -298,18 +295,14 @@ $light-bg: #313646;
 
 			&:after {
 				content: '';
-				background-size: 125%;
+				background-size: 150%;
 				background-image: url('https://xsgames.co/randomusers/assets/avatars/male/35.jpg');
 				// background-image: url('../pages/Chat/remcostoeten-private-apiroutes/proper/img/zgezichtsnap.jpg');
-				height: 55px;
-				width: 55px;
+				height: $avatar-size;
+				width: $avatar-size;
 				display: block;
 				border-radius: 16px;
-				position: absolute;
-				top: 15px;
-				background-position: -5px -75px;
-				right: -70px;
-				top: 16px;
+				background-position: -20px -118px;
 
 				@include mobile {
 					width: 45px;
@@ -323,7 +316,7 @@ $light-bg: #313646;
 				&:after {
 					background-image: url('https://xsgames.co/randomusers/assets/avatars/male/34.jpg');
 					top: 15px;
-					background-position: -5px -75px;
+					background-position: -18px -118px;
 					left: -70px;
 					top: 11px;
 
@@ -333,6 +326,31 @@ $light-bg: #313646;
 						height: 45px;
 						left: -40px;
 						object-fit: cover;
+					}
+				}
+
+				&.y {
+					&:after {
+						display: none;
+					}
+
+					&:before {
+						content: '';
+						background-image: url('~/public/private-imaages/img/y/y.jpg') !important;
+						height: $avatar-size;
+						width: $avatar-size;
+						background-position: center;
+						background-size: 141%;
+						border-radius: 16px;
+						background-repeat: no-repeat;
+
+						@include mobile {
+							width: 45px;
+							background-position: center;
+							height: 45px;
+							left: -40px;
+							object-fit: cover;
+						}
 					}
 				}
 			}
@@ -372,7 +390,9 @@ $light-bg: #313646;
 		}
 	}
 }
-
+.unique {
+	padding: 0 $spacing-s;
+}
 @include mobile {
 	.chat-ui {
 		header.header {
@@ -403,4 +423,18 @@ $light-bg: #313646;
 	transform: translateX(-50%);
 	bottom: -16px;
 	animation: arrowBlink 1s ease-in-out infinite;
+}
+
+.private-chat {
+	.chat {
+		.bubble {
+			&__message {
+				&:after {
+					content: '';
+					background-size: 150%;
+					background-image: url('/remco.png');
+				}
+			}
+		}
+	}
 }

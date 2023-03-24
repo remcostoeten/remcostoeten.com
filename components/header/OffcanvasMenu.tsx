@@ -90,7 +90,7 @@ function OffcanvasMenu() {
 									<Link href='/message-history'>
 										Messenger
 									</Link>
-									<Link href='/todo'>Todo app</Link>
+									<Link href='/tasks'>Todo app</Link>
 									<Link href='/whatsapp-export'>Chat</Link>
 									<Link
 										href='https://github.com/remcostoeten/'
