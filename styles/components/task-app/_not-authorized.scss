@@ -59,6 +59,7 @@ $space: 12px;
 	&__buttons {
 		display: flex;
 		font-size: 2.4em;
+		cursor: pointer;
 
 		.cta {
 			margin-right: $space * 2;

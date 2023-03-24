@@ -3152,17 +3152,6 @@ button {
   width: 100%;
   align-items: baseline;
 }
-:root {
-  --bg-color: #fff;
-  --text-color: #000;
-}
-
-/* Dark theme */
-[data-theme=dark] {
-  --bg-color: #1d1d1d;
-  --text-color: #fff;
-}
-
 .todo {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -3171,6 +3160,12 @@ button {
 .dark-theme {
   color: #fff;
   background-color: #131517;
+}
+.dark-theme :root {
+  --bg-color: $darker;
+  --text-color: #f9f9f9;
+  --background-secondary: #24262c
+  --background-alternative: #292b31;
 }
 .dark-theme .header {
   background-color: #2a2b2f;
@@ -3181,7 +3176,7 @@ button {
 .dark-theme .header li,
 .dark-theme .header button,
 .dark-theme .header a {
-  color: #fff;
+  color: var(--text-color);
 }
 .dark-theme .header__user {
   display: none;
@@ -3189,6 +3184,9 @@ button {
 .dark-theme .todo {
   box-shadow: none;
   background-color: #2a2b2f;
+}
+.dark-theme .todo h2 {
+  color: var(--text-color);
 }
 
 .theme-white *,
@@ -3235,6 +3233,10 @@ button {
   background-color: #2a2b2f;
 }
 
+.todo-wrapper {
+  padding: 48px;
+}
+
 .todo aside {
   display: flex;
   flex-direction: columns;
@@ -3244,9 +3246,6 @@ button {
   display: flex;
   flex: 1;
   flex-direction: column;
-}
-.todo__header {
-  padding: 16px 0;
 }
 
 .todo {
@@ -3470,6 +3469,7 @@ form h3 {
 .not-authorized__buttons {
   display: flex;
   font-size: 2.4em;
+  cursor: pointer;
 }
 .not-authorized__buttons .cta {
   margin-right: 24px;
@@ -3833,6 +3833,7 @@ form h3 {
 .not-authorized__buttons {
   display: flex;
   font-size: 2.4em;
+  cursor: pointer;
 }
 
 .not-authorized__buttons .cta {
@@ -4215,10 +4216,13 @@ form h3 {
   justify-content: space-between;
 }
 .tasks__lane {
-  background-color: #24262c;
   padding: 16px 20px;
   border-radius: 12px;
   min-width: 200px;
+  background-color: var(--background-secondary);
+}
+.tasks__lane .inner {
+  background-color: var(--background-alternative);
 }
 .tasks__lane h4 {
   font-size: 14px;
@@ -4240,6 +4244,7 @@ form h3 {
   position: relative;
   transform: 250ms ease all;
   opacity: 0.5;
+  margin-bottom: 30px;
 }
 .toggle-view.grid {
   opacity: 1;

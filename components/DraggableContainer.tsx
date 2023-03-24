@@ -43,53 +43,59 @@ export default function DraggableContainer({
 		<DragDropContext onDragEnd={handleDragEnd}>
 			{lanes.map((lane) => (
 				<div key={lane.id} className='tasks__lane'>
-					<div className='tasks__lane-title'>
-						<h2>
-							{lane.title}{' '}
-							<span>
-								(
-								{
-									tasks.filter(
-										(task) => task.status === lane.id,
-									).length
-								}
-								)
-							</span>
-						</h2>
+					<div className='inner'>
+						<div className='tasks__lane-title'>
+							<h2>
+								{lane.title}{' '}
+								<span>
+									(
+									{
+										tasks.filter(
+											(task) => task.status === lane.id,
+										).length
+									}
+									)
+								</span>
+							</h2>
+						</div>
+						<Droppable droppableId={lane.id}>
+							{(provided) => (
+								<div
+									className='tasks__list'
+									ref={provided.innerRef}
+									{...provided.droppableProps}>
+									{tasks
+										.filter(
+											(task) => task.status === lane.id,
+										)
+										.map((task, index) => (
+											<Draggable
+												key={task.id}
+												draggableId={task.id}
+												index={index}>
+												{(provided) => (
+													<div
+														className='task'
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}>
+														<h3>{task.title}</h3>
+														<DeleteForeverIcon
+															onClick={() =>
+																removeTask(
+																	task.id,
+																)
+															}
+														/>
+													</div>
+												)}
+											</Draggable>
+										))}
+									{provided.placeholder}
+								</div>
+							)}
+						</Droppable>
 					</div>
-					<Droppable droppableId={lane.id}>
-						{(provided) => (
-							<div
-								className='tasks__list'
-								ref={provided.innerRef}
-								{...provided.droppableProps}>
-								{tasks
-									.filter((task) => task.status === lane.id)
-									.map((task, index) => (
-										<Draggable
-											key={task.id}
-											draggableId={task.id}
-											index={index}>
-											{(provided) => (
-												<div
-													className='task'
-													ref={provided.innerRef}
-													{...provided.draggableProps}
-													{...provided.dragHandleProps}>
-													<h3>{task.title}</h3>
-													<DeleteForeverIcon
-														onClick={() =>
-															removeTask(task.id)
-														}
-													/>
-												</div>
-											)}
-										</Draggable>
-									))}
-								{provided.placeholder}
-							</div>
-						)}
-					</Droppable>
 				</div>
 			))}
 		</DragDropContext>

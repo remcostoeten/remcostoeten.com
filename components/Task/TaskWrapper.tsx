@@ -121,7 +121,7 @@ export default function TaskWrapper() {
 	return (
 		<>
 			{/* <div className='container'><TaskCategories /></div> */}
-			<div className='todo'>
+			<div className='todo todo-wrapper'>
 				<div className='todo__inner'>
 					<main>
 						<div className='todo__header'>
@@ -193,10 +193,10 @@ export default function TaskWrapper() {
 								</button>
 							</div>
 						</div>
-						<span className='add'>
+						{/* <span className='add'>
 							<AddCircle onClick={() => setIsModalOpen(true)} />
 							Add new task
-						</span>
+						</span> */}
 
 						<TaskModal
 							isOpen={isModalOpen}

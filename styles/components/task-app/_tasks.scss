@@ -93,10 +93,15 @@ $dark-blue: #282a30;
 	justify-content: space-between;
 
 	&__lane {
-		background-color: #24262c;
 		padding: 16px 20px;
 		border-radius: 12px;
 		min-width: 200px;
+		background-color: $background-secondary;
+
+		.inner {
+			background-color: $background-alternative;
+		}
+
 		h4 {
 			font-size: 14px;
 			opacity: 0.5;
@@ -121,7 +126,7 @@ $dark-blue: #282a30;
 	position: relative;
 	transform: 250ms ease all;
 	opacity: 0.5;
-
+	margin-bottom: 30px;
 	&.grid {
 		opacity: 1;
 

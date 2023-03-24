@@ -6,6 +6,10 @@ $color-white: $dark;
 
 $white: white;
 
+.todo-wrapper {
+	padding: $spacing * 2;
+}
+
 .todo {
 	aside {
 		display: flex;
@@ -17,10 +21,6 @@ $white: white;
 		display: flex;
 		flex: 1;
 		flex-direction: column;
-	}
-
-	&__header {
-		padding: 16px 0;
 	}
 }
 
