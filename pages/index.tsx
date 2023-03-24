@@ -144,6 +144,10 @@ export default function Home() {
 				<div className={`${variant} bg3`}></div>
 				<div className='content'></div>
 			</div>
+<<<<<<< HEAD
+=======
+			{/* <Header /> */}
+>>>>>>> 7a060e679127262a329e49820e4db5e2e863dbb0
 			<div className='container'>
 				<Intro />
 			</div>
