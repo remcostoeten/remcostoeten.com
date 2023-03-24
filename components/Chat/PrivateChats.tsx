@@ -91,6 +91,14 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 			}
 		}
 	};
+
+	const handleImageClick = (index: number) => {
+		// Add the functionality for handling the image click event
+		console.log(`Image clicked with index: ${index}`);
+	};
+
+
+
   useEffect(() => {
 		if (searchTerm) {
 			const results = chatHistory.filter((message) =>

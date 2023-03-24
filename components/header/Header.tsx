@@ -17,7 +17,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
-import Variants from './Variants';
+
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
@@ -29,6 +29,8 @@ const Header = () => {
 	const open = Boolean(anchorEl);
 	const [showModal, setShowModal] = useState(false);
 
+	const handleOpenModal = () => setShowModal(true);
+	const handleCloseModal = () => setShowModal(false);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -78,7 +80,109 @@ const Header = () => {
 
 	const [variant, setVariant] = useState('theme--variant');
 
-	<Variants />;
+	useEffect(() => {
+		document.body.classList.add('variant');
+	}, []);
+
+	const handleVariantToggle = () => {
+		switch (variant) {
+			case 'theme--variant':
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				break;
+			case 'theme--variant-two':
+				setVariant('theme--variant-two');
+				document.body.classList.remove(
+					'variant',
+					'variant-three',
+					'variant-four',
+				);
+				break;
+			case 'theme--variant-three':
+				setVariant('theme--variant-three');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-four',
+				);
+				break;
+			case 'theme--variant-four':
+				setVariant('theme--variant-four');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-three',
+				);
+				break;
+			default:
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				break;
+		}
+	};
+
+	const actions = [
+		{
+			icon: false,
+			name: 'Palette one',
+			onClick: () => {
+				setVariant('theme--variant');
+				document.body.classList.remove(
+					'variant-two',
+					'variant-three',
+					'variant-four',
+				);
+				document.body.classList.add('variant');
+			},
+		},
+		{
+			icon: false,
+			name: 'Palette two',
+			onClick: () => {
+				setVariant('theme--variant-two');
+				document.body.classList.remove(
+					'variant',
+					'variant-three',
+					'variant-four',
+				);
+				document.body.classList.add('variant-two');
+			},
+		},
+		{
+			icon: false,
+			name: 'Palette three',
+			onClick: () => {
+				setVariant('theme--variant-three');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-four',
+				);
+				document.body.classList.add('variant-three');
+			},
+		},
+		{
+			icon: false,
+			name: 'Palette four',
+			onClick: () => {
+				setVariant('theme--variant-four');
+				document.body.classList.remove(
+					'variant',
+					'variant-two',
+					'variant-three',
+				);
+				document.body.classList.add('variant-four');
+			},
+		},
+	];
 	return (
 		<>
 			<motion.header
@@ -87,7 +191,8 @@ const Header = () => {
 				initial='hidden'
 				animate='visible'>
 				<div className='container header__inner'>
-					<Link href='/'>
+					<AdminMenu />
+	<Link href='/'>
 						<motion.div
 							className='header__user'
 							whileHover={{ scale: 1.05 }}>
@@ -133,73 +238,71 @@ const Header = () => {
 							<nav className='header__menu'>
 								<ul>
 									{isLoggedIn &&
-									auth.currentUser?.email ===
-										'stoetenremco.rs@gmail.com' ? (
-										<>
-											<AdminMenu />
-											{/* <li>
-												<a
-													id='demo-positioned-button'
-													aria-controls={
-														open
-															? 'demo-positioned-menu'
-															: undefined
-													}
-													aria-haspopup='true'
-													aria-expanded={
-														open
-															? 'true'
-															: undefined
-													}
-													onClick={handleClick}>
-													Personal exports
-												</a>
-												<Menu
-													id='demo-positioned-menu'
-													aria-labelledby='demo-positioned-button'
-													anchorEl={anchorEl}
-													open={open}
-													onClose={handleClose}
-													anchorOrigin={{
-														vertical: 'top',
-														horizontal: 'left',
-													}}
-													transformOrigin={{
-														vertical: 'top',
-														horizontal: 'left',
-													}}>
-													<MenuItem>
-														<Link href='/zold'>
-															                      
-														</Link>
-													</MenuItem>
-													<MenuItem>
-														<Link href='/znew'>
-															{
-																process.env
-																	.NEXT_PUBLIC_CHAT_TWO
-															}
-														</Link>
-													</MenuItem>
-													<MenuItem>
-														<Link href='/y'>
-															{
-																process.env
-																	.NEXT_PUBLIC_CHAT_THREE
-															}
-														</Link>
-													</MenuItem>
-													<MenuItem>
-														<Link href='/d'>
-															{
-																process.env
-																	.NEXT_PUBLIC_CHAT_FOUR
-															}
-														</Link>
-													</MenuItem>
-												</Menu>
-											</li> */}
-										</>
+										auth.currentUser?.email ===
+										process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
+										<li>
+											<Button
+												id='demo-positioned-button'
+												aria-controls={
+													open
+														? 'demo-positioned-menu'
+														: undefined
+												}
+												aria-haspopup='true'
+												aria-expanded={
+													open ? 'true' : undefined
+												}
+												onClick={handleClick}>
+												Personal exports
+											</Button>
+											<Menu
+												id='demo-positioned-menu'
+												aria-labelledby='demo-positioned-button'
+												anchorEl={anchorEl}
+												open={open}
+												onClose={handleClose}
+												anchorOrigin={{
+													vertical: 'top',
+													horizontal: 'left',
+												}}
+												transformOrigin={{
+													vertical: 'top',
+													horizontal: 'left',
+												}}>
+												<MenuItem>
+													<Link href='/zold'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_ONE
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/znew'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_TWO
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/y'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_THREE
+														}
+													</Link>
+												</MenuItem>
+												<MenuItem>
+													<Link href='/d'>
+														{
+															process.env
+																.NEXT_PUBLIC_CHAT_FOUR
+														}
+													</Link>
+												</MenuItem>
+											</Menu>
+										</li>
 									) : null}
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/tasks'>
@@ -212,7 +315,9 @@ const Header = () => {
 										</Link>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
-										<Link href='/whatsapp'>Chat</Link>
+										<Link href='/whatsapp-export'>
+											Chat
+										</Link>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<a
