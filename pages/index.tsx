@@ -144,10 +144,6 @@ export default function Home() {
 				<div className={`${variant} bg3`}></div>
 				<div className='content'></div>
 			</div>
-<<<<<<< HEAD
-			{/* <Header /> */}
-=======
->>>>>>> task
 			<div className='container'>
 				<Intro />
 			</div>
