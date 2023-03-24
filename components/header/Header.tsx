@@ -191,10 +191,10 @@ const Header = () => {
 				initial='hidden'
 				animate='visible'>
 				<div className='container header__inner'>
-						{isLoggedIn &&
-					      			auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
-					<AdminMenu />
-														) : null} */}
+					{isLoggedIn &&
+					auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
+						<AdminMenu />
+					) : null}
 
 					<Link href='/'>
 						<motion.div
