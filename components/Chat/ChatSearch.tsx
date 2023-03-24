@@ -3,9 +3,10 @@ import Icon from '@mdi/react';
 import { mdiMagnify, mdiClose } from '@mdi/js';
 import { motion } from 'framer-motion';
 import moment from 'moment';
+import { ChatMessage } from '@/types';
 
 interface ChatSearchProps {
-	searchResults: ChatMessage[];
+	searchResults:  ChatMessage[];
 	onSearch: (term: string) => void;
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;

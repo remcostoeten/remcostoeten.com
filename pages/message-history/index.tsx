@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react';
 import Friends from '@/components/Messenger/Friends';
-<<<<<<< HEAD
-// import Header from '@/components/Header/Header';
-=======
->>>>>>> task
 import withAuth from '../withAuth';
 
 const MessengerPage = () => {

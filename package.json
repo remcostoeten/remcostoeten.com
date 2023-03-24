@@ -6,6 +6,7 @@
 		"dev": "next dev",
 		"build": "next build",
 		"start": "next start",
+		"vercel-install": "./vercel-submodule-workaround.sh && yarn --ignore-scripts --production=false",
 		"lint": "next lint"
 	},
 	"dependencies": {
