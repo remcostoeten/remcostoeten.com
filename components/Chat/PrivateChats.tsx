@@ -30,7 +30,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const messagesPerPage = 20;
+	const messagesPerPage = 1000;
 	const storageInstance = storage;
 	const storageRef = ref(storageInstance, `/${filename}.json`);
 	const fetchChatHistoryFromStorage = async (): Promise<ChatMessage[]> => {
@@ -130,7 +130,7 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 					...prevMessages,
 					...chatHistory.slice(
 						prevMessages.length,
-						prevMessages.length + 20,
+						prevMessages.length + 200,
 					),
 				]);
 			}
