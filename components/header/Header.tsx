@@ -191,8 +191,12 @@ const Header = () => {
 				initial='hidden'
 				animate='visible'>
 				<div className='container header__inner'>
+						{isLoggedIn &&
+					      			auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
 					<AdminMenu />
-	<Link href='/'>
+														) : null} */}
+
+					<Link href='/'>
 						<motion.div
 							className='header__user'
 							whileHover={{ scale: 1.05 }}>
@@ -228,7 +232,7 @@ const Header = () => {
 										</span>
 									</motion.div>
 								) : (
-									<h2>remcostoeten</h2>
+									<h2></h2>
 								)}
 							</motion.div>
 						</motion.div>
@@ -238,7 +242,7 @@ const Header = () => {
 							<nav className='header__menu'>
 								<ul>
 									{isLoggedIn &&
-										auth.currentUser?.email ===
+									auth.currentUser?.email ===
 										process.env.NEXT_PUBLIC_ADMIN_EMAIL ? (
 										<li>
 											<Button
