@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db, auth } from '@/utils/firebase';
+import { db, auth, signInWithEmailAndPassword } from '@/utils/firebase';
 import {
 	collection,
 	addDoc,
@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/GoogleLogin';
 import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
+import { useRouter } from 'next/router';
+import { useSpring } from 'react-spring';
 
 export default function TaskWrapper() {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -20,6 +22,51 @@ export default function TaskWrapper() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [view, setView] = useState('board');
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [email, setEmail] = useState<string>('');
+	const [password, setPassword] = useState<string>('');
+	const [name, setName] = useState<string>('');
+	const [showSuccess, setShowSuccess] = useState<boolean>(false);
+	const router = useRouter();
+	const [showLoginForm, setShowLoginForm] = useState<boolean>(true);
+	const [error, setError] = useState<string | null>(null);
+
+	const successPopupAnimation = useSpring({
+		opacity: showSuccess ? 1 : 0,
+		transform: showSuccess ? 'translateY(0%)' : 'translateY(-100%)',
+		config: { duration: 300 },
+	});
+
+	const [confetti, setConfetti] = useState(false);
+
+	useEffect(() => {
+		if (showSuccess) {
+			setConfetti(true);
+			setTimeout(() => setConfetti(false), 3000);
+		}
+	}, [showSuccess]);
+
+	const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		setError(null);
+		try {
+			const userCredential = await signInWithEmailAndPassword(
+				auth,
+				email,
+				password,
+			);
+			const user = userCredential.user;
+			if (user) {
+				setShowSuccess(true);
+				setTimeout(() => {
+					closeModal(); // Close the modal
+					router.push('/'); // Redirect to the home page
+				}, 3000);
+			}
+		} catch (error) {
+			console.error('Error logging in:', error);
+			setError(error.message); // Set the error state to display the error message
+		}
+	};
 
 	type ViewType = 'board' | 'list';
 	interface Task {
