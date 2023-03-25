@@ -76,6 +76,27 @@ const LoginForm: React.FC<{ closeModal: () => void }> = ({
 			setError(error.message); // Set the error state to display the error message
 		}
 	};
+	const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+
+		try {
+			const userCredential = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password,
+			);
+			const user = userCredential.user;
+			if (user) {
+				await updateProfile(user, { displayName: name });
+				setShowSuccess(true);
+				setTimeout(() => {
+					router.push('/');
+				}, 3000);
+			}
+		} catch (error) {
+			console.error('Error creating user:', error);
+		}
+	};
 
 	return (
 		<>

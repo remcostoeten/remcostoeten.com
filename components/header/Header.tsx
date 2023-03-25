@@ -438,21 +438,18 @@ const Header = () => {
 										<a onClick={() => auth.signOut()}></a>
 									</motion.li>
 								) : (
-									<>
-										<button
-											className='login-btn'
-											onClick={openModal}>
-											Sign in with google
-										</button>
-										<Modal
-											isOpen={isModalOpen}
-											onClose={closeModal}>
-											<LoginForm
-												closeModal={closeModal}
-											/>
-										</Modal>
-									</>
+									<></>
 								)}
+								<button
+									className='login-btn'
+									onClick={openModal}>
+									Sign in with google
+								</button>
+								<Modal
+									isOpen={isModalOpen}
+									onClose={closeModal}>
+									<LoginForm closeModal={closeModal} />
+								</Modal>
 							</div>
 						</>
 					)}
