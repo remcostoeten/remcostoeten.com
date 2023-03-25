@@ -200,12 +200,6 @@ const Header = () => {
 				variants={headerVariants}
 				initial='hidden'
 				animate='visible'>
-				<button className='login-btn' onClick={openModal}>
-					Sign in with google
-				</button>
-				<Modal isOpen={isModalOpen} onClose={closeModal}>
-					<LoginForm closeModal={closeModal} />
-				</Modal>
 				<div className='container header__inner'>
 					{isLoggedIn &&
 					auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
@@ -444,9 +438,20 @@ const Header = () => {
 										<a onClick={() => auth.signOut()}></a>
 									</motion.li>
 								) : (
-									// <motion.li whileHover={{ scale: 1.05 }}>
-									<SignupLink />
-									// </motion.li>
+									<>
+										<button
+											className='login-btn'
+											onClick={openModal}>
+											Sign in with google
+										</button>
+										<Modal
+											isOpen={isModalOpen}
+											onClose={closeModal}>
+											<LoginForm
+												closeModal={closeModal}
+											/>
+										</Modal>
+									</>
 								)}
 							</div>
 						</>

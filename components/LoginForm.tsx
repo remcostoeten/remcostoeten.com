@@ -152,17 +152,20 @@ const LoginForm: React.FC<{ closeModal: () => void }> = ({
 											/>
 										</label>
 									</div>
-									<button type='submit'>Sign in</button>
-									<br />
-									<button type='submit'>Sign in</button>
-									<br />
 									<button
+										className='btn btn--primary'
+										type='submit'>
+										Sign in
+									</button>
+									<button
+										className='btn btn--secondary'
 										type='button'
 										onClick={signInWithGoogle}>
 										Sign in with Google
 									</button>
 									<br />
 									<button
+										className='btn btn--link'
 										type='button'
 										onClick={() => setShowLoginForm(false)}>
 										Don't have an account? Sign up
