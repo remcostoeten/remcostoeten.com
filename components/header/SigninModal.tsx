@@ -11,6 +11,23 @@ import { FacebookRounded, Google } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Login from '../Login';
+import { auth, signInWithGoogle, createUserWithEmailAndPassword } from '@/utils/firebase';
+import { useRouter } from 'next/router';
+import styled from '@emotion/styled';
+import { updateProfile } from '@firebase/auth';
+import Confetti from 'react-confetti';
+import { useSpring, animated } from 'react-spring';
+const SuccessPopup = styled(animated.div)`
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+`;
 import SignupModal from './SignupModal';
 interface SigninModalProps {
 	onClose: () => void;
@@ -74,8 +91,58 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 	const handleRememberMeChange = () => {
 		setRememberMe(!rememberMe);
 	};
+	const LoginForm: React.FC = () => {
+		const [email, setEmail] = useState<string>('');
+		const [password, setPassword] = useState<string>('');
+		const [name, setName] = useState<string>('');
+		const [showSuccess, setShowSuccess] = useState<boolean>(false);
+		const router = useRouter();
+
+		const successPopupAnimation = useSpring({
+			opacity: showSuccess ? 1 : 0,
+			transform: showSuccess ? 'translateY(0%)' : 'translateY(-100%)',
+			config: { duration: 300 },
+		});
+
+		const [confetti, setConfetti] = useState(false);
+
+		useEffect(() => {
+			if (showSuccess) {
+				setConfetti(true);
+				setTimeout(() => setConfetti(false), 3000);
+			}
+		}, [showSuccess]);
+
+		const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+			event.preventDefault();
+
+			try {
+				const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+				const user = userCredential.user;
+				if (user) {
+					await updateProfile(user, { displayName: name });
+					setShowSuccess(true);
+					setTimeout(() => {
+						router.push('/');
+					}, 3000);
+				}
+			} catch (error) {
+				console.error('Error creating user:', error);
+			}
+		};
 	return (
-		<div className='modal'>
+			
+	<div className='modal'>
+
+
+			{showSuccess && (
+				<>
+					<SuccessPopup style={successPopupAnimation}>
+						Account created successfully! Redirecting to the home page...
+					</SuccessPopup>
+					{confetti && <Confetti />}
+				</>
+			)}
 			<div>
 				{showSignupModal && (
 					<SignupModal onClose={handleCloseSignupModal} />
@@ -171,6 +238,5 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 					</div>
 				)}
 			</div>
-		</div>
-	);
-}
+		);
+	}
