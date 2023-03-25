@@ -2947,7 +2947,7 @@ button {
 .modal__divider {
   text-align: center;
   font-size: 1.5em;
-  padding: 24px 0;
+  padding: 8px 0;
 }
 .modal__input {
   position: relative;
@@ -3067,6 +3067,38 @@ button {
 .modal__close svg {
   font-size: 4em;
   cursor: pointer;
+}
+.modal__buttons {
+  display: flex;
+  align-items: center;
+}
+.modal__buttons .btn {
+  all: unset;
+}
+.modal__buttons .btn--primary {
+  background-color: #eb727f;
+  padding: 4px 24px;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 6px;
+  margin-right: 8px;
+}
+.modal__buttons .btn--link {
+  font-weight: 600;
+  color: #131517;
+  font-size: 1.3em;
+}
+.modal__buttons .btn--secondary {
+  background-color: #385d84;
+  padding: 4px 24px;
+  font-size: 1.5em;
+  letter-spacing: 1px;
+  font-weight: 600;
+  color: #fff;
+  border-radius: 6px;
+  margin-right: 8px;
 }
 
 .task-modal {

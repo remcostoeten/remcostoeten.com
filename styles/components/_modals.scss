@@ -38,7 +38,7 @@ $checkbox-size: 16px;
 	&__divider {
 		text-align: center;
 		font-size: 1.5em;
-		padding: $spacing 0;
+		padding: $spacing-s 0;
 	}
 
 	&__input {
@@ -185,6 +185,42 @@ $checkbox-size: 16px;
 		svg {
 			font-size: 4em;
 			cursor: pointer;
+		}
+	}
+
+	&__buttons {
+		display: flex;
+		align-items: center;
+		.btn {
+			all: unset;
+
+			&--primary {
+				background-color: $primary-color;
+				padding: 4px $spacing;
+				font-size: 1.5em;
+				letter-spacing: 1px;
+				font-weight: 600;
+				color: $color-white;
+				border-radius: 6px;
+				margin-right: $spacing-s;
+			}
+
+			&--link {
+				font-weight: 600;
+				color: $dark;
+				font-size: 1.3em;
+			}
+
+			&--secondary {
+				background-color: $secondary-color;
+				padding: 4px $spacing;
+				font-size: 1.5em;
+				letter-spacing: 1px;
+				font-weight: 600;
+				color: $color-white;
+				border-radius: 6px;
+				margin-right: $spacing-s;
+			}
 		}
 	}
 }
