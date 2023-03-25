@@ -8,6 +8,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import Lost from '@/components/Lost';
 import { GoogleAuthProvider, auth, signInWithPopup } from '@/utils/firebase';
+import SignupLink from '@/components/header/SignupLink';
 
 interface AsideSmallProps {
 	isLoggedIn: boolean;
@@ -16,7 +17,19 @@ interface AsideSmallProps {
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [openMenu, setOpenMenu] = useState(false);
+	const [userName, setUserName] = useState<string | null>(null);
+	const [showTagline, setShowTagline] = useState(true);
+	const [minimalSticky, setmMinimalSticky] = useState(true);
+	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+	const open = Boolean(anchorEl);
+	const [showModal, setShowModal] = useState(false);
 
+	const handleOpenModal = () => setShowModal(true);
+	const handleCloseModal = () => setShowModal(false);
+	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+		setAnchorEl(event.currentTarget);
+	};
 	const toggleTheme = () => {
 		if (document.body.classList.contains('theme-white')) {
 			document.body.classList.remove('theme-white');
@@ -79,11 +92,9 @@ export default function Index() {
 									</p>
 									<div className='not-authorized__buttons'>
 										<div className='item item--arrow'>
-											<div
-												onClick={signIn}
-												className='cta'>
+											<div className='cta'>
 												<KeyboardBackspace />
-												Login
+												<SignupLink />
 											</div>
 										</div>
 										<div className='item item--arrow'>

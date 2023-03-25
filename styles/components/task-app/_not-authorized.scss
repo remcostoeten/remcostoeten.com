@@ -9,6 +9,10 @@ $space: 12px;
 	padding: 80px;
 	margin-top: -250px;
 
+	.modal {
+		position: inherit;
+	}
+
 	&__inner {
 		z-index: 3;
 		position: relative;
@@ -60,6 +64,10 @@ $space: 12px;
 		display: flex;
 		font-size: 2.4em;
 		cursor: pointer;
+
+		.login-btn {
+			all: unset;
+		}
 
 		.cta {
 			margin-right: $space * 2;

@@ -3430,6 +3430,9 @@ form h3 {
   padding: 80px;
   margin-top: -250px;
 }
+.not-authorized .modal {
+  position: inherit;
+}
 .not-authorized__inner {
   z-index: 3;
   position: relative;
@@ -3473,6 +3476,9 @@ form h3 {
   display: flex;
   font-size: 2.4em;
   cursor: pointer;
+}
+.not-authorized__buttons .login-btn {
+  all: unset;
 }
 .not-authorized__buttons .cta {
   margin-right: 24px;
@@ -3674,7 +3680,7 @@ form h3 {
   padding: 10px 30px;
   display: flex;
   align-items: baseline;
-  width: fit-content;
+  width: max-content;
   clip-path: polygon(100% 0, 84% 100%, 100% 100%, 0 100%, 0 0);
   transition: 250ms ease all;
   display: flex;
@@ -3786,6 +3792,10 @@ form h3 {
   margin-top: -250px;
 }
 
+.not-authorized .modal {
+  position: inherit;
+}
+
 .not-authorized__inner {
   z-index: 3;
   position: relative;
@@ -3837,6 +3847,10 @@ form h3 {
   display: flex;
   font-size: 2.4em;
   cursor: pointer;
+}
+
+.not-authorized__buttons .login-btn {
+  all: unset;
 }
 
 .not-authorized__buttons .cta {
