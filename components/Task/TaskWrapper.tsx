@@ -13,10 +13,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
 import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
-import { AddCircle } from '@mui/icons-material';
-import Aside from '@/components/Task/AsideSmall';
-import { signIn, signOut } from '@/utils/LoginLogic';
-import Modal from '../Modal';
 
 export default function TaskWrapper() {
 	const [tasks, setTasks] = useState<Task[]>([]);

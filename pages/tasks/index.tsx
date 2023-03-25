@@ -9,6 +9,7 @@ import Image from 'next/image';
 import Lost from '@/components/Lost';
 import { GoogleAuthProvider, auth, signInWithPopup } from '@/utils/firebase';
 import SignupLink from '@/components/header/SignupLink';
+import { signInWithEmailAndPassword } from '@firebase/auth';
 
 interface AsideSmallProps {
 	isLoggedIn: boolean;
@@ -17,16 +18,12 @@ interface AsideSmallProps {
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [openMenu, setOpenMenu] = useState(false);
-	const [userName, setUserName] = useState<string | null>(null);
-	const [showTagline, setShowTagline] = useState(true);
-	const [minimalSticky, setmMinimalSticky] = useState(true);
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const open = Boolean(anchorEl);
 	const [showModal, setShowModal] = useState(false);
+	const [email, setEmail] = useState('');
+	const [password, setPassword] = useState('');
 
-	const handleOpenModal = () => setShowModal(true);
-	const handleCloseModal = () => setShowModal(false);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -40,22 +37,23 @@ export default function Index() {
 		}
 	};
 
-	const signIn = async () => {
+	const signIn = async (
+		setIsLoggedIn: (value: boolean) => void,
+		email?: string,
+		password?: string,
+	) => {
 		try {
-			const result = await signInWithPopup(
-				auth,
-				new GoogleAuthProvider(),
-			);
+			let result;
+			if (email && password) {
+				result = await signInWithEmailAndPassword(
+					auth,
+					email,
+					password,
+				);
+			} else {
+				result = await signInWithPopup(auth, new GoogleAuthProvider());
+			}
 			setIsLoggedIn(true);
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const signOut = async () => {
-		try {
-			await auth.signOut();
-			setIsLoggedIn(false);
 		} catch (error) {
 			console.log(error);
 		}
@@ -92,9 +90,16 @@ export default function Index() {
 									</p>
 									<div className='not-authorized__buttons'>
 										<div className='item item--arrow'>
-											<div className='cta'>
-												<KeyboardBackspace />
-												<SignupLink />
+											<div
+												className='cta'
+												onClick={() =>
+													signIn(
+														setIsLoggedIn,
+														email,
+														password,
+													)
+												}>
+												Sign In
 											</div>
 										</div>
 										<div className='item item--arrow'>
