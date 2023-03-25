@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { auth, signInWithGoogle, createUserWithEmailAndPassword } from '@/utils/firebase';
+import {
+	auth,
+	signInWithGoogle,
+	createUserWithEmailAndPassword,
+} from '@/utils/firebase';
 import { useRouter } from 'next/router';
 import styled from '@emotion/styled';
 import { updateProfile } from '@firebase/auth';
@@ -8,15 +12,15 @@ import { useSpring, animated } from 'react-spring';
 import SignupModal from './SignupModal';
 import SigninModal from './SigninModal';
 const SuccessPopup = styled(animated.div)`
-  background-color: #4caf50;
-  color: white;
-  text-align: center;
-  padding: 10px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
+	background-color: #4caf50;
+	color: white;
+	text-align: center;
+	padding: 10px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 100;
 `;
 export default function SignupLink() {
 	const [showModal, setShowModal] = useState(false);
@@ -47,7 +51,11 @@ export default function SignupLink() {
 		event.preventDefault();
 
 		try {
-			const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+			const userCredential = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password,
+			);
 			const user = userCredential.user;
 			if (user) {
 				await updateProfile(user, { displayName: name });
@@ -61,17 +69,17 @@ export default function SignupLink() {
 		}
 	};
 
-
 	return (
 		<>
-			{showSuccess && (
+			{/* {showSuccess && (
 				<>
 					<SuccessPopup style={successPopupAnimation}>
-						Account created successfully! Redirecting to the home page...
+						Account created successfully! Redirecting to the home
+						page...
 					</SuccessPopup>
 					{confetti && <Confetti />}
 				</>
-			)}
+			)} */}
 			<div className='login-btn' onClick={handleOpenModal}>
 				<span>Sign in with Google</span>
 			</div>

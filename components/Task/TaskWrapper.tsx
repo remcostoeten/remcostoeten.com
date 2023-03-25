@@ -10,7 +10,7 @@ import {
 } from '@firebase/firestore';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from '@/components/Login';
+import Login from '@/components/GoogleLogin';
 import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
 

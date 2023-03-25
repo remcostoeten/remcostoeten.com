@@ -3,11 +3,12 @@ import { getFirestore } from 'firebase/firestore';
 import { getStorage } from '@firebase/storage';
 import { getDatabase } from 'firebase/database';
 import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  signOut,
+	getAuth,
+	signInWithPopup,
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+	signOut,
+	signInWithEmailAndPassword,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -64,6 +65,7 @@ export {
 	logout,
 	signInWithPopup,
 	GoogleAuthProvider,
-	  createUserWithEmailAndPassword,
+	createUserWithEmailAndPassword,
 	database,
+	signInWithEmailAndPassword,
 };

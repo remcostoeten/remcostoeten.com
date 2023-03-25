@@ -10,7 +10,7 @@ import {
 	Menu,
 	WhatsApp,
 } from '@mui/icons-material';
-import Login from '../Login';
+import Login from '../GoogleLogin';
 import { auth } from '@/utils/firebase';
 import {
 	Tooltip,

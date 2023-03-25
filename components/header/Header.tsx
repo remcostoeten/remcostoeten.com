@@ -17,6 +17,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
+import LoginForm from '../LoginForm';
+import Modal from '../ui-elements/Modal';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -28,7 +30,15 @@ const Header = () => {
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const open = Boolean(anchorEl);
 	const [showModal, setShowModal] = useState(false);
+	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
+	const openModal = () => {
+		setIsModalOpen(true);
+	};
+
+	const closeModal = () => {
+		setIsModalOpen(false);
+	};
 	const handleOpenModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -190,6 +200,12 @@ const Header = () => {
 				variants={headerVariants}
 				initial='hidden'
 				animate='visible'>
+				<button className='login-btn' onClick={openModal}>
+					Sign in with google
+				</button>
+				<Modal isOpen={isModalOpen} onClose={closeModal}>
+					<LoginForm closeModal={closeModal} />
+				</Modal>
 				<div className='container header__inner'>
 					{isLoggedIn &&
 					auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
