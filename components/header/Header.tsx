@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { auth, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
 import { Logout } from '@mui/icons-material';
-import Box from '@mui/material/Box';
+// import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -14,13 +14,24 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import SignupLink from './SignupLink';
-import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
-import LoginForm from '../LoginForm';
-import Modal from '../ui-elements/Modal';
-import SignIn from '../SignIn';
-
+import SignInButton from '../LoginModal';
+import {
+	Modal,
+	ModalOverlay,
+	ModalContent,
+	ModalHeader,
+	ModalCloseButton,
+	ModalBody,
+	ModalFooter,
+	Button,
+	Input,
+	Stack,
+	FormControl,
+	FormLabel,
+	Box,
+	Text,
+} from '@chakra-ui/react';
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
@@ -33,15 +44,24 @@ const Header = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-	const openModal = () => {
-		setIsModalOpen(true);
+	const [isOpen, setIsOpen] = useState(false);
+	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+
+	const handleSignInClick = () => {
+		setIsOpen(true);
 	};
 
-	const closeModal = () => {
-		setIsModalOpen(false);
+	const handleModalClose = () => {
+		setIsOpen(false);
 	};
-	const handleOpenModal = () => setShowModal(true);
-	const handleCloseModal = () => setShowModal(false);
+
+	const handleSignUpModalClose = () => {
+		setIsSignUpModalOpen(false);
+	};
+
+	const handleSignUpClick = () => {
+		setIsSignUpModalOpen(true);
+	};
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
@@ -441,7 +461,16 @@ const Header = () => {
 								) : (
 									<></>
 								)}
-								<SignIn />
+								<SignInButton
+									isOpen={isOpen}
+									isSignUpModalOpen={isSignUpModalOpen}
+									handleSignInClick={handleSignInClick}
+									handleModalClose={handleModalClose}
+									handleSignUpModalClose={
+										handleSignUpModalClose
+									}
+									handleSignUpClick={handleSignUpClick}
+								/>{' '}
 							</div>
 						</>
 					)}

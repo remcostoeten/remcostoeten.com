@@ -1,0 +1,107 @@
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal__backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 50;
+}
+
+.modal {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+.modal h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-top: 0;
+}
+.modal .content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+.modal .googleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal .googleButton button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.modal .googleButton button:hover {
+  background-color: #d8d8d8;
+}
+.modal .googleButton button img {
+  width: 24px;
+  height: 24px;
+}
+.modal .or {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+.modal .emailLogin {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.modal .emailLogin .MuiTextField-root {
+  margin-bottom: 10px;
+}
+.modal .emailLogin button {
+  padding: 10px;
+}
+.modal .register {
+  margin-top: 10px;
+  text-align: center;
+}
+.modal .register button {
+  text-transform: none;
+}
+.modal .closeButton {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 10px;
+}/*# sourceMappingURL=LoginModal.module.css.map */
