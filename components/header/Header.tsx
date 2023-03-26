@@ -19,6 +19,7 @@ import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
 import LoginForm from '../LoginForm';
 import Modal from '../ui-elements/Modal';
+import SignIn from '../SignIn';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -440,16 +441,7 @@ const Header = () => {
 								) : (
 									<></>
 								)}
-								<button
-									className='login-btn'
-									onClick={openModal}>
-									Sign in with google
-								</button>
-								<Modal
-									isOpen={isModalOpen}
-									onClose={closeModal}>
-									<LoginForm closeModal={closeModal} />
-								</Modal>
+								<SignIn />
 							</div>
 						</>
 					)}

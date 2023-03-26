@@ -12,13 +12,13 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',
-	authDomain: 'task-41e05.firebaseapp.com',
-	projectId: 'task-41e05',
-	storageBucket: 'task-41e05.appspot.com',
-	messagingSenderId: '482137951796',
-	appId: '1:482137951796:web:c64e6f41ad5d0e60b28461',
-	measurementId: 'G-STSWFTFM63',
+	apiKey: 'AIzaSyDwXDGrvrAS7Z3KwdpeOqVFJva32rT_qCc',
+	authDomain: 'remcostoeten-9cadf.firebaseapp.com',
+	projectId: 'remcostoeten-9cadf',
+	storageBucket: 'remcostoeten-9cadf.appspot.com',
+	messagingSenderId: '97706826008',
+	appId: '1:97706826008:web:0a631d6aee76daf875e66d',
+	measurementId: 'G-BTR9DC1LPH',
 };
 
 const app = initializeApp(firebaseConfig);
