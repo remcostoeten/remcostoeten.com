@@ -1,48 +1,29 @@
 import { useState } from 'react';
-import {
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalCloseButton,
-	ModalBody,
-	ModalFooter,
-	Button,
-	Input,
-	Stack,
-	FormControl,
-	FormLabel,
-	Box,
-	Text,
-} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import {
 	auth,
 	signInWithGoogle,
 	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
 } from '@/utils/firebase';
+import {
+	Button,
+	TextField,
+	Dialog,
+	DialogTitle,
+	DialogContent,
+	DialogContentText,
+	DialogActions,
+} from '@mui/material';
+import Confetti from 'react-confetti';
 
-const SignInButton = () => {
-	const [isOpen, setIsOpen] = useState(false);
-	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
+function LoginModal() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [name, setName] = useState('');
-
-	const handleSignInClick = () => {
-		setIsOpen(true);
-	};
-
-	const handleModalClose = () => {
-		setIsOpen(false);
-	};
-
-	const handleSignUpModalClose = () => {
-		setIsSignUpModalOpen(false);
-	};
-
-	const handleSignUpClick = () => {
-		setIsSignUpModalOpen(true);
-	};
+	const [open, setOpen] = useState(false);
+	const [message, setMessage] = useState('');
+	const [showConfetti, setShowConfetti] = useState(false);
+	const router = useRouter();
 
 	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value);
@@ -54,144 +35,104 @@ const SignInButton = () => {
 		setPassword(event.target.value);
 	};
 
-	const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setName(event.target.value);
-	};
-
-	const handleSignInWithEmailAndPassword = async () => {
-		try {
-			await auth.signInWithEmailAndPassword(email, password);
-			handleModalClose();
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const handleSignUpWithEmailAndPassword = async () => {
-		try {
-			await createUserWithEmailAndPassword(auth, email, password);
-			handleSignUpModalClose();
-		} catch (error) {
-			console.log(error);
-		}
-	};
-
-	const handleSignInWithGoogle = async () => {
+	const handleGoogleSignIn = async () => {
 		try {
 			await signInWithGoogle();
-			handleModalClose();
+			router.push('/');
 		} catch (error) {
-			console.log(error);
+			setMessage(error.message);
+			setOpen(true);
 		}
+	};
+
+	const handleEmailSignIn = async () => {
+		try {
+			await signInWithEmailAndPassword(auth, email, password);
+			router.push('/');
+			setShowConfetti(true);
+		} catch (error) {
+			setMessage(error.message);
+			setOpen(true);
+		}
+	};
+
+	const handleCreateAccount = async () => {
+		try {
+			await createUserWithEmailAndPassword(auth, email, password);
+			router.push('/');
+			setShowConfetti(true);
+		} catch (error) {
+			setMessage(error.message);
+			setOpen(true);
+		}
+	};
+
+	const handleClose = () => {
+		setOpen(false);
 	};
 
 	return (
-		<>
-			<Button onClick={handleSignInClick}>Sign in</Button>
-			<Modal isOpen={isOpen} onClose={handleModalClose}>
-				<ModalOverlay />
-				<ModalContent>
-					<ModalHeader>Sign in</ModalHeader>
-					<ModalCloseButton />
-					<ModalBody>
-						<Box textAlign='center' mb={4}>
-							<Button
-								variant='outline'
-								colorScheme='teal'
-								onClick={handleSignInWithGoogle}
-								mr={2}>
-								<i className='fab fa-google'></i> Sign in with
-								Google
-							</Button>
-							<Button variant='outline' colorScheme='facebook'>
-								<i className='fab fa-facebook-f'></i> Sign in
-								with Facebook
-							</Button>
-						</Box>
-						<Text textAlign='center'>or</Text>
-						<Stack spacing={3} mt={4}>
-							<FormControl id='email'>
-								<FormLabel>Email address</FormLabel>
-								<Input
-									type='email'
-									value={email}
-									onChange={handleEmailChange}
-								/>
-							</FormControl>
-							<FormControl id='password'>
-								<FormLabel>Password</FormLabel>
-								<Input
-									type='password'
-									value={password}
-									onChange={handlePasswordChange}
-								/>
-							</FormControl>
-						</Stack>
-					</ModalBody>
-
-					<ModalFooter>
-						<Button
-							variant='ghost'
-							mr={3}
-							onClick={handleSignUpClick}>
-							Not registered yet? Click here to sign up.
-						</Button>
-						<Button onClick={handleSignInWithEmailAndPassword}>
-							Sign in
-						</Button>
-					</ModalFooter>
-				</ModalContent>
-			</Modal>
-
-			<Modal isOpen={isSignUpModalOpen} onClose={handleSignUpModalClose}>
-				<ModalOverlay />
-				<ModalContent>
-					<ModalHeader>Sign up</ModalHeader>
-					<ModalCloseButton />
-					<ModalBody>
-						<Stack spacing={3}>
-							<FormControl id='name'>
-								<FormLabel>Name</FormLabel>
-								<Input
-									type='text'
-									value={name}
-									onChange={handleNameChange}
-								/>
-							</FormControl>
-							<FormControl id='email'>
-								<FormLabel>Email address</FormLabel>
-								<Input
-									type='email'
-									value={email}
-									onChange={handleEmailChange}
-								/>
-							</FormControl>
-							<FormControl id='password'>
-								<FormLabel>Password</FormLabel>
-								<Input
-									type='password'
-									value={password}
-									onChange={handlePasswordChange}
-								/>
-							</FormControl>
-						</Stack>
-					</ModalBody>
-
-					<ModalFooter>
-						<Button
-							variant='ghost'
-							mr={3}
-							onClick={handleSignInClick}>
-							Already have an account? Click here to sign in.
-						</Button>
-						<Button onClick={handleSignUpWithEmailAndPassword}>
-							Sign up
-						</Button>
-					</ModalFooter>
-				</ModalContent>
-			</Modal>
-		</>
+		<div>
+			<Button
+				variant='contained'
+				color='primary'
+				onClick={handleGoogleSignIn}>
+				Sign in with Google
+			</Button>
+			<TextField
+				id='email'
+				label='Email'
+				variant='outlined'
+				value={email}
+				onChange={handleEmailChange}
+			/>
+			<TextField
+				id='password'
+				label='Password'
+				type='password'
+				variant='outlined'
+				value={password}
+				onChange={handlePasswordChange}
+			/>
+			<Button
+				variant='contained'
+				color='primary'
+				onClick={handleEmailSignIn}>
+				Sign in with Email and Password
+			</Button>
+			<Button
+				variant='contained'
+				color='primary'
+				onClick={handleCreateAccount}>
+				Create Account
+			</Button>
+			<Dialog
+				open={open}
+				onClose={handleClose}
+				BackdropProps={{ invisible: false }}>
+				<DialogTitle>Error</DialogTitle>
+				<DialogContent>
+					<DialogContentText>{message}</DialogContentText>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={handleClose} color='primary'>
+						OK
+					</Button>
+				</DialogActions>
+			</Dialog>
+			{showConfetti && <Confetti />}
+			{showConfetti && (
+				<div
+					style={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: 'translate(-50%, -50%)',
+					}}>
+					<h1>Congratulations!</h1>
+					<p>You have successfully logged in.</p>
+				</div>
+			)}
+		</div>
 	);
-};
-
-export default SignInButton;
+}

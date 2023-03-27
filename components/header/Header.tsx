@@ -13,6 +13,8 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
+import { useRouter } from 'next/router';
+import LoginModal from '../LoginModal';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AdminMenu from './AdminMenu';
 import SignInButton from '../LoginModal';
@@ -32,6 +34,8 @@ import {
 	Box,
 	Text,
 } from '@chakra-ui/react';
+import { Dialog, DialogContent } from '@mui/material';
+import Login from '@/pages/Login';
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
@@ -40,34 +44,27 @@ const Header = () => {
 	const [minimalSticky, setmMinimalSticky] = useState(true);
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 	const isMobile = useMediaQuery('(max-width: 768px)');
-	const open = Boolean(anchorEl);
-	const [showModal, setShowModal] = useState(false);
-	const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+	const router = useRouter();
+	const [open, setOpen] = useState(false);
 
-	const [isOpen, setIsOpen] = useState(false);
-	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
-
-	const handleSignInClick = () => {
-		setIsOpen(true);
+	const handleOpen = () => {
+		setOpen(true);
 	};
 
-	const handleModalClose = () => {
-		setIsOpen(false);
+	const handleClose = () => {
+		setOpen(false);
 	};
 
-	const handleSignUpModalClose = () => {
-		setIsSignUpModalOpen(false);
+	const handleLogout = () => {
+		// Logout logic goes here
 	};
 
-	const handleSignUpClick = () => {
-		setIsSignUpModalOpen(true);
-	};
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
-	const handleClose = () => {
-		setAnchorEl(null);
-	};
+	// const handleClose = () => {
+	// 	setAnchorEl(null);
+	// };
 
 	const handleMenu = () => {
 		setOpenMenu(true);
@@ -461,16 +458,19 @@ const Header = () => {
 								) : (
 									<></>
 								)}
-								<SignInButton
-									isOpen={isOpen}
-									isSignUpModalOpen={isSignUpModalOpen}
-									handleSignInClick={handleSignInClick}
-									handleModalClose={handleModalClose}
-									handleSignUpModalClose={
-										handleSignUpModalClose
-									}
-									handleSignUpClick={handleSignUpClick}
-								/>{' '}
+								<div className='login-btn' onClick={handleOpen}>
+									Sign in
+								</div>
+								<div open={open} onClose={handleClose}>
+									<h2>Login</h2>
+									<div className='modal'>
+										<LoginModal handleClose={handleClose} />
+										<a onClick={() => auth.signOut()}>
+											loguit
+										</a>
+									</div>
+								</div>
+								<div className='modal__backdrop'></div>
 							</div>
 						</>
 					)}

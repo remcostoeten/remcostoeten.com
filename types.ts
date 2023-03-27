@@ -1,5 +1,14 @@
 import { ReactNode } from 'react';
 
+export interface PrivateTask {
+	id: string;
+	title: string;
+	description: string;
+	category: string;
+	status: 'todo' | 'inprogress' | 'done';
+	date: string;
+}
+
 export interface Task {
 	id: string;
 	title: string;
