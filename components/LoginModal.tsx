@@ -81,19 +81,16 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 	};
 
 	const handleRegister = async () => {
+		console.log('Register button clicked');
 		try {
-			await createUserWithEmailAndPassword(
-				auth,
-				newUserEmail,
-				newUserPassword,
-			);
+			await createUserWithEmailAndPassword(auth, newUserEmail, password);
 			setShowConfetti(true);
 			onClose();
+			setShowRegisterModal(false);
 		} catch (error) {
 			enqueueSnackbar(error.message, { variant: 'error' });
 		}
 	};
-
 	useEffect(() => {
 		if (showConfetti) {
 			setTimeout(() => {
@@ -114,6 +111,7 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 					<Confetti />
 				</div>
 			)}
+
 			<Dialog open={isOpen} onClose={onClose}>
 				<DialogTitle>Sign In</DialogTitle>
 				<DialogContent>
@@ -155,48 +153,50 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 					</Button>
 				</DialogActions>
 			</Dialog>
-			<Dialog
-				open={showRegisterModal}
-				onClose={() => setShowRegisterModal(false)}>
-				<DialogTitle>Register</DialogTitle>
-				<DialogContent>
-					<TextField
-						margin='normal'
-						label='Name'
-						variant='outlined'
-						fullWidth
-						value={setName}
-						onChange={handleNameChange}
-					/>
-					<TextField
-						margin='normal'
-						label='Email'
-						variant='outlined'
-						fullWidth
-						value={newUserEmail}
-						onChange={handleEmailChange}
-					/>
-					<TextField
-						margin='normal'
-						label='Password'
-						variant='outlined'
-						fullWidth
-						type='password'
-						value={password}
-						onChange={handlePasswordChange}
-					/>
-				</DialogContent>
-				<DialogActions>
-					<Button
-						onClick={() => setShowRegisterModal(false)}
-						color='secondary'>
-						Cancel
-					</Button>
-					<Button onClick={handleRegister} color='primary'>
-						Register
-					</Button>
-				</DialogActions>
-			</Dialog>
+			<form>
+				<Dialog
+					open={showRegisterModal}
+					onClose={() => setShowRegisterModal(false)}>
+					<DialogTitle>Register</DialogTitle>
+					<DialogContent>
+						<TextField
+							margin='normal'
+							label='Name'
+							variant='outlined'
+							fullWidth
+							value={name}
+							onChange={handleNameChange}
+						/>
+						<TextField
+							margin='normal'
+							label='Email'
+							variant='outlined'
+							fullWidth
+							value={newUserEmail}
+							onChange={handleEmailChange}
+						/>
+						<TextField
+							margin='normal'
+							label='Password'
+							variant='outlined'
+							fullWidth
+							type='password'
+							value={password}
+							onChange={handlePasswordChange}
+						/>
+					</DialogContent>
+					<DialogActions>
+						<Button
+							onClick={() => setShowRegisterModal(false)}
+							color='secondary'>
+							Cancel
+						</Button>
+						<Button onClick={handleRegister} color='primary'>
+							Register
+						</Button>
+					</DialogActions>
+				</Dialog>
+			</form>
 		</>
 	);
 };

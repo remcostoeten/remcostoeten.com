@@ -49,41 +49,33 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }: NewUserModalProps) => {
 	return (
 		<Dialog open={isOpen} onClose={onClose}>
 			<DialogTitle>Create New User</DialogTitle>
-			<DialogContent>
-				<TextField
-					margin='normal'
-					label='Name'
-					variant='outlined'
-					fullWidth
-					value={newUserName}
-					onChange={handleNameChange}
-				/>
-				<TextField
-					margin='normal'
-					label='Email'
-					variant='outlined'
-					fullWidth
-					value={newUserEmail}
-					onChange={handleEmailChange}
-				/>
-				<TextField
-					margin='normal'
-					label='Password'
-					variant='outlined'
-					fullWidth
-					type='password'
-					value={newUserPassword}
-					onChange={handlePasswordChange}
-				/>
-				<DialogActions>
-					<Button onClick={handleNewUserModalClose} color='secondary'>
-						Cancel
+			<form onSubmit={handleSubmit}>
+				<DialogContent>
+					<Button
+						onClick={handleSignInWithGoogle}
+						startIcon={<Google />}
+						fullWidth>
+						Sign in with Google
 					</Button>
-					<Button onClick={handleSubmit} color='primary'>
-						Register
-					</Button>
-				</DialogActions>{' '}
-			</DialogContent>
+					<TextField
+						margin='normal'
+						label='Email'
+						variant='outlined'
+						fullWidth
+						value={email}
+						onChange={handleEmailChange}
+					/>
+					<TextField
+						margin='normal'
+						label='Password'
+						variant='outlined'
+						fullWidth
+						type='password'
+						value={password}
+						onChange={handlePasswordChange}
+					/>
+				</DialogContent>
+			</form>
 			<DialogActions>
 				<Button onClick={onClose} color='secondary'>
 					Cancel
