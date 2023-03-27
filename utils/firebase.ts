@@ -26,25 +26,15 @@ const storage = getStorage(app);
 const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
-const signInWithGoogle = () => {
-	console.log('signing in with google');
-	signInWithPopup(auth, provider)
-		.then((result) => {
-			const credential = GoogleAuthProvider.credentialFromResult(result);
-			const token = credential?.accessToken;
-			const user = result.user;
-			console.log('a');
-		})
-		.catch((error) => {
-			const errorCode = error.code;
-			const errorMessage = error.message;
-			const email = error.email;
-			const credential = GoogleAuthProvider.credentialFromError(error);
-			console.log(error.code);
-			console.log(error);
-		});
+const signInWithGoogle = (): Promise<void> => {
+	const provider = new GoogleAuthProvider();
+	return signInWithPopup(auth, provider).then((result) => {
+		const credential = GoogleAuthProvider.credentialFromResult(result);
+		const token = credential?.accessToken;
+		const user = result.user;
+		console.log('a');
+	});
 };
-
 const logout = () => {
 	console.log('logging out');
 	signOut(auth)

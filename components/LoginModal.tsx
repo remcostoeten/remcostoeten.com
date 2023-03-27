@@ -1,29 +1,65 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import {
-	auth,
-	signInWithGoogle,
-	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
-} from '@/utils/firebase';
+import { useState, useEffect } from 'react';
 import {
 	Button,
-	TextField,
 	Dialog,
 	DialogTitle,
 	DialogContent,
-	DialogContentText,
+	TextField,
 	DialogActions,
 } from '@mui/material';
+import { Google } from '@mui/icons-material';
+import {
+	signInWithPopup,
+	GoogleAuthProvider,
+	auth,
+	signInWithEmailAndPassword,
+} from '@/utils/firebase';
 import Confetti from 'react-confetti';
+import { toast } from 'react-toastify';
 
-function LoginModal() {
+type SignInModalProps = {
+	isOpen: boolean;
+	onClose: () => void;
+};
+
+const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
+	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [open, setOpen] = useState(false);
-	const [message, setMessage] = useState('');
 	const [showConfetti, setShowConfetti] = useState(false);
-	const router = useRouter();
+	const [fadeOut, setFadeOut] = useState(false);
+
+	const handleSignInWithGoogle = (): Promise<void> => {
+		const provider = new GoogleAuthProvider();
+		return signInWithPopup(auth, provider)
+			.then((result) => {
+				const credential =
+					GoogleAuthProvider.credentialFromResult(result);
+				const token = credential?.accessToken;
+				const user = result.user;
+				setShowConfetti(true);
+				onClose();
+				toast.success('You have successfully signed in.');
+			})
+			.catch((error) => {
+				toast.error(error.message);
+			});
+	};
+
+	const handleSignInWithEmail = async () => {
+		try {
+			await signInWithEmailAndPassword(auth, email, password);
+			setShowConfetti(true);
+			onClose();
+			toast.success('You have successfully signed in.');
+		} catch (error) {
+			toast.error(error.message);
+		}
+	};
+
+	const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setName(event.target.value);
+	};
 
 	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(event.target.value);
@@ -35,104 +71,64 @@ function LoginModal() {
 		setPassword(event.target.value);
 	};
 
-	const handleGoogleSignIn = async () => {
-		try {
-			await signInWithGoogle();
-			router.push('/');
-		} catch (error) {
-			setMessage(error.message);
-			setOpen(true);
+	useEffect(() => {
+		if (showConfetti) {
+			setTimeout(() => {
+				setFadeOut(true);
+			}, 3000);
 		}
-	};
-
-	const handleEmailSignIn = async () => {
-		try {
-			await signInWithEmailAndPassword(auth, email, password);
-			router.push('/');
-			setShowConfetti(true);
-		} catch (error) {
-			setMessage(error.message);
-			setOpen(true);
-		}
-	};
-
-	const handleCreateAccount = async () => {
-		try {
-			await createUserWithEmailAndPassword(auth, email, password);
-			router.push('/');
-			setShowConfetti(true);
-		} catch (error) {
-			setMessage(error.message);
-			setOpen(true);
-		}
-	};
-
-	const handleClose = () => {
-		setOpen(false);
-	};
+	}, [showConfetti]);
 
 	return (
-		<div>
-			<Button
-				variant='contained'
-				color='primary'
-				onClick={handleGoogleSignIn}>
-				Sign in with Google
-			</Button>
-			<TextField
-				id='email'
-				label='Email'
-				variant='outlined'
-				value={email}
-				onChange={handleEmailChange}
-			/>
-			<TextField
-				id='password'
-				label='Password'
-				type='password'
-				variant='outlined'
-				value={password}
-				onChange={handlePasswordChange}
-			/>
-			<Button
-				variant='contained'
-				color='primary'
-				onClick={handleEmailSignIn}>
-				Sign in with Email and Password
-			</Button>
-			<Button
-				variant='contained'
-				color='primary'
-				onClick={handleCreateAccount}>
-				Create Account
-			</Button>
-			<Dialog
-				open={open}
-				onClose={handleClose}
-				BackdropProps={{ invisible: false }}>
-				<DialogTitle>Error</DialogTitle>
-				<DialogContent>
-					<DialogContentText>{message}</DialogContentText>
-				</DialogContent>
-				<DialogActions>
-					<Button onClick={handleClose} color='primary'>
-						OK
-					</Button>
-				</DialogActions>
-			</Dialog>
-			{showConfetti && <Confetti />}
+		<>
 			{showConfetti && (
 				<div
 					style={{
-						position: 'absolute',
-						top: '50%',
-						left: '50%',
-						transform: 'translate(-50%, -50%)',
+						top: -100,
+						opacity: fadeOut ? 0 : 1,
+						transition: 'opacity 1s ease-out',
 					}}>
-					<h1>Congratulations!</h1>
-					<p>You have successfully logged in.</p>
+					<Confetti />
 				</div>
 			)}
-		</div>
+			<Dialog open={isOpen} onClose={onClose}>
+				<DialogTitle>Sign In</DialogTitle>
+				<DialogContent>
+					<Button
+						onClick={handleSignInWithGoogle}
+						startIcon={<Google />}
+						fullWidth>
+						Sign in with Google
+					</Button>
+					<TextField
+						margin='normal'
+						label='Email'
+						variant='outlined'
+						fullWidth
+						value={email}
+						onChange={handleEmailChange}
+					/>
+					<TextField
+						margin='normal'
+						label='Password'
+						variant='outlined'
+						fullWidth
+						type='password'
+						value={password}
+						onChange={handlePasswordChange}
+					/>
+				</DialogContent>
+				<DialogActions>
+					<Button onClick={onClose} color='secondary'>
+						Cancel
+					</Button>
+					<Button onClick={handleSignInWithEmail} color='primary'>
+						Sign In
+					</Button>
+				</DialogActions>
+			</Dialog>
+		</>
 	);
-}
+};
+
+export default SignInModal;

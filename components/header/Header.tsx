@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { auth, signInWithGoogle } from '@/utils/firebase';
+import { auth, logout, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
 import { Logout } from '@mui/icons-material';
 // import Box from '@mui/material/Box';
@@ -36,6 +36,7 @@ import {
 } from '@chakra-ui/react';
 import { Dialog, DialogContent } from '@mui/material';
 import Login from '@/pages/Login';
+import SignInModal from '../LoginModal';
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
@@ -46,7 +47,16 @@ const Header = () => {
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const router = useRouter();
 	const [open, setOpen] = useState(false);
+	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+	const [user, setUser] = useState(null);
 
+	const handleSignInButtonClick = () => {
+		setIsSignInModalOpen(true);
+	};
+
+	const handleSignInModalClose = () => {
+		setIsSignInModalOpen(false);
+	};
 	const handleOpen = () => {
 		setOpen(true);
 	};
@@ -211,6 +221,19 @@ const Header = () => {
 			},
 		},
 	];
+
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			setUser(user);
+		});
+
+		return unsubscribe;
+	}, []);
+
+	// if (!user) {
+	// 	return null;
+	// }
+
 	return (
 		<>
 			<motion.header
@@ -458,24 +481,22 @@ const Header = () => {
 								) : (
 									<></>
 								)}
-								<div className='login-btn' onClick={handleOpen}>
-									Sign in
+								<div onClick={handleSignInButtonClick}>
+									Sign In
 								</div>
-								<div open={open} onClose={handleClose}>
-									<h2>Login</h2>
-									<div className='modal'>
-										<LoginModal handleClose={handleClose} />
-										<a onClick={() => auth.signOut()}>
-											loguit
-										</a>
-									</div>
-								</div>
-								<div className='modal__backdrop'></div>
+								<SignInModal
+									isOpen={isSignInModalOpen}
+									onClose={handleSignInModalClose}
+								/>
+								;
 							</div>
 						</>
 					)}
 					<OffcanvasMenu />
 				</div>
+				<Button onClick={logout} color='secondary'>
+					Logout
+				</Button>{' '}
 			</motion.header>
 		</>
 	);
