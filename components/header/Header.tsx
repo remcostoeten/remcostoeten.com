@@ -37,6 +37,7 @@ import {
 import { Dialog, DialogContent } from '@mui/material';
 import Login from '@/pages/Login';
 import SignInModal from '../LoginModal';
+import NewUserModal from '../NewUserModal';
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
@@ -49,20 +50,30 @@ const Header = () => {
 	const [open, setOpen] = useState(false);
 	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 	const [user, setUser] = useState(null);
+	const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
+
+	const handleSignInClick = () => {
+		setIsSignInModalOpen(true);
+	};
 
 	const handleSignInButtonClick = () => {
 		setIsSignInModalOpen(true);
 	};
 
-	const handleSignInModalClose = () => {
-		setIsSignInModalOpen(false);
+	const handleSignUpClick = () => {
+		setIsNewUserModalOpen(true);
 	};
+
 	const handleOpen = () => {
 		setOpen(true);
 	};
 
 	const handleClose = () => {
 		setOpen(false);
+	};
+
+	const handleSignInModalClose = () => {
+		setIsSignInModalOpen(false);
 	};
 
 	const handleLogout = () => {
@@ -246,7 +257,6 @@ const Header = () => {
 					auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
 						<AdminMenu />
 					) : null}
-
 					<Link href='/'>
 						<motion.div
 							className='header__user'
@@ -385,105 +395,19 @@ const Header = () => {
 							<div className='header__login'>
 								{isLoggedIn ? (
 									<motion.li whileHover={{ scale: 1.05 }}>
-										<React.Fragment>
-											<Box
-												sx={{
-													display: 'flex',
-													alignItems: 'center',
-													textAlign: 'center',
-												}}>
-												<Tooltip title='Click to logout'>
-													<IconButton
-														onClick={handleClick}
-														size='small'
-														sx={{ ml: 2 }}
-														aria-controls={
-															open
-																? 'account-menu'
-																: undefined
-														}
-														aria-haspopup='true'
-														aria-expanded={
-															open
-																? 'true'
-																: undefined
-														}>
-														<Avatar
-															sx={{
-																width: 32,
-																height: 32,
-															}}>
-															{userName?.slice(
-																0,
-																1,
-															)}
-														</Avatar>
-													</IconButton>
-												</Tooltip>
-											</Box>
-											<Menu
-												anchorEl={anchorEl}
-												id='account-menu'
-												open={open}
-												onClose={handleClose}
-												onClick={handleClose}
-												PaperProps={{
-													elevation: 0,
-													sx: {
-														overflow: 'visible',
-														filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-														mt: 1.5,
-														'& .MuiAvatar-root': {
-															width: 32,
-															height: 32,
-															ml: -0.5,
-															mr: 1,
-														},
-														'&:before': {
-															content: '""',
-															display: 'block',
-															position:
-																'absolute',
-															top: 0,
-															right: 14,
-															width: 10,
-															height: 10,
-															bgcolor:
-																'background.paper',
-															transform:
-																'translateY(-50%) rotate(45deg)',
-															zIndex: 0,
-														},
-													},
-												}}
-												transformOrigin={{
-													horizontal: 'right',
-													vertical: 'top',
-												}}
-												anchorOrigin={{
-													horizontal: 'right',
-													vertical: 'bottom',
-												}}>
-												<Divider />
-												<MenuItem
-													onClick={() =>
-														auth.signOut()
-													}>
-													<ListItemIcon>
-														<Logout fontSize='small' />
-													</ListItemIcon>
-													Logout
-												</MenuItem>
-											</Menu>
-										</React.Fragment>
-										<a onClick={() => auth.signOut()}></a>
+										<a onClick={() => auth.signOut()}>
+											Logout
+										</a>
 									</motion.li>
 								) : (
-									<></>
+									<>
+										<div
+											className='login-btn'
+											onClick={handleSignInButtonClick}>
+											<span>Sign In</span>
+										</div>
+									</>
 								)}
-								<div onClick={handleSignInButtonClick}>
-									Sign In
-								</div>
 								<SignInModal
 									isOpen={isSignInModalOpen}
 									onClose={handleSignInModalClose}
@@ -492,11 +416,15 @@ const Header = () => {
 							</div>
 						</>
 					)}
+					<div>
+						<button onClick={handleSignInClick}>Sign In</button>
+						<SignInModal
+							isOpen={isSignInModalOpen}
+							onClose={handleSignInModalClose}
+						/>
+					</div>{' '}
 					<OffcanvasMenu />
 				</div>
-				<Button onClick={logout} color='secondary'>
-					Logout
-				</Button>{' '}
 			</motion.header>
 		</>
 	);
