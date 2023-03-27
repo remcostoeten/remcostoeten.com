@@ -78,10 +78,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* {
-  font-family: "Geomanist", sans-serif;
-}
-
 .h1,
 h1 {
   font-size: 25px;

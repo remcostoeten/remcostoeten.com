@@ -5,8 +5,6 @@ import {
 	DialogContent,
 	TextField,
 	DialogActions,
-	Link,
-	Typography,
 } from '@mui/material';
 import { Google } from '@mui/icons-material';
 import {
@@ -19,6 +17,8 @@ import {
 import Confetti from 'react-confetti';
 import { useSnackbar } from 'notistack';
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 type SignInModalProps = {
 	isOpen: boolean;
@@ -55,13 +55,19 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 	const handleSignInWithEmail = async () => {
 		try {
 			await signInWithEmailAndPassword(auth, email, password);
-			setShowConfetti(true);
+			if (!auth.currentUser?.displayName === null) {
+				toast.success(
+					`Welcome back, ${auth.currentUser?.displayName}!`,
+				);
+			} else {
+				toast.success(`Welcome back, ${auth.currentUser?.email}!`);
+			}
+			setShowConfetti(false);
 			onClose();
 		} catch (error) {
 			enqueueSnackbar(error.message, { variant: 'error' });
 		}
 	};
-
 	const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(event.target.value);
 	};
@@ -87,10 +93,21 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 			setShowConfetti(true);
 			onClose();
 			setShowRegisterModal(false);
+			if (!auth.currentUser?.displayName === null) {
+				toast.success(
+					`Welcome aboard ${auth.currentUser?.displayName}!`,
+				);
+			} else {
+				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
+			}
 		} catch (error) {
 			enqueueSnackbar(error.message, { variant: 'error' });
+			toast.error(
+				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
+			);
 		}
 	};
+
 	useEffect(() => {
 		if (showConfetti) {
 			setTimeout(() => {
@@ -101,6 +118,7 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 
 	return (
 		<>
+			<ToastContainer />
 			{showConfetti && (
 				<div
 					style={{

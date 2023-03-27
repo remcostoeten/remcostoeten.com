@@ -3,41 +3,15 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth, logout, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
-import { Logout } from '@mui/icons-material';
-// import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
 import { useRouter } from 'next/router';
-import LoginModal from '../LoginModal';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AdminMenu from './AdminMenu';
-import SignInButton from '../LoginModal';
-import {
-	Modal,
-	ModalOverlay,
-	ModalContent,
-	ModalHeader,
-	ModalCloseButton,
-	ModalBody,
-	ModalFooter,
-	Button,
-	Input,
-	Stack,
-	FormControl,
-	FormLabel,
-	Box,
-	Text,
-} from '@chakra-ui/react';
-import { Dialog, DialogContent } from '@mui/material';
-import Login from '@/pages/Login';
 import SignInModal from '../LoginModal';
-import NewUserModal from '../NewUserModal';
+
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
@@ -51,6 +25,7 @@ const Header = () => {
 	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 	const [user, setUser] = useState(null);
 	const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
+	const [variant, setVariant] = useState('theme--variant');
 
 	const handleSignInClick = () => {
 		setIsSignInModalOpen(true);
@@ -64,10 +39,6 @@ const Header = () => {
 		setIsNewUserModalOpen(true);
 	};
 
-	const handleOpen = () => {
-		setOpen(true);
-	};
-
 	const handleClose = () => {
 		setOpen(false);
 	};
@@ -76,16 +47,9 @@ const Header = () => {
 		setIsSignInModalOpen(false);
 	};
 
-	const handleLogout = () => {
-		// Logout logic goes here
-	};
-
 	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
 		setAnchorEl(event.currentTarget);
 	};
-	// const handleClose = () => {
-	// 	setAnchorEl(null);
-	// };
 
 	const handleMenu = () => {
 		setOpenMenu(true);
@@ -126,8 +90,6 @@ const Header = () => {
 			}
 		});
 	}, []);
-
-	const [variant, setVariant] = useState('theme--variant');
 
 	useEffect(() => {
 		document.body.classList.add('variant');
@@ -232,18 +194,6 @@ const Header = () => {
 			},
 		},
 	];
-
-	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			setUser(user);
-		});
-
-		return unsubscribe;
-	}, []);
-
-	// if (!user) {
-	// 	return null;
-	// }
 
 	return (
 		<>
@@ -412,17 +362,10 @@ const Header = () => {
 									isOpen={isSignInModalOpen}
 									onClose={handleSignInModalClose}
 								/>
-								;
 							</div>
 						</>
 					)}
-					<div>
-						<button onClick={handleSignInClick}>Sign In</button>
-						<SignInModal
-							isOpen={isSignInModalOpen}
-							onClose={handleSignInModalClose}
-						/>
-					</div>{' '}
+
 					<OffcanvasMenu />
 				</div>
 			</motion.header>
