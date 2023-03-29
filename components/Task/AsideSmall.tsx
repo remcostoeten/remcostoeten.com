@@ -13,20 +13,16 @@ import TaskWrapper from './TaskWrapper';
 
 interface AsideSmallProps {
 	view: string;
-	isLoggedIn: boolean;
 }
 
-export default function AsideSmall({ view, isLoggedIn }: AsideSmallProps) {
+export default function AsideSmall({ view }: AsideSmallProps) {
 	return (
 		<>
 			<aside className='nav'>
 				<nav className='nav__small'>
 					<div className='nav__top'>
 						<Link href='/'>
-							<span
-								className={`logo ${
-									isLoggedIn ? 'authenticated-logo' : ''
-								}`}>
+							<span className='logo'>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									width='30'
@@ -58,17 +54,9 @@ export default function AsideSmall({ view, isLoggedIn }: AsideSmallProps) {
 						</span>
 					</div>
 					<div className='nav__bottom'>
-						{isLoggedIn ? (
-							<>
-								<span onClick={signOut}>
-									<LogoutSharp />
-								</span>
-							</>
-						) : (
-							<span onClick={signIn}>
-								<LoginSharp />
-							</span>
-						)}
+						<span>
+							<LoginSharp />
+						</span>
 					</div>
 				</nav>
 			</aside>

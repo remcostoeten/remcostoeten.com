@@ -2,12 +2,14 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from '@firebase/storage';
 import { getDatabase } from 'firebase/database';
-import { getAuth } from 'firebase/auth';
-import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
+import { collection, addDoc } from '@firebase/firestore';
+import { onSnapshot, query, orderBy } from '@firebase/firestore';
 import {
+	getAuth,
 	createUserWithEmailAndPassword,
-	signInWithEmailAndPassword,
 	signOut,
+	signInWithPopup,
+	GoogleAuthProvider,
 } from 'firebase/auth';
 
 const firebaseConfig = {
@@ -26,15 +28,21 @@ const storage = getStorage(app);
 const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
-const signInWithGoogle = (): Promise<void> => {
-	const provider = new GoogleAuthProvider();
-	return signInWithPopup(auth, provider).then((result) => {
+
+const signInWithGoogle = async (auth: any): Promise<any> => {
+	try {
+		const provider = new GoogleAuthProvider();
+		const result = await signInWithPopup(auth, provider);
 		const credential = GoogleAuthProvider.credentialFromResult(result);
 		const token = credential?.accessToken;
 		const user = result.user;
-		console.log('a');
-	});
+		return { token, user };
+	} catch (error) {
+		console.error('Error logging in:', error);
+		throw error;
+	}
 };
+
 const logout = () => {
 	console.log('logging out');
 	signOut(auth)
@@ -46,6 +54,32 @@ const logout = () => {
 		});
 };
 
+const getEvents = (callback: (events: any[]) => void) => {
+	const eventsRef = collection(db, 'events');
+	const q = query(eventsRef, orderBy('date'));
+	const unsubscribe = onSnapshot(q, (querySnapshot) => {
+		const events: any[] = [];
+		querySnapshot.forEach((doc) => {
+			events.push({ ...doc.data(), id: doc.id });
+		});
+		callback(events);
+	});
+
+	return unsubscribe;
+};
+
+const addEvent = async (date: Date, name: String, description: String) => {
+	try {
+		const docRef = await addDoc(collection(db, 'events'), {
+			date: date.toISOString(),
+			name,
+			description,
+		});
+		console.log('Document written with ID: ', docRef.id);
+	} catch (e) {
+		console.error('Error adding document: ', e);
+	}
+};
 export {
 	db,
 	auth,
@@ -56,5 +90,6 @@ export {
 	GoogleAuthProvider,
 	createUserWithEmailAndPassword,
 	database,
-	signInWithEmailAndPassword,
+	getEvents,
+	addEvent,
 };

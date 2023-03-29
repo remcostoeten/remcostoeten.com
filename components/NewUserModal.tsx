@@ -7,6 +7,8 @@ import {
 	TextField,
 	DialogActions,
 } from '@mui/material';
+import { Google } from '@mui/icons-material';
+import { EmailAuthCredential } from '@firebase/auth';
 
 type NewUserModalProps = {
 	isOpen: boolean;
@@ -51,10 +53,7 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }: NewUserModalProps) => {
 			<DialogTitle>Create New User</DialogTitle>
 			<form onSubmit={handleSubmit}>
 				<DialogContent>
-					<Button
-						onClick={handleSignInWithGoogle}
-						startIcon={<Google />}
-						fullWidth>
+					<Button startIcon={<Google />} fullWidth>
 						Sign in with Google
 					</Button>
 					<TextField
@@ -62,7 +61,7 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }: NewUserModalProps) => {
 						label='Email'
 						variant='outlined'
 						fullWidth
-						value={email}
+						value={EmailAuthCredential}
 						onChange={handleEmailChange}
 					/>
 					<TextField
@@ -71,7 +70,7 @@ const NewUserModal = ({ isOpen, onClose, onSubmit }: NewUserModalProps) => {
 						variant='outlined'
 						fullWidth
 						type='password'
-						value={password}
+						value={handlePasswordChange}
 						onChange={handlePasswordChange}
 					/>
 				</DialogContent>

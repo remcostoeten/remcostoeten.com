@@ -11,11 +11,10 @@ import {
 	signInWithPopup,
 	GoogleAuthProvider,
 	auth,
-	signInWithEmailAndPassword,
 	createUserWithEmailAndPassword,
 } from '@/utils/firebase';
 import Confetti from 'react-confetti';
-import { useSnackbar } from 'notistack';
+import { enqueueSnackbar, useSnackbar } from 'notistack';
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -26,14 +25,12 @@ type SignInModalProps = {
 };
 
 const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
-	const { enqueueSnackbar } = useSnackbar();
 	const [name, setName] = useState('');
 	const [newUserEmail, setNewUserEmail] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showConfetti, setShowConfetti] = useState(false);
 	const [fadeOut, setFadeOut] = useState(false);
-	const [newUserName, setNewUserName] = useState('');
 	const [showRegisterModal, setShowRegisterModal] = useState(false);
 	const [isNewUserModalOpen, setIsNewUserModalOpen] = useState(false);
 
@@ -52,22 +49,29 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 		});
 	};
 
-	const handleSignInWithEmail = async () => {
+	const handleRegister = async () => {
+		console.log('Register button clicked');
 		try {
-			await signInWithEmailAndPassword(auth, email, password);
+			await createUserWithEmailAndPassword(auth, newUserEmail, password);
+			setShowConfetti(true);
+			onClose();
+			setShowRegisterModal(false);
 			if (!auth.currentUser?.displayName === null) {
 				toast.success(
-					`Welcome back, ${auth.currentUser?.displayName}!`,
+					`Welcome aboard ${auth.currentUser?.displayName}!`,
 				);
 			} else {
-				toast.success(`Welcome back, ${auth.currentUser?.email}!`);
+				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
 			}
-			setShowConfetti(false);
-			onClose();
-		} catch (error) {
+		} catch (error: any) {
+			// add type annotation here
 			enqueueSnackbar(error.message, { variant: 'error' });
+			toast.error(
+				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
+			);
 		}
 	};
+
 	const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(event.target.value);
 	};
@@ -84,28 +88,6 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 		event: React.ChangeEvent<HTMLInputElement>,
 	) => {
 		setPassword(event.target.value);
-	};
-
-	const handleRegister = async () => {
-		console.log('Register button clicked');
-		try {
-			await createUserWithEmailAndPassword(auth, newUserEmail, password);
-			setShowConfetti(true);
-			onClose();
-			setShowRegisterModal(false);
-			if (!auth.currentUser?.displayName === null) {
-				toast.success(
-					`Welcome aboard ${auth.currentUser?.displayName}!`,
-				);
-			} else {
-				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
-			}
-		} catch (error) {
-			enqueueSnackbar(error.message, { variant: 'error' });
-			toast.error(
-				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
-			);
-		}
 	};
 
 	useEffect(() => {
@@ -130,43 +112,46 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 				</div>
 			)}
 
-			<Dialog open={isOpen} onClose={onClose}>
-				<DialogTitle>Sign In</DialogTitle>
-				<DialogContent>
+			<Dialog className='modal' open={isOpen} onClose={onClose}>
+				<DialogTitle className='modal__title'>Sign In</DialogTitle>
+				<div className='modal__social'>
 					<Button
 						onClick={handleSignInWithGoogle}
 						startIcon={<Google />}
 						fullWidth>
 						Sign in with Google
 					</Button>
-					<TextField
-						margin='normal'
-						label='Email'
-						variant='outlined'
-						fullWidth
-						value={email}
-						onChange={handleEmailChange}
-					/>
-					<TextField
-						margin='normal'
-						label='Password'
-						variant='outlined'
-						fullWidth
-						type='password'
-						value={password}
-						onChange={handlePasswordChange}
-					/>
-				</DialogContent>
+				</div>
+				<TextField
+					margin='normal'
+					label='Email'
+					variant='outlined'
+					fullWidth
+					value={email}
+					onChange={handleEmailChange}
+				/>
+				<TextField
+					margin='normal'
+					label='Password'
+					variant='outlined'
+					fullWidth
+					type='password'
+					value={password}
+					onChange={handlePasswordChange}
+				/>
 				<DialogActions>
 					<Button
+						className='btn btn--link'
 						onClick={() => setShowRegisterModal(true)}
 						color='primary'>
 						Not registered yet?
 					</Button>
-					<Button onClick={onClose} color='secondary'>
+					<Button className='btn btn--secondary' onClick={onClose}>
 						Cancel
 					</Button>
-					<Button onClick={handleSignInWithEmail} color='primary'>
+					<Button
+						className='btn btn--primary'
+						onClick={handleRegister}>
 						Sign In
 					</Button>
 				</DialogActions>

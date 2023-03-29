@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import AdminMenu from './AdminMenu';
 import SignInModal from '../LoginModal';
+import { Button } from '@mui/material';
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -323,6 +324,14 @@ const Header = () => {
 										<Link href='/tasks'>
 											Todo list creator
 										</Link>
+									</motion.li>
+									<motion.li whileHover={{ scale: 1.05 }}>
+										<a
+											href='Calender'
+											target='_blank'
+											rel='noreferrer'>
+											Logboek
+										</a>
 									</motion.li>
 									<motion.li whileHover={{ scale: 1.05 }}>
 										<Link href='/message-history'>

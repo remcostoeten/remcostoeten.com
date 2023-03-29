@@ -11,6 +11,10 @@ $checkbox-size: 16px;
 }
 
 .modal {
+	.MuiPaper-root {
+		padding: $spacing;
+	}
+
 	&__inner {
 		display: flex;
 		flex-direction: column;

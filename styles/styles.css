@@ -2918,6 +2918,9 @@ button {
   z-index: 20;
 }
 
+.modal .MuiPaper-root {
+  padding: 24px;
+}
 .modal__inner {
   display: flex;
   flex-direction: column;

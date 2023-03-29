@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { db, auth, signInWithEmailAndPassword } from '@/utils/firebase';
+import { db, auth, signInWithGoogle } from '@/utils/firebase';
 import {
 	collection,
 	addDoc,
@@ -10,7 +10,6 @@ import {
 } from '@firebase/firestore';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from '@/components/GoogleLogin';
 import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
 import { useRouter } from 'next/router';
@@ -49,22 +48,17 @@ export default function TaskWrapper() {
 		event.preventDefault();
 		setError(null);
 		try {
-			const userCredential = await signInWithEmailAndPassword(
-				auth,
-				email,
-				password,
-			);
+			const userCredential = await signInWithGoogle(auth);
 			const user = userCredential.user;
 			if (user) {
 				setShowSuccess(true);
 				setTimeout(() => {
-					closeModal(); // Close the modal
-					router.push('/'); // Redirect to the home page
+					router.push('/');
 				}, 3000);
 			}
 		} catch (error) {
 			console.error('Error logging in:', error);
-			setError(error.message); // Set the error state to display the error message
+			setError((error as Error).message);
 		}
 	};
 

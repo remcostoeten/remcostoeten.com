@@ -26,14 +26,12 @@ interface ModalProps {
 	onClose: () => void;
 }
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+const Modal: React.FC<ModalProps> = ({ isOpen, onClose }) => {
 	if (!isOpen) return null;
 
 	return (
 		<ModalOverlay onClick={onClose}>
-			<ModalContent onClick={(e) => e.stopPropagation()}>
-				{children}
-			</ModalContent>
+			<ModalContent onClick={(e) => e.stopPropagation()}></ModalContent>
 		</ModalOverlay>
 	);
 };
