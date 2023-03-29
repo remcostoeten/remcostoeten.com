@@ -1,0 +1,82 @@
+$grey: #525252;
+
+.login-container {
+	display: flex;
+	max-width: 1250px;
+	margin: 0 auto;
+	background-color: red;
+}
+
+.login {
+	display: flex;
+
+	h1 {
+		font-size: 6em;
+		color: $grey;
+		margin-bottom: 20px;
+	}
+
+	p {
+		color: $grey;
+		font-size: 3em;
+		margin-bottom: 30px;
+	}
+
+	&__image {
+		background-image: url('~/public/dashboard/login.png');
+		background-size: cover;
+		background-repeat: no-repeat;
+		width: 1000px;
+		border-radius: 6px;
+		background-position: center;
+		height: 100vh;
+		border: 6px solid $color-white;
+	}
+
+	&__login {
+		display: flex;
+		align-items: center;
+		justify-items: center;
+		flex: 1;
+		background-color: $color-white;
+		padding-left: 100px;
+		padding-right: 25vw;
+	}
+
+	&__intro {
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__tagline {
+		position: relative;
+		text-align: center;
+		&:before,
+		&:after {
+			content: '';
+			width: 100px;
+			height: 1px;
+			top: 0;
+			transform: translateX(-50%);
+			background-color: $grey;
+			display: block;
+			position: absolute;
+		}
+
+		&:before {
+			left: -100px;
+		}
+
+		&:after {
+			right: -100px;
+		}
+	}
+
+	button {
+		border: 1px solid $grey;
+		padding: 13px 15px;
+		background-color: $color-white;
+		color: $grey;
+		font-size: 2em;
+	}
+}
