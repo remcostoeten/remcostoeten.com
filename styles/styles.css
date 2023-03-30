@@ -4458,6 +4458,7 @@ form h3 {
 
 .login {
   display: flex;
+  font-family: "Mark Pro", sans-serif;
 }
 .login h1 {
   font-size: 6em;
@@ -4477,7 +4478,7 @@ form h3 {
   border-radius: 6px;
   background-position: center;
   height: 100vh;
-  border: 6px solid #fff;
+  border: 16px solid #fff;
 }
 .login__login {
   display: flex;
@@ -4486,7 +4487,8 @@ form h3 {
   flex: 1;
   background-color: #fff;
   padding-left: 100px;
-  padding-right: 25vw;
+  padding-right: 100px;
+  max-width: 800px;
 }
 .login__intro {
   display: flex;
@@ -4495,22 +4497,38 @@ form h3 {
 .login__tagline {
   position: relative;
   text-align: center;
+  font-size: 2em;
+  color: #a1a1a1;
+  margin: 24px 0;
+  background-color: white;
+  z-index: 10;
 }
-.login__tagline:before, .login__tagline:after {
+.login__tagline:after {
   content: "";
-  width: 100px;
+  width: 35%;
   height: 1px;
-  top: 0;
-  transform: translateX(-50%);
-  background-color: #525252;
+  top: 10px;
+  right: 0;
+  z-index: 1;
+  background-color: #a1a1a1;
   display: block;
   position: absolute;
 }
 .login__tagline:before {
-  left: -100px;
+  content: "";
+  width: 35%;
+  height: 1px;
+  top: 10px;
+  left: 0;
+  z-index: 1;
+  background-color: #a1a1a1;
+  display: block;
+  position: absolute;
 }
-.login__tagline:after {
-  right: -100px;
+.login__form input {
+  border-radius: 4px;
+  width: 100%;
+  height: 50px;
 }
 .login button {
   border: 1px solid #525252;
@@ -4518,4 +4536,64 @@ form h3 {
   background-color: #fff;
   color: #525252;
   font-size: 2em;
+}
+.login .input-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 1.5em;
+}
+.login .form-actions {
+  margin-top: 4pxs;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2em;
+}
+.login .form-actions .forgot-password {
+  cursor: pointer;
+  color: #7f265b;
+}
+.login .login__btn {
+  background-color: #7f265b;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 2em;
+  text-align: center;
+  font-weight: 600;
+  padding: 18px;
+  margin-top: 24px;
+}
+
+.login {
+  position: relative;
+  height: 100%;
+}
+
+.dashboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.isLoggedIn .dashboard {
+  opacity: 1;
+}
+
+.container {
+  position: relative;
+  height: 100%;
+}
+
+.dashboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.isLoggedIn .dashboard {
+  opacity: 1;
 }/*# sourceMappingURL=styles.css.map */

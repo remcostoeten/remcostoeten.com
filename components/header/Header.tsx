@@ -367,7 +367,7 @@ const Header = () => {
 										</div>
 									</>
 								)}
-								<SignwInModal
+								<SignInModal
 									isOpen={isSignInModalOpen}
 									onClose={handleSignInModalClose}
 								/>

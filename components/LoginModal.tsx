@@ -49,6 +49,22 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 		});
 	};
 
+	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+		if (showRegisterModal) {
+			setNewUserEmail(event.target.value);
+		} else {
+			setEmail(event.target.value);
+		}
+	};
+
+	useEffect(() => {
+		if (showConfetti) {
+			setTimeout(() => {
+				setFadeOut(true);
+			}, 3000);
+		}
+	}, [showConfetti]);
+
 	const handleRegister = async () => {
 		console.log('Register button clicked');
 		try {
@@ -74,14 +90,6 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 
 	const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setName(event.target.value);
-	};
-
-	const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-		if (showRegisterModal) {
-			setNewUserEmail(event.target.value);
-		} else {
-			setEmail(event.target.value);
-		}
 	};
 
 	const handlePasswordChange = (
