@@ -65,12 +65,13 @@ export default function Index() {
 					<AsideSmall view={''} isLoggedIn={false} />
 					{isLoggedIn ? (
 						<>
-							<div className='authenticated'>
-								<TaskWrapper />
-							</div>
+						
+						
+						
 						</>
 					) : (
 						<>
+							{' '}
 							<div className='not-authorized'>
 								<button
 									className='toggleTheme'
