@@ -88,7 +88,6 @@ h1 {
 .h2,
 h2 {
   font-size: 23px;
-  letter-spacing: -0.86px;
 }
 
 .h3,
@@ -3225,7 +3224,7 @@ button {
 
 .theme-white *,
 .dark-theme * {
-  transition: 500ms ease-in-out all;
+  transition: 125ms ease-in-out all;
 }
 
 .theme-white .todo {
@@ -3456,6 +3455,7 @@ form h3 {
 }
 
 .not-authorized {
+  font-family: Montserrat, sans-serif;
   display: flex;
   align-items: center;
   padding: 80px;
@@ -3472,13 +3472,14 @@ form h3 {
   color: #f9f9f9;
   letter-spacing: 1.1px;
   margin: 0;
-  font-size: 42px;
+  font-size: 3rem;
   padding-bottom: 12px;
 }
 .not-authorized p,
 .not-authorized li {
   color: #e1e1e1;
-  font-size: 2.4em;
+  font-size: 1.5rem;
+  line-height: initial;
   padding-bottom: 12px;
 }
 .not-authorized p {
@@ -3505,13 +3506,13 @@ form h3 {
 }
 .not-authorized__buttons {
   display: flex;
-  font-size: 2.4em;
   cursor: pointer;
 }
 .not-authorized__buttons .login-btn {
   all: unset;
 }
 .not-authorized__buttons .cta {
+  font-size: 1.4rem;
   margin-right: 24px;
 }
 .not-authorized .cta {
@@ -3533,7 +3534,7 @@ form h3 {
     opacity: 0.1;
   }
 }
-@media (max-width: 1280px) {
+@media (max-width: 768px) {
   .not-authorized {
     padding: 12px;
     position: relative;
@@ -3817,6 +3818,7 @@ form h3 {
 }
 
 .not-authorized {
+  font-family: Montserrat, sans-serif;
   display: flex;
   align-items: center;
   padding: 80px;
@@ -3836,14 +3838,15 @@ form h3 {
   color: #f9f9f9;
   letter-spacing: 1.1px;
   margin: 0;
-  font-size: 42px;
+  font-size: 3rem;
   padding-bottom: 12px;
 }
 
 .not-authorized p,
 .not-authorized li {
   color: #e1e1e1;
-  font-size: 2.4em;
+  font-size: 1.5rem;
+  line-height: initial;
   padding-bottom: 12px;
 }
 
@@ -3876,7 +3879,6 @@ form h3 {
 
 .not-authorized__buttons {
   display: flex;
-  font-size: 2.4em;
   cursor: pointer;
 }
 
@@ -3885,6 +3887,7 @@ form h3 {
 }
 
 .not-authorized__buttons .cta {
+  font-size: 1.4rem;
   margin-right: 24px;
 }
 
@@ -3908,7 +3911,7 @@ form h3 {
     opacity: 0.1;
   }
 }
-@media (max-width: 1280px) {
+@media (max-width: 768px) {
   .not-authorized {
     padding: 12px;
     position: relative;
@@ -4087,111 +4090,6 @@ form h3 {
     opacity: 0;
   }
 }
-.todo aside {
-  display: flex;
-  z-index: 3;
-  height: 100vh;
-}
-.todo aside span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  opacity: 1;
-  background-color: transparent;
-  border-radius: 50%;
-  box-sizing: inherit;
-  padding: 8px;
-}
-.todo aside span:not(:last-child) {
-  margin-bottom: 8px;
-}
-.todo aside span.logo svg {
-  opacity: 1;
-}
-.todo aside span.active {
-  background-color: #323338;
-}
-.todo aside span.active svg {
-  opacity: 1;
-}
-.todo aside span:nth-child(odd) svg:hover {
-  transform: rotate(-3deg);
-}
-.todo aside svg {
-  font-size: 28px;
-  color: white;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: 250ms ease all;
-}
-.todo aside svg:hover {
-  color: #ffa048;
-  opacity: 1;
-  scale: 1.1;
-  transform: rotate(3deg);
-}
-.todo aside .nav {
-  display: flex;
-  flex-direction: column;
-}
-.todo aside .nav__small {
-  display: flex;
-  padding: 16px 24px;
-  flex-direction: column;
-  background-color: #1c1d22;
-  justify-content: space-between;
-}
-.todo aside h1 {
-  font-size: 30px;
-  font-weight: bold;
-  color: white;
-  padding-bottom: 40px;
-}
-.todo aside a {
-  color: white;
-  opacity: 0.5;
-  display: flex;
-  justify-content: space-between;
-  padding: relative;
-  font-weight: bold;
-  font-size: 16px;
-  width: 100%;
-  text-decoration: none;
-  margin-bottom: 30px;
-}
-.todo aside h3 {
-  font-size: 16px;
-  font-weight: bold;
-  padding-bottom: 8px;
-  color: white;
-}
-.todo aside li,
-.todo aside ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.todo aside li {
-  position: relative;
-  padding-left: 12px;
-  padding-bottom: 8px;
-  opacity: 0.5;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: 500;
-}
-.todo aside li:before {
-  position: absolute;
-  content: "-";
-  color: white;
-  left: 0;
-}
-.todo aside li.active {
-  opacity: 1;
-}
-
 .tasks__task {
   margin-top: 8px;
   background-color: #2a2b2f;
@@ -4364,6 +4262,7 @@ form h3 {
   transform: 250ms ease all;
   opacity: 0.5;
   margin-bottom: 30px;
+  font-size: 1.5rem;
 }
 .toggle-view.grid {
   opacity: 1;
@@ -4432,16 +4331,11 @@ form h3 {
   font-size: 14px;
 }
 
-@media (min-width: 768px) {
-  .tasks__lane {
-    min-width: 350px;
-  }
-}
 @media (min-width: 0px) and (max-width: 767px) {
-  .todo aside {
+  .dashboard aside {
     margin-right: 0;
   }
-  .todo .not-authorized {
+  .dashboard .not-authorized {
     align-items: flex-start;
     justify-content: normal;
     flex-direction: column;
@@ -4449,151 +4343,124 @@ form h3 {
     margin: 0;
   }
 }
-.login-container {
+.dashboard {
   display: flex;
-  max-width: 1250px;
-  margin: 0 auto;
-  background-color: red;
 }
-
-.login {
-  display: flex;
-  font-family: "Mark Pro", sans-serif;
-}
-.login h1 {
-  font-size: 6em;
-  color: #525252;
-  margin-bottom: 20px;
-}
-.login p {
-  color: #525252;
-  font-size: 3em;
-  margin-bottom: 30px;
-}
-.login__image {
-  background-image: url("~/public/dashboard/login.png");
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 1000px;
-  border-radius: 6px;
-  background-position: center;
-  height: 100vh;
-  border: 16px solid #fff;
-}
-.login__login {
+.dashboard__inner {
   display: flex;
   align-items: center;
-  justify-items: center;
-  flex: 1;
-  background-color: #fff;
-  padding-left: 100px;
-  padding-right: 100px;
-  max-width: 800px;
-}
-.login__intro {
-  display: flex;
-  flex-direction: column;
-}
-.login__tagline {
-  position: relative;
-  text-align: center;
-  font-size: 2em;
-  color: #a1a1a1;
-  margin: 24px 0;
-  background-color: white;
-  z-index: 10;
-}
-.login__tagline:after {
-  content: "";
-  width: 35%;
-  height: 1px;
-  top: 10px;
-  right: 0;
-  z-index: 1;
-  background-color: #a1a1a1;
-  display: block;
-  position: absolute;
-}
-.login__tagline:before {
-  content: "";
-  width: 35%;
-  height: 1px;
-  top: 10px;
-  left: 0;
-  z-index: 1;
-  background-color: #a1a1a1;
-  display: block;
-  position: absolute;
-}
-.login__form input {
-  border-radius: 4px;
-  width: 100%;
-  height: 50px;
-}
-.login button {
-  border: 1px solid #525252;
-  padding: 13px 15px;
-  background-color: #fff;
-  color: #525252;
-  font-size: 2em;
-}
-.login .input-wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  font-size: 1.5em;
-}
-.login .form-actions {
-  margin-top: 4pxs;
-  display: flex;
-  justify-content: space-between;
-  font-size: 1.2em;
-}
-.login .form-actions .forgot-password {
-  cursor: pointer;
-  color: #7f265b;
-}
-.login .login__btn {
-  background-color: #7f265b;
+  background: #2a2b2f;
   border-radius: 5px;
-  color: #fff;
-  font-size: 2em;
-  text-align: center;
-  font-weight: 600;
-  padding: 18px;
-  margin-top: 24px;
+  padding: 40px;
 }
 
-.login {
-  position: relative;
-  height: 100%;
+.authenticated {
+  width: 100%;
 }
 
 .dashboard {
-  position: absolute;
-  top: 0;
-  left: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  font-family: "Mark Pro", sans-serif;
 }
-
-.isLoggedIn .dashboard {
+.dashboard aside {
+  display: flex;
+  z-index: 3;
+  height: 100vh;
+}
+.dashboard aside span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  opacity: 1;
+  background-color: transparent;
+  border-radius: 50%;
+  box-sizing: inherit;
+  padding: 8px;
+}
+.dashboard aside span:not(:last-child) {
+  margin-bottom: 8px;
+}
+.dashboard aside span.logo svg {
   opacity: 1;
 }
-
-.container {
+.dashboard aside span.active svg {
+  color: #efa448;
+  opacity: 1;
+}
+.dashboard aside span:nth-child(odd) svg:hover {
+  transform: rotate(-3deg);
+}
+.dashboard aside svg {
+  font-size: 28px;
+  color: white;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: 250ms ease all;
+}
+.dashboard aside svg:hover {
+  color: #ffa048;
+  opacity: 1;
+  scale: 1.1;
+  transform: rotate(3deg);
+}
+.dashboard aside .nav {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard aside .nav__small {
+  display: flex;
+  padding: 16px;
+  flex-direction: column;
+  background-color: #1c1d22;
+  align-items: center;
+  justify-content: space-between;
+}
+.dashboard aside h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: white;
+  padding-bottom: 40px;
+}
+.dashboard aside a {
+  color: white;
+  opacity: 0.5;
+  display: flex;
+  justify-content: space-between;
+  padding: relative;
+  font-weight: bold;
+  font-size: 16px;
+  width: 100%;
+  text-decoration: none;
+  margin-bottom: 30px;
+}
+.dashboard aside h3 {
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 8px;
+  color: white;
+}
+.dashboard aside li,
+.dashboard aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.dashboard aside li {
   position: relative;
-  height: 100%;
+  padding-left: 12px;
+  padding-bottom: 8px;
+  opacity: 0.5;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
 }
-
-.dashboard {
+.dashboard aside li:before {
   position: absolute;
-  top: 0;
+  content: "-";
+  color: white;
   left: 0;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
 }
-
-.isLoggedIn .dashboard {
+.dashboard aside li.active {
   opacity: 1;
 }/*# sourceMappingURL=styles.css.map */

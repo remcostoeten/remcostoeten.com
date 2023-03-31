@@ -81,7 +81,6 @@ const SignInModal = ({ isOpen, onClose }: SignInModalProps) => {
 			}
 		} catch (error: any) {
 			// add type annotation here
-			enqueueSnackbar(error.message, { variant: 'error' });
 			toast.error(
 				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
 			);

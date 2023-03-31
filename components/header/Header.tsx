@@ -3,8 +3,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth, logout, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
-import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
+
 import MenuItem from '@mui/material/MenuItem';
 import OffcanvasMenu from './OffcanvasMenu';
 import { useRouter } from 'next/router';
@@ -13,7 +13,11 @@ import AdminMenu from './AdminMenu';
 import SignInModal from '../LoginModal';
 import { Button } from '@mui/material';
 
-const Header = () => {
+interface HeaderProps {
+	onLogin: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onLogin }) => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -85,6 +89,7 @@ const Header = () => {
 			if (user) {
 				setIsLoggedIn(true);
 				setUserName(user.displayName);
+				onLogin(); // Roep onLogin aan na een succesvolle login
 			} else {
 				setIsLoggedIn(false);
 				setUserName(null);

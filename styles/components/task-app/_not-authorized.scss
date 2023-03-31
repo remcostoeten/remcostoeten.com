@@ -4,6 +4,7 @@ $off-white: #f9f9f9;
 
 $space: 12px;
 .not-authorized {
+	font-family: Montserrat, sans-serif;
 	display: flex;
 	align-items: center;
 	padding: 80px;
@@ -22,14 +23,15 @@ $space: 12px;
 		color: $off-white;
 		letter-spacing: 1.1px;
 		margin: 0;
-		font-size: 42px;
+		font-size: 3rem;
 		padding-bottom: $space;
 	}
 
 	p,
 	li {
 		color: #e1e1e1;
-		font-size: 2.4em;
+		font-size: 1.5rem;
+		line-height: initial;
 		padding-bottom: 12px;
 	}
 
@@ -62,7 +64,6 @@ $space: 12px;
 
 	&__buttons {
 		display: flex;
-		font-size: 2.4em;
 		cursor: pointer;
 
 		.login-btn {
@@ -70,6 +71,7 @@ $space: 12px;
 		}
 
 		.cta {
+			font-size: 1.4rem;
 			margin-right: $space * 2;
 		}
 	}
@@ -102,7 +104,7 @@ $space: 12px;
 	}
 }
 
-@media (max-width: 1280px) {
+@media (max-width: 768px) {
 	.not-authorized {
 		padding: 12px;
 		position: relative;

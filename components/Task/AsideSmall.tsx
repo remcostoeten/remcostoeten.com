@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
+import SignInModal from '../LoginModal';
+
 import Link from 'next/link';
 import {
 	AppsOutlined,
@@ -7,22 +9,46 @@ import {
 	LogoutSharp,
 	VerifiedUserSharp,
 	ViewList,
+	AssignmentInd,
 } from '@mui/icons-material';
 import { signIn, signOut } from '@/utils/LoginLogic';
 import TaskWrapper from './TaskWrapper';
-
+import { auth } from '@/utils/firebase';
 interface AsideSmallProps {
 	view: string;
+	isLoggedIn: boolean;
+	setIsLoggedIn: (value: boolean) => void;
 }
+export default function AsideSmall({
+	view,
+	isLoggedIn,
+	setIsLoggedIn,
+	Ik,
+}: AsideSmallProps) {
+	const currentUrl =
+		typeof window !== 'undefined' ? window.location.pathname : '';
+	const currentRouteClass = currentUrl.substring(1);
+	const classNamesToCheck = ['task', 'board', 'list', 'calendar', 'logbook'];
+	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 
-export default function AsideSmall({ view }: AsideSmallProps) {
+	const handleSignInModalClose = () => {
+		setIsSignInModalOpen(false);
+	};
+
+	const handleSignInButtonClick = () => {
+		setIsSignInModalOpen(true);
+	};
+
 	return (
 		<>
 			<aside className='nav'>
 				<nav className='nav__small'>
 					<div className='nav__top'>
 						<Link href='/'>
-							<span className='logo'>
+							<span
+								className={
+									'logo ' + (isLoggedIn ? 'logged-in' : '')
+								}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
 									width='30'
@@ -39,26 +65,72 @@ export default function AsideSmall({ view }: AsideSmallProps) {
 								</svg>
 							</span>
 						</Link>
-						<span className={view === 'board' ? 'active' : ''}>
+						<Link href='/tasks'>
+							<span
+								className={`icon task ${
+									currentRouteClass === 'tasks'
+										? 'active'
+										: ''
+								}`}>
+								<AssignmentInd />
+							</span>
+						</Link>
+						<Link href='/calender'>
+							<span
+								className={`icon calendar ${
+									currentRouteClass === 'calendar'
+										? 'active'
+										: ''
+								}`}>
+								<CalendarToday />
+							</span>
+						</Link>
+						<span
+							className={`icon board ${
+								currentRouteClass === 'board' ? 'active' : ''
+							}`}>
 							<AppsOutlined />
 						</span>
-						<span className={view === 'list' ? 'active' : ''}>
+						<span
+							className={`icon list ${
+								currentRouteClass === 'list' ? 'active' : ''
+							}`}>
 							<ViewList />
 						</span>
 
-						<span>
-							<CalendarToday />
-						</span>
-						<span>
+						<span
+							className={`icon logbook ${
+								currentRouteClass === 'logbook' ? 'active' : ''
+							}`}>
 							<VerifiedUserSharp />
 						</span>
 					</div>
 					<div className='nav__bottom'>
-						<span>
-							<LoginSharp />
-						</span>
+						{isLoggedIn ? (
+							<a onClick={() => auth.signOut()}>
+								{' '}
+								<span>
+									<LogoutSharp />
+								</span>
+								t
+							</a>
+						) : (
+							<>
+								<div
+									className='login-btn'
+									onClick={handleSignInButtonClick}>
+									<span>
+										<LoginSharp />
+									</span>
+								</div>
+							</>
+						)}
 					</div>
-				</nav>
+				</nav>{' '}
+				<SignInModal
+					isOpen={isSignInModalOpen}
+					onClose={handleSignInModalClose}
+				/>
 			</aside>
 		</>
 	);

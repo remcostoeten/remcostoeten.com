@@ -5,13 +5,14 @@ import {
 	Draggable,
 	DropResult,
 } from 'react-beautiful-dnd';
-import { Task } from '@/types';
+import { Task, Subtask } from '@/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { AddCircle } from '@mui/icons-material';
 import TaskModal from './Task/TaskModal';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 import { auth, db } from '@/utils/firebase';
 import { useAuth } from './useAuth';
+import SubtaskModal from './Subtask/SubtaskModal';
 
 interface DraggableContainerProps {
 	tasks: Task[];
@@ -25,6 +26,9 @@ export default function DraggableContainer({
 	removeTask,
 }: DraggableContainerProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [isSubtaskModalOpen, setIsSubtaskModalOpen] = useState(false);
+	const [selectedTaskId, setSelectedTaskId] = useState<string>();
+	const [subtasks, setSubtasks] = useState<Subtask[]>([]);
 
 	const addTask = async (
 		title: string,
@@ -43,6 +47,17 @@ export default function DraggableContainer({
 			status: 'todo',
 			date: formattedDate,
 		});
+	};
+
+	const addSubtask = async (title: string, description: string) => {
+		if (!selectedTaskId) return;
+
+		await updateDoc(
+			doc(db, `tasks-${auth.currentUser?.uid}`, selectedTaskId),
+			{ subtasks: arrayUnion({ title, description }) },
+		);
+
+		setIsSubtaskModalOpen(false);
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -65,6 +80,11 @@ export default function DraggableContainer({
 		{ id: 'done', title: 'Done' },
 	];
 
+	const handleAddSubtaskClick = (taskId: string) => {
+		setSelectedTaskId(taskId);
+		setSubtasks(tasks.find((task) => task.id === taskId)?.subtasks || []);
+		setIsSubtaskModalOpen(true);
+	};
 	return (
 		<DragDropContext onDragEnd={handleDragEnd}>
 			{lanes.map((lane) => (
@@ -90,7 +110,7 @@ export default function DraggableContainer({
 					<TaskModal
 						isOpen={isModalOpen}
 						onClose={() => setIsModalOpen(false)}
-						onSubmit={addTask} // Make sure this is correctly bound
+						onSubmit={addTask}
 					/>
 					<div className='inner'>
 						<Droppable droppableId={lane.id}>
@@ -134,6 +154,18 @@ export default function DraggableContainer({
 																	)
 																}
 															/>
+															<button
+																className='add-subtask'
+																onClick={() => {
+																	setSelectedTaskId(
+																		task,
+																	);
+																	setIsSubtaskModalOpen(
+																		true,
+																	);
+																}}>
+																Add subtask
+															</button>
 														</div>
 													</div>
 												)}
@@ -146,6 +178,16 @@ export default function DraggableContainer({
 					</div>
 				</div>
 			))}
+			{selectedTaskId && (
+				<SubtaskModal
+					isOpen={isSubtaskModalOpen}
+					onClose={() => setIsSubtaskModalOpen(false)}
+					onSubmit={(title, description) =>
+						addSubtask(selectedTaskId.id, title, description)
+					}
+					subtasks={[]}
+				/>
+			)}
 		</DragDropContext>
 	);
 }

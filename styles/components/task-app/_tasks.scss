@@ -1,11 +1,11 @@
 @use 'typography';
 @use 'not-authorized';
-@import 'task-aside';
 $blue: #5051f9;
 $border-color: #2a2b2f;
 $dark-blue: #282a30;
 $background-secondary: #24262c;
 $background-alternative: #292b31;
+
 .tasks {
 	&__task {
 		margin-top: 8px;
@@ -208,6 +208,8 @@ $background-alternative: #292b31;
 	transform: 250ms ease all;
 	opacity: 0.5;
 	margin-bottom: 30px;
+	font-size: 1.5rem;
+
 	&.grid {
 		opacity: 1;
 
@@ -295,16 +297,8 @@ $background-alternative: #292b31;
 	}
 }
 
-@include above-mobile {
-	.tasks {
-		&__lane {
-			min-width: 350px;
-		}
-	}
-}
-
 @include mobile {
-	.todo {
+	.dashboard {
 		aside {
 			margin-right: 0;
 		}

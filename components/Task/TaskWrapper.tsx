@@ -1,70 +1,183 @@
-import TaskWrapper from '@/components/Task/TaskWrapper';
-import React, { useState } from 'react';
-import { signIn, signOut } from '@/utils/LoginLogic';
-import AsideSmall from '@/components/Task/AsideSmall';
-import AsideBig from '@/components/Task/AsideBig';
-import { CheckCircle, KeyboardBackspace } from '@mui/icons-material';
-import Link from 'next/link';
-import Image from 'next/image';
-import Lost from '@/components/Lost';
-import { GoogleAuthProvider, auth, signInWithPopup } from '@/utils/firebase';
-import SignupLink from '@/components/header/SignupLink';
-import { signInWithEmailAndPassword } from '@firebase/auth';
+import React, { useEffect, useState } from 'react';
+import { db, auth } from '@/utils/firebase';
+import {
+	collection,
+	addDoc,
+	onSnapshot,
+	deleteDoc,
+	doc,
+	updateDoc,
+} from '@firebase/firestore';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import DraggableContainer from '@/components/DraggableContainer';
+import TaskModal from '@/components/Task/TaskModal';
+import { AddCircle } from '@mui/icons-material';
+import TodoIntro from './TaskIntro';
 
-interface AsideSmallProps {
-	isLoggedIn: boolean;
-	view?: string;
+type ViewType = 'board' | 'list';
+
+interface Task {
+	id: string;
+	title: string;
+	description: string;
+	category: string;
+	status: 'todo' | 'inprogress' | 'done';
+	date: string;
+	subtasks: string[];
 }
 
-export default function Index() {
+export default function TaskWrapper() {
+	const [tasks, setTasks] = useState<Task[]>([]);
+	const [userName, setUserName] = useState<string | null>(null);
+	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [view, setView] = useState('board');
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
-	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
-	const [showModal, setShowModal] = useState(false);
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
+	const [isPopupOpen, setIsPopupOpen] = useState(false);
 
-	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorEl(event.currentTarget);
+	const toggleView = () => {
+		setView(view === 'board' ? 'list' : 'board');
 	};
-	const toggleTheme = () => {
-		if (document.body.classList.contains('theme-white')) {
-			document.body.classList.remove('theme-white');
-			document.body.classList.add('theme-dark');
-		} else {
-			document.body.classList.remove('theme-dark');
-			document.body.classList.add('theme-white');
-		}
-	};
+	useEffect(() => {
+		document.body.classList.add('dark-theme');
+	}, []);
 
-	const signIn = async (
-		setIsLoggedIn: (value: boolean) => void,
-		email?: string,
-		password?: string,
-	) => {
-		try {
-			let result;
-			if (email && password) {
-				result = await signInWithEmailAndPassword(
-					auth,
-					email,
-					password,
-				);
+	useEffect(() => {
+		auth.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(true);
+				setUserName(user.displayName);
 			} else {
-				result = await signInWithPopup(auth, new GoogleAuthProvider());
+				setIsLoggedIn(false);
+				setUserName(null);
 			}
-			setIsLoggedIn(true);
-		} catch (error) {
-			console.log(error);
+		});
+	}, []);
+
+	useEffect(() => {
+		if (auth.currentUser) {
+			const unsubscribe = onSnapshot(
+				collection(db, `tasks-${auth.currentUser?.uid}`),
+				(snapshot) => {
+					setTasks(
+						snapshot.docs.map(
+							(doc) =>
+								({
+									id: doc.id,
+									...doc.data(),
+								} as Task),
+						),
+					);
+				},
+			);
+			return () => unsubscribe();
 		}
+	}, []);
+
+	const addTask = async (
+		title: string,
+		description: string,
+		category: string,
+	) => {
+		const now = new Date();
+		const formattedDate = `${now.getDate()}/${
+			now.getMonth() + 1
+		}/${now.getFullYear()}`;
+
+		await addDoc(collection(db, `tasks-${auth.currentUser?.uid}`), {
+			title,
+			description,
+			category,
+			status: 'todo',
+			date: formattedDate,
+			subtasks: [],
+		});
+	};
+
+	const removeTask = async (taskId: string) => {
+		try {
+			const taskRef = doc(db, `tasks-${auth.currentUser?.uid}`, taskId);
+			await deleteDoc(taskRef);
+			setTasks((prevTasks: any[]) =>
+				prevTasks.filter((task: { id: string }) => task.id !== taskId),
+			);
+			toast.success('Task emoved successfully');
+		} catch (error) {
+			console.error('Error removing task:', error);
+		}
+	};
+	const updateTask = async (taskId: string, newTaskData: Partial<Task>) => {
+		await updateDoc(
+			doc(db, `tasks-${auth.currentUser?.uid}`, taskId),
+			newTaskData,
+		);
+		setTasks((prevTasks: any[]) =>
+			prevTasks.map((task: { id: string }) => {
+				if (task.id === taskId) {
+					return { ...task, ...newTaskData };
+				}
+				return task;
+			}),
+		);
 	};
 	return (
 		<>
-			<div className='todo'>
-				<div className='todo__inner'>
-					<AsideSmall view={''} isLoggedIn={false} />
+			<main>
+				<div className='todo__header'>
+					<h2>
+						Welcome back,{' '}
+						<span>{auth.currentUser?.displayName} 👋</span>
+					</h2>
+					<TodoIntro tasks={tasks} />
+					<div
+						className={`toggle-view ${
+							view === 'board' ? 'grid' : 'list'
+						}`}>
+						<div className='view'>
+							<button className='board-view' onClick={toggleView}>
+								Board view
+							</button>
+							<button className='list-view' onClick={toggleView}>
+								List view
+							</button>
+						</div>
+						<button
+							className='add task'
+							onClick={() => setIsModalOpen(true)}
+							disabled={!isLoggedIn}>
+							Add task
+						</button>
+					</div>
 				</div>
-			</div>
+				<span className='add'>
+					<AddCircle onClick={() => setIsModalOpen(true)} />
+					Add new task
+				</span>
+
+				<TaskModal
+					isOpen={isModalOpen}
+					onClose={() => setIsModalOpen(false)}
+					onSubmit={addTask}
+				/>
+				<div className={`view-container ${view}-view`}>
+					{/* Board View */}
+					{view === 'board' && (
+						<div className='tasks'>
+							<DraggableContainer
+								tasks={tasks}
+								updateTask={updateTask}
+								removeTask={removeTask}
+							/>
+						</div>
+					)}
+					{/* List View */}
+					{view === 'list' && (
+						<div className='list-view'>
+							{/* List view content */}
+						</div>
+					)}
+				</div>
+			</main>
 		</>
 	);
 }

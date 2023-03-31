@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
 export default function s() {
-  return (
-    <div>s</div>
-  )
+	return <div>s</div>;
 }
