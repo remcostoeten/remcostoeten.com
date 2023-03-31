@@ -1,21 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react/jsx-no-comment-textnodes */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import Image from 'next/image';
 import { ChatMessage } from '@/types';
 import { storage } from '@/utils/firebase';
 import { ref, getDownloadURL } from '@firebase/storage';
-
-const storageRef = ref(storage, 'zold.json');
-
-interface ChatSearchProps {
-	onSearch: (query: string) => void;
-	searchResults: ChatMessage[];
-	onJumpTo: (message: ChatMessage) => void;
-	chatHistory: ChatMessage[];
-}
 
 interface ChatHistoryProps {
 	pageSize: number;
@@ -24,15 +12,17 @@ interface ChatHistoryProps {
 
 const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
-	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
-	const [currentImageIndex, setCurrentImageIndex] = useState<number>(0);
-	const [isViewerOpen, setIsViewerOpen] = useState<boolean>(false);
 	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [isLoading, setIsLoading] = useState<boolean>(true);
-	const messagesPerPage = 1000;
+	const [searchTerm, setSearchTerm] = useState<string>('');
+	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
+	const messagesPerPage = 200;
 	const storageInstance = storage;
 	const storageRef = ref(storageInstance, `/${filename}.json`);
+	const currentMessages =
+		searchTerm.length > 0 ? searchResults : visibleMessages;
+
 	const fetchChatHistoryFromStorage = async (): Promise<ChatMessage[]> => {
 		try {
 			const chatHistoryUrl = await getDownloadURL(storageRef);
@@ -44,28 +34,17 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 			return [];
 		}
 	};
-	useEffect(() => {
-		const handleScroll = () => {
-			if (
-				window.innerHeight + window.scrollY >=
-				document.body.scrollHeight - 500
-			) {
-				setVisibleMessages((prevMessages) => [
-					...prevMessages,
-					...chatHistory.slice(
-						prevMessages.length,
-						prevMessages.length + messagesPerPage,
-					),
-				]);
-			}
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, [chatHistory]);
+	const handleLoadMore = () => {
+		const nextPage = currentPage + 1;
+		const startIndex = (nextPage - 1) * messagesPerPage;
+		const endIndex = nextPage * messagesPerPage;
+		const newVisibleMessages = [
+			...visibleMessages,
+			...chatHistory.slice(startIndex, endIndex),
+		];
+		setVisibleMessages(newVisibleMessages);
+		setCurrentPage(nextPage);
+	};
 
 	useEffect(() => {
 		document.body.classList.add('chat-ui');
@@ -91,77 +70,67 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 		};
 
 		fetchChatHistory();
-	}, [fetchChatHistoryFromStorage]);
+	}, []);
 
-	const handleSearch = (term: string) => {
-		if (term.length > 0) {
-			const results = chatHistory.filter((message: ChatMessage) =>
-				message.message.toLowerCase().includes(term),
+	useEffect(() => {
+		setVisibleMessages(chatHistory.slice(0, messagesPerPage));
+	}, [chatHistory]);
+
+	// New states and ref
+	const [jumpToIndex, setJumpToIndex] = useState<number | null>(null);
+	const chatHistoryRef = useRef<HTMLDivElement>(null);
+
+	// New jump-to button handler
+	const handleJumpToMessage = () => {
+		if (jumpToIndex !== null && chatHistoryRef.current) {
+			const messageElement = chatHistoryRef.current.querySelector(
+				`#unique-chat-message-${jumpToIndex}`,
+			);
+			if (messageElement) {
+				messageElement.scrollIntoView({ behavior: 'smooth' });
+			}
+		}
+	};
+
+	const handleImageClick = (index: number) => {
+		// Add the functionality for handling the image click event
+		console.log(`Image clicked with index: ${index}`);
+	};
+
+	useEffect(() => {
+		if (searchTerm) {
+			const results = chatHistory.filter((message) =>
+				message.message
+					.toLowerCase()
+					.includes(searchTerm.toLowerCase()),
 			);
 			setSearchResults(results);
 		} else {
 			setSearchResults([]);
 		}
-	};
-
-	const handleJumpTo = (message: ChatMessage) => {
-		const index = chatHistory.findIndex(
-			(chatMessage) =>
-				chatMessage.timestamp.getTime() === message.timestamp.getTime(),
-		);
-
-		const messageElement = document.getElementById(`chat-message-${index}`);
-		if (messageElement) {
-			messageElement.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
-
-	useEffect(() => {
-		setVisibleMessages(chatHistory.slice(0, 20));
-	}, [chatHistory]);
-
-	useEffect(() => {
-		const handleScroll = () => {
-			if (
-				window.innerHeight + window.scrollY >=
-				document.body.scrollHeight - 500
-			) {
-				setVisibleMessages((prevMessages) => [
-					...prevMessages,
-					...chatHistory.slice(
-						prevMessages.length,
-						prevMessages.length + 200,
-					),
-				]);
-			}
-		};
-
-		window.addEventListener('scroll', handleScroll);
-
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, [chatHistory]);
-
-	const indexOfLastMessage = currentPage * messagesPerPage;
-	const indexOfFirstMessage = indexOfLastMessage - messagesPerPage;
-	const currentMessages = chatHistory?.slice(
-		indexOfFirstMessage,
-		indexOfLastMessage,
-	);
+	}, [searchTerm, chatHistory]);
 	return (
 		<>
-			<ChatSearch
-				onSearch={handleSearch}
-				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
-				chatHistory={chatHistory}
-				searchResults={searchResults}
-			/>
-
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
-					{chatHistory &&
-						visibleMessages.map(
+					<div className='chat-search-container'>
+						<input
+							type='text'
+							placeholder='Search messages'
+							value={searchTerm}
+							onChange={(e) => setSearchTerm(e.target.value)}
+						/>
+						<input
+							type='number'
+							placeholder='Jump to message index'
+							onChange={(e) =>
+								setJumpToIndex(Number(e.target.value))
+							}
+						/>
+						<button onClick={handleJumpToMessage}>Jump to</button>
+					</div>
+					<div ref={chatHistoryRef}>
+						{currentMessages.map(
 							(message: ChatMessage, index: number) => (
 								<div
 									className={`bubble__message ${
@@ -172,28 +141,28 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 											? 'bubble__second-person y'
 											: ''
 									}`}
-									key={message.timestamp.getTime()}>
+									key={`${message.timestamp.getTime()}-${index}`}>
+									...
 									<div
 										className='unique'
-										id={`unique chat-message-${index}`}>
+										id={`unique chat-message-${chatHistory.indexOf(
+											message,
+										)}`}>
 										<div className='space-bubble'>
 											<span>
 												<div className='chat__message'>
-													<b>{message.name}:</b>
+													<b>{message.name}:</b>{' '}
 													{message.message}
 												</div>
 												{message.image &&
 													typeof message.image ===
 														'string' && (
 														<div
-															onClick={() => {
-																setIsViewerOpen(
-																	true,
-																);
-																setCurrentImageIndex(
+															onClick={() =>
+																handleImageClick(
 																	index,
-																);
-															}}>
+																)
+															}>
 															<img
 																src={`/private-images/img/y/${message.image.slice(
 																	0,
@@ -213,77 +182,8 @@ const ChatHistory: React.FC<ChatHistoryProps> = ({ pageSize, filename }) => {
 								</div>
 							),
 						)}
-					{!isLoading &&
-						chatHistory &&
-						visibleMessages.length === 0 && (
-							<div className='no-message'>
-								You have no messages in your history.
-							</div>
-						)}
-					{isLoading && <div className='loading'>Loading...</div>}
-					{!isLoading &&
-						visibleMessages.length < chatHistory.length && (
-							<button
-								onClick={() =>
-									setVisibleMessages(
-										chatHistory.slice(
-											0,
-											visibleMessages.length +
-												messagesPerPage,
-										),
-									)
-								}>
-								Load more messages
-							</button>
-						)}
+					</div>
 				</div>
-
-				{searchResults.length > 0 && (
-					<div className='chat__chat-panel chat-results'>
-						{searchResults.map(
-							(message: ChatMessage, index: number) => (
-								<div
-									className={`bubble__message ${
-										message.name
-											.toLowerCase()
-											.includes('yv')
-											? 'bubble__second-person y'
-											: ''
-									}`}
-									key={message.timestamp.getTime()}
-									onClick={() => handleJumpTo(message)}>
-									<Image
-										src={`/apiprivate/compressed/${message.image}`}
-										alt={''}
-										width={300}
-										height={300}
-									/>
-									<div className='chat__message'>
-										<span className='chat__sender'>
-											{message.name}
-										</span>{' '}
-										{message.message}
-									</div>
-								</div>
-							),
-						)}
-					</div>
-				)}
-
-				{chatHistory.length > 0 && (
-					<div className='chat__search'>
-						<p className='chat__search-info'>
-							{searchResults.length > 0
-								? `Showing ${searchResults.length} search results`
-								: 'No results found'}
-						</p>
-						<button
-							className='chat__scroll-to-top'
-							onClick={() => handleJumpTo(chatHistory[0])}>
-							Scroll to top
-						</button>
-					</div>
-				)}
 			</div>
 		</>
 	);

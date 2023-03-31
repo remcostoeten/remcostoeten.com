@@ -13,8 +13,9 @@ import {
 import Login from '../GoogleLogin';
 import { auth, logout, signInWithGoogle } from '@/utils/firebase';
 import { useMediaQuery } from '@mui/material';
-import { Box } from 'framer-motion';
+import { Box, motion } from 'framer-motion';
 function bodyClass({}) {}
+
 function OffcanvasMenu() {
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -43,7 +44,7 @@ function OffcanvasMenu() {
 	}, [size.width, menuOpen]);
 
 	const menuToggleHandler = () => {
-		setMenuOpen((p) => !p);
+		setMenuOpen((p: any) => !p);
 		document.body.classList.add('menuOpen');
 	};
 	useEffect(() => {
@@ -51,6 +52,12 @@ function OffcanvasMenu() {
 			document.body.classList.remove('menuOpen');
 		}
 	});
+	function handleSignInButtonClick(
+		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	): void {
+		throw new Error('Function not implemented.');
+	}
+
 	return (
 		<div className='header__content'>
 			<nav

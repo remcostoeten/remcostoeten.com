@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Menu, MenuItem } from '@mui/material';
-import { AddCircle, MoreHoriz } from '@mui/icons-material';
+import { AddCircle, DeleteForever, MoreHoriz } from '@mui/icons-material';
 import TaskModal from '@/components/Task/TaskModal';
 import SubtaskModal from './Subtask/SubtaskModal';
 import { Task, Lane } from '@/types';
@@ -37,22 +37,20 @@ export default function DraggableContainer({
 	const handleClose = () => {
 		setAnchorEl(null);
 	};
-
 	const handleDragEnd = (result: any) => {
 		if (!result.destination) {
 			return;
 		}
 		const { source, destination } = result;
+
+		const laneTasks = tasks.filter(
+			(task) => task.status === source.droppableId,
+		);
+
 		if (source.droppableId === destination.droppableId) {
-			const laneTasks = tasks.filter(
-				(task) => task.status === source.droppableId,
-			);
 			const [removedTask] = laneTasks.splice(source.index, 1);
 			laneTasks.splice(destination.index, 0, removedTask);
 			updateTask(removedTask.id, { status: source.droppableId });
-			laneTasks.forEach((task, index) =>
-				updateTask(task.id, { order: index }),
-			);
 			return;
 		}
 
@@ -65,15 +63,6 @@ export default function DraggableContainer({
 		const [removedTask] = sourceTasks.splice(source.index, 1);
 		removedTask.status = destination.droppableId;
 		destinationTasks.splice(destination.index, 0, removedTask);
-
-		updateTask(removedTask.id, { status: removedTask.status });
-
-		sourceTasks.forEach((task, index) =>
-			updateTask(task.id, { order: index }),
-		);
-		destinationTasks.forEach((task, index) =>
-			updateTask(task.id, { order: index }),
-		);
 	};
 
 	const openSubtaskModal = (taskId: Task) => {
@@ -212,7 +201,7 @@ export default function DraggableContainer({
 																			</MenuItem>
 																		</Menu>
 																	</div>
-																	<DeleteForeverIcon
+																	<DeleteForever
 																		className='remove'
 																		onClick={() =>
 																			removeTask(
