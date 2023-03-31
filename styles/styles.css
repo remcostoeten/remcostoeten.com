@@ -4092,7 +4092,6 @@ form h3 {
 }
 .tasks__task {
   margin-top: 8px;
-  background-color: #2a2b2f;
   border-radius: 10px;
   color: #fff;
 }
@@ -4101,7 +4100,7 @@ form h3 {
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
-  padding-bottom: 24px;
+  margin-bottom: 16px;
 }
 .tasks__header .title {
   opacity: 0.5;
@@ -4117,10 +4116,8 @@ form h3 {
 }
 .tasks__lane {
   background-color: #24262c;
-  padding: 18px;
-}
-.tasks__lane .inner {
-  padding: 8px;
+  padding: 16px;
+  width: 33.3333333333%;
 }
 .tasks__lane:not(:last-child) {
   margin-right: 8px;
@@ -4129,13 +4126,22 @@ form h3 {
   height: 100%;
   position: relative;
   margin-bottom: 24px;
-  padding: 31.2px 18px;
+  padding: 20px;
   background-color: #292b31;
 }
-@media (min-width: 768px) {
-  .tasks .task {
-    padding: 12px 90px 12px 12px;
-  }
+.tasks__top span {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tasks__top span svg {
+  border: 1px solid #3d3f44;
+  border-radius: 100%;
+  width: 18px;
+  padding: 4px;
+  height: 18px;
+  font-size: 14px;
+  color: #fff;
 }
 .tasks__top h3 {
   margin-bottom: 8px;
@@ -4151,7 +4157,7 @@ form h3 {
 }
 .tasks__bottom {
   z-index: 10;
-  display: flex;
+  display: none;
   align-self: center;
   justify-content: center;
   font-size: 12px;
@@ -4219,13 +4225,11 @@ form h3 {
 }
 .tasks__lane {
   font-family: "Exo 2", sans-serif !important;
-  padding: 16px 20px;
   border-radius: 12px;
   min-width: 200px;
   background-color: #24262c;
 }
 .tasks__lane .inner {
-  padding-bottom: 48px;
   position: relative;
 }
 .tasks__lane h4 {
@@ -4235,8 +4239,9 @@ form h3 {
 .tasks__list {
   display: flex !important;
   flex-direction: column;
-  padding: 8px;
   color: var(--text-color);
+  background-color: #292b31;
+  padding: 10px 15px;
 }
 .tasks__list h3 {
   font-size: 16px;
@@ -4244,6 +4249,24 @@ form h3 {
 .tasks__list p {
   font-size: 14px;
   opacity: 0.5;
+}
+.tasks__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+}
+.tasks__date {
+  background-color: #36373d;
+  font-size: 1rem;
+  color: #989caa;
+  padding: 0 13px;
+  font-weight: 600;
+  border-radius: 18px;
+}
+.tasks svg {
+  color: #989caa;
+  font-size: 1rem;
 }
 
 .lane__item {
@@ -4348,7 +4371,6 @@ form h3 {
 }
 .dashboard__inner {
   display: flex;
-  align-items: center;
   background: #2a2b2f;
   border-radius: 5px;
   padding: 40px;

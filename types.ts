@@ -9,6 +9,11 @@ export interface PrivateTask {
 	date: string;
 }
 
+export interface Lane {
+	id: string;
+	title: string;
+}
+
 export interface Subtask {
 	id: string;
 	title: string;

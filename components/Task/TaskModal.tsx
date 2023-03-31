@@ -4,7 +4,12 @@ import React, { useState } from 'react';
 interface Props {
 	isOpen: boolean;
 	onClose: () => void;
-	onSubmit: (title: string, description: string, category: string) => void;
+	onSubmit: (
+		title: string,
+		description: string,
+		category: string,
+		createdAt: Date,
+	) => void;
 }
 
 const TaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
@@ -13,7 +18,8 @@ const TaskModal: React.FC<Props> = ({ isOpen, onClose, onSubmit }) => {
 	const [category, setCategory] = useState('');
 
 	const handleSubmit = () => {
-		onSubmit(title, description, category);
+		const createdAt = new Date(); // get current date and time
+		onSubmit(title, description, category, createdAt);
 		setTitle('');
 		setDescription('');
 		setCategory('');
