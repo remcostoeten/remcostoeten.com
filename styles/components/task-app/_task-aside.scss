@@ -68,7 +68,8 @@ $nav-item-size: 48px;
 
 			&__small {
 				display: flex;
-				padding: 16px 24px;
+				padding: 16px 8px;
+				align-items: center;
 				flex-direction: column;
 				background-color: $nav-background;
 				justify-content: space-between;

@@ -2962,9 +2962,18 @@ button {
   left: 16px;
   font-size: 14px;
   top: 50%;
-  color: #5b5b5d;
+  color: #5b5b5d !important;
   transform: translateY(-50%);
   z-index: 2;
+}
+.modal label,
+.modal p,
+.modal .modal__divider,
+.modal svg {
+  color: #5b5b5d !important;
+}
+.modal .header__user {
+  display: block !important;
 }
 .modal__register {
   display: flex;
@@ -2999,6 +3008,7 @@ button {
 }
 .modal .login-btn {
   margin: 24px 0;
+  background-color: #0092d2;
 }
 .modal__remember-me {
   display: flex;
@@ -4107,7 +4117,8 @@ form h3 {
 }
 .todo aside .nav__small {
   display: flex;
-  padding: 16px 24px;
+  padding: 16px 8px;
+  align-items: center;
   flex-direction: column;
   background-color: #1c1d22;
   justify-content: space-between;

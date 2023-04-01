@@ -1,12 +1,17 @@
 import TaskWrapper from '@/components/Task/TaskWrapper';
 import React, { useEffect, useState } from 'react';
 import AsideSmall from '@/components/Task/AsideSmall';
-import { KeyboardBackspace, LoginSharp } from '@mui/icons-material';
+import {
+	KeyboardBackspace,
+	LoginSharp,
+	LogoutSharp,
+} from '@mui/icons-material';
 import Link from 'next/link';
 import Lost from '@/components/Lost';
 import { auth, GoogleAuthProvider, signInWithPopup } from '@/utils/firebase';
 import Confetti from 'react-confetti';
 import SigninModal from '@/components/header/SigninModal';
+import { ToastContainer, toast } from 'react-toastify';
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -20,6 +25,7 @@ export default function Index() {
 		onClose: () => void;
 		onSignIn: (email?: string, password?: string) => void;
 	}
+
 	const toggleTheme = () => {
 		if (document.body.classList.contains('theme-white')) {
 			document.body.classList.remove('theme-white');
@@ -28,7 +34,6 @@ export default function Index() {
 			document.body.classList.remove('theme-dark');
 			document.body.classList.add('theme-white');
 		}
-		signIn(email, password); // Add this line to call the signIn function passed as a prop
 	};
 
 	const handleSignInModalClose = () => {
@@ -39,20 +44,40 @@ export default function Index() {
 		setIsSignInModalOpen(true);
 	};
 
-	const signIn = async (email?: string, password?: string) => {
+	const signInUser = async (email?: string, password?: string) => {
 		try {
 			let result;
 			if (email && password) {
-				result = await signIn(email, password);
+				result = await auth.signInWithEmailAndPassword(email, password); // Use signInWithEmailAndPassword
 			} else {
 				result = await signInWithPopup(auth, new GoogleAuthProvider());
+				setIsLoggedIn(true);
+				setShowConfetti(true);
 			}
-			setShowConfetti(true);
 			setIsLoggedIn(true);
+			setShowConfetti(true);
+			if (auth.currentUser && auth.currentUser.displayName !== null) {
+				toast.success(
+					`Welcome aboard ${auth.currentUser.displayName}!`,
+				);
+			}
 		} catch (error) {
 			console.log(error);
 		}
 	};
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+		});
+
+		return () => {
+			unsubscribe();
+		};
+	}, []);
 
 	useEffect(() => {
 		if (showConfetti) {
@@ -145,10 +170,10 @@ export default function Index() {
 			{isSignInModalOpen && (
 				<SigninModal
 					onClose={handleSignInModalClose}
-					onSignIn={signIn}
+					onSignIn={signInUser}
 				/>
 			)}
-
+			<ToastContainer />
 			{showConfetti && <Confetti />}
 		</>
 	);

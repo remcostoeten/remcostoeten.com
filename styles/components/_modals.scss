@@ -55,10 +55,21 @@ $checkbox-size: 16px;
 			left: 16px;
 			font-size: 14px;
 			top: 50%;
-			color: #5b5b5d;
+			color: #5b5b5d !important;
 			transform: translateY(-50%);
 			z-index: 2;
 		}
+	}
+
+	label,
+	p,
+	.modal__divider,
+	svg {
+		color: #5b5b5d !important;
+	}
+
+	.header__user {
+		display: block !important;
 	}
 
 	&__register {
@@ -101,6 +112,7 @@ $checkbox-size: 16px;
 
 	.login-btn {
 		margin: $spacing 0;
+		background-color: $color-primary;
 	}
 
 	&__remember-me {
