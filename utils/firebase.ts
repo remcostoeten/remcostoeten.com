@@ -1,13 +1,13 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import { initializeApp } from '@firebase/app';
+import { getFirestore } from '@firebase/firestore';
 import { getStorage } from '@firebase/storage';
-import { getDatabase } from 'firebase/database';
+import { getDatabase } from '@firebase/database';
 import {
 	getAuth,
 	signInWithPopup,
 	GoogleAuthProvider,
 	signOut,
-} from 'firebase/auth';
+} from '@firebase/auth';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',

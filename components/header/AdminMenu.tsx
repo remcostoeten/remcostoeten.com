@@ -14,7 +14,7 @@ export default function MenuListComposition() {
 	const anchorRef = React.useRef<HTMLButtonElement>(null);
 
 	const handleToggle = () => {
-		setOpen((prevOpen) => !prevOpen);
+		setOpen((prevOpen: any) => !prevOpen);
 	};
 
 	const handleClose = (event: Event | React.SyntheticEvent) => {
@@ -37,7 +37,6 @@ export default function MenuListComposition() {
 		}
 	}
 
-	// return focus to the button when we transitioned from !open -> open
 	const prevOpen = React.useRef(open);
 	React.useEffect(() => {
 		if (prevOpen.current === true && open === false) {

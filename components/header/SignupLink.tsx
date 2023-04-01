@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import SignupModal from './SignupModal';
 import SigninModal from './SigninModal';
 
 export default function SignupLink() {

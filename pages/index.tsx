@@ -3,10 +3,7 @@ import Intro from '@/components/layout/Intro';
 import React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-import Github from '@mui/icons-material/GitHub';
-import { Mail, WhatsApp } from '@mui/icons-material';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import { motion } from 'framer-motion';
+
 import BlinkingArrow from '@/components/ui-elements/BlinkingArrow';
 import Header from '@/components/header/Header';
 export default function Home() {

@@ -10,21 +10,14 @@ import {
 	Menu,
 	WhatsApp,
 } from '@mui/icons-material';
-import Login from '../Login';
-import { auth } from '@/utils/firebase';
-import {
-	Tooltip,
-	IconButton,
-	Avatar,
-	Divider,
-	MenuItem,
-	ListItemIcon,
-	useMediaQuery,
-} from '@mui/material';
-import { Box } from 'framer-motion';
+import { auth, logout, signInWithGoogle } from '@/utils/firebase';
+import { useMediaQuery } from '@mui/material';
+import { Box, motion } from 'framer-motion';
 function bodyClass({}) {}
+
 function OffcanvasMenu() {
 	const isMobile = useMediaQuery('(max-width: 768px)');
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [size, setSize] = useState({
 		width: 0,
@@ -50,7 +43,7 @@ function OffcanvasMenu() {
 	}, [size.width, menuOpen]);
 
 	const menuToggleHandler = () => {
-		setMenuOpen((p) => !p);
+		setMenuOpen((p: any) => !p);
 		document.body.classList.add('menuOpen');
 	};
 	useEffect(() => {
@@ -58,6 +51,12 @@ function OffcanvasMenu() {
 			document.body.classList.remove('menuOpen');
 		}
 	});
+	function handleSignInButtonClick(
+		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
+	): void {
+		throw new Error('Function not implemented.');
+	}
+
 	return (
 		<div className='header__content'>
 			<nav
@@ -85,7 +84,6 @@ function OffcanvasMenu() {
 									<div className='header__close'>
 										<CancelOutlined />
 									</div>
-									<Login />
 
 									<Link href='/message-history'>
 										Messenger
@@ -112,6 +110,19 @@ function OffcanvasMenu() {
 								</div>
 							</div>
 						</div>
+						{isLoggedIn ? (
+							<motion.li whileHover={{ scale: 1.05 }}>
+								<a onClick={() => auth.signOut()}>Logout</a>
+							</motion.li>
+						) : (
+							<>
+								<div
+									className='login-btn'
+									onClick={handleSignInButtonClick}>
+									<span>Sign In</span>
+								</div>
+							</>
+						)}
 					</>
 				)}
 			</div>

@@ -92,8 +92,8 @@ export default function TaskWrapper() {
 		try {
 			const taskRef = doc(db, `tasks-${auth.currentUser?.uid}`, taskId);
 			await deleteDoc(taskRef);
-			setTasks((prevTasks) =>
-				prevTasks.filter((task) => task.id !== taskId),
+			setTasks((prevTasks: any[]) =>
+				prevTasks.filter((task: { id: string }) => task.id !== taskId),
 			);
 			toast.success('Task emoved successfully');
 		} catch (error) {
@@ -105,8 +105,8 @@ export default function TaskWrapper() {
 			doc(db, `tasks-${auth.currentUser?.uid}`, taskId),
 			newTaskData,
 		);
-		setTasks((prevTasks) =>
-			prevTasks.map((task) => {
+		setTasks((prevTasks: any[]) =>
+			prevTasks.map((task: { id: string }) => {
 				if (task.id === taskId) {
 					return { ...task, ...newTaskData };
 				}
