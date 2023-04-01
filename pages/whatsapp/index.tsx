@@ -85,7 +85,7 @@ const ChatHistory: React.FC = () => {
 				window.innerHeight + window.scrollY >=
 				document.body.scrollHeight - 500
 			) {
-				setVisibleMessages((prevMessages: Record<string, any>[]) => [
+				setVisibleMessages((prevMessages: ChatMessage[]) => [
 					...prevMessages,
 					...chatHistory.slice(
 						prevMessages.length,
