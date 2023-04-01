@@ -11,8 +11,6 @@ import {
 	ViewList,
 	AssignmentInd,
 } from '@mui/icons-material';
-import { signIn, signOut } from '@/utils/LoginLogic';
-import TaskWrapper from './TaskWrapper';
 import { auth } from '@/utils/firebase';
 
 interface AsideSmallProps {
@@ -109,11 +107,9 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 					<div className='nav__bottom'>
 						{isLoggedIn ? (
 							<a onClick={() => auth.signOut()}>
-								{' '}
 								<span>
 									<LogoutSharp />
 								</span>
-								t
 							</a>
 						) : (
 							<>
@@ -128,7 +124,9 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 						)}
 					</div>
 				</nav>
-				<SigninModal onClose={handleSignInModalClose} />
+				{isSignInModalOpen && (
+					<SigninModal onClose={handleSignInModalClose} />
+				)}
 			</aside>
 		</>
 	);
