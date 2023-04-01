@@ -3194,7 +3194,7 @@ button {
 
 .theme-white *,
 .dark-theme * {
-  transition: 500ms ease-in-out all;
+  transition: 500ms ease-in-out padding transform color;
 }
 
 .theme-white .todo {

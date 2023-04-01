@@ -1,11 +1,12 @@
 import TaskWrapper from '@/components/Task/TaskWrapper';
 import React, { useEffect, useState } from 'react';
 import AsideSmall from '@/components/Task/AsideSmall';
-import { KeyboardBackspace } from '@mui/icons-material';
+import { KeyboardBackspace, LoginSharp } from '@mui/icons-material';
 import Link from 'next/link';
 import Lost from '@/components/Lost';
 import { auth, GoogleAuthProvider, signInWithPopup } from '@/utils/firebase';
 import Confetti from 'react-confetti';
+import SigninModal from '@/components/header/SigninModal';
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -14,7 +15,11 @@ export default function Index() {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showConfetti, setShowConfetti] = useState(false);
-
+	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+	interface SigninModalProps {
+		onClose: () => void;
+		onSignIn: (email?: string, password?: string) => void;
+	}
 	const toggleTheme = () => {
 		if (document.body.classList.contains('theme-white')) {
 			document.body.classList.remove('theme-white');
@@ -23,6 +28,15 @@ export default function Index() {
 			document.body.classList.remove('theme-dark');
 			document.body.classList.add('theme-white');
 		}
+		signIn(email, password); // Add this line to call the signIn function passed as a prop
+	};
+
+	const handleSignInModalClose = () => {
+		setIsSignInModalOpen(false);
+	};
+
+	const handleSignInButtonClick = () => {
+		setIsSignInModalOpen(true);
 	};
 
 	const signIn = async (email?: string, password?: string) => {
@@ -87,13 +101,26 @@ export default function Index() {
 									</p>
 									<div className='not-authorized__buttons'>
 										<div className='item item--arrow'>
-											<div
-												className='cta'
-												onClick={() =>
-													signIn(email, password)
-												}>
-												Sign In
-											</div>
+											{isLoggedIn ? (
+												<a
+													onClick={() =>
+														auth.signOut()
+													}>
+													<span>
+														<LogoutSharp />
+													</span>
+												</a>
+											) : (
+												<>
+													<div
+														className='cta'
+														onClick={
+															handleSignInButtonClick
+														}>
+														Sign In
+													</div>
+												</>
+											)}
 										</div>
 										<div className='item item--arrow'>
 											<div className='cta cta-two'>
@@ -115,6 +142,13 @@ export default function Index() {
 					)}
 				</div>
 			</div>
+			{isSignInModalOpen && (
+				<SigninModal
+					onClose={handleSignInModalClose}
+					onSignIn={signIn}
+				/>
+			)}
+
 			{showConfetti && <Confetti />}
 		</>
 	);

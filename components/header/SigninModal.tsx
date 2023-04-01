@@ -14,12 +14,13 @@ import Login from '../Login';
 import SignupModal from './SignupModal';
 interface SigninModalProps {
 	onClose: () => void;
+	onSignIn: (email?: string, password?: string) => void;
 }
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import Confetti from 'react-confetti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-export default function SigninModal({ onClose }: SigninModalProps) {
+export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
@@ -30,7 +31,6 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 		setShowSignupModal(true);
 	};
 	const [showConfetti, setShowConfetti] = useState(false);
-	const [fadeOut, setFadeOut] = useState(false);
 
 	const handleCloseSignupModal = () => {
 		setShowSignupModal(false);
@@ -63,6 +63,7 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 			} else {
 				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
 			}
+			onSignIn(email, password); // Add this line to call the signIn function passed as a prop
 		} catch (error) {
 			console.error(error);
 			setRegistered(false);
@@ -71,6 +72,16 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 			);
 		}
 	};
+	useEffect(() => {
+		if (showConfetti) {
+			const timer = setTimeout(() => {
+				setShowConfetti(false);
+				onClose(); // Add this line to close the login modal after the confetti animation
+			}, 3000);
+
+			return () => clearTimeout(timer);
+		}
+	}, [showConfetti, onClose]); // Add onClose to the dependency array
 
 	useEffect(() => {
 		console.log('Registered state changed:', registered);
@@ -79,15 +90,7 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 	const handleRememberMeChange = () => {
 		setRememberMe(!rememberMe);
 	};
-	useEffect(() => {
-		if (showConfetti) {
-			const timer = setTimeout(() => {
-				setShowConfetti(false);
-			}, 3000);
 
-			return () => clearTimeout(timer);
-		}
-	}, [showConfetti]);
 	return (
 		<>
 			{showConfetti && <Confetti />}
