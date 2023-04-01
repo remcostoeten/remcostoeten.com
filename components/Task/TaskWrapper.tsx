@@ -92,21 +92,22 @@ export default function TaskWrapper() {
 		try {
 			const taskRef = doc(db, `tasks-${auth.currentUser?.uid}`, taskId);
 			await deleteDoc(taskRef);
-			setTasks((prevTasks: any[]) =>
-				prevTasks.filter((task: { id: string }) => task.id !== taskId),
+			setTasks((prevTasks: Task[]) =>
+				prevTasks.filter((task: Task) => task.id !== taskId),
 			);
-			toast.success('Task emoved successfully');
+			toast.success('Task removed successfully');
 		} catch (error) {
 			console.error('Error removing task:', error);
 		}
 	};
+
 	const updateTask = async (taskId: string, newTaskData: Partial<Task>) => {
 		await updateDoc(
 			doc(db, `tasks-${auth.currentUser?.uid}`, taskId),
 			newTaskData,
 		);
-		setTasks((prevTasks: any[]) =>
-			prevTasks.map((task: { id: string }) => {
+		setTasks((prevTasks: Task[]) =>
+			prevTasks.map((task: Task) => {
 				if (task.id === taskId) {
 					return { ...task, ...newTaskData };
 				}
@@ -114,6 +115,7 @@ export default function TaskWrapper() {
 			}),
 		);
 	};
+
 	return (
 		<>
 			{/* <div className='container'><TaskCategories /></div> */}
