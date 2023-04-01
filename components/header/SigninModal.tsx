@@ -5,6 +5,7 @@ import {
 	setPersistence,
 	browserSessionPersistence,
 	browserLocalPersistence,
+	signInWithCredential,
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
@@ -12,14 +13,15 @@ import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Login from '../Login';
 import SignupModal from './SignupModal';
-interface SigninModalProps {
-	onClose: () => void;
-	onSignIn: (email?: string, password?: string) => void;
-}
-import { signInWithEmailAndPassword } from 'firebase/auth';
+
 import Confetti from 'react-confetti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+interface SigninModalProps {
+	onClose: () => void;
+	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
+}
+
 export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -45,17 +47,15 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 				? browserLocalPersistence
 				: browserSessionPersistence;
 			await setPersistence(auth, persistenceMode);
-			const result = await signInWithEmailAndPassword(
+			const result = await createUserWithEmailAndPassword(
 				auth,
 				email,
 				password,
 			);
 			console.log(result);
 			setRegistered(true);
-			console.log(registered); // add this line to check registered state
 			localStorage.setItem('email', email);
 			localStorage.setItem('password', password);
-			setShowConfetti(true);
 			if (!auth.currentUser?.displayName === null) {
 				toast.success(
 					`Welcome aboard ${auth.currentUser?.displayName}!`,
@@ -63,10 +63,8 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 			} else {
 				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
 			}
-			onSignIn(email, password); // Add this line to call the signIn function passed as a prop
 		} catch (error) {
 			console.error(error);
-			setRegistered(false);
 			toast.error(
 				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
 			);
@@ -98,7 +96,15 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 			<div className='modal'>
 				<div>
 					{showSignupModal && (
-						<SignupModal onClose={handleCloseSignupModal} />
+						<SignupModal
+							onClose={handleCloseSignupModal}
+							onSignIn={function (
+								email?: string | undefined,
+								password?: string | undefined,
+							): void {
+								throw new Error('Function not implemented.');
+							}}
+						/>
 					)}
 				</div>
 				<div className='modal__inner'>
@@ -180,7 +186,17 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 								</a>
 							</div>
 							{showSignupModal && (
-								<SignupModal onClose={handleCloseSignupModal} />
+								<SignupModal
+									onClose={handleCloseSignupModal}
+									onSignIn={function (
+										email?: string | undefined,
+										password?: string | undefined,
+									): void {
+										throw new Error(
+											'Function not implemented.',
+										);
+									}}
+								/>
 							)}
 						</>
 					) : (

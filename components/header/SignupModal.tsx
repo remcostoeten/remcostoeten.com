@@ -6,17 +6,19 @@ import {
 	browserSessionPersistence,
 	browserLocalPersistence,
 } from 'firebase/auth';
+
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Confetti from 'react-confetti';
 
-interface SignupModalProps {
+interface SigninModalProps {
 	onClose: () => void;
+	onSignIn: (email?: string, password?: string) => void;
 }
 
-export default function SignupModal({ onClose }: SignupModalProps) {
+export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);

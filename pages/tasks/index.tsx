@@ -12,6 +12,13 @@ import { auth, GoogleAuthProvider, signInWithPopup } from '@/utils/firebase';
 import Confetti from 'react-confetti';
 import SigninModal from '@/components/header/SigninModal';
 import { ToastContainer, toast } from 'react-toastify';
+import {
+	getAuth,
+	browserLocalPersistence,
+	browserSessionPersistence,
+	setPersistence,
+	createUserWithEmailAndPassword,
+} from '@firebase/auth';
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,9 +28,17 @@ export default function Index() {
 	const [password, setPassword] = useState('');
 	const [showConfetti, setShowConfetti] = useState(false);
 	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
+	const [rememberMe, setRememberMe] = useState(true);
+
 	interface SigninModalProps {
 		onClose: () => void;
-		onSignIn: (email?: string, password?: string) => void;
+		onSignIn: (
+			email: string,
+			password: string,
+			rememberMe: boolean,
+		) => void;
+		rememberMe: boolean;
+		setRememberMe: (value: boolean) => void;
 	}
 
 	const toggleTheme = () => {
@@ -44,27 +59,44 @@ export default function Index() {
 		setIsSignInModalOpen(true);
 	};
 
-	const signInUser = async (email?: string, password?: string) => {
+	const signInUser = async (
+		email?: string,
+		password?: string,
+		rememberMe?: boolean,
+	) => {
+		if (!email || !password) {
+			toast.error('Please provide a valid email and password.');
+			return;
+		}
 		try {
-			let result;
-			if (email && password) {
-				result = await auth.signInWithEmailAndPassword(email, password); // Use signInWithEmailAndPassword
-			} else {
-				result = await signInWithPopup(auth, new GoogleAuthProvider());
-				setIsLoggedIn(true);
-				setShowConfetti(true);
-			}
-			setIsLoggedIn(true);
-			setShowConfetti(true);
-			if (auth.currentUser && auth.currentUser.displayName !== null) {
+			const auth = getAuth();
+			const persistenceMode = rememberMe
+				? browserLocalPersistence
+				: browserSessionPersistence;
+			await setPersistence(auth, persistenceMode);
+			const result = await createUserWithEmailAndPassword(
+				auth,
+				email,
+				password,
+			);
+			console.log(result);
+			localStorage.setItem('email', email);
+			localStorage.setItem('password', password);
+			if (!auth.currentUser?.displayName === null) {
 				toast.success(
-					`Welcome aboard ${auth.currentUser.displayName}!`,
+					`Welcome aboard ${auth.currentUser?.displayName}!`,
 				);
+			} else {
+				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
 			}
 		} catch (error) {
-			console.log(error);
+			console.error(error);
+			toast.error(
+				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
+			);
 		}
 	};
+
 	useEffect(() => {
 		const unsubscribe = auth.onAuthStateChanged((user) => {
 			if (user) {
@@ -167,10 +199,13 @@ export default function Index() {
 					)}
 				</div>
 			</div>
+
 			{isSignInModalOpen && (
 				<SigninModal
 					onClose={handleSignInModalClose}
-					onSignIn={signInUser}
+					onSignIn={(email, password, rememberMe) =>
+						signInUser(email, password, rememberMe)
+					}
 				/>
 			)}
 			<ToastContainer />

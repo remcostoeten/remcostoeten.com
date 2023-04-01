@@ -125,7 +125,15 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 					</div>
 				</nav>
 				{isSignInModalOpen && (
-					<SigninModal onClose={handleSignInModalClose} />
+					<SigninModal
+						onClose={handleSignInModalClose}
+						onSignIn={function (
+							email?: string | undefined,
+							password?: string | undefined,
+						): void {
+							throw new Error('Function not implemented.');
+						}}
+					/>
 				)}
 			</aside>
 		</>

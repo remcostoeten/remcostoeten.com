@@ -14,7 +14,15 @@ export default function SignupLink() {
 			</div>
 			{showModal && (
 				<>
-					<SigninModal onClose={handleCloseModal} />
+					<SigninModal
+						onClose={handleCloseModal}
+						onSignIn={function (
+							email?: string | undefined,
+							password?: string | undefined,
+						): void {
+							throw new Error('Function not implemented.');
+						}}
+					/>
 					<div className='modal-backdrop'></div>
 				</>
 			)}
