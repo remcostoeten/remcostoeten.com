@@ -15,6 +15,7 @@ import SignupModal from './SignupModal';
 interface SigninModalProps {
 	onClose: () => void;
 }
+import { signInWithEmailAndPassword } from 'firebase/auth';
 
 export default function SigninModal({ onClose }: SigninModalProps) {
 	const [email, setEmail] = useState('');
@@ -57,7 +58,7 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 				? browserLocalPersistence
 				: browserSessionPersistence;
 			await setPersistence(auth, persistenceMode);
-			const result = await createUserWithEmailAndPassword(
+			const result = await signInWithEmailAndPassword(
 				auth,
 				email,
 				password,
@@ -71,6 +72,7 @@ export default function SigninModal({ onClose }: SigninModalProps) {
 			console.error(error);
 		}
 	};
+
 	const handleRememberMeChange = () => {
 		setRememberMe(!rememberMe);
 	};
