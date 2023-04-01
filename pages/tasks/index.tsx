@@ -1,34 +1,20 @@
 import TaskWrapper from '@/components/Task/TaskWrapper';
 import React, { useEffect, useState } from 'react';
-import { signIn, signOut } from '@/utils/LoginLogic';
 import AsideSmall from '@/components/Task/AsideSmall';
-import AsideBig from '@/components/Task/AsideBig';
-import { CheckCircle, KeyboardBackspace } from '@mui/icons-material';
+import { KeyboardBackspace } from '@mui/icons-material';
 import Link from 'next/link';
-import Image from 'next/image';
 import Lost from '@/components/Lost';
-import { GoogleAuthProvider, auth, signInWithPopup } from '@/utils/firebase';
-import SignupLink from '@/components/header/SignupLink';
-import { signInWithEmailAndPassword } from '@firebase/auth';
+import { auth, GoogleAuthProvider, signInWithPopup } from '@/utils/firebase';
 import Confetti from 'react-confetti';
-
-interface AsideSmallProps {
-	isLoggedIn: boolean;
-	view?: string;
-}
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-	const open = Boolean(anchorEl);
 	const [showModal, setShowModal] = useState(false);
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [showConfetti, setShowConfetti] = useState(false);
 
-	const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-		setAnchorEl(event.currentTarget);
-	};
 	const toggleTheme = () => {
 		if (document.body.classList.contains('theme-white')) {
 			document.body.classList.remove('theme-white');
@@ -39,28 +25,21 @@ export default function Index() {
 		}
 	};
 
-	const signIn = async (
-		setIsLoggedIn: (value: boolean) => void,
-		email?: string,
-		password?: string,
-	) => {
+	const signIn = async (email?: string, password?: string) => {
 		try {
 			let result;
 			if (email && password) {
-				result = await signInWithEmailAndPassword(
-					auth,
-					email,
-					password,
-				);
+				result = await signIn(email, password);
 			} else {
 				result = await signInWithPopup(auth, new GoogleAuthProvider());
 			}
-			setIsLoggedIn(true);
 			setShowConfetti(true);
+			setIsLoggedIn(true);
 		} catch (error) {
 			console.log(error);
 		}
 	};
+
 	useEffect(() => {
 		if (showConfetti) {
 			const timer = setTimeout(() => {
@@ -74,7 +53,13 @@ export default function Index() {
 		<>
 			<div className='todo'>
 				<div className='todo__inner'>
-					<AsideSmall view={''} isLoggedIn={false} />
+					<AsideSmall
+						view={''}
+						isLoggedIn={false}
+						setIsLoggedIn={function (value: boolean): void {
+							throw new Error('Function not implemented.');
+						}}
+					/>
 					{isLoggedIn ? (
 						<>
 							<div className='authenticated'>
@@ -105,11 +90,7 @@ export default function Index() {
 											<div
 												className='cta'
 												onClick={() =>
-													signIn(
-														setIsLoggedIn,
-														email,
-														password,
-													)
+													signIn(email, password)
 												}>
 												Sign In
 											</div>
