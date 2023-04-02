@@ -1,7 +1,8 @@
-$aside-background: #222327;
-$nav-background: #1c1d22;
+$aside-background: #fbfaff;
+$nav-background: #fbfaff;
 $button-active-background: #323338;
 $nav-item-size: 48px;
+$icon-color: #5f6388;
 .todo {
 	aside {
 		display: flex;
@@ -49,13 +50,10 @@ $nav-item-size: 48px;
 
 		svg {
 			font-size: 28px;
-			color: $white;
-			opacity: 0.5;
+			color: $icon-color;
 			cursor: pointer;
-			transition: 250ms ease all;
 
 			&:hover {
-				color: #ffa048;
 				opacity: 1;
 				scale: 1.1;
 				transform: rotate(3deg);

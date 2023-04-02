@@ -8,6 +8,7 @@ import {
 	GoogleAuthProvider,
 	signOut,
 } from '@firebase/auth';
+import { getDownloadURL, ref } from '@firebase/storage';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',
@@ -55,13 +56,62 @@ const logout = () => {
 		});
 };
 
+interface Message {
+	name: string;
+	message: string;
+	timestamp: string;
+	image: string;
+}
+
+const getChatHistory1 = async (): Promise<Message[] | null> => {
+	try {
+		const chatHistoryRef = ref(storage, 'y.json');
+		const url = await getDownloadURL(chatHistoryRef);
+		const response = await fetch(url);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error('Error fetching chat history:', error);
+		return null;
+	}
+};
+
+const getChatHistory2 = async (): Promise<Message[] | null> => {
+	try {
+		const chatHistoryRef = ref(storage, 'zold.json');
+		const url = await getDownloadURL(chatHistoryRef);
+		const response = await fetch(url);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error('Error fetching chat history:', error);
+		return null;
+	}
+};
+
+const getChatHistory3 = async (): Promise<Message[] | null> => {
+	try {
+		const chatHistoryRef = ref(storage, 'znew.json');
+		const url = await getDownloadURL(chatHistoryRef);
+		const response = await fetch(url);
+		const data = await response.json();
+		return data;
+	} catch (error) {
+		console.error('Error fetching chat history:', error);
+		return null;
+	}
+};
+
 export {
-	db,
-	auth,
-	storage,
-	signInWithGoogle,
-	logout,
-	signInWithPopup,
-	GoogleAuthProvider,
-	database,
+    db,
+    auth,
+    storage,
+    signInWithGoogle,
+    logout,
+    signInWithPopup,
+    GoogleAuthProvider,
+    database,
+    getChatHistory1,
+    getChatHistory2,
+    getChatHistory3, type Message,
 };

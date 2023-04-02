@@ -7,12 +7,10 @@ import {
 } from 'react-beautiful-dnd';
 import { Task } from '@/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import { AddCircle } from '@mui/icons-material';
 import TaskModal from './Task/TaskModal';
 import { collection, addDoc } from 'firebase/firestore';
 import { auth, db } from '@/utils/firebase';
-import { useAuth } from './useAuth';
-
+import AddBoxRoundedIcon from '@mui/icons-material/AddBox';
 interface DraggableContainerProps {
 	tasks: Task[];
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
@@ -83,8 +81,9 @@ export default function DraggableContainer({
 							</span>
 						</div>
 						<span className='add'>
-							<AddCircle onClick={() => setIsModalOpen(true)} />
-							Add new task
+							<AddBoxRoundedIcon
+								onClick={() => setIsModalOpen(true)}
+							/>
 						</span>
 					</div>
 					<TaskModal
@@ -92,58 +91,53 @@ export default function DraggableContainer({
 						onClose={() => setIsModalOpen(false)}
 						onSubmit={addTask} // Make sure this is correctly bound
 					/>
-					<div className='inner'>
-						<Droppable droppableId={lane.id}>
-							{(provided) => (
-								<div
-									className='tasks__list'
-									ref={provided.innerRef}
-									{...provided.droppableProps}>
-									{tasks
-										.filter(
-											(task) => task.status === lane.id,
-										)
-										.map((task, index) => (
-											<Draggable
-												key={task.id}
-												draggableId={task.id}
-												index={index}>
-												{(provided) => (
-													<div
-														className='task'
-														ref={provided.innerRef}
-														{...provided.draggableProps}
-														{...provided.dragHandleProps}>
-														<div className='tasks__bottom'>
-															{task.category}
-														</div>
-														<div className='tasks__top'>
-															<h3>
-																{task.title}
-															</h3>
-															<p>
-																{
-																	task.description
-																}
-															</p>
-															<DeleteForeverIcon
-																className='remove'
-																onClick={() =>
-																	removeTask(
-																		task.id,
-																	)
-																}
-															/>
-														</div>
+					<Droppable droppableId={lane.id}>
+						{(provided) => (
+							<div
+								className='tasks__list'
+								ref={provided.innerRef}
+								{...provided.droppableProps}>
+								{tasks
+									.filter((task) => task.status === lane.id)
+									.map((task, index) => (
+										<Draggable
+											key={task.id}
+											draggableId={task.id}
+											index={index}>
+											{(provided) => (
+												<div
+													className='task'
+													ref={provided.innerRef}
+													{...provided.draggableProps}
+													{...provided.dragHandleProps}>
+													<div className='tasks__bottom'>
+														{task.category}
 													</div>
-												)}
-											</Draggable>
-										))}
-									{provided.placeholder}
-								</div>
-							)}
-						</Droppable>
-					</div>
+													<div className='tasks__top'>
+														<h3>{task.title}</h3>
+														<p>
+															{task.description}
+														</p>
+														<span className='task__date'>
+															{task.date}
+														</span>
+														<DeleteForeverIcon
+															className='remove'
+															onClick={() =>
+																removeTask(
+																	task.id,
+																)
+															}
+														/>
+													</div>
+												</div>
+											)}
+										</Draggable>
+									))}
+								{provided.placeholder}
+							</div>
+						)}
+					</Droppable>
 				</div>
 			))}
 		</DragDropContext>

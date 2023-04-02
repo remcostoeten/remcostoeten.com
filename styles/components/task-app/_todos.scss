@@ -1,6 +1,6 @@
 @use 'variables';
 @import 'todo-categories';
-@import 'todo-dark-theme';
+// @import 'todo-dark-theme';
 @import 'todo-white-theme';
 $color-white: $dark;
 
@@ -11,10 +11,11 @@ $white: white;
 }
 
 .todo {
+	background-color: $off-white;
+	
 	aside {
 		display: flex;
 		flex-direction: columns;
-		margin-right: 45px;
 	}
 
 	main {
@@ -25,7 +26,6 @@ $white: white;
 }
 
 .todo {
-	background: $color-white;
 	border-radius: 5px;
 	box-shadow: 1px 2px 10px #ddd;
 

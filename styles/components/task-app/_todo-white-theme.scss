@@ -5,9 +5,13 @@
 	}
 }
 
+$white: #fff;
+$white-alternative: #fbfaff;
+$off-white: #f3f4f8;
+
 .theme-white {
 	.todo {
-		background-color: $bg-color;
+		background-color: $off-white;
 		color: $text-color;
 	}
 
@@ -49,6 +53,5 @@
 
 	.todo {
 		box-shadow: none;
-		background-color: $dark-lighter;
 	}
 }

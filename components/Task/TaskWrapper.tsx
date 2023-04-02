@@ -34,7 +34,7 @@ export default function TaskWrapper() {
 		setView(view === 'board' ? 'list' : 'board');
 	};
 	useEffect(() => {
-		document.body.classList.add('dark-theme');
+		document.body.classList.add('white-theme');
 	}, []);
 
 	useEffect(() => {

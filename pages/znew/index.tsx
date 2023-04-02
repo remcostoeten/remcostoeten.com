@@ -1,16 +1,5 @@
-import ChatHistory from '@/components/Chat/PrivateChats';
-import Header from '@/components/header/Header';
+import { getChatHistory2 } from '@/utils/firebase';
+import withChat from '@/components/Chat/WithChat';
 
-const PrivateChat = () => {
-	return (
-		<>
-			<Header />
-			<h3>Z new</h3>
-			<div>
-				<ChatHistory pageSize={20} filename='znew' />
-			</div>
-		</>
-	);
-};
-
-export default PrivateChat;
+const Chat2 = withChat(getChatHistory2);
+export default Chat2;
