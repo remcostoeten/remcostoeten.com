@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
-import { getChatHistory, Message } from '@/utils/firebase';
+import { getChatHistory1, Message } from '@/utils/firebase';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -56,7 +56,7 @@ const Chat: React.FC = () => {
 
 	useEffect(() => {
 		const fetchChatHistory = async () => {
-			const data = await getChatHistory();
+			const data = await getChatHistory1();
 			if (data) {
 				setChatHistory(data);
 			}

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FixedSizeList as List, ListChildComponentProps } from 'react-window';
 import { Message } from '@/utils/firebase';
 import Drawer from '@mui/material/Drawer';
 import Button from '@mui/material/Button';
@@ -9,9 +8,14 @@ import SearchIcon from '@mui/icons-material/Search';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import Pagination from '@mui/material/Pagination';
-
+import Measure from 'react-measure';
+import Image from 'next/image';
 const pageSize = 50;
 const previewLength = 10;
+import {
+	VariableSizeList as List,
+	ListChildComponentProps,
+} from 'react-window';
 
 interface RowProps extends ListChildComponentProps {
 	data: Message[];
@@ -43,12 +47,21 @@ const Chatv2: React.FC<ChatProps> = ({ getChatHistory }) => {
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [drawerOpen, setDrawerOpen] = useState(false);
 	const [searchQuery, setSearchQuery] = useState<string>('');
+	const [messageHeights, setMessageHeights] = useState<number[]>([]);
 	const [searchResults, setSearchResults] = useState<Message[]>([]);
 	const [listHeight, setListHeight] = useState<number>(600); // Initialize the height with a default value
 	const listRef = useRef<List>(null); // Add a reference to the List component
 
 	const toggleDrawer = (open: boolean) => {
 		setDrawerOpen(open);
+	};
+
+	const onMessageResize = (index: number, height: number) => {
+		setMessageHeights((prev) => {
+			const newHeights = [...prev];
+			newHeights[index] = height;
+			return newHeights;
+		});
 	};
 
 	const itemCount = Math.min(currentPage * pageSize, chatHistory.length);
@@ -75,7 +88,7 @@ const Chatv2: React.FC<ChatProps> = ({ getChatHistory }) => {
 			}
 		};
 		fetchChatHistory();
-	}, []);
+	}, [getChatHistory]);
 
 	const handlePageChange = (newPage: number) => {
 		setCurrentPage(newPage);
@@ -98,29 +111,27 @@ const Chatv2: React.FC<ChatProps> = ({ getChatHistory }) => {
 					msg.message.length,
 				);
 				const preview = msg.message.slice(previewStart, previewEnd);
-				acc.push({ ...msg, preview, index });
+				acc.push({ ...msg, preview, index: index as number }); // Add a type assertion here
 			}
 			return acc;
 		}, []);
 		setSearchResults(results);
 	};
 
-	  const jumpToMessage = (index: number) => {
-			setCurrentPage(Math.ceil((index + 1) / pageSize));
-			listRef.current?.scrollToItem(index - pageSize / 2, 'start'); // Scroll to the message position, showing equal amount of messages above and below
-		};
+	const jumpToMessage = (index: number) => {
+		setCurrentPage(Math.ceil((index + 1) / pageSize));
+		listRef.current?.scrollToItem(index - pageSize / 2, 'start'); // Scroll to the message position, showing equal amount of messages above and below
+	};
 
 	return (
 		<>
 			<div className='flex flex-col h-screen w-screen'>
 				<div className='p-4'>
-					{/* Search button */}
 					<Button
 						onClick={() => toggleDrawer(true)}
 						variant='outlined'>
 						Search
 					</Button>
-					f
 					<Drawer
 						anchor='right'
 						open={drawerOpen}
@@ -145,8 +156,12 @@ const Chatv2: React.FC<ChatProps> = ({ getChatHistory }) => {
 										button
 										key={result.index}
 										onClick={() => {
-											jumpToMessage(result.index);
-											toggleDrawer(false);
+											if (
+												typeof result.index === 'number'
+											) {
+												jumpToMessage(result.index);
+												toggleDrawer(false);
+											}
 										}}>
 										<ListItemText
 											primary={result.preview}
@@ -159,14 +174,32 @@ const Chatv2: React.FC<ChatProps> = ({ getChatHistory }) => {
 					</Drawer>
 				</div>
 				<List
-					ref={listRef} // Add the reference to the List component
+					ref={listRef}
 					height={listHeight}
 					itemCount={itemCount}
 					width='100%'
-					itemSize={50}
+					itemSize={(index: number) => messageHeights[index] || 50}
 					itemData={displayedMessages}
 					className='flex-grow bg-gray-200 p-4 overflow-y-auto'>
-					{Row}
+					{({ index, style, data }) => (
+						<Measure
+							bounds
+							onResize={({ bounds }) => {
+								if (bounds) {
+									onMessageResize(index, bounds.height);
+								}
+							}}>
+							{({ measureRef }) => (
+								<div ref={measureRef}>
+									<Row
+										index={index}
+										style={style}
+										data={data}
+									/>
+								</div>
+							)}
+						</Measure>
+					)}
 				</List>
 				<div className='sticky bottom-0 p-4 bg-gray-100 border-t border-gray-200'>
 					<Pagination

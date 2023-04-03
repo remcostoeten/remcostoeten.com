@@ -9,6 +9,7 @@ import {
 	signOut,
 } from '@firebase/auth';
 import { getDownloadURL, ref } from '@firebase/storage';
+import { Key } from 'react';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',
@@ -20,6 +21,13 @@ const firebaseConfig = {
 	measurementId: 'G-STSWFTFM63',
 };
 
+export interface Message { 
+	name: string;
+	message: string;
+	timestamp: number;
+	index: number;
+	preview?: string; // Add this line as an optional property
+}
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
@@ -55,13 +63,6 @@ const logout = () => {
 			// An error happened.
 		});
 };
-
-interface Message {
-	name: string;
-	message: string;
-	timestamp: string;
-	image: string;
-}
 
 const getChatHistory1 = async (): Promise<Message[] | null> => {
 	try {
@@ -103,15 +104,15 @@ const getChatHistory3 = async (): Promise<Message[] | null> => {
 };
 
 export {
-    db,
-    auth,
-    storage,
-    signInWithGoogle,
-    logout,
-    signInWithPopup,
-    GoogleAuthProvider,
-    database,
-    getChatHistory1,
-    getChatHistory2,
-    getChatHistory3, type Message,
+	db,
+	auth,
+	storage,
+	signInWithGoogle,
+	logout,
+	signInWithPopup,
+	GoogleAuthProvider,
+	database,
+	getChatHistory1,
+	getChatHistory2,
+	getChatHistory3,
 };
