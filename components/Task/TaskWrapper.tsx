@@ -20,7 +20,12 @@ export default function TaskWrapper() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [view, setView] = useState('board');
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [editedTask, setEditedTask] = useState<Task | null>(null);
 
+	const openEditModal = (task: Task) => {
+		setEditedTask(task);
+		setIsModalOpen(true);
+	};
 	type ViewType = 'board' | 'list';
 	interface Task {
 		id: string;
@@ -198,9 +203,14 @@ export default function TaskWrapper() {
 
 						<TaskModal
 							isOpen={isModalOpen}
-							onClose={() => setIsModalOpen(false)}
+							onClose={() => {
+								setIsModalOpen(false);
+								setEditedTask(null);
+							}}
 							onSubmit={addTask}
+							editedTask={editedTask} // Add this prop
 						/>
+
 						<div className={`view-container ${view}-view`}>
 							{/* Board View */}
 							{view === 'board' && (
