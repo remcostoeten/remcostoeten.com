@@ -8,9 +8,11 @@ import {
 import { Task } from '@/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TaskModal from './Task/TaskModal';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { auth, db } from '@/utils/firebase';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBox';
+import { Edit } from '@mui/icons-material';
+
 interface DraggableContainerProps {
 	tasks: Task[];
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
@@ -23,6 +25,7 @@ export default function DraggableContainer({
 	removeTask,
 }: DraggableContainerProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+	const [editedTask, setEditedTask] = useState<Task | null>(null);
 
 	const addTask = async (
 		title: string,
@@ -41,6 +44,24 @@ export default function DraggableContainer({
 			status: 'todo',
 			date: formattedDate,
 		});
+	};
+
+	const updateExistingTask = async (
+		title: string,
+		description: string,
+		category: string,
+		taskId: string,
+	) => {
+		await updateDoc(doc(db, `tasks-${auth.currentUser?.uid}`, taskId), {
+			title,
+			description,
+			category,
+		});
+	};
+
+	const openEditModal = (task: Task) => {
+		setEditedTask(task);
+		setIsModalOpen(true);
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -88,8 +109,23 @@ export default function DraggableContainer({
 					</div>
 					<TaskModal
 						isOpen={isModalOpen}
-						onClose={() => setIsModalOpen(false)}
-						onSubmit={addTask} // Make sure this is correctly bound
+						onClose={() => {
+							setIsModalOpen(false);
+							setEditedTask(null);
+						}}
+						editedTask={editedTask}
+						onSubmit={(title, description, category, taskId) => {
+							if (taskId) {
+								updateExistingTask(
+									title,
+									description,
+									category,
+									taskId,
+								);
+							} else {
+								addTask(title, description, category);
+							}
+						}}
 					/>
 					<Droppable droppableId={lane.id}>
 						{(provided) => (
@@ -129,6 +165,15 @@ export default function DraggableContainer({
 																)
 															}
 														/>
+														<Edit
+															className='edit'
+															onClick={() =>
+																openEditModal(
+																	task,
+																)
+															}
+														/>
+														;Z
 													</div>
 												</div>
 											)}

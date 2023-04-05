@@ -12,7 +12,7 @@ $white: white;
 
 .todo {
 	background-color: $off-white;
-	
+
 	aside {
 		display: flex;
 		flex-direction: columns;
@@ -27,7 +27,6 @@ $white: white;
 
 .todo {
 	border-radius: 5px;
-	box-shadow: 1px 2px 10px #ddd;
 
 	&__inner {
 		display: flex;
@@ -112,7 +111,7 @@ $white: white;
 		}
 
 		p {
-			font-size: 1.5em;
+			font-size: 1.75em;
 			font-weight: 400;
 		}
 	}

@@ -146,7 +146,7 @@ export default function TaskWrapper() {
 											</p>
 										</>
 									)}
-									{tasks.length >= 1 && tasks.length <= 4 && (
+									{tasks.length >= 2 && tasks.length <= 4 && (
 										<>
 											<p>
 												You've got {tasks.length} task
