@@ -3530,6 +3530,9 @@ form h3 {
   padding: 80px;
   margin-top: -250px;
 }
+.not-authorized a {
+  text-decoration: none;
+}
 .not-authorized .modal {
   position: inherit;
 }
@@ -3538,7 +3541,7 @@ form h3 {
   position: relative;
 }
 .not-authorized h2 {
-  color: #f9f9f9;
+  color: #3f3d56;
   letter-spacing: 1.1px;
   margin: 0;
   font-size: 42px;
@@ -3546,7 +3549,7 @@ form h3 {
 }
 .not-authorized p,
 .not-authorized li {
-  color: #e1e1e1;
+  color: #3f3d56;
   font-size: 2.4em;
   padding-bottom: 12px;
 }
@@ -3604,14 +3607,10 @@ form h3 {
 }
 @media (max-width: 1280px) {
   .not-authorized {
-    padding: 12px;
     position: relative;
   }
   .not-authorized__inner {
     max-width: 100%;
-  }
-  .not-authorized__buttons {
-    flex-direction: column;
   }
   .not-authorized h2 {
     max-width: unset;
@@ -3892,6 +3891,10 @@ form h3 {
   margin-top: -250px;
 }
 
+.not-authorized a {
+  text-decoration: none;
+}
+
 .not-authorized .modal {
   position: inherit;
 }
@@ -3902,7 +3905,7 @@ form h3 {
 }
 
 .not-authorized h2 {
-  color: #f9f9f9;
+  color: #3f3d56;
   letter-spacing: 1.1px;
   margin: 0;
   font-size: 42px;
@@ -3911,7 +3914,7 @@ form h3 {
 
 .not-authorized p,
 .not-authorized li {
-  color: #e1e1e1;
+  color: #3f3d56;
   font-size: 2.4em;
   padding-bottom: 12px;
 }
@@ -3979,14 +3982,10 @@ form h3 {
 }
 @media (max-width: 1280px) {
   .not-authorized {
-    padding: 12px;
     position: relative;
   }
   .not-authorized__inner {
     max-width: 100%;
-  }
-  .not-authorized__buttons {
-    flex-direction: column;
   }
   .not-authorized h2 {
     max-width: unset;

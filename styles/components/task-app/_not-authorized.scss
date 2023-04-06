@@ -1,13 +1,18 @@
 @use 'typography' as *;
 @import '../../variables/responsive';
 $off-white: #f9f9f9;
-
 $space: 12px;
+$dark: #3f3d56;
+
 .not-authorized {
 	display: flex;
 	align-items: center;
 	padding: 80px;
 	margin-top: -250px;
+
+	a {
+		text-decoration: none;
+	}
 
 	.modal {
 		position: inherit;
@@ -19,7 +24,7 @@ $space: 12px;
 	}
 
 	h2 {
-		color: $off-white;
+		color: $dark;
 		letter-spacing: 1.1px;
 		margin: 0;
 		font-size: 42px;
@@ -28,11 +33,10 @@ $space: 12px;
 
 	p,
 	li {
-		color: #e1e1e1;
+		color: $dark;
 		font-size: 2.4em;
 		padding-bottom: 12px;
 	}
-
 	p {
 		padding: 0 0 30px 0;
 	}
@@ -104,14 +108,10 @@ $space: 12px;
 
 @media (max-width: 1280px) {
 	.not-authorized {
-		padding: 12px;
 		position: relative;
+
 		&__inner {
 			max-width: 100%;
-		}
-
-		&__buttons {
-			flex-direction: column;
 		}
 
 		h2 {

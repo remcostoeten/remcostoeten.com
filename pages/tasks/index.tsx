@@ -174,18 +174,19 @@ export default function Index() {
 														onClick={
 															handleSignInButtonClick
 														}>
+														<KeyboardBackspace />
 														Sign In
 													</div>
 												</>
 											)}
 										</div>
 										<div className='item item--arrow'>
-											<div className='cta cta-two'>
-												<Link href='/'>
-													Or return home
-												</Link>
+											<Link
+												href='/'
+												className='cta cta-two'>
+												Or return home
 												<KeyboardBackspace />
-											</div>
+											</Link>
 										</div>
 									</div>
 								</div>
