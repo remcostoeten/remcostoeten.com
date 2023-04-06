@@ -2937,10 +2937,6 @@ button {
   padding-right: 8px;
 }
 
-.speeddial button {
-  animation: shake-horizontal 0.8s 3s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
-  animation-iteration-count: 5;
-}
 .speeddial .close {
   transition: 250ms ease all;
 }
@@ -2995,7 +2991,7 @@ button {
   z-index: 20;
 }
 
-.modal__inner {
+.modal .modal__inner {
   display: flex;
   flex-direction: column;
   max-width: 500px;
@@ -3105,6 +3101,15 @@ button {
   width: 16px;
   height: 16px;
   margin-right: 8px;
+}
+.modal__wip-alert p {
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.modal__wip-alert button {
+  width: fit-content;
+  margin: 0 auto;
 }
 .modal__checkbox {
   display: flex;
@@ -3234,6 +3239,54 @@ button {
     opacity: 1;
   }
 }
+@media (min-width: 0px) and (max-width: 767px) {
+  .modal {
+    max-width: 80%;
+    margin: 0 auto;
+  }
+  .modal:has(.modal__wip) {
+    position: unset;
+  }
+}
+@keyframes bounce {
+  0% {
+    transform: translateY(100%);
+  }
+  70% {
+    transform: translateY(-10%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
+}
+.wip-alert {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  max-width: 500px;
+  min-width: 400px;
+  padding: 20px;
+  animation: bounce 1s;
+  z-index: 1000;
+}
+.wip-alert .modal {
+  all: unset;
+}
+.wip-alert p {
+  font-size: 2rem;
+  padding-bottom: 24px;
+}
+.wip-alert__inner {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 72px 40px 70px;
+  border-radius: 24px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #fff;
+  position: relative;
+}
+
 .tasks {
   display: flex;
   justify-content: space-between;
@@ -3367,7 +3420,7 @@ button {
 .todo__intro h1 {
   letter-spacing: 2px;
   font-family: "Geomanist", sans-serif;
-  padding-bottom: 16px-s;
+  padding-bottom: 16px;
 }
 .todo__intro h1 span {
   text-transform: lowercase;

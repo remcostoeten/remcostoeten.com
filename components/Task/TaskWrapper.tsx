@@ -209,7 +209,7 @@ export default function TaskWrapper() {
 							}}
 							onSubmit={addTask}
 							editedTask={editedTask} // Add this prop
-						/>
+		 				/>
 
 						<div className={`view-container ${view}-view`}>
 							{/* Board View */}

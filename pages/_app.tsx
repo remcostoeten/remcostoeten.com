@@ -1,10 +1,9 @@
 import '@/styles/styles.css';
 import type { AppProps } from 'next/app';
-import Router from 'next/router';
-import WiPAlert from '@/components/ui-elements/WipAlert';
 import { LocaleProvider } from '@/components/LocaleContext';
 import { useEffect, useState } from 'react';
-import WipAlert from '@/components/ui-elements/WipAlert';
+import WipNotice from '@/components/ui-elements/WipAlert';
+
 export default function App({ Component, pageProps }: AppProps) {
 	const [open, setOpen] = useState(true);
 
@@ -22,8 +21,8 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<LocaleProvider>
+				<WipNotice />
 				<Component {...pageProps} />
-				<WipAlert />
 			</LocaleProvider>
 		</>
 	);

@@ -1,41 +1,40 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Alert from '@mui/material/Alert';
-import IconButton from '@mui/material/IconButton';
-import Collapse from '@mui/material/Collapse';
-import Button from '@mui/material/Button';
-import CloseIcon from '@mui/icons-material/Close';
+import React, { useState, useEffect } from 'react';
 
-export default function WipAlert() {
-	const [open, setOpen] = React.useState(true);
+const WipNotice: React.FC = () => {
+	const [isVisible, setIsVisible] = useState(false);
+
+	useEffect(() => {
+		const isSeen = localStorage.getItem('wipNoticeSeen');
+
+		if (!isSeen) {
+			setIsVisible(true);
+		}
+	}, []);
+
+	const handleClose = () => {
+		setIsVisible(false);
+		localStorage.setItem('wipNoticeSeen', 'true');
+	};
+
+	if (!isVisible) return null;
 
 	return (
-		<Box
-			sx={{
-				width: '40%',
-				position: 'absolute',
-				bottom: '-80px',
-				zIndex: '999',
-				margin: '0 auto',
-				textAlign: 'center',
-			}}>
-			<Collapse in={open}>
-				<Alert
-					action={
-						<IconButton
-							aria-label='close'
-							color='inherit'
-							onClick={() => {
-								setOpen(false);
-							}}>
-							<CloseIcon fontSize='inherit' />
-						</IconButton>
-					}
-					sx={{ mb: 10 }}>
-					The UI may be broken due to work in progress. Please be
-					patient and check back later for updates.
-				</Alert>
-			</Collapse>
-		</Box>
+		<div className='wip-alert'>
+			<div className='modal'>
+				<div className='wip-alert__inner wip__alert'>
+					<p>
+						This site is a work in progress, and some pages may be
+						broken. Thank you for your understanding.
+					</p>
+					<button
+						className='btn btn--secondary'
+						onClick={handleClose}>
+						Close
+					</button>
+				</div>
+			</div>
+		</div>
 	);
-}
+};
+
+export default WipNotice;
