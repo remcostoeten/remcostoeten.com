@@ -18,7 +18,7 @@ import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
 
-const Header = () => {
+const Header = ({ setShowConfetti }: HeaderProps) => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,6 +42,10 @@ const Header = () => {
 		hidden: { opacity: 0, y: -50 },
 		visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 	};
+
+	interface HeaderProps {
+		setShowConfetti: (show: boolean) => void;
+	}
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -89,7 +93,7 @@ const Header = () => {
 				animate='visible'>
 				<div className='container header__inner'>
 					{isLoggedIn &&
-					auth.currentUser?.email === 'stoetenremco.rs@gmail.com' ? (
+					auth.currentUser?.email === process.env.ADMIN_EMAIL ? (
 						<AdminMenu />
 					) : null}
 
@@ -228,6 +232,7 @@ const Header = () => {
 									</motion.li>
 								</ul>
 							</nav>
+
 							<div className='header__login'>
 								{isLoggedIn ? (
 									<motion.li whileHover={{ scale: 1.05 }}>

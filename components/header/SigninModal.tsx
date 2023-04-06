@@ -5,7 +5,7 @@ import {
 	setPersistence,
 	browserSessionPersistence,
 	browserLocalPersistence,
-	signInWithCredential,
+	signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
@@ -17,16 +17,25 @@ import SignupModal from './SignupModal';
 import Confetti from 'react-confetti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
 interface SigninModalProps {
 	onClose: () => void;
 	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
+	onShowConfetti: (show: boolean) => void;
 }
 
-export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
+export default function SigninModal({
+	onClose,
+	onSignIn,
+	onShowConfetti,
+}: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
-	const [registered, setRegistered] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(() => {
+		const auth = getAuth();
+		return auth.currentUser != null;
+	});
 	const [showModal, setShowModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
 	const handleOpenSignupModal = () => {
@@ -47,18 +56,14 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 				? browserLocalPersistence
 				: browserSessionPersistence;
 			await setPersistence(auth, persistenceMode);
-			const result = await createUserWithEmailAndPassword(
-				auth,
-				email,
-				password,
-			);
-			console.log(result);
-			setRegistered(true);
-			localStorage.setItem('email', email);
-			localStorage.setItem('password', password);
-			if (!auth.currentUser?.displayName === null) {
+			await signInWithEmailAndPassword(auth, email, password);
+
+			setLoggedIn(true);
+			setShowConfetti(true); // Show confetti after successful login
+
+			if (auth.currentUser?.displayName) {
 				toast.success(
-					`Welcome aboard ${auth.currentUser?.displayName}!`,
+					`Welcome aboard ${auth.currentUser.displayName}!`,
 				);
 			} else {
 				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
@@ -70,40 +75,30 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 			);
 		}
 	};
+
 	useEffect(() => {
 		if (showConfetti) {
 			const timer = setTimeout(() => {
 				setShowConfetti(false);
-				onClose(); // Add this line to close the login modal after the confetti animation
+				onClose();
+				setLoggedIn(false);
 			}, 3000);
 
 			return () => clearTimeout(timer);
 		}
-	}, [showConfetti, onClose]); // Add onClose to the dependency array
-
-	useEffect(() => {
-		console.log('Registered state changed:', registered);
-	}, [registered]);
+	}, [showConfetti, onClose]);
 
 	const handleRememberMeChange = () => {
 		setRememberMe(!rememberMe);
 	};
-
 	return (
 		<>
-			{showConfetti && <Confetti />}
-			<ToastContainer />
 			<div className='modal'>
 				<div>
 					{showSignupModal && (
 						<SignupModal
 							onClose={handleCloseSignupModal}
-							onSignIn={function (
-								email?: string | undefined,
-								password?: string | undefined,
-							): void {
-								throw new Error('Function not implemented.');
-							}}
+							onSignIn={onSignIn}
 						/>
 					)}
 				</div>
@@ -126,86 +121,65 @@ export default function SigninModal({ onClose, onSignIn }: SigninModalProps) {
 						</motion.div>
 					</div>
 					<div className='modal__divider'>or</div>
-					{!registered ? (
-						<>
-							<form
-								className='modal__register'
-								onSubmit={handleSignin}>
-								<motion.div
-									className='modal__close'
-									onClick={onClose}
-									whileHover={{ scale: 1.05 }}>
-									<HighlightOffSharpIcon />
-								</motion.div>
-								<div className='modal__input'>
-									<EmailIcon />
-									<input
-										type='email'
-										placeholder='email address'
-										value={email}
-										onChange={(event) =>
-											setEmail(event.target.value)
-										}
-									/>
-								</div>
-								<div className='modal__input'>
-									<LockIcon />
-									<input
-										type='password'
-										value={password}
-										placeholder='password'
-										onChange={(event) =>
-											setPassword(event.target.value)
-										}
-									/>
-								</div>
-								<div className='modal__remember-me'>
-									<span>
-										<input
-											type='checkbox'
-											id='rememberMe'
-											checked={rememberMe}
-											onChange={handleRememberMeChange}
-										/>
-										<label htmlFor='rememberMe'>
-											Remember Me
-										</label>
-									</span>
-									<span>
-										<a href='#'>Forgot Password?</a>
-									</span>
-								</div>
-								<button className='login-btn' type='submit'>
-									<span>Sign in</span>
-								</button>
-							</form>
-							<div className='modal__new-user'>
-								<p>Not registered yet?</p>{' '}
-								<a onClick={handleOpenSignupModal} href='#'>
-									Sign up
-								</a>
-							</div>
-							{showSignupModal && (
-								<SignupModal
-									onClose={handleCloseSignupModal}
-									onSignIn={function (
-										email?: string | undefined,
-										password?: string | undefined,
-									): void {
-										throw new Error(
-											'Function not implemented.',
-										);
-									}}
-								/>
-							)}
-						</>
-					) : (
-						<div className='modal__success-message'>
-							<p>You have successfully registered!</p>
-							<button onClick={() => setRegistered(false)}>
-								OK
-							</button>
+					<form className='modal__register' onSubmit={handleSignin}>
+						<motion.div
+							className='modal__close'
+							onClick={onClose}
+							whileHover={{ scale: 1.05 }}>
+							<HighlightOffSharpIcon />
+						</motion.div>
+						<div className='modal__input'>
+							<EmailIcon />
+							<input
+								type='email'
+								placeholder='email address'
+								value={email}
+								onChange={(event) =>
+									setEmail(event.target.value)
+								}
+							/>
 						</div>
+						<div className='modal__input'>
+							<LockIcon />
+							<input
+								type='password'
+								value={password}
+								placeholder='password'
+								onChange={(event) =>
+									setPassword(event.target.value)
+								}
+							/>
+						</div>
+						<div className='modal__remember-me'>
+							<span>
+								<input
+									type='checkbox'
+									id='rememberMe'
+									checked={rememberMe}
+									onChange={handleRememberMeChange}
+								/>
+								<label htmlFor='rememberMe'>Remember Me</label>
+							</span>
+							<span>
+								<a href='#'>Forgot Password?</a>
+							</span>
+						</div>
+						<button className='login-btn' type='submit'>
+							<span>Sign in</span>
+						</button>
+					</form>
+					<div className='modal__new-user'>
+						<p>Not registered yet?</p>{' '}
+						<a onClick={handleOpenSignupModal} href='#'>
+							Sign up
+						</a>
+					</div>
+					{showSignupModal && (
+						<SignupModal
+							onClose={handleCloseSignupModal}
+							onShowConfetti={setShowConfetti}
+							onSignIn={onSignIn}
+						/>
 					)}
 				</div>
 			</div>
