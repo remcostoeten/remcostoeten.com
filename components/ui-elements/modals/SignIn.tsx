@@ -11,42 +11,32 @@ import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
-import Login from '../Login';
-import SignupModal from './SignupModal';
-
+import Register from './Register';
 import Confetti from 'react-confetti';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Login from '@/components/Login';
 
 interface SigninModalProps {
 	onClose: () => void;
 	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
 	onShowConfetti: (show: boolean) => void;
+	setShowRegisterModal: (show: boolean) => void;
 }
 
-export default function SigninModal({
+export default function SignIn({
 	onClose,
 	onSignIn,
+	setShowRegisterModal,
 	onShowConfetti,
 }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
-	const [loggedIn, setLoggedIn] = useState(() => {
-		const auth = getAuth();
-		return auth.currentUser != null;
-	});
+	const [loggedIn, setLoggedIn] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
-	const handleOpenSignupModal = () => {
-		setShowSignupModal(true);
-	};
 	const [showConfetti, setShowConfetti] = useState(false);
-
-	const handleCloseSignupModal = () => {
-		setShowSignupModal(false);
-		setShowModal(false);
-	};
 
 	const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -58,8 +48,8 @@ export default function SigninModal({
 			await setPersistence(auth, persistenceMode);
 			await signInWithEmailAndPassword(auth, email, password);
 
-			setLoggedIn(true);
-			setShowConfetti(true); // Show confetti after successful login
+			setLoggedIn(true); // Set the loggedIn state to true
+			setShowConfetti(true); // Show the confetti
 
 			if (auth.currentUser?.displayName) {
 				toast.success(
@@ -91,12 +81,17 @@ export default function SigninModal({
 	const handleRememberMeChange = () => {
 		setRememberMe(!rememberMe);
 	};
+
+	const handleCloseSignupModal = () => {
+		setShowSignupModal(false);
+	};
+
 	return (
 		<>
 			<div className='modal'>
 				<div>
 					{showSignupModal && (
-						<SignupModal
+						<Register
 							onClose={handleCloseSignupModal}
 							onSignIn={onSignIn}
 						/>
@@ -170,15 +165,15 @@ export default function SigninModal({
 					</form>
 					<div className='modal__new-user'>
 						<p>Not registered yet?</p>{' '}
-						<a onClick={handleOpenSignupModal} href='#'>
+						<a href='#' onClick={() => setShowSignupModal(true)}>
 							Sign up
 						</a>
 					</div>
 					{showSignupModal && (
-						<SignupModal
+						<Register
 							onClose={handleCloseSignupModal}
-							onShowConfetti={setShowConfetti}
 							onSignIn={onSignIn}
+							setShowRegisterModal={setShowSignupModal} // added
 						/>
 					)}
 				</div>

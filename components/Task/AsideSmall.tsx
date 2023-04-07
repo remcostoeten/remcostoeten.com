@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SigninModal from '../header/SigninModal';
 
 import Link from 'next/link';
 import {
@@ -12,6 +11,7 @@ import {
 	AssignmentInd,
 } from '@mui/icons-material';
 import { auth } from '@/utils/firebase';
+import SignIn from '../ui-elements/modals/SignIn';
 
 interface AsideSmallProps {
 	view: string;
@@ -125,7 +125,7 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 					</div>
 				</nav>
 				{isSignInModalOpen && (
-					<SigninModal
+					<SignIn
 						onClose={handleSignInModalClose}
 						onSignIn={function (
 							email?: string | undefined,

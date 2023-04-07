@@ -22,7 +22,13 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
-			{showConfetti && <Confetti />}
+			{showConfetti && (
+				<Confetti
+					width={window.innerWidth}
+					height={window.innerHeight}
+					numberOfPieces={200}
+				/>
+			)}{' '}
 			<ToastContainer />{' '}
 			<LocaleProvider>
 				<WipNotice />

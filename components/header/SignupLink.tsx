@@ -1,11 +1,17 @@
-import { useState } from 'react';
-import SigninModal from './SigninModal';
+import { useEffect, useState } from 'react';
+import SignIn from '../ui-elements/modals/SignIn';
 
 export default function SignupLink() {
 	const [showModal, setShowModal] = useState(false);
+	const [showConfetti, setShowConfetti] = useState(false);
 
 	const handleOpenModal = () => setShowModal(true);
-	const handleCloseModal = () => setShowModal(false);
+
+	const onCloseSignInModal = () => setShowModal(false);
+
+	const handleSignIn = (email?: string, password?: string) => {
+		onCloseSignInModal();
+	};
 
 	return (
 		<>
@@ -14,15 +20,15 @@ export default function SignupLink() {
 			</div>
 			{showModal && (
 				<>
-					<SigninModal
-						onClose={handleCloseModal}
-						onSignIn={function (
-							email?: string | undefined,
-							password?: string | undefined,
-						): void {
+					<SignIn
+						onClose={onCloseSignInModal}
+						onSignIn={handleSignIn}
+						onShowConfetti={setShowConfetti}
+						setShowRegisterModal={function (show: boolean): void {
 							throw new Error('Function not implemented.');
 						}}
 					/>
+
 					<div className='modal-backdrop'></div>
 				</>
 			)}

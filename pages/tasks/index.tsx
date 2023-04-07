@@ -10,7 +10,7 @@ import Link from 'next/link';
 import Lost from '@/components/Lost';
 import { auth, GoogleAuthProvider, signInWithPopup } from '@/utils/firebase';
 import Confetti from 'react-confetti';
-import SigninModal from '@/components/header/SigninModal';
+import SignIn from '@/components/ui-elements/modals/SignIn';
 import { ToastContainer, toast } from 'react-toastify';
 import {
 	getAuth,
@@ -202,7 +202,7 @@ export default function Index() {
 			</div>
 
 			{isSignInModalOpen && (
-				<SigninModal
+				<SignIn
 					onClose={handleSignInModalClose}
 					onSignIn={(email, password, rememberMe) =>
 						signInUser(email, password, rememberMe)

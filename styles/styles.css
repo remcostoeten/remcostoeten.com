@@ -1498,6 +1498,10 @@ input[type=text]:hover {
   padding: 24px 0;
   transition: 250ms ease-out all;
 }
+.header__user-image-wrapper img {
+  margin: 8px;
+  border-radius: 50%;
+}
 .header .css-1e6y48t-MuiButtonBase-root-MuiButton-root {
   position: relative;
   font-size: 2em;
@@ -1551,9 +1555,14 @@ input[type=text]:hover {
 }
 .header__login li {
   display: flex;
+  align-items: center;
 }
-.header__login span {
+.header__login span,
+.header__login svg {
   font-size: 1.4em;
+}
+.header__login .logout {
+  margin-left: 10px;
 }
 .header__tagline {
   display: flex;
@@ -2957,6 +2966,20 @@ button {
   align-items: center;
 }
 
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 20;
+}
+
+.register-open .modal-login {
+  display: none;
+}
+
 .modal {
   display: flex;
   justify-content: center;
@@ -2981,17 +3004,7 @@ button {
   line-height: 1.5;
 }
 
-.modal-backdrop {
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  width: 100vw;
-  height: 100vh;
-  top: 0;
-  left: 0;
-  z-index: 20;
-}
-
-.modal .modal__inner {
+.modal__inner {
   display: flex;
   flex-direction: column;
   max-width: 500px;

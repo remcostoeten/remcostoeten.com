@@ -9,8 +9,42 @@ $checkbox-size: 16px;
 	left: 0;
 	z-index: $z-index-layer-three;
 }
+
+.register-open {
+	.modal-login {
+		display: none;
+	}
+}
+
 .modal {
-	.modal__inner {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 9999;
+
+	.modal-content {
+		background-color: #fff;
+		padding: 2rem;
+		border-radius: 10px;
+		animation: modal-open ease-in-out forwards;
+
+		h2 {
+			margin-bottom: 1rem;
+		}
+
+		p {
+			line-height: 1.5;
+		}
+	}
+}
+
+.modal {
+	&__inner {
 		display: flex;
 		flex-direction: column;
 		max-width: 500px;

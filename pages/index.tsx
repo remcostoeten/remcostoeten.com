@@ -114,7 +114,6 @@ export default function Home() {
 	];
 	return (
 		<>
-			<Header />
 			<div className='speeddial'>
 				<SpeedDial
 					ariaLabel='Change color palette'

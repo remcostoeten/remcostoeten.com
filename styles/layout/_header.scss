@@ -62,6 +62,13 @@
 	padding: $spacing 0;
 	transition: 250ms ease-out all;
 
+	&__user-image-wrapper {
+		img {
+			margin: $spacing-s;
+			border-radius: 50%;
+		}
+	}
+
 	.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
 		position: relative;
 		font-size: 2em;
@@ -126,10 +133,16 @@
 	&__login {
 		li {
 			display: flex;
+			align-items: center;
 		}
 
-		span {
+		span,
+		svg {
 			font-size: 1.4em;
+		}
+
+		.logout {
+			margin-left: 10px;
 		}
 	}
 

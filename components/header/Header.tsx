@@ -3,7 +3,11 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
-import { Logout } from '@mui/icons-material';
+import {
+	ArrowDownwardRounded,
+	Logout,
+	LogoutOutlined,
+} from '@mui/icons-material';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
@@ -17,6 +21,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
+import { ArrowUpDownIcon } from '@chakra-ui/icons';
 
 const Header = ({ setShowConfetti }: HeaderProps) => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -28,6 +33,7 @@ const Header = ({ setShowConfetti }: HeaderProps) => {
 	const isMobile = useMediaQuery('(max-width: 768px)');
 	const open = Boolean(anchorEl);
 	const [showModal, setShowModal] = useState(false);
+	const [showRegisterModal, setShowRegisterModal] = useState(false);
 
 	const handleOpenModal = () => setShowModal(true);
 	const handleCloseModal = () => setShowModal(false);
@@ -78,8 +84,6 @@ const Header = ({ setShowConfetti }: HeaderProps) => {
 		});
 	}, []);
 
-	const [variant, setVariant] = useState('theme--variant');
-
 	useEffect(() => {
 		document.body.classList.add('variant');
 	}, []);
@@ -97,47 +101,6 @@ const Header = ({ setShowConfetti }: HeaderProps) => {
 						<AdminMenu />
 					) : null}
 
-					<Link href='/'>
-						<motion.div
-							className='header__user'
-							whileHover={{ scale: 1.05 }}>
-							<div className='header__user-image-wrapper'>
-								{isLoggedIn && auth.currentUser?.photoURL ? (
-									<div className='header__user-image-wrapper'>
-										<Image
-											src={auth.currentUser.photoURL}
-											width={48}
-											height={48}
-											className='header__user-image'
-											alt={''}
-										/>
-									</div>
-								) : null}
-							</div>
-							<motion.div
-								className='header__user-wrapper'
-								initial={{ opacity: 0 }}
-								animate={{ opacity: 1 }}
-								transition={{ delay: 0.3 }}>
-								{auth.currentUser ? (
-									<motion.div
-										className='header__user-name-wrapper'
-										whileHover={{ scale: 1.05 }}>
-										<span className='header__user-name'>
-											<span>{userName} </span>
-											<span className='email'>
-												{auth.currentUser?.email
-													? `${auth.currentUser?.email}`
-													: ''}
-											</span>
-										</span>
-									</motion.div>
-								) : (
-									<h2></h2>
-								)}
-							</motion.div>
-						</motion.div>
-					</Link>
 					{!isMobile && (
 						<>
 							<nav className='header__menu'>
@@ -235,104 +198,128 @@ const Header = ({ setShowConfetti }: HeaderProps) => {
 
 							<div className='header__login'>
 								{isLoggedIn ? (
-									<motion.li whileHover={{ scale: 1.05 }}>
-										<React.Fragment>
-											<Box
-												sx={{
-													display: 'flex',
-													alignItems: 'center',
-													textAlign: 'center',
-												}}>
-												<Tooltip title='Click to logout'>
-													<IconButton
-														onClick={handleClick}
-														size='small'
-														sx={{ ml: 2 }}
-														aria-controls={
-															open
-																? 'account-menu'
-																: undefined
-														}
-														aria-haspopup='true'
-														aria-expanded={
-															open
-																? 'true'
-																: undefined
-														}>
-														<Avatar
-															sx={{
-																width: 32,
-																height: 32,
+									<>
+										<motion.li whileHover={{ scale: 1.05 }}>
+											<React.Fragment>
+												<Link href='/'>
+													<motion.div
+														className='header__user'
+														whileHover={{
+															scale: 1.05,
+														}}>
+														<motion.div
+															className='header__user-wrapper'
+															initial={{
+																opacity: 0,
+															}}
+															animate={{
+																opacity: 1,
+															}}
+															transition={{
+																delay: 0.3,
 															}}>
-															{userName?.slice(
-																0,
-																1,
+															{!auth.currentUser
+																?.displayName ? (
+																<span className='email'>
+																	{auth
+																		.currentUser
+																		?.email
+																		? `${auth.currentUser?.email}`
+																		: ''}
+																</span>
+															) : (
+																<span>
+																	{userName}
+																</span>
 															)}
-														</Avatar>
-													</IconButton>
-												</Tooltip>
-											</Box>
-											<Menu
-												anchorEl={anchorEl}
-												id='account-menu'
-												open={open}
-												onClose={handleClose}
-												onClick={handleClose}
-												PaperProps={{
-													elevation: 0,
-													sx: {
-														overflow: 'visible',
-														filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-														mt: 1.5,
-														'& .MuiAvatar-root': {
-															width: 32,
-															height: 32,
-															ml: -0.5,
-															mr: 1,
+														</motion.div>
+													</motion.div>
+												</Link>
+												<div className='header__user-image-wrapper'>
+													{isLoggedIn &&
+													auth.currentUser
+														?.photoURL ? (
+														<div className='header__user-image-wrapper'>
+															<Image
+																src={
+																	auth
+																		.currentUser
+																		.photoURL
+																}
+																width={48}
+																height={48}
+																className='header__user-image'
+																alt={''}
+															/>
+														</div>
+													) : null}
+												</div>
+												<Menu
+													anchorEl={anchorEl}
+													id='account-menu'
+													open={open}
+													onClose={handleClose}
+													onClick={handleClose}
+													PaperProps={{
+														elevation: 0,
+														sx: {
+															overflow: 'visible',
+															filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+															mt: 1.5,
+															'& .MuiAvatar-root':
+																{
+																	width: 32,
+																	height: 32,
+																	ml: -0.5,
+																	mr: 1,
+																},
+															'&:before': {
+																content: '""',
+																display:
+																	'block',
+																position:
+																	'absolute',
+																top: 0,
+																right: 14,
+																width: 10,
+																height: 10,
+																bgcolor:
+																	'background.paper',
+																transform:
+																	'translateY(-50%) rotate(45deg)',
+																zIndex: 0,
+															},
 														},
-														'&:before': {
-															content: '""',
-															display: 'block',
-															position:
-																'absolute',
-															top: 0,
-															right: 14,
-															width: 10,
-															height: 10,
-															bgcolor:
-																'background.paper',
-															transform:
-																'translateY(-50%) rotate(45deg)',
-															zIndex: 0,
-														},
-													},
-												}}
-												transformOrigin={{
-													horizontal: 'right',
-													vertical: 'top',
-												}}
-												anchorOrigin={{
-													horizontal: 'right',
-													vertical: 'bottom',
-												}}>
-												<Divider />
-												<MenuItem
-													onClick={() =>
-														auth.signOut()
-													}>
-													<ListItemIcon>
-														<Logout fontSize='small' />
-													</ListItemIcon>
-													Logout
-												</MenuItem>
-											</Menu>
-										</React.Fragment>
-										<a onClick={() => auth.signOut()}></a>
-									</motion.li>
+													}}
+													transformOrigin={{
+														horizontal: 'right',
+														vertical: 'top',
+													}}
+													anchorOrigin={{
+														horizontal: 'right',
+														vertical: 'bottom',
+													}}>
+													<Divider />
+													<MenuItem
+														onClick={() =>
+															auth.signOut()
+														}>
+														<ListItemIcon>
+															<Logout fontSize='small' />
+														</ListItemIcon>
+														Logout
+													</MenuItem>
+												</Menu>
+											</React.Fragment>
+											<a
+												className='logout'
+												onClick={() => auth.signOut()}>
+												<LogoutOutlined />
+											</a>
+										</motion.li>
+									</>
 								) : (
-									// <motion.li whileHover={{ scale: 1.05 }}>
 									<SignupLink />
-									// </motion.li>
 								)}
 							</div>
 						</>
