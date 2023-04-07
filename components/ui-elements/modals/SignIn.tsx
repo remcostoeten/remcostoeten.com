@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
 import {
 	getAuth,
-	createUserWithEmailAndPassword,
 	setPersistence,
 	browserSessionPersistence,
 	browserLocalPersistence,
 	signInWithEmailAndPassword,
+	Auth,
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
@@ -24,12 +24,7 @@ interface SigninModalProps {
 	setShowRegisterModal: (show: boolean) => void;
 }
 
-export default function SignIn({
-	onClose,
-	onSignIn,
-	setShowRegisterModal,
-	onShowConfetti,
-}: SigninModalProps) {
+export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
@@ -37,6 +32,7 @@ export default function SignIn({
 	const [showModal, setShowModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
 	const [showConfetti, setShowConfetti] = useState(false);
+	const [showRegisterModal, setShowRegisterModal] = useState(false);
 
 	const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -46,10 +42,10 @@ export default function SignIn({
 				? browserLocalPersistence
 				: browserSessionPersistence;
 			await setPersistence(auth, persistenceMode);
-			await signInWithEmailAndPassword(auth, email, password);
+			await signInWithEmailAndPassword(auth, email, password); // Change this
 
-			setLoggedIn(true); // Set the loggedIn state to true
-			setShowConfetti(true); // Show the confetti
+			setLoggedIn(true);
+			setShowConfetti(true);
 
 			if (auth.currentUser?.displayName) {
 				toast.success(
@@ -89,14 +85,6 @@ export default function SignIn({
 	return (
 		<>
 			<div className='modal'>
-				<div>
-					{showSignupModal && (
-						<Register
-							onClose={handleCloseSignupModal}
-							onSignIn={onSignIn}
-						/>
-					)}
-				</div>
 				<div className='modal__inner'>
 					<h2 className='modal__title'>Login</h2>
 					<div className='modal__social'>
@@ -173,7 +161,7 @@ export default function SignIn({
 						<Register
 							onClose={handleCloseSignupModal}
 							onSignIn={onSignIn}
-							setShowRegisterModal={setShowSignupModal} // added
+							setShowRegisterModal={setShowSignupModal}
 						/>
 					)}
 				</div>

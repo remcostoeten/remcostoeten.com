@@ -18,7 +18,8 @@ import { auth } from '@/utils/firebase';
 
 interface RegisterModalProps {
 	onClose: () => void;
-	onSignIn: (email?: string, password?: string) => void;
+	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
+	setShowRegisterModal: (show: boolean) => void;
 }
 
 export default function Register({ onClose, onSignIn }: RegisterModalProps) {
@@ -103,6 +104,11 @@ export default function Register({ onClose, onSignIn }: RegisterModalProps) {
 				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
 			);
 		}
+	};
+
+	const handleSignInClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+		event.preventDefault();
+		onSignIn(email, password);
 	};
 
 	const handleRememberMeChange = () => {
@@ -191,7 +197,7 @@ export default function Register({ onClose, onSignIn }: RegisterModalProps) {
 					</form>
 					<div className='modal__new-user'>
 						<p>Already registered?</p>{' '}
-						<a href='#' onClick={onSignIn}>
+						<a href='#' onClick={handleSignInClick}>
 							Sign in
 						</a>
 					</div>

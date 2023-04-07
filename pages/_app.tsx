@@ -32,7 +32,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<ToastContainer />{' '}
 			<LocaleProvider>
 				<WipNotice />
-				<Header setShowConfetti={setShowConfetti} />
+				<Header />
 				<Component {...pageProps} />
 			</LocaleProvider>
 		</>

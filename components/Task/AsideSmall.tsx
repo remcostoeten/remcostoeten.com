@@ -133,6 +133,12 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 						): void {
 							throw new Error('Function not implemented.');
 						}}
+						onShowConfetti={function (show: boolean): void {
+							throw new Error('Function not implemented.');
+						}}
+						setShowRegisterModal={function (show: boolean): void {
+							throw new Error('Function not implemented.');
+						}}
 					/>
 				)}
 			</aside>

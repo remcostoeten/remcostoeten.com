@@ -3,27 +3,18 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { auth, signInWithGoogle } from '@/utils/firebase';
 import { motion } from 'framer-motion';
-import {
-	ArrowDownwardRounded,
-	Logout,
-	LogoutOutlined,
-} from '@mui/icons-material';
-import Box from '@mui/material/Box';
-import Avatar from '@mui/material/Avatar';
+import { Logout, LogoutOutlined } from '@mui/icons-material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
 import OffcanvasMenu from './OffcanvasMenu';
 import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
-import { ArrowUpDownIcon } from '@chakra-ui/icons';
 
-const Header = ({ setShowConfetti }: HeaderProps) => {
+const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
 	const [userName, setUserName] = useState<string | null>(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);

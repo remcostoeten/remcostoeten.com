@@ -207,6 +207,12 @@ export default function Index() {
 					onSignIn={(email, password, rememberMe) =>
 						signInUser(email, password, rememberMe)
 					}
+					onShowConfetti={function (show: boolean): void {
+						throw new Error('Function not implemented.');
+					}}
+					setShowRegisterModal={function (show: boolean): void {
+						throw new Error('Function not implemented.');
+					}}
 				/>
 			)}
 			<ToastContainer />
