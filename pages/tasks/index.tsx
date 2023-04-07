@@ -122,6 +122,11 @@ export default function Index() {
 
 	return (
 		<>
+			<Seo
+				title='Remcostoeten.com front-end developer'
+				description='Remco stoeten, Task to-do kanban board and allround producitvity dashboard.'
+				url='https://www.remcostoeten.com/'
+			/>{' '}
 			<div className='todo'>
 				<div className='todo__inner'>
 					<AsideSmall
@@ -200,7 +205,6 @@ export default function Index() {
 					)}
 				</div>
 			</div>
-
 			{isSignInModalOpen && (
 				<SignIn
 					onClose={handleSignInModalClose}
