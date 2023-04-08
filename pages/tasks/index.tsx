@@ -19,6 +19,7 @@ import {
 	setPersistence,
 	createUserWithEmailAndPassword,
 } from '@firebase/auth';
+import Seo from '@/components/Seo';
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
