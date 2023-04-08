@@ -16,6 +16,17 @@ $checkbox-size: 16px;
 	}
 }
 
+.edit-task {
+	h2 {
+		color: lighten(#000, 25%);
+		padding: $spacing 0 0 $spacing;
+	}
+
+	.css-ypiqx9-MuiDialogContent-root {
+		padding-top: 0;
+	}
+}
+
 .modal {
 	display: flex;
 	justify-content: center;

@@ -9,11 +9,20 @@ $background-alternative: #292b31;
 $backdrop: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 $border-radius: 12px;
 $color-primary: #ff7979;
+
+.authenticated {
+	width: 100%;
+}
+
 .tasks {
 	&__task {
 		margin-top: 8px;
 		background-color: $white;
 		border-radius: 10px;
+	}
+
+	&__top {
+		word-break: break-all;
 	}
 
 	&__header {
@@ -72,18 +81,11 @@ $color-primary: #ff7979;
 		}
 	}
 
-	.remove {
-		position: absolute;
-		bottom: -30px;
-		left: 8px;
-		font-size: 24px;
-	}
-
 	&__bottom {
 		z-index: 10;
 		display: flex;
 		align-self: center;
-		justify-content: center;
+		justify-content: space-between;
 		font-size: 12px;
 		color: $white;
 		background-color: $color-primary;
@@ -93,6 +95,19 @@ $color-primary: #ff7979;
 		min-width: 39px;
 		padding: 0 $spacing-s;
 		min-height: 16px;
+
+		.edit {
+			position: absolute;
+			right: 15px;
+			font-size: 20px;
+			color: #000;
+		}
+		.remove {
+			position: absolute;
+			right: 45px;
+			font-size: 20px;
+			color: #000;
+		}
 	}
 
 	&__title {
@@ -280,7 +295,7 @@ $color-primary: #ff7979;
 		&:before {
 			z-index: 3;
 			width: 67px;
-			background: $white;
+			background: $color-primary;
 			left: 105px;
 		}
 	}
@@ -310,7 +325,31 @@ $color-primary: #ff7979;
 			background-color: $color-primary;
 			border-radius: 19px;
 			font-size: 14px;
+			color: $white;
+			transition: 250ms ease all;
+
+			&:hover {
+				background-color: darken($color-primary, 5%);
+			}
 		}
+	}
+}
+
+.confirm-task {
+	position: absolute;
+	z-index: 10;
+	right: 20px;
+	transform: translateX(-100%);
+	bottom: 20px;
+	background: $white;
+	box-shadow: $backdrop;
+
+	.btn--primary {
+		background-color: $color-primary;
+	}
+
+	.btn--secondary {
+		background-color: black;
 	}
 }
 

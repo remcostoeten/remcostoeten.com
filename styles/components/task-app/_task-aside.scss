@@ -3,6 +3,7 @@ $nav-background: #fbfaff;
 $button-active-background: #323338;
 $nav-item-size: 48px;
 $icon-color: #5f6388;
+
 .todo {
 	aside {
 		display: flex;
@@ -32,10 +33,9 @@ $icon-color: #5f6388;
 			}
 
 			&.active {
-				background-color: $button-active-background;
-
 				svg {
 					opacity: 1;
+					color: #ec817b;
 				}
 			}
 

@@ -5,22 +5,20 @@ import {
 	browserSessionPersistence,
 	browserLocalPersistence,
 	signInWithEmailAndPassword,
-	Auth,
 } from 'firebase/auth';
 import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { FacebookRounded, Google } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Register from './Register';
-import Confetti from 'react-confetti';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
+import Confetti from 'react-confetti';
 
 interface SigninModalProps {
 	onClose: () => void;
 	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
-	onShowConfetti: (show: boolean) => void;
 	setShowRegisterModal: (show: boolean) => void;
 }
 
@@ -28,11 +26,9 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
-	const [loggedIn, setLoggedIn] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
 	const [showConfetti, setShowConfetti] = useState(false);
-	const [showRegisterModal, setShowRegisterModal] = useState(false);
 
 	const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -44,15 +40,17 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 			await setPersistence(auth, persistenceMode);
 			await signInWithEmailAndPassword(auth, email, password); // Change this
 
-			setLoggedIn(true);
+			onSignIn(email, password, rememberMe);
 			setShowConfetti(true);
 
 			if (auth.currentUser?.displayName) {
 				toast.success(
 					`Welcome aboard ${auth.currentUser.displayName}!`,
 				);
+				setShowConfetti(true);
 			} else {
 				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
+				setShowConfetti(true);
 			}
 		} catch (error) {
 			console.error(error);
@@ -67,7 +65,6 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 			const timer = setTimeout(() => {
 				setShowConfetti(false);
 				onClose();
-				setLoggedIn(false);
 			}, 3000);
 
 			return () => clearTimeout(timer);
@@ -166,6 +163,13 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 					)}
 				</div>
 			</div>
+			{showConfetti && (
+				<Confetti
+					width={window.innerWidth}
+					height={window.innerHeight}
+					numberOfPieces={200}
+				/>
+			)}{' '}
 		</>
 	);
 }
