@@ -35,7 +35,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<ToastContainer />{' '}
 			<LocaleProvider>
 				<WipNotice />
-				{showHeader && <Header setShowConfetti={setShowConfetti} />}
+				{showHeader && <Header />}
 				<Component {...pageProps} setShowConfetti={setShowConfetti} />
 			</LocaleProvider>
 		</>

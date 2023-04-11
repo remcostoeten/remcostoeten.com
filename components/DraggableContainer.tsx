@@ -68,6 +68,7 @@ export default function DraggableContainer({
 	const openEditModal = (task: Task) => {
 		setEditedTask(task);
 		setIsModalOpen(true);
+		setRemoveConfirm(false);
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -104,7 +105,9 @@ export default function DraggableContainer({
 					Are you sure you want to delete this task?
 					<button
 						className='btn btn--primary'
-						onClick={() => confirmDelete(tasks.id)}>
+						onClick={() =>
+							editedTask && confirmDelete(editedTask.id)
+						}>
 						Duh!
 					</button>
 					<button
@@ -189,8 +192,10 @@ export default function DraggableContainer({
 															<div className='right'>
 																<DeleteForeverIcon
 																	className='remove'
-																	onClick={
-																		handleConfirm
+																	onClick={() =>
+																		confirmDelete(
+																			task.id,
+																		)
 																	}
 																/>
 																<Edit

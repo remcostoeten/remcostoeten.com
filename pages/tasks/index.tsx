@@ -130,13 +130,7 @@ export default function Index() {
 			/>{' '}
 			<div className='todo'>
 				<div className='todo__inner'>
-					<AsideSmall
-						view={''}
-						isLoggedIn={false}
-						setIsLoggedIn={function (value: boolean): void {
-							throw new Error('Function not implemented.');
-						}}
-					/>
+					<AsideSmall view={''} isLoggedIn={false} />
 					{isLoggedIn ? (
 						<>
 							<div className='authenticated'>
@@ -212,9 +206,6 @@ export default function Index() {
 					onSignIn={(email, password, rememberMe) =>
 						signInUser(email, password, rememberMe)
 					}
-					onShowConfetti={function (show: boolean): void {
-						throw new Error('Function not implemented.');
-					}}
 					setShowRegisterModal={function (show: boolean): void {
 						throw new Error('Function not implemented.');
 					}}
