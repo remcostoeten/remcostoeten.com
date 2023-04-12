@@ -13,6 +13,10 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import SignupLink from './SignupLink';
 import { Button } from '@mui/material';
 import AdminMenu from './AdminMenu';
+import getConfig from 'next/config';
+const {
+	publicRuntimeConfig: { localEnv },
+} = getConfig();
 
 const Header = () => {
 	const [openMenu, setOpenMenu] = useState(false);
@@ -129,35 +133,27 @@ const Header = () => {
 													horizontal: 'left',
 												}}>
 												<MenuItem>
-													<Link href='/zold'>
-														{
-															process.env
-																.NEXT_PUBLIC_CHAT_ONE
-														}
+													<Link
+														href={`/${process.env.LINK_ONE}`}>
+														{process.env.LINK_ONE}
 													</Link>
 												</MenuItem>
 												<MenuItem>
-													<Link href='/znew'>
-														{
-															process.env
-																.NEXT_PUBLIC_CHAT_TWO
-														}
+													<Link
+														href={`/${process.env.LINK_TWO}`}>
+														{process.env.LINK_TWO}
 													</Link>
 												</MenuItem>
 												<MenuItem>
-													<Link href='/y'>
-														{
-															process.env
-																.NEXT_PUBLIC_CHAT_THREE
-														}
+													<Link
+														href={`/${process.env.LINK_THREE}`}>
+														{process.env.LINK_THREE}
 													</Link>
 												</MenuItem>
 												<MenuItem>
-													<Link href='/d'>
-														{
-															process.env
-																.NEXT_PUBLIC_CHAT_FOUR
-														}
+													<Link
+														href={`/${process.env.LINK_FOUR}`}>
+														{process.env.LINK_FOUR}
 													</Link>
 												</MenuItem>
 											</Menu>

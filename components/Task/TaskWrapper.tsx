@@ -196,11 +196,6 @@ export default function TaskWrapper() {
 								</button>
 							</div>
 						</div>
-						{/* <span className='add'>
-							<AddCircle onClick={() => setIsModalOpen(true)} />
-							Add new task
-						</span> */}
-
 						<TaskModal
 							isOpen={isModalOpen}
 							onClose={() => {
@@ -208,7 +203,7 @@ export default function TaskWrapper() {
 								setEditedTask(null);
 							}}
 							onSubmit={addTask}
-							editedTask={editedTask} // Add this prop
+							editedTask={editedTask} 
 		 				/>
 
 						<div className={`view-container ${view}-view`}>

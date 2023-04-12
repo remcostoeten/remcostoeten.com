@@ -20,21 +20,32 @@ $hamburger-stripe-width: 20px;
 	.menuOpen {
 		a,
 		li {
-			color: $color-white;
-			font-size: 2em;
-			font-weight: 600;
-			text-align: center;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			height: 48px;
-
-			&:visited,
-			&:active,
-			&:focus {
+			&:not(.modal) {
 				color: $color-white;
+				font-size: 2em;
+				font-weight: 600;
+				text-align: center;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 48px;
+
+				&:visited,
+				&:active,
+				&:focus {
+					color: $color-white;
+				}
 			}
 		}
+
+		.modal {
+			a {
+				color: $color-primary !important;
+				font-size: unset !important;
+				height: 2rem !important;
+			}
+		}
+
 		.actions {
 			svg {
 				display: block !important;

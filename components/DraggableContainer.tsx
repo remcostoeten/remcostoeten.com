@@ -12,6 +12,7 @@ import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { auth, db } from '@/utils/firebase';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBox';
 import { Edit } from '@mui/icons-material';
+import { Alert } from '@mui/material';
 
 interface DraggableContainerProps {
 	tasks: Task[];
@@ -26,6 +27,11 @@ export default function DraggableContainer({
 }: DraggableContainerProps) {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [editedTask, setEditedTask] = useState<Task | null>(null);
+	const [removeConmfirm, setRemoveConfirm] = useState(false);
+
+	const handleConfirm = () => {
+		setRemoveConfirm(!removeConmfirm);
+	};
 
 	const addTask = async (
 		title: string,
@@ -62,6 +68,7 @@ export default function DraggableContainer({
 	const openEditModal = (task: Task) => {
 		setEditedTask(task);
 		setIsModalOpen(true);
+		setRemoveConfirm(false);
 	};
 
 	const handleDragEnd = (result: DropResult) => {
@@ -84,107 +91,147 @@ export default function DraggableContainer({
 		{ id: 'done', title: 'Done' },
 	];
 
+	const confirmDelete = (taskId: string) => {
+		removeTask(taskId);
+	};
+
 	return (
-		<DragDropContext onDragEnd={handleDragEnd}>
-			{lanes.map((lane) => (
-				<div key={lane.id} className='tasks__lane'>
-					<div className='tasks__header'>
-						<div className='title'>
-							{lane.title}{' '}
-							<span>
-								(
-								{
-									tasks.filter(
-										(task) => task.status === lane.id,
-									).length
-								}
-								)
+		<>
+			{removeConmfirm && (
+				<Alert
+					className='confirm-task'
+					variant='outlined'
+					severity='warning'>
+					Are you sure you want to delete this task?
+					<button
+						className='btn btn--primary'
+						onClick={() =>
+							editedTask && confirmDelete(editedTask.id)
+						}>
+						Duh!
+					</button>
+					<button
+						className='btn btn--secondary'
+						onClick={() => handleConfirm()}>
+						No, close
+					</button>
+				</Alert>
+			)}
+			<DragDropContext onDragEnd={handleDragEnd}>
+				{lanes.map((lane) => (
+					<div key={lane.id} className='tasks__lane'>
+						<div className='tasks__header'>
+							<div className='title'>
+								{lane.title}{' '}
+								<span>
+									(
+									{
+										tasks.filter(
+											(task) => task.status === lane.id,
+										).length
+									}
+									)
+								</span>
+							</div>
+							<span className='add'>
+								<AddBoxRoundedIcon
+									onClick={() => setIsModalOpen(true)}
+								/>
 							</span>
 						</div>
-						<span className='add'>
-							<AddBoxRoundedIcon
-								onClick={() => setIsModalOpen(true)}
-							/>
-						</span>
+						<TaskModal
+							isOpen={isModalOpen}
+							onClose={() => {
+								setIsModalOpen(false);
+								setEditedTask(null);
+							}}
+							editedTask={editedTask}
+							onSubmit={(
+								title,
+								description,
+								category,
+								taskId,
+							) => {
+								if (taskId) {
+									updateExistingTask(
+										title,
+										description,
+										category,
+										taskId,
+									);
+								} else {
+									addTask(title, description, category);
+								}
+							}}
+						/>
+						<Droppable droppableId={lane.id}>
+							{(provided) => (
+								<div
+									className='tasks__list'
+									ref={provided.innerRef}
+									{...provided.droppableProps}>
+									{tasks
+										.filter(
+											(task) => task.status === lane.id,
+										)
+										.map((task, index) => (
+											<Draggable
+												key={task.id}
+												draggableId={task.id}
+												index={index}>
+												{(provided) => (
+													<div
+														className='task'
+														ref={provided.innerRef}
+														{...provided.draggableProps}
+														{...provided.dragHandleProps}>
+														<div className='tasks__bottom'>
+															<div className='left'>
+																{task.category}
+															</div>
+															<div className='right'>
+																<DeleteForeverIcon
+																	className='remove'
+																	onClick={() =>
+																		confirmDelete(
+																			task.id,
+																		)
+																	}
+																/>
+																<Edit
+																	className='edit'
+																	onClick={() =>
+																		openEditModal(
+																			task,
+																		)
+																	}
+																/>
+															</div>
+														</div>
+														<div className='tasks__top'>
+															<h3>
+																{task.title}
+															</h3>
+															<p>
+																{
+																	task.description
+																}
+															</p>
+															<span className='task__date'>
+																{task.date}
+															</span>
+														</div>
+													</div>
+												)}
+											</Draggable>
+										))}
+									{provided.placeholder}
+								</div>
+							)}
+						</Droppable>
 					</div>
-					<TaskModal
-						isOpen={isModalOpen}
-						onClose={() => {
-							setIsModalOpen(false);
-							setEditedTask(null);
-						}}
-						editedTask={editedTask}
-						onSubmit={(title, description, category, taskId) => {
-							if (taskId) {
-								updateExistingTask(
-									title,
-									description,
-									category,
-									taskId,
-								);
-							} else {
-								addTask(title, description, category);
-							}
-						}}
-					/>
-					<Droppable droppableId={lane.id}>
-						{(provided) => (
-							<div
-								className='tasks__list'
-								ref={provided.innerRef}
-								{...provided.droppableProps}>
-								{tasks
-									.filter((task) => task.status === lane.id)
-									.map((task, index) => (
-										<Draggable
-											key={task.id}
-											draggableId={task.id}
-											index={index}>
-											{(provided) => (
-												<div
-													className='task'
-													ref={provided.innerRef}
-													{...provided.draggableProps}
-													{...provided.dragHandleProps}>
-													<div className='tasks__bottom'>
-														{task.category}
-													</div>
-													<div className='tasks__top'>
-														<h3>{task.title}</h3>
-														<p>
-															{task.description}
-														</p>
-														<span className='task__date'>
-															{task.date}
-														</span>
-														<DeleteForeverIcon
-															className='remove'
-															onClick={() =>
-																removeTask(
-																	task.id,
-																)
-															}
-														/>
-														<Edit
-															className='edit'
-															onClick={() =>
-																openEditModal(
-																	task,
-																)
-															}
-														/>
-														;Z
-													</div>
-												</div>
-											)}
-										</Draggable>
-									))}
-								{provided.placeholder}
-							</div>
-						)}
-					</Droppable>
-				</div>
-			))}
-		</DragDropContext>
+				))}
+			</DragDropContext>
+		</>
 	);
 }

@@ -23,7 +23,6 @@ export default function SignupLink() {
 					<SignIn
 						onClose={onCloseSignInModal}
 						onSignIn={handleSignIn}
-						onShowConfetti={setShowConfetti}
 						setShowRegisterModal={function (show: boolean): void {
 							throw new Error('Function not implemented.');
 						}}
