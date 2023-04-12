@@ -4195,12 +4195,12 @@ form h3 {
     opacity: 0;
   }
 }
-.todo aside {
+aside {
   display: flex;
   z-index: 3;
   height: 100vh;
 }
-.todo aside span {
+aside span {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4212,34 +4212,34 @@ form h3 {
   box-sizing: inherit;
   padding: 8px;
 }
-.todo aside span:not(:last-child) {
+aside span:not(:last-child) {
   margin-bottom: 8px;
 }
-.todo aside span.logo svg {
+aside span.logo svg {
   opacity: 1;
 }
-.todo aside span.active svg {
+aside span.active svg {
   opacity: 1;
   color: #ec817b;
 }
-.todo aside span:nth-child(odd) svg:hover {
+aside span:nth-child(odd) svg:hover {
   transform: rotate(-3deg);
 }
-.todo aside svg {
+aside svg {
   font-size: 28px;
   color: #5f6388;
   cursor: pointer;
 }
-.todo aside svg:hover {
+aside svg:hover {
   opacity: 1;
   scale: 1.1;
   transform: rotate(3deg);
 }
-.todo aside .nav {
+aside .nav {
   display: flex;
   flex-direction: column;
 }
-.todo aside .nav__small {
+aside .nav__small {
   display: flex;
   padding: 16px 8px;
   align-items: center;
@@ -4247,13 +4247,13 @@ form h3 {
   background-color: #fbfaff;
   justify-content: space-between;
 }
-.todo aside h1 {
+aside h1 {
   font-size: 30px;
   font-weight: bold;
   color: white;
   padding-bottom: 40px;
 }
-.todo aside a {
+aside a {
   color: white;
   opacity: 0.5;
   display: flex;
@@ -4265,19 +4265,19 @@ form h3 {
   text-decoration: none;
   margin-bottom: 30px;
 }
-.todo aside h3 {
+aside h3 {
   font-size: 16px;
   font-weight: bold;
   padding-bottom: 8px;
   color: white;
 }
-.todo aside li,
-.todo aside ul {
+aside li,
+aside ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-.todo aside li {
+aside li {
   position: relative;
   padding-left: 12px;
   padding-bottom: 8px;
@@ -4286,13 +4286,13 @@ form h3 {
   font-size: 16px;
   font-weight: 500;
 }
-.todo aside li:before {
+aside li:before {
   position: absolute;
   content: "-";
   color: white;
   left: 0;
 }
-.todo aside li.active {
+aside li.active {
   opacity: 1;
 }
 

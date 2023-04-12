@@ -19,11 +19,13 @@
 // @import './core/dots';
 @import './core/body';
 @import './core/animations';
+@import './core/redesign/layout';
+@import './core/redesign/header';
 
 // // Layout
 
 // // Components
-@import './layout/header';
+// @import './layout/header';
 @import './layout/homepage';
 @import './layout/intro';
 @import './layout/chat';

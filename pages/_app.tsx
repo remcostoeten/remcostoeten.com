@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Confetti from 'react-confetti';
 import Header from '@/components/header/Header';
 import { useRouter } from 'next/router';
+import AsideSmall from '@/components/Task/AsideSmall';
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [showConfetti, setShowConfetti] = useState(false);
@@ -31,13 +32,16 @@ export default function App({ Component, pageProps }: AppProps) {
 					height={window.innerHeight}
 					numberOfPieces={200}
 				/>
-			)}{' '}
-			<ToastContainer />{' '}
-			<LocaleProvider>
-				<WipNotice />
-				{showHeader && <Header />}
-				<Component {...pageProps} setShowConfetti={setShowConfetti} />
-			</LocaleProvider>
+			)}
+			<ToastContainer /> <WipNotice />
+			{/* <div className='wrapper'> */}
+			{/* <div className='wrapper__aside'> */}
+			{/* <AsideSmall vi/>sew={''} isLoggedIn={false} /> */}
+			{/* </div> */}
+			{/* <div className='wrapper__main'> */}
+			<Component {...pageProps} setShowConfetti={setShowConfetti} />
+			{/* </div> */}
+			{/* </div> */}
 		</>
 	);
 }

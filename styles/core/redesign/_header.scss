@@ -1,0 +1,10 @@
+$header-height: 70px;
+
+.header {
+	display: flex;
+	align-items: center;
+	height: $header-height;
+	color: $white;
+	background-color: $black;
+	padding: 0 $spacing;
+}
