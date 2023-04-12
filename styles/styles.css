@@ -2350,8 +2350,8 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
     height: 0vh;
     transition: 250ms ease all;
   }
-  .menuOpen a,
-  .menuOpen li {
+  .menuOpen a:not(.modal),
+  .menuOpen li:not(.modal) {
     color: #fff;
     font-size: 2em;
     font-weight: 600;
@@ -2361,11 +2361,16 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
     justify-content: center;
     height: 48px;
   }
-  .menuOpen a:visited, .menuOpen a:active, .menuOpen a:focus,
-  .menuOpen li:visited,
-  .menuOpen li:active,
-  .menuOpen li:focus {
+  .menuOpen a:not(.modal):visited, .menuOpen a:not(.modal):active, .menuOpen a:not(.modal):focus,
+  .menuOpen li:not(.modal):visited,
+  .menuOpen li:not(.modal):active,
+  .menuOpen li:not(.modal):focus {
     color: #fff;
+  }
+  .menuOpen .modal a {
+    color: #ff7979 !important;
+    font-size: unset !important;
+    height: 2rem !important;
   }
   .menuOpen .actions svg {
     display: block !important;
@@ -3262,11 +3267,8 @@ button {
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .modal {
-    max-width: 80%;
+    scale: 0.8;
     margin: 0 auto;
-  }
-  .modal:has(.modal__wip) {
-    position: unset;
   }
 }
 @keyframes bounce {
@@ -3531,6 +3533,17 @@ form h3 {
   color: #ff4646;
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .todo .tasks {
+    flex-direction: column;
+  }
+  .todo .tasks__lane {
+    width: 100%;
+  }
+  .todo-wrapper {
+    padding: 24px;
+  }
+}
 .todo h1,
 .todo h2,
 .todo h3,

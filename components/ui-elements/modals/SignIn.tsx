@@ -88,13 +88,6 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 						<motion.div
 							className='header__user'
 							whileHover={{ scale: 1.05 }}>
-							<span className='facebook'></span>
-							<FacebookRounded />
-						</motion.div>
-
-						<motion.div
-							className='header__user'
-							whileHover={{ scale: 1.05 }}>
 							<span className='google'>
 								<Login />
 							</span>

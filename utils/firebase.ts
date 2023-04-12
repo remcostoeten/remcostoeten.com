@@ -9,31 +9,38 @@ import {
 	signOut,
 } from '@firebase/auth';
 import { getDownloadURL, ref } from '@firebase/storage';
-import { Key } from 'react';
-
+import getConfig from 'next/config';
+const {
+	publicRuntimeConfig: { localEnv },
+} = getConfig();
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const firebaseConfig = {
-	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',
-	authDomain: 'task-41e05.firebaseapp.com',
-	projectId: 'task-41e05',
-	storageBucket: 'task-41e05.appspot.com',
-	messagingSenderId: '482137951796',
-	appId: '1:482137951796:web:c64e6f41ad5d0e60b28461',
-	measurementId: 'G-STSWFTFM63',
+	apiKey: process.env.FB_API,
+	authDomain: process.env.FB_AUTH_DOMAIN,
+	projectId: process.env.FB_PROJECT_ID,
+	storageBucket: process.env.FB_STORAGE_BUCKET,
+	messagingSenderId: process.env.FB_MESSAGING_SENDER_ID,
+	appId: process.env.FB_APP_ID,
+	measurementId: process.env.FB_MEASUREMENT_ID,
+	databaseURL: `https://${process.env.FB_PROJECT_ID}.firebaseio.com`, // Add this line
 };
 
-export interface Message { 
+export interface Message {
 	name: string;
 	message: string;
 	timestamp: number;
 	index: number;
-	preview?: string; // Add this line as an optional property
+	preview?: string;
 }
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const database = getDatabase(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
+
 const signInWithGoogle = () => {
 	console.log('signing in with google');
 	signInWithPopup(auth, provider)
@@ -57,7 +64,7 @@ const logout = () => {
 	console.log('logging out');
 	signOut(auth)
 		.then(() => {
-			// Sign-out successful.
+			toast.success('Successfully logged out');
 		})
 		.catch((error) => {
 			// An error happened.

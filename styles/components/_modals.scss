@@ -351,13 +351,8 @@ $checkbox-size: 16px;
 
 @include mobile {
 	.modal {
-		max-width: 80%;
+		scale: 0.8;
 		margin: 0 auto;
-
-		&:has(.modal__wip) {
-			// needs to be NOT has
-			position: unset;
-		}
 	}
 }
 
