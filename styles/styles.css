@@ -267,7 +267,7 @@ select {
   width: 16px;
   height: 16px;
   left: 0;
-  background-color: #0092d2;
+  background-color: #ff7979;
   top: 0;
   z-index: 1;
 }
@@ -330,7 +330,7 @@ select {
 }
 .checkbox-wrapper--rounded-bullet input:checked + label::after {
   content: "";
-  background-color: #0092d2;
+  background-color: #ff7979;
   border: 4px solid #fff;
   border-radius: 100%;
   width: 20px;
@@ -343,7 +343,7 @@ select {
 .checkbox-wrapper--rounded-bullet input:checked + label::before {
   content: "";
   background-color: transparent;
-  border: 1px solid #0092d2;
+  border: 1px solid #ff7979;
   border-radius: 100%;
   width: 20px;
   height: 20px;
@@ -363,6 +363,7 @@ a.btn,
   width: auto;
   padding: 15px 20px;
   border: none;
+  transition: 250ms ease all;
 }
 a.btn:hover,
 .btn:hover {
@@ -370,14 +371,13 @@ a.btn:hover,
 }
 a.btn--primary,
 .btn--primary {
-  background-image: linear-gradient(180deg, #009de0 0%, #0081c7 100%);
+  background-color: #ff7979;
   color: white;
 }
 a.btn--primary:hover,
 .btn--primary:hover {
-  background-image: linear-gradient(180deg, #003247 0%, #003247 100%);
   border: none;
-  background-color: #003247;
+  background-color: #ff6060;
 }
 a.btn--big,
 .btn--big {
@@ -418,7 +418,7 @@ a.btn--secondary,
 }
 a.btn--secondary:hover,
 .btn--secondary:hover {
-  background-color: #0092d2;
+  background-color: #ff7979;
 }
 a.btn--search,
 .btn--search {
@@ -574,7 +574,7 @@ input {
   cursor: pointer;
 }
 input:active, input:focus, input:visited, input:focus-visible {
-  border-color: #0092d2;
+  border-color: #ff7979;
   color: #003247;
   outline: none;
 }
@@ -600,7 +600,7 @@ input[type=text]:hover {
   position: absolute;
   width: 30px;
   animation: rotation 1.5s infinite linear;
-  border: 4px solid #0092d2;
+  border: 4px solid #ff7979;
   border-top-color: rgba(100, 125, 94, 0);
   border-radius: 50%;
   position: absolute;
@@ -617,7 +617,7 @@ input[type=text]:hover {
 }
 
 .header__hero--heading-gradient {
-  background: linear-gradient(-45deg, var(#0092d2), var(#003247), var(#0092d2), var(#003247));
+  background: linear-gradient(-45deg, var(#ff7979), var(#003247), var(#ff7979), var(#003247));
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1592,7 +1592,7 @@ input[type=text]:hover {
   bottom: -3px;
   width: 0;
   height: 2px;
-  background-color: #0092d2;
+  background-color: #ff7979;
   opacity: 0;
   transition: 0.3s ease-in;
 }
@@ -2350,8 +2350,8 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
     height: 0vh;
     transition: 250ms ease all;
   }
-  .menuOpen a,
-  .menuOpen li {
+  .menuOpen a:not(.modal),
+  .menuOpen li:not(.modal) {
     color: #fff;
     font-size: 2em;
     font-weight: 600;
@@ -2361,11 +2361,16 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
     justify-content: center;
     height: 48px;
   }
-  .menuOpen a:visited, .menuOpen a:active, .menuOpen a:focus,
-  .menuOpen li:visited,
-  .menuOpen li:active,
-  .menuOpen li:focus {
+  .menuOpen a:not(.modal):visited, .menuOpen a:not(.modal):active, .menuOpen a:not(.modal):focus,
+  .menuOpen li:not(.modal):visited,
+  .menuOpen li:not(.modal):active,
+  .menuOpen li:not(.modal):focus {
     color: #fff;
+  }
+  .menuOpen .modal a {
+    color: #ff7979 !important;
+    font-size: unset !important;
+    height: 2rem !important;
   }
   .menuOpen .actions svg {
     display: block !important;
@@ -2816,7 +2821,7 @@ button {
   height: 50px;
   border-radius: 8px;
   padding: 24px;
-  background-color: #0092d2;
+  background-color: #ff7979;
   position: absolute;
 }
 
@@ -2986,6 +2991,14 @@ button {
   display: none;
 }
 
+.edit-task h2 {
+  color: #404040;
+  padding: 24px 0 0 24px;
+}
+.edit-task .css-ypiqx9-MuiDialogContent-root {
+  padding-top: 0;
+}
+
 .modal {
   display: flex;
   justify-content: center;
@@ -3096,7 +3109,7 @@ button {
 }
 .modal .login-btn {
   margin: 24px 0;
-  background-color: #0092d2;
+  background-color: #ff7979;
 }
 .modal__remember-me {
   display: flex;
@@ -3112,7 +3125,7 @@ button {
 .modal__remember-me a {
   font-size: 1.3em;
   text-decoration: underline;
-  color: #0092d2;
+  color: #ff7979;
   font-weight: 800;
 }
 .modal__remember-me input {
@@ -3148,7 +3161,7 @@ button {
 .modal__new-user a {
   margin-left: 6px;
   text-decoration: underline;
-  color: #0092d2;
+  color: #ff7979;
 }
 .modal__new-user p,
 .modal__new-user a {
@@ -3260,11 +3273,8 @@ button {
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .modal {
-    max-width: 80%;
+    scale: 0.8;
     margin: 0 auto;
-  }
-  .modal:has(.modal__wip) {
-    position: unset;
   }
 }
 @keyframes bounce {
@@ -3521,14 +3531,25 @@ form h3 {
 }
 .authenticate-please span {
   text-transform: lowercase;
-  color: #0092d2;
+  color: #ff7979;
   text-decoration: underline;
   cursor: pointer;
 }
 .authenticate-please span:hover {
-  color: #006f9f;
+  color: #ff4646;
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .todo .tasks {
+    flex-direction: column;
+  }
+  .todo .tasks__lane {
+    width: 100%;
+  }
+  .todo-wrapper {
+    padding: 24px;
+  }
+}
 .todo h1,
 .todo h2,
 .todo h3,
@@ -4197,11 +4218,9 @@ form h3 {
 .todo aside span.logo svg {
   opacity: 1;
 }
-.todo aside span.active {
-  background-color: #323338;
-}
 .todo aside span.active svg {
   opacity: 1;
+  color: #ec817b;
 }
 .todo aside span:nth-child(odd) svg:hover {
   transform: rotate(-3deg);
@@ -4277,10 +4296,17 @@ form h3 {
   opacity: 1;
 }
 
+.authenticated {
+  width: 100%;
+}
+
 .tasks__task {
   margin-top: 8px;
   background-color: white;
   border-radius: 10px;
+}
+.tasks__top {
+  word-break: break-all;
 }
 .tasks__header {
   display: flex;
@@ -4326,17 +4352,11 @@ form h3 {
 .tasks__top p {
   line-height: 1;
 }
-.tasks .remove {
-  position: absolute;
-  bottom: -30px;
-  left: 8px;
-  font-size: 24px;
-}
 .tasks__bottom {
   z-index: 10;
   display: flex;
   align-self: center;
-  justify-content: center;
+  justify-content: space-between;
   font-size: 12px;
   color: white;
   background-color: #ff7979;
@@ -4346,6 +4366,18 @@ form h3 {
   min-width: 39px;
   padding: 0 8px;
   min-height: 16px;
+}
+.tasks__bottom .edit {
+  position: absolute;
+  right: 15px;
+  font-size: 20px;
+  color: #000;
+}
+.tasks__bottom .remove {
+  position: absolute;
+  right: 45px;
+  font-size: 20px;
+  color: #000;
 }
 .tasks__title {
   font-weight: 200;
@@ -4500,7 +4532,7 @@ form h3 {
 .toggle-view.list:before {
   z-index: 3;
   width: 67px;
-  background: white;
+  background: #ff7979;
   left: 105px;
 }
 .toggle-view .view {
@@ -4525,6 +4557,27 @@ form h3 {
   background-color: #ff7979;
   border-radius: 19px;
   font-size: 14px;
+  color: white;
+  transition: 250ms ease all;
+}
+.toggle-view button.add:hover {
+  background-color: #ff6060;
+}
+
+.confirm-task {
+  position: absolute;
+  z-index: 10;
+  right: 20px;
+  transform: translateX(-100%);
+  bottom: 20px;
+  background: white;
+  box-shadow: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+.confirm-task .btn--primary {
+  background-color: #ff7979;
+}
+.confirm-task .btn--secondary {
+  background-color: black;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {

@@ -1,62 +1,15 @@
 import { useEffect, useState } from 'react';
 import Intro from '@/components/layout/Intro';
-import React from 'react';
 import SpeedDial from '@mui/material/SpeedDial';
 import SpeedDialAction from '@mui/material/SpeedDialAction';
-
+import Seo from '@/components/Seo';
 import BlinkingArrow from '@/components/ui-elements/BlinkingArrow';
-import Header from '@/components/header/Header';
 export default function Home() {
 	const [variant, setVariant] = useState('theme--variant');
 
 	useEffect(() => {
 		document.body.classList.add('variant');
 	}, []);
-
-	const handleVariantToggle = () => {
-		switch (variant) {
-			case 'theme--variant':
-				setVariant('theme--variant');
-				document.body.classList.remove(
-					'variant-two',
-					'variant-three',
-					'variant-four',
-				);
-				break;
-			case 'theme--variant-two':
-				setVariant('theme--variant-two');
-				document.body.classList.remove(
-					'variant',
-					'variant-three',
-					'variant-four',
-				);
-				break;
-			case 'theme--variant-three':
-				setVariant('theme--variant-three');
-				document.body.classList.remove(
-					'variant',
-					'variant-two',
-					'variant-four',
-				);
-				break;
-			case 'theme--variant-four':
-				setVariant('theme--variant-four');
-				document.body.classList.remove(
-					'variant',
-					'variant-two',
-					'variant-three',
-				);
-				break;
-			default:
-				setVariant('theme--variant');
-				document.body.classList.remove(
-					'variant-two',
-					'variant-three',
-					'variant-four',
-				);
-				break;
-		}
-	};
 
 	const actions = [
 		{
@@ -114,6 +67,11 @@ export default function Home() {
 	];
 	return (
 		<>
+			<Seo
+				title='Remcostoeten.com front-end developer'
+				description='Remco stoeten, front-end developer with six  years off experience. This smy playground site where I test whatever I feel like'
+				url='https://www.remcostoeten.com/'
+			/>
 			<div className='speeddial'>
 				<SpeedDial
 					ariaLabel='Change color palette'
@@ -133,7 +91,6 @@ export default function Home() {
 					<BlinkingArrow />
 				</div>
 			</div>
-
 			<div className='theme'>
 				<div className={variant}></div>
 				<div className={`${variant} bg2`}></div>

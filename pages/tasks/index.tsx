@@ -19,6 +19,7 @@ import {
 	setPersistence,
 	createUserWithEmailAndPassword,
 } from '@firebase/auth';
+import Seo from '@/components/Seo';
 
 export default function Index() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -122,15 +123,14 @@ export default function Index() {
 
 	return (
 		<>
+			<Seo
+				title='Remcostoeten.com front-end developer'
+				description='Remco stoeten, Task to-do kanban board and allround producitvity dashboard.'
+				url='https://www.remcostoeten.com/'
+			/>{' '}
 			<div className='todo'>
 				<div className='todo__inner'>
-					<AsideSmall
-						view={''}
-						isLoggedIn={false}
-						setIsLoggedIn={function (value: boolean): void {
-							throw new Error('Function not implemented.');
-						}}
-					/>
+					<AsideSmall view={''} isLoggedIn={false} />
 					{isLoggedIn ? (
 						<>
 							<div className='authenticated'>
@@ -200,16 +200,12 @@ export default function Index() {
 					)}
 				</div>
 			</div>
-
 			{isSignInModalOpen && (
 				<SignIn
 					onClose={handleSignInModalClose}
 					onSignIn={(email, password, rememberMe) =>
 						signInUser(email, password, rememberMe)
 					}
-					onShowConfetti={function (show: boolean): void {
-						throw new Error('Function not implemented.');
-					}}
 					setShowRegisterModal={function (show: boolean): void {
 						throw new Error('Function not implemented.');
 					}}

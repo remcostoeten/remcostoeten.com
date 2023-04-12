@@ -7,10 +7,13 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Confetti from 'react-confetti';
 import Header from '@/components/header/Header';
+import { useRouter } from 'next/router';
 
 export default function App({ Component, pageProps }: AppProps) {
-	const [open, setOpen] = useState(true);
 	const [showConfetti, setShowConfetti] = useState(false);
+	const [open, setOpen] = useState(true);
+	const router = useRouter();
+	const showHeader = router.pathname !== '/tasks';
 
 	useEffect(() => {
 		const popupDisplayed = localStorage.getItem('popupDisplayed');
@@ -32,8 +35,8 @@ export default function App({ Component, pageProps }: AppProps) {
 			<ToastContainer />{' '}
 			<LocaleProvider>
 				<WipNotice />
-				<Header />
-				<Component {...pageProps} />
+				{showHeader && <Header />}
+				<Component {...pageProps} setShowConfetti={setShowConfetti} />
 			</LocaleProvider>
 		</>
 	);

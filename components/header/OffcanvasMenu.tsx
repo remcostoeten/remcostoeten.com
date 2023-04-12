@@ -6,13 +6,12 @@ import React, { useEffect, useState } from 'react';
 import {
 	CancelOutlined,
 	Email,
-	Logout,
-	Menu,
+	LogoutOutlined,
 	WhatsApp,
 } from '@mui/icons-material';
 import { auth, logout, signInWithGoogle } from '@/utils/firebase';
 import { useMediaQuery } from '@mui/material';
-import { Box, motion } from 'framer-motion';
+import SignupLink from './SignupLink';
 function bodyClass({}) {}
 
 function OffcanvasMenu() {
@@ -23,6 +22,19 @@ function OffcanvasMenu() {
 		width: 0,
 		height: 0,
 	});
+
+	useEffect(() => {
+		const unsubscribe = auth.onAuthStateChanged((user) => {
+			if (user) {
+				setIsLoggedIn(true);
+			} else {
+				setIsLoggedIn(false);
+			}
+		});
+		return () => {
+			unsubscribe();
+		};
+	}, []);
 
 	useEffect(() => {
 		const handleResize = () => {
@@ -111,18 +123,16 @@ function OffcanvasMenu() {
 							</div>
 						</div>
 						{isLoggedIn ? (
-							<motion.li whileHover={{ scale: 1.05 }}>
-								<a onClick={() => auth.signOut()}>Logout</a>
-							</motion.li>
-						) : (
 							<>
-								<div
-									className='login-btn'
-									onClick={handleSignInButtonClick}>
-									<span>Sign In</span>
-								</div>
+								<a
+									className='logout'
+									onClick={() => auth.signOut()}>
+									<LogoutOutlined />
+								</a>
 							</>
-						)}
+						) : (
+							<SignupLink />
+						)}{' '}
 					</>
 				)}
 			</div>

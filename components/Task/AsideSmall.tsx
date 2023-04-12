@@ -5,38 +5,22 @@ import {
 	AppsOutlined,
 	CalendarToday,
 	LoginSharp,
-	LogoutSharp,
 	VerifiedUserSharp,
 	ViewList,
 	AssignmentInd,
+	LogoutOutlined,
 } from '@mui/icons-material';
 import { auth } from '@/utils/firebase';
-import SignIn from '../ui-elements/modals/SignIn';
 
 interface AsideSmallProps {
 	view: string;
 	isLoggedIn: boolean;
-	setIsLoggedIn: (value: boolean) => void;
-}
-
-interface SigninModalProps {
-	isOpen: boolean;
-	onClose: () => void;
 }
 
 export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
-	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 	const currentUrl =
 		typeof window !== 'undefined' ? window.location.pathname : '';
 	const currentRouteClass = currentUrl.substring(1);
-
-	const handleSignInModalClose = () => {
-		setIsSignInModalOpen(false);
-	};
-
-	const handleSignInButtonClick = () => {
-		setIsSignInModalOpen(true);
-	};
 
 	return (
 		<>
@@ -49,7 +33,6 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 									'logo ' + (isLoggedIn ? 'logged-in' : '')
 								}>
 								<svg
-									xmlns='http://www.w3.org/2000/svg'
 									width='30'
 									height='32'
 									viewBox='0 0 36 32'
@@ -71,7 +54,7 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 										? 'active'
 										: ''
 								}`}>
-								<AssignmentInd />
+								<CalendarToday />
 							</span>
 						</Link>
 						<Link href='/calender'>
@@ -105,42 +88,11 @@ export default function AsideSmall({ isLoggedIn }: AsideSmallProps) {
 						</span>
 					</div>
 					<div className='nav__bottom'>
-						{isLoggedIn ? (
-							<a onClick={() => auth.signOut()}>
-								<span>
-									<LogoutSharp />
-								</span>
-							</a>
-						) : (
-							<>
-								<div
-									className='login-btn'
-									onClick={handleSignInButtonClick}>
-									<span>
-										<LoginSharp />
-									</span>
-								</div>
-							</>
-						)}
+						<a className='logout' onClick={() => auth.signOut()}>
+							<LogoutOutlined />
+						</a>{' '}
 					</div>
 				</nav>
-				{isSignInModalOpen && (
-					<SignIn
-						onClose={handleSignInModalClose}
-						onSignIn={function (
-							email?: string | undefined,
-							password?: string | undefined,
-						): void {
-							throw new Error('Function not implemented.');
-						}}
-						onShowConfetti={function (show: boolean): void {
-							throw new Error('Function not implemented.');
-						}}
-						setShowRegisterModal={function (show: boolean): void {
-							throw new Error('Function not implemented.');
-						}}
-					/>
-				)}
 			</aside>
 		</>
 	);

@@ -211,3 +211,19 @@ form h3 {
 		}
 	}
 }
+
+@include mobile {
+	.todo {
+		.tasks {
+			flex-direction: column;
+
+			&__lane {
+				width: 100%;
+			}
+		}
+	}
+
+	.todo-wrapper {
+		padding: $spacing;
+	}
+}
