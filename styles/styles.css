@@ -2638,6 +2638,12 @@ button {
   opacity: 0;
   height: auto;
 }
+.chat-ui .offcanvas.search .toggle {
+  color: #000;
+}
+.chat-ui .offcanvas.search .toggle svg {
+  color: #000;
+}
 @media (min-width: 0px) and (max-width: 767px) {
   .chat-ui .offcanvas.search {
     width: 100%;

@@ -6,7 +6,7 @@ import moment from 'moment';
 import { ChatMessage } from '@/types';
 
 interface ChatSearchProps {
-	searchResults:  ChatMessage[];
+	searchResults: ChatMessage[];
 	onSearch: (term: string) => void;
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;
@@ -123,7 +123,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 					<span
 						className='toggle'
 						onClick={() => setShowChatInput(!showChatInput)}
-						style={{ color: '#fffd' }}>
+						style={{ color: '#000' }}>
 						<Icon path={mdiMagnify} size={3} />
 						<span>
 							{showText && (
@@ -135,7 +135,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 									Click to toggle search functionality
 								</motion.span>
 							)}
-						</span>{' '}
+						</span>
 					</span>
 				</div>
 				{showChatInput && (

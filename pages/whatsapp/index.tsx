@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import ChatSearch from '@/components/Chat/ChatSearch';
 import { ChatMessage, Attachment } from '../../types';
 import Image from 'next/image';
-import Header from '@/components/header/Header';
+import Warning from '@/components/ui-elements/Warning';
+
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
 	searchResults: string;
@@ -13,6 +14,7 @@ interface ChatSearchProps {
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
+	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -72,8 +74,6 @@ const ChatHistory: React.FC = () => {
 		}
 	};
 
-	const [visibleMessages, setVisibleMessages] = useState<ChatMessage[]>([]);
-
 	useEffect(() => {
 		setVisibleMessages(chatHistory.slice(0, 20));
 	}, [chatHistory]);
@@ -103,14 +103,13 @@ const ChatHistory: React.FC = () => {
 
 	return (
 		<>
-			<Header />
+			<Warning />
 			<ChatSearch
 				onSearch={handleSearch}
 				onJumpTo={(index: number) => handleJumpTo(searchResults[index])}
 				chatHistory={chatHistory}
 				searchResults={searchResults}
 			/>
-
 			<div className='chat'>
 				<div className='chat__chat-panel chat-history'>
 					{chatHistory &&

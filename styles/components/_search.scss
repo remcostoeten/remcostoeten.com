@@ -146,6 +146,7 @@
 	z-index: $z-index-layer-four;
 	top: 0;
 	position: sticky;
+
 	@include mobile {
 		left: 25px;
 	}
@@ -174,6 +175,13 @@ button {
 		max-width: 25%;
 		opacity: 0;
 		height: auto;
+
+		.toggle {
+			color: #000;
+			svg {
+				color: #000;
+			}
+		}
 
 		@include mobile {
 			width: 100%;
