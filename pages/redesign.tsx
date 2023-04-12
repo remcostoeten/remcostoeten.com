@@ -1,4 +1,5 @@
 // pages/index.tsx
+import HeaderNew from '@/components/header/HeaderNew';
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 
@@ -7,11 +8,12 @@ const ParticleBackground = dynamic(
 	{ ssr: false },
 );
 
+
 const Home: NextPage = () => {
 	return (
 		<>
+			<HeaderNew />
 			<ParticleBackground />
-			{/* Other components and content */}
 		</>
 	);
 };
