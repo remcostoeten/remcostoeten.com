@@ -1,21 +1,5 @@
-// pages/index.tsx
-import HeaderNew from '@/components/header/HeaderNew';
-import type { NextPage } from 'next';
-import dynamic from 'next/dynamic';
+import React from 'react';
 
-const ParticleBackground = dynamic(
-	() => import('@/components/Homepage/ParticleBackground'),
-	{ ssr: false },
-);
-
-
-const Home: NextPage = () => {
-	return (
-		<>
-			<HeaderNew />
-			<ParticleBackground />
-		</>
-	);
-};
-
-export default Home;
+export default function redesign() {
+	return <div>redesign</div>;
+}
