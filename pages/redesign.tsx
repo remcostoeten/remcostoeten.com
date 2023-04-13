@@ -1,5 +1,21 @@
-import React from 'react';
+import MouseFollower from '@/components/Homepage/MouseFollower';
+import HeaderNew from '@/components/header/HeaderNew';
+import type { NextPage } from 'next';
+import dynamic from 'next/dynamic';
 
-export default function redesign() {
-	return <div>redesign</div>;
-}
+const ParticleBackground = dynamic(
+	() => import('@/components/Homepage/ParticleBackground'),
+	{ ssr: false },
+);
+
+const Home: NextPage = () => {
+	return (
+		<>
+			<HeaderNew />
+			{/* <MouseFollower /> */}
+			<ParticleBackground />
+		</>
+	);
+};
+
+export default Home;

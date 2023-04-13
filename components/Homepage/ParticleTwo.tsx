@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import p5, { Vector } from 'p5';
 
 interface Particle {
@@ -25,7 +25,7 @@ const ParticleBackground: React.FC = () => {
 				if (canvasRef.current) {
 					canvas = p.createCanvas(p.windowWidth, p.windowHeight);
 					canvas.parent(canvasRef.current);
-					p.frameRate(5);
+					p.frameRate(30);
 					for (let i = 0; i < 30; i++) {
 						particles.push({
 							pos: p.createVector(
@@ -43,7 +43,7 @@ const ParticleBackground: React.FC = () => {
 			};
 
 			p.draw = () => {
-				p.clear();
+				p.clear(0, 0, p.width, p.height); // pass arguments to clear method
 				const gradient = p.drawingContext.createLinearGradient(
 					0,
 					0,

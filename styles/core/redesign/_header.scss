@@ -6,8 +6,8 @@ $black: #000;
 	align-items: center;
 	height: $header-height;
 	color: $white;
-	background-color: $black;
 	padding: 0 $spacing;
+	position: relative;
 
 	&__inner {
 		display: flex;
@@ -37,14 +37,39 @@ $black: #000;
 	}
 }
 
-.mouse-orb {
-	position: fixed;
-	width: 20px;
-	height: 20px;
+.in-out {
+	animation: out 4s cubic-bezier(0.39, 0.575, 0.565, 1) alternate infinite;
+}
+.circle-1 {
+	border-radius: 100%;
+	width: 70%;
+	height: 70%;
+	background: #00ffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-shadow: 0px 0px 60px 40px #00ffff;
+}
+.circle-2 {
 	border-radius: 50%;
-	background-color: rgba(255, 150, 0, 0.5);
-	pointer-events: none;
-	z-index: 9999;
-	transform: translate(-10px, -10px);
-	transition: transform 0.1s ease-out;
+	width: 60%;
+	height: 60%;
+	background: rgba(122, 255, 255, 0.2);
+	box-shadow: 1px 1px 80px 20px #00ffff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.circle-3 {
+	border-radius: 50%;
+	width: 15%;
+	height: 15%;
+	background: rgb(255, 255, 255);
+	box-shadow: 0px 0px 70px 35px #ffff;
+}
+
+@keyframes out {
+	100% {
+		transform: scale(1.5, 1.5);
+	}
 }
