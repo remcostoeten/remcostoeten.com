@@ -1,4 +1,5 @@
 import MouseFollower from '@/components/Homepage/MouseFollower';
+import CameraPan from '@/components/Homepage/CameraPan';
 import HeaderNew from '@/components/header/HeaderNew';
 import type { NextPage } from 'next';
 import dynamic from 'next/dynamic';
@@ -13,7 +14,8 @@ const Home: NextPage = () => {
 		<>
 			<HeaderNew />
 			{/* <MouseFollower /> */}
-			<ParticleBackground />
+			{/* <CameraPan /> */}
+			{/* <ParticleBackground /> */}
 		</>
 	);
 };

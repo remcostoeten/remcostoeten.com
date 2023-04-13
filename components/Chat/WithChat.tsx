@@ -1,6 +1,6 @@
 import React from 'react';
 import { Message } from '@/utils/firebase';
-import Chat from './Chatv2';
+import Chat from './Chatv2.txt';
 import Header from '../header/Header';
 
 interface WithChatProps {
