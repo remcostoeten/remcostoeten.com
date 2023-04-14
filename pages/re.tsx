@@ -7,6 +7,7 @@ export default function Menu() {
 	const [rotateY, setRotateY] = useState(45);
 
 	useEffect(() => {
+		document.body.classList.add('abstract');
 		const titleContainer = document.querySelector(
 			'.title-container',
 		) as HTMLElement;
@@ -44,8 +45,8 @@ export default function Menu() {
 			</div>
 			<div className='title-container'>
 				<h1>
-					<span>Full-Width Menu</span>
-					<br />& Depth Effect
+					<span>remcostoeten</span>
+					<br />I also don't know.
 				</h1>
 				<div className='circle'></div>
 			</div>

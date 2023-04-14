@@ -10,7 +10,6 @@ export default function HeaderNew() {
 	useEffect(() => {
 		const handleScroll = () => {
 			if (window.scrollY > 0) {
-				document.body.classList.add('scrolled');
 			} else {
 				document.body.classList.remove('scrolled');
 			}

@@ -1404,6 +1404,10 @@ input[type=text]:hover {
     opacity: 1;
   }
 }
+.abstract .container {
+  max-width: 100%;
+}
+
 .container {
   perspective: 1000px;
 }

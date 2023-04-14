@@ -10,6 +10,12 @@ $color--secondary: $lightred;
 // 	background-position: center;
 // 	background-repeat: no-repeat;
 // }
+.abstract {
+	.container {
+		max-width: 100%;
+	}
+}
+
 .container {
 	perspective: 1000px;
 }
