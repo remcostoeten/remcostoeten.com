@@ -1,16 +1,22 @@
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 import MessagePreview from './MessagePreview';
-import { getDownloadURL } from 'firebase/storage';
-import { storage, storageRef } from '@/utils/firebase';
+import { getDownloadURL, ref } from 'firebase/storage';
+import { storage } from '@/utils/firebase';
 const avatarSize = 45;
 
 export default function Friends() {
 	const [chats, setChats] = useState([]);
+	const yChatSummaries = getChatSummaries([yData[yData.length - 1]]);
+	const whatsappChatSummaries = getChatSummaries([
+		whatsappData[whatsappData.length - 1],
+	]);
+	const znewChatSummaries = getChatSummaries([znewData[znewData.length - 1]]);
+	const zoldChatSummaries = getChatSummaries([zoldData[zoldData.length - 1]]);
+
 	async function fetchJSONDataFromStorage(filename) {
 		try {
 			const downloadURL = await getDownloadURL(
-				storageRef(storage, filename),
+				ref(storage, filename), // Change this line
 			);
 			const response = await fetch(downloadURL);
 			const jsonData = await response.json();
@@ -20,6 +26,7 @@ export default function Friends() {
 			return [];
 		}
 	}
+
 	useEffect(() => {
 		async function fetchData() {
 			const yData = await fetchJSONDataFromStorage(
@@ -62,13 +69,6 @@ export default function Friends() {
 
 		return chatSummaries;
 	}
-
-	const yChatSummaries = getChatSummaries([yData[yData.length - 1]]);
-	const whatsappChatSummaries = getChatSummaries([
-		whatsappData[whatsappData.length - 1],
-	]);
-	const znewChatSummaries = getChatSummaries([znewData[znewData.length - 1]]);
-	const zoldChatSummaries = getChatSummaries([zoldData[zoldData.length - 1]]);
 
 	return (
 		<>

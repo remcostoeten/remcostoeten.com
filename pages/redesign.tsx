@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 		<>
 			<HeaderNew />
 			{/* <Background3D /> */}
-			{/* <MouseFollower /> */}
+			<MouseFollower />
 			{/* <ParticleBackground /> */}
 		</>
 	);
