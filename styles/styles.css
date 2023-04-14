@@ -1408,6 +1408,10 @@ body {
   position: relative;
 }
 
+.background {
+  background: linear-gradient(to bottom, #1b1030, #33122e);
+}
+
 body::after {
   content: ""; /* Add an empty content value */
   position: fixed; /* Set the position to fixed instead of absolute */
@@ -1434,6 +1438,53 @@ body::after {
     background-position: 0% 50%;
   }
 }
+#globeCanvas {
+  height: 100vh;
+}
+
+.container {
+  position: relative;
+  background-color: #040d21;
+  position: relative;
+  z-index: 10;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
+}
+
+.background-lights {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+.credits {
+  font-family: monospace;
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #aaa;
+  padding: 0.5rem 1rem 1rem 1rem;
+}
+
+a {
+  color: #fff;
+}
+
+.githublogo {
+  filter: brightness(100);
+}
+
 .header {
   display: flex;
   align-items: center;

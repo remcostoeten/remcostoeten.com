@@ -44,6 +44,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Loader isLoading={isLoading} />
+			<Header />
 			{showConfetti && (
 				<Confetti
 					width={window.innerWidth}
