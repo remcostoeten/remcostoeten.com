@@ -7,23 +7,23 @@ interface LoaderProps {
 export default function Loader({ isLoading }: LoaderProps) {
 	const [show, setShow] = useState(false);
 	const delay = 500; // Change this value to set the threshold (in milliseconds)
+	let timeout: NodeJS.Timeout | undefined = undefined;
 
 	useEffect(() => {
-		let timeout: NodeJS.Timeout;
-
 		if (isLoading) {
+			// eslint-disable-next-line react-hooks/exhaustive-deps
 			timeout = setTimeout(() => {
 				setShow(true);
 				document.body.classList.add('loading');
 			}, delay);
 		} else {
-			clearTimeout(timeout);
+			if (timeout) clearTimeout(timeout);
 			setShow(false);
 			document.body.classList.remove('loading');
 		}
 
 		return () => {
-			clearTimeout(timeout);
+			if (timeout) clearTimeout(timeout);
 		};
 	}, [isLoading]);
 

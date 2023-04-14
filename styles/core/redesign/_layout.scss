@@ -10,6 +10,14 @@ $color--secondary: $lightred;
 // 	background-position: center;
 // 	background-repeat: no-repeat;
 // }
+.container {
+	perspective: 1000px;
+}
+
+.title-container {
+	transform-style: preserve-3d;
+	transition: transform 0.5s ease-out;
+}
 
 body {
 	margin: 0;
@@ -51,15 +59,15 @@ body::after {
 	height: 100vh;
 }
 
-.container {
-	position: relative;
-	background-color: #040d21;
-	position: relative;
-	z-index: 10;
-	overflow: hidden;
-	align-items: center;
-	justify-content: center;
-}
+// .container {
+// 	position: relative;
+// 	background-color: #040d21;
+// 	position: relative;
+// 	z-index: 10;
+// 	overflow: hidden;
+// 	align-items: center;
+// 	justify-content: center;
+// }
 
 .background-lights {
 	position: absolute;

@@ -1,20 +1,21 @@
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame } from '@react-three/fiber';
 import {
-	Color,
 	BufferAttribute,
 	BufferGeometry,
 	PointsMaterial,
 	CanvasTexture,
+	Color,
+	ColorRepresentation,
 } from 'three';
-import { useMemo, useRef, useState } from 'react';
+import { useMemo, useState, useCallback } from 'react';
 import OrbitControls from './OrbitControls';
 
-const colors = {
+const colors: { [key: string]: ColorRepresentation } = {
 	purple: '#1b1030',
 	lightred: '#33122e',
 };
 
-const createRoundTexture = () => {
+const createRoundTexture = (): CanvasTexture => {
 	const canvas = document.createElement('canvas');
 	canvas.width = 64;
 	canvas.height = 64;
@@ -28,55 +29,71 @@ const createRoundTexture = () => {
 	return new CanvasTexture(canvas);
 };
 
-const Particles = () => {
-	const numParticles = 1000;
-	const particleSize = 0.1;
+type ParticlesProps = {
+	opacity: number;
+};
+
+const Particles = ({ opacity }: ParticlesProps): JSX.Element => {
+	const numParticles = 500;
+
 	const geometry = useMemo(() => {
 		const geom = new BufferGeometry();
 		const positions = new Float32Array(numParticles * 3);
+		const sizes = new Float32Array(numParticles);
 
 		for (let i = 0; i < numParticles * 3; i++) {
 			positions[i] = (Math.random() - 0.5) * 10;
 		}
 
+		for (let i = 0; i < numParticles; i++) {
+			sizes[i] = Math.random() * 0.15;
+		}
+
 		geom.setAttribute('position', new BufferAttribute(positions, 3));
+		geom.setAttribute('size', new BufferAttribute(sizes, 1));
 		return geom;
 	}, []);
 
 	const material = useMemo(() => {
 		return new PointsMaterial({
-			size: particleSize,
+			size: 0.1,
 			map: createRoundTexture(),
 			transparent: true,
-			opacity: 0.7,
+			opacity: opacity,
+			sizeAttenuation: true,
 		});
-	}, []);
+	}, [opacity]);
 
 	useFrame(() => {
 		const positions = geometry.getAttribute('position') as BufferAttribute;
 		const array = positions.array as Float32Array;
 
 		for (let i = 0; i < numParticles * 3; i += 3) {
-			const x = array[i];
-			const y = array[i + 1];
-			const z = array[i + 2];
-
-			array[i] += (Math.random() - 0.5) * 0.01;
-			array[i + 1] += (Math.random() - 0.5) * 0.01;
-			array[i + 2] += (Math.random() - 0.5) * 0.01;
+			array[i] += (Math.random() - 0.5) * 0.005;
+			array[i + 1] += (Math.random() - 0.5) * 0.005;
+			array[i + 2] += (Math.random() - 0.5) * 0.005;
 		}
-
 		positions.needsUpdate = true;
 	});
 
-	return <points geometry={geometry} material={material} />;
+	return (
+		<points>
+			<bufferGeometry attach='geometry' {...geometry} />
+			<pointsMaterial attach='material' {...material} />
+		</points>
+	);
 };
 
-const Background3D = () => {
+const Background3D = (): JSX.Element => {
+	const [opacity, setOpacity] = useState(0.7);
+
+	const handleMouseMove = useCallback((e: { clientX: number }) => {
+		const opacity = e.clientX / window.innerWidth;
+		setOpacity(opacity);
+	}, []);
 	return (
 		<div
 			style={{
-				position: 'absolute',
 				top: 0,
 				left: 0,
 				width: '100%',
@@ -89,15 +106,16 @@ const Background3D = () => {
 				camera={{ position: [0, 0, 5] }}
 				onCreated={({ gl }) => {
 					gl.setClearColor(new Color(colors.purple));
-				}}>
+				}}
+				onMouseMove={handleMouseMove}>
 				<OrbitControls
 					enableDamping
-					dampingFactor={0.2}
-					enableZoom={true}
+					dampingFactor={0.1}
+					enableZoom={false}
 					enableRotate={true}
 					rotateSpeed={-0.5}
 				/>
-				<Particles />
+				<Particles opacity={opacity} />
 			</Canvas>
 		</div>
 	);

@@ -1,7 +1,7 @@
 import { ReactNode, RefObject, createRef } from 'react';
 import { extend, useThree, useFrame } from '@react-three/fiber';
 import { OrbitControls as ThreeOrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { PerspectiveCamera } from 'three';
+import { PerspectiveCamera, WebGLRenderer } from 'three';
 
 extend({ OrbitControls: ThreeOrbitControls });
 
@@ -20,24 +20,28 @@ declare global {
 		interface IntrinsicElements {
 			orbitControls: {
 				ref?: RefObject<ThreeOrbitControls>;
-				args: [PerspectiveCamera, HTMLElement];
+				args: [PerspectiveCamera, WebGLRenderer['domElement']];
 			} & OrbitControlsProps;
 		}
 	}
 }
 
 const OrbitControls = (props: OrbitControlsProps) => {
-	const {
-		camera,
-		gl: { domElement },
-	} = useThree<{ camera: PerspectiveCamera }>();
+	const { camera, gl } = useThree<{
+		camera: PerspectiveCamera;
+		gl: WebGLRenderer;
+	}>();
 
 	const controls = createRef<ThreeOrbitControls>();
 
 	useFrame(() => controls.current?.update());
 
 	return (
-		<orbitControls ref={controls} args={[camera, domElement]} {...props} />
+		<orbitControls
+			ref={controls}
+			args={[camera, gl.domElement]}
+			{...props}
+		/>
 	);
 };
 

@@ -17,20 +17,17 @@ export default function App({ Component, pageProps }: AppProps) {
 	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 
-	Router.events.on('routeChangeStart', () => {
-		setIsLoading(true);
-	});
-
-	Router.events.on('routeChangeComplete', () => {
-		setIsLoading(false);
-	});
-
 	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false);
-		}, 20000);
+		// Add initial-load class to body element
+		document.body.classList.add('initial-load');
 
-		return () => clearTimeout(timer);
+		// Remove initial-load class from body element after 2 seconds
+		const timeout = setTimeout(() => {
+			document.body.classList.remove('initial-load');
+		}, 2000);
+
+		// Clean up the timeout on unmount
+		return () => clearTimeout(timeout);
 	}, []);
 
 	useEffect(() => {
@@ -44,7 +41,6 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<>
 			<Loader isLoading={isLoading} />
-			<Header />
 			{showConfetti && (
 				<Confetti
 					width={window.innerWidth}
@@ -52,7 +48,8 @@ export default function App({ Component, pageProps }: AppProps) {
 					numberOfPieces={200}
 				/>
 			)}
-			<ToastContainer /> <WipNotice />
+			<ToastContainer />
+			<WipNotice />
 			<div className={`main-content ${isLoading ? 'blur' : ''}`}>
 				<Component {...pageProps} />
 			</div>
