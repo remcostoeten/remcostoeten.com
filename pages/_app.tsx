@@ -8,7 +8,6 @@ import Confetti from 'react-confetti';
 import { useRouter } from 'next/router';
 import { Router } from 'next/router';
 import LoadingScreen from '@/components/ui-elements/LoadingScreen';
-import Header from '@/components/header/Header';
 import Loader from '@/components/ui-elements/Loader';
 
 export default function App({ Component, pageProps }: AppProps) {

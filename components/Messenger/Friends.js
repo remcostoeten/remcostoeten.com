@@ -28,7 +28,7 @@ export default function Friends() {
 	}
 
 	useEffect(() => {
-		async function fetchData() {
+		async function fetchData() {	
 			const yData = await fetchJSONDataFromStorage(
 				'/private-apis/data/y.json',
 			);
