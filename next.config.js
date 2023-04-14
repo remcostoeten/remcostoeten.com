@@ -1,10 +1,6 @@
 const withTM = require('next-transpile-modules')(['react-pdf', 'json-loader']);
-const { parsed: localEnv } = require('dotenv').config();
 
 module.exports = withTM({
-	publicRuntimeConfig: {
-		localEnv,
-	},
 	images: {
 		domains: ['lh3.googleusercontent.com'],
 	},

@@ -10,9 +10,7 @@ import {
 } from '@firebase/auth';
 import { getDownloadURL, ref } from '@firebase/storage';
 import getConfig from 'next/config';
-const {
-	publicRuntimeConfig: { localEnv },
-} = getConfig();
+const {} = getConfig();
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const firebaseConfig = {
