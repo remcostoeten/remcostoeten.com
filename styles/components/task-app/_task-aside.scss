@@ -4,130 +4,128 @@ $button-active-background: #323338;
 $nav-item-size: 48px;
 $icon-color: #5f6388;
 
-.todo {
-	aside {
+aside {
+	display: flex;
+	z-index: 3;
+	height: 100vh;
+
+	span {
 		display: flex;
-		z-index: 3;
-		height: 100vh;
+		align-items: center;
+		justify-content: center;
+		width: $nav-item-size;
+		height: $nav-item-size;
+		opacity: 1;
+		background-color: transparent;
+		border-radius: 50%;
+		box-sizing: inherit;
+		padding: 8px;
 
-		span {
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			width: $nav-item-size;
-			height: $nav-item-size;
+		&:not(:last-child) {
+			margin-bottom: 8px;
+		}
+
+		&.logo {
+			svg {
+				opacity: 1;
+			}
+		}
+
+		&.active {
+			svg {
+				opacity: 1;
+				color: #ec817b;
+			}
+		}
+
+		&:nth-child(odd) {
+			svg {
+				&:hover {
+					transform: rotate(-3deg);
+				}
+			}
+		}
+	}
+
+	svg {
+		font-size: 28px;
+		color: $icon-color;
+		cursor: pointer;
+
+		&:hover {
 			opacity: 1;
-			background-color: transparent;
-			border-radius: 50%;
-			box-sizing: inherit;
-			padding: 8px;
-
-			&:not(:last-child) {
-				margin-bottom: 8px;
-			}
-
-			&.logo {
-				svg {
-					opacity: 1;
-				}
-			}
-
-			&.active {
-				svg {
-					opacity: 1;
-					color: #ec817b;
-				}
-			}
-
-			&:nth-child(odd) {
-				svg {
-					&:hover {
-						transform: rotate(-3deg);
-					}
-				}
-			}
+			scale: 1.1;
+			transform: rotate(3deg);
 		}
+	}
 
-		svg {
-			font-size: 28px;
-			color: $icon-color;
-			cursor: pointer;
+	.nav {
+		display: flex;
+		flex-direction: column;
 
-			&:hover {
-				opacity: 1;
-				scale: 1.1;
-				transform: rotate(3deg);
-			}
-		}
-
-		.nav {
+		&__small {
 			display: flex;
+			padding: 16px 8px;
+			align-items: center;
 			flex-direction: column;
-
-			&__small {
-				display: flex;
-				padding: 16px 8px;
-				align-items: center;
-				flex-direction: column;
-				background-color: $nav-background;
-				justify-content: space-between;
-			}
-		}
-
-		h1 {
-			font-size: 30px;
-			font-weight: bold;
-			color: $white;
-			padding-bottom: 40px;
-		}
-
-		a {
-			color: $white;
-			opacity: 0.5;
-			display: flex;
+			background-color: $nav-background;
 			justify-content: space-between;
-			padding: relative;
-			font-weight: bold;
-			font-size: 16px;
-			width: 100%;
-			text-decoration: none;
-			margin-bottom: 30px;
 		}
+	}
 
-		h3 {
-			font-size: 16px;
-			font-weight: bold;
-			padding-bottom: 8px;
+	h1 {
+		font-size: 30px;
+		font-weight: bold;
+		color: $white;
+		padding-bottom: 40px;
+	}
+
+	a {
+		color: $white;
+		opacity: 0.5;
+		display: flex;
+		justify-content: space-between;
+		padding: relative;
+		font-weight: bold;
+		font-size: 16px;
+		width: 100%;
+		text-decoration: none;
+		margin-bottom: 30px;
+	}
+
+	h3 {
+		font-size: 16px;
+		font-weight: bold;
+		padding-bottom: 8px;
+		color: $white;
+	}
+
+	li,
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	li {
+		position: relative;
+		padding-left: 12px;
+		padding-bottom: 8px;
+		opacity: 0.5;
+		cursor: pointer;
+		font-size: 16px;
+		font-weight: 500;
+
+		&:before {
+			position: absolute;
+			content: '-';
+
 			color: $white;
+			left: 0;
 		}
 
-		li,
-		ul {
-			list-style: none;
-			padding: 0;
-			margin: 0;
-		}
-
-		li {
-			position: relative;
-			padding-left: 12px;
-			padding-bottom: 8px;
-			opacity: 0.5;
-			cursor: pointer;
-			font-size: 16px;
-			font-weight: 500;
-
-			&:before {
-				position: absolute;
-				content: '-';
-
-				color: $white;
-				left: 0;
-			}
-
-			&.active {
-				opacity: 1;
-			}
+		&.active {
+			opacity: 1;
 		}
 	}
 }

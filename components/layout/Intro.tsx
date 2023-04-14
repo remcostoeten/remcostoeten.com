@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React, { useEffect } from 'react';
 
 export default function Intro() {
@@ -18,6 +19,8 @@ export default function Intro() {
 						<br />
 						just some filler text
 						<br />
+						<Link href='redesign'>Redesign</Link>
+						<Link href='tasks'>todo</Link>
 					</span>
 				</div>
 				<div className='intro__heading mobile'>

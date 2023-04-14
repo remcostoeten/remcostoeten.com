@@ -31,16 +31,6 @@ export default function Index() {
 	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 	const [rememberMe, setRememberMe] = useState(true);
 
-	interface SigninModalProps {
-		onClose: () => void;
-		onSignIn: (
-			email: string,
-			password: string,
-			rememberMe: boolean,
-		) => void;
-		rememberMe: boolean;
-		setRememberMe: (value: boolean) => void;
-	}
 
 	const toggleTheme = () => {
 		if (document.body.classList.contains('theme-white')) {
@@ -206,7 +196,7 @@ export default function Index() {
 					onSignIn={(email, password, rememberMe) =>
 						signInUser(email, password, rememberMe)
 					}
-					setShowRegisterModal={function (show: boolean): void {
+					setShowRegisterModal={function (): void {
 						throw new Error('Function not implemented.');
 					}}
 				/>

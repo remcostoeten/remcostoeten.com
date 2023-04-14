@@ -1,0 +1,103 @@
+$purple: #1b1030;
+$lightred: #33122e;
+
+$color--primary: $purple;
+$color--secondary: $lightred;
+
+// .particles {
+// 	background-image: url('/bg.jpg');
+// 	background-size: cover;
+// 	background-position: center;
+// 	background-repeat: no-repeat;
+// }
+.container {
+	perspective: 1000px;
+}
+
+.title-container {
+	transform-style: preserve-3d;
+	transition: transform 0.5s ease-out;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+.background {
+	background: linear-gradient(to bottom, #1b1030, #33122e);
+}
+
+body::after {
+	content: ''; /* Add an empty content value */
+	position: fixed; /* Set the position to fixed instead of absolute */
+	top: 0;
+	left: 0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+}
+
+.p5Canvas {
+	display: block; /* Set the display property to block */
+}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		transform: rotate(5deg);
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+#globeCanvas {
+	height: 100vh;
+}
+
+// .container {
+// 	position: relative;
+// 	background-color: #040d21;
+// 	position: relative;
+// 	z-index: 10;
+// 	overflow: hidden;
+// 	align-items: center;
+// 	justify-content: center;
+// }
+
+.background-lights {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 200%;
+	transform: translate(-50%, -50%);
+	z-index: -1;
+}
+
+.credits {
+	font-family: monospace;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	align-content: center;
+	justify-content: center;
+	z-index: 20;
+	background-color: rgba(0, 0, 0, 0.3);
+	color: #aaa;
+	padding: 0.5rem 1rem 1rem 1rem;
+}
+
+a {
+	color: #fff;
+}
+
+.githublogo {
+	filter: brightness(100);
+}

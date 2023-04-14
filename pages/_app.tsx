@@ -1,19 +1,34 @@
 import '@/styles/styles.css';
 import type { AppProps } from 'next/app';
-import { LocaleProvider } from '@/components/LocaleContext';
 import { useEffect, useState } from 'react';
 import WipNotice from '@/components/ui-elements/WipAlert';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Confetti from 'react-confetti';
-import Header from '@/components/header/Header';
 import { useRouter } from 'next/router';
+import { Router } from 'next/router';
+import LoadingScreen from '@/components/ui-elements/LoadingScreen';
+import Header from '@/components/header/Header';
+import Loader from '@/components/ui-elements/Loader';
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [showConfetti, setShowConfetti] = useState(false);
 	const [open, setOpen] = useState(true);
 	const router = useRouter();
-	const showHeader = router.pathname !== '/tasks';
+	const [isLoading, setIsLoading] = useState(false);
+
+	useEffect(() => {
+		// Add initial-load class to body element
+		document.body.classList.add('initial-load');
+
+		// Remove initial-load class from body element after 2 seconds
+		const timeout = setTimeout(() => {
+			document.body.classList.remove('initial-load');
+		}, 2000);
+
+		// Clean up the timeout on unmount
+		return () => clearTimeout(timeout);
+	}, []);
 
 	useEffect(() => {
 		const popupDisplayed = localStorage.getItem('popupDisplayed');
@@ -25,19 +40,19 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
+			<Loader isLoading={isLoading} />
 			{showConfetti && (
 				<Confetti
 					width={window.innerWidth}
 					height={window.innerHeight}
 					numberOfPieces={200}
 				/>
-			)}{' '}
-			<ToastContainer />{' '}
-			<LocaleProvider>
-				<WipNotice />
-				{showHeader && <Header />}
-				<Component {...pageProps} setShowConfetti={setShowConfetti} />
-			</LocaleProvider>
+			)}
+			<ToastContainer />
+			<WipNotice />
+			<div className={`main-content ${isLoading ? 'blur' : ''}`}>
+				<Component {...pageProps} />
+			</div>
 		</>
 	);
 }
