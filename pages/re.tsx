@@ -1,11 +1,10 @@
+import React, { MouseEvent, useEffect, useState } from 'react';
 import SvgBlobs from '@/components/Homepage/SvgBlobs';
-import { useEffect, useState, MouseEventHandler } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 
-export default function Menu(): JSX.Element {
-	const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
-	const [rotateX, setRotateX] = useState<number>(-20);
-	const [rotateY, setRotateY] = useState<number>(45);
+export default function Menu() {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const [rotateX, setRotateX] = useState(-20);
+	const [rotateY, setRotateY] = useState(45);
 
 	useEffect(() => {
 		const titleContainer = document.querySelector(
@@ -20,46 +19,16 @@ export default function Menu(): JSX.Element {
 		}
 	}, [rotateX, rotateY]);
 
-	const handleMouseMove: MouseEventHandler<HTMLDivElement> = (event) => {
-		const intensity = 40; // adjust this to control the intensity of the effect
-		const mouseX = event.pageX;
-		const mouseY = event.pageY;
-		const menuContainer = document.querySelector(
-			'.menu-container',
-		) as HTMLElement;
-		const menuContainerRect = menuContainer.getBoundingClientRect();
-		const svgLeft = document.querySelector('.yellow-blob') as HTMLElement;
-		const svgLeftRect = svgLeft.getBoundingClientRect();
-		const svgRight = document.querySelector('.blob2') as HTMLElement;
-		const svgRightRect = svgRight.getBoundingClientRect();
-		const isInsideMenuContainer =
-			mouseX >= menuContainerRect.left &&
-			mouseX <= menuContainerRect.right &&
-			mouseY >= menuContainerRect.top &&
-			mouseY <= menuContainerRect.bottom;
-		const isInsideSvgLeft =
-			mouseX >= svgLeftRect.left &&
-			mouseX <= svgLeftRect.right &&
-			mouseY >= svgLeftRect.top &&
-			mouseY <= svgLeftRect.bottom;
-		const isInsideSvgRight =
-			mouseX >= svgRightRect.left &&
-			mouseX <= svgRightRect.right &&
-			mouseY >= svgRightRect.top &&
-			mouseY <= svgRightRect.bottom;
-		if (!isInsideMenuContainer && !isInsideSvgLeft && !isInsideSvgRight) {
-			const newX = -(mouseX / window.innerWidth - 0.5) * intensity;
-			const newY = (mouseY / window.innerHeight - 0.5) * intensity;
-			const body = document.querySelector('body') as HTMLElement;
-			if (body) {
-				body.style.transform = `rotateX(${newY}deg) rotateY(${newX}deg)`;
-			}
-		}
-	};
-
-	function toggleMenu(e: React.MouseEvent<HTMLAnchorElement>) {
+	function toggleMenu(e: MouseEvent<HTMLAnchorElement>) {
 		setIsMenuOpen(!isMenuOpen);
 		e.preventDefault();
+	}
+
+	function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
+		const newX = -(e.clientX / window.innerWidth - 0.5) * 15;
+		const newY = (e.clientY / window.innerHeight - 0.5) * 25;
+		setRotateX(newX);
+		setRotateY(newY);
 	}
 
 	return (
@@ -75,11 +44,12 @@ export default function Menu(): JSX.Element {
 			</div>
 			<div className='title-container'>
 				<h1>
-					<span>remcostoeten</span>
-					<br /> &amp; Just like you, i don't knoww.
+					<span>Full-Width Menu</span>
+					<br />& Depth Effect
 				</h1>
 				<div className='circle'></div>
 			</div>
+
 			<SvgBlobs />
 			<div className={`overlay ${isMenuOpen ? 'open' : ''}`} id='overlay'>
 				<nav className='overlay-menu'>
