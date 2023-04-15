@@ -12,7 +12,9 @@ $white: white;
 
 .todo {
 	background-color: $off-white;
-
+	.back-home {
+		display: none;
+	}
 	aside {
 		display: flex;
 		flex-direction: columns;
@@ -214,6 +216,24 @@ form h3 {
 
 @include mobile {
 	.todo {
+		.back-home {
+			color: #000;
+			display: flex;
+			align-items: center;
+		}
+
+		svg {
+			position: inherit;
+		}
+
+		&__inner {
+			flex-direction: column;
+		}
+
+		aside {
+			display: none;
+		}
+
 		.tasks {
 			flex-direction: column;
 

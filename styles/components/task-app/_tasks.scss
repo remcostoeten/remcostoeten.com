@@ -14,6 +14,16 @@ $color-primary: #ff7979;
 	width: 100%;
 }
 
+.list-view {
+	.tasks {
+		display: flex;
+		flex-direction: column;
+		&__lane {
+			width: 100%;
+		}
+	}
+}
+
 .tasks {
 	&__task {
 		margin-top: 8px;
@@ -49,16 +59,6 @@ $color-primary: #ff7979;
 				font-size: 30px;
 				color: $color-primary;
 			}
-		}
-	}
-
-	&__lane {
-		.inner {
-			padding: $spacing-s;
-		}
-
-		&:not(:last-child) {
-			margin-right: 16px;
 		}
 	}
 

@@ -13,6 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
 import DraggableContainer from '@/components/DraggableContainer';
 import TaskModal from '@/components/Task/TaskModal';
+import { ArrowBack } from '@mui/icons-material';
+import Link from 'next/link';
 
 export default function TaskWrapper() {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -126,6 +128,10 @@ export default function TaskWrapper() {
 			{/* <div className='container'><TaskCategories /></div> */}
 			<div className='todo todo-wrapper'>
 				<div className='todo__inner'>
+					<Link href='/' className='back-home'>
+						<ArrowBack />
+						Back home
+					</Link>
 					<main>
 						<div className='todo__header'>
 							<h2>
@@ -203,11 +209,10 @@ export default function TaskWrapper() {
 								setEditedTask(null);
 							}}
 							onSubmit={addTask}
-							editedTask={editedTask} 
-		 				/>
+							editedTask={editedTask}
+						/>
 
 						<div className={`view-container ${view}-view`}>
-							{/* Board View */}
 							{view === 'board' && (
 								<div className='tasks'>
 									<DraggableContainer
@@ -217,10 +222,15 @@ export default function TaskWrapper() {
 									/>
 								</div>
 							)}
-							{/* List View */}
 							{view === 'list' && (
 								<div className='list-view'>
-									{/* List view content */}
+									<div className='tasks'>
+										<DraggableContainer
+											tasks={tasks}
+											updateTask={updateTask}
+											removeTask={removeTask}
+										/>
+									</div>
 								</div>
 							)}
 						</div>

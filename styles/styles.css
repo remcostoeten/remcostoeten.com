@@ -3326,6 +3326,9 @@ body {
 .todo {
   background-color: #f3f4f8;
 }
+.todo .back-home {
+  display: none;
+}
 .todo aside {
   display: flex;
   flex-direction: columns;
@@ -3494,6 +3497,20 @@ form h3 {
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
+  .todo .back-home {
+    color: #000;
+    display: flex;
+    align-items: center;
+  }
+  .todo svg {
+    position: inherit;
+  }
+  .todo__inner {
+    flex-direction: column;
+  }
+  .todo aside {
+    display: none;
+  }
   .todo .tasks {
     flex-direction: column;
   }
@@ -4254,6 +4271,14 @@ aside li.active {
   width: 100%;
 }
 
+.list-view .tasks {
+  display: flex;
+  flex-direction: column;
+}
+.list-view .tasks__lane {
+  width: 100%;
+}
+
 .tasks__task {
   margin-top: 8px;
   background-color: white;
@@ -4284,12 +4309,6 @@ aside li.active {
   margin-right: 8px;
   font-size: 30px;
   color: #ff7979;
-}
-.tasks__lane .inner {
-  padding: 8px;
-}
-.tasks__lane:not(:last-child) {
-  margin-right: 16px;
 }
 .tasks .task {
   height: 100%;
