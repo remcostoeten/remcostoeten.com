@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-import Image from 'next/image';
+import SvgLines from '@/components/Homepage/svg/SvgLines';
+import GradientBg from '../Homepage/svg/GradientBg';
+import BlobOne from '../Homepage/svg/BlobOne';
+import ParticleBackground from '../Homepage/ParticleBackground';
+import MouseFollower from '../Homepage/MouseFollower';
 
 const Toggle: React.FC = () => {
 	const toggleRef = useRef<HTMLInputElement>(null);
@@ -20,8 +24,12 @@ const Toggle: React.FC = () => {
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
+		if (!menuOpen) {
+			document.body.classList.add('offcanvas-open');
+		} else {
+			document.body.classList.remove('offcanvas-open');
+		}
 	};
-
 	return (
 		<>
 			<label className='toggle'>
@@ -51,12 +59,14 @@ const Toggle: React.FC = () => {
 
 			{menuOpen && (
 				<div className='offcanvas-menu'>
-					<ul>
-						<li>Menu Item 1</li>
-						<li>Menu Item 2</li>
-						<li>Menu Item 3</li>
-						<li>Menu Item 4</li>
-					</ul>
+					<div className='offcanvas-menu__menu'>
+						<ul>
+							<li>Menu Item 1</li>
+							<li>Menu Item 2</li>
+							<li>Menu Item 3</li>
+							<li>Menu Item 4</li>
+						</ul>
+					</div>
 				</div>
 			)}
 		</>

@@ -2468,8 +2468,45 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
   padding: 16px;
 }
 
+.offcanvas-open .offcanvas-menu {
+  animation: menuOpen 400ms forwards ease-in;
+}
+@keyframes menuOpen {
+  0% {
+    background-color: black;
+    scale: 1;
+  }
+  100% {
+    scale: 100;
+    background-color: black;
+  }
+}
+.offcanvas-menu {
+  position: absolute;
+  width: 33px;
+  height: 33px;
+  border-radius: 50%;
+  background-color: #121212;
+  top: 0;
+  scale: 1;
+  transition: 350ms ease all;
+  right: 17px;
+  z-index: 5;
+}
+
+@keyframes showMenu {
+  0% {
+    opacity: 0;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    background-color: red;
+  }
+}
 .header .toggle {
-  scale: 0.7;
   display: block;
   cursor: pointer;
 }
@@ -2576,18 +2613,6 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
 }
 .header .toggle input:checked + div svg:nth-child(3) {
   transform: rotate(270deg);
-}
-
-html {
-  box-sizing: border-box;
-  -webkit-font-smoothing: antialiased;
-}
-
-* {
-  box-sizing: inherit;
-}
-*:before, *:after {
-  box-sizing: inherit;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
