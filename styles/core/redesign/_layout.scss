@@ -1,8 +1,137 @@
 $purple: #1b1030;
 $lightred: #33122e;
-
+$black: #121212;
 $color--primary: $purple;
 $color--secondary: $lightred;
+
+.blob-container {
+	// animation: float 5s ease-in-out infinite;
+}
+
+.blob {
+	&__one {
+	}
+}
+
+.landing {
+	.blobThree {
+		position: absolute;
+		left: -572px;
+		top: -150px;
+	}
+	svg {
+		position: absolute;
+		&:first-child {
+			width: 100vw;
+			height: 100vh;
+			transform: rotate(90deg);
+			left: -150px;
+		}
+
+		&:nth-child(2) {
+			left: -340px;
+			top: -150px;
+		}
+	}
+}
+
+@keyframes float {
+	0% {
+		transform: translate(-50%, -50%) translate3d(0, 0, 0);
+	}
+	50% {
+		transform: translate(-50%, -50%) translate3d(20px, 20px, 20px);
+	}
+	100% {
+		transform: translate(-50%, -50%) translate3d(0, 0, 0);
+	}
+}
+
+.svg-blobs {
+	width: 100vw;
+}
+.hover-effect {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 100%;
+	height: 100%;
+	transform: translate(-50%, -50%) translateZ(-1px);
+	transition: transform 0.3s ease-out;
+	pointer-events: none;
+}
+.landing {
+	background-color: $black;
+	position: relative;
+
+	&__inner {
+		position: relative;
+		perspective: 1000px;
+	}
+
+	&:after {
+		content: '';
+		background: linear-gradient(
+			141deg,
+			rgba(53, 55, 90, 1) 0%,
+			rgba(122, 68, 138, 1) 13%,
+			rgba(115, 57, 121, 1) 32%,
+			rgba(25, 25, 25, 1) 100%
+		);
+		opacity: 0.8;
+		filter: blur(100px);
+		transform: rotate(-17.38deg);
+		position: absolute;
+		top: -10%;
+		left: -10%;
+		width: 40%;
+		height: 40%;
+		animation: lavalamp 10s ease-in-out infinite;
+	}
+}
+.blob-container {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	animation: float 5s ease-in-out infinite;
+
+	svg {
+		width: 1500px;
+		position: absolute;
+		top: 0;
+	}
+}
+
+@keyframes float {
+	0% {
+		transform: translate(-50%, -50%) translate3d(0, 0, 0);
+	}
+	50% {
+		transform: translate(-50%, -50%) translate3d(20px, 20px, 20px);
+	}
+	100% {
+		transform: translate(-50%, -50%) translate3d(0, 0, 0);
+	}
+}
+
+@keyframes lavalamp {
+	0% {
+		transform: rotate(-17.38deg) translate(-5%, -5%);
+	}
+	25% {
+		transform: rotate(-17.38deg) translate(5%, 5%);
+	}
+	50% {
+		transform: rotate(-17.38deg) translate(-5%, 5%);
+	}
+	75% {
+		transform: rotate(-17.38deg) translate(5%, -5%);
+	}
+	100% {
+		transform: rotate(-17.38deg) translate(-5%, -5%);
+	}
+}
 
 // .particles {
 // 	background-image: url('/bg.jpg');
@@ -14,6 +143,15 @@ $color--secondary: $lightred;
 	.container {
 		max-width: 100%;
 	}
+}
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	background: linear-gradient(to bottom right, #00b4d8, #48cae4);
 }
 
 .container {
