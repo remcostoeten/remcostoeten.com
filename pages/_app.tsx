@@ -9,6 +9,11 @@ import { useRouter } from 'next/router';
 import { Router } from 'next/router';
 import LoadingScreen from '@/components/ui-elements/LoadingScreen';
 import Loader from '@/components/ui-elements/Loader';
+import BlobOne from '@/components/Homepage/svg/BlobOne';
+import SvgLines from '@/components/Homepage/svg/SvgLines';
+import GradientBg from '@/components/Homepage/svg/GradientBg';
+import HeaderNew from '@/components/header/HeaderNew';
+import SvgAbstractLines from '@/components/Homepage/svg/SvgLines';
 
 export default function App({ Component, pageProps }: AppProps) {
 	const [showConfetti, setShowConfetti] = useState(false);
@@ -49,6 +54,12 @@ export default function App({ Component, pageProps }: AppProps) {
 			)}
 			<ToastContainer />
 			<WipNotice />
+			{/* <SvgLines /> */}
+			{/* <SvgAbstractLines /> */}
+			<div className='blob'>
+				<BlobOne />
+			</div>
+			<HeaderNew />
 			<div className={`main-content ${isLoading ? 'blur' : ''}`}>
 				<Component {...pageProps} />
 			</div>

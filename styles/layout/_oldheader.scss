@@ -91,14 +91,6 @@
 		opacity: 1;
 	}
 
-	&__inner {
-		display: flex;
-		width: 100%;
-
-		align-items: center;
-		justify-content: space-between;
-	}
-
 	&__user-name {
 		display: flex;
 		flex-direction: column;

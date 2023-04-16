@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 const Toggle: React.FC = () => {
 	const toggleRef = useRef<HTMLInputElement>(null);
+	const [menuOpen, setMenuOpen] = useState(false);
 
 	useEffect(() => {
 		const toggle = toggleRef.current;
@@ -17,10 +18,14 @@ const Toggle: React.FC = () => {
 		};
 	}, []);
 
+	const handleToggle = () => {
+		setMenuOpen(!menuOpen);
+	};
+
 	return (
 		<>
 			<label className='toggle'>
-				<input type='checkbox' ref={toggleRef} />
+				<input type='checkbox' ref={toggleRef} onClick={handleToggle} />
 				<div>
 					<div>
 						<span></span>
@@ -43,6 +48,17 @@ const Toggle: React.FC = () => {
 					<path d='M22,22 L2,22 C2,11 11,2 22,2 C33,2 42,11 42,22'></path>
 				</symbol>
 			</svg>
+
+			{menuOpen && (
+				<div className='offcanvas-menu'>
+					<ul>
+						<li>Menu Item 1</li>
+						<li>Menu Item 2</li>
+						<li>Menu Item 3</li>
+						<li>Menu Item 4</li>
+					</ul>
+				</div>
+			)}
 		</>
 	);
 };

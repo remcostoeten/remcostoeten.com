@@ -1404,6 +1404,50 @@ input[type=text]:hover {
     opacity: 1;
   }
 }
+body {
+  background: linear-gradient(145deg, rgb(253, 178, 212) 0%, rgb(115, 36, 181) 39%, rgb(74, 30, 233) 100%);
+  margin: 0;
+  height: 100%;
+  position: relative;
+  background-size: 150% 150%;
+}
+
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: inherit;
+  filter: blur(0);
+  z-index: -1;
+  animation: body-test 2s ease-in-out infinite;
+}
+
+@keyframes body-background {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+@keyframes body-test {
+  0% {
+    filter: blur(0);
+  }
+  50% {
+    filter: blur(1px);
+  }
+  100% {
+    filter: blur(0);
+  }
+}
+.landing {
+  width: 100%;
+  height: 100vh;
+}
 .landing .blobThree {
   position: absolute;
   left: -572px;
@@ -1608,11 +1652,57 @@ a {
   filter: brightness(100);
 }
 
-body {
-  background: linear-gradient(to top, #7b00e0, #ff006a);
-  margin: 0;
-  height: 100%;
-  overflow: hidden;
+.header {
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 100;
+  width: 100%;
+  padding: 20px 0;
+  background-color: transparent;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  transition: 0.5s;
+}
+.header__inner {
+  width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  transition: width 0.5s ease-in-out;
+}
+.header__left svg {
+  width: 200px;
+}
+.header.scrolled {
+  position: fixed;
+  top: 0;
+}
+.header.scrolled:after {
+  opacity: 0;
+}
+.header.scrolled .header__inner {
+  padding: 0 24px;
+  width: 100%;
+}
+.header:after {
+  content: "";
+  transition: 0.5s ease all;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1024px;
+  height: 1px;
+  opacity: 1;
+  background: linear-gradient(90deg, transparent, rgb(255, 255, 255), transparent);
 }
 
 .container {
@@ -1620,10 +1710,6 @@ body {
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
-}
-
-.toggle {
-  margin-top: 24px;
 }
 
 .menu-container {
@@ -1805,6 +1891,49 @@ h1 span {
   z-index: -10;
 }
 
+.blob__one svg {
+  position: absolute;
+  right: -379px;
+  top: 190px;
+  height: 1000px;
+}
+.blob__one .child {
+  filter: blur(5px);
+  scale: 1.1;
+}
+
+@keyframes warp {
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  50% {
+    transform: scale(1.02) translate(2px, 2px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
+}
+.svg-abstract-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.line-animation {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  animation: drawLine 10s infinite alternate;
+}
+
+@keyframes drawLine {
+  0% {
+    stroke-dashoffset: 1000;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
 .intro {
   font-family: "Mark Pro", sans-serif;
   color: #fff;
@@ -2339,19 +2468,20 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
   padding: 16px;
 }
 
-.toggle {
+.header .toggle {
+  scale: 0.7;
   display: block;
   cursor: pointer;
 }
-.toggle input {
+.header .toggle input {
   display: none;
 }
-.toggle input + div {
+.header .toggle input + div {
   width: 20px;
   height: 14px;
   position: relative;
 }
-.toggle input + div div {
+.header .toggle input + div div {
   position: absolute;
   left: 0;
   top: 0;
@@ -2359,25 +2489,25 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
   bottom: 0;
   transition: transform 0.5s ease;
 }
-.toggle input + div div span {
+.header .toggle input + div div span {
   display: block;
   position: absolute;
   left: 0;
   right: 0;
 }
-.toggle input + div div span:first-child {
+.header .toggle input + div div span:first-child {
   top: 0;
 }
-.toggle input + div div span:first-child:before, .toggle input + div div span:first-child:after {
+.header .toggle input + div div span:first-child:before, .header .toggle input + div div span:first-child:after {
   top: 0;
 }
-.toggle input + div div span:last-child {
+.header .toggle input + div div span:last-child {
   bottom: 0;
 }
-.toggle input + div div span:last-child:before, .toggle input + div div span:last-child:after {
+.header .toggle input + div div span:last-child:before, .header .toggle input + div div span:last-child:after {
   bottom: 0;
 }
-.toggle input + div div span:before, .toggle input + div div span:after {
+.header .toggle input + div div span:before, .header .toggle input + div div span:after {
   content: "";
   display: block;
   width: 47%;
@@ -2388,17 +2518,17 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
   -webkit-backface-visibility: hidden;
   transition: transform 0.5s ease, border-radius 0.3s ease, background 0.4s ease;
 }
-.toggle input + div div span:before {
+.header .toggle input + div div span:before {
   left: 0;
   transform-origin: 0 50%;
   transform: translate(1px, 0) scaleX(1.1);
 }
-.toggle input + div div span:after {
+.header .toggle input + div div span:after {
   right: 0;
   transform-origin: 100% 50%;
   transform: translate(-1px, 0) scaleX(1.1);
 }
-.toggle input + div svg {
+.header .toggle input + div svg {
   display: block;
   fill: none;
   stroke: #fff;
@@ -2417,34 +2547,34 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
   transform: scale(1);
   transition: stroke-dashoffset 0.5s ease, stroke-dasharray 0.6s ease, transform 0.5s ease, stroke 0.4s ease;
 }
-.toggle input + div svg:nth-child(3) {
+.header .toggle input + div svg:nth-child(3) {
   transform: rotate(180deg) scale(1);
 }
-.toggle input:checked + div div {
+.header .toggle input:checked + div div {
   transform: rotate(90deg);
 }
-.toggle input:checked + div div span:before, .toggle input:checked + div div span:after {
+.header .toggle input:checked + div div span:before, .header .toggle input:checked + div div span:after {
   background: #fff;
 }
-.toggle input:checked + div div span:first-child:before {
+.header .toggle input:checked + div div span:first-child:before {
   transform: rotate(45deg) translate(2.2px, -3px) scaleX(1.05);
 }
-.toggle input:checked + div div span:first-child:after {
+.header .toggle input:checked + div div span:first-child:after {
   transform: rotate(-45deg) translate(-2.2px, -3px) scaleX(1.05);
 }
-.toggle input:checked + div div span:last-child:before {
+.header .toggle input:checked + div div span:last-child:before {
   transform: rotate(-45deg) translate(2.2px, 3px) scaleX(1.05);
 }
-.toggle input:checked + div div span:last-child:after {
+.header .toggle input:checked + div div span:last-child:after {
   transform: rotate(45deg) translate(-2.2px, 3px) scaleX(1.05);
 }
-.toggle input:checked + div svg {
+.header .toggle input:checked + div svg {
   stroke-dashoffset: 62;
   stroke-dasharray: 0 82.801 62 82.801;
   transform: rotate(90deg);
   stroke: #fff;
 }
-.toggle input:checked + div svg:nth-child(3) {
+.header .toggle input:checked + div svg:nth-child(3) {
   transform: rotate(270deg);
 }
 
@@ -2458,26 +2588,6 @@ html {
 }
 *:before, *:after {
   box-sizing: inherit;
-}
-
-body {
-  min-height: 100vh;
-  font-family: Roboto, Arial;
-  color: #adafb6;
-  background: #5628ee;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-body .dribbble {
-  position: fixed;
-  display: block;
-  right: 24px;
-  bottom: 24px;
-}
-body .dribbble img {
-  display: block;
-  width: 76px;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {

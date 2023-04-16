@@ -13,7 +13,7 @@ const ParticleBackground = dynamic(
 const Home: NextPage = () => {
 	return (
 		<>
-			<HeaderNew />
+			{/* <HeaderNew /> */}
 			{/* <Background3D /> */}
 			<MouseFollower />
 			{/* <ParticleBackground /> */}

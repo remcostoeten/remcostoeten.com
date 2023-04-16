@@ -3,17 +3,60 @@ $lightred: #33122e;
 $black: #121212;
 $color--primary: $purple;
 $color--secondary: $lightred;
-
-.blob-container {
-	// animation: float 5s ease-in-out infinite;
+body {
+	background: linear-gradient(
+		145deg,
+		rgba(253, 178, 212, 1) 0%,
+		rgba(115, 36, 181, 1) 39%,
+		rgba(74, 30, 233, 1) 100%
+	);
+	margin: 0;
+	height: 100%;
+	position: relative;
+	// animation: body-background 12s ease infinite,
+	// body-test 15s ease-in-out infinite;
+	background-size: 150% 150%;
 }
 
-.blob {
-	&__one {
+body::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: inherit;
+	filter: blur(0);
+	z-index: -1;
+	animation: body-test 2s ease-in-out infinite;
+}
+
+@keyframes body-background {
+	0% {
+		background-position: 0%;
+	}
+	100% {
+		background-position: 100%;
 	}
 }
 
+@keyframes body-test {
+	0% {
+		filter: blur(0);
+	}
+
+	50% {
+		filter: blur(1px);
+	}
+
+	100% {
+		filter: blur(0);
+	}
+}
 .landing {
+	width: 100%;
+	height: 100vh;
+
 	.blobThree {
 		position: absolute;
 		left: -572px;

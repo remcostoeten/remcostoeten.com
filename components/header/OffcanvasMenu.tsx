@@ -1,143 +1,41 @@
-//codepen.io/ifebronr/pen/wvWapGO
-
 import Link from 'next/link';
-import CancelIcon from '@mui/icons-material/Cancel';
-import React, { useEffect, useState } from 'react';
-import {
-	CancelOutlined,
-	Email,
-	LogoutOutlined,
-	WhatsApp,
-} from '@mui/icons-material';
-import { auth, logout, signInWithGoogle } from '@/utils/firebase';
-import { useMediaQuery } from '@mui/material';
-import SignupLink from './SignupLink';
-function bodyClass({}) {}
+import React, { useState, useEffect } from 'react';
+import SvgLogo from './SvgLogo';
+import { HamburgerToggle } from './HamburgerToggle';
+import Toggle from './Toggle';
 
-function OffcanvasMenu() {
-	const isMobile = useMediaQuery('(max-width: 768px)');
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+export default function HeaderNew() {
 	const [menuOpen, setMenuOpen] = useState(false);
-	const [size, setSize] = useState({
-		width: 0,
-		height: 0,
-	});
+	const [scrolled, setScrolled] = useState(false);
 
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			if (user) {
-				setIsLoggedIn(true);
+		const handleScroll = () => {
+			if (window.scrollY > 0) {
+				setScrolled(true);
 			} else {
-				setIsLoggedIn(false);
+				setScrolled(false);
 			}
-		});
+		};
+		window.addEventListener('scroll', handleScroll);
 		return () => {
-			unsubscribe();
+			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
-
-	useEffect(() => {
-		const handleResize = () => {
-			setSize({
-				width: window.innerWidth,
-				height: window.innerHeight,
-			});
-		};
-		window.addEventListener('resize', handleResize);
-
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
-
-	useEffect(() => {
-		if (size.width > 768 && menuOpen) {
-			setMenuOpen(false);
-		}
-	}, [size.width, menuOpen]);
-
-	const menuToggleHandler = () => {
-		setMenuOpen((p: any) => !p);
-		document.body.classList.add('menuOpen');
-	};
-	useEffect(() => {
-		if (menuOpen === false) {
-			document.body.classList.remove('menuOpen');
-		}
-	});
-	function handleSignInButtonClick(
-		event: React.MouseEvent<HTMLDivElement, MouseEvent>,
-	): void {
-		throw new Error('Function not implemented.');
-	}
 
 	return (
-		<div className='header__content'>
-			<nav
-				className={`${'header__content__nav'} 
-			${menuOpen && size.width < 768 ? `${'isMenu'}` : ''} 
-			}`}></nav>
-
-			<div className='offcanvas'>
-				{!menuOpen ? (
-					<div className='hamburger' onClick={menuToggleHandler}>
-						<div className='hamburger__line'></div>
-						<div className='hamburger__line'></div>
-						<div className='hamburger__line'></div>
-					</div>
-				) : (
-					<>
-						<div className='close' onClick={menuToggleHandler}>
-							<div className='close__line'></div>
-						</div>
-						<div className='offcanvas__inner'>
-							<div className='header__offcanvas'>
-								<div
-									className='header__offcanvas__inner'
-									onClick={menuToggleHandler}>
-									<div className='header__close'>
-										<CancelOutlined />
-									</div>
-
-									<Link href='/message-history'>
-										Messenger
-									</Link>
-									<Link href='/tasks'>Todo app</Link>
-									<Link href='/whatsapp'>Chat</Link>
-									<Link
-										href='https://github.com/remcostoeten/'
-										target='_blank'
-										rel='noreferrer'>
-										Github
-									</Link>
-								</div>
-								<div className='actions'>
-									<a href='https://wa.me/31636590707'>
-										<WhatsApp />
-									</a>
-									<a
-										href='mailto:remcostoeten@hotmail.com'
-										target='_blank'
-										rel='noreferrer'>
-										<Email />
-									</a>
-								</div>
-							</div>
-						</div>
-						{isLoggedIn ? (
-							<>
-								<a
-									className='logout'
-									onClick={() => auth.signOut()}>
-									<LogoutOutlined />
-								</a>
-							</>
-						) : (
-							<SignupLink />
-						)}{' '}
-					</>
-				)}
+		<div className={`header ${scrolled ? 'scrolled' : ''}`}>
+			<div className='inner'>
+				<div className='left'>
+					<Link href='/'>
+						<SvgLogo />
+					</Link>
+				</div>
+				<div>
+					<Toggle />
+					<HamburgerToggle isOpen={menuOpen} onToggle={setMenuOpen} />
+					{menuOpen && <nav>{/* Add your menu items here */}</nav>}
+				</div>
 			</div>
 		</div>
 	);
 }
-
-export default OffcanvasMenu;

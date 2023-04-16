@@ -8,16 +8,84 @@ $aqua: #66e6ff;
 $yellow: #ffc901;
 $font: 'Titan One', san-serif;
 
+$header-height: 70px;
+
 @mixin base-font($size) {
 	font-size: $size;
 	font-family: $font;
 }
 
-body {
-	background: linear-gradient(to top, $purple, $pink);
-	margin: 0;
-	height: 100%;
-	overflow: hidden;
+// body {
+// 	background: linear-gradient(to top, $purple, $pink);
+// 	margin: 0;
+// 	height: 100%;
+// 	overflow: hidden;
+// }
+
+.header {
+	position: fixed;
+	left: 50%;
+	transform: translate(-50%, 0);
+	z-index: 100;
+	width: 100%;
+	padding: 20px 0;
+	background-color: transparent;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	padding: $spacing-m 0;
+	transition: 0.5s;
+
+	&__inner {
+		width: 1024px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		position: relative;
+		transition: width 0.5s ease-in-out;
+	}
+
+	&__left {
+		svg {
+			width: 200px;
+		}
+	}
+
+	&.scrolled {
+		position: fixed;
+		top: 0;
+
+		&:after {
+			opacity: 0;
+		}
+
+		.header__inner {
+			padding: 0 $spacing;
+			width: 100%;
+		}
+	}
+
+	&:after {
+		content: '';
+		transition: 0.5s ease all;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 1024px;
+		height: 1px;
+		opacity: 1;
+		background: linear-gradient(
+			90deg,
+			transparent,
+			rgba(255, 255, 255, 1),
+			transparent
+		);
+	}
 }
 
 .container {
@@ -25,10 +93,6 @@ body {
 	height: 100vh;
 	margin: 0 auto;
 	overflow: hidden;
-}
-
-.toggle {
-	margin-top: $spacing;
 }
 
 .menu-container {
