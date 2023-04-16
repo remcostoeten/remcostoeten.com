@@ -1404,8 +1404,126 @@ input[type=text]:hover {
     opacity: 1;
   }
 }
+.landing .blobThree {
+  position: absolute;
+  left: -572px;
+  top: -150px;
+}
+.landing svg {
+  position: absolute;
+}
+.landing svg:first-child {
+  width: 100vw;
+  height: 100vh;
+  transform: rotate(90deg);
+  left: -150px;
+}
+.landing svg:nth-child(2) {
+  left: -340px;
+  top: -150px;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(-50%, -50%) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translate3d(20px, 20px, 20px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate3d(0, 0, 0);
+  }
+}
+.svg-blobs {
+  width: 100vw;
+}
+
+.hover-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%) translateZ(-1px);
+  transition: transform 0.3s ease-out;
+  pointer-events: none;
+}
+
+.landing {
+  background-color: #121212;
+  position: relative;
+}
+.landing__inner {
+  position: relative;
+  perspective: 1000px;
+}
+.landing:after {
+  content: "";
+  background: linear-gradient(141deg, rgb(53, 55, 90) 0%, rgb(122, 68, 138) 13%, rgb(115, 57, 121) 32%, rgb(25, 25, 25) 100%);
+  opacity: 0.8;
+  filter: blur(100px);
+  transform: rotate(-17.38deg);
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 40%;
+  height: 40%;
+  animation: lavalamp 10s ease-in-out infinite;
+}
+
+.blob-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float 5s ease-in-out infinite;
+}
+.blob-container svg {
+  width: 1500px;
+  position: absolute;
+  top: 0;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(-50%, -50%) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate(-50%, -50%) translate3d(20px, 20px, 20px);
+  }
+  100% {
+    transform: translate(-50%, -50%) translate3d(0, 0, 0);
+  }
+}
+@keyframes lavalamp {
+  0% {
+    transform: rotate(-17.38deg) translate(-5%, -5%);
+  }
+  25% {
+    transform: rotate(-17.38deg) translate(5%, 5%);
+  }
+  50% {
+    transform: rotate(-17.38deg) translate(-5%, 5%);
+  }
+  75% {
+    transform: rotate(-17.38deg) translate(5%, -5%);
+  }
+  100% {
+    transform: rotate(-17.38deg) translate(-5%, -5%);
+  }
+}
 .abstract .container {
   max-width: 100%;
+}
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(to bottom right, #00b4d8, #48cae4);
 }
 
 .container {
@@ -1502,6 +1620,10 @@ body {
   height: 100vh;
   margin: 0 auto;
   overflow: hidden;
+}
+
+.toggle {
+  margin-top: 24px;
 }
 
 .menu-container {
@@ -1653,11 +1775,7 @@ h1 span {
 }
 
 .blob {
-  animation: blobby 4s infinite;
-}
-
-.blob2 {
-  animation: blobby2 6s infinite;
+  scale: 1;
 }
 
 @keyframes blobby {
@@ -1671,28 +1789,12 @@ h1 span {
     transform: scale(1);
   }
 }
-@keyframes blobby2 {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.18);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-svg {
-  position: absolute;
-  top: 0;
-}
-
 #svg-right {
   display: block;
   fill: #7b00e0;
   opacity: 0.5;
   right: 0;
-  width: 60%;
+  width: 100%;
   z-index: -10;
 }
 
@@ -1703,18 +1805,6 @@ svg {
   z-index: -10;
 }
 
-@media all and (max-width: 980px) {
-  h1 {
-    font-size: 3em;
-    font-family: "Titan One", san-serif;
-  }
-}
-@media all and (max-width: 480px) {
-  h1 {
-    font-size: 2em;
-    font-family: "Titan One", san-serif;
-  }
-}
 .intro {
   font-family: "Mark Pro", sans-serif;
   color: #fff;
@@ -2247,6 +2337,147 @@ body :not(.chat-v2) .private-chat .chat .bubble__message:after {
 .chatv2 .search-drawer {
   width: 300px;
   padding: 16px;
+}
+
+.toggle {
+  display: block;
+  cursor: pointer;
+}
+.toggle input {
+  display: none;
+}
+.toggle input + div {
+  width: 20px;
+  height: 14px;
+  position: relative;
+}
+.toggle input + div div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: transform 0.5s ease;
+}
+.toggle input + div div span {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.toggle input + div div span:first-child {
+  top: 0;
+}
+.toggle input + div div span:first-child:before, .toggle input + div div span:first-child:after {
+  top: 0;
+}
+.toggle input + div div span:last-child {
+  bottom: 0;
+}
+.toggle input + div div span:last-child:before, .toggle input + div div span:last-child:after {
+  bottom: 0;
+}
+.toggle input + div div span:before, .toggle input + div div span:after {
+  content: "";
+  display: block;
+  width: 47%;
+  height: 2px;
+  border-radius: 1px;
+  background: #fff;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  transition: transform 0.5s ease, border-radius 0.3s ease, background 0.4s ease;
+}
+.toggle input + div div span:before {
+  left: 0;
+  transform-origin: 0 50%;
+  transform: translate(1px, 0) scaleX(1.1);
+}
+.toggle input + div div span:after {
+  right: 0;
+  transform-origin: 100% 50%;
+  transform: translate(-1px, 0) scaleX(1.1);
+}
+.toggle input + div svg {
+  display: block;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2px;
+  width: 44px;
+  height: 44px;
+  stroke-linecap: round;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -22px 0 0 -22px;
+  stroke-dasharray: 0 82.801 8 82.801;
+  stroke-dashoffset: 82.801;
+  transform-origin: 50% 50%;
+  -webkit-backface-visibility: hidden;
+  transform: scale(1);
+  transition: stroke-dashoffset 0.5s ease, stroke-dasharray 0.6s ease, transform 0.5s ease, stroke 0.4s ease;
+}
+.toggle input + div svg:nth-child(3) {
+  transform: rotate(180deg) scale(1);
+}
+.toggle input:checked + div div {
+  transform: rotate(90deg);
+}
+.toggle input:checked + div div span:before, .toggle input:checked + div div span:after {
+  background: #fff;
+}
+.toggle input:checked + div div span:first-child:before {
+  transform: rotate(45deg) translate(2.2px, -3px) scaleX(1.05);
+}
+.toggle input:checked + div div span:first-child:after {
+  transform: rotate(-45deg) translate(-2.2px, -3px) scaleX(1.05);
+}
+.toggle input:checked + div div span:last-child:before {
+  transform: rotate(-45deg) translate(2.2px, 3px) scaleX(1.05);
+}
+.toggle input:checked + div div span:last-child:after {
+  transform: rotate(45deg) translate(-2.2px, 3px) scaleX(1.05);
+}
+.toggle input:checked + div svg {
+  stroke-dashoffset: 62;
+  stroke-dasharray: 0 82.801 62 82.801;
+  transform: rotate(90deg);
+  stroke: #fff;
+}
+.toggle input:checked + div svg:nth-child(3) {
+  transform: rotate(270deg);
+}
+
+html {
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
+}
+*:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Roboto, Arial;
+  color: #adafb6;
+  background: #5628ee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body .dribbble {
+  position: fixed;
+  display: block;
+  right: 24px;
+  bottom: 24px;
+}
+body .dribbble img {
+  display: block;
+  width: 76px;
 }
 
 @media (min-width: 0px) and (max-width: 767px) {
