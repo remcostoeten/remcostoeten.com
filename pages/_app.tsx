@@ -18,19 +18,15 @@ import SvgAbstractLines from '@/components/Homepage/svg/SvgLines';
 export default function App({ Component, pageProps }: AppProps) {
 	const [showConfetti, setShowConfetti] = useState(false);
 	const [open, setOpen] = useState(true);
-	const router = useRouter();
 	const [isLoading, setIsLoading] = useState(false);
 
 	useEffect(() => {
-		// Add initial-load class to body element
 		document.body.classList.add('initial-load');
 
-		// Remove initial-load class from body element after 2 seconds
 		const timeout = setTimeout(() => {
 			document.body.classList.remove('initial-load');
 		}, 2000);
 
-		// Clean up the timeout on unmount
 		return () => clearTimeout(timeout);
 	}, []);
 
@@ -47,7 +43,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Loader isLoading={isLoading} />
 			{showConfetti && (
 				<Confetti
-					width={window.innccerWidth}
+					width={window.innerWidth}
 					height={window.innerHeight}
 					numberOfPieces={200}
 				/>
