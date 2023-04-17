@@ -31,7 +31,6 @@ export default function Index() {
 	const [isSignInModalOpen, setIsSignInModalOpen] = useState(false);
 	const [rememberMe, setRememberMe] = useState(true);
 
-
 	const toggleTheme = () => {
 		if (document.body.classList.contains('theme-white')) {
 			document.body.classList.remove('theme-white');

@@ -47,7 +47,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<Loader isLoading={isLoading} />
 			{showConfetti && (
 				<Confetti
-					width={window.innerWidth}
+					width={window.innccerWidth}
 					height={window.innerHeight}
 					numberOfPieces={200}
 				/>
@@ -56,9 +56,7 @@ export default function App({ Component, pageProps }: AppProps) {
 			<WipNotice />
 			{/* <SvgLines /> */}
 			{/* <SvgAbstractLines /> */}
-			<div className='blob'>
-				<BlobOne />
-			</div>
+			<div className='blob'>{/* <BlobOne /> */}</div>
 			<HeaderNew />
 			<div className={`main-content ${isLoading ? 'blur' : ''}`}>
 				<Component {...pageProps} />

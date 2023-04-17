@@ -4,6 +4,7 @@ import GradientBg from '../Homepage/svg/GradientBg';
 import BlobOne from '../Homepage/svg/BlobOne';
 import ParticleBackground from '../Homepage/ParticleBackground';
 import MouseFollower from '../Homepage/MouseFollower';
+import SvgBlobs from '../Homepage/SvgBlobs';
 
 const Toggle: React.FC = () => {
 	const toggleRef = useRef<HTMLInputElement>(null);
@@ -26,8 +27,13 @@ const Toggle: React.FC = () => {
 		setMenuOpen(!menuOpen);
 		if (!menuOpen) {
 			document.body.classList.add('offcanvas-open');
+
+			setTimeout(() => {
+				document.body.classList.add('menu-delay');
+			}, 500);
 		} else {
 			document.body.classList.remove('offcanvas-open');
+			document.body.classList.remove('menu-delay');
 		}
 	};
 	return (
@@ -60,6 +66,14 @@ const Toggle: React.FC = () => {
 			{menuOpen && (
 				<div className='offcanvas-menu'>
 					<div className='offcanvas-menu__menu'>
+						<h2>Remco stoeten</h2>
+						<p>
+							<span>Aspiring to be more</span>
+						</p>
+						<p>
+							than a <i>divjesschuiver</i>
+						</p>
+
 						<ul>
 							<li>Menu Item 1</li>
 							<li>Menu Item 2</li>
@@ -67,6 +81,8 @@ const Toggle: React.FC = () => {
 							<li>Menu Item 4</li>
 						</ul>
 					</div>
+					<div className='offcanvas-menu__blob'></div>
+					{/* <BlobOne /> */}
 				</div>
 			)}
 		</>

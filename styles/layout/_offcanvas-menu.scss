@@ -1,26 +1,148 @@
 $hamburger-stripe-width: 20px;
 $color: #fff;
 $active: #fff;
+$spacing: 16px;
 
 .offcanvas-open {
 	.offcanvas-menu {
-		animation: menuOpen 400ms forwards ease-in;
-		&__menu {
-			// animation: showMenu 1500ms forwards;
-			// animation: menuOpen 750ms 125ms forwards ease-in;
+		&:before {
+			animation: menuOpen 400ms forwards ease-in;
 		}
+
+		svg {
+			opacity: 1;
+			filter: blur(10px);
+			animation: show 1500ms 500ms fowards;
+		}
+
+		&__blob {
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 440 440' style='transform: warpEffect'%3E%3Cdefs%3E%3ClinearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='0%25'%3E%3Cstop offset='0%' stop-color='%238A3FFC' stop-opacity='1'/%3E%3Cstop offset='100%' stop-color='%23FFD6E8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M220,395.53933411763103C271.8988843733411,399.28979104676273,323.36573655072516,368.30051209877934,349.6520298646874,323.3940436316749C372.848170364204,283.7666705571006,343.7948804868436,238.55291586785117,338.5982704679198,192.9307186917393C331.7534786640762,132.83876640607272,369.0303268781619,49.869482662585064,315.3274132463682,22.050586714023297C261.80355225889144,-5.675557341862472,214.6213199786505,70.60418830124968,163.2117166815451,102.07791461461652C122.69721741777346,126.881495653392,65.49578104475033,136.0213108761244,53.91379179138397,182.09190679017962C42.20023622667081,228.6858444405604,82.38906398758922,268.29517513919006,111.8929945303254,306.21246001382997C142.09524249258556,345.02719482283237,170.9470303752646,391.99453634317103,220,395.53933411763103' fill='url(%23gradient)'/%3E%3C/svg%3E");
+			filter: blur(10px);
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+			width: 100vw;
+			background-position: -130px;
+			height: 700px;
+			position: absolute;
+			right: -50px;
+			transition: all 0.5s ease-out;
+			animation: opacity 500ms;
+		}
+	}
+}
+
+@keyframes opacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1 !important;
+	}
+}
+
+.gradient-text {
+	background: linear-gradient(90deg, $accent-color 0, #d6b0bc);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.offcanvas-menu {
+	svg {
+		opacity: 0;
+	}
+
+	&__menu {
+		opacity: 0;
+		margin-top: 90px;
+		padding: $spacing 36px;
+		color: $off-white;
+
+		h2,
+		p {
+			font-size: 24px;
+		}
+
+		p {
+			margin: 0;
+			font-size: calc(24px * 0.9);
+		}
+
+		span {
+			font-size: 24px;
+		}
+
+		i {
+			position: relative;
+
+			&:after {
+				content: '*';
+				font-size: 16px;
+				position: absolute;
+				color: $accent-color;
+				animation: gradientWave 15s repeat;
+
+				@keyframes gradientWave {
+					0% {
+						background-size: 100% 100%;
+					}
+
+					100% {
+						background-size: 250% 400%;
+
+						color: red;
+					}
+				}
+			}
+		}
+
+		ul {
+			margin-top: 50px;
+			list-style: none;
+			padding: 0;
+
+			li {
+				color: $off-white;
+				font-size: 38px;
+				font-weight: 600;
+				line-height: 48px;
+
+				&.active {
+					color: $white;
+				}
+			}
+		}
+	}
+}
+
+@keyframes show {
+	0% {
+		opacity: 0;
+	}
+
+	90% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1 !important;
+		background-color: red;
 	}
 }
 
 @keyframes menuOpen {
 	0% {
 		background-color: black;
-		scale: 1;
+		opacity: 0;
+		transform: scale(1);
+	}
+
+	50% {
+		opacity: 1;
 	}
 
 	100% {
-		scale: 100;
-		background-color: black;
+		transform: scale(120);
 	}
 }
 
@@ -28,40 +150,48 @@ $active: #fff;
 	position: absolute;
 	width: 33px;
 	height: 33px;
-	border-radius: 50%;
-	background-color: $black;
 	top: 0;
-	scale: 1;
-	transition: 350ms ease all;
 	right: 17px;
 	z-index: 5;
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		background-color: $black;
+		transform: scale(1);
+		transition: 350ms ease all;
+		z-index: -1;
+		top: 12px;
+		left: 25px;
+	}
 }
 
-@keyframes showMenu {
-	0% {
-		opacity: 0;
-	}
+.menu-delay {
+	.offcanvas-menu {
+		width: 100%;
+		height: 100%;
 
-	60% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		background-color: red;
+		&__menu {
+			opacity: 1;
+		}
 	}
 }
 
 .header {
 	.toggle {
-		display: block;
+		// display: block;
 		cursor: pointer;
 		input {
 			display: none;
+
 			& + div {
 				width: 20px;
 				height: 14px;
 				position: relative;
+
 				div {
 					position: absolute;
 					left: 0;
@@ -69,11 +199,13 @@ $active: #fff;
 					right: 0;
 					bottom: 0;
 					transition: transform 0.5s ease;
+
 					span {
 						display: block;
 						position: absolute;
 						left: 0;
 						right: 0;
+
 						&:first-child {
 							top: 0;
 							&:before,
@@ -81,6 +213,7 @@ $active: #fff;
 								top: 0;
 							}
 						}
+
 						&:last-child {
 							bottom: 0;
 							&:before,
@@ -88,6 +221,7 @@ $active: #fff;
 								bottom: 0;
 							}
 						}
+
 						&:before,
 						&:after {
 							content: '';
@@ -97,15 +231,16 @@ $active: #fff;
 							border-radius: 1px;
 							background: $color;
 							position: absolute;
-							-webkit-backface-visibility: hidden;
 							transition: transform 0.5s ease,
 								border-radius 0.3s ease, background 0.4s ease;
 						}
+
 						&:before {
 							left: 0;
 							transform-origin: 0 50%;
 							transform: translate(1px, 0) scaleX(1.1);
 						}
+
 						&:after {
 							right: 0;
 							transform-origin: 100% 50%;
@@ -113,6 +248,7 @@ $active: #fff;
 						}
 					}
 				}
+
 				svg {
 					display: block;
 					fill: none;
@@ -128,7 +264,6 @@ $active: #fff;
 					stroke-dasharray: 0 82.801 8 82.801;
 					stroke-dashoffset: 82.801;
 					transform-origin: 50% 50%;
-					-webkit-backface-visibility: hidden;
 					transform: scale(1);
 					transition: stroke-dashoffset 0.5s ease,
 						stroke-dasharray 0.6s ease, transform 0.5s ease,
@@ -143,11 +278,13 @@ $active: #fff;
 			&:checked + div {
 				div {
 					transform: rotate(90deg);
+
 					span {
 						&:before,
 						&:after {
 							background: $active;
 						}
+
 						&:first-child {
 							&:before {
 								transform: rotate(45deg) translate(2.2px, -3px)
@@ -175,6 +312,7 @@ $active: #fff;
 					stroke-dasharray: 0 82.801 62 82.801;
 					transform: rotate(90deg);
 					stroke: $active;
+
 					&:nth-child(3) {
 						transform: rotate(270deg);
 					}
@@ -184,26 +322,6 @@ $active: #fff;
 	}
 }
 
-// Center & dribbble
-// body {
-// 	// min-height: 100vh;
-// 	// font-family: Roboto, Arial;
-// 	// color: #adafb6;
-// 	// background: #5628ee;
-// 	// display: flex;
-// 	// justify-content: center;
-// 	// align-items: center;
-// 	.dribbble {
-// 		position: fixed;
-// 		display: block;
-// 		right: 24px;
-// 		bottom: 24px;
-// 		img {
-// 			display: block;
-// 			width: 76px;
-// 		}
-// 	}
-// }
 @include mobile {
 	.header {
 		.header__content__nav {

@@ -1,4 +1,12 @@
 @use './gradients';
+$black: #101010;
+$white: #e7e7e5;
+$border-color: #2f2f2f;
+$card-color: #131313;
+$pink: #a594fd;
+$accent-color: $pink;
+$gradient: linear-gradient(90deg, #a594fd 0, #eb8bf7);
+
 // $color-one: #ff0738;
 // $color-two: #ff5f4b;
 // $color-three: #fe374a;
