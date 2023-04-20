@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Task } from '@/types';
 import {
 	Dialog,
 	DialogTitle,
@@ -10,19 +9,7 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-interface Props {
-	isOpen: boolean;
-	onClose: () => void;
-	onSubmit: (
-		title: string,
-		description: string,
-		category: string,
-		taskId?: string,
-	) => void;
-	editedTask: Task | null;
-}
-
-const TaskModal = ({ isOpen, onClose, onSubmit, editedTask }: Props) => {
+const TaskModal = ({ isOpen, onClose, onSubmit, editedTask }) => {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [category, setCategory] = useState('');

@@ -1,6 +1,7 @@
+import { publicRuntimeConfig } from '@/next.config';
 import { initializeApp } from '@firebase/app';
 import { getFirestore } from '@firebase/firestore';
-import { getStorage, ref, getDownloadURL } from '@firebase/storage';
+import { getStorage } from '@firebase/storage';
 import { getDatabase } from '@firebase/database';
 import {
 	getAuth,
@@ -8,30 +9,30 @@ import {
 	GoogleAuthProvider,
 	signOut,
 } from '@firebase/auth';
+import { getDownloadURL, ref } from '@firebase/storage';
 import getConfig from 'next/config';
+const {} = getConfig();
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const { publicRuntimeConfig } = getConfig();
-
 const firebaseConfig = {
-	apiKey: publicRuntimeConfig.FB_API,
-	authDomain: publicRuntimeConfig.FB_AUTH_DOMAIN,
-	projectId: publicRuntimeConfig.FB_PROJECT_ID,
-	storageBucket: publicRuntimeConfig.FB_STORAGE_BUCKET,
-	messagingSenderId: publicRuntimeConfig.FB_MESSAGING_SENDER_ID,
-	appId: publicRuntimeConfig.FB_APP_ID,
-	measurementId: publicRuntimeConfig.FB_MEASUREMENT_ID,
-	databaseURL: `https://${publicRuntimeConfig.FB_PROJECT_ID}.firebaseio.com`,
+	apiKey: 'AIzaSyDwXDGrvrAS7Z3KwdpeOqVFJva32rT_qCc',
+	authDomain: 'remcostoeten-9cadf.firebaseapp.com',
+	projectId: 'remcostoeten-9cadf',
+	storageBucket: 'remcostoeten-9cadf.appspot.com',
+	messagingSenderId: '97706826008',
+	appId: '1:97706826008:web:0a631d6aee76daf875e66d',
+	measurementId: 'G-BTR9DC1LPH',
 };
 
-export const db = getFirestore(initializeApp(firebaseConfig));
-export const storage = getStorage(initializeApp(firebaseConfig));
-export const database = getDatabase(initializeApp(firebaseConfig));
-export const auth = getAuth(initializeApp(firebaseConfig));
-export const provider = new GoogleAuthProvider();
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const database = getDatabase(app);
+const provider = new GoogleAuthProvider();
+const auth = getAuth();
 
-export const signInWithGoogle = () => {
+const signInWithGoogle = () => {
 	console.log('signing in with google');
 	signInWithPopup(auth, provider)
 		.then((result) => {
@@ -50,54 +51,15 @@ export const signInWithGoogle = () => {
 		});
 };
 
-export const logout = () => {
+const logout = () => {
 	console.log('logging out');
 	signOut(auth)
 		.then(() => {
 			toast.success('Successfully logged out');
 		})
 		.catch((error) => {
-			// An error happened.
+			console.log(error.message + 'Erorr while logging out');
 		});
-};
-
-export const getChatHistory1 = async () => {
-	try {
-		const chatHistoryRef = ref(storage, 'y.json');
-		const url = await getDownloadURL(chatHistoryRef);
-		const response = await fetch(url);
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error('Error fetching chat history:', error);
-		return null;
-	}
-};
-
-export const getChatHistory2 = async () => {
-	try {
-		const chatHistoryRef = ref(storage, 'zold.json');
-		const url = await getDownloadURL(chatHistoryRef);
-		const response = await fetch(url);
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error('Error fetching chat history:', error);
-		return null;
-	}
-};
-
-export const getChatHistory3 = async () => {
-	try {
-		const chatHistoryRef = ref(storage, 'znew.json');
-		const url = await getDownloadURL(chatHistoryRef);
-		const response = await fetch(url);
-		const data = await response.json();
-		return data;
-	} catch (error) {
-		console.error('Error fetching chat history:', error);
-		return null;
-	}
 };
 
 export {
@@ -109,7 +71,4 @@ export {
 	signInWithPopup,
 	GoogleAuthProvider,
 	database,
-	getChatHistory1,
-	getChatHistory2,
-	getChatHistory3,
 };

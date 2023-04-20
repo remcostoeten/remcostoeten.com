@@ -1,18 +1,7 @@
-
 import React from 'react';
 import { Dialog, DialogTitle, DialogContent, Button } from '@mui/material';
 
-interface Props {
-	isOpen: boolean;
-	onConfirm: () => void;
-	onCancel: () => void;
-}
-
-const DeleteConfirmationModal: React.FC<Props> = ({
-	isOpen,
-	onConfirm,
-	onCancel,
-}) => {
+const DeleteConfirmationModal = ({ isOpen, onConfirm, onCancel }) => {
 	return (
 		<Dialog open={isOpen} onClose={onCancel} fullWidth maxWidth='xs'>
 			<DialogTitle>Confirm Delete</DialogTitle>
