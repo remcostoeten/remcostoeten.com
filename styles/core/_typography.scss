@@ -1,0 +1,40 @@
+* {
+	font-family: $font--primary;
+}
+
+.h1,
+h1 {
+	font-size: $h1--size;
+	letter-spacing: -0.89px;
+	line-height: 32px;
+}
+
+.h2,
+h2 {
+	font-size: $h2--size;
+	letter-spacing: -0.86px;
+}
+
+.h3,
+h3 {
+	font-size: $h3--size;
+	letter-spacing: -0.62px;
+}
+
+.h4,
+h4 {
+	font-size: $h4--size;
+	letter-spacing: -0.4px;
+}
+
+.h5,
+h5 {
+	font-size: $h5--size;
+	letter-spacing: -0.62px;
+}
+
+.h6,
+h6 {
+	font-size: $h6--size;
+	letter-spacing: -0.62px;
+}

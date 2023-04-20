@@ -1,0 +1,78 @@
+@keyframes opacity {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1 !important;
+	}
+}
+
+@keyframes showMenu {
+	0% {
+		opacity: 0;
+	}
+
+	60% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+		background-color: red;
+	}
+}
+
+@keyframes slide {
+	0% {
+		transform: translateX(-25%);
+	}
+	100% {
+		transform: translateX(25%);
+	}
+}
+
+@keyframes slide-btn {
+	0% {
+		transform: translateX(-5%);
+	}
+	100% {
+		transform: translateX(5%);
+	}
+}
+
+@keyframes upndown {
+	0% {
+		transform: translateY(5px);
+	}
+	50% {
+		transform: translateY(15px);
+	}
+	100% {
+		transform: translateY(5px);
+	}
+}
+@keyframes smallnbig {
+	0% {
+		width: 90px;
+	}
+	50% {
+		width: 100px;
+	}
+	100% {
+		width: 90px;
+	}
+}
+@keyframes shine {
+	0% {
+		opacity: 0.2;
+	}
+	25% {
+		opacity: 0.1;
+	}
+	50% {
+		opacity: 0.2;
+	}
+	100% {
+		opacity: 0.2;
+	}
+}

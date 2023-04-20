@@ -1,0 +1,22 @@
+$spacing: 24px;
+$spacing-xs: calc(24px / 3.5);
+$spacing-s: calc(24px / 3);
+$spacing-m: calc(24px * 0.75);
+$spacing-xl: calc(24px * 1.5);
+$input-height: 40px;
+$max-container: 1584px;
+$space: $spacing;
+$z-index-below-base: -10;
+$z-index-base: 1;
+$z-index-layer-two: 10;
+$z-index-layer-three: 20;
+$z-index-layer-four: 30;
+$z-index-layer-five: 40;
+$z-index-layer-six: 50;
+
+$card-shadow: 0 8px 20px 0 rgba(22, 60, 92, 0.1);
+$menu-shadow: 0 2px 6px 0 rgba(22, 60, 92, 0.2),
+	0 4px 16px 0 rgba(22, 60, 92, 0.24);
+$popup-overlay: 0 2px 6px 0 rgba(38, 82, 104, 0.1),
+	0 8px 24px 0 rgba(22, 60, 92, 0.26);
+$overlay: rgba(154, 171, 179, 0.4);

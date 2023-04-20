@@ -1,6 +1,7 @@
 import { NextSeo } from 'next-seo';
+import React from 'react';
 
-const Seo = ({ title, description, url, imageUrl }) => {
+export default function Seo(title, description, url, imageUrl) {
 	return (
 		<NextSeo
 			title={title}
@@ -23,6 +24,4 @@ const Seo = ({ title, description, url, imageUrl }) => {
 			}}
 		/>
 	);
-};
-
-export default Seo;
+}

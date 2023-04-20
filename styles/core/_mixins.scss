@@ -1,0 +1,144 @@
+//  mixin to print out media queries (based on map keys passed)
+@mixin media($keys...) {
+	@each $key in $keys {
+		@media (min-width: map-get($breakpoints, $key)) {
+			@content;
+		}
+	}
+}
+
+@mixin below-desktop {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__l}) {
+		@content;
+	}
+}
+
+@mixin big-desktop {
+	@media (min-width: #{1920px}) {
+		@content;
+	}
+}
+
+@mixin desktop {
+	@media (min-width: #{$screen__l}) {
+		@content;
+	}
+}
+
+@mixin above-mobile {
+	@media (min-width: #{$screen__m}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (min-width: #{$screen__m}) and (max-width: #{$screen__l - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__m - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-small {
+	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__s - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-xs {
+	@media (min-width: #{$screen__xxs}) and (max-width: #{$screen__xs - 1px}) {
+		@content;
+	}
+}
+
+@mixin mobile-xxs {
+	@media (max-width: #{$screen__xxs - 1px}) {
+		@content;
+	}
+}
+
+@mixin category-grid {
+	@media (min-width: #{$screen__l}) and (max-width: #{$screen__category-grid}) {
+		@content;
+	}
+}
+
+@include tablet {
+	.hide-mobile-tablet {
+		display: none;
+	}
+}
+
+@include mobile {
+	.hide-mobile-tablet {
+		display: none !important;
+	}
+
+	.hide-mobile {
+		display: none !important;
+	}
+}
+
+@include mobile-small {
+	.hide-mobile-tablet {
+		display: none !important;
+	}
+}
+
+.hide-desktop {
+	display: none !important;
+
+	@include mobile {
+		display: block !important;
+	}
+
+	@include mobile-small {
+		display: block !important;
+	}
+}
+
+@mixin center-absolute {
+	left: 0;
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@mixin flex-center-xy {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+@mixin flex-col {
+	display: flex;
+	flex-direction: column;
+}
+
+@mixin disabled {
+	opacity: 0.5;
+}
+
+.disabled {
+	@include disabled;
+}
+
+.card-shadow {
+	box-shadow: $card-shadow;
+}
+
+.menu-shadow {
+	box-shadow: $menu-shadow;
+}
+
+.popup-overlay {
+	box-shadow: $popup-overlay;
+}
+
+.overlay {
+	background-color: $overlay;
+}

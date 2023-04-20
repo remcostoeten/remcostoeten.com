@@ -9,7 +9,32 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 
-const TaskModal = ({ isOpen, onClose, onSubmit, editedTask }) => {
+interface Task {
+	id: string;
+	title: string;
+	description: string;
+	category: string;
+	status: 'todo' | 'inprogress' | 'done';
+	date: string;
+}
+
+interface Props {
+	isOpen: boolean;
+	onClose: () => void;
+	onSubmit: (
+		title: string,
+		description: string,
+		category: string,
+		taskId?: string,
+	) => void;
+	editedTask: Task | null;
+}
+const TaskModal: React.FC<Props> = ({
+	isOpen,
+	onClose,
+	onSubmit,
+	editedTask,
+}) => {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [category, setCategory] = useState('');
