@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
+import Link from 'next/link';
 
 const Toggle = () => {
 	const toggleRef = useRef(null);
@@ -70,10 +71,20 @@ const Toggle = () => {
 						</p>
 
 						<ul className='animated-list'>
-							<li>Menu Item 1</li>
-							<li>Menu Item 2</li>
-							<li>Menu Item 3</li>
-							<li>Menu Item 4</li>
+							<li onClick={handleToggle}>
+								<Link href='/'>Home</Link>
+							</li>
+							<li>
+								<Link href='https://github.com/remcostoeten'>
+									Github
+								</Link>
+							</li>
+							<li>
+								<Link href='contact'>Contact</Link>
+							</li>
+							<li>
+								<Link href='Login'>Login</Link>
+							</li>
 						</ul>
 					</div>
 					<div className='offcanvas-menu__blob mobile'></div>
