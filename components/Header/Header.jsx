@@ -2,8 +2,8 @@ import Link from 'next/link';
 import React, { useState, useEffect } from 'react';
 import SvgLogo from './SvgLogo';
 import Toggle from './Toggle';
-import RemcoLogoThree from './RemcoLogoThree';
-import Icon from './RemcoLogoThree';
+import RemcoLogoThree from './Logo';
+import Logo from './Logo';
 
 export default function Header() {
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -30,7 +30,7 @@ export default function Header() {
 					<Link href='/'>
 						{/* <RemcoSvgLogoOne /> */}
 						{/* <RemcoLogoTwo /> */}
-						<Icon />
+						<Logo />
 					</Link>
 				</div>
 				<div>
