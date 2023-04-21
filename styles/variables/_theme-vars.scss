@@ -13,23 +13,12 @@ $z-index-layer-three: 20;
 $z-index-layer-four: 30;
 $z-index-layer-five: 40;
 $z-index-layer-six: 50;
-@import url('https://fonts.googleapis.com/css?family=Raleway:900&display=swap');
 
-body {
-	margin: 0px;
-}
+$card-shadow: 0 8px 20px 0 rgba(22, 60, 92, 0.1);
+$menu-shadow: 0 2px 6px 0 rgba(22, 60, 92, 0.2),
+	0 4px 16px 0 rgba(22, 60, 92, 0.24);
+$popup-overlay: 0 2px 6px 0 rgba(38, 82, 104, 0.1),
+	0 8px 24px 0 rgba(22, 60, 92, 0.26);
+$overlay: rgba(154, 171, 179, 0.4);
 
-#logo-container {
-	font-size: 30%;
-	filter: url(#threshold) blur(0.6px);
-}
-
-#text1,
-#text2 {
-	position: absolute;
-	display: inline-block;
-	font-family: 'Raleway', sans-serif;
-	font-size: 5em;
-	text-align: center;
-	user-select: none;
-}
+$container-size: 1024px;

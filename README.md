@@ -1,11 +1,38 @@
-Goal here is to create an personal site without real usecase but rather for me to expirment in making all sorts of things I feel like.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-Currently the site has firebase/google authentication which allows users to login with gmail and show/hide certain data based on login, also show their avatar and username etc.
+## Getting Started
 
-I've build a offcanvas menu which I obviously could've installed a NPM package but the goal here was to gather information about hooks and overall react knowledge regarding states and useEffect etc. Styling is also my own SCSS.
+First, run the development server:
 
-Another feature which is WiP and mostly private is a showcase of chat history from whatasapp. In whatsapp you can export your chat data which gives you a plain .txt file. I converted the .txt to .json objects which I load into this repo from another private repo as an API. I then fetch the data and map over it to display the chat messages. Goal here was to understand and improve data fetching, api's and mapping. It's still WiP, the data is showing and working nicely with a live-search but it needs to be improved. I have one specific whatsapp export which is a couple year old chat containing nearly 1 million chat messages. You would not expect it but browsers do have a little bit off trouble with showing nearly a million objects at the same time. So i'm looking into lazyload/api pagination solutions for this. I will provide a demo export page to showcase the feature I made once it's fully merged.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+```
 
-The whatsapp export is personal data but i've made a dummy json to showcase what i've made. The front-end can be viewed here: https://remcostoeten.com/whatsapp.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-And besides that dozens off other features (see branches) which are WiP or postponed tutorials. Litterly freestyling my way and making stuff which for me is the way to learn. I can watch video's or read documentation all day, but actually building stuff that actually has purpose yields more result for me personally.
+You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

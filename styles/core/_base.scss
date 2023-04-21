@@ -1,76 +1,10 @@
-html {
-	height: 100%;
-	font-size: 50%;
-}
-
 body {
-	letter-spacing: 0;
-	text-align: left;
-	line-height: 24px;
-	margin: 0;
-
-	.modal-backdrop.show {
-		opacity: 0.2 !important;
-	}
+	background-color: $black-accent;
 }
+
+
 
 .container {
-	max-width: 1024px;
+	max-width: $container-size;
 	margin: 0 auto;
-
-	@include mobile {
-		padding: 0 $spacing-s;
-	}
-}
-
-// .container {
-// 	display: flex;
-// 	align-items: center;
-// 	justify-content: space-between;
-// 	width: 100%;
-// 	margin: 0 auto;
-
-// 	@include above-mobile {
-// 		max-width: $max-container;
-// 	}
-// }
-
-input {
-	height: $input-height;
-	border-radius: 4px;
-	border: 1px solid $color-grey-border;
-	padding: 0 8px;
-	max-width: 370px;
-	cursor: pointer;
-
-	&:active,
-	&:focus,
-	&:visited,
-	&:focus-visible {
-		border-color: $color-primary;
-		color: $color-secondary;
-		outline: none;
-	}
-
-	&:hover {
-		color: $color-secondary;
-		border-color: $color-medium-grey;
-	}
-}
-
-input[type='text']:hover {
-	cursor: auto;
-}
-
-.label-wrapper {
-	display: flex;
-	flex-direction: column;
-}
-
-.list-links {
-	padding: 0 4px;
-
-	&--icon {
-		padding: 4px 0 4px 28px !important;
-	}
 }
