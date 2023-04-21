@@ -99,7 +99,7 @@ $animation-duration: 1000ms;
 		&__menu {
 			&--tagline {
 				opacity: 0;
-				animation: fadeIn 2509ms 500ms fow;
+				animation: show 2509ms 500ms fow;
 
 				h2 {
 					animation: swing-in-top-fwd $animation-duration 350ms $cubic
