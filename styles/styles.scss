@@ -1,4 +1,4 @@
-@import './_debug';
+// @import './_debug';
 
 // Variables
 @import './variables/_responsive.scss';
@@ -8,8 +8,8 @@
 
 // Core
 @import './core/_typography.scss';
-@import './core/_mixins.scss';
-@import './core/_animations.scss';
+@import './utils/_mixins.scss';
+@import './utils/_animations.scss';
 
 // Components
 @import './components/_error.scss';

@@ -1,0 +1,113 @@
+$animationDelayIterator: 100ms;
+$animationDelay: 450ms;
+$animationDuration: 1500ms;
+$curve: ease-in;
+$finishMode: foward;
+
+.offcanvas-open {
+	.logo {
+		opacity: 0;
+		animation: opacityShow 1s $animationDelay ease-in forwards;
+
+		.icon-svg {
+			animation: puff-in-center 1s $animationDelay ease-in forwards;
+		}
+		path.st0.svg-elem-1.logo__icon-right {
+		}
+
+		path.st0.svg-elem-2.logo__icon-left {
+		}
+	}
+
+	@keyframes opacityShow {
+		0% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	@keyframes scaleIn {
+		0% {
+			opacity: 0;
+			scale: 0.1;
+		}
+
+		100% {
+			scale: 3;
+			opacity: 1;
+		}
+	}
+
+	&__icon-right {
+		fill: red;
+	}
+
+	.r {
+		animation: showLetters $animationDuration $animationDelayIterator
+			$finishMode;
+	}
+
+	.e {
+		animation: showLetters $animationDuration $animationDelayIterator * 2
+			$finishMode;
+	}
+
+	.m {
+		animation: showLetters $animationDuration $animationDelayIterator * 3
+			$finishMode;
+	}
+
+	.c {
+		animation: showLetters $animationDuration $animationDelayIterator * 4
+			$finishMode;
+	}
+
+	.o {
+		animation: showLetters $animationDuration $animationDelayIterator * 4
+			$finishMode;
+	}
+
+	@keyframes puff-in-center {
+		0% {
+			-webkit-transform: scale(2);
+			transform: scale(2);
+			-webkit-filter: blur(4px);
+			filter: blur(4px);
+			opacity: 0;
+		}
+		100% {
+			-webkit-transform: scale(1);
+			transform: scale(1);
+			-webkit-filter: blur(0px);
+			filter: blur(0px);
+			opacity: 1;
+		}
+	}
+
+	@keyframes showLetters {
+		0% {
+			opacity: 0;
+			transform: translateY(-500px);
+		}
+
+		100% {
+			transform: translateY(0);
+
+			opacity: 1;
+		}
+	}
+
+	@keyframes showLetters {
+		0% {
+			opacity: 0;
+			filter: blur(3px);
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+}

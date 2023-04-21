@@ -38,7 +38,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "pages/contact.jsx", "pages/api/contact.js"  ],
+, "pages/contact.jsx", "pages/api/contact.ts"  ],
   "exclude": [
     "node_modules"
   ]

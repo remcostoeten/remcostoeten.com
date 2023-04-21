@@ -1,3 +1,4 @@
+@import '../variables/responsive';
 //  mixin to print out media queries (based on map keys passed)
 @mixin media($keys...) {
 	@each $key in $keys {
@@ -31,14 +32,11 @@
 	}
 }
 
-@mixin tablet {
-	@media (min-width: #{$screen__m}) and (max-width: #{$screen__l - 1px}) {
-		@content;
-	}
-}
-
 @mixin mobile {
-	@media (min-width: #{$screen__zero}) and (max-width: #{$screen__m - 1px}) {
+	$min-width: $screen__zero;
+	$max-width: $screen__m - 1px;
+	@media (min-width: $min-width) and (max-width: $max-width) {
+		@debug 'Media query for mobile (min-width: #{$min-width} and max-width: #{$max-width})';
 		@content;
 	}
 }
@@ -64,12 +62,6 @@
 @mixin category-grid {
 	@media (min-width: #{$screen__l}) and (max-width: #{$screen__category-grid}) {
 		@content;
-	}
-}
-
-@include tablet {
-	.hide-mobile-tablet {
-		display: none;
 	}
 }
 
@@ -121,24 +113,4 @@
 
 @mixin disabled {
 	opacity: 0.5;
-}
-
-.disabled {
-	@include disabled;
-}
-
-.card-shadow {
-	box-shadow: $card-shadow;
-}
-
-.menu-shadow {
-	box-shadow: $menu-shadow;
-}
-
-.popup-overlay {
-	box-shadow: $popup-overlay;
-}
-
-.overlay {
-	background-color: $overlay;
 }

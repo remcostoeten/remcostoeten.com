@@ -61,34 +61,48 @@ const Toggle = () => {
 
 			{menuOpen && (
 				<div className='offcanvas-menu'>
-					<div className='offcanvas-menu__menu'>
-						<h2>Remco stoeten</h2>
-						<p>
-							<span>Aspiring to be more</span>
-						</p>
-						<p>
-							than a <i>divjesschuiver</i>
-						</p>
-
-						<ul className='animated-list'>
-							<li onClick={handleToggle}>
-								<Link href='/'>Home</Link>
-							</li>
-							<li>
-								<Link href='https://github.com/remcostoeten'>
-									Github
-								</Link>
-							</li>
-							<li>
-								<Link href='contact'>Contact</Link>
-							</li>
-							<li>
-								<Link href='Login'>Login</Link>
-							</li>
-						</ul>
+					<div className='container'>
+						<div className='offcanvas-menu__menu'>
+							<div className='offcanvas-menu__menu--tagline'>
+								<h2 className='animate__flipInX'>
+									Remco stoeten
+								</h2>
+								<p className='first'>
+									<span>Aspiring to be more</span>
+								</p>
+								<p className='last'>
+									than a <i>divjesschuiver</i>
+								</p>
+							</div>
+							<ul className='animated-list'>
+								<li>
+									<Link href='/'>Home</Link>
+								</li>
+								<li>
+									<Link href='https://github.com/remcostoeten'>
+										Github
+									</Link>
+								</li>
+								<li>
+									<Link href='contact'>Contact</Link>
+								</li>
+								<li>
+									<Link href='Login'>Login</Link>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div className='offcanvas-menu__bottom'>
+						<button className='btn btn--menu'>
+							<Link
+								href='https://github.com/remcostoeten'
+								target='blank'>
+								Github
+							</Link>
+						</button>
 					</div>
 					<div className='offcanvas-menu__blob mobile'></div>
-					<BlobOne />
+					<BlobOne />{' '}
 				</div>
 			)}
 		</>

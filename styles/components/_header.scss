@@ -1,3 +1,4 @@
+@use '../core/headerAnimations';
 @import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
 @import url('https://fonts.googleapis.com/css?family=Titan+One');
 
@@ -23,7 +24,6 @@ $header--height: 70px;
 	&__inner {
 		max-height: $header--height;
 		height: $header--height;
-		width: 1024px;
 		margin: 0 auto;
 		display: flex;
 		justify-content: space-between;
@@ -37,6 +37,7 @@ $header--height: 70px;
 
 		svg {
 			height: 45px;
+			width: 255px;
 		}
 	}
 
@@ -68,6 +69,58 @@ $header--height: 70px;
 		background: linear-gradient(90deg, transparent, #2f2f2f, transparent);
 	}
 }
+
+// .logo {
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes colorChange {
+	0% {
+		fill: #ff0000;
+	}
+	50% {
+		fill: #00ff00;
+	}
+	100% {
+		fill: #0000ff;
+	}
+}
+
+// .logo-icon {
+// 	&__path-one,
+// 	&__path-two,
+// 	&__path-three,
+// 	&__path-four {
+// 		// animation: fadeIn 0.8 ease-in-out forwards;
+// 	}
+
+// 	&__path-one {
+// 		fill: red;
+// 		background-color: red;
+// 	}
+
+// 	&__path-two {
+// 		fill: yellow;
+// 		background-color: yellow;
+// 	}
+
+// 	&__path-three {
+// 		fill: beige;
+// 		background-color: gainsboro;
+// 	}
+
+// 	&__path-four {
+// 		fill: aliceblue;
+// 		background-color: rebeccapurple;
+// 	}
+// }
 
 @keyframes draw {
 	0% {

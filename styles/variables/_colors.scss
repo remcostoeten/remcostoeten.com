@@ -1,9 +1,29 @@
-// Base colors
-$white: #fff;
-$black: #000;
+// whites
+$pure--white: #fff;
+$white: #f9fafb;
+$off-white: #e4e7ec;
+$off-white-two: #d3d7df;
+$off-white-three: #b6bdc8;
+$off-white-four: #9ea5b3;
+
+// blacks
+$black--pure: #000;
+$black: #090a0b;
+$black--alternative: #121212;
+$black-accent: #1e1e1e;
+$off-black: #202328;
+$off-black-two: #31363f;
+
+// Base color
 $color--green: #0eae0e;
 $color--orange: #ff6400;
 $color--red: #d0021b;
+$color--lightred: #cf6679;
+$color--mint: #00dac6;
+
+// Dark theme colors
+$dark-background: $black;
+$dark-background-lighter: $black-accent;
 
 // Greys
 $color--grey: #c7d2d9;
@@ -22,4 +42,4 @@ $heading--color: $color--secondary;
 $text--color: $black;
 
 // Misc
-$dark: #3f3d56;
+$error--color: $color--lightred;

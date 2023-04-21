@@ -1,39 +1,9 @@
-import React, { useEffect, useState } from 'react';
-
 export default function BlobOne() {
-	const [position, setPosition] = useState({ x: 0, y: 0 });
-	const [animation, setAnimation] = useState({ x: 0, y: 0 });
-
-	const handleMouseMove = (e) => {
-		setPosition({ x: e.clientX, y: e.clientY });
-	};
-
-	useEffect(() => {
-		document.addEventListener('mousemove', handleMouseMove);
-
-		return () => {
-			document.removeEventListener('mousemove', handleMouseMove);
-		};
-	}, []);
-
-	useEffect(() => {
-		const t = 25; // Tweak this value for more/less effect
-		const x = ((position.x / window.innerWidth) * 5 - 1) * t;
-		const y = ((position.y / window.innerHeight) * 5 - 1) * t;
-		setAnimation({ x, y });
-	}, [position]);
-
-	const warpEffect = `matrix(1, ${animation.y / 1000}, ${
-		animation.x / 1000
-	}, 1, 0, 0)`;
-
 	return (
 		<>
 			<div className='blob__one'>
-				<svg
-					viewBox='0 0 440 440'
-					xmlns='http://www.w3.org/2000/svg'
-					style={{ transform: warpEffect }}>
+				<svg viewBox='0 0 440 440' xmlns='http://www.w3.org/2000/svg'>
+					{' '}
 					<defs>
 						<linearGradient
 							id='gradient'
@@ -61,8 +31,8 @@ export default function BlobOne() {
 				<div className='child'>
 					<svg
 						viewBox='0 0 440 440'
-						xmlns='http://www.w3.org/2000/svg'
-						style={{ transform: warpEffect }}>
+						xmlns='http://www.w3.org/2000/svg'>
+						{' '}
 						<defs>
 							<linearGradient
 								id='gradient'
