@@ -8,20 +8,53 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 $cubic: ease-out;
 $animation-duration: 1000ms;
 
-.menu-delay {
-	.offcanvas-open {
+@keyframes blurFade {
+	0% {
+		filter: blur(20px);
+	}
+
+	100% {
+		filter: blur(2px);
 	}
 }
 
 .offcanvas-open {
+	.blob {
+		&__one {
+			width: 1000px;
+			filter: blur(25px);
+		}
+	}
+
+	.btn--menu {
+		animation: showBtn 1s 1s forwards ease-in-out;
+		opacity: 0;
+
+		@keyframes showBtn {
+			0% {
+				transform: translateY(600px);
+				opacity: 0;
+				blur: 15px;
+				scale: 4;
+			}
+
+			100% {
+				transform: translateY(0);
+				opacity: 1;
+			}
+		}
+	}
+
 	.offcanvas-menu {
+		&:before {
+			animation: menuOpen 1250ms forwards;
+		}
 		ul {
 			opacity: 1;
 
 			@for $i from 1 through 4 {
 				li:nth-child(#{$i}) {
 					animation-delay: #{$i * 0.1}s;
-					// background-color: nth($colors, $i);
 				}
 			}
 
@@ -77,12 +110,26 @@ $animation-duration: 1000ms;
 				&:after {
 					content: '';
 					width: 100%;
-					height: 400px;
+					height: 100vh;
 					position: absolute;
-					filter: blur(500px);
-					opacity: 0;
+					filter: blur(1000px);
 					right: -150%;
-					background-color: $color--mint;
+					opacity: 0.1;
+					animation: gradient 15s ease infinite;
+
+					background: radial-gradient(#e66465, #9198e5);
+				}
+
+				@keyframes gradient {
+					0% {
+						background-position: 0% 50%;
+					}
+					50% {
+						background-position: 100% 50%;
+					}
+					100% {
+						background-position: 0% 50%;
+					}
 				}
 
 				@keyframes hoverBlur {
@@ -96,35 +143,26 @@ $animation-duration: 1000ms;
 				}
 			}
 		}
+
 		&__menu {
 			&--tagline {
-				opacity: 0;
-				animation: show 2509ms 500ms fow;
-
+				animation: initialHide $animation-duration $cubic;
 				h2 {
 					animation: swing-in-top-fwd $animation-duration 350ms $cubic
 						forwards;
-				}
-
-				p {
+					transform: translateX(0);
 				}
 
 				.first {
 					opacity: 0;
 					animation: swing-in-top-fwd $animation-duration 750ms $cubic
 						forwards;
-					// second line of p
 				}
 
 				.last {
 					opacity: 0;
 					animation: swing-in-top-fwd $animation-duration 1250ms
 						$cubic forwards;
-					&:first-child {
-					}
-					i {
-						// animation: flip-in-hor-bottom 750ms 1350ms infinite;
-					}
 				}
 			}
 		}
@@ -140,6 +178,7 @@ $animation-duration: 1000ms;
 				transform: scale(1) translate(0%, 0%);
 			}
 		}
+
 		@keyframes swing-in-top-fwd {
 			0% {
 				transform: rotateX(-100deg);
@@ -213,32 +252,16 @@ $animation-duration: 1000ms;
 				color: blue;
 			}
 		}
+	}
+}
 
-		&:before {
-			animation: menuOpen 1250ms forwards;
-		}
+@keyframes fadeOpacity {
+	0% {
+		opacity: 0;
+	}
 
-		svg {
-			opacity: 1;
-			filter: blur(10px);
-			animation: show 1500ms 500ms fowards;
-			width: 1000px;
-		}
-
-		&__blob {
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 440 440' style='transform: warpEffect'%3E%3Cdefs%3E%3ClinearGradient id='gradient' x1='0%' y1='0%' x2='100%' y2='0%25'%3E%3Cstop offset='0%' stop-color='%238A3FFC' stop-opacity='1'/%3E%3Cstop offset='100%' stop-color='%23FFD6E8' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cpath d='M220,395.53933411763103C271.8988843733411,399.28979104676273,323.36573655072516,368.30051209877934,349.6520298646874,323.3940436316749C372.848170364204,283.7666705571006,343.7948804868436,238.55291586785117,338.5982704679198,192.9307186917393C331.7534786640762,132.83876640607272,369.0303268781619,49.869482662585064,315.3274132463682,22.050586714023297C261.80355225889144,-5.675557341862472,214.6213199786505,70.60418830124968,163.2117166815451,102.07791461461652C122.69721741777346,126.881495653392,65.49578104475033,136.0213108761244,53.91379179138397,182.09190679017962C42.20023622667081,228.6858444405604,82.38906398758922,268.29517513919006,111.8929945303254,306.21246001382997C142.09524249258556,345.02719482283237,170.9470303752646,391.99453634317103,220,395.53933411763103' fill='url(%23gradient)'/%3E%3C/svg%3E");
-			filter: blur(10px);
-			background-repeat: no-repeat;
-			background-size: cover;
-			background-position: center;
-			width: 100vw;
-			background-position: -130px;
-			height: 700px;
-			position: absolute;
-			right: -50px;
-			transition: all 0.5s ease-out;
-			animation: opacity 500ms;
-		}
+	100% {
+		opacity: 1;
 	}
 }
 
@@ -391,7 +414,11 @@ $animation-duration: 1000ms;
 	}
 
 	100% {
-		scale: 70;
+		scale: 100;
+
+		@include mobile {
+			scale: 70;
+		}
 
 		// transform: scale(50);
 	}
@@ -420,10 +447,7 @@ $animation-duration: 1000ms;
 		width: 25px;
 		height: 25px;
 		border-radius: 50%;
-		// background-color: $off-black;
-		// background-color: $off-black-two;
 		background-color: $black-accent;
-		// background-color: $black--alternative;
 		transform: scale(1);
 		transition: 350ms ease all;
 		z-index: -1;
@@ -448,10 +472,12 @@ $animation-duration: 1000ms;
 		background-color: #f0eefe;
 		margin-bottom: $spacing;
 		margin-left: $spacing;
-
 		color: $black--alternative;
-		transition: 250ms ease-in;
-		width: 100%;
+		left: $spacing;
+
+		@include mobile {
+			width: 100%;
+		}
 
 		&:before {
 			content: '';
@@ -514,6 +540,7 @@ $animation-duration: 1000ms;
 		.btn--menu:hover:before {
 			opacity: 1;
 		}
+
 		&:hover {
 			&:before {
 				opacity: 1;
@@ -525,6 +552,9 @@ $animation-duration: 1000ms;
 
 .header {
 	.toggle {
+		display: flex;
+		margin-right: 32px;
+
 		cursor: pointer;
 
 		svg {
@@ -668,6 +698,14 @@ $animation-duration: 1000ms;
 					}
 				}
 			}
+		}
+	}
+}
+
+@include mobile {
+	.header {
+		.toggle {
+			margin-right: 0;
 		}
 	}
 }

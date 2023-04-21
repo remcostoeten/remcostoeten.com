@@ -4,6 +4,30 @@ $animationDuration: 1500ms;
 $curve: ease-in;
 $finishMode: foward;
 
+@keyframes initialHide {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes btnIn {
+	0% {
+		transform: translateY(500px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
 .offcanvas-open {
 	.logo {
 		opacity: 0;

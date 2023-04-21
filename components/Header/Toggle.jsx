@@ -1,23 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
+import { useMediaQuery } from '@mui/material';
 
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
-
-	useEffect(() => {
-		const toggle = toggleRef.current;
-		const animate = setInterval(() => {
-			if (toggle) {
-				toggle.checked = !toggle.checked;
-			}
-		}, 3000);
-
-		return () => {
-			clearInterval(animate);
-		};
-	}, []);
+	const isSmallScreen = useMediaQuery('(max-width:768px)');
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
@@ -101,8 +90,10 @@ const Toggle = () => {
 							</Link>
 						</button>
 					</div>
-					<div className='offcanvas-menu__blob mobile'></div>
-					<BlobOne />{' '}
+					{isSmallScreen && (
+						<div className='offcanvas-menu__blob mobile'></div>
+					)}
+					{isSmallScreen && <BlobOne />}
 				</div>
 			)}
 		</>
