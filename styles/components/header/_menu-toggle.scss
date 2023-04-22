@@ -1,26 +1,28 @@
 $hamburger-stripe-width: 20px;
+$animationDurationBase: 250ms;
 $colors: $color--secondary, lighten($color--secondary, 5%),
 	lighten($color--secondary, 10%), lighten($color--secondary, 15%);
+
 .header {
 	.toggle {
 		cursor: pointer;
 		z-index: 15;
 		display: flex;
 		margin-right: 32px;
-		transition: 300ms ease-in;
 
-		transition: 250ms ease all;
+		transition: $animationDurationBase ease all;
 		&:hover {
 			span {
 				transition-delay: 150ms;
-				transition: 250ms ease-in-out all;
+				transition: $animationDurationBase ease-in-out all;
 				scale: 1.1;
+
 				&:nth-child(1) {
 					transition-delay: 0;
 				}
 
 				&:last-child {
-					transition-delay: 250ms;
+					transition-delay: $animationDurationBase;
 				}
 			}
 
@@ -41,7 +43,7 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 			}
 
 			&:last-child {
-				transition-delay: 250ms;
+				transition-delay: $animationDurationBase;
 			}
 		}
 

@@ -1,7 +1,7 @@
 @import './_menu-toggle.scss';
 @import './svgblobs.scss';
 
-$animation-duration: 2s;
+$animation-duration: 1.5s;
 
 .offcanvas-open {
 	.offcanvas-menu {
@@ -108,7 +108,7 @@ $animation-duration: 2s;
 		}
 
 		&:before {
-			animation: menuOpen 1250ms forwards;
+			animation: menuOpen $animation-duration forwards;
 		}
 	}
 }

@@ -5,17 +5,12 @@ import Link from 'next/link';
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
-	const isSmallScreen = useMediaQuery('(max-width:768px)');
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
 
 	const links = [
 		{ href: '/', text: 'Home', classes: [] },
-		{
-			href: 'https://github.com/remcostoeten',
-			text: 'Github',
-			classes: ['hovered-1'],
-		},
+
 		{ href: 'contact', text: 'Contact', classes: ['hovered-2'] },
 		{ href: 'Login', text: 'Login', classes: ['hovered-3'] },
 	];
