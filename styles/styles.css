@@ -1441,10 +1441,37 @@ button:hover {
   }
 }
 .header .toggle {
+  cursor: pointer;
   z-index: 15;
   display: flex;
   margin-right: 32px;
-  cursor: pointer;
+  transition: 300ms ease-in;
+  transition: 250ms ease all;
+}
+.header .toggle:hover span {
+  transition-delay: 150ms;
+  transition: 250ms ease-in-out all;
+  scale: 1.1;
+}
+.header .toggle:hover span:nth-child(1) {
+  transition-delay: 0;
+}
+.header .toggle:hover span:last-child {
+  transition-delay: 250ms;
+}
+.header .toggle:hover svg {
+  scale: 1.1;
+}
+.header .toggle span:hover {
+  scale: 1.1;
+  transform: skew(15deg);
+  transform: rotate(3deg);
+}
+.header .toggle span:nth-child(2) {
+  transition-delay: 150ms;
+}
+.header .toggle span:last-child {
+  transition-delay: 250ms;
 }
 .header .toggle input {
   display: none;
