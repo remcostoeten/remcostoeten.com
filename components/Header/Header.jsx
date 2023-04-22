@@ -26,17 +26,11 @@ export default function Header() {
 		<div className={`header ${scrolled ? 'scrolled' : ''}`}>
 			<div className='header__inner container'>
 				<div className='header__left'>
-					<LogoIcon />
 					<Link href='/'>
-						{/* <RemcoSvgLogoOne /> */}
-						{/* <RemcoLogoTwo /> */}
-						{/* <LogoIcon /> */}
-						{/* <SvgLogo /> */}
+						<LogoIcon />
 					</Link>
 				</div>
-				<div>
-					<Toggle />
-				</div>
+				<Toggle />
 			</div>
 		</div>
 	);

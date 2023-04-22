@@ -12,11 +12,13 @@ export default function BlobOne() {
 							x2='100%'
 							y2='0%'>
 							<stop
+								id='stop1                    '
 								offset='0%'
 								stop-color='#8A3FFC'
 								stop-opacity='1'
 							/>
 							<stop
+								id='stop2'
 								offset='100%'
 								stop-color='#FFD6E8'
 								stop-opacity='1'
@@ -28,7 +30,7 @@ export default function BlobOne() {
 						fill='url(#gradient)'
 					/>
 				</svg>
-				<div className='child'>
+				{/* <div className='child'>
 					<svg
 						viewBox='0 0 440 440'
 						xmlns='http://www.w3.org/2000/svg'>
@@ -57,7 +59,7 @@ export default function BlobOne() {
 							fill='url(#gradient)'
 						/>
 					</svg>
-				</div>
+				</div> */}
 			</div>
 		</>
 	);

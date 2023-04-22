@@ -4,30 +4,6 @@ $animationDuration: 1500ms;
 $curve: ease-in;
 $finishMode: foward;
 
-@keyframes initialHide {
-	0% {
-		opacity: 0;
-	}
-
-	50% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-	}
-}
-
-@keyframes btnIn {
-	0% {
-		transform: translateY(500px);
-	}
-
-	100% {
-		transform: translateY(0);
-	}
-}
-
 .offcanvas-open {
 	.logo {
 		opacity: 0;
@@ -35,11 +11,6 @@ $finishMode: foward;
 
 		.icon-svg {
 			animation: puff-in-center 1s $animationDelay ease-in forwards;
-		}
-		path.st0.svg-elem-1.logo__icon-right {
-		}
-
-		path.st0.svg-elem-2.logo__icon-left {
 		}
 	}
 

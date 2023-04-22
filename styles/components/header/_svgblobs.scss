@@ -1,0 +1,72 @@
+.blob {
+	&__one {
+		width: 1000px;
+		top: -160px;
+		filter: blur(5px);
+		stroke: none;
+		opacity: 0.3;
+		animation: initialHide 25000ms ease-out;
+		z-index: -1;
+		position: relative;
+		animation: initialHide $animation-duration $cubic;
+
+		stop {
+			animation: stopColor 25s ease-in-out infinite;
+		}
+
+		@keyframes animateStopColor1 {
+			0% {
+				stop-color: #8a3ffc;
+			}
+			100% {
+				stop-color: lightcoral;
+			}
+		}
+
+		@keyframes animateStopColor2 {
+			0% {
+				stop-color: $color--primary;
+			}
+			100% {
+				stop-color: $color--secondary;
+			}
+		}
+
+		#stop1 {
+			animation: animateStopColor1 300s infinite;
+		}
+
+		#stop2 {
+			animation: animateStopColor2 300s infinite;
+		}
+
+		svg {
+			animation: initialHide 2500ms;
+		}
+
+		@include mobile {
+			top: -250px;
+			left: -168px;
+			animation: animateBlob 24s 1s infinite;
+		}
+	}
+}
+
+.offcanvas-menu {
+	&.hovered {
+		.blob {
+			&__one {
+				stop {
+					stop-color: #000 !important;
+				}
+			}
+		}
+
+		stop {
+			stop-color: #ae4646;
+		}
+
+		li {
+		}
+	}
+}

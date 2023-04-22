@@ -2,11 +2,30 @@ import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import { useMediaQuery } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
 
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const isSmallScreen = useMediaQuery('(max-width:768px)');
+	const [hovered, setHovered] = useState(false);
+	const [hoveredClasses, setHoveredClasses] = useState([]);
+
+	const handleMouseEnter = (index) => {
+		const newClasses = [...hoveredClasses];
+		newClasses[index] = `hovered--${index + 1}`;
+		setHoveredClasses(newClasses);
+		setHovered(true);
+	};
+
+	const handleMouseLeave = (index) => {
+		const newClasses = [...hoveredClasses];
+		newClasses[index] = '';
+		setHoveredClasses(newClasses);
+		setHovered(false);
+	};
+
+	const parentClass = hovered ? 'offcanvas-menu hovered' : 'offcanvas-menu';
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
@@ -25,7 +44,7 @@ const Toggle = () => {
 		<>
 			<label className='toggle'>
 				<input type='checkbox' ref={toggleRef} onClick={handleToggle} />
-				<div>
+				<div className='toggle__inner'>
 					<div>
 						<span></span>
 						<span></span>
@@ -49,7 +68,7 @@ const Toggle = () => {
 			</svg>
 
 			{menuOpen && (
-				<div className='offcanvas-menu'>
+				<div className={parentClass}>
 					<div className='container'>
 						<div className='offcanvas-menu__menu'>
 							<div className='offcanvas-menu__menu--tagline'>
@@ -63,19 +82,31 @@ const Toggle = () => {
 									than a <i>divjesschuiver</i>
 								</p>
 							</div>
-							<ul className='animated-list'>
-								<li>
+							<ul>
+								<li
+									onMouseEnter={() => handleMouseEnter(0)}
+									onMouseLeave={() => handleMouseLeave(0)}
+									className={hoveredClasses[0]}>
 									<Link href='/'>Home</Link>
 								</li>
-								<li>
+								<li
+									onMouseEnter={() => handleMouseEnter(1)}
+									onMouseLeave={() => handleMouseLeave(1)}
+									className={hoveredClasses[1]}>
 									<Link href='https://github.com/remcostoeten'>
 										Github
 									</Link>
 								</li>
-								<li>
+								<li
+									onMouseEnter={() => handleMouseEnter(2)}
+									onMouseLeave={() => handleMouseLeave(2)}
+									className={hoveredClasses[2]}>
 									<Link href='contact'>Contact</Link>
 								</li>
-								<li>
+								<li
+									onMouseEnter={() => handleMouseEnter(3)}
+									onMouseLeave={() => handleMouseLeave(3)}
+									className={hoveredClasses[3]}>
 									<Link href='Login'>Login</Link>
 								</li>
 							</ul>
@@ -94,6 +125,7 @@ const Toggle = () => {
 						<div className='offcanvas-menu__blob mobile'></div>
 					)}
 					{isSmallScreen && <BlobOne />}
+					<BlobOne />
 				</div>
 			)}
 		</>

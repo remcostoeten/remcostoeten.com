@@ -202,3 +202,99 @@ button {
 		}
 	}
 }
+
+.btn {
+	&--menu {
+		animation: showBtn 1s 1s forwards ease-in-out;
+		opacity: 0;
+		position: absolute;
+		bottom: 0;
+		z-index: 10;
+		border-radius: 0.7rem;
+		padding: 0.515rem 0.5rem;
+		text-emphasis: center;
+		background-color: #f0eefe;
+		margin-bottom: $spacing;
+		margin-left: $spacing;
+		color: $black--alternative;
+		left: $spacing;
+
+		@include mobile {
+			width: 100%;
+		}
+
+		&:before {
+			content: '';
+			background: linear-gradient(
+				45deg,
+				#ff0000,
+				#ff7300,
+				#fffb00,
+				#48ff00,
+				#00ffd5,
+				#002bff,
+				#7a00ff,
+				#ff00c8,
+				#ff0000
+			);
+			position: absolute;
+			top: -2px;
+			left: -2px;
+			background-size: 400%;
+			z-index: -1;
+			filter: blur(5px);
+			width: calc(100% + 4px);
+			height: calc(100% + 4px);
+			animation: glowing 20s linear infinite;
+			opacity: 0;
+			transition: opacity 0.3s ease-in-out;
+			border-radius: 10px;
+		}
+
+		&:after {
+			z-index: -1;
+			content: '';
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			background: $off-white;
+			left: 0;
+			top: 0;
+			border-radius: 10px;
+		}
+
+		&:hover {
+			background-color: $color--primary;
+
+			&:before {
+				opacity: 1;
+			}
+		}
+
+		&:active {
+			color: $black-accent;
+
+			&::before {
+				opacity: 1;
+			}
+
+			&:after {
+				background: transparent;
+			}
+		}
+	}
+}
+
+@keyframes showBtn {
+	0% {
+		transform: translateY(600px);
+		opacity: 0;
+		blur: 15px;
+		scale: 4;
+	}
+
+	100% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+}
