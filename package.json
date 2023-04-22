@@ -11,9 +11,7 @@
 	"dependencies": {
 		"@firebase/app": "^0.9.4",
 		"@firebase/auth": "^0.21.4",
-		"@firebase/firestore": "^3.8.4",
 		"@mui/icons-material": "^5.11.11",
-		"@mui/material": "^5.11.12",
 		"autoprefixer": "10.4.14",
 		"babel-loader": "^9.1.2",
 		"eslint": "8.38.0",
