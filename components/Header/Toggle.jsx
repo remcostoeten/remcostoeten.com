@@ -1,8 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
-import { useMediaQuery } from '@mui/material';
-import CloseIcon from '@mui/icons-material/Close';
 
 const Toggle = () => {
 	const toggleRef = useRef(null);
