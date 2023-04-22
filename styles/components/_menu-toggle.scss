@@ -4,13 +4,10 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 
 .header {
 	.toggle {
+		z-index: 15;
 		display: flex;
 		margin-right: 32px;
 		cursor: pointer;
-
-		svg {
-			z-index: 15;
-		}
 
 		input {
 			display: none;

@@ -10,22 +10,30 @@ const Toggle = () => {
 	const isSmallScreen = useMediaQuery('(max-width:768px)');
 	const [hovered, setHovered] = useState(false);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
+	const [hoveredIndex, setHoveredIndex] = useState(null);
 
 	const handleMouseEnter = (index) => {
-		const newClasses = [...hoveredClasses];
-		newClasses[index] = `hovered--${index + 1}`;
-		setHoveredClasses(newClasses);
-		setHovered(true);
+		setHoveredIndex(index);
 	};
 
 	const handleMouseLeave = (index) => {
-		const newClasses = [...hoveredClasses];
-		newClasses[index] = '';
-		setHoveredClasses(newClasses);
-		setHovered(false);
+		setHoveredIndex(null);
 	};
+	// const handleMouseEnter = (index) => {
+	// 	const newClasses = [...hoveredClasses];
+	// 	newClasses[index] = `hovered--${index + 1}`;
+	// 	setHoveredClasses(newClasses);
+	// 	setHovered(true);
+	// };
 
-	const parentClass = hovered ? 'offcanvas-menu hovered' : 'offcanvas-menu';
+	// const handleMouseLeave = (index) => {
+	// 	const newClasses = [...hoveredClasses];
+	// 	newClasses[index] = '';
+	// 	setHoveredClasses(newClasses);
+	// 	setHovered(false);
+	// };
+
+	const parentClass = `offcanvas-menu hovered-${hoveredIndex}`;
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
@@ -85,28 +93,27 @@ const Toggle = () => {
 							<ul>
 								<li
 									onMouseEnter={() => handleMouseEnter(0)}
-									onMouseLeave={() => handleMouseLeave(0)}
-									className={hoveredClasses[0]}>
+									onMouseLeave={() => handleMouseLeave(0)}>
+									{' '}
 									<Link href='/'>Home</Link>
 								</li>
 								<li
 									onMouseEnter={() => handleMouseEnter(1)}
-									onMouseLeave={() => handleMouseLeave(1)}
-									className={hoveredClasses[1]}>
+									onMouseLeave={() => handleMouseLeave(1)}>
+									{' '}
 									<Link href='https://github.com/remcostoeten'>
 										Github
 									</Link>
 								</li>
 								<li
 									onMouseEnter={() => handleMouseEnter(2)}
-									onMouseLeave={() => handleMouseLeave(2)}
-									className={hoveredClasses[2]}>
+									onMouseLeave={() => handleMouseLeave(2)}>
 									<Link href='contact'>Contact</Link>
 								</li>
 								<li
 									onMouseEnter={() => handleMouseEnter(3)}
-									onMouseLeave={() => handleMouseLeave(3)}
-									className={hoveredClasses[3]}>
+									onMouseLeave={() => handleMouseLeave(3)}>
+									{' '}
 									<Link href='Login'>Login</Link>
 								</li>
 							</ul>
