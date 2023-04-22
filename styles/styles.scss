@@ -1,24 +1,27 @@
 // @import './_debug';
 
 // Variables
+@import './variables/_colors.scss';
 @import './variables/_responsive.scss';
 @import './variables/_theme-vars.scss';
-@import './variables/_colors.scss';
 @import './variables/_typography.scss';
 
-// Core
-@import './core/_typography.scss';
-@import './core/_base.scss';
-
-@import './utils/_mixins.scss';
+// Utilities
 @import './utils/_animations.scss';
+@import './utils/_mixins.scss';
 @import './utils/_utility-classes';
 
+// Core
+@import './core/_base.scss';
+@import './core/_typography.scss';
+
 // Components
-@import './components/_error.scss';
+@import './components/header/variables/header.scss';
+@import './components/header/menuAnimations';
+@import './components/task/_aside.scss';
+@import './components/task/_authenticated.scss';
 @import './components/_buttons.scss';
-@import './components/_task.scss';
-@import './components/_authenticated.scss';
-@import './components/_aside.scss';
-@import './components/_header.scss';
-@import './components/_offcanvas-menu.scss';
+@import './components/_error.scss';
+@import './components/header/_header.scss';
+@import './components/header/_offcanvas-menu.scss';
+@import './components/task/_task.scss';

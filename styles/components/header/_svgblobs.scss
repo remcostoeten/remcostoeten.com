@@ -48,6 +48,16 @@
 	}
 }
 
+@include above-mobile {
+	.blob {
+		&__one {
+			width: 2000px;
+			top: -500px;
+			left: 0;
+		}
+	}
+}
+
 .hovered-0 {
 	transition: 1s ease all;
 	.blob__one {

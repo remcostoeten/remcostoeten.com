@@ -1,7 +1,6 @@
 $hamburger-stripe-width: 20px;
 $colors: $color--secondary, lighten($color--secondary, 5%),
 	lighten($color--secondary, 10%), lighten($color--secondary, 15%);
-
 .header {
 	.toggle {
 		z-index: 15;

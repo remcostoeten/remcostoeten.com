@@ -1,9 +1,3 @@
-@use '../core/headerAnimations';
-@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.css);
-@import url('https://fonts.googleapis.com/css?family=Titan+One');
-
-$header--height: 70px;
-
 .header {
 	position: fixed;
 	left: 50%;
@@ -69,8 +63,6 @@ $header--height: 70px;
 		background: linear-gradient(90deg, transparent, #2f2f2f, transparent);
 	}
 }
-
-// .logo {
 
 @keyframes fadeIn {
 	from {

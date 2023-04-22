@@ -1,6 +1,7 @@
-@import '../utils/_menu-animation';
 @import './_menu-toggle.scss';
-@import './header/_svgblobs.scss';
+@import './svgblobs.scss';
+
+$animation-duration: 2s;
 
 .offcanvas-open {
 	.offcanvas-menu {
@@ -102,9 +103,103 @@
 			}
 		}
 
+		> .container {
+			height: 82%;
+		}
+
 		&:before {
 			animation: menuOpen 1250ms forwards;
 		}
+	}
+}
+
+.hovered-1,
+.hovered-2,
+.hovered-3,
+.hovered-4 {
+	&:after {
+		transition: 500ms ease all;
+		opacity: 0;
+	}
+
+	&:hover {
+		&:after {
+			opacity: 1;
+		}
+	}
+}
+
+.hovered-0 {
+	&:after {
+		content: '';
+		position: absolute;
+		top: calc(50% - 50px);
+		filter: blur(150px);
+		right: -40%;
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 50px #250155, inset 20px 0 80px #f0f,
+			inset -20px 0 80px #0ff, inset 20px 0 300px rgb(10, 166, 86),
+			inset -20px 0 300px #0ff, 0 166 50px #ba1010, -10px 166 80px #f0f,
+			10px 0 80px rgb(164, 0, 71);
+	}
+
+	.blob {
+		&__one {
+			transform: rotate(5deg);
+		}
+	}
+}
+
+.hovered-1 {
+	&:after {
+		content: '';
+		position: absolute;
+		top: calc(50% - 100px);
+		filter: blur(150px);
+		right: -40%;
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f,
+			inset -20px 0 80px #0ff, inset 20px 0 300px #f0f,
+			inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f,
+			10px 0 80px #0ff;
+	}
+}
+
+.hovered-2 {
+	&:after {
+		content: '';
+		position: absolute;
+		top: calc(50% - 150px);
+		filter: blur(150px);
+		right: -40%;
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 50px #fff, inset 20px 0 80px rgb(166, 45, 45),
+			inset -20px 0 80px rgb(255, 0, 38),
+			inset 20px 0 300px rgb(109, 51, 223), inset -20px 0 300px #0ff,
+			0 0 50px #1f0451, -10px 0 80px #f0f, 10px 0 80px rgb(17, 163, 141);
+	}
+}
+
+.hovered-3 {
+	&:after {
+		content: '';
+		position: absolute;
+		top: calc(50% - 200px);
+		filter: blur(150px);
+		right: -40%;
+		width: 300px;
+		height: 300px;
+		border-radius: 50%;
+		box-shadow: inset 0 0 50px #00ffbb, inset 20px 0 80px rgb(0, 217, 255),
+			inset -20px 0 80px rgb(149, 0, 255),
+			inset 20px 0 300px rgb(45, 0, 223), inset -20px 0 300px #0ff,
+			0 0 50px #c90000, -10px 0 80px #f0f, 10px 0 80px rgb(0, 184, 21);
 	}
 }
 
@@ -184,5 +279,37 @@
 	.offcanvas-menu {
 		width: 100%;
 		height: 100vh;
+	}
+}
+
+@include mobile {
+	.hovered-1,
+	.hovered-2,
+	.hovered-3,
+	.hovered-4 {
+		&:after {
+			animation: orbWave 10s;
+			right: -400px;
+		}
+
+		&:hover {
+			&:after {
+				opacity: 1;
+			}
+		}
+	}
+
+	@keyframes orbWave {
+		0% {
+			opacity: 0;
+		}
+
+		50% {
+			scale: 1.2;
+			transform: rotate(-5deg);
+		}
+
+		100% {
+		}
 	}
 }

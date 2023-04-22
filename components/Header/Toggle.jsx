@@ -8,32 +8,36 @@ const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const isSmallScreen = useMediaQuery('(max-width:768px)');
-	const [hovered, setHovered] = useState(false);
-	const [hoveredClasses, setHoveredClasses] = useState([]);
 	const [hoveredIndex, setHoveredIndex] = useState(null);
+	const [hoveredClasses, setHoveredClasses] = useState([]);
+
+	const links = [
+		{ href: '/', text: 'Home', classes: [] },
+		{
+			href: 'https://github.com/remcostoeten',
+			text: 'Github',
+			classes: ['hovered-1'],
+		},
+		{ href: 'contact', text: 'Contact', classes: ['hovered-2'] },
+		{ href: 'Login', text: 'Login', classes: ['hovered-3'] },
+	];
 
 	const handleMouseEnter = (index) => {
 		setHoveredIndex(index);
+		setHoveredClasses([
+			...hoveredClasses.slice(0, index),
+			`hovered-${index}`,
+			...hoveredClasses.slice(index + 1),
+		]);
 	};
 
 	const handleMouseLeave = (index) => {
 		setHoveredIndex(null);
+		setHoveredClasses(
+			hoveredClasses.filter((cls) => !cls.includes(`hovered-${index}`)),
+		);
 	};
-	// const handleMouseEnter = (index) => {
-	// 	const newClasses = [...hoveredClasses];
-	// 	newClasses[index] = `hovered--${index + 1}`;
-	// 	setHoveredClasses(newClasses);
-	// 	setHovered(true);
-	// };
-
-	// const handleMouseLeave = (index) => {
-	// 	const newClasses = [...hoveredClasses];
-	// 	newClasses[index] = '';
-	// 	setHoveredClasses(newClasses);
-	// 	setHovered(false);
-	// };
-
-	const parentClass = `offcanvas-menu hovered-${hoveredIndex}`;
+	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
@@ -91,31 +95,21 @@ const Toggle = () => {
 								</p>
 							</div>
 							<ul>
-								<li
-									onMouseEnter={() => handleMouseEnter(0)}
-									onMouseLeave={() => handleMouseLeave(0)}>
-									{' '}
-									<Link href='/'>Home</Link>
-								</li>
-								<li
-									onMouseEnter={() => handleMouseEnter(1)}
-									onMouseLeave={() => handleMouseLeave(1)}>
-									{' '}
-									<Link href='https://github.com/remcostoeten'>
-										Github
-									</Link>
-								</li>
-								<li
-									onMouseEnter={() => handleMouseEnter(2)}
-									onMouseLeave={() => handleMouseLeave(2)}>
-									<Link href='contact'>Contact</Link>
-								</li>
-								<li
-									onMouseEnter={() => handleMouseEnter(3)}
-									onMouseLeave={() => handleMouseLeave(3)}>
-									{' '}
-									<Link href='Login'>Login</Link>
-								</li>
+								{links.map((link, index) => (
+									<li key={index}>
+										<Link
+											href={link.href}
+											className={link.classes.join(' ')}
+											onMouseEnter={() =>
+												handleMouseEnter(index)
+											}
+											onMouseLeave={() =>
+												handleMouseLeave(index)
+											}>
+											{link.text}
+										</Link>
+									</li>
+								))}
 							</ul>
 						</div>
 					</div>
@@ -128,10 +122,6 @@ const Toggle = () => {
 							</Link>
 						</button>
 					</div>
-					{isSmallScreen && (
-						<div className='offcanvas-menu__blob mobile'></div>
-					)}
-					{isSmallScreen && <BlobOne />}
 					<BlobOne />
 				</div>
 			)}
