@@ -1,4 +1,3 @@
-import '@/styles/globals.css';
 import '@/styles/styles.css';
 import Header from '../components/Header/Header';
 import { ToastContainer } from 'react-toastify';

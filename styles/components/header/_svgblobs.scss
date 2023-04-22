@@ -2,13 +2,13 @@
 	&__one {
 		width: 1000px;
 		top: -160px;
-		filter: blur(5px);
+		filter: blur(100px);
 		stroke: none;
-		opacity: 0.3;
 		animation: initialHide 25000ms ease-out;
 		z-index: -1;
 		position: relative;
 		animation: initialHide $animation-duration $cubic;
+		opacity: 0.1;
 
 		@keyframes animateStopColor1 {
 			0% {
@@ -19,31 +19,32 @@
 			}
 		}
 
-		@keyframes animateStopColor2 {
-			0% {
-				stop-color: $color--primary;
-			}
-			100% {
-				stop-color: $color--secondary;
-			}
-		}
+		// @keyframes animateStopColor2 {
+		// 	0% {
+		// 		stop-color: $color--primary;
+		// 	}
+		// 	100% {
+		// 		stop-color: $color--secondary;
+		// 	}
+		// }
 
-		#stop1 {
-			animation: animateStopColor1 300s infinite;
-		}
+		// #stop1 {
+		// 	animation: animateStopColor1 300s infinite;
+		// }
 
-		#stop2 {
-			animation: animateStopColor2 300s infinite;
-		}
+		// #stop2 {
+		// 	animation: animateStopColor2 300s infinite;
+		// }
 
-		svg {
-			animation: initialHide 2500ms;
-		}
+		// svg {
+		// 	animation: initialHide 2500ms;
+		// }
 
 		@include mobile {
-			top: -250px;
-			left: -168px;
+			top: -390px;
+			left: -318px;
 			animation: animateBlob 24s 1s infinite;
+			animation: delayShow 30s;
 		}
 	}
 }
@@ -52,9 +53,56 @@
 	.blob {
 		&__one {
 			width: 2000px;
-			top: -500px;
-			left: 0;
+			top: -250px;
+			right: -55%;
+			animation: blobWave 25s infinite;
+
+			@keyframes blobWave {
+				0% {
+					transform: rotate(-5deg);
+					scale: 1.1;
+					opacity: 0.2;
+					filter: blur(100px);
+				}
+
+				50% {
+					opacity: 0.35;
+					transform: scale3d(20deg);
+					scale: 0.8;
+					filter: blur(150px);
+					transform: rotate(0g);
+				}
+
+				100% {
+					opacity: 0.2;
+					scale: 1.15;
+					filter: blur(100px);
+					transform: rotate(5deg);
+				}
+			}
 		}
+	}
+}
+
+@keyframes delayShow {
+	0% {
+		opacity: 0;
+		scale: 1;
+		transform: rotate(-5deg);
+	}
+
+	7% {
+		opacity: 0;
+	}
+
+	13% {
+		opacity: 0.3;
+	}
+
+	100% {
+		scale: 0.35;
+		transform: rotate(5deg);
+		opacity: 0.3;
 	}
 }
 

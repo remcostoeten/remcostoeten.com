@@ -1,8 +1,14 @@
 body {
 	background-color: $black-accent;
+	height: 100vh;
 }
 
 .container {
-	max-width: $container-size;
+	// max-width: calc($container-size * 1.25) !important;
 	margin: 0 auto;
+	max-width: $container-size;
+
+	@include big-desktop {
+		max-width: $container-size * 1.15;
+	}
 }

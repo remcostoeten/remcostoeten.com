@@ -1,7 +1,7 @@
 @import './_menu-toggle.scss';
 @import './svgblobs.scss';
 
-$animation-duration: 1.5s;
+$animation-duration: 2s;
 
 .offcanvas-open {
 	.offcanvas-menu {
@@ -17,7 +17,7 @@ $animation-duration: 1.5s;
 
 				.first {
 					opacity: 0;
-					animation: swing-in-top-fwd $animation-duration 750ms $cubic
+					animation: swing-in-top-fwd $animation-duration 500ms $cubic
 						forwards;
 				}
 
@@ -40,9 +40,10 @@ $animation-duration: 1.5s;
 
 			li {
 				opacity: 0;
-				animation: fadeInFromLeft 1500ms 2000ms ease-in-out forwards;
+				animation: fadeInFromLeft 2s $animation-duration * 1.1
+					ease-in-out forwards;
 				transform: translateX(0);
-				transition: 350ms ease-in-out;
+				transition: 350ms ease-out;
 				position: relative;
 
 				&:first-child {
@@ -87,28 +88,11 @@ $animation-duration: 1.5s;
 						opacity: 1;
 					}
 				}
-
-				// &:after {
-				// 	content: '';
-				// 	scale: 1;
-				// 	width: 100%;
-				// 	opacity: 0;
-				// 	height: 100vh;
-				// 	position: absolute;
-				// 	filter: blur(1000px);
-				// 	right: -150%;
-				// 	animation: gradient 15s ease infinite;
-				// 	background: radial-gradient(#e66465, #9198e5);
-				// }
 			}
 		}
 
 		> .container {
 			height: 82%;
-		}
-
-		&:before {
-			animation: menuOpen $animation-duration forwards;
 		}
 	}
 }
@@ -251,23 +235,24 @@ $animation-duration: 1.5s;
 			li {
 				color: $off-white;
 				font-size: 38px;
+
 				font-weight: 600;
 				line-height: 48px;
 				transition-delay: 1s;
-				left: -300px;
-				opacity: 0;
 			}
 		}
 	}
 
 	&::before {
+		animation: menuOpen 2500ms forwards;
 		content: '';
 		position: absolute;
 		width: 25px;
 		height: 25px;
 		border-radius: 50%;
-		background-color: $black-accent;
 		transform: scale(1);
+		background: $black--alternative;
+		z-index: 20;
 		transition: 350ms ease all;
 		z-index: -1;
 		top: 20px;
@@ -289,7 +274,6 @@ $animation-duration: 1.5s;
 	.hovered-4 {
 		&:after {
 			animation: orbWave 10s;
-			right: -400px;
 		}
 
 		&:hover {
@@ -306,10 +290,12 @@ $animation-duration: 1.5s;
 
 		50% {
 			scale: 1.2;
+			left: 0;
 			transform: rotate(-5deg);
 		}
 
 		100% {
+			scale: 1.2;
 		}
 	}
 }
