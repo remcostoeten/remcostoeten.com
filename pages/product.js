@@ -152,6 +152,10 @@ const Product = () => {
 					{selectedProduct && (
 						<div>
 							<h2>Checkout</h2>
+							<i>
+								Creditcard number 42*repeat tillfull. CCV + date
+								any 3 number combiantion{'  '}
+							</i>{' '}
 							<StripeContainer product={selectedProduct} />
 							<button onClick={handleClose}>Close</button>
 						</div>
@@ -171,6 +175,7 @@ const Product = () => {
 					<h2 className='mx-4 text-slate-600  text-lg font-medium mb-4'>
 						Checkout
 					</h2>
+
 					<StripeContainer product={selectedProduct} />
 					<div className='flex items-center mt-4'>
 						<button

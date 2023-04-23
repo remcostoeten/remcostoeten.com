@@ -18,7 +18,7 @@ export default async function handler(req, res) {
 						product_data: {
 							name: 'Donate Remco',
 						},
-						price: 10,
+						price: 100,
 						unit_amount: amount,
 					},
 					quantity: 1588,

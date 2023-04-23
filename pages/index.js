@@ -4,9 +4,7 @@ import StripeContainer from '../components/stripe/StripeContainer.js';
 export default function index() {
 	return (
 		<>
-			<div className='page-wrapper py-5 px-5'>
-				<StripeContainer />
-			</div>
+			<div className='page-wrapper py-5 px-5'></div>
 		</>
 	);
 }

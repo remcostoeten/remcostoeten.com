@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
 import { useRouter } from 'next/router';
 import { Modal, Tooltip, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import Confetti from 'react-confetti';
-
 export const CheckoutForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -29,7 +28,7 @@ export const CheckoutForm = () => {
 					},
 					body: JSON.stringify({
 						paymentMethod: paymentMethod,
-						amount: 155,
+						amount: 150 ,
 					}),
 				});
 
@@ -54,18 +53,15 @@ export const CheckoutForm = () => {
 
 	return (
 		<>
-			<form
-				className='stripe-form py-4 mx-4 text-white'
-				onSubmit={handleSubmit}
-				style={{ maxWidth: 400 }}>
-				<CardElement />
-				<button onClick={handleSubmit}>Pay</button>
-			</form>
-			<Tooltip
-				title='Card numnber: 5555555555554444, or 4242424242424242, CCV and DATE any combination.'
-				placement='right'>
-				<InfoIcon />
-			</Tooltip>
+			<div>
+				<form
+					className='stripe-form py-4 mx-4 text-white'
+					onSubmit={handleSubmit}
+					style={{ maxWidth: 400 }}>
+					<CardElement />
+					<button onClick={handleSubmit}>Pay</button>
+				</form>
+			</div>
 		</>
 	);
 };
