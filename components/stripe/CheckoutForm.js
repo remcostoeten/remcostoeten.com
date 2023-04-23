@@ -54,6 +54,10 @@ export default function CheckoutForm() {
 	return (
 		<>
 			<div>
+				<i classname='py-2 my-2'>
+					Creditcard number 42*repeat tillfull. CCV + date any 3
+					number combiantion{'  '}
+				</i>
 				<form
 					className='stripe-form py-4 mx-4 text-white'
 					onSubmit={handleSubmit}

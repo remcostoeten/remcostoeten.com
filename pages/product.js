@@ -152,10 +152,7 @@ const Product = () => {
 					{selectedProduct && (
 						<div>
 							<h2>Checkout</h2>
-							<i>
-								Creditcard number 42*repeat tillfull. CCV + date
-								any 3 number combiantion{'  '}
-							</i>{' '}
+
 							<StripeContainer product={selectedProduct} />
 							<button onClick={handleClose}>Close</button>
 						</div>
