@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_TEST, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY, {
 	apiVersion: '2020-08-27',
 });
 
@@ -18,9 +18,10 @@ export default async function handler(req, res) {
 						product_data: {
 							name: 'Donate Remco',
 						},
+						price: 10,
 						unit_amount: amount,
 					},
-					quantity: 1,
+					quantity: 1588,
 				},
 			],
 			mode: 'payment',

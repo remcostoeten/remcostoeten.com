@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 import { Modal, Tooltip, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
+import Confetti from 'react-confetti';
 
 export const CheckoutForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
+	const router = useRouter();
+	const [showConfetti, setShowConfetti] = useState(false);
+
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -24,7 +29,7 @@ export const CheckoutForm = () => {
 					},
 					body: JSON.stringify({
 						paymentMethod: paymentMethod,
-						amount: 1000, // Replace this with the actual amount you want to charge
+						amount: 155,
 					}),
 				});
 
@@ -32,6 +37,10 @@ export const CheckoutForm = () => {
 
 				if (resp.success) {
 					toast.success('Payment Successful!');
+					setShowConfetti(true);
+					setTimeout(() => {
+						router.push('/');
+					}, 3000);
 				} else {
 					toast.error(`Error: ${resp.error}`);
 				}
