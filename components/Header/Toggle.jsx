@@ -46,7 +46,6 @@ const Toggle = () => {
 		}
 	};
 
-	// Create function to close the toggle when clicked on Link
 	const handleClose = () => {
 		setMenuOpen(false);
 		console.log('test');
