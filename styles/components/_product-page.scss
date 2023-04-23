@@ -383,7 +383,18 @@
 	.for-color-6:checked ~ .info-wrap .btn:before {
 		background-color: #5d6160;
 	}
+	.stripe-form {
+		h2 {
+			color: #000 !important;
+		}
+		input {
+			color: white;
 
+			&::placeholder {
+				color: white;
+			}
+		}
+	}
 	.clearfix {
 		width: 100%;
 	}
@@ -469,5 +480,23 @@
 		.section-inline p {
 			font-size: 14px;
 		}
+	}
+}
+
+.MuiModal-root {
+	h2 {
+		color: #000;
+	}
+
+	input {
+		color: #000 !important;
+	}
+
+	svg {
+		margin-left: 10px;
+	}
+
+	button {
+		color: #000;
 	}
 }

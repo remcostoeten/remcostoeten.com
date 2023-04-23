@@ -167,12 +167,14 @@ const Product = () => {
 				</div>
 			</div>
 			<Modal open={openModal} onClose={handleClose}>
-				<div className=' bg-slate-400 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
-					<h2 className='text-lg font-medium mb-4'>Checkout</h2>
+				<div className='text-slate-800 bg-white py-4 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
+					<h2 className='mx-4 text-slate-600  text-lg font-medium mb-4'>
+						Checkout
+					</h2>
 					<StripeContainer product={selectedProduct} />
 					<div className='flex items-center mt-4'>
 						<button
-							className='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
+							className=' py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
 							onClick={handleModalClose}>
 							Close
 						</button>

@@ -3043,6 +3043,15 @@ button:hover {
 .product-page .for-color-6:checked ~ .info-wrap .btn:before {
   background-color: #5d6160;
 }
+.product-page .stripe-form h2 {
+  color: #000 !important;
+}
+.product-page .stripe-form input {
+  color: white;
+}
+.product-page .stripe-form input::placeholder {
+  color: white;
+}
 .product-page .clearfix {
   width: 100%;
 }
@@ -3125,4 +3134,17 @@ button:hover {
   .product-page .section-inline p {
     font-size: 14px;
   }
+}
+
+.MuiModal-root h2 {
+  color: #000;
+}
+.MuiModal-root input {
+  color: #000 !important;
+}
+.MuiModal-root svg {
+  margin-left: 10px;
+}
+.MuiModal-root button {
+  color: #000;
 }/*# sourceMappingURL=styles.css.map */

@@ -1,12 +1,12 @@
 import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
+import { Modal, Tooltip, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
-import { Tooltip } from '@mui/material';
+
 export const CheckoutForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const { error, paymentMethod } = await stripe.createPaymentMethod({
@@ -28,12 +28,12 @@ export const CheckoutForm = () => {
 					}),
 				});
 
-				const data = await response.json();
+				const resp = await response.json();
 
-				if (data.success) {
+				if (resp.success) {
 					toast.success('Payment Successful!');
 				} else {
-					toast.error(`Error: ${data.error}`);
+					toast.error(`Error: ${resp.error}`);
 				}
 			} catch (error) {
 				toast.error(`Error: ${error.message}`);
@@ -45,17 +45,18 @@ export const CheckoutForm = () => {
 
 	return (
 		<>
+			<form
+				className='stripe-form py-4 mx-4 text-white'
+				onSubmit={handleSubmit}
+				style={{ maxWidth: 400 }}>
+				<CardElement />
+				<button onClick={handleSubmit}>Pay</button>
+			</form>
 			<Tooltip
-				title='Test creditcard credentials :5555555555554444, CCV any digits, date any future date. Or 4242424242424242'
+				title='Card numnber: 5555555555554444, or 4242424242424242, CCV and DATE any combination.'
 				placement='right'>
 				<InfoIcon />
 			</Tooltip>
-			<form
-				className='container bg-slate-300'
-				onSubmit={handleSubmit}
-				style={{ maxWidth: 400 }}>
-				<CardElement />;<button>Pay</button>
-			</form>
 		</>
 	);
 };

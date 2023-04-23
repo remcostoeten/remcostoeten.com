@@ -25,7 +25,7 @@ const Home = () => {
 	};
 
 	return (
-		<div className='bg-slate-400 py-40'>
+		<div className='bg-slate py-40'>
 			<h1>Products</h1>
 			{products.map((product) => (
 				<Product
