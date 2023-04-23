@@ -12,7 +12,7 @@ const Toggle = () => {
 		{ href: '/', text: 'Home', classes: [] },
 
 		{ href: 'contact', text: 'Contact', classes: ['hovered-2'] },
-		{ href: 'Login', text: 'Login', classes: ['hovered-3'] },
+		{ href: 'product', text: 'Stripe payment', classes: ['hovered-3'] },
 	];
 
 	const handleMouseEnter = (index) => {
