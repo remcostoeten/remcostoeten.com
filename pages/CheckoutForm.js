@@ -1,17 +1,20 @@
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import {
 	useStripe,
 	useElements,
 	PaymentElement,
 } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
+import Confetti from 'react-confetti';
 
 const CheckoutForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
+	const router = useRouter();
+	const [showConfetti, setShowConfetti] = useState(false);
 
 	const handleSubmit = async (event) => {
-		// We don't want to let default form submission happen here,
-		// which would refresh the page.
 		event.preventDefault();
 
 		if (!stripe || !elements) {
@@ -28,21 +31,30 @@ const CheckoutForm = () => {
 			},
 		});
 
-		if (result.error) {
-			// Show error to your customer (for example, payment details incomplete)
-			console.log(result.error.message);
+		if (!error) {
+			// ... (existing code)
+			if (data.success) {
+				toast.success('Payment Successful!');
+				setShowConfetti(true);
+				setTimeout(() => {
+					router.push('/');
+				}, 3000); // Redirect after 3 seconds
+			} else {
+				toast.error(`Error: ${data.error}`);
+			}
 		} else {
-			// Your customer will be redirected to your `return_url`. For some payment
-			// methods like iDEAL, your customer will be redirected to an intermediate
-			// site first to authorize the payment, then redirected to the `return_url`.
+			toast.error(`Error: ${error.message}`);
 		}
 	};
 
 	return (
-		<form onSubmit={handleSubmit}>
-			<PaymentElement />
-			<button disabled={!stripe}>Submit</button>
-		</form>
+		<>
+			{showConfetti && <Confetti />}
+			<form onSubmit={handleSubmit}>
+				<PaymentElement />
+				<button disabled={!stripe}>Submit</button>
+			</form>
+		</>
 	);
 };
 

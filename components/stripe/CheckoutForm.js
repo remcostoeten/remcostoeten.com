@@ -1,7 +1,8 @@
 import React from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import { toast } from 'react-toastify';
-
+import InfoIcon from '@mui/icons-material/Info';
+import { Tooltip } from '@mui/material';
 export const CheckoutForm = () => {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -43,12 +44,18 @@ export const CheckoutForm = () => {
 	};
 
 	return (
-		<form
-			className='container bg-slate-300'
-			onSubmit={handleSubmit}
-			style={{ maxWidth: 400 }}>
-			<CardElement />
-			<button>Pay</button>
-		</form>
+		<>
+			<Tooltip
+				title='Test creditcard credentials :5555555555554444, CCV any digits, date any future date. Or 4242424242424242'
+				placement='right'>
+				<InfoIcon />
+			</Tooltip>
+			<form
+				className='container bg-slate-300'
+				onSubmit={handleSubmit}
+				style={{ maxWidth: 400 }}>
+				<CardElement />;<button>Pay</button>
+			</form>
+		</>
 	);
 };

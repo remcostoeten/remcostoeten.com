@@ -1,13 +1,30 @@
+import { useState } from 'react';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { useEffect } from 'react';
+import StripeContainer from '../components/stripe/StripeContainer';
+import { Modal, Tooltip, IconButton } from '@mui/material';
 
 const Product = () => {
 	const router = useRouter();
+	const [selectedProduct, setSelectedProduct] = useState(null);
+	const [openModal, setOpenModal] = useState(false);
 
-	const handlePurchase = () => {
-		router.push('/payment');
+	const handleOpen = () => {
+		setOpenModal(true);
+	};
+
+	const handleModalClose = () => {
+		setOpenModal(false);
+	};
+
+	const handleClose = () => {
+		setSelectedProduct(null);
+	};
+
+	const handlePurchase = (product) => {
+		setSelectedProduct(product);
 	};
 
 	useEffect(() => {
@@ -126,21 +143,42 @@ const Product = () => {
 					<label className='color-6' htmlFor='color-6' />
 					<div className='clearfix' />
 					<div className='info-wrap'>
-						<a onClick={handlePurchase} href='#' className='btn'>
+						{/* onClick={handlePurchase} */}
+						<button onClick={handleOpen} href='#' className='btn'>
 							<i className='uil uil-shopping-cart icon' /> Add To
 							Cart
-						</a>
+						</button>
 					</div>
-					<div className='img-wrap chair-1' />+
-					<Image
-						src='/majin.webp'
-						alt='Majin Image'
-						width={500}
-						height={500}
-					/>{' '}
+					{selectedProduct && (
+						<div>
+							<h2>Checkout</h2>
+							<StripeContainer product={selectedProduct} />
+							<button onClick={handleClose}>Close</button>
+						</div>
+					)}
+					<div className='img-wrap chair-1'>
+						<Image
+							src='/majin.webp'
+							alt='Majin Image'
+							width={500}
+							height={500}
+						/>{' '}
+					</div>
 				</div>
 			</div>
-			<p>Price: 1 Euro</p>
+			<Modal open={openModal} onClose={handleClose}>
+				<div className=' bg-slate-400 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
+					<h2 className='text-lg font-medium mb-4'>Checkout</h2>
+					<StripeContainer product={selectedProduct} />
+					<div className='flex items-center mt-4'>
+						<button
+							className='px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
+							onClick={handleModalClose}>
+							Close
+						</button>
+					</div>
+				</div>
+			</Modal>
 		</>
 	);
 };

@@ -2759,7 +2759,6 @@ button:hover {
 }
 .product-page .img-wrap {
   position: absolute;
-  top: 100px;
   left: 0;
   width: 500px;
   height: 410px;
@@ -2770,8 +2769,6 @@ button:hover {
   background-position: center top;
   background-size: 100%;
   background-repeat: no-repeat;
-  background-image: url("https://assets.codepen.io/1462889/ch1.png");
-  opacity: 0;
 }
 .product-page .for-color-1:checked ~ .img-wrap.chair-1 {
   opacity: 1;
