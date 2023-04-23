@@ -5,7 +5,8 @@ import { useRouter } from 'next/router';
 import { Modal, Tooltip, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import Confetti from 'react-confetti';
-export const CheckoutForm = () => {
+
+export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
 	const router = useRouter();
@@ -28,7 +29,7 @@ export const CheckoutForm = () => {
 					},
 					body: JSON.stringify({
 						paymentMethod: paymentMethod,
-						amount: 150 ,
+						amount: 150,
 					}),
 				});
 
@@ -64,4 +65,4 @@ export const CheckoutForm = () => {
 			</div>
 		</>
 	);
-};
+}
