@@ -179,13 +179,12 @@
 
 @keyframes fadeInFromLeft {
 	0% {
-		transform: translateX(-500px);
-		filter: blur(30px);
+		transform: translateX(-1000px);
+		filter: blur(15px);
 	}
 
 	75% {
-		opacity: 0;
-		filter: blur(10px);
+		filter: blur(2px);
 	}
 
 	100% {

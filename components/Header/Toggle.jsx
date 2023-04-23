@@ -45,6 +45,13 @@ const Toggle = () => {
 			document.body.classList.remove('menu-delay');
 		}
 	};
+
+	// Create function to close the toggle when clicked on Link
+	const handleClose = () => {
+		setMenuOpen(false);
+		console.log('test');
+	};
+
 	return (
 		<>
 			<label className='toggle'>
@@ -91,6 +98,7 @@ const Toggle = () => {
 								{links.map((link, index) => (
 									<li key={index}>
 										<Link
+											onClick={handleClose}
 											href={link.href}
 											className={link.classes.join(' ')}
 											onMouseEnter={() =>

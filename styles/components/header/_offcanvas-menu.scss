@@ -11,30 +11,36 @@
 @import './_menu-toggle.scss';
 @import './svgblobs.scss';
 
-$animation-duration: 2s;
+$animationDuration: 1s;
+$staggeredFadeDuration: 400ms;
+$fadeDelay: 1s;
+$staggerItterator: 1.25;
+$itteratorDelay: 0.2;
+$cubic: ease-in-out;
+$MenuOpenDuration: 2s;
 
 .offcanvas-open {
 	.offcanvas-menu {
 		&__menu {
 			&--tagline {
-				animation: initialHide $animation-duration $cubic;
+				animation: initialHide $fadeDelay $cubic;
 
 				h2 {
-					animation: swing-in-top-fwd $animation-duration 350ms $cubic
-						forwards;
+					animation: swing-in-top-fwd $animationDuration
+						$staggeredFadeDuration $cubic forwards;
 					transform: translateX(0);
 				}
 
 				.first {
 					opacity: 0;
-					animation: swing-in-top-fwd $animation-duration 500ms $cubic
-						forwards;
+					animation: swing-in-top-fwd $animationDuration
+						$staggeredFadeDuration * 2 $cubic forwards;
 				}
 
 				.last {
 					opacity: 0;
-					animation: swing-in-top-fwd $animation-duration 1250ms
-						$cubic forwards;
+					animation: swing-in-top-fwd $animationDuration
+						$staggeredFadeDuration * 3 $cubic forwards;
 				}
 			}
 		}
@@ -42,18 +48,17 @@ $animation-duration: 2s;
 		ul {
 			opacity: 1;
 
-			@for $i from 1 through 4 {
+			@for $i from 1 through 6 {
 				li:nth-child(#{$i}) {
-					animation-delay: #{$i * 0.1}s;
+					animation-delay: #{$i * 0.3}s;
 				}
 			}
 
 			li {
 				opacity: 0;
-				animation: fadeInFromLeft 2s $animation-duration * 1.1
-					ease-in-out forwards;
+				animation: fadeInFromLeft 1s $fadeDelay * 5 ease-in-out forwards;
 				transform: translateX(0);
-				transition: 350ms ease-out;
+				transition: $animationDuration ease-out;
 				position: relative;
 
 				&:first-child {
@@ -176,7 +181,7 @@ $animation-duration: 2s;
 	}
 
 	&::before {
-		animation: menuOpen 2500ms forwards;
+		animation: menuOpen $MenuOpenDuration forwards;
 		content: '';
 		position: absolute;
 		width: 25px;
@@ -204,6 +209,20 @@ $animation-duration: 2s;
 	.hovered-2,
 	.hovered-3,
 	.hovered-4 {
+	}
+
+	.offcanvas-menu {
+		&__menu {
+			padding-right: $spacing-xs;
+		}
+	}
+}
+// write  media query max width
+@media only screen and (max-width: 375px) {
+	.offcanvas-menu__menu {
+		li {
+			font-size: 36px !important;
+		}
 	}
 }
 
