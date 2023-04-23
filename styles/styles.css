@@ -140,6 +140,74 @@
   -webkit-text-fill-color: transparent;
 }
 
+.glowBackground {
+  animation: slide-in-bck-center 1250ms 1500ms forwards ease-in-out;
+  opacity: 0;
+  bottom: 0;
+  z-index: 10;
+  border-radius: 0.7rem;
+  padding: 0.515rem 0.5rem;
+  text-emphasis: center;
+  background-color: #e4e7ec;
+  margin-bottom: 24px;
+  margin-left: 24px;
+  left: 24px;
+}
+.glowBackground a {
+  color: #121212;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .glowBackground {
+    width: 95%;
+    margin-left: 5px;
+  }
+}
+.glowBackground:nth-child(2):before {
+  background: linear-gradient(45deg, rgb(122, 5, 181), rgb(122, 5, 181), #cd84f1, #cd84f1, #cd84f1, #cd84f1, #cd84f1, rgb(122, 5, 181), #cd84f1);
+}
+.glowBackground:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 7px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.glowBackground:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e4e7ec;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+.glowBackground:hover {
+  background-color: #ff7979;
+}
+.glowBackground:hover:before {
+  opacity: 1;
+}
+.glowBackground:active {
+  color: #1e1e1e;
+}
+.glowBackground:active::before {
+  opacity: 1;
+}
+.glowBackground:active:after {
+  background: transparent;
+}
+
 body {
   background-color: #1e1e1e;
   height: 100vh;
@@ -157,6 +225,69 @@ body {
 
 .z-999 {
   z-index: 999;
+}
+
+.gradientBg, .btn--menu {
+  animation: slide-in-bck-center 1250ms 1500ms forwards ease-in-out;
+  opacity: 0;
+  bottom: 0;
+  z-index: 10;
+  border-radius: 0.7rem;
+  padding: 0.415rem 0.38rem;
+  text-emphasis: center;
+  background-color: #e4e7ec;
+  margin-bottom: 12px;
+  margin-left: 12px;
+}
+.gradientBg a, .btn--menu a {
+  color: #121212;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .gradientBg, .btn--menu {
+    width: 95%;
+    margin-left: 5px;
+  }
+}
+.gradientBg:before, .btn--menu:before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing 20s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.gradientBg:after, .btn--menu:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #e4e7ec;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+.gradientBg:hover, .btn--menu:hover {
+  background-color: #ff7979;
+}
+.gradientBg:hover:before, .btn--menu:hover:before {
+  opacity: 1;
+}
+.gradientBg:active, .btn--menu:active {
+  color: #1e1e1e;
+}
+.gradientBg:active::before, .btn--menu:active::before {
+  opacity: 1;
+}
+.gradientBg:active:after, .btn--menu:active:after {
+  background: transparent;
 }
 
 * {
@@ -285,9 +416,6 @@ h6 {
     transform-origin: top;
     opacity: 0;
   }
-  50% {
-    opacity: 1;
-  }
   100% {
     transform: rotateX(0deg);
     opacity: 1;
@@ -350,10 +478,12 @@ h6 {
 }
 @keyframes fadeInFromLeft {
   0% {
+    opacity: 0;
     transform: translateX(-1000px);
     filter: blur(15px);
   }
   75% {
+    opacity: 1;
     filter: blur(2px);
   }
   100% {
@@ -947,72 +1077,6 @@ button:hover {
   position: absolute;
   bottom: -6.8571428571px;
   left: 0;
-}
-
-.btn--menu {
-  animation: slide-in-bck-center 1250ms 1500ms forwards ease-in-out;
-  opacity: 0;
-  position: absolute;
-  bottom: 0;
-  z-index: 10;
-  border-radius: 0.7rem;
-  padding: 0.515rem 0.5rem;
-  text-emphasis: center;
-  background-color: #f9f9f9;
-  margin-bottom: 24px;
-  margin-left: 24px;
-  left: 24px;
-}
-.btn--menu a {
-  color: #121212;
-}
-@media (min-width: 0px) and (max-width: 767px) {
-  .btn--menu {
-    width: 95%;
-    margin-left: 5px;
-  }
-}
-.btn--menu:before {
-  content: "";
-  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  background-size: 400%;
-  z-index: -1;
-  filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
-  animation: glowing 20s linear infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  border-radius: 10px;
-}
-.btn--menu:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #f9f9f9;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
-}
-.btn--menu:hover {
-  background-color: #ff7979;
-}
-.btn--menu:hover:before {
-  opacity: 1;
-}
-.btn--menu:active {
-  color: #1e1e1e;
-}
-.btn--menu:active::before {
-  opacity: 1;
-}
-.btn--menu:active:after {
-  background: transparent;
 }
 
 @keyframes showBtn {
@@ -1800,8 +1864,18 @@ button:hover {
   transition: 1s ease all;
 }
 
+@keyframes translateXIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-500px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
 .offcanvas-open .offcanvas-menu__menu--tagline {
-  animation: initialHide 1s ease-in-out;
+  animation: translateXIn 1s;
 }
 .offcanvas-open .offcanvas-menu__menu--tagline h2 {
   animation: swing-in-top-fwd 1s 400ms ease-in-out forwards;

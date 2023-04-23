@@ -18,11 +18,30 @@ $staggerItterator: 1.25;
 $itteratorDelay: 0.2;
 $cubic: ease-in-out;
 
+.offcanvas-menu__menu--tagline {
+}
+
+@keyframes translateXIn {
+	0% {
+		opacity: 0;
+		transform: translateX(-500px);
+	}
+
+	100% {
+		opacity: 0;
+		transform: translateX(0);
+	}
+}
+
+.btn--menu {
+	@extend .gradientBg;
+}
+
 .offcanvas-open {
 	.offcanvas-menu {
 		&__menu {
 			&--tagline {
-				animation: initialHide $fadeDelay $cubic;
+				animation: translateXIn 1s;
 
 				h2 {
 					animation: swing-in-top-fwd $animationDuration

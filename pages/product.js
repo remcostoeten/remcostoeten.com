@@ -10,6 +10,7 @@ const Product = () => {
 	const router = useRouter();
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [openModal, setOpenModal] = useState(false);
+	const [imgSrc, setImgSrc] = useState('/majin.webp');
 
 	const handleOpen = () => {
 		setOpenModal(true);
@@ -111,20 +112,28 @@ const Product = () => {
 						type='radio'
 						id='color-2'
 						name='color-btn'
+						onClick={() => {
+							document.querySelector(
+								'.img-wrap.chair-1 img',
+							).src = '/majinTwwo.webp';
+						}}
 					/>
 					<label className='color-2' htmlFor='color-2' />
 					<input
-						className='color-btn for-color-3'
+						className='color-btn for-color-2'
 						type='radio'
-						id='color-3'
+						id='color-2'
 						name='color-btn'
 					/>
 					<label className='color-3' htmlFor='color-3' />
 					<input
-						className='color-btn for-color-4'
+						className='color-btn for-color-1'
 						type='radio'
-						id='color-4'
+						id='color-1'
 						name='color-btn'
+						value='1'
+						defaultChecked=''
+						onChange={handleImageChange}
 					/>
 					<label className='color-4' htmlFor='color-4' />
 					<input
@@ -164,6 +173,14 @@ const Product = () => {
 							width={500}
 							height={500}
 						/>{' '}
+					</div>{' '}
+					<div className='img-wrap chair-1'>
+						<Image
+							src='/majin.webp'
+							alt='Majin Image'
+							width={500}
+							height={500}
+						/>
 					</div>
 				</div>
 			</div>

@@ -121,6 +121,13 @@ const Toggle = () => {
 								Github
 							</Link>
 						</button>
+						<button className='btn btn--menu whatsapp'>
+							<Link
+								href='https://github.com/remcostoeten'
+								target='https://wa.me/31636590707'>
+								Text or call
+							</Link>
+						</button>
 					</div>
 					<BlobOne />
 				</div>
