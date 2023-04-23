@@ -11,7 +11,7 @@ function App({ Component, pageProps }) {
 		<>
 			<ToastContainer />
 			<Header />
-			<Component {...pageProps} />}
+			<Component {...pageProps} />
 		</>
 	);
 }
