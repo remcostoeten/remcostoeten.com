@@ -60,7 +60,7 @@ const Product = () => {
 							<div className='section-fluid desc-sec accor-1'>
 								<p>
 									The chair construction is made of ash tree.
-									Upholstery and wood color at customer's
+									Upholstery and wood color at customers
 									request.
 								</p>
 							</div>
