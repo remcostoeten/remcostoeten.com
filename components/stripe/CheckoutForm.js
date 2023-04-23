@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { Modal, Tooltip, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import Confetti from 'react-confetti';
-
 export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
