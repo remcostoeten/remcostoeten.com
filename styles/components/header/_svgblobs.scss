@@ -52,16 +52,16 @@
 @include above-mobile {
 	.blob {
 		&__one {
-			width: 2000px;
-			top: -250px;
 			right: -55%;
-			animation: blobWave 25s infinite;
+			animation: 25s infinite;
+			animation: delayShow 2s;
+			display: none;
 
 			@keyframes blobWave {
 				0% {
 					transform: rotate(-5deg);
 					scale: 1.1;
-					opacity: 0.2;
+					opacity: 0;
 					filter: blur(100px);
 				}
 
@@ -108,45 +108,20 @@
 
 .hovered-0 {
 	transition: 1s ease all;
-	.blob__one {
-		stop {
-			animation: animateStopColor2 10s ease-in-out infinite;
-		}
-	}
 }
 
 .hovered-1 {
 	transition: 1s ease all;
-	.blob__one {
-		stop {
-			animation: animateStopColor1 10s ease-in-out infinite;
-		}
-	}
 }
 
 .hovered-2 {
 	transition: 1s ease all;
-	.blob__one {
-		stop {
-			animation: animateStopColor1 10s ease-in-out infinite;
-		}
-	}
 }
 
 .hovered-2 {
 	transition: 1s ease all;
-	.blob__one {
-		stop {
-			animation: animateStopColor1 10s ease-in-out random($limit: 1);
-		}
-	}
 }
 
 .hovered-3 {
 	transition: 1s ease all;
-	.blob__one {
-		stop {
-			animation: animateStopColor1 10s ease-in-out reverse;
-		}
-	}
 }

@@ -27,6 +27,7 @@ body {
 @import './variables/_typography.scss';
 
 // Utilities
+@import './utils/_loader.scss';
 @import './utils/_animations.scss';
 @import './utils/_mixins.scss';
 @import './utils/_utility-classes';

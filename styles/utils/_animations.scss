@@ -7,17 +7,6 @@
 	}
 }
 
-@keyframes showMenu {
-	0% {
-		opacity: 0;
-	}
-
-	100% {
-		opacity: 1;
-		background-color: red;
-	}
-}
-
 @keyframes slide {
 	0% {
 		transform: translateX(-25%);

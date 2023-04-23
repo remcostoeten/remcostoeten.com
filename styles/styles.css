@@ -17,21 +17,42 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+.loading-animation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 9999;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border-left-color: #000;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 @keyframes opacity {
   0% {
     opacity: 0;
   }
   100% {
     opacity: 1 !important;
-  }
-}
-@keyframes showMenu {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-    background-color: red;
   }
 }
 @keyframes slide {
@@ -1530,6 +1551,17 @@ button:hover {
     background-color: #003247;
   }
 }
+:root {
+  --radius-1: 70%;
+  --radius-2: 30%;
+  --radius-3: 30%;
+  --radius-4: 70%;
+  --radius-5: 60%;
+  --radius-6: 40%;
+  --radius-7: 60%;
+  --radius-8: 40%;
+}
+
 .header .toggle {
   cursor: pointer;
   z-index: 15;
@@ -1698,16 +1730,16 @@ button:hover {
 
 @media (min-width: 768px) {
   .blob__one {
-    width: 2000px;
-    top: -250px;
     right: -55%;
-    animation: blobWave 25s infinite;
+    animation: 25s infinite;
+    animation: delayShow 2s;
+    display: none;
   }
   @keyframes blobWave {
     0% {
       transform: rotate(-5deg);
       scale: 1.1;
-      opacity: 0.2;
+      opacity: 0;
       filter: blur(100px);
     }
     50% {
@@ -1746,36 +1778,21 @@ button:hover {
 .hovered-0 {
   transition: 1s ease all;
 }
-.hovered-0 .blob__one stop {
-  animation: animateStopColor2 10s ease-in-out infinite;
-}
 
 .hovered-1 {
   transition: 1s ease all;
 }
-.hovered-1 .blob__one stop {
-  animation: animateStopColor1 10s ease-in-out infinite;
-}
 
 .hovered-2 {
   transition: 1s ease all;
 }
-.hovered-2 .blob__one stop {
-  animation: animateStopColor1 10s ease-in-out infinite;
-}
 
 .hovered-2 {
   transition: 1s ease all;
-}
-.hovered-2 .blob__one stop {
-  animation: animateStopColor1 10s ease-in-out 1;
 }
 
 .hovered-3 {
   transition: 1s ease all;
-}
-.hovered-3 .blob__one stop {
-  animation: animateStopColor1 10s ease-in-out reverse;
 }
 
 .offcanvas-open .offcanvas-menu__menu--tagline {
@@ -1848,71 +1865,6 @@ button:hover {
   height: 82%;
 }
 
-.hovered-1:after,
-.hovered-2:after,
-.hovered-3:after,
-.hovered-4:after {
-  transition: 500ms ease all;
-  opacity: 0;
-}
-.hovered-1:hover:after,
-.hovered-2:hover:after,
-.hovered-3:hover:after,
-.hovered-4:hover:after {
-  opacity: 1;
-}
-
-.hovered-0:after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 50px);
-  filter: blur(150px);
-  right: -40%;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 50px #250155, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px rgb(10, 166, 86), inset -20px 0 300px #0ff, 0 166 50px #ba1010, -10px 166 80px #f0f, 10px 0 80px rgb(164, 0, 71);
-}
-.hovered-0 .blob__one {
-  transform: rotate(5deg);
-}
-
-.hovered-1:after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 100px);
-  filter: blur(150px);
-  right: -40%;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px #f0f, inset -20px 0 80px #0ff, inset 20px 0 300px #f0f, inset -20px 0 300px #0ff, 0 0 50px #fff, -10px 0 80px #f0f, 10px 0 80px #0ff;
-}
-
-.hovered-2:after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 150px);
-  filter: blur(150px);
-  right: -40%;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 50px #fff, inset 20px 0 80px rgb(166, 45, 45), inset -20px 0 80px rgb(255, 0, 38), inset 20px 0 300px rgb(109, 51, 223), inset -20px 0 300px #0ff, 0 0 50px #1f0451, -10px 0 80px #f0f, 10px 0 80px rgb(17, 163, 141);
-}
-
-.hovered-3:after {
-  content: "";
-  position: absolute;
-  top: calc(50% - 200px);
-  filter: blur(150px);
-  right: -40%;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  box-shadow: inset 0 0 50px #00ffbb, inset 20px 0 80px rgb(0, 217, 255), inset -20px 0 80px rgb(149, 0, 255), inset 20px 0 300px rgb(45, 0, 223), inset -20px 0 300px #0ff, 0 0 50px #c90000, -10px 0 80px #f0f, 10px 0 80px rgb(0, 184, 21);
-}
-
 .offcanvas-menu {
   position: absolute;
   width: 33px;
@@ -1981,31 +1933,12 @@ button:hover {
   height: 100vh;
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
-  .hovered-1:after,
-  .hovered-2:after,
-  .hovered-3:after,
-  .hovered-4:after {
-    animation: orbWave 10s;
+@keyframes orbWWave {
+  0% {
+    opacity: 0;
   }
-  .hovered-1:hover:after,
-  .hovered-2:hover:after,
-  .hovered-3:hover:after,
-  .hovered-4:hover:after {
+  100% {
     opacity: 1;
-  }
-  @keyframes orbWave {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      scale: 1.2;
-      left: 0;
-      transform: rotate(-5deg);
-    }
-    100% {
-      scale: 1.2;
-    }
   }
 }
 .authenticated {
