@@ -17,7 +17,6 @@ $fadeDelay: 1s;
 $staggerItterator: 1.25;
 $itteratorDelay: 0.2;
 $cubic: ease-in-out;
-$MenuOpenDuration: 2s;
 
 .offcanvas-open {
 	.offcanvas-menu {
@@ -181,7 +180,10 @@ $MenuOpenDuration: 2s;
 	}
 
 	&::before {
-		animation: menuOpen $MenuOpenDuration forwards;
+		animation: menuOpen 1250ms forwards;
+		@include mobile {
+			animation-duration: 2s;
+		}
 		content: '';
 		position: absolute;
 		width: 25px;

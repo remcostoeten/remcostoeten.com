@@ -1924,7 +1924,7 @@ button:hover {
   transition-delay: 1s;
 }
 .offcanvas-menu::before {
-  animation: menuOpen 2s forwards;
+  animation: menuOpen 1250ms forwards;
   content: "";
   position: absolute;
   width: 25px;
@@ -1937,6 +1937,11 @@ button:hover {
   z-index: -1;
   top: 20px;
   right: -19px;
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .offcanvas-menu::before {
+    animation-duration: 2s;
+  }
 }
 
 .menu-delay .offcanvas-menu {
