@@ -63,6 +63,10 @@ $cubic: ease-in-out;
 			}
 		}
 
+		&__bottom {
+			margin-left: $spacing-s;
+		}
+
 		ul {
 			opacity: 1;
 
@@ -125,7 +129,7 @@ $cubic: ease-in-out;
 		}
 
 		> .container {
-			height: 82%;
+			height: 74dvh;
 		}
 	}
 }
@@ -221,7 +225,6 @@ $cubic: ease-in-out;
 .menu-delay {
 	.offcanvas-menu {
 		width: 100%;
-		height: 100dvh;
 	}
 }
 

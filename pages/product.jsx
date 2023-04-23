@@ -5,24 +5,23 @@ import Image from 'next/image';
 import { useEffect } from 'react';
 import StripeContainer from '../components/stripe/StripeContainer';
 import { Modal, Tooltip, IconButton } from '@mui/material';
-import { Transition } from '@headlessui/react';
 
 const Product = () => {
 	const router = useRouter();
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [openModal, setOpenModal] = useState(false);
-	const [imageSrc, setImageSrc] = useState('/majin.webp');
+	const [imgSrc, setImgSrc] = useState('/image1.jpg');
 
-	const handleClickVariant1 = () => {
-		setImageSrc('/majin.webp');
+	const handleImageChange1 = () => {
+		setImgSrc('/majin.webp');
 	};
 
-	const handleClickVariant2 = () => {
-		setImageSrc('/majinThree.gif');
+	const handleImageChange2 = () => {
+		setImgSrc('/majinTwo.gif');
 	};
 
-	const handleClickVariant3 = () => {
-		setImageSrc('/majinTwo.gif');
+	const handleImageChange3 = () => {
+		setImgSrc('/majinTree.gif');
 	};
 
 	const handleOpen = () => {
@@ -37,19 +36,27 @@ const Product = () => {
 		setSelectedProduct(null);
 	};
 
+
 	const handlePurchase = (product) => {
 		setSelectedProduct(product);
 	};
 
-	useEffect(() => {
-		document.body.classList.add('product-page');
-	});
+	const handleImageChange = (event) => {
+		const { value } = event.target;
+		if (value === '1') {
+			setImgSrc('/majin.webp');
+		} else if (value === '2') {
+			setImgSrc('/majinTwo.webp');
+		} else if (value === '3') {
+			setImgSrc('/majinThree.gif');
+		}
+	};
 
 	return (
 		<>
-			<div className='section-fluid-main'>
+		<div className='product-page'></div>	<div className='section-fluid-main'>
 				<div className='section'>
-					<div className='info-wrap mob-margin'>
+					<div className='mp-4 info-wrap mob-margin'>
 						<p className='title-up'>Stripe test</p>
 						<h2>Donate Remcostoeten</h2>
 						<h4>
@@ -109,34 +116,60 @@ const Product = () => {
 								</div>
 							</div>
 						</div>
-						<h5>Choose variant:</h5>
+						<h5>Choose upholstery:</h5>
 					</div>
 					<div className='clearfix' />
-					<div className='my-10 product__variant'>
-						<button
-							className='btn btn--variant'
-							onClick={handleClickVariant1}>
-							Variant 1
-						</button>
-						<button
-							className='btn btn--variant'
-							onClick={handleClickVariant2}>
-							Variant 2
-						</button>
-						<button
-							className='btn btn--variant'
-							onClick={handleClickVariant3}>
-							Variant 3
-						</button>
-					</div>
-					<div className='img-wrap'>
-						<Image
-							src={imageSrc}
-							alt='Majin Image'
-							width={500}
-							height={500}
-						/>
-					</div>
+					<input
+						className='color-btn for-color-1'
+						type='radio'
+						id='color-1'
+						name='color-btn'
+						defaultChecked=''
+					/>
+					<label className='first-color' htmlFor='color-1' />
+					<input
+						className='color-btn for-color-2'
+						type='radio'
+						id='color-2'
+						name='color-btn'
+						onClick={() => {
+							document.querySelector(
+								'.img-wrap.chair-1 img',
+							).src = '/majinTwwo.webp';
+						}}
+					/>
+					<label className='color-2' htmlFor='color-2' />
+					<input
+						className='color-btn for-color-2'
+						type='radio'
+						id='color-2'
+						name='color-btn'
+					/>
+					<label className='color-3' htmlFor='color-3' />
+					<input
+						className='color-btn for-color-1'
+						type='radio'
+						id='color-1'
+						name='color-btn'
+						value='1'
+						defaultChecked=''
+						onChange={handleImageChange}
+					/>
+					<label className='color-4' htmlFor='color-4' />
+					<input
+						className='color-btn for-color-5'
+						type='radio'
+						id='color-5'
+						name='color-btn'
+					/>
+					<label className='color-5' htmlFor='color-5' />
+					<input
+						className='color-btn for-color-6'
+						type='radio'
+						id='color-6'
+						name='color-btn'
+					/>
+					<label className='color-6' htmlFor='color-6' />
 					<div className='clearfix' />
 					<div className='info-wrap'>
 						{/* onClick={handlePurchase} */}
@@ -150,36 +183,36 @@ const Product = () => {
 							<h2>Checkout</h2>
 
 							<StripeContainer product={selectedProduct} />
+							<button onClick={handleClose}>Close</button>
 						</div>
 					)}
-					<div className='img-wrap'>
-						<div className='img-wrap'>
-							<Image
-								src={imageSrc}
-								alt='Majin Image'
-								width={500}
-								height={500}
-							/>
-						</div>
+					<div className='img-wrap chair-1'>
+						<Image
+							src={imgSrc}
+							alt='Product Image'
+							width={500}
+							height={500}
+						/>
+					</div>
+					<div className='product__variant'>
+						<button onClick={handleImageChange1}>Image 1</button>
+						<button onClick={handleImageChange2}>Image 2</button>
+						<button onClick={handleImageChange3}>Image 3</button>
 					</div>
 				</div>
 			</div>
+			</div>
 			<Modal open={openModal} onClose={handleClose}>
-				<div className='text-slate-800 bg-white py-4 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
-					<h2 className='mx-4 text-slate-600  text-lg font-medium mb-4'>
-						Checkout
-					</h2>
-
+				<div className='z-999    text-slate-800 bg-white py-4 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
 					<StripeContainer product={selectedProduct} />
-					<div className='flex items-center mt-4'>
-						<button
-							className=' py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
-							onClick={handleModalClose}>
-							Close
-						</button>
-					</div>
+					<button
+						className=' py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
+						onClick={handleModalClose}>
+						Close
+					</button>
 				</div>
 			</Modal>
+			
 		</>
 	);
 };

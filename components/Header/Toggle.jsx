@@ -10,9 +10,9 @@ const Toggle = () => {
 
 	const links = [
 		{ href: '/', text: 'Home', classes: [] },
-
-		{ href: 'contact', text: 'Contact', classes: ['hovered-2'] },
+		{ href: '/', text: 'Sign in', classes: ['hovered-2'] },
 		{ href: 'product', text: 'Stripe payment', classes: ['hovered-3'] },
+		{ href: 'contact', text: 'Contact', classes: ['hovered-4 '] },
 	];
 
 	const handleMouseEnter = (index) => {

@@ -2,6 +2,7 @@ body {
 	background-color: $black-accent;
 	height: 100vh;
 }
+.page {&__inner {margin-top: 90px;}}
 
 .container {
 	// max-width: calc($container-size * 1.25) !important;
