@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Modal from '@/components/ui-elements/Modal';
+import Modal from '../ui-elements/Modal';
 import {
 	getAuth,
 	setPersistence,
@@ -10,17 +10,19 @@ import {
 import { auth } from '@/utils/firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Dog from 'public/dog.png';
+import Image from 'next/image';
+import Dog from '/public/dog.png';
 
-const RegisterModal = ({ isOpen, onClose }) => {
+export default function SignInPuppy({ isOpen, onClose }) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [name, setName] = useState('');
+	const [username, setUserName] = useState('');
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [registered, setRegistered] = useState(false);
 	const [formWarning, setFormWarning] = useState(false);
-	const [username, setUserName] = useState('');
-	const [isValidated, setIsValidated] = useState(true);
+	const [formValid, setFormValid] = useState(false);
+	const [isValidated, setIsValidated] = useState(false);
 
 	useEffect(() => {
 		const user = auth.currentUser;
@@ -39,42 +41,46 @@ const RegisterModal = ({ isOpen, onClose }) => {
 		}
 	}, [name]);
 
-	const handleSignUp = async () => {
+	const handleSignUp = async (event) => {
 		event.preventDefault();
-		try {
-			setIsLoggedIn(true);
-			const auth = getAuth();
-			const result = await createUserWithEmailAndPassword(
-				auth,
-				email,
-				password,
-			);
-			console.log(result);
-			setRegistered(true);
-			setShowConfetti(true);
+		const email = event.target.email.value;
+		const password = event.target.password.value;
+		const isFormValid = validateForm(email, password);
+		const validationSuccess = setIsValidated(validationSuccess); // result of validation process;
 
-			if (auth.currentUser) {
-				await updateProfile(auth.currentUser, {
-					displayName: name,
-				});
-				if (auth.currentUser.displayName) {
+		setFormValid(isFormValid);
+		if (isFormValid) {
+			try {
+				const auth = getAuth();
+				const persistenceMode = rememberMe
+					? browserLocalPersistence
+					: browserSessionPersistence;
+				await setPersistence(auth, persistenceMode);
+				await signInWithEmailAndPassword(auth, email, password);
+
+				onSignIn(email, password, rememberMe);
+
+				if (auth.currentUser?.displayName) {
 					toast.success(
 						`Welcome aboard ${auth.currentUser.displayName}!`,
 					);
 				} else {
-					toast.success(`Welcome aboard ${auth.currentUser.email}!`);
+					toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
 				}
+				setFormWarning(false);
+			} catch (error) {
+				setFormWarning(true);
+				console.error(error);
+				toast.error(
+					'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
+				);
 			}
-		} catch (error) {
-			setIsValidated(false);
-			console.error(error);
+		} else {
 			toast.error(
-				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
+				'Invalid email or password. Please check your input and try again.',
 			);
-			setIsLoggedIn(false);
 		}
 	};
-
 	const signIn = async () => {
 		try {
 			const result = await signInWithPopup(
@@ -83,7 +89,6 @@ const RegisterModal = ({ isOpen, onClose }) => {
 			);
 			setIsLoggedIn(true);
 		} catch (error) {
-			setIsLoggedIn(false);
 			console.log(error);
 		}
 	};
@@ -91,27 +96,28 @@ const RegisterModal = ({ isOpen, onClose }) => {
 	const signOut = async () => {
 		try {
 			await auth.signOut();
-		} catch (error) {
 			setIsLoggedIn(false);
+		} catch (error) {
 			console.log(error);
 		}
 	};
 
+	const validateForm = (email, password) => {
+		const emailRegex = /^[\w-]+(\.[\w-]+)*@([\w-]+\.)+[a-zA-Z]{2,7}$/;
+		const isEmailValid = emailRegex.test(email);
+		return isEmailValid && isPasswordValid;
+	};
+
 	return (
-		<Modal
-			isOpen={isOpen}
-			onClose={onClose}
-			className={`container mx-auto ${formWarning ? 'warning' : ''}`}>
+		<Modal className={`container mx-auto ${formWarning ? 'warning' : ''}`}>
 			<div className='flex justify-center px-6 my-12'>
 				{/* Row */}
 				<div className='w-full xl:w-3/4 lg:w-11/12 flex'>
-					{/* Col */}
 					<div
-						className={`dog ${isValidated ? 'valid' : 'invalid'}`}
+						className={`dog ${isValidated ? 'valid' : 'bg-yellow'}`}
 						style={{
-							backgroundImage: `url(${Dog})`,
-						}}></div>{' '}
-					{/* Col */}
+							backgroundImageva: `url(${Dog})`,
+						}}></div>
 					<div className='w-full lg:w-7/12 bg-white p-5 rounded-lg lg:rounded-l-none'>
 						<form onSubmit={handleSignUp} className='bg-white'>
 							<h1 className='text-gray-800 font-bold text-2xl mb-1'>
@@ -213,19 +219,14 @@ const RegisterModal = ({ isOpen, onClose }) => {
 									}
 								/>
 							</div>
-							<div className='flex items-center  py-2 px-3  mb-4'>
-								<button
-									type='submit'
-									class='relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800'>
-									<span class='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
-										Login
-									</span>
-								</button>
-
-								<span className='text-sm ml-2 hover:text-blue-500 cursor-pointer'>
-									Forgot Password ?
-								</span>
-							</div>
+							<button
+								type='submit'
+								className='block w-95 p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400'>
+								Login
+							</button>
+							<span className='text-sm ml-2 hover:text-blue-500 cursor-pointer'>
+								Forgot Password ?
+							</span>
 
 							<div className='flex items-center pt-4 space-x-1'>
 								<div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
@@ -273,6 +274,4 @@ const RegisterModal = ({ isOpen, onClose }) => {
 			</div>
 		</Modal>
 	);
-};
-
-export default RegisterModal;
+}

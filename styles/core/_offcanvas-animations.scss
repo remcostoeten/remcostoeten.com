@@ -1,0 +1,123 @@
+$animationDuration: 550ms;
+$staggeredFadeDuration: 400ms;
+$fadeDelay: 750s;
+$staggerItterator: 0.75s;
+$itteratorDelay: 0.2;
+$cubic: ease-in-out;
+
+$multiplier: 1.15;
+$baseAnimationDuration: 150ms;
+$initialHide: $baseAnimationDuration * 3;
+$menuOpenDuration: $baseAnimationDuration * 8;
+$itemDuration: $baseAnimationDuration * 6;
+$itemAfterInitialHide: $initialHide * 0.9;
+
+$itemsItterator: 1100ms;
+
+$delayItterator-s: $multiplier;
+$delayItterator: $delayItterator-s * $multiplier;
+$delayItterator-l: $delayItterator * $multiplier;
+$delayItterator-xl: $delayItterator-l * $multiplier;
+
+$outOfView: -110%;
+
+@keyframes blurFadeSmall {
+	from {
+		filter: blur(5px);
+	}
+}
+
+@keyframes blurFade {
+	from {
+		filter: blur(15px);
+	}
+}
+
+@keyframes slideInFromLeft {
+	from {
+		filter: blur(15px);
+	}
+	to {
+		transform: translateX(0);
+		filter: blur(0);
+	}
+}
+
+@keyframes slideIn {
+	0% {
+		transform: translateX(-110%);
+	}
+	100% {
+		transform: translateX(0%);
+		margin-left: 0;
+	}
+}
+@keyframes initialHideDelay {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes menuOpen {
+	0% {
+		height: 25px;
+		width: 25px;
+	}
+
+	100% {
+		scale: 200;
+
+		@include mobile {
+			scale: 70;
+		}
+	}
+}
+
+@keyframes headerLine {
+	0% {
+		background: linear-gradient(90deg, transparent, #2f2f2f, transparent);
+	}
+	100% {
+		background: linear-gradient(
+			90deg,
+			transparent,
+			$color--primary,
+			transparent
+		);
+	}
+}
+
+@keyframes puffInCenter {
+	0% {
+		transform: scale(3);
+		transform: translateY(20%);
+		opacity: 0;
+	}
+
+	100% {
+		transform: scale(1);
+		opacity: 1;
+	}
+}
+
+@keyframes swingInTop {
+	0% {
+		transform: rotateX(-100deg);
+		transform-origin: top;
+		opacity: 0;
+		filter: blur(10px);
+	}
+
+	50% {
+	}
+
+	100% {
+		filter: blur(0px);
+		transform: rotateX(0deg);
+		opacity: 1;
+		transform-origin: top;
+	}
+}

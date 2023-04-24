@@ -85,10 +85,11 @@ const LoginModal = ({ isOpen, onClose }) => {
 					animate={{ opacity: 1, y: 0 }}
 					transition={{ duration: 0.3 }}>
 					{' '}
-					<div className='translate-y-0.5	 fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-8 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100'>
+					<div className='translate-y-0.5	 fixed z-50 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96	 p-16 space-y-3 rounded-xl dark:bg-gray-900 dark:text-gray-100'>
 						<h1 className='text-2xl font-bold text-center'>
 							Login
 						</h1>
+
 						<form
 							onSubmit={handleSignIn}
 							novalidate=''
@@ -102,7 +103,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 								</label>
 								<input
 									type='email'
-									className='form-control w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400'
+									className='form-control w-96 px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400'
 									id='email'
 									aria-describedby='emailHelp'
 									placeholder='Enter email'
@@ -119,7 +120,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 
 								<input
 									type='password'
-									className='form-control w-full px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400'
+									className='form-control w-90 px-4 py-3 rounded-md dark:border-gray-700 dark:bg-gray-900 dark:text-gray-100 focus:dark:border-violet-400'
 									id='password'
 									placeholder='Password'
 									value={password}
@@ -135,7 +136,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 							</div>
 							<button
 								type='submit'
-								className='block w-full p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400'>
+								className='block w-95 p-3 text-center rounded-sm dark:text-gray-900 dark:bg-violet-400'>
 								{' '}
 								Sign in
 							</button>

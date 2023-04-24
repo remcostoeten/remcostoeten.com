@@ -1,0 +1,32 @@
+$dog-background: rgb(20, 154, 54);
+
+.dog {
+	background-color: $dog-background;
+	position: relative;
+	overflow: hidden;
+	&:after,
+	&:before {
+		transform: translateY(1%);
+	}
+	&:after {
+		filter: blur(5px);
+		z-index: -1;
+		content: url('/dog.png');
+	}
+
+	&:before {
+		z-index: 1;
+		top: 2px;
+		position: absolute;
+		content: url('/dog.png');
+	}
+}
+
+.dog {
+	&.invalid {
+		background-color: red;
+	}
+	&.valid {
+		background-color: $dog-background;
+	}
+}

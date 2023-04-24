@@ -3,7 +3,7 @@ import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import LoginModal from '../auth/LoginModal';
 import RegisterModal from '../auth/RegisterModal';
-
+import SignInPuppy from '../auth/LoginModalPuppy';
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
@@ -145,7 +145,7 @@ const Toggle = () => {
 					<BlobOne />
 				</div>
 			)}
-			<LoginModal
+			<SignInPuppy
 				isOpen={isLoginModalOpen}
 				onClose={handleCloseLoginModal}
 			/>{' '}
