@@ -1,6 +1,6 @@
 .blob {
 	&__one {
-		width: 1000px;
+		width: 1300px;
 		top: -160px;
 		filter: blur(100px);
 		stroke: none;
@@ -91,16 +91,16 @@
 		transform: rotate(-5deg);
 	}
 
-	7% {
+	3% {
 		opacity: 0;
 	}
 
 	13% {
-		opacity: 0.3;
+		opacity: 0.2;
 	}
 
 	100% {
-		scale: 0.35;
+		scale: 0.9;
 		transform: rotate(5deg);
 		opacity: 0.3;
 	}

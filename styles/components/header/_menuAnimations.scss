@@ -93,23 +93,6 @@
 	}
 }
 
-@keyframes swing-in-top-fwd {
-	0% {
-		transform: rotateX(-100deg);
-		transform-origin: top;
-		opacity: 0;
-	}
-
-	50% {
-	}
-
-	100% {
-		transform: rotateX(0deg);
-		opacity: 1;
-		transform-origin: top;
-	}
-}
-
 @keyframes flip-in-hor-bottom {
 	0% {
 		transform: rotateX(80deg);
@@ -229,21 +212,6 @@
 	to {
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes menuOpen {
-	0% {
-		height: 25px;
-		width: 25px;
-	}
-
-	100% {
-		scale: 200;
-
-		@include mobile {
-			scale: 70;
-		}
 	}
 }
 

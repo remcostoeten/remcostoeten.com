@@ -15,15 +15,14 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyDwXDGrvrAS7Z3KwdpeOqVFJva32rT_qCc',
-	authDomain: 'remcostoeten-9cadf.firebaseapp.com',
-	projectId: 'remcostoeten-9cadf',
-	storageBucket: 'remcostoeten-9cadf.appspot.com',
-	messagingSenderId: '97706826008',
-	appId: '1:97706826008:web:0a631d6aee76daf875e66d',
-	measurementId: 'G-BTR9DC1LPH',
+	apiKey: 'AIzaSyAXRo1qIp4lwuTyXui-iLlaJ1yIuWMJyGs',
+	authDomain: 'remcostoeten-fresh.firebaseapp.com',
+	projectId: 'remcostoeten-fresh',
+	storageBucket: 'remcostoeten-fresh.appspot.com',
+	messagingSenderId: '597496221737',
+	appId: '1:597496221737:web:dffc49d781cb5c53840c38',
+	measurementId: 'G-LB8SZXST3B',
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
@@ -48,6 +47,37 @@ const signInWithGoogle = () => {
 			console.log(error.code);
 			console.log(error);
 		});
+};
+
+const signUp = async (email, password) => {
+	try {
+		const auth = getAuth(); // get the auth instance
+		const userCredential = await createUserWithEmailAndPassword(
+			auth,
+			email,
+			password,
+		); // create user
+		const user = userCredential.user;
+		console.log(user);
+	} catch (error) {
+		console.log(error);
+	}
+};
+
+// sign in with email and password
+const signIn = async (email, password) => {
+	try {
+		const auth = getAuth(); // get the auth instance
+		const userCredential = await signInWithEmailAndPassword(
+			auth,
+			email,
+			password,
+		); // sign in user
+		const user = userCredential.user;
+		console.log(user);
+	} catch (error) {
+		console.log(error);
+	}
 };
 
 const logout = () => {

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import LoginModal from '../auth/LoginModal';
+import RegisterModal from '../auth/RegisterModal';
 
 const Toggle = () => {
 	const toggleRef = useRef(null);
@@ -9,21 +10,25 @@ const Toggle = () => {
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
 
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
+		setMenuOpen(false);
 	};
 
 	const handleCloseLoginModal = () => {
 		setIsLoginModalOpen(false);
 	};
 
-	const links = [
-		{ href: '/', text: 'Home', classes: [] },
-		{ href: '/', text: 'Sign in', classes: ['hovered-2'] },
-		{ href: 'product', text: 'Stripe payment', classes: ['hovered-3'] },
-		{ href: 'contact', text: 'Contact', classes: ['hovered-4 '] },
-	];
+	const handleOpenRegisterModal = () => {
+		setisRegisterModalOpen(true);
+		setMenuOpen(false);
+	};
+
+	const handleCloseRegisterModal = () => {
+		setisRegisterModalOpen(false);
+	};
 
 	const handleMouseEnter = (index) => {
 		setHoveredIndex(index);
@@ -78,7 +83,6 @@ const Toggle = () => {
 					</svg>
 				</div>
 			</label>
-
 			<svg xmlns='http://www.w3.org/2000/svg' style={{ display: 'none' }}>
 				<symbol
 					xmlns='http://www.w3.org/2000/svg'
@@ -87,7 +91,6 @@ const Toggle = () => {
 					<path d='M22,22 L2,22 C2,11 11,2 22,2 C33,2 42,11 42,22'></path>
 				</symbol>
 			</svg>
-
 			{menuOpen && (
 				<div className={parentClass}>
 					<div className='container'>
@@ -103,30 +106,23 @@ const Toggle = () => {
 									than a <i>divjesschuiver</i>
 								</p>
 							</div>
-							<ul>
-								{links.map((link, index) => (
-									<>
-										<li key={index}>
-											<Link
-												onClick={handleClose}
-												href={link.href}
-												className={link.classes.join(
-													' ',
-												)}
-												onMouseEnter={() =>
-													handleMouseEnter(index)
-												}
-												onMouseLeave={() =>
-													handleMouseLeave(index)
-												}>
-												{link.text}
-											</Link>
-										</li>
-										<li onClick={handleOpenLoginModal}>
-											Login
-										</li>
-									</>
-								))}
+							<ul className='offcanvas-menu__items'>
+								<li>
+									<Link href='/product'>
+										{' '}
+										Product page{' '}
+										<span>Stripe payment </span>
+									</Link>
+								</li>
+
+								<li>
+									<Link href='/contact'>Contact</Link>
+								</li>
+
+								<li onClick={handleOpenLoginModal}>Login</li>
+								<li onClick={handleOpenRegisterModal}>
+									Register
+								</li>
 							</ul>
 						</div>
 					</div>
@@ -152,6 +148,10 @@ const Toggle = () => {
 			<LoginModal
 				isOpen={isLoginModalOpen}
 				onClose={handleCloseLoginModal}
+			/>{' '}
+			<RegisterModal
+				isOpen={isRegisterModalOpen}
+				onClose={handleCloseRegisterModal}
 			/>
 		</>
 	);

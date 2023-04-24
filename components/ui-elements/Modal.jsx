@@ -1,9 +1,7 @@
 import React from 'react';
 
 const Modal = ({ isOpen, onClose, children }) => {
-	const overlayClasses = isOpen
-		? 'fixed inset-0 bg-black opacity-50 z-50'
-		: 'hidden';
+	const overlayClasses = isOpen ? 'fixed inset-0 bg-black  z-50' : 'hidden';
 	const modalClasses = isOpen
 		? 'fixed inset-0 flex items-center justify-center z-50'
 		: 'hidden';
