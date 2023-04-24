@@ -1,0 +1,78 @@
+import React from 'react'
+
+export default function BigCard() {
+  return (
+		<section className='py-20'>
+			<div className='w-full px-5 sm:px-8 md:px-12 lg:px-8 max-w-screen-lg lg:max-w-screen-xl mx-auto'>
+				{/*[*/}
+				<div className='w-full relative py-8 md:py-10 px-6 md:px-8 rounded-2xl bg-gradient-to-tr from-gray-100 to-gray-200 dark:from-gray-900 dark:to-body-color'>
+					<div className='absolute right-0 top-0 h-full w-full flex justify-end'>
+						<span className='flex opacity-20'>
+							<span className='w-16 h-32 rounded-l-full flex bg-primary blur-2xl' />
+							<span className='w-16 h-32 rounded-r-full flex bg-[#f88fc2] blur-2xl mt-14' />
+						</span>
+					</div>
+					<div className='absolute left-0 bottom-0 h-full w-full flex items-end'>
+						<span className='flex opacity-20'>
+							<span className='w-16 h-32 rounded-l-full flex bg-primary blur-2xl' />
+							<span className='w-16 h-32 rounded-r-full flex bg-[#f88fc2] blur-2xl mt-14' />
+						</span>
+					</div>
+					<div className='mx-auto text-center max-w-xl md:max-w-2xl relative'>
+						<h2 className='text-gray-800 pt-4 dark:text-white font-bold text-4xl md:text-5xl lg:text-6x'>
+							{' '}
+							New Episodes will{' '}
+							<span className='text-transparent bg-clip-text bg-gradient-to-br from-primary to-[#8cd66a]'>
+								always
+							</span>{' '}
+							updated regularly{' '}
+						</h2>
+						<p className='text-gray-600 dark:text-gray-300 pt-8 mx-auto max-w-xl'>
+							{' '}
+							Lorem ipsum dolor sit amet, consectetur adipisicing
+							elit. Sapiente delectus architecto ullam earum{' '}
+						</p>
+						<div className='mx-auto max-w-md sm:max-w-xl pt-10'>
+							<form
+								action=''
+								className='flex items-center relative gap-x-2'>
+								<input
+									type='email'
+									placeholder='johndoe@gmail.com'
+									className='outline-none border-2 border-transparent focus:border-primary bg-body text-gray-600 dark:text-gray-200 rounded-3xl px-6 py-3 w-full'
+								/>
+								<div className='sm:inline-flex sm:min-w-max absolute sm:relative top-0.5 right-0.5 sm:top-0 sm:right-0'>
+									<button className='min-w-max p-3 sm:py-3 sm:px-6 text-white border-2 border-transparent relative group'>
+										<span className='absolute inset-0 rounded-full group-hover:scale-105 origin-center transition-all ease-in-out bg-primary' />
+										<span
+											aria-hidden='true'
+											className='relative hidden sm:flex'>
+											{' '}
+											Subsribe{' '}
+										</span>
+										<span className='relative flex sm:hidden'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												fill='none'
+												viewBox='0 0 24 24'
+												strokeWidth='1.5'
+												stroke='currentColor'
+												className='w-5 h-5'>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5'
+												/>
+											</svg>
+										</span>
+									</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				{/*]*/}
+			</div>
+		</section>
+  );
+}

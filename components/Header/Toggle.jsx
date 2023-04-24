@@ -1,12 +1,22 @@
 import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
+import LoginModal from '../auth/LoginModal';
 
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
+	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+
+	const handleOpenLoginModal = () => {
+		setIsLoginModalOpen(true);
+	};
+
+	const handleCloseLoginModal = () => {
+		setIsLoginModalOpen(false);
+	};
 
 	const links = [
 		{ href: '/', text: 'Home', classes: [] },
@@ -95,20 +105,27 @@ const Toggle = () => {
 							</div>
 							<ul>
 								{links.map((link, index) => (
-									<li key={index}>
-										<Link
-											onClick={handleClose}
-											href={link.href}
-											className={link.classes.join(' ')}
-											onMouseEnter={() =>
-												handleMouseEnter(index)
-											}
-											onMouseLeave={() =>
-												handleMouseLeave(index)
-											}>
-											{link.text}
-										</Link>
-									</li>
+									<>
+										<li key={index}>
+											<Link
+												onClick={handleClose}
+												href={link.href}
+												className={link.classes.join(
+													' ',
+												)}
+												onMouseEnter={() =>
+													handleMouseEnter(index)
+												}
+												onMouseLeave={() =>
+													handleMouseLeave(index)
+												}>
+												{link.text}
+											</Link>
+										</li>
+										<li onClick={handleOpenLoginModal}>
+											Login
+										</li>
+									</>
 								))}
 							</ul>
 						</div>
@@ -132,6 +149,10 @@ const Toggle = () => {
 					<BlobOne />
 				</div>
 			)}
+			<LoginModal
+				isOpen={isLoginModalOpen}
+				onClose={handleCloseLoginModal}
+			/>
 		</>
 	);
 };
