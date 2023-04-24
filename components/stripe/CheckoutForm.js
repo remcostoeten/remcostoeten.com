@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { Modal, Tooltip, IconButton } from '@mui/material';
 import InfoIcon from '@mui/icons-material/Info';
 import Confetti from 'react-confetti';
-
+import Image from 'next/image';
 export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -70,7 +70,8 @@ export default function CheckoutForm() {
 					<div className='inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
 						<div className='bg-gray-50 px-4 py-5 sm:px-6'>
 							<div className='flex items-center'>
-								<img
+								<Image
+									height={fill}
 									className='h-8 w-auto'
 									src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
 									alt='Workflow'

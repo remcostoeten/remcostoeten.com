@@ -36,7 +36,6 @@ const Product = () => {
 		setSelectedProduct(null);
 	};
 
-
 	const handlePurchase = (product) => {
 		setSelectedProduct(product);
 	};
@@ -53,8 +52,8 @@ const Product = () => {
 	};
 
 	return (
-		<>
-		<div className='product-page'></div>	<div className='section-fluid-main'>
+		<div className='product-page'>
+			<div className='section-fluid-main'>
 				<div className='section'>
 					<div className='mp-4 info-wrap mob-margin'>
 						<p className='title-up'>Stripe test</p>
@@ -126,6 +125,7 @@ const Product = () => {
 						name='color-btn'
 						defaultChecked=''
 					/>
+
 					<label className='first-color' htmlFor='color-1' />
 					<input
 						className='color-btn for-color-2'
@@ -172,7 +172,6 @@ const Product = () => {
 					<label className='color-6' htmlFor='color-6' />
 					<div className='clearfix' />
 					<div className='info-wrap'>
-						{/* onClick={handlePurchase} */}
 						<button onClick={handleOpen} href='#' className='btn'>
 							<i className='uil uil-shopping-cart icon' /> Add To
 							Cart
@@ -181,7 +180,6 @@ const Product = () => {
 					{selectedProduct && (
 						<div>
 							<h2>Checkout</h2>
-
 							<StripeContainer product={selectedProduct} />
 							<button onClick={handleClose}>Close</button>
 						</div>
@@ -200,20 +198,18 @@ const Product = () => {
 						<button onClick={handleImageChange3}>Image 3</button>
 					</div>
 				</div>
+				<Modal open={openModal} onClose={handleClose}>
+					<div className='z-999    text-slate-800 bg-white py-4 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
+						<StripeContainer product={selectedProduct} />
+						<button
+							className='py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
+							onClick={handleModalClose}>
+							Close
+						</button>
+					</div>
+				</Modal>
 			</div>
-			</div>
-			<Modal open={openModal} onClose={handleClose}>
-				<div className='z-999    text-slate-800 bg-white py-4 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
-					<StripeContainer product={selectedProduct} />
-					<button
-						className=' py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
-						onClick={handleModalClose}>
-						Close
-					</button>
-				</div>
-			</Modal>
-			
-		</>
+		</div>
 	);
 };
 

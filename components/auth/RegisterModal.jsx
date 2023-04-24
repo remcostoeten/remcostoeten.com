@@ -10,7 +10,8 @@ import {
 import { auth } from '@/utils/firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import Image from 'next/image';
+Image
 const RegisterModal = ({ isOpen, onClose }) => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
@@ -198,15 +199,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
 						</svg>
 					</button>
 				</div>
-				<p className='text-xs text-center sm:px-6 dark:text-gray-400'>
-					Don't have an account?
-					<a
-						rel='noopener noreferrer'
-						href='#'
-						className='underline dark:text-gray-100'>
-						Sign up
-					</a>
-				</p>
+				
 			</div>
 		</Modal>
 	);

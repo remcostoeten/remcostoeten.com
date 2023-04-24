@@ -181,7 +181,7 @@ const LoginModal = ({ isOpen, onClose }) => {
 							</button>
 						</div>
 						<p className='text-xs text-center sm:px-6 dark:text-gray-400'>
-							Don't have an account?
+							Dont have an account?
 							<a
 								rel='noopener noreferrer'
 								href='#'
