@@ -1,0 +1,9 @@
+[build]
+command = "npm run build"
+node_version = "18.x"  
+[[plugins]]
+package = "netlify-plugin-nextjs"
+package = "@netlify/plugin-nextjs-large-media"
+  [plugins.inputs]
+  assetPath = "public"
+  htmlPath = "out"

@@ -10,7 +10,6 @@ export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
 	const router = useRouter();
-	const [showConfetti, setShowConfetti] = useState(false);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
