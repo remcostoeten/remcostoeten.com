@@ -1,58 +1,37 @@
-import { useEffect, useRef, useState } from 'react';
-import { useRouter } from 'next/router';
+import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
-import LoginModal from '../auth/LoginModal';
 import SignInPuppy from '../auth/LoginModalPuppy';
-
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-
-	const router = useRouter();
-
-	useEffect(() => {
-		const handleRouteChange = () => {
-			setMenuOpen(false);
-			document.body.classList.remove('offcanvas-open');
-			document.body.classList.remove('menu-delay');
-		};
-
-		router.events.on('routeChangeStart', handleRouteChange);
-
-		return () => {
-			router.events.off('routeChangeStart', handleRouteChange);
-		};
-	}, [router.events]);
+	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
 
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
 		setMenuOpen(false);
 	};
 
-<<<<<<< HEAD
-=======
 	const handleCloseMenu = () => {
 		setMenuOpen(false);
-		console.log('test');				document.body.classList.remove('offcanvas-open');
-
+		console.log('test');
+		document.body.classList.remove('offcanvas-open');
 	};
 
 	const handleCloseLoginModal = () => {
 		setIsLoginModalOpen(false);
 	};
 
->>>>>>> 793df66d4224e6c40e2cebc11855966abf0066c8
 	const handleOpenRegisterModal = () => {
 		setisRegisterModalOpen(true);
 		setMenuOpen(false);
 	};
 
-	const handleCloseLoginModal = () => {
-		setIsLoginModalOpen(false);
+	const handleCloseRegisterModal = () => {
+		setisRegisterModalOpen(false);
 	};
 
 	const handleMouseEnter = (index) => {
@@ -70,7 +49,6 @@ const Toggle = () => {
 			hoveredClasses.filter((cls) => !cls.includes(`hovered-${index}`)),
 		);
 	};
-
 	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
 
 	const handleToggle = () => {
@@ -89,6 +67,7 @@ const Toggle = () => {
 
 	const handleClose = () => {
 		setMenuOpen(false);
+		console.log('test');
 	};
 
 	return (
@@ -132,29 +111,15 @@ const Toggle = () => {
 								</p>
 							</div>
 							<ul className='offcanvas-menu__items'>
-<<<<<<< HEAD
-								<li>
-									<Link href='/product'>Product page </Link>
-								</li>
-
-								<li onclick={handleClose}>
-									<Link onclick={handleClose} href='/contact'>
-										Contact
-									</Link>
-=======
-							<li onClick={handleCLoseMenu} >
+								<li onClick={handleCloseMenu}>
 									<Link href='/product'>
-										
 										Product page{' '}
 										<span>Stripe payment </span>
 									</Link>
 								</li>
-
-								<li onClick={handleCLoseMenu}>
-									<Link onClick={handleCLoseMenu}    href='/contact'>Contact</Link>
->>>>>>> 793df66d4224e6c40e2cebc11855966abf0066c8
+								<li onClick={handleCloseMenu}>
+									<Link href='/contact'>Contact</Link>
 								</li>
-
 								<li onClick={handleOpenLoginModal}>Login</li>
 								<li onClick={handleOpenRegisterModal}>
 									Register
@@ -164,14 +129,16 @@ const Toggle = () => {
 					</div>
 					<div className='offcanvas-menu__bottom'>
 						<button className='btn btn--menu'>
-							<Link onClick={handleCLoseMenu} 
+							<Link
+								onClick={handleCloseMenu}
 								href='https://github.com/remcostoeten'
 								target='blank'>
 								Github
 							</Link>
 						</button>
 						<button className='btn btn--menu whatsapp'>
-							<Link onClick={handleCLoseMenu} 
+							<Link
+								onClick={handleCloseMenu}
 								href='https://github.com/remcostoeten'
 								target='https://wa.me/31636590707'>
 								Text or call
@@ -184,11 +151,7 @@ const Toggle = () => {
 			<SignInPuppy
 				isOpen={isLoginModalOpen}
 				onClose={handleCloseLoginModal}
-			/>{' '}
-			{/* <RegisterModal */}
-			{/* isOpen={isRegisterModalOpen} */}
-			{/* onClose={handleCloseRegisterModal} */}
-			{/* /> */}
+			/>
 		</>
 	);
 };
