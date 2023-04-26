@@ -1,16 +1,17 @@
-import { useState } from 'react';
-import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
+import { IconButton, Modal, Tooltip } from '@mui/material';
+
 import Image from 'next/image';
-import { useEffect } from 'react';
 import StripeContainer from '../components/stripe/StripeContainer';
-import { Modal, Tooltip, IconButton } from '@mui/material';
+import dynamic from 'next/dynamic';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 const Product = () => {
 	const router = useRouter();
 	const [selectedProduct, setSelectedProduct] = useState(null);
 	const [openModal, setOpenModal] = useState(false);
-	const [imgSrc, setImgSrc] = useState('/image1.jpg');
+	const [imgSrc, setImgSrc] = useState('/majinTwo.gif');
 
 	const handleImageChange1 = () => {
 		setImgSrc('/majin.webp');
