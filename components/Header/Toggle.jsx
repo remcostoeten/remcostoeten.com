@@ -17,6 +17,12 @@ const Toggle = () => {
 		setMenuOpen(false);
 	};
 
+	const handleCloseMenu = () => {
+		setMenuOpen(false);
+		console.log('test');				document.body.classList.remove('offcanvas-open');
+
+	};
+
 	const handleCloseLoginModal = () => {
 		setIsLoginModalOpen(false);
 	};
@@ -107,16 +113,16 @@ const Toggle = () => {
 								</p>
 							</div>
 							<ul className='offcanvas-menu__items'>
-								<li>
+							<li onClick={handleCLoseMenu} >
 									<Link href='/product'>
-										{' '}
+										
 										Product page{' '}
 										<span>Stripe payment </span>
 									</Link>
 								</li>
 
-								<li>
-									<Link href='/contact'>Contact</Link>
+								<li onClick={handleCLoseMenu}>
+									<Link onClick={handleCLoseMenu}    href='/contact'>Contact</Link>
 								</li>
 
 								<li onClick={handleOpenLoginModal}>Login</li>
@@ -128,14 +134,14 @@ const Toggle = () => {
 					</div>
 					<div className='offcanvas-menu__bottom'>
 						<button className='btn btn--menu'>
-							<Link
+							<Link onClick={handleCLoseMenu} 
 								href='https://github.com/remcostoeten'
 								target='blank'>
 								Github
 							</Link>
 						</button>
 						<button className='btn btn--menu whatsapp'>
-							<Link
+							<Link onClick={handleCLoseMenu} 
 								href='https://github.com/remcostoeten'
 								target='https://wa.me/31636590707'>
 								Text or call
