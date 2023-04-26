@@ -8,7 +8,6 @@ import {
 	updateProfile,
 } from 'firebase/auth';
 
-import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Confetti from 'react-confetti';

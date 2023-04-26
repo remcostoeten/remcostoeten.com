@@ -1,48 +1,73 @@
-import { useRef, useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { Canvas } from 'react-three-fiber';
+import React from 'react';
+import { motion } from 'framer-motion';
 
-const LoadingAnimation = () => {
-	const canvasRef = useRef(null);
-	const [isLoading, setIsLoading] = useState(true);
-	const router = useRouter();
+const loadingContainer = {
+	width: '4rem',
+	height: '4rem',
+	display: 'flex',
+	justifyContent: 'space-around',
+};
+const loadingCircle = {
+	display: 'block',
+	width: '1rem',
+	height: '1rem',
+	backgroundColor: '#3A36DB',
+	borderRadius: '0.5rem',
+};
 
-	useEffect(() => {
-		const canvas = canvasRef.current;
+const loadingContainerVariants = {
+	start: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+	end: {
+		transition: {
+			staggerChildren: 0.2,
+		},
+	},
+};
 
-		// Initialize your Three.js scene here
+const loadingCircleVariants = {
+	start: {
+		y: '0%',
+	},
+	end: {
+		y: '60%',
+	},
+};
+const loadingCircleTransition = {
+	duration: 0.4,
+	yoyo: Infinity,
+	ease: 'easeInOut',
+};
 
-		const animate = () => {
-			// Update your scene here
-			requestAnimationFrame(animate);
-		};
-
-		animate();
-	}, []);
-
-	useEffect(() => {
-		const handleRouteChangeStart = () => {
-			setIsLoading(true);
-		};
-
-		const handleRouteChangeComplete = () => {
-			setIsLoading(false);
-		};
-
-		router.events.on('routeChangeStart', handleRouteChangeStart);
-		router.events.on('routeChangeComplete', handleRouteChangeComplete);
-
-		return () => {
-			router.events.off('routeChangeStart', handleRouteChangeStart);
-			router.events.off('routeChangeComplete', handleRouteChangeComplete);
-		};
-	}, [router.events]);
-
+const Loader = () => {
 	return (
-		<div className='loader' style={{ display: isLoading ? 'block' : 'none' }}>
-			<Canvas ref={canvasRef} />
+		<div>
+			<div className='fixed  w-full min-h-screen z-50 bg-black opacity-30' />
+			<div className='flex fixed w-full justify-center items-center h-screen'>
+				<motion.div
+					style={loadingContainer}
+					variants={loadingContainerVariants}
+					initial='start'
+					animate='end'>
+					<motion.span
+						style={loadingCircle}
+						variants={loadingCircleVariants}
+						transition={loadingCircleTransition}></motion.span>
+					<motion.span
+						style={loadingCircle}
+						variants={loadingCircleVariants}
+						transition={loadingCircleTransition}></motion.span>
+					<motion.span
+						style={loadingCircle}
+						variants={loadingCircleVariants}
+						transition={loadingCircleTransition}></motion.span>
+				</motion.div>
+			</div>
 		</div>
 	);
 };
 
-export default LoadingAnimation;
+export default Loader;

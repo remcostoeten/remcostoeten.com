@@ -6,9 +6,6 @@ import {
 	browserLocalPersistence,
 	signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { FacebookRounded, Google } from '@mui/icons-material';
-import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Register from './Register';
 import { toast } from 'react-toastify';
@@ -16,17 +13,20 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from './Login';
 import Confetti from 'react-confetti';
 
-interface SigninModalProps {
+interface SignInModalProps {
 	onClose: () => void;
 	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
 	setShowRegisterModal: (show: boolean) => void;
 }
 
-export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
+export default function SignIn({
+	onClose,
+	onSignIn,
+	setShowRegisterModal,
+}: SignInModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
-	const [showModal, setShowModal] = useState(false);
 	const [showSignupModal, setShowSignupModal] = useState(false);
 	const [showConfetti, setShowConfetti] = useState(false);
 
@@ -38,7 +38,7 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 				? browserLocalPersistence
 				: browserSessionPersistence;
 			await setPersistence(auth, persistenceMode);
-			await signInWithEmailAndPassword(auth, email, password); // Change this
+			await signInWithEmailAndPassword(auth, email, password);
 
 			onSignIn(email, password, rememberMe);
 			setShowConfetti(true);
@@ -81,69 +81,71 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 
 	return (
 		<>
-			<div className='modal'>
-				<div className='modal__inner'>
-					<h2 className='modal__title'>Login</h2>
-					<div className='modal__social'>
-						<motion.div
-							className='header__user'
-							whileHover={{ scale: 1.05 }}>
-							<span className='google'>
-								<Login />
-							</span>
-						</motion.div>
+			<div className='fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50'>
+				<div className='bg-white rounded shadow-lg p-8 w-full max-w-md'>
+					<h2 className='text-2xl font-semibold mb-6'>Login</h2>
+					<div className='flex justify-center mb-6'>
+						<span className='text-gray-500'>
+							<Login />
+						</span>
 					</div>
-					<div className='modal__divider'>or</div>
-					<form className='modal__register' onSubmit={handleSignin}>
-						<motion.div
-							className='modal__close'
-							onClick={onClose}
-							whileHover={{ scale: 1.05 }}>
-							<HighlightOffSharpIcon />
-						</motion.div>
-						<div className='modal__input'>
-							<EmailIcon />
+					<div className='border-b border-gray-200 mb-6'></div>
+					<form onSubmit={handleSignin}>
+						<div className='relative mb-4'>
+							<HighlightOffSharpIcon
+								className='absolute top-0 right-0 cursor-pointer'
+								onClick={onClose}
+							/>
+						</div>
+						<div className='mb-4'>
 							<input
 								type='email'
-								placeholder='email address'
+								placeholder='Email address'
 								value={email}
 								onChange={(event) =>
 									setEmail(event.target.value)
 								}
+								className='w-full p-2 border border-gray-300 rounded'
 							/>
 						</div>
-						<div className='modal__input'>
-							<LockIcon />
+						<div className='mb-4'>
 							<input
 								type='password'
 								value={password}
-								placeholder='password'
+								placeholder='Password'
 								onChange={(event) =>
 									setPassword(event.target.value)
 								}
+								className='w-full p-2 border border-gray-300 rounded'
 							/>
 						</div>
-						<div className='modal__remember-me'>
-							<span>
+						<div className='flex justify-between items-center mb-4'>
+							<div className='flex items-center'>
 								<input
 									type='checkbox'
 									id='rememberMe'
 									checked={rememberMe}
 									onChange={handleRememberMeChange}
+									className='mr-2'
 								/>
 								<label htmlFor='rememberMe'>Remember Me</label>
-							</span>
-							<span>
-								<a href='#'>Forgot Password?</a>
-							</span>
+							</div>
+							<a href='#' className='text-sm text-blue-500'>
+								Forgot Password?
+							</a>
 						</div>
-						<button className='login-btn' type='submit'>
-							<span>Sign in</span>
+						<button
+							className='w-full py-2 bg-blue-500 text-white font-semibold rounded'
+							type='submit'>
+							Sign in
 						</button>
 					</form>
-					<div className='modal__new-user'>
-						<p>Not registered yet?</p>{' '}
-						<a href='#' onClick={() => setShowSignupModal(true)}>
+					<div className='flex justify-center mt-4'>
+						<p className='mr-2'>Not registered yet?</p>
+						<a
+							href='#'
+							onClick={() => setShowSignupModal(true)}
+							className='text-blue-500'>
 							Sign up
 						</a>
 					</div>
@@ -162,7 +164,7 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 					height={window.innerHeight}
 					numberOfPieces={200}
 				/>
-			)}{' '}
+			)}
 		</>
 	);
 }

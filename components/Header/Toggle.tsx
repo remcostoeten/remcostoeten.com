@@ -2,13 +2,19 @@ import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import SignInPuppy from '../auth/LoginModalPuppy';
+import SignIn from '@/components/auth/old/SignIn';
+import { useRouter } from 'next/router';
+import AuthModal from '../auth/authModal';
 const Toggle = () => {
 	const toggleRef = useRef(null);
+	const [email, setEmail] = useState('');
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
+	const router = useRouter();
+	const [showAuthModal, setShowAuthModal] = useState(false);
 
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
@@ -70,6 +76,15 @@ const Toggle = () => {
 		console.log('test');
 	};
 
+	const handleSignIn = (
+		email?: string,
+		password?: string,
+		rememberMe?: boolean,
+	) => {
+		setIsLoginModalOpen(false);
+		onSignIn(email, password, rememberMe);
+	};
+
 	return (
 		<>
 			<label className='toggle'>
@@ -117,10 +132,8 @@ const Toggle = () => {
 										<span>Stripe payment </span>
 									</Link>
 								</li>
-								<li onClick={handleCloseMenu}>
-									<Link href='/contact'>Contact</Link>
-								</li>
-								<li onClick={handleOpenLoginModal}>Login</li>
+								<li onClick={setShowAuthModal}>Login</li>
+
 								<li onClick={handleOpenRegisterModal}>
 									Register
 								</li>
@@ -148,10 +161,9 @@ const Toggle = () => {
 					<BlobOne />
 				</div>
 			)}
-			<SignInPuppy
-				isOpen={isLoginModalOpen}
-				onClose={handleCloseLoginModal}
-			/>
+			{showAuthModal && (
+				<AuthModal onClose={() => setShowAuthModal(false)} />
+			)}
 		</>
 	);
 };
