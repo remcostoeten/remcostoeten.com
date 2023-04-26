@@ -30,6 +30,6 @@
 		"pages/api/contact.js",
 		"components/auth/AuthModal.jsx",
 		"components/auth/SignIn.jsx"
-	],
+, "components/Header/Toggle.jsx"	],
 	"exclude": ["node_modules"]
 }

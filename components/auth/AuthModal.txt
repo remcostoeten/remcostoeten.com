@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
+
 import { signInWithEmailAndPassword } from '@firebase/auth';
+
 interface LoginModalProps {
 	onShowRegister: () => void;
 	onClose: () => void;
@@ -93,7 +95,7 @@ const AuthModal: React.FC<LoginModalProps> = ({
 					type='button'
 					className='text-indigo-600 hover:text-indigo-500 focus:outline-none focus:underline'
 					onClick={onShowRegister}>
-					Don't have an account? Register
+					Dont have an account? Register
 				</button>
 			</div>
 		</div>

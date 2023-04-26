@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import Image from 'next/image';
 import { signInWithEmailAndPassword } from '@firebase/auth';
 
 const SignUp = () => {
@@ -43,7 +44,9 @@ const SignUp = () => {
 				</span>
 				<div className='lg:w-1/2 xl:w-5/12 p-6 sm:p-12'>
 					<div>
-						<img
+						<Image
+							alt='Templatana Logo'
+							fill
 							src='https://storage.googleapis.com/devitary-image-host.appspot.com/15846435184459982716-LogoMakr_7POjrN.png'
 							className='w-32 mx-auto'
 						/>
@@ -136,7 +139,7 @@ const SignUp = () => {
 									<span className='ml-3'>Sign Up</span>
 								</button>
 								<p className='mt-6 text-xs text-gray-600 text-center'>
-									I agree to abide by templatana's
+									I agree to abide by templatanas
 									<a
 										href='#'
 										className='border-b border-gray-500 border-dotted'>

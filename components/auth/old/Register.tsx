@@ -1,5 +1,6 @@
 import 'react-toastify/dist/ReactToastify.css';
 
+import { Close, Email, Lock, Person } from '@mui/icons-material';
 import { ToastContainer, toast } from 'react-toastify';
 import {
 	browserLocalPersistence,
@@ -12,7 +13,6 @@ import {
 import { useEffect, useState } from 'react';
 
 import Confetti from 'react-confetti';
-import { Person } from '@mui/icons-material';
 import { auth } from '@/utils/firebase';
 import { motion } from 'framer-motion';
 
@@ -145,7 +145,7 @@ export default function Register({ onClose, onSignIn }: RegisterModalProps) {
 							className='modal__close'
 							onClick={onClose}
 							whileHover={{ scale: 1.05 }}>
-							<CloseIcon />
+							<Close />
 						</motion.div>
 						<div className='modal__input'>
 							<Person />
@@ -159,7 +159,7 @@ export default function Register({ onClose, onSignIn }: RegisterModalProps) {
 							/>
 						</div>
 						<div className='modal__input'>
-							<EmailIcon />
+							<Email />
 							<input
 								type='email'
 								placeholder='email address'
@@ -170,7 +170,7 @@ export default function Register({ onClose, onSignIn }: RegisterModalProps) {
 							/>
 						</div>
 						<div className='modal__input'>
-							<LockIcon />
+							<Lock />
 							<input
 								type='password'
 								placeholder='password'

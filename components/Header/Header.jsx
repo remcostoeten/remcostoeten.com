@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import React, { useState } from 'react';
+
+import Link from 'next/link';
 import LogoIcon from '../svg-elements/LogoIcon';
 import Toggle from './Toggle';
 
@@ -14,9 +15,9 @@ export default function Header() {
 		<div className={`header ${menuOpen ? 'menu-open' : ''}`}>
 			<div className='header__inner container'>
 				<div className='header__left'>
-					<a href='/' onClick={handleCloseMenu}>
+					<Link href='/' onClick={handleCloseMenu}>
 						<LogoIcon />
-					</a>
+					</Link>
 				</div>
 				<Toggle
 					menuOpen={menuOpen}

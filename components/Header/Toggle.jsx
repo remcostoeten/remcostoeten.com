@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import AuthModal from '../auth/AuthModal';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import SignUp from '../auth/SignUp';
@@ -48,23 +47,6 @@ const Toggle = () => {
 		setisRegisterModalOpen(false);
 	};
 
-	const handleMouseEnter = (index) => {
-		setHoveredIndex(index);
-		setHoveredClasses([
-			...hoveredClasses.slice(0, index),
-			`hovered-${index}`,
-			...hoveredClasses.slice(index + 1),
-		]);
-	};
-
-	const handleMouseLeave = (index) => {
-		setHoveredIndex(null);
-		setHoveredClasses(
-			hoveredClasses.filter((cls) => !cls.includes(`hovered-${index}`)),
-		);
-	};
-	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
-
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
 		if (!menuOpen) {
@@ -79,11 +61,7 @@ const Toggle = () => {
 		}
 	};
 
-	const handleSignIn = (
-		email?: string,
-		password?: string,
-		rememberMe?: boolean,
-	) => {
+	const handleSignIn = () => {
 		setIsLoginModalOpen(false);
 		onSignIn(email, password, rememberMe);
 	};
