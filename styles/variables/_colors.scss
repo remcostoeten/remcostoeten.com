@@ -43,3 +43,12 @@ $text--color: $black;
 
 // Misc
 $error--color: $color--lightred;
+
+$black--body: #0a0b14;
+$gradient--one: #0b0816;
+$gradient--two: #2e081d;
+$linear-gradient: linear-gradient(
+	180.56deg,
+	$gradient--one 0.64%,
+	$gradient--two 91.93%
+);

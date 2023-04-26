@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
-import {
-	getAuth,
-	createUserWithEmailAndPassword,
-	setPersistence,
-	browserSessionPersistence,
-	browserLocalPersistence,
-	updateProfile,
-} from 'firebase/auth';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import {
+	browserLocalPersistence,
+	browserSessionPersistence,
+	createUserWithEmailAndPassword,
+	getAuth,
+	setPersistence,
+	updateProfile,
+} from 'firebase/auth';
+import { useEffect, useState } from 'react';
+
 import Confetti from 'react-confetti';
 import { Person } from '@mui/icons-material';
-import { motion } from 'framer-motion';
 import { auth } from '@/utils/firebase';
+import { motion } from 'framer-motion';
 
 interface RegisterModalProps {
 	onClose: () => void;

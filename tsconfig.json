@@ -1,45 +1,35 @@
 {
-  "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
-    "allowJs": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    "isolatedModules": true, 
-    "esModuleInterop": true,
-    "strict": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/components/*": [
-        "./components/*"
-      ],
-      "@/styles/*": [
-        "./styles/*"
-      ],
-      "@/utils/*": [
-        "./utils/*"
-      ],
-      "@/pages/*": [
-        "./pages/*"
-      ]
-    },
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-    "incremental": true
-  },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-, "pages/contact.jsx", "pages/api/contact.js"  ],
-  "exclude": [
-    "node_modules"
-  ]
+	"compilerOptions": {
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"jsx": "preserve",
+		"noEmit": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/components/*": ["./components/*"],
+			"@/styles/*": ["./styles/*"],
+			"@/utils/*": ["./utils/*"],
+			"@/pages/*": ["./pages/*"]
+		},
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"incremental": true
+	},
+	"include": [
+		"next-env.d.ts",
+		"**/*.ts",
+		"**/*.tsx",
+		"pages/contact.jsx",
+		"pages/api/contact.js",
+		"components/auth/AuthModal.jsx",
+		"components/auth/SignIn.jsx"
+	],
+	"exclude": ["node_modules"]
 }

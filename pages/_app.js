@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from 'react';
 import '@/styles/styles.css';
-import Header from '../components/Header/Header';
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import LoadingAnimation from '@/components/ui-elements/Loader';
-import LoginModalPuppy from '@/components/auth/LoginModalPuppy';
-import { useRouter } from 'next/router';
 
+import React, { useEffect, useState } from 'react';
+
+import Header from '../components/Header/Header';
+import LiquidLoader from '../components/ui-elements/loaders/LiquidLoader';
+import Loader from '../components/ui-elements/loaders/CubeLoader';
 import Router from 'next/router';
-import LoadingSpinner from '../components/LoadingSpinner';
-import Loader from '../components/ui-elements/Loader';
+import { ToastContainer } from 'react-toastify';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
@@ -30,7 +28,7 @@ function App({ Component, pageProps }) {
 	}, []);
 	return (
 		<>
-			{loading && <Loader />}
+			{loading && <LiquidLoader />}
 			<Header />
 			<Component {...pageProps} />
 			<ToastContainer />

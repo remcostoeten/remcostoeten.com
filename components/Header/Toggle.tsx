@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
+
+import AuthModal from '../auth/AuthModal';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
-import SignInPuppy from '../auth/LoginModalPuppy';
-import SignIn from '@/components/auth/old/SignIn';
+import SignUp from '../auth/SignUp';
 import { useRouter } from 'next/router';
-import AuthModal from '../auth/authModal';
+
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [email, setEmail] = useState('');
@@ -15,7 +16,16 @@ const Toggle = () => {
 	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
 	const router = useRouter();
 	const [showAuthModal, setShowAuthModal] = useState(false);
+	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
+	const handleOpenSignUpModal = () => {
+		setIsSignUpModalOpen(true);
+	};
+
+	const handleCloseSignUpModal = () => {
+		setMenuOpen(false);
+		setIsSignUpModalOpen(false);
+	};
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
 		setMenuOpen(false);
@@ -23,8 +33,6 @@ const Toggle = () => {
 
 	const handleCloseMenu = () => {
 		setMenuOpen(false);
-		console.log('test');
-		document.body.classList.remove('offcanvas-open');
 	};
 
 	const handleCloseLoginModal = () => {
@@ -71,11 +79,6 @@ const Toggle = () => {
 		}
 	};
 
-	const handleClose = () => {
-		setMenuOpen(false);
-		console.log('test');
-	};
-
 	const handleSignIn = (
 		email?: string,
 		password?: string,
@@ -87,6 +90,11 @@ const Toggle = () => {
 
 	return (
 		<>
+			{isSignUpModalOpen && (
+				<div className='fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-50'>
+					<SignUp handleCloseSignUpModal={handleCloseSignUpModal} />
+				</div>
+			)}
 			<label className='toggle'>
 				<input type='checkbox' ref={toggleRef} onClick={handleToggle} />
 				<div className='toggle__inner'>
@@ -127,15 +135,13 @@ const Toggle = () => {
 							</div>
 							<ul className='offcanvas-menu__items'>
 								<li onClick={handleCloseMenu}>
-									<Link href='/product'>
-										Product page{' '}
-										<span>Stripe payment </span>
-									</Link>
+									<Link href='/product'>Product page</Link>
 								</li>
-								<li onClick={setShowAuthModal}>Login</li>
-
-								<li onClick={handleOpenRegisterModal}>
-									Register
+								<li onClick={handleCloseMenu}>
+									<Link href='/contact'>Contact</Link>
+								</li>
+								<li onClick={handleCloseMenu}>
+									<Link href='/login'>Login page</Link>
 								</li>
 							</ul>
 						</div>
@@ -160,9 +166,6 @@ const Toggle = () => {
 					</div>
 					<BlobOne />
 				</div>
-			)}
-			{showAuthModal && (
-				<AuthModal onClose={() => setShowAuthModal(false)} />
 			)}
 		</>
 	);
