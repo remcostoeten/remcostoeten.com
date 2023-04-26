@@ -8,6 +8,8 @@ import LoginModalPuppy from '@/components/auth/LoginModalPuppy';
 import { useRouter } from 'next/router';
 import Sign from '../components/auth/Sign';
 import LoginModal from '../components/auth/LoginModal';
+import Login from '../components/ui-elements/authentication/Login';
+import SignInPuppy from '../components/auth/LoginModalPuppy';
 
 function App({ Component, pageProps }) {
 	const [isLoading, setIsLoading] = useState(true);
@@ -23,6 +25,7 @@ function App({ Component, pageProps }) {
 			<Header />
 			<Component {...pageProps} />
 			<ToastContainer />
+			{/* <Login /> */}
 		</>
 	);
 }

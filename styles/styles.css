@@ -17,6 +17,10 @@
     --background-end-rgb: 0, 0, 0;
   }
 }
+.loader {
+  position: absolute;
+}
+
 .loading-animation {
   display: flex;
   align-items: center;
@@ -1483,7 +1487,7 @@ button:hover {
 }
 
 .header {
-  position: fixed;
+  position: relative;
   left: 50%;
   transform: translate(-50%, 0);
   z-index: 100;
@@ -1920,42 +1924,42 @@ button:hover {
 }
 .offcanvas-open .offcanvas-menu .container {
   opacity: 0;
-  animation: initialHideDelay 450ms forwards;
+  animation: initialHideDelay 750ms forwards;
 }
 .offcanvas-open .offcanvas-menu .offcanvas-menu__menu--tagline h2,
 .offcanvas-open .offcanvas-menu .offcanvas-menu__menu--tagline .first,
 .offcanvas-open .offcanvas-menu .offcanvas-menu__menu--tagline .last {
   opacity: 0;
-  animation: initialHideDelay 1200ms 450ms forwards, swingInTop 1200ms 405ms forwards;
+  animation: initialHideDelay 2000ms 750ms forwards, swingInTop 2000ms 735ms forwards;
 }
 .offcanvas-open .offcanvas-menu .offcanvas-menu__menu--tagline .first {
-  animation-delay: 465.75ms;
+  animation-delay: 845.25ms;
 }
 .offcanvas-open .offcanvas-menu .offcanvas-menu__menu--tagline .last {
-  animation-delay: 535.6125ms;
+  animation-delay: 972.0375ms;
 }
 .offcanvas-open .offcanvas-menu__items li {
-  animation: slideInFromLeft 1s forwards;
-  transition: 550ms ease-out;
-  animation-delay: 1100ms;
+  animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
+  transition: 1s;
+  animation-delay: 555ms;
   transform: translateX(-100%);
   position: relative;
 }
 .offcanvas-open .offcanvas-menu__items li:nth-child(2) {
-  animation-delay: 1250ms;
+  animation-delay: 710ms;
 }
 .offcanvas-open .offcanvas-menu__items li:nth-child(3) {
-  animation-delay: 1400ms;
+  animation-delay: 865ms;
 }
 .offcanvas-open .offcanvas-menu__items li:nth-child(4) {
-  animation-delay: 1550ms;
+  animation-delay: 1020ms;
 }
 .offcanvas-open .offcanvas-menu .btn--menu {
-  animation: initialHideDelay 1200ms 450ms forwards, puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715) both, blurFadeSmall 1500ms 2s ease;
+  animation: initialHideDelay 2000ms 750ms forwards, puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715) both, blurFadeSmall 1500ms 2s ease;
 }
 .offcanvas-open .offcanvas-menu::before {
   content: "";
-  animation: menuOpen 1200ms forwards;
+  animation: menuOpen 2000ms forwards;
   position: absolute;
   width: 25px;
   height: 25px;
@@ -1969,6 +1973,11 @@ button:hover {
   right: -19px;
 }
 
+@media (min-width: 0px) and (max-width: 767px) {
+  .offcanvas-open .offcanvas-menu::before {
+    animation-duration: 3s;
+  }
+}
 .offcanvas-open .offcanvas-menu__bottom {
   margin-left: 8px;
 }
@@ -2013,7 +2022,7 @@ button:hover {
 
 .offcanvas-menu {
   position: absolute;
-  width: 33px;
+  width: 3333px;
   height: 33px;
   top: 0;
   width: 100%;

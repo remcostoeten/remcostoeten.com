@@ -1,23 +1,23 @@
-$animationDuration: 550ms;
+$animationDuration: 1s;
 $staggeredFadeDuration: 400ms;
-$fadeDelay: 750s;
+$fadeDelay: 750ms;
 $staggerItterator: 0.75s;
 $itteratorDelay: 0.2;
 $cubic: ease-in-out;
 
 $multiplier: 1.15;
-$baseAnimationDuration: 150ms;
+$baseAnimationDuration: 250ms;
 $initialHide: $baseAnimationDuration * 3;
 $menuOpenDuration: $baseAnimationDuration * 8;
 $itemDuration: $baseAnimationDuration * 6;
-$itemAfterInitialHide: $initialHide * 0.9;
+$itemAfterInitialHide: $initialHide * 0.98;
 
-$itemsItterator: 1100ms;
+$itemsItterator: $fadeDelay * 2;
 
 $delayItterator-s: $multiplier;
 $delayItterator: $delayItterator-s * $multiplier;
 $delayItterator-l: $delayItterator * $multiplier;
-$delayItterator-xl: $delayItterator-l * $multiplier;
+$delayItterator-xl: 1s;
 
 $outOfView: -110%;
 

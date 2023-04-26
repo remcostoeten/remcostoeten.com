@@ -10,7 +10,7 @@ import {
 import { auth } from '@/utils/firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import RegisterModal from '@/components/auth/RegisterModal';
+// import RegisterModal from '@/components/auth/RegisterModal';
 import { motion } from 'framer-motion';
 
 const LoginModal = ({ isOpen, onClose }) => {
@@ -74,10 +74,10 @@ const LoginModal = ({ isOpen, onClose }) => {
 
 	return (
 		<>
-			<RegisterModal
+			{/* <RegisterModal
 				isOpen={showRegisterModal}
 				onClose={() => setShowRegisterModal(false)}
-			/>
+			/> */}
 			<Modal isOpen={isOpen} onClose={onClose}>
 				<motion.div
 					className={`modal ${isOpen ? 'is-open' : ''}`}

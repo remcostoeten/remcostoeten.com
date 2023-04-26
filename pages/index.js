@@ -1,6 +1,5 @@
 import React from 'react';
-import LogoIcon from '../components/svg-elements/LogoIcon';
-import StripeContainer from '../components/stripe/StripeContainer.js';
+import Login from '../components/auth/old/Login';
 export default function index() {
 	return (
 		<>

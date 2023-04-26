@@ -8,20 +8,6 @@ export default function Header() {
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [scrolled, setScrolled] = useState(false);
 
-	useEffect(() => {
-		const handleScroll = () => {
-			if (window.scrollY > 0) {
-				setScrolled(true);
-			} else {
-				setScrolled(false);
-			}
-		};
-		window.addEventListener('scroll', handleScroll);
-		return () => {
-			window.removeEventListener('scroll', handleScroll);
-		};
-	}, []);
-
 	return (
 		<div className={`header ${scrolled ? 'scrolled' : ''}`}>
 			<div className='header__inner container'>

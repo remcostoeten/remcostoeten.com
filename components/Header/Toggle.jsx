@@ -1,24 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { useRouter } from 'next/router';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import LoginModal from '../auth/LoginModal';
-import RegisterModal from '../auth/RegisterModal';
 import SignInPuppy from '../auth/LoginModalPuppy';
+
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [menuOpen, setMenuOpen] = useState(false);
 	const [hoveredIndex, setHoveredIndex] = useState(null);
 	const [hoveredClasses, setHoveredClasses] = useState([]);
 	const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
-	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
+
+	const router = useRouter();
+
+	useEffect(() => {
+		const handleRouteChange = () => {
+			setMenuOpen(false);
+			document.body.classList.remove('offcanvas-open');
+			document.body.classList.remove('menu-delay');
+		};
+
+		router.events.on('routeChangeStart', handleRouteChange);
+
+		return () => {
+			router.events.off('routeChangeStart', handleRouteChange);
+		};
+	}, [router.events]);
 
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
 		setMenuOpen(false);
-	};
-
-	const handleCloseLoginModal = () => {
-		setIsLoginModalOpen(false);
 	};
 
 	const handleOpenRegisterModal = () => {
@@ -26,8 +38,8 @@ const Toggle = () => {
 		setMenuOpen(false);
 	};
 
-	const handleCloseRegisterModal = () => {
-		setisRegisterModalOpen(false);
+	const handleCloseLoginModal = () => {
+		setIsLoginModalOpen(false);
 	};
 
 	const handleMouseEnter = (index) => {
@@ -45,6 +57,7 @@ const Toggle = () => {
 			hoveredClasses.filter((cls) => !cls.includes(`hovered-${index}`)),
 		);
 	};
+
 	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
 
 	const handleToggle = () => {
@@ -63,7 +76,6 @@ const Toggle = () => {
 
 	const handleClose = () => {
 		setMenuOpen(false);
-		console.log('test');
 	};
 
 	return (
@@ -108,15 +120,13 @@ const Toggle = () => {
 							</div>
 							<ul className='offcanvas-menu__items'>
 								<li>
-									<Link href='/product'>
-										{' '}
-										Product page{' '}
-										<span>Stripe payment </span>
-									</Link>
+									<Link href='/product'>Product page </Link>
 								</li>
 
-								<li>
-									<Link href='/contact'>Contact</Link>
+								<li onclick={handleClose}>
+									<Link onclick={handleClose} href='/contact'>
+										Contact
+									</Link>
 								</li>
 
 								<li onClick={handleOpenLoginModal}>Login</li>
@@ -129,6 +139,7 @@ const Toggle = () => {
 					<div className='offcanvas-menu__bottom'>
 						<button className='btn btn--menu'>
 							<Link
+								onclick={handleClose}
 								href='https://github.com/remcostoeten'
 								target='blank'>
 								Github
@@ -136,6 +147,7 @@ const Toggle = () => {
 						</button>
 						<button className='btn btn--menu whatsapp'>
 							<Link
+								onclick={handleClose}
 								href='https://github.com/remcostoeten'
 								target='https://wa.me/31636590707'>
 								Text or call
@@ -149,10 +161,10 @@ const Toggle = () => {
 				isOpen={isLoginModalOpen}
 				onClose={handleCloseLoginModal}
 			/>{' '}
-			<RegisterModal
-				isOpen={isRegisterModalOpen}
-				onClose={handleCloseRegisterModal}
-			/>
+			{/* <RegisterModal */}
+			{/* isOpen={isRegisterModalOpen} */}
+			{/* onClose={handleCloseRegisterModal} */}
+			{/* /> */}
 		</>
 	);
 };
