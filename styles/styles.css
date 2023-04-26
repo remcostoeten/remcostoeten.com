@@ -1945,6 +1945,9 @@ button:hover {
   transform: translateX(-100%);
   position: relative;
 }
+.offcanvas-open .offcanvas-menu__items li a {
+  cursor: pointer;
+}
 .offcanvas-open .offcanvas-menu__items li:nth-child(2) {
   animation-delay: 710ms;
 }
@@ -1979,6 +1982,8 @@ button:hover {
   }
 }
 .offcanvas-open .offcanvas-menu__bottom {
+  display: flex;
+  justify-content: flex-end;
   margin-left: 8px;
 }
 .offcanvas-open .offcanvas-menu ul {

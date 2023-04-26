@@ -39,9 +39,7 @@ const LoadingAnimation = () => {
 	}, [router.events]);
 
 	return (
-		<div
-			className='loader'
-			style={{ display: isLoading ? 'block' : 'none' }}>
+		<div className='loader' style={{ display: isLoading ? 'block' : 'none' }}>
 			<Canvas ref={canvasRef} />
 		</div>
 	);

@@ -8,18 +8,30 @@ import LoginModalPuppy from '@/components/auth/LoginModalPuppy';
 import { useRouter } from 'next/router';
 import Sign from '../components/auth/Sign';
 import LoginModal from '../components/auth/LoginModal';
-import Login from '../components/ui-elements/authentication/Login';
-import SignInPuppy from '../components/auth/LoginModalPuppy';
+import Router from "next/router";
+import LoadingSpinner from '../components/LoadingSpinner';
 
 function App({ Component, pageProps }) {
-	const [isLoading, setIsLoading] = useState(true);
+	  const [loading, setLoading] = useState(false);
 
-	useEffect(() => {
-		setIsLoading(false);
-	}, []);
+  const handleStart = () => setLoading(true);
+  const handleComplete = () => setLoading(false);
 
+  useEffect(() => {
+    Router.events.on('routeChangeStart', handleStart);
+    Router.events.on('routeChangeComplete', handleComplete);
+    Router.events.on('routeChangeError', handleComplete);
+
+    return () => {
+      Router.events.off('routeChangeStart', handleStart);
+      Router.events.off('routeChangeComplete', handleComplete);
+      Router.events.off('routeChangeError', handleComplete);
+    };
+  }, []);
 	return (
 		<>
+	      {loading && <LoadingSpinner />}
+
 			<LoadingAnimation />
 
 			<Header />

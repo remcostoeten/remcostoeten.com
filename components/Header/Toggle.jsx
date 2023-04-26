@@ -33,6 +33,19 @@ const Toggle = () => {
 		setMenuOpen(false);
 	};
 
+<<<<<<< HEAD
+=======
+	const handleCloseMenu = () => {
+		setMenuOpen(false);
+		console.log('test');				document.body.classList.remove('offcanvas-open');
+
+	};
+
+	const handleCloseLoginModal = () => {
+		setIsLoginModalOpen(false);
+	};
+
+>>>>>>> 793df66d4224e6c40e2cebc11855966abf0066c8
 	const handleOpenRegisterModal = () => {
 		setisRegisterModalOpen(true);
 		setMenuOpen(false);
@@ -119,6 +132,7 @@ const Toggle = () => {
 								</p>
 							</div>
 							<ul className='offcanvas-menu__items'>
+<<<<<<< HEAD
 								<li>
 									<Link href='/product'>Product page </Link>
 								</li>
@@ -127,6 +141,18 @@ const Toggle = () => {
 									<Link onclick={handleClose} href='/contact'>
 										Contact
 									</Link>
+=======
+							<li onClick={handleCLoseMenu} >
+									<Link href='/product'>
+										
+										Product page{' '}
+										<span>Stripe payment </span>
+									</Link>
+								</li>
+
+								<li onClick={handleCLoseMenu}>
+									<Link onClick={handleCLoseMenu}    href='/contact'>Contact</Link>
+>>>>>>> 793df66d4224e6c40e2cebc11855966abf0066c8
 								</li>
 
 								<li onClick={handleOpenLoginModal}>Login</li>
@@ -138,16 +164,14 @@ const Toggle = () => {
 					</div>
 					<div className='offcanvas-menu__bottom'>
 						<button className='btn btn--menu'>
-							<Link
-								onclick={handleClose}
+							<Link onClick={handleCLoseMenu} 
 								href='https://github.com/remcostoeten'
 								target='blank'>
 								Github
 							</Link>
 						</button>
 						<button className='btn btn--menu whatsapp'>
-							<Link
-								onclick={handleClose}
+							<Link onClick={handleCLoseMenu} 
 								href='https://github.com/remcostoeten'
 								target='https://wa.me/31636590707'>
 								Text or call
