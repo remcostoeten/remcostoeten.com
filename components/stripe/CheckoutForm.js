@@ -1,11 +1,13 @@
-import React, { useState, useContext } from 'react';
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
-import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
-import { Modal, Tooltip, IconButton } from '@mui/material';
-import InfoIcon from '@mui/icons-material/Info';
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { IconButton, Modal, Tooltip } from '@mui/material';
+import React, { useContext, useState } from 'react';
+
 import Confetti from 'react-confetti';
 import Image from 'next/image';
+import InfoIcon from '@mui/icons-material/Info';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
+
 export default function CheckoutForm() {
 	const stripe = useStripe();
 	const elements = useElements();
@@ -68,16 +70,14 @@ export default function CheckoutForm() {
 
 					<div className='inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full'>
 						<div className='bg-gray-50 px-4 py-5 sm:px-6'>
-							<div className='flex items-center'>
-								<Image
-									height={fill}
-									className='h-8 w-auto'
-									src='https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg'
-									alt='Workflow'
-								/>
+							<div className='flex flex-col  items-left	'>
 								<h3 className='text-lg leading-6 font-medium text-gray-900 ml-2'>
 									Checkout
 								</h3>
+								<p>
+									Test card = 4242 keep repeating untill all
+									fields are full with 42.
+								</p>
 							</div>
 						</div>
 						<div className='px-4 py-5 sm:p-6'>
