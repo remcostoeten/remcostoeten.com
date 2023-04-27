@@ -1,5 +1,3 @@
-import React from 'react';
-
 const LiquidLoader = () => {
 	return (
 		<div className='LiquidLoader'>

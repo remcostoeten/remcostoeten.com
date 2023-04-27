@@ -8,6 +8,7 @@ import LiquidLoader from '../components/ui-elements/loaders/LiquidLoader';
 import Loader from '../components/ui-elements/loaders/CubeLoader';
 import Router from 'next/router';
 import { ToastContainer } from 'react-toastify';
+import { Triangle } from '../components/ui-elements/loaders/Triangle';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ function App({ Component, pageProps }) {
 	}, []);
 	return (
 		<>
-			{loading && <LiquidLoader />}
+			{loading && <Triangle />}
 			<Header />
 			<Component {...pageProps} />
 			<ToastContainer />

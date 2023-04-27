@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from 'react';
 
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
-import SignUp from '../auth/SignUp';
 import { useRouter } from 'next/router';
 
 const Toggle = () => {
@@ -15,16 +14,7 @@ const Toggle = () => {
 	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
 	const router = useRouter();
 	const [showAuthModal, setShowAuthModal] = useState(false);
-	const [isSignUpModalOpen, setIsSignUpModalOpen] = useState(false);
 
-	const handleOpenSignUpModal = () => {
-		setIsSignUpModalOpen(true);
-	};
-
-	const handleCloseSignUpModal = () => {
-		setMenuOpen(false);
-		setIsSignUpModalOpen(false);
-	};
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
 		setMenuOpen(false);
@@ -32,6 +22,7 @@ const Toggle = () => {
 
 	const handleCloseMenu = () => {
 		setMenuOpen(false);
+		console.log('test');
 	};
 
 	const handleCloseLoginModal = () => {
@@ -47,6 +38,23 @@ const Toggle = () => {
 		setisRegisterModalOpen(false);
 	};
 
+	const handleMouseEnter = (index) => {
+		setHoveredIndex(index);
+		setHoveredClasses([
+			...hoveredClasses.slice(0, index),
+			`hovered-${index}`,
+			...hoveredClasses.slice(index + 1),
+		]);
+	};
+
+	const handleMouseLeave = (index) => {
+		setHoveredIndex(null);
+		setHoveredClasses(
+			hoveredClasses.filter((cls) => !cls.includes(`hovered-${index}`)),
+		);
+	};
+	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
+
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
 		if (!menuOpen) {
@@ -61,6 +69,11 @@ const Toggle = () => {
 		}
 	};
 
+	const handleClose = () => {
+		setMenuOpen(false);
+		console.log('test');
+	};
+
 	const handleSignIn = () => {
 		setIsLoginModalOpen(false);
 		onSignIn(email, password, rememberMe);
@@ -68,11 +81,6 @@ const Toggle = () => {
 
 	return (
 		<>
-			{isSignUpModalOpen && (
-				<div className='fixed inset-0 z-50 flex items-center justify-center bg-gray-700 bg-opacity-50'>
-					<SignUp handleCloseSignUpModal={handleCloseSignUpModal} />
-				</div>
-			)}
 			<label className='toggle'>
 				<input type='checkbox' ref={toggleRef} onClick={handleToggle} />
 				<div className='toggle__inner'>
@@ -113,13 +121,15 @@ const Toggle = () => {
 							</div>
 							<ul className='offcanvas-menu__items'>
 								<li onClick={handleCloseMenu}>
-									<Link href='/product'>Product page</Link>
+									<Link href='/product'>
+										Product page{' '}
+										<span>Stripe payment </span>
+									</Link>
 								</li>
-								<li onClick={handleCloseMenu}>
-									<Link href='/contact'>Contact</Link>
-								</li>
-								<li onClick={handleCloseMenu}>
-									<Link href='/login'>Login page</Link>
+								<li onClick={setShowAuthModal}>Login</li>
+
+								<li onClick={handleOpenRegisterModal}>
+									Register
 								</li>
 							</ul>
 						</div>

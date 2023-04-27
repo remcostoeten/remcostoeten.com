@@ -1,11 +1,14 @@
 body {
-	background-color: $black-accent;
-	height: 100vh;
+	background: linear-gradient(180.56deg, #0b0816 0.64%, #2e081d 91.93%);
+	height: 175vh;
 }
-.page {&__inner {margin-top: 90px;}}
+.page {
+	&__inner {
+		margin-top: 90px;
+	}
+}
 
 .container {
-	// max-width: calc($container-size * 1.25) !important;
 	margin: 0 auto;
 	max-width: $container-size;
 
