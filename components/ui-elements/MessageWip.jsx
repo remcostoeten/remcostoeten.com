@@ -40,7 +40,7 @@ export default function MessageWip() {
 						<div className='ml-3 text-xs font-normal'>
 							This site is a work in progress, so there may be
 							some issues and features are temporarily unavailable
-							as i'm implementing a redesign.
+							as I am implementing a redesign.
 						</div>
 						<button
 							type='button'

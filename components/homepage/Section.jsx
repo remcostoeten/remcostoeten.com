@@ -4,10 +4,7 @@ export default function Section() {
 	const canvasRef = useRef();
 
 	useGrilledEffect(canvasRef);
-	const [scrolled, setScrolled] = useState(false);
-	const [backgroundPosition, setBackgroundPosition] = useState('0 0');
 	const [manPosition, setManPosition] = useState(' -300px');
-	const [textPosition, setTextPosition] = useState('0');
 	const [isRed, setIsRed] = useState(true);
 
 	const toggleColor = () => {
