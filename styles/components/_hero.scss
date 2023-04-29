@@ -4,6 +4,13 @@
 	background: linear-gradient(180.56deg, #0b0816 0.64%, #2e081d 91.93%);
 	padding-top: 125vh;
 	transition: 1333ms ease-in-out;
+
+	img {
+		margin: 0 auto;
+		width: 50%;
+		transform: translate(-17%, 75%);
+	}
+
 	&__inner {
 		background-image: url('/dotsbgsvg.svg');
 		position: absolute;
