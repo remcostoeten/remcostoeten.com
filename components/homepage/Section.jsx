@@ -1,17 +1,32 @@
-// Section.js
-import React, { useRef } from 'react';
-import Hero from './/Hero';
+import React, { useRef, useEffect, useState } from 'react';
 import useGrilledEffect from './useGrilledEffect';
-
 export default function Section() {
 	const canvasRef = useRef();
 
 	useGrilledEffect(canvasRef);
+	const [scrolled, setScrolled] = useState(false);
+	const [backgroundPosition, setBackgroundPosition] = useState('0 0');
+	const [manPosition, setManPosition] = useState(' -300px');
+	const [textPosition, setTextPosition] = useState('0');
+	const [isRed, setIsRed] = useState(true);
+
+	const toggleColor = () => {
+		setIsRed(!isRed);
+	};
+	useEffect(() => {
+		const scrollMan = () => {
+			const scrollY = window.scrollY;
+			setManPosition(` ${scrollY * 0.35}px`);
+		};
+
+		window.addEventListener('scroll', scrollMan);
+		return () => window.removeEventListener('scroll', manPosition);
+	}, []);
 
 	return (
-		<div className='interactive relative h-screen'>
+		<div className='interactive relative'>
 			<div className='interactive__inner container'>
-				<h2 className='absolute intro tracking-lighter text-5xl text-slate-300 font-extrabold left-8 top-1/4'>
+				<h2 className='translate-x-10 absolute intro tracking-lighter text-5xl text-slate-300 font-extrabold left-8 top-1/4 z-10'>
 					<span className='intro__line-one'>
 						<span className='letter'>J</span>
 						<span className='letter'>u</span>
@@ -45,7 +60,14 @@ export default function Section() {
 					<span className='intro__dot'>.</span>
 				</h2>
 			</div>
-			<canvas ref={canvasRef} id='canvas'></canvas>;
+			<canvas
+				style={{
+					transition: 'all 0.2s ease-in-out',
+					transform: `translateY(${manPosition})`,
+					rotate: '${manPosition}',
+				}}
+				ref={canvasRef}
+				id='canvas'></canvas>
 		</div>
 	);
 }

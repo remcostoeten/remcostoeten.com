@@ -65,7 +65,7 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 		blurInSmall $baseAnimationDelay 2s ease forwards;
 }
 
-// Third animations, letters
+// Third animations,
 .st0 {
 	&.r {
 		opacity: 0;
@@ -131,7 +131,7 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 }
 
 .header {
-	&__inner {
+ 	&__inner {
 		@extend .container;
 	}
 	&__left {

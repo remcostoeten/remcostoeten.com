@@ -4,11 +4,24 @@
 		top: -160px;
 		filter: blur(100px);
 		stroke: none;
-		animation: initialHide 25000ms ease-out;
+		animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
 		z-index: -1;
 		position: relative;
-		animation: initialHide $animation-duration $cubic;
-		opacity: 0.1;
+		opacity: 0;
+
+		@keyframes showOpacity {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 0.6;
+			}
+		}
+
+		@include above-mobile {
+			scale: 3;
+		}
 
 		@keyframes animateStopColor1 {
 			0% {
@@ -51,12 +64,9 @@
 
 @include above-mobile {
 	.blob {
+		scale: 2;
 		&__one {
 			right: -55%;
-			animation: 25s infinite;
-			animation: delayShow 2s;
-			display: none;
-
 			@keyframes blobWave {
 				0% {
 					transform: rotate(-5deg);

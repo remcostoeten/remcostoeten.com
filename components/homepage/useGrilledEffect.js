@@ -1,9 +1,14 @@
 // useGrilledEffect.js
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const useGrilledEffect = (canvasRef) => {
+	const [isRed, setIsRed] = useState(true);
 	useEffect(() => {
 		const canvas = canvasRef.current;
+
+		const toggleColor = () => {
+			setIsRed(!isRed);
+		};
 		const ctx = canvas.getContext('2d');
 		const oSize = {
 			h: document.body.clientHeight,
@@ -31,10 +36,10 @@ const useGrilledEffect = (canvasRef) => {
 			oMouse.x = e.pageX;
 		};
 
-		const interact = 200;
-		const radius = 1.25;
-		const maxRad = 5;
-		const dist = 30;
+		const interact = 455;
+		const radius = 0.8;
+		const maxRad = 7;
+		const dist = 25;
 
 		const oGrilled = {
 			iCol: 0,
@@ -66,6 +71,7 @@ const useGrilledEffect = (canvasRef) => {
 		function buildDot(l, c) {
 			const px = Math.ceil(c * dist + oGrilled.margLeft);
 			const py = Math.ceil(l * dist + oGrilled.margTop);
+			const color = isRed ? 'rgba( 197, 0, 62, 1)' : 'rgba(0, 128, 0, 1)';
 
 			const oDot = {
 				x: px,
@@ -75,7 +81,7 @@ const useGrilledEffect = (canvasRef) => {
 				tx: px,
 				ty: py,
 				s: rand(0.2, 1),
-				c: 'rgba( 197, 0, 62, 1)',
+				c: color,
 				r: radius,
 			};
 

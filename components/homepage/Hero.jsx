@@ -50,7 +50,7 @@ export default function Hero() {
 							<br />
 							<span>front-end dev</span>.
 						</h2>
-					</div>
+       					</div>
 				</div>
 			</div>
 		</main>
