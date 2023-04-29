@@ -131,13 +131,16 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 }
 
 .header {
- 	&__inner {
+	z-index: 150;
+
+	&__inner {
 		@extend .container;
 	}
 	&__left {
-		@apply relative z-10;
+		z-index: 150;
 
 		svg {
+			transform: translate(0, 10%);
 			@apply h-12 w-64;
 		}
 	}

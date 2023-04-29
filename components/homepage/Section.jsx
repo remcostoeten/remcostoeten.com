@@ -24,9 +24,9 @@ export default function Section() {
 	}, []);
 
 	return (
-		<div className='interactive relative'>
-			<div className='interactive__inner container'>
-				<h2 className='translate-x-10 absolute intro tracking-lighter text-5xl text-slate-300 font-extrabold left-8 top-1/4 z-10'>
+		<div className=' z-10 interactive relative sm:py-0 py-72'>
+			<div className=' interactive__inner '>
+				<h2 className='sm:absolute sm:left-1/4 translate-x-10 intro tracking-lighter text-5xl text-slate-300 font-extrabold left- top-1/4 z-5'>
 					<span className='intro__line-one'>
 						<span className='letter'>J</span>
 						<span className='letter'>u</span>
@@ -66,6 +66,7 @@ export default function Section() {
 					transform: `translateY(${manPosition})`,
 					rotate: '${manPosition}',
 				}}
+				className='z-0'
 				ref={canvasRef}
 				id='canvas'></canvas>
 		</div>

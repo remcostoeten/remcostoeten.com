@@ -6,7 +6,8 @@ import Header from '../components/Header/Header';
 import Router from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import { InfiniteLoader } from '../components/ui-elements/loaders/Infinite';
-import { WarningMessage } from '../components/ui-elements/MessageWip';
+import WarningMessage from '../components/ui-elements/MessageWip';
+
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
 

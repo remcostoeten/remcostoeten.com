@@ -414,7 +414,12 @@
 body {
   background: linear-gradient(76.56deg, #2e081d 0.64%, #0b0816 90.93%);
   height: 175vh;
-  animation: bodyIn 1s;
+  animation: bodyIn 1200ms ease-in-out;
+  overflow-x: hidden;
+}
+
+.toast {
+  z-index: 100;
 }
 
 @keyframes bodyIn {
@@ -1789,10 +1794,14 @@ button:hover {
     opacity: 1;
   }
 }
+.header {
+  z-index: 150;
+}
 .header__left {
-  @apply relative z-10;
+  z-index: 150;
 }
 .header__left svg {
+  transform: translate(0, 10%);
   @apply h-12 w-64;
 }
 .header::after {
@@ -2281,7 +2290,7 @@ button:hover {
   top: 0;
   width: 100%;
   right: 17px;
-  z-index: 5;
+  z-index: 105;
 }
 .offcanvas-menu__menu {
   margin-top: 90px;
