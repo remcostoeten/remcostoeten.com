@@ -17,6 +17,24 @@
 	}
 }
 
+@keyframes swingInTop {
+	0% {
+		transform: rotateX(-100deg);
+		transform-origin: top;
+		opacity: 0;
+		filter: blur(10px);
+	}
+
+	50% {
+	}
+
+	100% {
+		filter: blur(0px);
+		transform: rotateX(0deg);
+		opacity: 1;
+		transform-origin: top;
+	}
+}
 @keyframes blurInSmall {
 	0% {
 		filter: blur(5px);

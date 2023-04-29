@@ -27,7 +27,7 @@ export default function Section() {
 						<span className='letter'>r</span>
 					</span>
 					<br />
-					<span className='text-slate-300'>
+					<span className='text-slate-300 line-two'>
 						<span className='letter'>f</span>
 						<span className='letter'>r</span>
 						<span className='letter'>o</span>

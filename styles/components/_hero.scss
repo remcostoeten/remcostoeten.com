@@ -14,45 +14,65 @@ $intro--base-delay: 250ms;
 @keyframes fade-in {
 	0% {
 		opacity: 0;
-		transform: translateY(-20px);
 	}
 	100% {
 		opacity: 1;
-		transform: translateY(0);
 	}
 }
 
 .intro {
 	&__line-one {
-		animation: fade-in 1s ease-out forwards;
-
 		.letter {
 			opacity: 0;
-			animation: fade-in 1s ease-out forwards;
+			animation: fade-in 1s 3s ease-out forwards;
 		}
-	}
-}
-
-.letter {
-}
-
-@for $i from 1 through 12 {
-	.intro__line-one .letter:nth-child(#{$i}) {
-		animation-delay: 100ms * $i;
 	}
 }
 
 @for $i from 1 through 12 {
 	.text-slate-300 .letter:nth-child(#{$i}) {
-		animation-delay: 100ms * ($i + 12);
+		animation-delay: 50ms * ($i + 12 * 3);
 	}
 }
 
 .intro {
 	&__line-one {
 	}
+	// animation four
 	&__dot {
-		animation: fadeOpacity 2s 250ms;
+		animation: scaleInBig 2s 2s forwards;
+		opacity: 0;
+		position: absolute;
+	}
+
+	@keyframes scaleInBig {
+		0% {
+			opacity: 0;
+			filter: blur(10px);
+		}
+
+		100% {
+			opacity: 1;
+			filter: blur(0);
+		}
+	}
+	// animation 5
+	.line-two {
+		opacity: 0;
+		animation: puff-in-center 1522ms 2s cubic-bezier(0.47, 0, 0.745, 0.715)
+			forwards;
+	}
+}
+@keyframes puff-in-center {
+	0% {
+		transform: scale(2);
+		filter: blur(4px);
+		opacity: 0;
+	}
+	100% {
+		transform: scale(1);
+		filter: blur(0px);
+		opacity: 1;
 	}
 }
 
