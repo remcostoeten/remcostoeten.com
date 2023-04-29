@@ -10,11 +10,10 @@ import {
 	setPersistence,
 	updateProfile,
 } from 'firebase/auth';
-import { useEffect, useState } from 'react';
-
 import Confetti from 'react-confetti';
 import { auth } from '@/utils/firebase';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 interface RegisterModalProps {
 	onClose: () => void;
