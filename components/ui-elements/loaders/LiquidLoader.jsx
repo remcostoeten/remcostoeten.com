@@ -1,4 +1,4 @@
-const LiquidLoader = () => {
+ const LiquidLoader = () => {
 	return (
 		<div className='LiquidLoader'>
 			<svg

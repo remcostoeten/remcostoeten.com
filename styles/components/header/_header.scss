@@ -1,66 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .header {
-	position: relative;
-	left: 50%;
-	transform: translate(-50%, 0);
-	z-index: 100;
-	width: 100%;
-	padding: 20px 0;
-	background-color: transparent;
-	height: $header--height;
+	animation: fadeIn 2s ease-in-out;
+}
+
+.onScroll {
+	.header {
+		.animation: unset;
+	}
+}
+
+@keyframes slideFromTop {
+	from {
+		transform: translateY(-100%);
+		fill: $color--mint;
+		path: red;
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideFromLeft {
+	from {
+		transform: translateX(-100%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+$baseAnimationDuration: 250ms;
+$baseAnimationItteratorDuration: 250ms;
+$baseAnimationDelay: 250ms;
+$animationItterationCount: 1; // from top to bottom. So the first animation in = 1, then 2 etc. In this case .logo__icon-left is 1 and .logo__icon-right is 2, hero is 3. etc
+
+// Itterations
+$itterationOne: $baseAnimationDuration * 4;
+$itterationTwo: $itterationOne + $baseAnimationItteratorDuration;
+$itterationThree: $itterationTwo + $baseAnimationItteratorDuration;
+$itterationFour: $itterationThree + $baseAnimationItteratorDuration;
+$itterationFive: $itterationFour + $baseAnimationItteratorDuration;
+$itterationSix: $itterationFive + $baseAnimationItteratorDuration;
+$itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
+
+// First animation shown on site.
+
+.logo__icon-right {
+	animation-name: slideFromLeft, blurInBig;
+	animation-duration: $itterationOne;
+	animation-timing-function: cubic-bezier(0.95, 0.46, 0.45, 0.94);
+	animation-fill-mode: fowards;
+}
+
+// Second animation shown on site
+.logo__icon-left {
+	transform: translateY(-100%);
+	animation: slideFromTop $baseAnimationDuration * 8 $itterationOne
+			cubic-bezier(0.075, 0.82, 0.165, 1) forwards,
+		blurInSmall $baseAnimationDelay 2s ease forwards;
+}
+
+// Third animations, letters
+.st0 {
+	&.r {
+		opacity: 0;
+		animation: fadeIn 1s $itterationTwo ease-in-out forwards,
+			blurInSmall $baseAnimationDelay 5s ease forwards;
+	}
+	&.e {
+		opacity: 0;
+		animation: fadeIn 1s $itterationTwo + 200ms forwards,
+			blurInSmall $baseAnimationDelay 5s ease forwards;
+	}
+	&.m {
+		opacity: 0;
+		animation: fadeIn 1s $itterationTwo + 300ms ease-in-out forwards,
+			blurInSmall $baseAnimationDelay 5s ease forwards;
+	}
+	&.c {
+		opacity: 0;
+		animation: fadeIn 1s $itterationTwo + 400ms ease-in-out forwards,
+			blurInSmall $baseAnimationDelay 5s ease forwards;
+	}
+	&.o {
+		opacity: 0;
+		animation: fadeIn 1s $itterationTwo + 500ms ease-in-out forwards,
+			blurInSmall $baseAnimationDelay 5s ease forwards;
+	}
+}
+
+.logo {
+	.logo__icon-right {
+		transition: 300ms ease-in-out;
+	}
+
+	.logo__icon-left {
+		transition: 300ms ease-in-out;
+	}
+	&:hover {
+		scale: 1;
+		.logo__icon-right {
+			transition: 300ms ease-in-out;
+			scale: 1.05;
+			transition-delay: 125ms;
+		}
+
+		.logo__icon-left {
+			transition: 300ms ease-in-out;
+			scale: 1.05;
+		}
+	}
+}
+
+@keyframes swing-in-top-fwd {
+	0% {
+		transform: rotateX(-100deg);
+		transform-origin: top;
+		opacity: 0;
+	}
+	100% {
+		transform: rotateX(0deg);
+		transform-origin: top;
+		opacity: 1;
+	}
 }
 
 .header {
-	display: flex;
-	align-items: center;
-	padding: 16px 0;
-	transition: 0.5s;
-
 	&__inner {
-		max-height: $header--height;
-		height: $header--height;
-		margin: 0 auto;
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		position: relative;
-		transition: width 0.5s ease-in-out;
+		@extend .container;
 	}
-
 	&__left {
-		z-index: 10;
+		@apply relative z-10;
 
 		svg {
-			height: 45px;
-			width: 255px;
+			@apply h-12 w-64;
 		}
 	}
 
-	&.scrolled {
-		position: fixed;
-		top: 0;
-
-		&:after {
-			opacity: 0;
-		}
-
-		.header__inner {
-			padding: 0 16px;
-			width: 100%;
-		}
-	}
-
-	&:after {
+	&::after {
 		content: '';
-		transition: 0.5s ease-in-out all;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		right: 0;
-		margin: auto;
-		width: 1024px;
-		height: 1px;
-		opacity: 1;
-		background: linear-gradient(90deg, transparent, #2f2f2f, transparent);
+		@apply transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 mx-auto w-1024 h-px opacity-100;
+		background-image: linear-gradient(
+			90deg,
+			transparent,
+			#2f2f2f,
+			transparent
+		);
+	}
+
+	&.onScroll {
+		// animation: blurInSmall 0.5s ease-in-out forwards;
+		padding: 0 1rem;
 	}
 }
 
@@ -85,78 +180,25 @@
 	}
 }
 
-// .logo-icon {
-// 	&__path-one,
-// 	&__path-two,
-// 	&__path-three,
-// 	&__path-four {
-// 		// animation: fadeIn 0.8 ease-in-out forwards;
-// 	}
-
-// 	&__path-one {
-// 		fill: red;
-// 		background-color: red;
-// 	}
-
-// 	&__path-two {
-// 		fill: yellow;
-// 		background-color: yellow;
-// 	}
-
-// 	&__path-three {
-// 		fill: beige;
-// 		background-color: gainsboro;
-// 	}
-
-// 	&__path-four {
-// 		fill: aliceblue;
-// 		background-color: rebeccapurple;
-// 	}
-// }
-
-@keyframes draw {
-	0% {
-		stroke-dasharray: 0 100;
-		stroke-opacity: 0;
-	}
-	50% {
-		stroke-opacity: 1;
-	}
-	100% {
-		stroke-dasharray: 100 0;
-		stroke-opacity: 1;
-	}
-}
-
 .line-animate {
-	stroke: #fff;
-	stroke-width: 10;
-	fill: none;
+	@apply stroke-current text-white stroke-2 fill-none;
 	stroke-dasharray: 100 0;
 	animation: draw 4s linear infinite;
 	stroke-linecap: round;
 }
 
-@include below-desktop {
-	.header {
-		&::after {
-			width: 100%;
-		}
+@media (max-width: 1023px) {
+	.header::after {
+		@apply w-full;
 	}
 }
 
-@include mobile {
+@media (max-width: 767px) {
 	.header {
-		padding: 16px 40px 16px 16px;
+		@apply p-4;
+	}
 
-		&:after {
-			z-index: 10;
-			width: 100%;
-		}
-
-		&__top-bar {
-			color: $white;
-			background-color: $color--secondary;
-		}
+	.header::after {
+		@apply z-10 w-full;
 	}
 }

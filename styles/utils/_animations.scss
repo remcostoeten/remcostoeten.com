@@ -7,6 +7,36 @@
 	}
 }
 
+@keyframes blurInSmall {
+	0% {
+		filter: blur(1px);
+	}
+
+	100% {
+		filter: blur(0);
+	}
+}
+
+@keyframes blurInSmall {
+	0% {
+		filter: blur(5px);
+	}
+
+	100% {
+		filter: blur(0);
+	}
+}
+
+@keyframes blurInBig {
+	0% {
+		filter: blur(10px);
+	}
+
+	100% {
+		filter: blur(0);
+	}
+}
+
 @keyframes slide {
 	0% {
 		transform: translateX(-25%);

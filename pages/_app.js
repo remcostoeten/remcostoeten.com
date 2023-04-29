@@ -1,14 +1,11 @@
+import { useEffect, useState } from 'react';
+
 import '@/styles/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
-
-import React, { useEffect, useState } from 'react';
-
 import Header from '../components/Header/Header';
-import LiquidLoader from '../components/ui-elements/loaders/LiquidLoader';
-import Loader from '../components/ui-elements/loaders/CubeLoader';
 import Router from 'next/router';
 import { ToastContainer } from 'react-toastify';
-import { Triangle } from '../components/ui-elements/loaders/Triangle';
+import { InfiniteLoader } from '../components/ui-elements/loaders/Infinite';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
@@ -29,7 +26,7 @@ function App({ Component, pageProps }) {
 	}, []);
 	return (
 		<>
-			{loading && <Triangle />}
+			{loading && <InfiniteLoader />}
 			<Header />
 			<Component {...pageProps} />
 			<ToastContainer />

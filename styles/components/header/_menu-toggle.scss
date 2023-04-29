@@ -9,7 +9,6 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		z-index: 15;
 		display: flex;
 		margin-right: 32px;
-
 		transition: $animationDurationBase ease all;
 		&:hover {
 			span {
@@ -47,7 +46,16 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 			}
 		}
 
-		&:hover {
+		@keyframes hamburgerIn {
+			0% {
+				transform: rotate(-15deg);
+				scale: 0.95;
+			}
+
+			100% {
+				transform: rotate(0);
+				scale: 1;
+			}
 		}
 
 		input {
@@ -57,7 +65,8 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 				width: 20px;
 				height: 14px;
 				position: relative;
-
+				animation: hamburgerIn 2s;
+				animation: hamburgerIn 2s;
 				div {
 					position: absolute;
 					left: 0;

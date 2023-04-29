@@ -121,10 +121,10 @@ const Toggle = () => {
 							</div>
 							<ul className='offcanvas-menu__items'>
 								<li onClick={handleCloseMenu}>
-									<Link href='/product'>
-										Product page{' '}
-										<span>Stripe payment </span>
-									</Link>
+									<Link href='/product'>Webshop</Link>
+								</li>
+								<li onClick={handleCloseMenu}>
+									<Link href='/loaders'>Loaders</Link>
 								</li>
 								<li onClick={setShowAuthModal}>Login</li>
 

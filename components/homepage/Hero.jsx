@@ -10,7 +10,7 @@ export default function Hero() {
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollY = window.scrollY;
-			setBackgroundPosition(`0 -${scrollY * .4}px`);
+			setBackgroundPosition(`0 -${scrollY * 0.67}px`);
 		};
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
@@ -18,7 +18,7 @@ export default function Hero() {
 	useEffect(() => {
 		const scrollMan = () => {
 			const scrollY = window.scrollY;
-			setManPosition(` ${scrollY *.45}px`);
+			setManPosition(` ${scrollY * 0.55}px`);
 		};
 
 		window.addEventListener('scroll', scrollMan);
@@ -31,25 +31,25 @@ export default function Hero() {
 				style={{
 					backgroundPosition,
 				}}>
-				<div className='container relative'>
-					<div className={`hero__inner ${scrolled ? 'scrolled' : ''}`}>
-					<Image
-  className='absolute right-0 top'
-  src='/man.png'
-  alt='hero'
-  style={{
-    transform: `translateY(${manPosition})`,
-	rotate: '${manPosition}',
-  }}
-  width={400}
-  height={400}
-/>
-
-					<h2 className=''>
-						remco
-						<br />
-						stoeten
-					</h2>{' '}
+				<div className='container relative container`'>
+					<div
+						className={`hero__inner ${scrolled ? 'scrolled' : ''}`}>
+						<Image
+							className='absolute right-0 top sm:hidden'
+							src='/man.png'
+							alt='hero'
+							style={{
+								transform: `translateY(${manPosition})`,
+								rotate: '${manPosition}',
+							}}
+							width={400}
+							height={400}
+						/>
+						<h2 className='bold text-white text-8xl leading-none'>
+							Just another
+							<br />
+							<span>front-end dev</span>.
+						</h2>
 					</div>
 				</div>
 			</div>

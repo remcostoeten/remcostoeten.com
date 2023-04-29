@@ -17,9 +17,6 @@
 	}
 }
 
-body {
-}
-
 // Variables
 @import './variables/_colors.scss';
 @import './variables/_responsive.scss';
@@ -50,3 +47,6 @@ body {
 @import './components/_product-page.scss';
 @import './components/_contact-modal.scss';
 @import './components/_hero.scss';
+
+// Loaders
+@import './components/loaders/_infinity-loader.scss';
