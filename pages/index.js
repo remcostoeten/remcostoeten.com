@@ -6,7 +6,7 @@ import React from 'react';
 export default function index() {
 	return (
 		<>
-			{/* <Section /> */}
+			<Section />
 		
 		<WebGLCanvas/>
 			<div className='page-wrapper py-5 px-5'></div>

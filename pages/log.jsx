@@ -72,7 +72,7 @@ export default function Log() {
           </form>
           <div className="my-6 space-y-2">
             <p className="text-xs text-gray-600">
-              Don't have an account?
+              Dont have an account?
               <a href="#" className="text-purple-700 hover:text-black">
                 Create an account
               </a>
