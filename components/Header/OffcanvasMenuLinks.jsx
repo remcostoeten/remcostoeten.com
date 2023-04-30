@@ -30,6 +30,12 @@ export default function OffcanvasMenuLinks(props) {
 				<li onClick={handleCloseMenu}>
 					<Link href='/loaders'>Loaders</Link>
 				</li>
+				<li className='flex align-middle' onClick={handleCloseMenu}>
+					<Link href='/webgl'>Webgl</Link>
+					<div className='text-xs  h-5 font-semibold inline-block ml-2 py-1 px-2 uppercase rounded text-pink-600 bg-pink-200 uppercase last:mr-0 mr-1'>
+						WiP
+					</div>
+				</li>
 				<li onClick={handleCloseMenu}>
 					<Link href='/log'>Login </Link>
 				</li>
