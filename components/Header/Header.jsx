@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-
 import Link from 'next/link';
 import LogoIcon from '../svg-elements/LogoIcon';
 import Toggle from './Toggle';
@@ -25,9 +24,9 @@ export default function Header() {
 
 	return (
 		<div
-			className={`header w-full fixed left-0 z-75 transition-all duration-300 ${
+			className={`header flex align-middle w-full transition-all	 ${
 				menuOpen ? 'menu-open' : ''
-			} ${sticky ? '' : 'bg-transparent'}`}>
+			} ${sticky ? 'sticky' : 'sticky'}`}>
 			<div className='header__inner flex justify-between items-center h-full mx-auto relative transition-width duration-500 ease-in-out'>
 				<div className='header__left'>
 					<Link href='/' onClick={handleCloseMenu}>

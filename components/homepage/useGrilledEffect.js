@@ -1,14 +1,11 @@
 // useGrilledEffect.js
 import { useEffect, useState } from 'react';
 
-const useGrilledEffect = (canvasRef) => {
-	const [isRed, setIsRed] = useState(true);
+const useGrilledEffect = (canvasRef, isRed) => {
+	const colorOne = 'rgba(169, 81, 219, 1)';
+	const colorTwo = 'rgba( 197, 0, 62, 1)';
+	const [changeColor, setChangeColor] = useState(true);
 	useEffect(() => {
-		const canvas = canvasRef.current;
-
-		const toggleColor = () => {
-			setIsRed(!isRed);
-		};
 		const ctx = canvas.getContext('2d');
 		const oSize = {
 			h: document.body.clientHeight,
@@ -37,7 +34,7 @@ const useGrilledEffect = (canvasRef) => {
 		};
 
 		const interact = 455;
-		const radius = 0.8;
+		const radius = 0.3;
 		const maxRad = 7;
 		const dist = 25;
 
@@ -71,7 +68,6 @@ const useGrilledEffect = (canvasRef) => {
 		function buildDot(l, c) {
 			const px = Math.ceil(c * dist + oGrilled.margLeft);
 			const py = Math.ceil(l * dist + oGrilled.margTop);
-			const color = isRed ? 'rgba( 197, 0, 62, 1)' : 'rgba(0, 128, 0, 1)';
 
 			const oDot = {
 				x: px,
@@ -81,12 +77,16 @@ const useGrilledEffect = (canvasRef) => {
 				tx: px,
 				ty: py,
 				s: rand(0.2, 1),
-				c: color,
+				c: isRed ? colorOne : colorTwo,
 				r: radius,
 			};
 
 			return oDot;
 		}
+
+		oGrilled.aDots.forEach((dot) => {
+			dot.c = isRed ? colorOne : colorTwo;
+		});
 
 		function getRadius(dot) {
 			const dx = oMouse.x - dot.x;
@@ -135,7 +135,7 @@ const useGrilledEffect = (canvasRef) => {
 			window.removeEventListener('resize', onResize);
 			document.removeEventListener('mousemove', onMouseMove);
 		};
-	}, [canvasRef]);
+	}, [canvasRef, isRed]);
 };
 
 export default useGrilledEffect;

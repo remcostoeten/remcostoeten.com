@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-
 import '@/styles/styles.css';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../components/Header/Header';
@@ -7,14 +6,15 @@ import Router from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import { InfiniteLoader } from '../components/ui-elements/loaders/Infinite';
 import WarningMessage from '../components/ui-elements/MessageWip';
+import SpeedDial from '../components/ui-elements/Speeddial';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
-
 	const handleStart = () => setLoading(true);
 	const handleComplete = () => setLoading(false);
 
 	useEffect(() => {
+		document.body.classList.add('wrapper');
 		Router.events.on('routeChangeStart', handleStart);
 		Router.events.on('routeChangeComplete', handleComplete);
 		Router.events.on('routeChangeError', handleComplete);
@@ -27,11 +27,14 @@ function App({ Component, pageProps }) {
 	}, []);
 	return (
 		<>
+			<Header />
+			<main className='wrapper__content'>
+				<Component {...pageProps} />
+			</main>
 			<WarningMessage />
 			{loading && <InfiniteLoader />}
-			<Header />
-			<Component {...pageProps} />
 			<ToastContainer />
+			<SpeedDial /> */}
 		</>
 	);
 }

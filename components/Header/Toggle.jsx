@@ -107,6 +107,7 @@ const Toggle = () => {
 			{menuOpen && (
 				<div className={parentClass}>
 					<div className='container'>
+						
 						<div className='offcanvas-menu__menu'>
 							<div className='offcanvas-menu__menu--tagline'>
 								<h2 className='animate__flipInX'>

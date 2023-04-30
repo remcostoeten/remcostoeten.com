@@ -1,5 +1,4 @@
 import Section from '../components/homepage/Section';
-import Login from '../components/auth/old/Login';
 import React from 'react';
 
 export default function index() {

@@ -2,8 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+$header-height: 50px;
+
 .header {
-	animation: fadeIn 2s ease-in-out;
+	&__left {
+		min-height: $header-height;
+		max-height: $header-height;
+	}
+
+	&__inner {
+		width: 100%;
+	}
 }
 
 .onScroll {
@@ -51,7 +60,7 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 // First animation shown on site.
 
 .logo__icon-right {
-	animation-name: slideFromLeft, blurInBig;
+	animation-name: slideFromLeft, blurInSmall;
 	animation-duration: $itterationOne;
 	animation-timing-function: cubic-bezier(0.95, 0.46, 0.45, 0.94);
 	animation-fill-mode: fowards;
@@ -61,8 +70,7 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 .logo__icon-left {
 	transform: translateY(-100%);
 	animation: slideFromTop $baseAnimationDuration * 8 $itterationOne
-			cubic-bezier(0.075, 0.82, 0.165, 1) forwards,
-		blurInSmall $baseAnimationDelay 2s ease forwards;
+		cubic-bezier(0.075, 0.82, 0.165, 1) forwards;
 }
 
 // Third animations,
@@ -140,25 +148,7 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 		z-index: 150;
 
 		svg {
-			transform: translate(0, 10%);
-			@apply h-12 w-64;
 		}
-	}
-
-	&::after {
-		content: '';
-		@apply transition-all duration-500 ease-in-out absolute bottom-0 left-0 right-0 mx-auto w-1024 h-px opacity-100;
-		background-image: linear-gradient(
-			90deg,
-			transparent,
-			#2f2f2f,
-			transparent
-		);
-	}
-
-	&.onScroll {
-		// animation: blurInSmall 0.5s ease-in-out forwards;
-		padding: 0 1rem;
 	}
 }
 

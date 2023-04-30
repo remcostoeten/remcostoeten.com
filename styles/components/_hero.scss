@@ -22,10 +22,6 @@ $intro--base-delay: 250ms;
 
 .intro {
 	&__line-one {
-		transition: 250ms ease-in-out;
-		&:hover {
-			font-size: 104%;
-		}
 		.letter {
 			opacity: 0;
 			animation: fade-in 1s 3s ease-out forwards;

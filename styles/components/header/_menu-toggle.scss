@@ -4,12 +4,15 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 	lighten($color--secondary, 10%), lighten($color--secondary, 15%);
 
 .header {
+	top: 0;
+
 	.toggle {
 		cursor: pointer;
-		z-index: 15;
+		z-index: 150;
 		display: flex;
 		margin-right: 32px;
 		transition: $animationDurationBase ease all;
+
 		&:hover {
 			span {
 				transition-delay: 150ms;
@@ -48,8 +51,13 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 
 		@keyframes hamburgerIn {
 			0% {
+				opacity: 0;
 				transform: rotate(-15deg);
-				scale: 0.95;
+				scale: 3;
+			}
+
+			40% {
+				opacity: 0;
 			}
 
 			100% {
@@ -65,8 +73,8 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 				width: 20px;
 				height: 14px;
 				position: relative;
-				animation: hamburgerIn 2s;
-				animation: hamburgerIn 2s;
+				animation: hamburgerIn 2s ease-in-out;
+
 				div {
 					position: absolute;
 					left: 0;

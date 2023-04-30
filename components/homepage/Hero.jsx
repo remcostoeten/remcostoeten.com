@@ -15,15 +15,7 @@ export default function Hero() {
 		window.addEventListener('scroll', handleScroll);
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
-	useEffect(() => {
-		const scrollMan = () => {
-			const scrollY = window.scrollY;
-			setManPosition(` ${scrollY * 0.55}px`);
-		};
 
-		window.addEventListener('scroll', scrollMan);
-		return () => window.removeEventListener('scroll', manPosition);
-	}, []);
 	return (
 		<main className='hero'>
 			<div
@@ -50,7 +42,7 @@ export default function Hero() {
 							<br />
 							<span>front-end dev</span>.
 						</h2>
-       					</div>
+					</div>
 				</div>
 			</div>
 		</main>
