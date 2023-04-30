@@ -2313,7 +2313,6 @@ button:hover {
   margin-top: 50px;
   list-style: none;
   padding: 0;
-  opacity: 0;
 }
 .offcanvas-open .offcanvas-menu__menu ul li {
   color: #f9f9f9;
@@ -3702,6 +3701,10 @@ button:hover {
   color: #888;
   background: #fff;
   text-rendering: optimizeLegibility;
+}
+.pdp .header .toggle input + div div span:before,
+.pdp .header .toggle input + div div span:after {
+  background-color: #333;
 }
 .pdp ul {
   padding: 0;

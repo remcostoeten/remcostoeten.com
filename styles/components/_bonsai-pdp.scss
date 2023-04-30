@@ -19,6 +19,11 @@ $button-hover: #565657;
 	background: $white;
 	text-rendering: optimizeLegibility;
 
+	.header .toggle input + div div span:before,
+	.header .toggle input + div div span:after {
+		background-color: $black;
+	}
+
 	ul {
 		padding: 0;
 		margin: 0;

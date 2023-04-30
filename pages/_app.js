@@ -34,7 +34,7 @@ function App({ Component, pageProps }) {
 			<WarningMessage />
 			{loading && <InfiniteLoader />}
 			<ToastContainer />
-			<SpeedDial /> */}
+			<SpeedDial />
 		</>
 	);
 }

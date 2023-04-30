@@ -107,7 +107,6 @@ const Toggle = () => {
 			{menuOpen && (
 				<div className={parentClass}>
 					<div className='container'>
-						
 						<div className='offcanvas-menu__menu'>
 							<div className='offcanvas-menu__menu--tagline'>
 								<h2 className='animate__flipInX'>
@@ -122,15 +121,13 @@ const Toggle = () => {
 							</div>
 							<ul className='offcanvas-menu__items'>
 								<li onClick={handleCloseMenu}>
-									<Link href='/product'>Webshop</Link>
+									<Link href='/stripe-payment'>Stripe</Link>
 								</li>
 								<li onClick={handleCloseMenu}>
 									<Link href='/loaders'>Loaders</Link>
 								</li>
 								<li onClick={setShowAuthModal}>
-								<Link href='/loaders'>L </Link>
-
-
+									<Link href='/loaders'>L </Link>
 								</li>
 
 								<li onClick={handleOpenRegisterModal}>
