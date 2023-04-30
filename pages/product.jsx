@@ -1,56 +1,11 @@
+import { IconButton, Modal, Tooltip } from '@mui/material';
+
 import Image from 'next/image';
 import StripeContainer from '../components/stripe/StripeContainer';
 import dynamic from 'next/dynamic';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
-import {
-	Elements,
-	CardElement,
-	useStripe,
-	useElements,
-} from '@stripe/react-stripe-js';
-import { Modal } from '@mui/material';
-const stripePromise = loadStripe(
-	process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
-);
-
-const CheckoutForm = () => {
-	const stripe = useStripe();
-	const elements = useElements();
-
-	const handleSubmit = async (event) => {
-		event.preventDefault();
-
-		if (!stripe || !elements) {
-			return;
-		}
-
-		const cardElement = elements.getElement(CardElement);
-
-		const { error, paymentMethod } = await stripe.createPaymentMethod({
-			type: 'card',
-			card: cardElement,
-		});
-
-		if (error) {
-			console.error('[error]', error);
-		} else {
-			console.log('[PaymentMethod]', paymentMethod);
-			// Voer hier de betalingslogica uit, zoals het aanroepen van uw backend
-		}
-	};
-
-	return (
-		<form onSubmit={handleSubmit}>
-			<CardElement />
-			<button type='submit' disabled={!stripe}>
-				Betalen
-			</button>
-		</form>
-	);
-};
 
 const Product = () => {
 	const router = useRouter();
@@ -245,9 +200,14 @@ const Product = () => {
 					</div>
 				</div>
 				<Modal open={openModal} onClose={handleClose}>
-					<Elements stripe={stripePromise}>
-						<CheckoutForm />
-					</Elements>
+					<div className='z-999    text-slate-800 bg-white py-4 rounded-md w-80 flex content-center flex-col bg-center justify-center mx-auto my-40 py-10'>
+						<StripeContainer product={selectedProduct} />
+						<button
+							className='py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none'
+							onClick={handleModalClose}>
+							Close
+						</button>
+					</div>
 				</Modal>
 			</div>
 		</div>

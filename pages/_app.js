@@ -28,7 +28,7 @@ function App({ Component, pageProps }) {
 	return (
 		<>
 			<Header />
-			<main className='wrapper__content'>
+			<main className='wrapper__content '>
 				<Component {...pageProps} />
 			</main>
 			<WarningMessage />

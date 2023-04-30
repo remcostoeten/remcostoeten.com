@@ -14,7 +14,6 @@
 				h2,
 				.first,
 				.last {
-					opacity: 0;
 					animation: initialHideDelay $menuOpenDuration $initialHide
 							forwards,
 						swingInTop $menuOpenDuration $itemAfterInitialHide
