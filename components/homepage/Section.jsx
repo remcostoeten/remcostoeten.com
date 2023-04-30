@@ -21,7 +21,7 @@ export default function Section() {
 		<>
 			<div className=' z-10 interactive relative sm:py-0'>
 				<div className=' '>
-					<h2 className='sm:absolute sm:left-1/4 translate-x-10 intro tracking-lighter text-5xl text-slate-300 font-extrabold left- top-1/4 z-5'>
+					<h2 className='sm:absolute sm:w-64 sm:mx-auto sm:left-10 translate-x-10 intro top-10 tracking-lighter text-5xl text-slate-300 font-extrabold left- top-1/4 z-5'>
 						<span className='intro__line-one'>
 							<span className='letter'>J</span>
 							<span className='letter'>u</span>

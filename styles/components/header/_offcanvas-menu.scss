@@ -11,14 +11,10 @@
 			}
 
 			.offcanvas-menu__menu--tagline {
-				h2,
-				.first,
-				.last {
-					animation: initialHideDelay $menuOpenDuration $initialHide
-							forwards,
-						swingInTop $menuOpenDuration $itemAfterInitialHide
-							forwards;
-				}
+				animation: initialHideDelay $menuOpenDuration $initialHide
+						forwards,
+					swingInTop $menuOpenDuration $itemAfterInitialHide forwards;
+				opacity: 0;
 
 				.first {
 					animation-delay: $itemAfterInitialHide * $delayItterator-s;
@@ -262,6 +258,8 @@
 				margin-top: 50px;
 				list-style: none;
 				padding: 0;
+				opacity: 0;
+				animation: initialHide 1s forwards;
 				li {
 					color: $off-white;
 					font-size: 38px;

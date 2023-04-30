@@ -126,12 +126,8 @@ const Toggle = () => {
 								<li onClick={handleCloseMenu}>
 									<Link href='/loaders'>Loaders</Link>
 								</li>
-								<li onClick={setShowAuthModal}>
-									<Link href='/loaders'>L </Link>
-								</li>
-
-								<li onClick={handleOpenRegisterModal}>
-									Register
+								<li onClick={handleCloseMenu}>
+									<Link href='/log'>Login </Link>
 								</li>
 							</ul>
 						</div>

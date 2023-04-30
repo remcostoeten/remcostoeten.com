@@ -1718,8 +1718,8 @@ button:hover {
 @tailwind components;
 @tailwind utilities;
 .header__left {
-  min-height: 50px;
-  max-height: 50px;
+  min-height: 60px;
+  max-height: 60px;
 }
 .header__inner {
   width: 100%;
@@ -2178,10 +2178,9 @@ button:hover {
   opacity: 0;
   animation: initialHideDelay 750ms forwards;
 }
-.offcanvas-open .header .offcanvas-menu .offcanvas-menu__menu--tagline h2,
-.offcanvas-open .header .offcanvas-menu .offcanvas-menu__menu--tagline .first,
-.offcanvas-open .header .offcanvas-menu .offcanvas-menu__menu--tagline .last {
+.offcanvas-open .header .offcanvas-menu .offcanvas-menu__menu--tagline {
   animation: initialHideDelay 2000ms 750ms forwards, swingInTop 2000ms 735ms forwards;
+  opacity: 0;
 }
 .offcanvas-open .header .offcanvas-menu .offcanvas-menu__menu--tagline .first {
   animation-delay: 845.25ms;
@@ -2313,6 +2312,8 @@ button:hover {
   margin-top: 50px;
   list-style: none;
   padding: 0;
+  opacity: 0;
+  animation: initialHide 1s forwards;
 }
 .offcanvas-open .offcanvas-menu__menu ul li {
   color: #f9f9f9;

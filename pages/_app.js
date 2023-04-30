@@ -27,12 +27,12 @@ function App({ Component, pageProps }) {
 	}, []);
 	return (
 		<>
+			{loading && <InfiniteLoader />}
 			<Header />
 			<main className='wrapper__content '>
 				<Component {...pageProps} />
 			</main>
 			<WarningMessage />
-			{loading && <InfiniteLoader />}
 			<ToastContainer />
 			<SpeedDial />
 		</>
