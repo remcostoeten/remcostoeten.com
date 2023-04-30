@@ -29,7 +29,7 @@ function App({ Component, pageProps }) {
 		<>
 			{loading && <InfiniteLoader />}
 			<Header />
-			<main className='wrapper__content '>
+			<main className='wrapper__content overflow-hidden '>
 				<Component {...pageProps} />
 			</main>
 			<WarningMessage />
