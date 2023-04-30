@@ -1721,6 +1721,9 @@ button:hover {
   min-height: 60px;
   max-height: 60px;
 }
+.header__left .logo {
+  transform: translateY(20%);
+}
 .header__inner {
   width: 100%;
 }

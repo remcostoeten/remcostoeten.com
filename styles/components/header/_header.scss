@@ -8,6 +8,10 @@ $header-height: 60px;
 	&__left {
 		min-height: $header-height;
 		max-height: $header-height;
+
+		.logo {
+			transform: translateY(20%);
+		}
 	}
 
 	&__inner {
