@@ -1,4 +1,3 @@
-// useGrilledEffect.js
 import { useEffect, useState } from 'react';
 
 const useGrilledEffect = (canvasRef, isRed) => {

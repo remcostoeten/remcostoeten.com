@@ -110,19 +110,6 @@ $itterationSeven: $itterationSix + $baseAnimationItteratorDuration;
 	.logo__icon-left {
 		transition: 300ms ease-in-out;
 	}
-	&:hover {
-		scale: 1;
-		.logo__icon-right {
-			transition: 300ms ease-in-out;
-			scale: 1.05;
-			transition-delay: 125ms;
-		}
-
-		.logo__icon-left {
-			transition: 300ms ease-in-out;
-			scale: 1.05;
-		}
-	}
 }
 
 @keyframes swing-in-top-fwd {
