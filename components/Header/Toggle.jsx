@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-
+import OffcanvasMenuLinks from './OffcanvasMenuLinks';
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [email, setEmail] = useState('');
@@ -71,7 +71,6 @@ const Toggle = () => {
 
 	const handleClose = () => {
 		setMenuOpen(false);
-		console.log('test');
 	};
 
 	const handleSignIn = () => {
@@ -107,30 +106,7 @@ const Toggle = () => {
 			{menuOpen && (
 				<div className={parentClass}>
 					<div className='container'>
-						<div className='offcanvas-menu__menu'>
-							<div className='offcanvas-menu__menu--tagline'>
-								<h2 className='animate__flipInX'>
-									Remco stoeten
-								</h2>
-								<p className='first'>
-									<span>Aspiring to be more</span>
-								</p>
-								<p className='last'>
-									than a <i>divjesschuiver</i>
-								</p>
-							</div>
-							<ul className='offcanvas-menu__items'>
-								<li onClick={handleCloseMenu}>
-									<Link href='/stripe-payment'>Stripe</Link>
-								</li>
-								<li onClick={handleCloseMenu}>
-									<Link href='/loaders'>Loaders</Link>
-								</li>
-								<li onClick={handleCloseMenu}>
-									<Link href='/log'>Login </Link>
-								</li>
-							</ul>
-						</div>
+						<OffcanvasMenuLinks handleCloseMenu={handleCloseMenu} />
 					</div>
 					<div className='offcanvas-menu__bottom'>
 						<button className='btn btn--menu'>
