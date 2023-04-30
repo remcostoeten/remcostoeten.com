@@ -10,19 +10,20 @@ export default function Section() {
 	const toggleColor = () => {
 		setIsRed(!isRed);
 	};
+
 	useEffect(() => {
 		const scrollMan = () => {
-			const scrollY = window.scrollY;
-			setManPosition(` ${scrollY * 0.35}px`);
+		  const scrollY = window.scrollY;
+		  setManPosition(` ${scrollY * 0.35}px`);
 		};
-
+	  
 		window.addEventListener('scroll', scrollMan);
-		return () => window.removeEventListener('scroll', manPosition);
-	}, []);
+		return () => window.removeEventListener('scroll', scrollMan);
+	  }, []);
 
 	return (
-		<div className=' z-10 interactive relative sm:py-0 py-72'>
-			<div className=' interactive__inner '>
+		<div className='z-10 interactive relative sm:py-0 pt-32'>
+			<div className=' interactive__inner absolute z-10 sm:top-1/4'>
 				<h2 className='sm:absolute sm:left-1/4 translate-x-10 intro tracking-lighter text-5xl text-slate-300 font-extrabold left- top-1/4 z-5'>
 					<span className='intro__line-one'>
 						<span className='letter'>J</span>

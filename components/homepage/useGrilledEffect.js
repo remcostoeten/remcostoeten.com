@@ -1,4 +1,3 @@
-// useGrilledEffect.js
 import { useEffect, useState } from 'react';
 
 const useGrilledEffect = (canvasRef) => {
@@ -36,8 +35,8 @@ const useGrilledEffect = (canvasRef) => {
 			oMouse.x = e.pageX;
 		};
 
-		const interact = 455;
-		const radius = 0.8;
+		const interact = 250;
+		const radius = 0.4;
 		const maxRad = 7;
 		const dist = 25;
 
