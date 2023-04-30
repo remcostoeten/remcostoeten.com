@@ -1,11 +1,11 @@
+import Link from "next/link";
 import React from "react";
-
 export default function Log() {
      
     return (
         <section className="grid grid-cols-1 gap-0 lg:grid-cols-12">
         <div className="w-full col-span-1 p-4 mx-auto mt-6 lg:col-span-4 xl:p-12 sm:w-2/4 lg:w-full">
-          <a
+          <Link
             href="/"
             title="Kutty Home Page"
             className="flex items-center justify-start"
@@ -32,7 +32,7 @@ export default function Log() {
               />
             </svg>
             <span className="sr-only">Kutty</span>
-          </a>
+          </Link>
           <h1 className="mt-6 mb-4 text-xl font-light text-left text-gray-800">
             Log in to your account
           </h1>
@@ -73,16 +73,16 @@ export default function Log() {
           <div className="my-6 space-y-2">
             <p className="text-xs text-gray-600">
               Dont have an account?
-              <a href="#" className="text-purple-700 hover:text-black">
+              <Link href="#" className="text-purple-700 hover:text-black">
                 Create an account
-              </a>
+              </Link>
             </p>
-            <a href="#" className="block text-xs text-purple-700 hover:text-black">
+            <Link href="#" className="block text-xs text-purple-700 hover:text-black">
               Forgot password?
-            </a>
-            <a href="#" className="block text-xs text-purple-700 hover:text-black">
+            </Link>
+            <Link href="#" className="block text-xs text-purple-700 hover:text-black">
               Privacy &amp; Terms
-            </a>
+            </Link>
           </div>
         </div>
         <div className="col-span-1 lg:col-span-8">
