@@ -36,6 +36,7 @@ $outOfView: -110%;
 @keyframes slideInFromLeft {
 	from {
 		filter: blur(15px);
+		transform: translateX(-300%);
 	}
 	to {
 		transform: translateX(0);

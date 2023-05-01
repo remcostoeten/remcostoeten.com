@@ -2135,6 +2135,7 @@ button:hover {
 @keyframes slideInFromLeft {
   from {
     filter: blur(15px);
+    transform: translateX(-300%);
   }
   to {
     transform: translateX(0);
@@ -3983,7 +3984,9 @@ button:hover {
   max-width: 100%;
 }
 .login h1 {
+  animation: slideInFromLeft 1s 250ms ease-in-out forwards, blurFadeSmall 1s 500ms forwards;
   font-family: "Bert Sans", sans-serif;
+  transform: translateX(-300%);
 }
 .login .logo .r,
 .login .logo .logo__icon-left,

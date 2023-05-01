@@ -7,6 +7,7 @@ import { ToastContainer } from 'react-toastify';
 import { InfiniteLoader } from '../components/ui-elements/loaders/Infinite';
 import WarningMessage from '../components/ui-elements/MessageWip';
 import SpeedDial from '../components/ui-elements/Speeddial';
+import Head from 'next/head';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
@@ -27,6 +28,17 @@ function App({ Component, pageProps }) {
 	}, []);
 	return (
 		<>
+			<Head>
+				<title>My Website</title>
+				<meta
+					name='description'
+					content='Remco Stoeten, front-end developer with six years experience aspiring to be more than just a so called "divjesschuiver".'
+				/>
+				<meta
+					name='viewport'
+					content='width=device-width, initial-scale=1.0'
+				/>
+			</Head>
 			{loading && <InfiniteLoader />}
 			<Header />
 			<main className='wrapper__content overflow-hidden '>

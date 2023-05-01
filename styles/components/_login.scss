@@ -9,7 +9,10 @@
 	}
 
 	h1 {
+		animation: slideInFromLeft 1s 250ms ease-in-out forwards,
+			blurFadeSmall 1s 500ms forwards;
 		font-family: $font--primary;
+		transform: translateX(-300%);
 	}
 
 	.logo {
