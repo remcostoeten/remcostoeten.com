@@ -1,3 +1,18 @@
+@font-face {
+	font-family: 'Haas Grot Text R Web';
+	src: url('/fonts/haas-grot-text-r-web-regular.woff2') format('woff2'),
+		url('/fonts/haas-grot-text-r-web-regular.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Haas Grot Text R Web';
+	src: url('/fonts/haas-grot-text-r-web-bold.woff2') format('woff2'),
+		url('/fonts/haas-grot-text-r-web-bold.woff') format('woff');
+	font-weight: bold;
+	font-style: normal;
+}
 * {
 	font-family: $font--secondary;
 }

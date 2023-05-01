@@ -10,10 +10,17 @@ module.exports = {
 			width: {
 				1024: '1024px',
 			},
+			colors: {
+				'off-pink': '#865c6c',
+				'login-pink': '#f2ced8',
+			},
+			darkMode: 'dark',
+
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 				'gradient-conic':
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+				art: "url('/art.jpg')",
 			},
 		},
 	},

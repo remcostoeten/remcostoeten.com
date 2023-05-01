@@ -526,6 +526,18 @@ body.alternative-color {
   background: transparent;
 }
 
+@font-face {
+  font-family: "Haas Grot Text R Web";
+  src: url("/fonts/haas-grot-text-r-web-regular.woff2") format("woff2"), url("/fonts/haas-grot-text-r-web-regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Haas Grot Text R Web";
+  src: url("/fonts/haas-grot-text-r-web-bold.woff2") format("woff2"), url("/fonts/haas-grot-text-r-web-bold.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+}
 * {
   font-family: "Montserrat", sans-serif;
 }
@@ -3961,6 +3973,26 @@ button:hover {
   to {
     opacity: 1;
   }
+}
+
+.login .header {
+  padding-left: 40px;
+  position: absolute;
+}
+.login .header__inner {
+  max-width: 100%;
+}
+.login h1 {
+  font-family: "Bert Sans", sans-serif;
+}
+.login .logo .r,
+.login .logo .logo__icon-left,
+.login .logo .logo__icon-right,
+.login .logo .e,
+.login .logo .m,
+.login .logo .c,
+.login .logo .o {
+  fill: #865c6c;
 }
 
 @keyframes showLoader {

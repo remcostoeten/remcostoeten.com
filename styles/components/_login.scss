@@ -1,0 +1,26 @@
+.login {
+	.header {
+		padding-left: 40px;
+		position: absolute;
+
+		&__inner {
+			max-width: 100%;
+		}
+	}
+
+	h1 {
+		font-family: $font--primary;
+	}
+
+	.logo {
+		.r,
+		.logo__icon-left,
+		.logo__icon-right,
+		.e,
+		.m,
+		.c,
+		.o {
+			fill: #865c6c;
+		}
+	}
+}

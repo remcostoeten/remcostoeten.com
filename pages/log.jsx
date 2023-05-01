@@ -1,168 +1,172 @@
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react';
-import { Close, Email, Lock, Person } from '@mui/icons-material';
-import { ToastContainer, toast } from 'react-toastify';
-import {
-	browserLocalPersistence,
-	browserSessionPersistence,
-	signInWithEmailAndPassword,
-	setPersistence,
-	getAuth,
-} from 'firebase/auth';
-import { auth } from '@/utils/firebase';
-import Confetti from 'react-confetti';
-import { motion } from 'framer-motion';
+import React, { useEffect } from 'react';
 
-export default function Log() {
-	const [email, setEmail] = useState('');
-	const [password, setPassword] = useState('');
-	const [rememberMe, setRememberMe] = useState(false);
-	const [showConfetti, setShowConfetti] = useState(false);
-	const [fadeOut, setFadeOut] = useState(false);
-
-	const handleLogin = async (event) => {
-		event.preventDefault();
-		try {
-			const auth = getAuth();
-			const persistenceMode = rememberMe
-				? browserLocalPersistence
-				: browserSessionPersistence;
-			await setPersistence(auth, persistenceMode);
-			await signInWithEmailAndPassword(auth, email, password);
-			toast.success('Logged in successfully!');
-			document.body.classList.remove('login-open');
-		} catch (error) {
-			console.error(error);
-			toast.error(
-				'Something went wrong, probably a typo or wrong password? If this keeps happening contact the admin.',
-			);
-		}
-	};
-
-	const handleRememberMeChange = () => {
-		setRememberMe(!rememberMe);
-	};
-
+export default function log() {
 	useEffect(() => {
-		if (showConfetti) {
-			setTimeout(() => {
-				setFadeOut(true);
-			}, 3000);
-		}
+		document.body.classList.add('login');
+		return () => {
+			document.body.classList.remove('login');
+		};
 	}, []);
 
 	return (
 		<>
-			<div
-				className='bg-no-repeat bg-cover bg-center relative'
-				style={{
-					backgroundImage:
-						'url(https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1951&q=80)',
-				}}>
-				<div className='absolute bg-gradient-to-b from-green-500 to-green-400 opacity-75 inset-0 z-0' />
-				<div className='min-h-screen sm:flex sm:flex-row mx-0 justify-center'>
-					<div className='flex-col flex  self-center p-10 sm:max-w-5xl xl:max-w-2xl  z-10'>
-						<div className='self-start hidden lg:flex flex-col  text-white'>
-							<img src='' className='mb-3' />
-							<h1 className='mb-3 font-bold text-5xl'>
-								Hi ? Welcome Back Aji{' '}
-							</h1>
-							<p className='pr-3'>
-								Lorem ipsum is placeholder text commonly used in
-								the graphic, print, and publishing industries
-								for previewing layouts and visual mockups
-							</p>
-						</div>
+			<div className='login flex '>
+				<div className=' bg-login-pink bg-center login__illustration  w-1/3 bg-art bg-art bg-contain bg-no-repeat'>
+					<div className='inner px-6 py-6'>
+						<h1 className='my-5 font-black text-xl leading-4 w-48	text-off-pink'>
+							Welcome the my experimental & tooling site
+						</h1>
 					</div>
-					<div className='flex justify-center self-center  z-10'>
-						<div className='p-12 bg-white mx-auto rounded-2xl w-100 '>
-							<div className='mb-4'>
-								<h3 className='font-semibold text-2xl text-gray-800'>
-									Sign In{' '}
-								</h3>
-								<p className='text-gray-500'>
-									Please sign in to your account.
-								</p>
-							</div>{' '}
-							<div className='space-y-5'>
-								<div className='space-y-2'>
-									<label className='text-sm font-medium text-gray-700 tracking-wide'>
-										Email
-									</label>
-									<input
-										className=' w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400'
-										type=''
-										placeholder='mail@gmail.com'
-										value={email}
-										onChange={(event) =>
-											setEmail(event.target.value)
-										}
-									/>
-								</div>
-								<div className='space-y-2'>
-									<label className='mb-5 text-sm font-medium text-gray-700 tracking-wide'>
-										Password
-									</label>
-									<input
-										className='w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400'
-										type=''
-										placeholder='Enter your password'
-										value={password}
-										onChange={(event) =>
-											setPassword(event.target.value)
-										}
-									/>
-								</div>
-								<div className='flex items-center justify-between'>
-									<div className='flex items-center'>
-										<input
-											id='remember_me'
-											name='remember_me'
-											type='checkbox'
-											className='h-4 w-4 bg-blue-500 focus:ring-blue-400 border-gray-300 rounded'
-											checked={rememberMe}
-											onChange={handleRememberMeChange}
-										/>
-										<label
-											htmlFor='remember_me'
-											className='ml-2 block text-sm text-gray-800'>
-											Remember me
-										</label>
-									</div>
-									<div className='text-sm'>
+				</div>
+				<div className='login__form w-64 flex-1 w-2/3 '>
+					<div className='form__inner'>
+						<section className='bg-white dark:bg-gray-900'>
+							<div className='container flex items-center justify-center min-h-screen px-6 mx-auto'>
+								<form className='w-full max-w-md'>
+									<div className='flex items-center justify-center mt-6'>
 										<Link
 											href='#'
-											className='text-green-400 hover:text-green-500'>
-											Forgot your password?
+											className='w-1/3 pb-4 font-medium text-center text-gray-500 capitalize border-b dark:border-gray-400 dark:text-gray-300'>
+											sign in
+										</Link>
+										<Link
+											href='#'
+											className='w-1/3 pb-4 font-medium text-center text-gray-800 capitalize border-b-2 border-blue-500 dark:border-blue-400 dark:text-white'>
+											sign up
 										</Link>
 									</div>
-								</div>
-								<div>
-									<button
-										type='submit'
-										className='w-full flex justify-center bg-green-400  hover:bg-green-500 text-gray-100 p-3  rounded-full tracking-wide font-semibold  shadow-lg cursor-pointer transition ease-in duration-500'>
-										Sign in
-									</button>
-								</div>
+									<div className='relative flex items-center mt-8'>
+										<span className='absolute'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												className='w-6 h-6 mx-3 text-gray-300 dark:text-gray-500'
+												fill='none'
+												viewBox='0 0 24 24'
+												stroke='currentColor'
+												strokeWidth={2}>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z'
+												/>
+											</svg>
+										</span>
+										<input
+											type='text'
+											className='block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+											placeholder='Username'
+										/>
+									</div>
+									<label
+										htmlFor='dropzone-file'
+										className='flex items-center px-3 py-3 mx-auto mt-6 text-center bg-white border-2 border-dashed rounded-lg cursor-pointer dark:border-gray-600 dark:bg-gray-900'>
+										<svg
+											xmlns='http://www.w3.org/2000/svg'
+											className='w-6 h-6 text-gray-300 dark:text-gray-500'
+											fill='none'
+											viewBox='0 0 24 24'
+											stroke='currentColor'
+											strokeWidth={2}>
+											<path
+												strokeLinecap='round'
+												strokeLinejoin='round'
+												d='M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12'
+											/>
+										</svg>
+										<h2 className='mx-3 text-gray-400'>
+											Profile Photo
+										</h2>
+										<input
+											id='dropzone-file'
+											type='file'
+											className='hidden'
+										/>
+									</label>
+									<div className='relative flex items-center mt-6'>
+										<span className='absolute'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												className='w-6 h-6 mx-3 text-gray-300 dark:text-gray-500'
+												fill='none'
+												viewBox='0 0 24 24'
+												stroke='currentColor'
+												strokeWidth={2}>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z'
+												/>
+											</svg>
+										</span>
+										<input
+											type='email'
+											className='block w-full py-3 text-gray-700 bg-white border rounded-lg px-11 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+											placeholder='Email address'
+										/>
+									</div>
+									<div className='relative flex items-center mt-4'>
+										<span className='absolute'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												className='w-6 h-6 mx-3 text-gray-300 dark:text-gray-500'
+												fill='none'
+												viewBox='0 0 24 24'
+												stroke='currentColor'
+												strokeWidth={2}>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
+												/>
+											</svg>
+										</span>
+										<input
+											type='password'
+											className='block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+											placeholder='Password'
+										/>
+									</div>
+									<div className='relative flex items-center mt-4'>
+										<span className='absolute'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												className='w-6 h-6 mx-3 text-gray-300 dark:text-gray-500'
+												fill='none'
+												viewBox='0 0 24 24'
+												stroke='currentColor'
+												strokeWidth={2}>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z'
+												/>
+											</svg>
+										</span>
+										<input
+											type='password'
+											className='block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+											placeholder='Confirm Password'
+										/>
+									</div>
+									<div className='mt-6'>
+										<button className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
+											Sign Up
+										</button>
+										<div className='mt-6 text-center '>
+											<a
+												href='#'
+												className='text-sm text-blue-500 hover:underline dark:text-blue-400'>
+												Already have an account?
+											</a>
+										</div>
+									</div>
+								</form>
 							</div>
-							<div className='pt-5 text-center text-gray-400 text-xs'>
-								<span>
-									Copyright © 2021-2022{' '}
-									<Link
-										href='https://codepen.io/uidesignhub'
-										rel=''
-										target='_blank'
-										title='Ajimon'
-										className='text-green hover:text-green-500 '>
-										AJI
-									</Link>
-								</span>
-							</div>
-						</div>
+						</section>
 					</div>
 				</div>
 			</div>
-			<ToastContainer />
 		</>
 	);
 }
