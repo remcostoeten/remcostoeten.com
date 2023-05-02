@@ -2015,75 +2015,6 @@ button:hover {
     margin-right: 24px;
   }
 }
-.blob__one {
-  width: 1300px;
-  top: -160px;
-  filter: blur(100px);
-  stroke: none;
-  animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
-  z-index: -1;
-  position: relative;
-  opacity: 0;
-}
-@keyframes showOpacity {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.6;
-  }
-}
-@media (min-width: 768px) {
-  .blob__one {
-    scale: 3;
-  }
-}
-@keyframes animateStopColor1 {
-  0% {
-    stop-color: #8a3ffc;
-  }
-  100% {
-    stop-color: lightcoral;
-  }
-}
-@media (min-width: 0px) and (max-width: 767px) {
-  .blob__one {
-    top: -390px;
-    left: -318px;
-    animation: animateBlob 24s 1s infinite;
-    animation: delayShow 30s;
-  }
-}
-
-@media (min-width: 768px) {
-  .blob {
-    scale: 2;
-  }
-  .blob__one {
-    right: -55%;
-  }
-  @keyframes blobWave {
-    0% {
-      transform: rotate(-5deg);
-      scale: 1.1;
-      opacity: 0;
-      filter: blur(100px);
-    }
-    50% {
-      opacity: 0.35;
-      transform: scale3d(20deg);
-      scale: 0.8;
-      filter: blur(150px);
-      transform: rotate(0g);
-    }
-    100% {
-      opacity: 0.2;
-      scale: 1.15;
-      filter: blur(100px);
-      transform: rotate(5deg);
-    }
-  }
-}
 @keyframes delayShow {
   0% {
     opacity: 0;
@@ -2102,26 +2033,45 @@ button:hover {
     opacity: 0.3;
   }
 }
-.hovered-0 {
-  transition: 1s ease all;
+@keyframes showOpacity {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+.blob__one {
+  width: 1300px;
+  top: -160px;
+  filter: blur(10px); /* Reduce blur radius */
+  animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
+  z-index: -1;
+  position: relative;
+  opacity: 0;
+}
+@media (min-width: 768px) {
+  .blob__one {
+    scale: 3;
+  }
+}
+@media (min-width: 0px) and (max-width: 767px) {
+  .blob__one {
+    top: -390px;
+    left: -318px;
+    animation: animateBlob 24s 1s infinite;
+    animation: delayShow 30s;
+  }
 }
 
-.hovered-1 {
-  transition: 1s ease all;
+@media (min-width: 768px) {
+  .blob {
+    scale: 2;
+  }
+  .blob__one {
+    right: -55%;
+  }
 }
-
-.hovered-2 {
-  transition: 1s ease all;
-}
-
-.hovered-2 {
-  transition: 1s ease all;
-}
-
-.hovered-3 {
-  transition: 1s ease all;
-}
-
 @keyframes blurFadeSmall {
   from {
     filter: blur(5px);

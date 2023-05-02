@@ -13,6 +13,7 @@ import getConfig from 'next/config';
 const {} = getConfig();
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { updateProfile } from '@firebase/auth';
 
 const firebaseConfig = {
 	apiKey: 'AIzaSyAXRo1qIp4lwuTyXui-iLlaJ1yIuWMJyGs',
@@ -49,21 +50,26 @@ const signInWithGoogle = () => {
 		});
 };
 
-const signUp = async (email, password) => {
+const signUp = async (name, email, password) => {
 	try {
-		const auth = getAuth(); // get the auth instance
+		const auth = getAuth();
 		const userCredential = await createUserWithEmailAndPassword(
 			auth,
 			email,
 			password,
-		); // create user
+		);
 		const user = userCredential.user;
+
+		// Update the user's display name
+		await updateProfile(user, {
+			displayName: name,
+		});
+
 		console.log(user);
 	} catch (error) {
 		console.log(error);
 	}
 };
-
 // sign in with email and password
 const signIn = async (email, password) => {
 	try {

@@ -8,10 +8,6 @@ export default function index() {
 	return (
 		<>
 			<Section />
-			<Link to='webgl-canvas' smooth={true} duration={500}>
-				<WebGLCanvas id='webgl-canvas' />
-			</Link>
-			<div className='page-wrapper py-5 px-5'></div>
 		</>
 	);
 }

@@ -1,99 +1,3 @@
-.blob {
-	&__one {
-		width: 1300px;
-		top: -160px;
-		filter: blur(100px);
-		stroke: none;
-		animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
-		z-index: -1;
-		position: relative;
-		opacity: 0;
-
-		@keyframes showOpacity {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 0.6;
-			}
-		}
-
-		@include above-mobile {
-			scale: 3;
-		}
-
-		@keyframes animateStopColor1 {
-			0% {
-				stop-color: #8a3ffc;
-			}
-			100% {
-				stop-color: lightcoral;
-			}
-		}
-
-		// @keyframes animateStopColor2 {
-		// 	0% {
-		// 		stop-color: $color--primary;
-		// 	}
-		// 	100% {
-		// 		stop-color: $color--secondary;
-		// 	}
-		// }
-
-		// #stop1 {
-		// 	animation: animateStopColor1 300s infinite;
-		// }
-
-		// #stop2 {
-		// 	animation: animateStopColor2 300s infinite;
-		// }
-
-		// svg {
-		// 	animation: initialHide 2500ms;
-		// }
-
-		@include mobile {
-			top: -390px;
-			left: -318px;
-			animation: animateBlob 24s 1s infinite;
-			animation: delayShow 30s;
-		}
-	}
-}
-
-@include above-mobile {
-	.blob {
-		scale: 2;
-		&__one {
-			right: -55%;
-			@keyframes blobWave {
-				0% {
-					transform: rotate(-5deg);
-					scale: 1.1;
-					opacity: 0;
-					filter: blur(100px);
-				}
-
-				50% {
-					opacity: 0.35;
-					transform: scale3d(20deg);
-					scale: 0.8;
-					filter: blur(150px);
-					transform: rotate(0g);
-				}
-
-				100% {
-					opacity: 0.2;
-					scale: 1.15;
-					filter: blur(100px);
-					transform: rotate(5deg);
-				}
-			}
-		}
-	}
-}
-
 @keyframes delayShow {
 	0% {
 		opacity: 0;
@@ -116,22 +20,45 @@
 	}
 }
 
-.hovered-0 {
-	transition: 1s ease all;
+@keyframes showOpacity {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 0.6;
+	}
 }
 
-.hovered-1 {
-	transition: 1s ease all;
+.blob {
+	&__one {
+		width: 1300px;
+		top: -160px;
+		filter: blur(10px); /* Reduce blur radius */
+		animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
+		z-index: -1;
+		position: relative;
+		opacity: 0;
+
+		@include above-mobile {
+			scale: 3;
+		}
+
+		@include mobile {
+			top: -390px;
+			left: -318px;
+			animation: animateBlob 24s 1s infinite;
+			animation: delayShow 30s;
+		}
+	}
 }
 
-.hovered-2 {
-	transition: 1s ease all;
-}
+@include above-mobile {
+	.blob {
+		scale: 2;
 
-.hovered-2 {
-	transition: 1s ease all;
-}
-
-.hovered-3 {
-	transition: 1s ease all;
+		&__one {
+			right: -55%;
+		}
+	}
 }

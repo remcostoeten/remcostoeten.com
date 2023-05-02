@@ -1,11 +1,29 @@
+import { useEffect } from 'react';
+
 export default function BlobOne() {
+	useEffect(() => {
+		const blobOne = document.querySelector('.blob__one');
+		const blurFilter = blobOne.querySelector('#blur > feGaussianBlur');
+		let blurAmount = 0;
+
+		setInterval(() => {
+			blurAmount += 1;
+			blurFilter.setAttribute('stdDeviation', blurAmount);
+		}, 100);
+	}, []);
+
 	return (
 		<>
 			<div className='blob__one'>
 				<svg viewBox='0 0 440 440' xmlns='http://www.w3.org/2000/svg'>
-					{' '}
-					<defs>
-						<linearGradient
+   					<defs>
+						<filter id='blur'>
+							<feGaussianBlur
+								in='SourceGraphic'
+								stdDeviation='0'
+							/>
+						</filter>{' '}
+					  	<linearGradient
 							id='gradient'
 							x1='0%'
 							y1='0%'
