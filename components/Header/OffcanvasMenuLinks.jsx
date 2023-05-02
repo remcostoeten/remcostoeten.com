@@ -28,7 +28,13 @@ export default function OffcanvasMenuLinks(props) {
 					</div>
 				</li>
 				<li onClick={handleCloseMenu}>
+					<Link href='/chat-export'>Chat export</Link>
+				</li>
+				<li onClick={handleCloseMenu}>
 					<Link href='/loaders'>Loaders</Link>
+				</li>
+				<li onClick={handleCloseMenu}>
+					<Link href='/url-filtering-tool'>Url filtering tool</Link>
 				</li>
 				<li className='flex align-middle' onClick={handleCloseMenu}>
 					<Link href='/webgl'>Webgl</Link>

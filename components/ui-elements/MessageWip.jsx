@@ -5,7 +5,7 @@ import React from 'react';
 export default function MessageWip() {
 	const [showTooltip, setShowTooltip] = useState(true);
 
-	const handleTooltipClose    = () => {
+	const handleTooltipClose = () => {
 		Cookies.set('showTooltip', 'false', { expires: 7 });
 		setShowTooltip(false);
 	};
@@ -21,7 +21,7 @@ export default function MessageWip() {
 				<div className='fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50'>
 					<div
 						id='toast-warning'
-						className='toast flex items-center w-full max-w-md p-4 text-slate-500 bg-white rounded-lg shado'
+						className='toast flex items-center p-4 text-slate-500 bg-white rounded-lg shado'
 						role='alert'>
 						<div className='inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200'>
 							<svg
