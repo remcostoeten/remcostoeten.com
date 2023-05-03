@@ -2,8 +2,6 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min.js';
-import 'prismjs/themes/prism.css';
-import Link from 'next/link';
 
 function FilteredTextComponent() {
 	const [filter, setFilter] = useState('');
@@ -112,10 +110,12 @@ function FilteredTextComponent() {
 				/>
 			</Head>
 			<div className='container mx-auto p-4'>
-				<h1 className='text-3xl font-bold mb-4'>
+				<h1 className='text-3xl text-white font-bold mb-4'>
 					URL Filtering and Link Opener Tool
 				</h1>
-				<p>
+				<p className='text-white  my-2'>
+tldr: a tool I use quite often but I abssolutely despide the Captcha, ads, Cloudfare stuff other tools throw at you untill the point you rather write it yourself than ever once see a cloudfare logo again. So that's what I did. </p>		
+{/* <p className='text-white text-xs  my-6'>
 					Welcome to our URL Filtering and Link Opener Tool! This
 					handy tool allows you to easily filter text and extract URLs
 					from your input. You can also open a list of URLs in new
@@ -124,8 +124,8 @@ function FilteredTextComponent() {
 					word, or remove all words that do contain it. Plus, you can
 					easily copy the output to your clipboard. Give it a try and
 					simplify your URL filtering and link opening process!
-				</p>
-				<input
+		</p> */}
+			<input
 					type='text'
 					value={filter}
 					onChange={handleFilterChange}
