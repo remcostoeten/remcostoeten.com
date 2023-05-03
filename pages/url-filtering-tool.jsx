@@ -114,7 +114,7 @@ function FilteredTextComponent() {
 					URL Filtering and Link Opener Tool
 				</h1>
 				<p className='text-white  my-2'>
-tldr: a tool I use quite often but I abssolutely despide the Captcha, ads, Cloudfare stuff other tools throw at you untill the point you rather write it yourself than ever once see a cloudfare logo again. So that's what I did. </p>		
+tldr: a tool I use quite often but I abssolutely despide the Captcha, ads, Cloudfare stuff other tools throw at you untill the point you rather write it yourself than ever once see a cloudfare logo again. 🤢 So that is what I did. </p>		
 {/* <p className='text-white text-xs  my-6'>
 					Welcome to our URL Filtering and Link Opener Tool! This
 					handy tool allows you to easily filter text and extract URLs
