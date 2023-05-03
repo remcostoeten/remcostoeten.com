@@ -34,7 +34,7 @@
 	&__one {
 		width: 1300px;
 		top: -160px;
-		filter: blur(10px); /* Reduce blur radius */
+		// filter: blur(10px); /* Reduce blur radius */
 		animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
 		z-index: -1;
 		position: relative;
