@@ -27,7 +27,7 @@ export default function Header() {
 			className={`header flex align-middle w-full transition-all	 ${
 				menuOpen ? 'menu-open' : ''
 			} ${sticky ? 'sticky' : 'sticky'}`}>
-			<div className='header__inner flex justify-between items-center h-full mx-auto relative transition-width duration-500 ease-in-out'>
+			<div className='container justify-between items-center container flex transition-width duration-500 ease-in-out'>
 				<div className='header__left'>
 					<Link href='/' onClick={handleCloseMenu}>
 						<LogoIcon />
