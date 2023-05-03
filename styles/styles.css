@@ -2044,7 +2044,6 @@ button:hover {
 .blob__one {
   width: 1300px;
   top: -160px;
-  filter: blur(10px); /* Reduce blur radius */
   animation: initialHide 25000ms ease-out, showOpacity 5s ease-out;
   z-index: -1;
   position: relative;
@@ -2138,6 +2137,131 @@ button:hover {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+#window {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  cursor: default;
+}
+
+.btn {
+  margin-right: 10px;
+  border: none;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  box-shadow: 0 2px 2px rgba(51, 51, 51, 0.4588235294);
+}
+
+.red {
+  background-color: #ff4136;
+}
+
+.error {
+  color: #ff4136;
+}
+
+.yellow {
+  background-color: #ffdc00;
+}
+
+.info {
+  color: #ffdc00;
+}
+
+.green {
+  background-color: #2ecc40;
+}
+
+#title,
+#field {
+  font-size: 0.85rem;
+}
+
+#title {
+  margin-left: auto;
+}
+
+#field {
+  height: calc(100% - 40px);
+  padding: 5px;
+  overflow: auto;
+  /*  I'd like to get white-space: break-spaces to work
+     but it won't for some reason. In the meantime,
+     overflow-wrap: break-word will have to do. */
+  overflow-wrap: break-word;
+}
+
+#field::-webkit-scrollbar {
+  width: 10px;
+}
+
+#field.dark::-webkit-scrollbar-thumb {
+  background-color: #333444;
+}
+
+#field.light::-webkit-scrollbar-thumb {
+  background-color: #aca9bb;
+}
+
+#field > div {
+  min-height: 20px;
+  width: 100%;
+  cursor: default;
+}
+
+#input-container {
+  display: flex;
+}
+
+#query,
+#cursor {
+  display: inline-block;
+}
+
+#query {
+  margin-right: 10px;
+  white-space: pre-line;
+}
+
+#cursor {
+  position: relative;
+  bottom: -2px;
+  left: 2px;
+  width: 0.5rem;
+  height: 3px;
+}
+
+@keyframes blink-dark {
+  0%, 100% {
+    background-color: #f4f4f4;
+  }
+  50% {
+    background-color: transparent;
+  }
+}
+@keyframes blink-light {
+  0%, 100% {
+    background-color: #474554;
+  }
+  50% {
+    background-color: transparent;
+  }
+}
+@media only screen and (max-width: 600px), (max-height: 600px) {
+  #terminal {
+    height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+  }
+  #field {
+    height: 100%;
+  }
+  #window {
+    display: none;
   }
 }
 .offcanvas-open .header .offcanvas-menu .container, .offcanvas-open .header .offcanvas-menu .header__inner {
@@ -3946,6 +4070,25 @@ button:hover {
 .login .logo .c,
 .login .logo .o {
   fill: #865c6c;
+}
+
+:root {
+  --color-primary: $color--primary;
+  --color-secondary: $color--secondary;
+}
+
+.slanted-bg {
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.5) 50%, rgb(255, 255, 255) 50%);
+}
+
+.btn--url-form {
+  border-color: #ff7979;
+  color: #f9fafb;
+  background-image: linear-gradient(45deg, #ff7979 50%, transparent 50%);
+  background-position: 100%;
+  background-size: 400%;
+  transition: background 300ms ease-in-out;
+  background-position: 0;
 }
 
 @keyframes showLoader {
