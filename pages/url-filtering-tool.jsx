@@ -2,8 +2,13 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min.js';
+import Tooltip from '../components/ui-elements/Tooltip';
 
 function FilteredTextComponent() {
+	const [successMessage, setSuccessMessage] = useState('');
+	const [remainingUrlsCount, setRemainingUrlsCount] = useState(0);
+	const [copied, setCopied] = useState(false);
+	const [blockSize] = useState(50);
 	const [filter, setFilter] = useState('');
 	const [inputText, setInputText] = useState('');
 	const [outputText, setOutputText] = useState(() => {
@@ -13,17 +18,12 @@ function FilteredTextComponent() {
 		return '';
 	});
 
-	const [successMessage, setSuccessMessage] = useState('');
-	const [remainingUrlsCount, setRemainingUrlsCount] = useState(0);
-	const [copied, setCopied] = useState(false);
-	const [blockSize] = useState(100);
-
 	const handleFilterChange = (e) => {
 		setFilter(e.target.value);
 	};
 
 	const openUrlsInNewTabs = () => {
-		const urls = outputText.split(' ').slice(0, 50); // Extract the first 50 URLs
+		const urls = outputText.split(' ').slice(0, 50);
 		const linksHtml = urls;
 		urls.forEach((url) => {
 			window.open(url, '_blank');
@@ -31,11 +31,8 @@ function FilteredTextComponent() {
 		const newWindow = window.open('', '_blank');
 		newWindow.document.write(linksHtml);
 		newWindow.document.close();
-		const remainingUrls = outputText
-			.split(' ')
-			.slice(50) // Extract the remaining URLs
-			.join(' ');
-		setOutputText(remainingUrls); // Update the outputText state with the remaining URLs
+		const remainingUrls = outputText.split(' ').slice(50).join(' ');
+		setOutputText(remainingUrls);
 	};
 	const handleInputChange = (e) => {
 		setInputText(e.target.value);
@@ -109,29 +106,31 @@ function FilteredTextComponent() {
 					href='https://remcostoeten.com/url-filtering-tool'
 				/>
 			</Head>
-			<div className='container mx-auto p-4'>
+			<div className='slanted-bg'></div>
+			<div className='container mx-auto mt-40'>
 				<h1 className='text-3xl text-white font-bold mb-4'>
 					URL Filtering and Link Opener Tool
 				</h1>
-				<p className='text-white  my-2'>
-tldr: a tool I use quite often but I abssolutely despide the Captcha, ads, Cloudfare stuff other tools throw at you untill the point you rather write it yourself than ever once see a cloudfare logo again. 🤢 So that is what I did. </p>		
-{/* <p className='text-white text-xs  my-6'>
-					Welcome to our URL Filtering and Link Opener Tool! This
-					handy tool allows you to easily filter text and extract URLs
-					from your input. You can also open a list of URLs in new
-					tabs with just one click. Use the filtering options to
-					remove all words that don't contain a specific letter or
-					word, or remove all words that do contain it. Plus, you can
-					easily copy the output to your clipboard. Give it a try and
-					simplify your URL filtering and link opening process!
-		</p> */}
-			<input
-					type='text'
-					value={filter}
-					onChange={handleFilterChange}
-					placeholder='Enter letters here'
-					className='w-full px-3 py-2 border border-gray-300 rounded'
-				/>
+				<p className='text-white  mt-4 mb-4'>
+					This is a tool I use quite often and I got absolutely sick
+					off seeing a Cloudfare instance everytime I enter the page
+					followed by a captcha and a bunch of ads. So what do you do
+					then? Right, recreate and host the functionallity yourself
+					🤢 So that is what I did.
+				</p>
+
+				<div className='flex'>
+					<input
+						type='text'
+						value={filter}
+						onChange={handleFilterChange}
+						placeholder='Enter letters here'
+						className='w-full px-3 py-2 border border-gray-300 rounded'
+					/>
+					<Tooltip title='Tooltip title' text='This is a tooltip!'>
+						<button>Hover me</button>
+					</Tooltip>
+				</div>
 				<textarea
 					value={inputText}
 					onChange={handleInputChange}
@@ -142,6 +141,7 @@ tldr: a tool I use quite often but I abssolutely despide the Captcha, ads, Cloud
 					onClick={filterText}
 					className='bg-blue-500 text-white px-4 py-2 rounded mt-4 mr-2'>
 					Remove NOT containing
+					https://tailwinduikit.com/components/webapp/UI_element/tooltip/with_icon
 				</button>
 				<button
 					onClick={filterTextOpposite}

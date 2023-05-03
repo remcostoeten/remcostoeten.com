@@ -8,6 +8,21 @@
 	padding: 0 15px;
 	cursor: default;
 }
+html,
+body {
+	height: 100%;
+	margin: 0;
+	background: #191919;
+}
+
+#root {
+	height: 100%;
+}
+
+/* canvas {
+  background: #191919;
+} */
+
 .btn {
 	margin-right: 10px;
 	border: none;
@@ -16,6 +31,11 @@
 	border-radius: 50%;
 	box-shadow: 0 2px 2px #33333375;
 }
+
+.pill {
+	font-size: 0.7rem;
+}
+
 .red {
 	background-color: #ff4136;
 }

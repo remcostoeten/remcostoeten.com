@@ -29,6 +29,10 @@
 @import './utils/_mixins.scss';
 @import './utils/_utility-classes';
 @import './utils/_extends.scss';
+
+// Pages
+@import './pages/_not-authorized.scss';
+
 // Core
 @import './core/_base.scss';
 @import './core/_layout.scss';
@@ -38,7 +42,7 @@
 @import './components/header/variables/header.scss';
 @import './components/header/menuAnimations';
 @import './components/task/_aside.scss';
-@import './components/task/_authenticated.scss';
+// @import './components/task/_authenticated.scss';
 @import './components/_buttons.scss';
 @import './components/_error.scss';
 @import './components/header/_header.scss';

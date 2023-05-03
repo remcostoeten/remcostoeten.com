@@ -120,8 +120,7 @@ const Toggle = () => {
 						<button className='btn btn--menu whatsapp'>
 							<Link
 								onClick={handleCloseMenu}
-								href='https://github.com/remcostoeten'
-								target='https://wa.me/31636590707'>
+								href='https://wa.me/31636590707'>
 								Text or call
 							</Link>
 						</button>
