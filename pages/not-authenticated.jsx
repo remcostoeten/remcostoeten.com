@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { KeyboardBackspace } from '@mui/icons-material';
-import Link from 'next/link';
+import { LogoutSharp } from '@material-ui/icons';
 import Lost from '../components/ui-elements/authentication/Lost';
 import slideButton from '../components/ui-elements/slideButton';
-export default function notAuthenticated() {
+
+export default function NotAuthenticated() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	return (
 		<>
@@ -14,7 +15,7 @@ export default function notAuthenticated() {
 					</h2>
 					<p className='text-xs'>
 						You should be logged in in order to use the task/to-do
-						app. You obviously don't want another user to edit your
+						app. You obviously do not want another user to edit your
 						tasks, do you?
 					</p>
 					<div className='not-authorized__buttons'>
