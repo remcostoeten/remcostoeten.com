@@ -17,16 +17,24 @@ export default function NotAuthenticated() {
 						tasks, do you?
 					</p>
 					<div className='not-authorized__buttons'>
-							{isLoggedIn ? (
-								<a onClick={() => auth.signOut()}>
-									<span>Logout</span>
-								</a>
-							) : (
-								<SlideButton
-									icon={KeyboardBackspace}
-									label='Sign In'
-								/>
-							)}
+						{isLoggedIn ? (
+							<a onClick={() => auth.signOut()}>
+								<span>Logout</span>
+							</a>
+						) : (
+							<SlideButton
+								icon={KeyboardBackspace}
+								// link='#'
+								label='Sign In'
+								ctaClass='cta-two'
+							/>
+						)}
+						<SlideButton
+							link='/'
+							ctaClass='cta'
+							icon={KeyboardBackspace}
+							label='Or return home'
+						/>
 					</div>
 				</div>
 				<div className='lost'>

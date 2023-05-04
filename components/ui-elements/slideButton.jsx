@@ -1,13 +1,23 @@
-import Link from 'next/link';
-
-export default function SlideButton({ icon: Icon, label }) {
+export default function SlideButton({
+	icon: Icon,
+	label,
+	ctaClass,
+	link = null,
+}) {
 	return (
 		<div className='item item--arrow'>
-			<div className='cta cta-two'>
-				<Link href='#'>
-					{Icon && <Icon />}
-					{label}
-				</Link>
+			<div className={`cta ${ctaClass}`}>
+				{link ? (
+					<Link href={link}>
+						{Icon && <Icon />}
+						{label}
+					</Link>
+				) : (
+					<>
+						{Icon && <Icon />}
+						{label}
+					</>
+				)}
 			</div>
 		</div>
 	);

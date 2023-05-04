@@ -264,7 +264,7 @@ button {
 
 	&:hover {
 		svg {
-			animation: swipeRightBlur 0.5s ease-in-out;
+			animation: swipeLeftBlur 0.5s ease-in-out;
 		}
 	}
 
@@ -281,7 +281,7 @@ button {
 	0% {
 		transform: translateX(0);
 		filter: blur(0);
-		transform: rotate(180deg);
+		transform: rotate(0);
 		opacity: 1;
 	}
 	50% {
@@ -294,7 +294,7 @@ button {
 	}
 
 	100% {
-		transform: translateX(0);
+		transform: rotate(0);
 		filter: blur(0);
 		transform: rotate(180deg);
 		opacity: 1;
