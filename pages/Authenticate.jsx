@@ -3,7 +3,7 @@ import { GitHub } from '@mui/icons-material';
 import GoogleIcon from '@mui/icons-material/Google';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
-export default function log() {
+export default function Log() {
 	const [name, setName] = useState('');
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');

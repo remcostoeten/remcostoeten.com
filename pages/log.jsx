@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react';
 
-export default function log() {
+export default function Log() {
 	useEffect(() => {
 		document.body.classList.add('login');
 		return () => {
