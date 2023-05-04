@@ -1,14 +1,14 @@
 import Link from 'next/link';
 
-const slideButton = ({ href, icon, text }) => {
+export default function SlideButton({ icon: Icon, label }) {
 	return (
 		<div className='item item--arrow'>
-			<Link href={href} className='cta cta-two'>
-				{text}
-				{icon && <icon />}
-			</Link>
+			<div className='cta cta-two'>
+				<Link href='#'>
+					{Icon && <Icon />}
+					{label}
+				</Link>
+			</div>
 		</div>
 	);
-};
-
-export default slideButton;
+}

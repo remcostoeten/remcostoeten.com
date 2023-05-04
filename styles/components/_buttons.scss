@@ -251,8 +251,8 @@ button {
 		}
 
 		svg {
-			margin-right: 0;
-			margin-left: 20px;
+			margin-right: 20px;
+			margin-left: 0;
 			transform: rotate(180deg);
 		}
 
@@ -264,7 +264,7 @@ button {
 
 	&:hover {
 		svg {
-			animation: swipeLeftBlur 0.5s ease-in-out;
+			animation: swipeRightBlur 0.5s ease-in-out;
 		}
 	}
 
@@ -281,6 +281,7 @@ button {
 	0% {
 		transform: translateX(0);
 		filter: blur(0);
+		transform: rotate(180deg);
 		opacity: 1;
 	}
 	50% {
@@ -295,18 +296,21 @@ button {
 	100% {
 		transform: translateX(0);
 		filter: blur(0);
+		transform: rotate(180deg);
 		opacity: 1;
 	}
 }
 @keyframes swipeRightBlur {
 	0% {
 		transform: translateX(0);
+		transform: rotate(180deg);
 		filter: blur(0);
 		opacity: 1;
 	}
 	50% {
 		transform: translateX(60px);
 		filter: blur(2px);
+		transform: rotate(180deg);
 		opacity: 0;
 	}
 	60% {
