@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min.js';
 import AlertMessage from '../components/ui-elements/AlertMessage';
-
+import BlobBackground from '../components/svg-elements/BlobBackground';
 function FilteredTextComponent() {
 	const [successMessage, setSuccessMessage] = useState('');
 	const [tabsToOpen, setTabsToOpen] = useState(50);
@@ -145,7 +145,7 @@ function FilteredTextComponent() {
 					href='https://remcostoeten.com/url-filtering-tool'
 				/>
 			</Head>
-			<div className='slanted-bg'></div>
+			<BlobBackground />
 
 			<div className='container mx-auto mt-40'>
 				<h1 className='text-3xl text-white font-bold mb-4'>

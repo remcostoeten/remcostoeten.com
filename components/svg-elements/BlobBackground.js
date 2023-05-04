@@ -69,7 +69,7 @@ const vertexShader = `
   }
 `;
 
-cconst fragmentShader = `
+const fragmentShader = `
   varying vec2 vUv;
   uniform float time;
 
