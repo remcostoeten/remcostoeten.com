@@ -163,7 +163,7 @@ function FilteredTextComponent() {
 		'relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0';
 
 	return (
-		<div>
+		<main>
 			<Head>
 				<title>URL Filtering and Link Opener Tool</title>
 				<meta
@@ -177,7 +177,7 @@ function FilteredTextComponent() {
 			</Head>
 			<Waves />
 
-			<div className='container mx-auto pt-14 z-10'>
+			<article className='container mx-auto pt-14 z-10'>
 				<h1 className='text-3xl text-white font-bold mb-4'>
 					URL Filtering and Link Opener Tool
 				</h1>
@@ -318,8 +318,8 @@ function FilteredTextComponent() {
 						</code>
 					</pre>
 				</div>
-			</div>
-		</div>
+			</article>
+		</main>
 	);
 }
 
