@@ -253,7 +253,6 @@ function FilteredTextComponent() {
 						<div
 							className='text-gray-500 mt-4 flex 
 					 items-baseline flex-col'>
-							Remaining individual URLs: {remainingUrlsCount}
 							<button
 								onClick={openUrls}
 								className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mt-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
@@ -261,17 +260,23 @@ function FilteredTextComponent() {
 									Open urls
 								</span>
 							</button>
+							<span>
+								Remaining individual URLs: {remainingUrlsCount}
+							</span>
 						</div>
 					)}
 					{remainingUrlsCount > 0 && (
-						<div className='text-gray-500 mt-4 flex items-baseline'>
+						<div className='text-gray-500 mt-4 flex items-baseline flex-col'>
 							<span className='mr-2'>
 								Remaining individual URLs: {remainingUrlsCount}
 							</span>
+
 							<button
 								onClick={handleCopyClick}
-								className='bg-gray-200 rounded-md py-1 px-2'>
-								{copied ? 'Copied!' : 'Copy 50 URLs'}
+								className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mt-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
+								<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+									{copied ? 'Copied!' : 'Copy 50 URLs'}{' '}
+								</span>
 							</button>
 						</div>
 					)}
