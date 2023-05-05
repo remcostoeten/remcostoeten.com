@@ -117,8 +117,7 @@ export default function OffcanvasMenuLinks(props) {
 		{
 			label: 'Chat export',
 			href: '/chat-export',
-			old: true,
-			upcomming: true,
+			upcomming: showcase,
 		},
 
 		{
@@ -166,7 +165,11 @@ export default function OffcanvasMenuLinks(props) {
 						onClick={handleCloseMenu}
 						key={item.href}
 						value={item.wip}>
-						<Link className=' text-base md:text-2xl ' href={item.href}>{item.label}</Link>
+						<Link
+							className=' text-base md:text-2xl '
+							href={item.href}>
+							{item.label}
+						</Link>
 						{wip(item.wip)}
 						{item.showcase && showcase(item.showcase)}
 						{item.old && old(item.old)}

@@ -1,0 +1,270 @@
+[
+	{
+		"sender": "Alice",
+		"message": "Hi Bob, how are you?",
+		"timestamp": "2022-02-28T10:00:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Bob",
+		"message": "Hey Alice, I'm good. How about you?",
+		"timestamp": "2022-02-28T10:02:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Alice",
+		"message": "I'm doing well too, thanks for asking.",
+		"timestamp": "2022-02-28T10:05:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Bob",
+		"message": "That's great to hear. Anything interesting happen lately?",
+		"timestamp": "2022-02-28T10:07:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Alice",
+		"message": "Not really, just been busy with work. How about you?",
+		"timestamp": "2022-02-28T10:10:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Bob",
+		"message": "Same here, work has been keeping me busy too.",
+		"timestamp": "2022-02-28T10:12:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Bob",
+		"message": "By the way, I took this photo on my trip to Hawaii last week. Thought you might like to see it!",
+		"timestamp": "2022-02-28T10:15:00Z",
+		"attachments": {
+			"photo": "https://example.com/hawaii.jpg",
+			"format": "jpg",
+			"device": "iPhone 13"
+		}
+	},
+	{
+		"sender": "Alice",
+		"message": "Wow, that looks amazing! I've always wanted to go to Hawaii.",
+		"timestamp": "2022-02-28T10:18:00Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Jane",
+		"message": "Hi, how are you doing today?",
+		"timestamp": "2022-02-26T09:00:00.000Z",
+		"attachments": {
+			"photo": "https://example.com/photo.jpg",
+			"format": "jpeg",
+			"device": "iPhone 12"
+		}
+	},
+	{
+		"sender": "John",
+		"message": "Hey Jane, I'm doing pretty good, thanks for asking. How about you?",
+		"timestamp": "2022-02-26T09:02:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Jane",
+		"message": "I'm doing alright, thanks for asking. Just a little tired from work. How's your day going?",
+		"timestamp": "2022-02-26T09:05:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "It's going pretty well, just trying to stay on top of my to-do list. Did you hear back from the client yet?",
+		"timestamp": "2022-02-26T09:10:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Jane",
+		"message": "Not yet, but I'm hoping to hear back from them soon. I really want to close this deal.",
+		"timestamp": "2022-02-26T09:15:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "Yeah, it would be a big win for us if we can land that client. Have you tried following up with them?",
+		"timestamp": "2022-02-26T09:20:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Jane",
+		"message": "I sent them an email yesterday, but I haven't heard back yet. I'll give them a call later today if I still haven't heard back.",
+		"timestamp": "2022-02-26T09:25:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "Sounds like a plan. Let me know if there's anything I can do to help.",
+		"timestamp": "2022-02-26T09:30:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Jane",
+		"message": "Thanks, I appreciate it. I'll keep you updated.",
+		"timestamp": "2022-02-26T09:35:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "No problem. Hey, did you catch the game last night?",
+		"timestamp": "2022-02-26T09:40:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "Jane",
+		"message": "No, I didn't. Who won?",
+		"timestamp": "2022-02-26T09:45:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "The Lakers beat the Celtics by 10 points. It was a pretty good game.",
+		"timestamp": "2022-02-26T09:50:00.000Z",
+		"attachments": {}
+	},
+	{
+		"sender": "John",
+		"message": "Hey, what's up?",
+		"timestamp": "2022-01-01 10:00:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "Not much, just chilling. How about you?",
+		"timestamp": "2022-01-01 10:01:00"
+	},
+	{
+		"sender": "John",
+		"message": "Same here. Did you do anything fun over the holidays?",
+		"timestamp": "2022-01-01 10:02:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "I went on a ski trip with my family. It was really nice.",
+		"timestamp": "2022-01-01 10:03:00"
+	},
+	{
+		"sender": "John",
+		"message": "That sounds awesome. I've always wanted to try skiing.",
+		"timestamp": "2022-01-01 10:04:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "You should definitely give it a try. It's so much fun!",
+		"timestamp": "2022-01-01 10:05:00"
+	},
+	{
+		"sender": "John",
+		"message": "Yeah, I'll have to do that sometime. Anyway, what are you up to today?",
+		"timestamp": "2022-01-01 10:06:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "I'm just hanging out at home. How about you?",
+		"timestamp": "2022-01-01 10:07:00"
+	},
+	{
+		"sender": "John",
+		"message": "I'm going to the gym later. Want to join me?",
+		"timestamp": "2022-01-01 10:08:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "Thanks for the invite, but I'm not really in the mood for working out today.",
+		"timestamp": "2022-01-01 10:09:00"
+	},
+	{
+		"sender": "John",
+		"message": "No problem. Maybe we can hang out later though?",
+		"timestamp": "2022-01-01 10:10:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "Sure, that sounds good. What did you have in mind?",
+		"timestamp": "2022-01-01 10:11:00"
+	},
+	{
+		"sender": "John",
+		"message": "How about we go see a movie or something?",
+		"timestamp": "2022-01-01 10:12:00"
+	},
+	{
+		"sender": "Jane",
+		"message": "That sounds like fun. What movie do you want to see?",
+		"timestamp": "2022-01-01 10:13:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "Hey, how are you doing?",
+		"timestamp": "2022-02-01 15:00:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "I'm good, thanks for asking. How about you?",
+		"timestamp": "2022-02-01 15:02:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "I'm doing well too, thanks. What have you been up to lately?",
+		"timestamp": "2022-02-01 15:03:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Not much, just working and hanging out with friends. What about you?",
+		"timestamp": "2022-02-01 15:04:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "Same here. I've been trying to catch up on some reading in my free time.",
+		"timestamp": "2022-02-01 15:06:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Oh cool, what are you reading?",
+		"timestamp": "2022-02-01 15:07:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "I'm reading 'The Alchemist' by Paulo Coelho. Have you heard of it?",
+		"timestamp": "2022-02-01 15:09:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Yeah, I've heard great things about that book. How do you like it so far?",
+		"timestamp": "2022-02-01 15:10:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "I'm really enjoying it. The writing is beautiful and the story is so inspiring.",
+		"timestamp": "2022-02-01 15:12:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "That's awesome. Maybe I'll have to check it out for myself sometime.",
+		"timestamp": "2022-02-01 15:14:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "You definitely should. So, do you have any plans for the weekend?",
+		"timestamp": "2022-02-01 15:16:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Not yet. I was thinking about maybe going for a hike or something. What about you?",
+		"timestamp": "2022-02-01 15:18:00"
+	},
+	{
+		"sender": "Sarah",
+		"message": "That sounds like a great idea. I don't have any plans yet either, so maybe we could go hiking together?",
+		"timestamp": "2022-02-01 15:20:00"
+	},
+	{
+		"sender": "Mark",
+		"message": "Yeah, that would be awesome. How about we meet up at the park at 10am on Saturday?",
+		"timestamp": "2022-02-01 15:22:00"
+	}
+]
