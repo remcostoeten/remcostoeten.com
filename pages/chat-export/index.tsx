@@ -3,6 +3,7 @@ import ChatSearch from '@/components/ChatSearch';
 import Image from 'next/image';
 import Warning from '@/components/ui-elements/Warning';
 import moment from 'moment';
+import Avatar from '@/components/Avatar';
 
 interface ChatSearchProps {
 	onSearch: (query: string) => void;
@@ -10,7 +11,16 @@ interface ChatSearchProps {
 	onJumpTo: (message: ChatMessage) => void;
 	chatHistory: ChatMessage[];
 }
-
+export interface ChatMessage {
+	name: string;
+	image: ReactNode;
+	id: string;
+	message: string;
+	type: 'sent' | 'received';
+	attachments?: Attachment[];
+	sender: string;
+	timestamp: Date;
+}
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
@@ -45,6 +55,7 @@ const ChatHistory: React.FC = () => {
 			(chatMessage) => ({
 				...chatMessage,
 				timestamp: new Date(chatMessage.timestamp),
+				avatarUrl: chatMessage.avatarUrl,
 			}),
 		);
 		setChatHistory(messageHistory);
@@ -121,20 +132,20 @@ const ChatHistory: React.FC = () => {
 							(message: ChatMessage, index: number) => (
 								<div
 									className={`flex flex-col mb-4 ${
-										message.message
-											.toLowerCase()
-											.includes('alice')
+										message.type === 'sent'
 											? 'items-end'
 											: 'items-start'
 									}`}
 									key={message.timestamp.getTime()}>
 									<div
 										className={`rounded-lg px-4 py-2 ${
-											message.message
-												.toLowerCase()
-												.includes('alice')
-												? 'bg-blue-500 text-white'
+											message.type === 'sent'
+												? 'bg-green-500 text-white'
 												: 'bg-gray-200'
+										} rounded-bl-none ${
+											message.type === 'sent'
+												? 'rounded-tr-lg'
+												: 'rounded-tl-lg'
 										}`}>
 										{message.image && (
 											<Image
@@ -143,9 +154,6 @@ const ChatHistory: React.FC = () => {
 												className='max-w-full h-auto rounded-lg mb-2'
 											/>
 										)}
-										<div className='text-sm font-bold'>
-											{message.name}
-										</div>
 										<div className='text-sm'>
 											{message.message}
 										</div>

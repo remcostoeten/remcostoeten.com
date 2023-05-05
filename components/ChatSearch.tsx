@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Icon from '@mdi/react';
 import { mdiMagnify, mdiClose } from '@mdi/js';
-import moment from 'moment';
+import { motion } from 'framer-motion';
 
 interface ChatSearchProps {
-	searchResults: ChatMessage[];
 	onSearch: (term: string) => void;
+	searchResults: string;
 	chatHistory: ChatMessage[];
 	onJumpTo: (index: number) => void;
 }
@@ -19,12 +19,9 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [searchTerm, setSearchTerm] = useState('');
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
-	const [numResultsDisplayed, setNumResultsDisplayed] = useState(5);
-	const [isMobile, setIsMobile] = useState(false);
+	const maxResultsToShow = 10;
+	const [showTooltip, setShowTooltip] = useState(false);
 
-	useEffect(() => {
-		setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent));
-	}, []);
 	const results = chatHistory
 		? chatHistory
 				.map((message: ChatMessage, index: number) => ({
@@ -39,6 +36,11 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 				.map(({ index }) => index)
 		: [];
 
+	const slicedResults = results.slice(
+		0,
+		showAllResults ? results.length : maxResultsToShow,
+	);
+
 	const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const term = event.target.value.toLowerCase();
 		setSearchTerm(term);
@@ -46,17 +48,13 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	};
 
 	const handleJumpTo = (index: number) => {
-		setSearchOpen(false);
-
-		const messageElement = document.getElementById(`chat-message-${index}`);
-		if (messageElement) {
-			messageElement.scrollIntoView({ behavior: 'smooth' });
-		}
+		onJumpTo(index);
 	};
 
 	const handleClose = () => {
 		setSearchOpen(false);
 	};
+
 	const [showChatInput, setShowChatInput] = useState(false);
 
 	useEffect(() => {
@@ -77,96 +75,60 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		}, 5000);
 		return () => clearTimeout(timer);
 	}, []);
-
-	const showMoreButton = results.length > numResultsDisplayed && (
-		<a
-			className='btn--results'
-			onClick={() => setNumResultsDisplayed(numResultsDisplayed + 5)}>
-			<span>Show 5 More</span>
-		</a>
-	);
-	const showLessResults =
-		numResultsDisplayed > 5 ? (
-			<a
-				className='btn--results'
-				onClick={() => setNumResultsDisplayed(numResultsDisplayed - 5)}>
-				<span>Show less</span>
-			</a>
-		) : null;
-
-	const searchResultItems =
-		results.length > 0
-			? results.slice(0, numResultsDisplayed).map((index) => (
-					<div
-						className='search__result-item'
-						key={index}
-						onClick={() => handleJumpTo(index)}>
-						{chatHistory[index].message}
-					</div>
-			  ))
-			: null;
-
-	const resultsToDisplay = results.slice(0, numResultsDisplayed);
-
-	const handleResultClick = (indexToRemove: number) => {
-		const newResults = resultsToDisplay.filter(
-			(index) => index !== indexToRemove,
-		);
-		setNumResultsDisplayed(newResults.length);
-	};
 	return (
 		<>
-			<div className='relative'>
-				<div className='flex items-center bg-gray-200 rounded-md px-2 py-1'>
-					<Icon
-						path={mdiMagnify}
-						size={1}
-						className='text-gray-400'
-					/>
-					<input
-						type='text'
-						value={searchTerm}
-						className='w-full ml-2 bg-transparent focus:outline-none'
-						onChange={handleSearchChange}
-						placeholder='Search chat history'
-					/>
-					<button
-						className='text-gray-400 hover:text-gray-500 focus:outline-none'
-						onClick={() => setShowChatInput(!showChatInput)}>
-						<Icon path={mdiClose} size={1} />
-					</button>
+			<div className='sticky top-0 left-0 z-40'>
+				<div className='flex items-center justify-start'>
+					<span
+						className='text-white cursor-pointer'
+						onClick={() => setShowChatInput(!showChatInput)}
+						style={{ color: '#fffd' }}>
+						<Icon path={mdiMagnify} size={3} />
+						<span>
+							{showText && (
+								<motion.span
+									initial={{ opacity: 0 }}
+									animate={{ opacity: 1 }}
+									transition={{ delay: 0.5 }}
+									className='ml-2'>
+									Click to toggle search functionality
+								</motion.span>
+							)}
+						</span>{' '}
+					</span>
 				</div>
 				{showChatInput && (
-					<div className='absolute left-0 right-0 top-full z-10 bg-white shadow-md rounded-md'>
-						<div className='p-4'>
-							{searchTerm.length > 1 && (
-								<div className='text-sm text-gray-400 mb-4'>
-									{results.length} results found for &apos;
-									{searchTerm}&apos;
-								</div>
-							)}
+					<div className='fixed top-0 left-0 z-40 w-full h-auto p-4 bg-white'>
+						<span
+							className='absolute top-0 right-0 z-40 text-gray-800'
+							onClick={() => setShowChatInput(!showChatInput)}
+							style={{ color: '#003247' }}>
+							<Icon path={mdiClose} size={3} />
+						</span>
+
+						<div className='flex flex-col'>
+							<input
+								type='text'
+								value={searchTerm}
+								className='w-full mb-3 p-2 pl-9 text-lg font-semibold border-2 border-transparent rounded focus:border-primary'
+								onChange={handleSearchChange}
+								placeholder='Search chat history'
+							/>
+
 							{searchTerm.length > 0 && results.length > 0 && (
-								<div className='max-h-64 overflow-y-auto'>
-									{resultsToDisplay.map((index: number) => {
-										const formattedDate = moment(
-											chatHistory[index].timestamp,
-										).format('MM/DD/YYYY hh:mm A');
-										return (
-											<div
-												className='flex items-center justify-between text-sm text-gray-700 mb-2'
-												key={index}
-												onClick={() =>
-													handleJumpTo(index)
-												}>
-												<div className='w-1/2 truncate mr-2'>
-													{chatHistory[index].message}
-												</div>
-												<div className='text-right text-gray-400 w-1/2 truncate'>
-													{formattedDate}
-												</div>
-											</div>
-										);
-									})}
+								<div className='sticky top-0 left-0 p-2 bg-white border-t-4 border-primary font-semibold text-lg'>
+									{results.map((index: number) => (
+										<div
+											className='flex flex-row-reverse items-center w-full px-4 py-2 mb-[-0.25rem] text-gray-800 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:rounded-md'
+											key={index}
+											onClick={() => handleJumpTo(index)}>
+											<span>
+												{chatHistory[
+													index
+												]?.message?.substring(0, 50)}
+											</span>
+										</div>
+									))}
 								</div>
 							)}
 						</div>
