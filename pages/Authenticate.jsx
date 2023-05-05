@@ -30,9 +30,7 @@ export default function Log() {
 						<section className='bg-white'>
 							<div className='container  items-center justify-center min-h-screen px-6 mx-auto'>
 								<form className='w-full max-w-md'>
-									<button
-										className='flex items-center justify-center w-full py-3 mb-4 rounded-lg bg-red-500 text-white hover:bg-red-600'
-										onClick={googleLogin}>
+									<button className='flex items-center justify-center w-full py-3 mb-4 rounded-lg bg-red-500 text-white hover:bg-red-600'>
 										Sign in with Google
 									</button>
 									<span className='flex items-center w-10 h-10 rounded-lg bg-slate-200 justify-center'>
