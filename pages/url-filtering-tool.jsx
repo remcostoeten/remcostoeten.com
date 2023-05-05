@@ -3,38 +3,50 @@ import { useState, useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min.js';
 import AlertMessage from '../components/ui-elements/AlertMessage';
-import BlobBackground from '../components/svg-elements/BlobBackground';
+import Waves from '../components/svg-elements/Waves';
+import Tooltip from '@/components/ui-elements/Tooltip';
 function FilteredTextComponent() {
 	const [successMessage, setSuccessMessage] = useState('');
-	const [tabsToOpen, setTabsToOpen] = useState(50);
-	const openUrlsInNewTabs = () => {
-		const urls = outputText.split('\n').filter((url) => url.trim() !== '');
-		const urlsToOpen = urls.slice(0, tabsToOpen);
-
-		urlsToOpen.forEach((url) => {
-			window.open(url, '_blank');
-		});
-
-		const remainingUrls = urls.slice(tabsToOpen).join('\n');
-		setOutputText(remainingUrls);
-		setRemainingUrlsCount(urls.length - tabsToOpen);
-	};
 	const [remainingUrlsCount, setRemainingUrlsCount] = useState(0);
 	const [copied, setCopied] = useState(false);
 	const [blockSize] = useState(50);
-	const [filter, setFilter] = useState('');
+	const [filter, setFilter] = useState('dood');
 	const [inputText, setInputText] = useState('');
 	const [showResetButton, setShowResetButton] = useState(false);
 	const [removeClicked, setRemoveClicked] = useState(false);
-	const [outputText, setOutputText] = useState(() => {
-		if (typeof window !== 'undefined') {
-			return localStorage.getItem('outputText') || '';
-		}
-		return '';
-	});
+	const [extractClicked, setExtractClicked] = useState(false);
+	const [copyText, setCopyText] = useState('');
+	const [outputText, setOutputText] = useState('');
 
-	const handlebuttonClick = () => {
-		setInitialButtonClicked(true);
+	useEffect(() => {
+		if (typeof window !== 'undefined') {
+			const storedOutputText = localStorage.getItem('outputText') || '';
+			setOutputText(storedOutputText);
+		}
+	}, []);
+
+	const openUrls = () => {
+		const urlPattern = /https?:\/\/[^\s]+/g;
+		let urls = outputText.match(urlPattern);
+		if (urls) {
+			urls = urls
+				.slice(0, Math.min(urls.length, 50))
+				.map((url) => url.replace(/"/g, '').replace(/'/g, ''));
+
+			for (let i = urls.length - 1; i > 0; i--) {
+				const j = Math.floor(Math.random() * (i + 1));
+				[urls[i], urls[j]] = [urls[j], urls[i]];
+			}
+
+			urls.forEach((url) => {
+				if (typeof window !== 'undefined') {
+					window.open(url, '_blank');
+					// Remove the URL from outputText once it has been opened
+					setOutputText((prevText) => prevText.replace(url, ''));
+				}
+			});
+		}
+		setExtractClicked(true);
 	};
 
 	const handleFilterChange = (e) => {
@@ -56,7 +68,6 @@ function FilteredTextComponent() {
 		setRemoveClicked(true);
 		setShowResetButton(true);
 	};
-
 	const filterTextOpposite = () => {
 		const lines = inputText.split('\n');
 		const filteredLines = lines.filter((line) => !line.includes(filter));
@@ -80,12 +91,19 @@ function FilteredTextComponent() {
 			urls = urls.map((url) => url.replace(/"/g, '').replace(/'/g, ''));
 			setOutputText(urls.join(' '));
 			setSuccessMessage('All text which is not an URL removed.');
-			setRemainingUrlsCount(urls.length);
+			const remainingCount = urls.length;
+			setRemainingUrlsCount(remainingCount);
+			const copyCount = Math.min(remainingCount, 50);
+			setCopyText(urls.slice(0, copyCount).join(' '));
 		} else {
 			setOutputText('');
 			setSuccessMessage('No URLs found.');
 			setRemainingUrlsCount(0);
+			setCopyText('');
 		}
+		setRemoveClicked(true);
+		setExtractClicked(false);
+		setShowResetButton(true);
 	};
 
 	const handleInputChange = (e) => {
@@ -94,6 +112,18 @@ function FilteredTextComponent() {
 	const copyToClipboard = () => {
 		navigator.clipboard.writeText(outputText);
 		setCopied(true);
+		setTimeout(() => {
+			setCopied(false);
+		}, 1500);
+	};
+
+	const handleCopyClick = () => {
+		const copyCount = Math.min(remainingUrlsCount, 50);
+		const copiedText = copyText.split(' ').slice(0, copyCount).join(' ');
+		navigator.clipboard.writeText(copiedText);
+		setCopied(true);
+		setCopyText(copyText.split(' ').slice(copyCount).join(' '));
+		setRemainingUrlsCount(remainingUrlsCount - copyCount);
 		setTimeout(() => {
 			setCopied(false);
 		}, 1500);
@@ -118,19 +148,19 @@ function FilteredTextComponent() {
 	}, []);
 
 	const purpleBtnWrapper =
-		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
+		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
 
 	const greenBtnWrapperOuter =
-		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
+		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
 
 	const greenBtnWrapperInner =
-		'relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0';
+		'relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0';
 
 	const pinkBtnWrapperOuter =
-		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800';
+		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800';
 
 	const pinkBtnWrapperInner =
-		'relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0';
+		'relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0';
 
 	return (
 		<div>
@@ -145,9 +175,9 @@ function FilteredTextComponent() {
 					href='https://remcostoeten.com/url-filtering-tool'
 				/>
 			</Head>
-			<BlobBackground />
+			<Waves />
 
-			<div className='container mx-auto mt-40'>
+			<div className='container mx-auto pt-14 z-10'>
 				<h1 className='text-3xl text-white font-bold mb-4'>
 					URL Filtering and Link Opener Tool
 				</h1>
@@ -179,28 +209,28 @@ function FilteredTextComponent() {
 						/>
 					</div>
 				</div>
-				<div className='flex align-middele items-center'>
+				<div className='flex align-middele items-center flex-wrap'>
 					<button onClick={filterText} class={purpleBtnWrapper}>
-						<span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+						<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
 							Remove not containing
 						</span>
 					</button>
 					<button
 						onClick={filterTextOpposite}
-						class={greenBtnWrapperOuter}>
-						<span class={greenBtnWrapperInner}>
+						className='relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800'>
+						<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
 							Remove containing
 						</span>
 					</button>
+
 					<button
 						onClick={removeNonUrls}
-						className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-						<span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+						className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
+						<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
 							Remove all text except URLs
 						</span>
 					</button>
-				</div>
-				{removeClicked && (
+					{removeClicked && (
 					<>
 						<div className='flex align-middle'>
 							<button
@@ -208,50 +238,63 @@ function FilteredTextComponent() {
 									setInputText('');
 									setOutputText('');
 									setFilter('');
-									setSuccessMessage('');
+									setSuccessMessage('URLS cleared');
 									setRemainingUrlsCount(0);
 								}}
-								className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-								<span className='relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+								className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
+								<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
 									Clear input
 								</span>
 							</button>
 						</div>
 					</>
+					)}
+						{remainingUrlsCount > 0 && !extractClicked && (
+					<div
+						className='text-gray-500 mt-4 flex 
+					 items-baseline flex-col'>
+						Remaining individual URLs: {remainingUrlsCount}
+						<button
+							onClick={openUrls}
+							className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mt-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
+							<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+								Open urls
+							</span>
+						</button>
+						<Tooltip text='Opens only the first 50 URLs and removes them from the output to prevent the browser from eating up all your memory. Such smart very engineer'/>
+					</div>
 				)}
+{remainingUrlsCount > 0 && (
+					<div className='text-gray-500 mt-4 flex items-baseline'>
+						<span className='mr-2'>
+							Remaining individual URLs: {remainingUrlsCount}
+						</span>
+						<button
+							onClick={handleCopyClick}
+							className='bg-gray-200 rounded-md py-1 px-2'>
+							{copied ? 'Copied!' : 'Copy 50 URLs'}
+						</button>
+					</div>
+				)}
+
+				</div>
+				
+
+			
 				{outputText && (
 					<>
 						<div className='flex justify-end items-center mt-4'>
 							<button
 								onClick={copyToClipboard}
-								className='bg-blue-700 mr-2 text-white py-2 px-4 rounded hover:bg-blue-800 transition duration-300 ease-in-out'>
-								Copy to clipboard
+								class={purpleBtnWrapper}>
+								<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+									Copy to
+								</span>
 							</button>
 						</div>
 					</>
 				)}
 
-				{outputText && (
-					<div className='flex items-center mt-4'>
-						<label htmlFor='tabsToOpen' className='mr-2'>
-							Tabs to open:
-						</label>
-						<input
-							id='tabsToOpen'
-							type='number'
-							value={tabsToOpen}
-							className='w-20 px-2 py-1 border border-gray-300 rounded'
-							onChange={(e) =>
-								setTabsToOpen(parseInt(e.target.value, 10))
-							}
-						/>
-						<button
-							onClick={openUrlsInNewTabs}
-							className='bg-green-500 text-white py-2 px-4 rounded ml-2 hover:bg-green-600 transition duration-300 ease-in-out'>
-							Open URLs
-						</button>
-					</div>
-				)}
 				{successMessage && (
 					<>
 						{' '}
@@ -262,11 +305,8 @@ function FilteredTextComponent() {
 						/>
 					</>
 				)}
-				{remainingUrlsCount > 0 && (
-					<div className='text-gray-500 mt-4'>
-						Remaining individual URLs: {remainingUrlsCount}
-					</div>
-				)}
+
+				
 				<div
 					className={`${
 						preBlocks.length > 1

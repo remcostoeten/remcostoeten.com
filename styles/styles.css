@@ -4162,6 +4162,49 @@ body {
   fill: #865c6c;
 }
 
+.hasWaves {
+  background: none;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(calc(-90px + var(--mouseX, 0) * 0.04), 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(85px + var(--mouseX, 0) * 0.04), 0, 0);
+  }
+}
+@keyframes move-forever-slow {
+  0% {
+    transform: translate3d(calc(-90px + var(--mouseX, 0) * 0.03), 0, 0);
+  }
+  100% {
+    transform: translate3d(calc(85px + var(--mouseX, 0) * 0.03), 0, 0);
+  }
+}
+.waves-parallax {
+  transform: translate(-50%, -50%) translate(calc(var(--mouseX, 0) * 0.1px), calc(var(--mouseY, 0) * 0.1px));
+}
+
+.waves {
+  z-index: -1;
+}
+.waves__animate-one {
+  animation: move-forever 25s linear infinite;
+}
+.waves__animate-two {
+  animation: move-forever-slow 12s linear infinite;
+}
+.waves__animate-three {
+  animation: move-forever 13s linear infinite;
+}
+.waves__animate-four {
+  animation: move-forever-slow 7s linear infinite;
+}
+.waves__animate-five {
+  animation: move-forever 11s linear infinite;
+}
+
 :root {
   --color-primary: $color--primary;
   --color-secondary: $color--secondary;

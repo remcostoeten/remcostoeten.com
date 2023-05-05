@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-import LogoIcon from '../svg-elements/LogoIcon';
+import LogoIcon from '../svg-elements/logo/RemcoStoetenLogoIcon';
 import Toggle from './Toggle';
 
 export default function Header() {

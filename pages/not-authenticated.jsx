@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { KeyboardBackspace } from '@mui/icons-material';
 import Lost from '../components/ui-elements/authentication/Lost';
-import SlideButton from '@/components/ui-elements/SlideButton';
+import SlideButton from '@/components/ui-elements/buttons/SlideButton';
+
 export default function NotAuthenticated() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	return (

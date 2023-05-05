@@ -1,5 +1,5 @@
 import Section from '../components/homepage/Section';
-import WebGLCanvas from '../components/homepage/Orb';
+import WebGLCanvas from '../components/experimental-elements/Orb';
 import React from 'react';
 import { Link } from 'react-scroll';
 
