@@ -1,17 +1,6 @@
 import { useEffect } from 'react';
 
 export default function BlobOne() {
-	useEffect(() => {
-		const blobOne = document.querySelector('.blob__one');
-		const blurFilter = blobOne.querySelector('#blur > feGaussianBlur');
-		let blurAmount = 0;
-
-		setInterval(() => {
-			blurAmount += 1;
-			blurFilter.setAttribute('stdDeviation', blurAmount);
-		}, 75);
-	}, []);
-
 	return (
 		<>
 			<div className='blob__one'>

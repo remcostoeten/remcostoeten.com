@@ -4,7 +4,7 @@ import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min.js';
 import AlertMessage from '../components/ui-elements/AlertMessage';
 import Waves from '../components/svg-elements/Waves';
-import Tooltip from '@/components/ui-elements/Tooltip';
+
 function FilteredTextComponent() {
 	const [successMessage, setSuccessMessage] = useState('');
 	const [remainingUrlsCount, setRemainingUrlsCount] = useState(0);
@@ -231,56 +231,52 @@ function FilteredTextComponent() {
 						</span>
 					</button>
 					{removeClicked && (
-					<>
-						<div className='flex align-middle'>
+						<>
+							<div className='flex align-middle'>
+								<button
+									onClick={() => {
+										setInputText('');
+										setOutputText('');
+										setFilter('');
+										setSuccessMessage('URLS cleared');
+										setRemainingUrlsCount(0);
+									}}
+									className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
+									<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+										Clear input
+									</span>
+								</button>
+							</div>
+						</>
+					)}
+					{remainingUrlsCount > 0 && !extractClicked && (
+						<div
+							className='text-gray-500 mt-4 flex 
+					 items-baseline flex-col'>
+							Remaining individual URLs: {remainingUrlsCount}
 							<button
-								onClick={() => {
-									setInputText('');
-									setOutputText('');
-									setFilter('');
-									setSuccessMessage('URLS cleared');
-									setRemainingUrlsCount(0);
-								}}
-								className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
+								onClick={openUrls}
+								className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mt-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
 								<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
-									Clear input
+									Open urls
 								</span>
 							</button>
 						</div>
-					</>
 					)}
-						{remainingUrlsCount > 0 && !extractClicked && (
-					<div
-						className='text-gray-500 mt-4 flex 
-					 items-baseline flex-col'>
-						Remaining individual URLs: {remainingUrlsCount}
-						<button
-							onClick={openUrls}
-							className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mt-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-							<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
-								Open urls
+					{remainingUrlsCount > 0 && (
+						<div className='text-gray-500 mt-4 flex items-baseline'>
+							<span className='mr-2'>
+								Remaining individual URLs: {remainingUrlsCount}
 							</span>
-						</button>
-						<Tooltip text='Opens only the first 50 URLs and removes them from the output to prevent the browser from eating up all your memory. Such smart very engineer'/>
-					</div>
-				)}
-{remainingUrlsCount > 0 && (
-					<div className='text-gray-500 mt-4 flex items-baseline'>
-						<span className='mr-2'>
-							Remaining individual URLs: {remainingUrlsCount}
-						</span>
-						<button
-							onClick={handleCopyClick}
-							className='bg-gray-200 rounded-md py-1 px-2'>
-							{copied ? 'Copied!' : 'Copy 50 URLs'}
-						</button>
-					</div>
-				)}
-
+							<button
+								onClick={handleCopyClick}
+								className='bg-gray-200 rounded-md py-1 px-2'>
+								{copied ? 'Copied!' : 'Copy 50 URLs'}
+							</button>
+						</div>
+					)}
 				</div>
-				
 
-			
 				{outputText && (
 					<>
 						<div className='flex justify-end items-center mt-4'>
@@ -306,7 +302,6 @@ function FilteredTextComponent() {
 					</>
 				)}
 
-				
 				<div
 					className={`${
 						preBlocks.length > 1

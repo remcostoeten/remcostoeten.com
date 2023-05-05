@@ -2,8 +2,6 @@ import { IconButton, Modal, Tooltip } from '@mui/material';
 
 import Image from 'next/image';
 import StripeContainer from '../components/stripe/StripeContainer';
-import dynamic from 'next/dynamic';
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 

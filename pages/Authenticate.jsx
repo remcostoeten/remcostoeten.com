@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 t;
-import { GitHub } from '@mui/icons-material';
-import GoogleIcon from '@mui/icons-material/Google';
+// import { GitHub } from '@mui/icons-material';
+// import GoogleIcon from '@mui/icons-material/Google';
 import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 
 export default function Log() {
@@ -34,11 +34,10 @@ export default function Log() {
 									<button
 										className='flex items-center justify-center w-full py-3 mb-4 rounded-lg bg-red-500 text-white hover:bg-red-600'
 										onClick={googleLogin}>
-										<GoogleIcon className='mr-2' />
 										Sign in with Google
 									</button>
 									<span className='flex items-center w-10 h-10 rounded-lg bg-slate-200 justify-center'>
-										<GitHub />
+										Github
 									</span>
 									<div className='relative flex items-center mt-8'>
 										<span className='absolute'></span>
