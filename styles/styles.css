@@ -711,8 +711,8 @@ body.alternative-color {
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .gradientBg, .offcanvas-open .btn--menu {
-    width: 95%;
-    margin-left: 5px;
+    width: 90%;
+    margin-left: 35px;
   }
 }
 .gradientBg:before, .offcanvas-open .btn--menu:before {
@@ -2245,6 +2245,11 @@ body {
 .pill {
   font-size: 0.7rem;
 }
+@media (min-width: 0px) and (max-width: 767px) {
+  .pill {
+    scale: 0.8;
+  }
+}
 
 .red {
   background-color: #ff4136;
@@ -2409,6 +2414,9 @@ body {
   .offcanvas-open .offcanvas-open .offcanvas-menu::before {
     animation-duration: 3s;
   }
+}
+.offcanvas-open .btn--menu {
+  height: 100%;
 }
 .offcanvas-open .offcanvas-open .offcanvas-menu__bottom {
   display: flex;

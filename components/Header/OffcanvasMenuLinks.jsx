@@ -16,7 +16,7 @@ export default function OffcanvasMenuLinks(props) {
 		if (wip) {
 			return (
 				<div
-					className={`flex h-6 pill align-middle px-3 py-2 items-center justify-center ml-2 bg-red-200 text-red-800 rounded-full ${
+					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-red-200 text-red-800 rounded-full ${
 						visible
 							? 'opacity-100 transition-opacity duration-500  ease-in    '
 							: 'opacity-0'
@@ -32,7 +32,7 @@ export default function OffcanvasMenuLinks(props) {
 		if (tool) {
 			return (
 				<div
-					className={`flex h-6 pill align-middle px-3 py-2 items-center justify-center ml-2 bg-cyan-200 text-cyan-800 rounded-full ${
+					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-cyan-200 text-cyan-800 rounded-full ${
 						visible
 							? 'opacity-100 transition-opacity duration-500  ease-in    '
 							: 'opacity-0'
@@ -48,7 +48,7 @@ export default function OffcanvasMenuLinks(props) {
 		if (experiment) {
 			return (
 				<div
-					className={`flex h-6 pill align-middle px-3 py-2 items-center justify-center ml-2 bg-teal-200 text-teal-800 rounded-full ${
+					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-teal-200 text-teal-800 rounded-full ${
 						visible
 							? 'opacity-100 transition-opacity duration-500  ease-in    '
 							: 'opacity-0'
@@ -64,7 +64,7 @@ export default function OffcanvasMenuLinks(props) {
 		if (old) {
 			return (
 				<div
-					className={`flex h-6 pill align-middle px-3 py-2 items-center justify-center ml-2 bg-amber-200 text-amber-800 rounded-full ${
+					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-amber-200 text-amber-800 rounded-full ${
 						visible
 							? 'opacity-100 transition-opacity duration-500  ease-in    '
 							: 'opacity-0'
@@ -80,7 +80,7 @@ export default function OffcanvasMenuLinks(props) {
 		if (showcase) {
 			return (
 				<div
-					className={`flex h-6 pill align-middle px-3 py-2 items-center justify-center ml-2 bg-green-200 text-green-800 rounded-full ${
+					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-green-200 text-green-800 rounded-full ${
 						visible
 							? 'opacity-100 transition-opacity duration-500  ease-in    '
 							: 'opacity-0'
@@ -96,7 +96,7 @@ export default function OffcanvasMenuLinks(props) {
 		if (upcomming) {
 			return (
 				<div
-					className={`flex h-6 pill align-middle px-3 py-2 items-center justify-center ml-2 bg-indigo-200 text-indigo-800 rounded-full ${
+					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-indigo-200 text-indigo-800 rounded-full ${
 						visible
 							? 'opacity-100 transition-opacity duration-500  ease-in    '
 							: 'opacity-0'
@@ -166,7 +166,7 @@ export default function OffcanvasMenuLinks(props) {
 						onClick={handleCloseMenu}
 						key={item.href}
 						value={item.wip}>
-						<Link href={item.href}>{item.label}</Link>
+						<Link className=' text-base md:text-2xl ' href={item.href}>{item.label}</Link>
 						{wip(item.wip)}
 						{item.showcase && showcase(item.showcase)}
 						{item.old && old(item.old)}
