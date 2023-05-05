@@ -29,7 +29,10 @@ function App({ Component, pageProps }) {
 	return (
 		<>
 			<Head>
-				<title>My Website</title>
+				<title>
+					Remcostoeten - Remco Stoeten, a front-end
+					developer=/divjesschuiver.
+				</title>
 				<meta
 					name='description'
 					content='Remco Stoeten, front-end developer with six years experience aspiring to be more than just a so called "divjesschuiver".'
