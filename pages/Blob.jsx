@@ -173,13 +173,13 @@ export default function App() {
 						ThreeJS Blob experiment
 					</h1>
 					<p className='mb-2 text-neutral-300'>
-						Througout my site i've used various abstract SVG
-						elements and wanting to animate and blur them{' '}
+						Througout my site I have used various abstract SVG
+						elements and wanting to animate and blur them
 						<span className='markup'>
 							<code className='block css bg-black-800 rounded-md p-2 whitespace-pre '>
 								.blob &#123; filter: blur(100px)&#125;;
 							</code>
-						</span>{' '}
+						</span>
 						but this caused the entire site to lag because filters
 						are quite heavy rendering wise, so trying to come up
 						with some other solution
