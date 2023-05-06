@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Close, Search, SearchOff, SearchOffSharp } from '@mui/icons-material';
+import { Close, SearchOffOutlined } from '@mui/icons-material';
 import { motion } from 'framer-motion';
-import { Icon
-} from '@mui/material';
 import { ChatMessage } from '@/utils/types';
 
 interface ChatSearchProps {
@@ -10,8 +8,7 @@ interface ChatSearchProps {
 	searchResults: ChatMessage[];
 	onJumpTo: (index: number) => void;
 	chatHistory: ChatMessage[];
-  }
-  
+}
 
 const ChatSearch: React.FC<ChatSearchProps> = ({
 	onSearch,
@@ -53,10 +50,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 		onJumpTo(index);
 	};
 
-	const handleClose = () => {
-		setSearchOpen(false);
-	};
-
 	const [showChatInput, setShowChatInput] = useState(false);
 
 	useEffect(() => {
@@ -70,22 +63,27 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	}, [showChatInput]);
 
 	const [showText, setShowText] = useState(true);
-
+	const handleClose = () => {
+		setShowChatInput(false);
+		console.log('close');
+	};
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			setShowText(false);
 		}, 5000);
 		return () => clearTimeout(timer);
 	}, []);
+
 	return (
 		<>
-			<div className='sticky top-0 left-0 z-40'>
+			<div className='sticky top-0 left-0 z-40 w-full'>
 				<div className='flex items-center justify-start'>
 					<span
 						className='text-white cursor-pointer'
 						onClick={() => setShowChatInput(!showChatInput)}
-						style={{ color: '#fffd' }}>
-<SearchOffSharp/>					<span>
+						style={{ color: '#fff' }}>
+						<SearchOffOutlined />
+						<span>
 							{showText && (
 								<motion.span
 									initial={{ opacity: 0 }}
@@ -95,18 +93,18 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 									Click to toggle search functionality
 								</motion.span>
 							)}
-						</span>{' '}
+						</span>
 					</span>
 				</div>
 				{showChatInput && (
-					<div className='fixed top-0 left-0 z-40 w-full h-auto p-4 bg-white'>
-						<span
-							className='absolute top-0 right-0 z-40 text-gray-800'
-							onClick={() => setShowChatInput(!showChatInput)}
-							style={{ color: '#003247' }}>
-<Close/>						</span>
-
+					<div className='fixed bottom-0 left-0 z-40 w-2/4 h-full h-auto p-4 bg-slate-200 shadow-2xl'>
 						<div className='flex flex-col'>
+							<span
+								className='absolute top-10 right-0 z-50 text-gray-800 cursor-pointer'
+								onClick={handleClose}
+								style={{ color: '#003247' }}>
+								<Close />
+							</span>
 							<input
 								type='text'
 								value={searchTerm}
@@ -116,19 +114,38 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 							/>
 
 							{searchTerm.length > 0 && results.length > 0 && (
-								<div className='sticky top-0 left-0 p-2 bg-white border-t-4 border-primary font-semibold text-lg'>
-									{results.map((index: number) => (
-										<div
-											className='flex flex-row-reverse items-center w-full px-4 py-2 mb-[-0.25rem] text-gray-800 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:rounded-md'
-											key={index}
-											onClick={() => handleJumpTo(index)}>
-											<span>
-												{chatHistory[
-													index
-												]?.message?.substring(0, 50)}
-											</span>
-										</div>
-									))}
+								<div className='sticky top-0 left-0 z-40 p-2 bg-white border-t-4 border-primary font-semibold text-lg max-h-screen-50vh'>
+									<div className='mb-2 text-gray-500'>
+										{results.length} results found
+									</div>
+									<div className='max-h-64 overflow-y-auto'>
+										{results.map((index: number) => (
+											<div
+												className='flex items-center w-full px-4 py-2 mb-[-0.25rem] text-gray-800 border-b border-gray-200 cursor-pointer hover:bg-gray-100 hover:rounded-md'
+												key={index}
+												onClick={() =>
+													handleJumpTo(index)
+												}>
+												<span className='mr-2'>
+													{chatHistory[
+														index
+													]?.timestamp?.toLocaleDateString()}{' '}
+													-{' '}
+													{chatHistory[
+														index
+													]?.timestamp?.toLocaleTimeString()}
+												</span>
+												<span>
+													{chatHistory[
+														index
+													]?.message?.substring(
+														0,
+														50,
+													)}
+												</span>
+											</div>
+										))}
+									</div>
 								</div>
 							)}
 						</div>

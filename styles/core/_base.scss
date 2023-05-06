@@ -59,6 +59,10 @@ body {
 	height: 100vh;
 }
 
+.chat-ui {
+	background-color: $black-accent;
+}
+
 .gradientBg {
 	animation: slide-in-bck-center 1250ms 1500ms forwards ease-in-out;
 	opacity: 0;

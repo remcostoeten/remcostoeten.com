@@ -15,5 +15,6 @@ export interface ChatMessage {
 	type: 'sent' | 'received';
 	attachments?: any;
 	sender: string;
+	isSelf: boolean;
 	timestamp: Date;
 }
