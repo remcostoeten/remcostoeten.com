@@ -106,7 +106,7 @@ const Toggle = () => {
 			{menuOpen && (
 				<div className={parentClass}>
 					<div className='container'>
-						<div className='flex mt-40 md:mt-10 flex-col pl-10 md:pl-4 items-baseline'>
+						<div className='flex mt-40 md:mt-14 flex-col pl-10 md:pl-4 items-baseline'>
 							<div className='offcanvas-menu__menu--tagline text-off-white mb-12'>
 								<h2 className='animate__flipInX'>
 									Remco stoeten
@@ -123,16 +123,20 @@ const Toggle = () => {
 									handleCloseMenu={handleCloseMenu}
 								/>
 							</div>
-							<RetroButton
-								text='Github'
-								href='https://github.com/remcostoeten'
-								handleCloseMenu={handleCloseMenu}
-							/>
-							<RetroButton
-								text='Text or call'
-								href='https://wa.me/31636590707'
-								handleCloseMenu={handleCloseMenu}
-							/>{' '}
+							<div className='flex'>
+								<RetroButton
+									text='Github'
+									href='https://github.com/remcostoeten'
+									handleCloseMenu={handleCloseMenu}
+								/>
+								<span className='ml-4'>
+									<RetroButton
+										text='Text or call'
+										href='https://wa.me/31636590707'
+										handleCloseMenu={handleCloseMenu}
+									/>
+								</span>
+								</div>
 						</div>
 					</div>
 

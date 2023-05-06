@@ -37,7 +37,7 @@ export default function OffcanvasMenuLinks(props) {
 		{
 			label: 'Login',
 			href: '/log',
-			pills: <Pills variant='wip' text='WiP' />,
+			pills: <Pills variant='wip' text='Work in progress' />,
 		},
 		{
 			label: 'Not Authorized',
@@ -45,19 +45,19 @@ export default function OffcanvasMenuLinks(props) {
 			pills: (
 				<>
 					<Pills variant='experiment' text='Experiment' />
-					<Pills variant='wip' text='WiP' />
+					<Pills variant='wip' text='Work in progress' />
 				</>
 			),
 		},
 		{
 			label: 'Stripe v1',
 			href: '/product',
-			pills: <Pills variant='wip' text='WiP' />,
+			pills: <Pills variant='wip' text='Work in progress' />,
 		},
 		{
 			label: 'Stripe v2',
 			href: '/stripe-payment',
-			pills: <Pills variant='wip' text='WiP' />,
+			pills: <Pills variant='wip' text='Work in progress' />,
 		},
 		{
 			label: 'Webgl',
@@ -91,7 +91,7 @@ export default function OffcanvasMenuLinks(props) {
 						key={item.href}
 						value={item.wip}>
 						<Link
-							className='text-lg text-off-white md:text-2xl '
+							className='text-lg text-off-white '
 							href={item.href}>
 							{item.label}
 						</Link>

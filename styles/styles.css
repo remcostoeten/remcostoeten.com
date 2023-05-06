@@ -2371,7 +2371,7 @@ body {
   animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
   transition: 1s;
   animation-delay: 555ms;
-  transform: translateX(-100%);
+  transform: translateX(-200%);
   position: relative;
 }
 .offcanvas-open .header .offcanvas-menu__items li a {
