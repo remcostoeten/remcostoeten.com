@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 
 export interface ChatSearchProps {
 	onSearch: (query: string) => void;
@@ -12,7 +13,7 @@ export interface ChatMessage {
 	id: string;
 	message: string;
 	type: 'sent' | 'received';
-	attachments?: Attachment[];
+	attachments?: any;
 	sender: string;
 	timestamp: Date;
 }
