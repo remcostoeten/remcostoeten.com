@@ -124,10 +124,6 @@ body {
 .offcanvas-open {
 	.header {
 		.offcanvas-menu {
-			&__bottom {
-				padding-left: 20px;
-			}
-
 			.container {
 				opacity: 0;
 				animation: initialHideDelay $initialHide forwards;
@@ -183,6 +179,21 @@ body {
 					&:nth-child(4) {
 						animation-delay: 555ms + 155ms * 3;
 					}
+					&:nth-child(5) {
+						animation-delay: 555ms + 155ms * 4;
+					}
+					&:nth-child(6) {
+						animation-delay: 555ms + 155ms * 5;
+					}
+					&:nth-child(7) {
+						animation-delay: 555ms + 155ms * 6;
+					}
+					&:nth-child(8) {
+						animation-delay: 555ms + 155ms * 7;
+					}
+					&:nth-child(9) {
+						animation-delay: 555ms + 155ms * 7;
+					}
 				}
 			}
 
@@ -192,6 +203,10 @@ body {
 					puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715)
 						both,
 					blurFadeSmall 1500ms 2s ease;
+			}
+
+			.text-btn {
+				margin-bottom: 20px;
 			}
 
 			&::before {
@@ -233,42 +248,8 @@ body {
 	// 	}
 	// }
 
-	.btn--menu {
-		@extend .gradientBg;
-		height: 100%;
-	}
-
 	.offcanvas-open {
 		.offcanvas-menu {
-			&__menu {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				height: 100vh;
-
-				&--tagline {
-					// animation: translateXIn 1s;
-
-					h2 {
-						// animation: swing-in-top-fwd $animationDuration
-						// $staggeredFadeDuration $cubic forwards;
-						// transform: translateX(0);
-					}
-
-					.first {
-						// opacity: 0;
-						// animation: swing-in-top-fwd $animationDuration
-						// $staggeredFadeDuration * 2 $cubic forwards;
-					}
-
-					.last {
-						// opacity: 0;
-						// animation: swing-in-top-fwd $animationDuration
-						// $staggeredFadeDuration * 3 $cubic forwards;
-					}
-				}
-			}
-
 			&__bottom {
 				display: flex;
 				justify-content: flex-end;
@@ -364,11 +345,6 @@ body {
 		// z-index: 105;
 
 		&__menu {
-			margin-top: 90px;
-			color: $off-white;
-			transition: 250ms ease all;
-			padding-left: 36px;
-
 			h2,
 			p,
 			span {

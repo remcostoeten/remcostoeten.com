@@ -65,7 +65,16 @@ export default function OffcanvasMenuLinks(props) {
 			pills: (
 				<>
 					<Pills variant='experiment' text='Experiment' />
-					<Pills variant='wip' text='WiP' />
+					<Pills variant='showcase' text='Showcase' />
+				</>
+			),
+		},
+		{
+			label: 'ThreeJS blob',
+			href: '/Blob',
+			pills: (
+				<>
+					<Pills variant='experiment' text='Experiment' />
 					<Pills variant='showcase' text='Showcase' />
 				</>
 			),
@@ -73,16 +82,7 @@ export default function OffcanvasMenuLinks(props) {
 	];
 
 	return (
-		<div className='offcanvas-menu__menu'>
-			<div className='offcanvas-menu__menu--tagline'>
-				<h2 className='animate__flipInX'>Remco stoeten</h2>
-				<p className='first'>
-					<span>Aspiring to be more</span>
-				</p>
-				<p className='last'>
-					than a <i>divjesschuiver</i>
-				</p>
-			</div>
+		<>
 			<ul className='offcanvas-menu__items'>
 				{items.map((item) => (
 					<li
@@ -91,7 +91,7 @@ export default function OffcanvasMenuLinks(props) {
 						key={item.href}
 						value={item.wip}>
 						<Link
-							className=' text-base md:text-2xl '
+							className='text-lg text-off-white md:text-2xl '
 							href={item.href}>
 							{item.label}
 						</Link>
@@ -99,6 +99,6 @@ export default function OffcanvasMenuLinks(props) {
 					</li>
 				))}
 			</ul>
-		</div>
+		</>
 	);
 }

@@ -33,7 +33,7 @@ export const Pills = ({ variant, text, visible }) => {
 	}
 	return (
 		<div
-			className={`flex h-6 pill text-xs align-middle px-3 py-2 items-center justify-center ml-2 rounded-full ${backgroundColor} ${textColor} ${
+			className={`flex h-6 pill text-xs align-middle px-2 py-1.5 items-center justify-center ml-2 rounded-full ${backgroundColor} ${textColor} ${
 				visible
 					? 'opacity-100 transition-opacity duration-500 ease-in-out'
 					: 'opacity-0'

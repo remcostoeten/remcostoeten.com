@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
-
 import BlobOne from '../svg-elements/BlobOne';
-import Link from 'next/link';
+import RetroButton from '@/components/ui-elements/buttons/RetroButton';
 import { useRouter } from 'next/router';
 import OffcanvasMenuLinks from './OffcanvasMenuLinks';
+
 const Toggle = () => {
 	const toggleRef = useRef(null);
 	const [email, setEmail] = useState('');
@@ -106,23 +106,33 @@ const Toggle = () => {
 			{menuOpen && (
 				<div className={parentClass}>
 					<div className='container'>
-						<OffcanvasMenuLinks handleCloseMenu={handleCloseMenu} />
-						<div className='offcanvas-menu__bottom'>
-							<button className='btn btn--menu w-fit'>
-								<Link
-									onClick={handleCloseMenu}
-									href='https://github.com/remcostoeten'
-									target='blank'>
-									Github
-								</Link>
-							</button>
-							<button className='btn  w-fit btn--menu whatsapp'>
-								<Link
-									onClick={handleCloseMenu}
-									href='https://wa.me/31636590707'>
-									Text or call
-								</Link>
-							</button>
+						<div className='flex mt-40 md:mt-10 flex-col pl-10 md:pl-4 items-baseline'>
+							<div className='offcanvas-menu__menu--tagline text-off-white mb-12'>
+								<h2 className='animate__flipInX'>
+									Remco stoeten
+								</h2>
+								<p className='first'>
+									<span>Aspiring to be more</span>
+								</p>
+								<p className='last'>
+									than a <i>divjesschuiver</i>
+								</p>
+							</div>
+							<div className='flex flex-col mb-8'>
+								<OffcanvasMenuLinks
+									handleCloseMenu={handleCloseMenu}
+								/>
+							</div>
+							<RetroButton
+								text='Github'
+								href='https://github.com/remcostoeten'
+								handleCloseMenu={handleCloseMenu}
+							/>
+							<RetroButton
+								text='Text or call'
+								href='https://wa.me/31636590707'
+								handleCloseMenu={handleCloseMenu}
+							/>{' '}
 						</div>
 					</div>
 

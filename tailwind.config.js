@@ -15,6 +15,7 @@ module.exports = {
 			fontSize: {
 				xxs: ['10px'],
 				xs: ['12px'],
+				xxl: ['40px'],
 			},
 			boxShadow: {
 				custom: '0 6px 30px -10px rgba(74, 116, 201, 1)',
@@ -26,6 +27,7 @@ module.exports = {
 				'off-pink': '#865c6c',
 				'body-black': '#191919',
 				'login-pink': '#f2ced8',
+				'off-white': '#e4e7ec',
 			},
 			darkMode: 'dark',
 

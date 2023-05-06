@@ -55,6 +55,10 @@ body {
 	z-index: 999;
 }
 
+.three-blob {
+	height: 100vh;
+}
+
 .gradientBg {
 	animation: slide-in-bck-center 1250ms 1500ms forwards ease-in-out;
 	opacity: 0;
