@@ -6,7 +6,7 @@ import moment from 'moment';
 import Head from 'next/head';
 import Waves from '@/components/svg-elements/Waves';
 
-import { ChatMessage, ChatSearchProps } from '@/utils/types';
+import { ChatMessage } from '@/utils/types';
 
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
@@ -155,7 +155,6 @@ const ChatHistory: React.FC = () => {
 									)}
 									<div className='text-sm'>
 										<span
-											className='text-white mr-2'
 											className={` ${
 												message.sender === 'Bob'
 													? 'bg-green-500 text-white'
