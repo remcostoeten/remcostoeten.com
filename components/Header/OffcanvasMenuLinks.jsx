@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import { Pills } from '@/components/ui-elements/Pills';
 
 export default function OffcanvasMenuLinks(props) {
 	const handleCloseMenu = props.handleCloseMenu;
@@ -12,138 +13,62 @@ export default function OffcanvasMenuLinks(props) {
 		return () => clearTimeout(timeout);
 	}, []);
 
-	const wip = (wip) => {
-		if (wip) {
-			return (
-				<div
-					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-red-200 text-red-800 rounded-full ${
-						visible
-							? 'opacity-100 transition-opacity duration-500  ease-in    '
-							: 'opacity-0'
-					}`}>
-					WiP
-				</div>
-			);
-		}
-		return '';
-	};
-
-	const tool = (tool) => {
-		if (tool) {
-			return (
-				<div
-					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-cyan-200 text-cyan-800 rounded-full ${
-						visible
-							? 'opacity-100 transition-opacity duration-500  ease-in    '
-							: 'opacity-0'
-					}`}>
-					Tool
-				</div>
-			);
-		}
-		return '';
-	};
-
-	const experiment = (experiment) => {
-		if (experiment) {
-			return (
-				<div
-					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-teal-200 text-teal-800 rounded-full ${
-						visible
-							? 'opacity-100 transition-opacity duration-500  ease-in    '
-							: 'opacity-0'
-					}`}>
-					Experiment
-				</div>
-			);
-		}
-		return '';
-	};
-
-	const old = (old) => {
-		if (old) {
-			return (
-				<div
-					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-amber-200 text-amber-800 rounded-full ${
-						visible
-							? 'opacity-100 transition-opacity duration-500  ease-in    '
-							: 'opacity-0'
-					}`}>
-					Old design
-				</div>
-			);
-		}
-		return '';
-	};
-
-	const showcase = (showcase) => {
-		if (showcase) {
-			return (
-				<div
-					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-green-200 text-green-800 rounded-full ${
-						visible
-							? 'opacity-100 transition-opacity duration-500  ease-in    '
-							: 'opacity-0'
-					}`}>
-					Showcase
-				</div>
-			);
-		}
-		return '';
-	};
-
-	const upcomming = (upcomming) => {
-		if (upcomming) {
-			return (
-				<div
-					className={`flex h-6 pill scale-75text-smalign-middle px-3 py-2 items-center justify-center ml-2 bg-indigo-200 text-indigo-800 rounded-full ${
-						visible
-							? 'opacity-100 transition-opacity duration-500  ease-in    '
-							: 'opacity-0'
-					}`}>
-					v2 upcomming
-				</div>
-			);
-		}
-		return '';
-	};
-
 	const items = [
 		{
 			label: 'Text extractor tool',
 			href: '/url-filtering-tool',
-			tool: true,
+			pills: <Pills variant='tool' text='Tool' />,
 		},
 		{
 			label: 'Chat export',
 			href: '/chat-export',
-			upcomming: showcase,
+			pills: <Pills variant='upcoming' text='Showcase' />,
 		},
-
 		{
 			label: 'Loaders',
 			href: '/loaders',
-			experiment: true,
-			showcase: true,
+			pills: (
+				<>
+					<Pills variant='experiment' text='Experiment' />
+					<Pills variant='showcase' text='Showcase' />
+				</>
+			),
 		},
-
-		{ label: 'Login', href: '/log', wip: true },
-
+		{
+			label: 'Login',
+			href: '/log',
+			pills: <Pills variant='wip' text='WiP' />,
+		},
 		{
 			label: 'Not Authorized',
 			href: '/not-authenticated',
-			experiment: true,
-			wip: true,
+			pills: (
+				<>
+					<Pills variant='experiment' text='Experiment' />
+					<Pills variant='wip' text='WiP' />
+				</>
+			),
 		},
-
-		{ label: 'Stripe v1', href: '/product', wip: true },
-		{ label: 'Stripe v2', href: '/stripe-payment', wip: true },
+		{
+			label: 'Stripe v1',
+			href: '/product',
+			pills: <Pills variant='wip' text='WiP' />,
+		},
+		{
+			label: 'Stripe v2',
+			href: '/stripe-payment',
+			pills: <Pills variant='wip' text='WiP' />,
+		},
 		{
 			label: 'Webgl',
 			href: '/webgl',
-			experiment: true,
-			wip: true,
-			showcase: true,
+			pills: (
+				<>
+					<Pills variant='experiment' text='Experiment' />
+					<Pills variant='wip' text='WiP' />
+					<Pills variant='showcase' text='Showcase' />
+				</>
+			),
 		},
 	];
 
@@ -170,11 +95,7 @@ export default function OffcanvasMenuLinks(props) {
 							href={item.href}>
 							{item.label}
 						</Link>
-						{wip(item.wip)}
-						{item.showcase && showcase(item.showcase)}
-						{item.old && old(item.old)}
-						{item.upcomming && upcomming(item.upcomming)}
-						{item.tool && upcomming(item.tool)}
+						{item.pills}
 					</li>
 				))}
 			</ul>

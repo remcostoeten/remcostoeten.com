@@ -107,24 +107,25 @@ const Toggle = () => {
 				<div className={parentClass}>
 					<div className='container'>
 						<OffcanvasMenuLinks handleCloseMenu={handleCloseMenu} />
+						<div className='offcanvas-menu__bottom'>
+							<button className='btn btn--menu w-fit'>
+								<Link
+									onClick={handleCloseMenu}
+									href='https://github.com/remcostoeten'
+									target='blank'>
+									Github
+								</Link>
+							</button>
+							<button className='btn  w-fit btn--menu whatsapp'>
+								<Link
+									onClick={handleCloseMenu}
+									href='https://wa.me/31636590707'>
+									Text or call
+								</Link>
+							</button>
+						</div>
 					</div>
-					<div className='offcanvas-menu__bottom'>
-						<button className='btn btn--menu'>
-							<Link
-								onClick={handleCloseMenu}
-								href='https://github.com/remcostoeten'
-								target='blank'>
-								Github
-							</Link>
-						</button>
-						<button className='btn btn--menu whatsapp'>
-							<Link
-								onClick={handleCloseMenu}
-								href='https://wa.me/31636590707'>
-								Text or call
-							</Link>
-						</button>
-					</div>
+
 					<BlobOne />
 				</div>
 			)}

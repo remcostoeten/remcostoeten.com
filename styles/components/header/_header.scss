@@ -2,12 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-$header-height: 60px;
-
 .header {
 	&__left {
 		min-height: $header-height;
-		max-height: $header-height;
 
 		.logo {
 			transform: translateY(20%);

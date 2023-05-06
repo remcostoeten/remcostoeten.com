@@ -12,6 +12,10 @@ module.exports = {
 				'1462ff': '#1462ff',
 				191919: '#191919',
 			},
+			fontSize: {
+				xxs: ['10px'],
+				xs: ['12px'],
+			},
 			boxShadow: {
 				custom: '0 6px 30px -10px rgba(74, 116, 201, 1)',
 			},

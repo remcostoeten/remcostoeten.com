@@ -23,21 +23,8 @@ body {
   background: #191919;
 } */
 
-.btn {
-	margin-right: 10px;
-	border: none;
-	height: 13px;
-	width: 13px;
-	border-radius: 50%;
-	box-shadow: 0 2px 2px #33333375;
-}
-
 .pill {
-	font-size: 0.7rem;
-
-	@include mobile {
-		scale: 0.8;
-	}
+	animation: initialHide 1s 1s ease forwards;
 }
 
 .red {
@@ -137,23 +124,38 @@ body {
 .offcanvas-open {
 	.header {
 		.offcanvas-menu {
+			&__bottom {
+				padding-left: 20px;
+			}
+
 			.container {
 				opacity: 0;
 				animation: initialHideDelay $initialHide forwards;
 			}
 
-			.offcanvas-menu__menu--tagline {
-				animation: initialHideDelay $menuOpenDuration $initialHide
-						forwards,
-					swingInTop $menuOpenDuration $itemAfterInitialHide forwards;
-				opacity: 0;
-
-				.first {
+			&__menu--tagline {
+				h2 {
+					animation: initialHideDelay $menuOpenDuration $initialHide
+							forwards,
+						swingInTop $menuOpenDuration $itemAfterInitialHide
+							forwards;
 					animation-delay: $itemAfterInitialHide * $delayItterator-s;
+					opacity: 0;
+				}
+				.first {
+					animation: initialHideDelay $menuOpenDuration $initialHide
+							forwards,
+						swingInTop 2500ms $itemAfterInitialHide forwards;
+					animation-delay: $itemAfterInitialHide * $delayItterator-s;
+					opacity: 0;
 				}
 
 				.last {
-					animation-delay: $itemAfterInitialHide * $delayItterator;
+					animation: initialHideDelay $menuOpenDuration $initialHide
+							forwards,
+						swingInTop 2500ms $itemAfterInitialHide forwards;
+					animation-delay: $itemAfterInitialHide * $delayItterator-s;
+					opacity: 0;
 				}
 			}
 
@@ -239,6 +241,11 @@ body {
 	.offcanvas-open {
 		.offcanvas-menu {
 			&__menu {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				height: 100vh;
+
 				&--tagline {
 					// animation: translateXIn 1s;
 
@@ -354,26 +361,23 @@ body {
 		top: 0;
 		width: 100%;
 		right: 17px;
-		z-index: 105;
+		// z-index: 105;
 
 		&__menu {
 			margin-top: 90px;
-			padding: $spacing 36px;
 			color: $off-white;
 			transition: 250ms ease all;
+			padding-left: 36px;
 
 			h2,
-			p {
+			p,
+			span {
 				font-size: 24px;
 			}
 
 			p {
 				margin: 0;
 				font-size: calc(24px * 0.9);
-			}
-
-			span {
-				font-size: 24px;
 			}
 
 			i {
@@ -393,6 +397,7 @@ body {
 				padding: 0;
 				opacity: 0;
 				animation: initialHide 1s forwards;
+
 				li {
 					color: $off-white;
 					font-size: 38px;
@@ -406,18 +411,13 @@ body {
 	}
 
 	@include mobile {
-		.hovered-1,
-		.hovered-2,
-		.hovered-3,
-		.hovered-4 {
-		}
-
 		.offcanvas-menu {
 			&__menu {
 				padding-right: $spacing-xs;
 			}
 		}
 	}
+
 	// write  media query max width
 	@media only screen and (max-width: 375px) {
 		.offcanvas-menu__menu {
