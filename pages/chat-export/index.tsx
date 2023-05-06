@@ -3,24 +3,9 @@ import ChatSearch from '@/components/ChatSearch';
 import Image from 'next/image';
 import Warning from '@/components/ui-elements/Warning';
 import moment from 'moment';
-import Avatar from '@/components/Avatar';
 
-interface ChatSearchProps {
-	onSearch: (query: string) => void;
-	searchResults: string;
-	onJumpTo: (message: ChatMessage) => void;
-	chatHistory: ChatMessage[];
-}
-export interface ChatMessage {
-	name: string;
-	image: ReactNode;
-	id: string;
-	message: string;
-	type: 'sent' | 'received';
-	attachments?: Attachment[];
-	sender: string;
-	timestamp: Date;
-}
+import { ChatMessage, ChatSearchProps } from '@/utils/types';
+
 const ChatHistory: React.FC = () => {
 	const [searchResults, setSearchResults] = useState<ChatMessage[]>([]);
 	const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);

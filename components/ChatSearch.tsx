@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import Icon from '@mdi/react';
-import { mdiMagnify, mdiClose } from '@mdi/js';
+import { Close, Search, SearchOff, SearchOffSharp } from '@mui/icons-material';
 import { motion } from 'framer-motion';
+import { Icon
+} from '@mui/material';
+import { ChatMessage } from '@/utils/types';
 
 interface ChatSearchProps {
-	onSearch: (term: string) => void;
-	searchResults: string;
-	chatHistory: ChatMessage[];
+	onSearch: (searchTerm: string) => void;
+	searchResults: ChatMessage[];
 	onJumpTo: (index: number) => void;
-}
+	chatHistory: ChatMessage[];
+  }
+  
 
 const ChatSearch: React.FC<ChatSearchProps> = ({
 	onSearch,
@@ -20,7 +23,6 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 	const [showAllResults, setShowAllResults] = useState(false);
 	const [searchOpen, setSearchOpen] = useState(false);
 	const maxResultsToShow = 10;
-	const [showTooltip, setShowTooltip] = useState(false);
 
 	const results = chatHistory
 		? chatHistory
@@ -83,8 +85,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 						className='text-white cursor-pointer'
 						onClick={() => setShowChatInput(!showChatInput)}
 						style={{ color: '#fffd' }}>
-						<Icon path={mdiMagnify} size={3} />
-						<span>
+<SearchOffSharp/>					<span>
 							{showText && (
 								<motion.span
 									initial={{ opacity: 0 }}
@@ -103,8 +104,7 @@ const ChatSearch: React.FC<ChatSearchProps> = ({
 							className='absolute top-0 right-0 z-40 text-gray-800'
 							onClick={() => setShowChatInput(!showChatInput)}
 							style={{ color: '#003247' }}>
-							<Icon path={mdiClose} size={3} />
-						</span>
+<Close/>						</span>
 
 						<div className='flex flex-col'>
 							<input
