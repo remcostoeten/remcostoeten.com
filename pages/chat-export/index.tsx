@@ -147,9 +147,10 @@ const ChatHistory: React.FC = () => {
 											: 'rounded-tl-lg'
 									}`}>
 									{message.image && (
-										<img
+										<Image
 											src={`/apiprivate/compressed/${message.image}`}
-											alt=''
+											fill
+											alt={message.message}
 											className='max-w-full h-auto rounded-lg mb-2'
 										/>
 									)}

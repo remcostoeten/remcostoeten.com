@@ -26,6 +26,7 @@ module.exports = {
 				1024: '1024px',
 			},
 			colors: {
+				'dark-3': '#3f3d56',
 				'off-pink': '#865c6c',
 				'body-black': '#191919',
 				'login-pink': '#f2ced8',

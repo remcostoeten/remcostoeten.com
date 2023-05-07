@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import InfiniteSwitcher from './InfiniteSwitcher';
 
 export const InfiniteLoader = () => (
 	useEffect(() => {

@@ -220,7 +220,6 @@ button {
 .cta {
 	font-size: 16px;
 	color: #7a44fd;
-	border: 2px solid #7a44fd;
 	padding: 10px 30px;
 	display: flex;
 	align-items: baseline;
@@ -322,4 +321,16 @@ button {
 		filter: blur(0);
 		opacity: 1;
 	}
+}
+@keyframes arrowFade {
+	0% {
+		transform: translateY(-50%) translateX(0);
+	}
+	100% {
+		transform: translateY(-50%) translateX(10px);
+	}
+}
+
+.item.item--arrow:hover:before {
+	animation: arrowFade 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }

@@ -18,3 +18,12 @@ export interface ChatMessage {
 	isSelf: boolean;
 	timestamp: Date;
 }
+
+export interface Task {
+	id: string;
+	title: string;
+	description: string;
+	category: string;
+	status: 'todo' | 'inprogress' | 'done';
+	date: string;
+}

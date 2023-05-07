@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import StripeContainer from '../components/stripe/StripeContainer';
+import Image from 'next/image';
 
 export default function ProductPage() {
 	const [selectedProduct, setSelectedProduct] = useState(null);
@@ -36,20 +37,34 @@ export default function ProductPage() {
 						<div className='col-span-12 md:col-span-7'>
 							<div className='product-gallery'>
 								<div className='product-image'>
-									<img
+									<Image
+										fill
+										alt='stripe'
 										className='active'
 										src='https://source.unsplash.com/W1yjvf5idqA'
 									/>
 								</div>
 								<ul className='image-list'>
 									<li className='image-item'>
-										<img src='https://source.unsplash.com/W1yjvf5idqA' />
+										<Image
+											fill
+											alt='stripe'
+											src='https://source.unsplash.com/W1yjvf5idqA'
+										/>
 									</li>
 									<li className='image-item'>
-										<img src='https://source.unsplash.com/VgbUxvW3gS4' />
+										<Image
+											fill
+											alt='stripe'
+											src='https://source.unsplash.com/VgbUxvW3gS4'
+										/>
 									</li>
 									<li className='image-item'>
-										<img src='https://source.unsplash.com/5WbYFH0kf_8' />
+										<Image
+											fill
+											alt='stripe'
+											src='https://source.unsplash.com/5WbYFH0kf_8'
+										/>
 									</li>
 								</ul>
 							</div>

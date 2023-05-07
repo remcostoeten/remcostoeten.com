@@ -1,17 +1,25 @@
-import React from 'react';
 import Link from 'next/link';
+import { ButtonHTMLAttributes, ElementType, ReactNode } from 'react';
 
-export default function RetroButton(props) {
-	const { text, href, handleCloseMenu } = props;
+export default function SlideButton(
+	icon,
+	label,
+	ctaClass,
+	link, // Remove the default value
+	bgColor = 'false',
+	textColor = 'text-black',
+	borderColor = 'border-gray-300',
+	border = 'false',
+) {
 	return (
-		<Link
-			href={href}
-			onClick={handleCloseMenu}
-			className='btn--menu relative p-0.5 mb-4 inline-flex items-center justify-center font-bold overflow-hidden group rounded-md'>
-			<span className='w-full h-full bg-gradient-to-br from-[#ff8a05] via-[#ff5478] to-[#ff00c6] group-hover:from-[#ff00c6] group-hover:via-[#ff5478] group-hover:to-[#ff8a05] absolute'></span>
-			<span className='relative px-6 py-3 transition-all ease-out bg-gray-900 rounded-md group-hover:bg-opacity-0 duration-400'>
-				<span className='relative text-white'>{text}</span>
-			</span>
-		</Link>
+		<div className='item item--arow'>
+			<div
+				className={`cta ${ctaClass} ${bgColor} ${border} ${textColor} hover:${bgColor} hover:${textColor}`}>
+				<Link href={link} className={textColor}>
+					{Icon}
+					{label}
+				</Link>
+			</div>
+		</div>
 	);
 }
