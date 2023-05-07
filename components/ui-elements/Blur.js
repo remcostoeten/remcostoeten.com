@@ -24,3 +24,5 @@ export const Blur = ({ blurRes = 0.5 }) => {
 	useFrame((_, delta) => composer.render(delta), 1);
 	return null;
 };
+
+export default Blur;
