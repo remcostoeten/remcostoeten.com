@@ -16,6 +16,8 @@ module.exports = {
 				xxs: ['10px'],
 				xs: ['12px'],
 				xxl: ['40px'],
+				xxxl: ['50px'],
+				xxxxl: ['60px'],
 			},
 			boxShadow: {
 				custom: '0 6px 30px -10px rgba(74, 116, 201, 1)',
