@@ -25,6 +25,11 @@ export default function OffcanvasMenuLinks(props) {
 			pills: <Pills variant='upcoming' text='Showcase' />,
 		},
 		{
+			label: 'Task kanban board',
+			href: '/todo',
+			pills: <Pills variant='tool' text='Showcase' />,
+		},
+		{
 			label: 'Loaders',
 			href: '/loaders',
 			pills: (
