@@ -30,6 +30,6 @@
 		"pages/api/contact.js",
 		"components/auth/AuthModal.jsx",
 		"components/auth/SignIn.jsx"
-, "components/Header/Toggle.jsx", "components/homepage/Section.jsx", "pages/webgl.jsx", "components/ui-elements/buttons/RetroButton.tsx"	],
+, "components/Header/Toggle.jsx", "components/homepage/Section.jsx", "pages/webgl.jsx", "components/ui-elements/buttons/RetroButton.tsx", "components/auth/notAuthorizedTask.jsx"	],
 	"exclude": ["node_modules"]
 }

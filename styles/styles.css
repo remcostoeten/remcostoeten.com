@@ -700,12 +700,6 @@
   background: transparent;
 }
 
-.not-authorized {
-  display: flex;
-  align-items: center;
-  padding: 80px;
-  margin-top: -250px;
-}
 .not-authorized a {
   text-decoration: none;
 }
@@ -1110,10 +1104,8 @@ h6 {
   letter-spacing: -0.62px;
 }
 
-@media (min-width: 0px) and (max-width: 767px) {
-  .contain {
-    padding: 0 1.5rem;
-  }
+.contain {
+  padding: 0 1.5rem;
 }
 
 .leading-12 {

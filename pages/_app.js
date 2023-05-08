@@ -44,7 +44,7 @@ function App({ Component, pageProps }) {
 			</Head>
 			{loading && <InfiniteLoader />}
 			<Header />
-			<main className='wrapper__content overflow-hidden '>
+			<main className='wrapper__content'>
 				<Component {...pageProps} />
 			</main>
 			<WarningMessage />

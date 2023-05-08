@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { KeyboardBackspace } from '@mui/icons-material';
 
 export default function SlideButton({
 	icon: Icon,
@@ -16,13 +17,13 @@ export default function SlideButton({
 				{link ? (
 					<Link href={link}>
 						<a className={textColor}>
-							{Icon && <Icon />}
+							<KeyboardBackspace />
 							{label}
 						</a>
 					</Link>
 				) : (
 					<>
-						{Icon && <Icon />}
+						<KeyboardBackspace />
 						{label}
 					</>
 				)}

@@ -28,7 +28,7 @@ export default function Header() {
 				menuOpen ? 'menu-open' : ''
 			} ${sticky ? 'sticky' : 'sticky'}`}>
 			<div className='container justify-between items-center container flex transition-width duration-500 ease-in-out'>
-				<div className='header__left'>
+				<div className='header__left -ml-2'>
 					<Link href='/' onClick={handleCloseMenu}>
 						<LogoIcon />
 					</Link>
