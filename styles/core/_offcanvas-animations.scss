@@ -23,24 +23,31 @@ $outOfView: -110%;
 
 @keyframes blurFadeSmall {
 	from {
-		filter: blur(5px);
+		filter: blur(1px);
 	}
 }
 
 @keyframes blurFade {
 	from {
-		filter: blur(15px);
+		filter: blur(2px);
 	}
 }
 
 @keyframes slideInFromLeft {
-	from {
-		filter: blur(15px);
+	0% {
+		opacity: 0;
+		filter: blur(2px);
 		transform: translateX(-300%);
 	}
-	to {
+
+	60% {
+		opacity: 0.3;
+	}
+
+	100% {
+		opacity: 1;
 		transform: translateX(0);
-		filter: blur(0);
+		// filter: blur(0);
 	}
 }
 

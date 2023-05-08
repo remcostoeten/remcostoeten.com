@@ -2457,22 +2457,26 @@ button:hover {
 }
 @keyframes blurFadeSmall {
   from {
-    filter: blur(5px);
+    filter: blur(1px);
   }
 }
 @keyframes blurFade {
   from {
-    filter: blur(15px);
+    filter: blur(2px);
   }
 }
 @keyframes slideInFromLeft {
-  from {
-    filter: blur(15px);
+  0% {
+    opacity: 0;
+    filter: blur(2px);
     transform: translateX(-300%);
   }
-  to {
+  60% {
+    opacity: 0.3;
+  }
+  100% {
+    opacity: 1;
     transform: translateX(0);
-    filter: blur(0);
   }
 }
 @keyframes slideIn {
@@ -2690,9 +2694,6 @@ button:hover {
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(9) {
   animation-delay: 1640ms;
-}
-.offcanvas-open .header .offcanvas-menu .btn--menu {
-  animation: initialHideDelay 2000ms 750ms forwards, puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715) both, blurFadeSmall 1500ms 2s ease;
 }
 .offcanvas-open .header .offcanvas-menu .text-btn {
   margin-bottom: 20px;

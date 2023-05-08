@@ -181,11 +181,11 @@
 			}
 
 			.btn--menu {
-				animation: initialHideDelay $menuOpenDuration $initialHide
-						forwards,
-					puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715)
-						both,
-					blurFadeSmall 1500ms 2s ease;
+				// animation: initialHideDelay $menuOpenDuration $initialHide
+						// forwards,
+					// puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715)
+						// both,
+					//blurFadeSmall 1500ms 2s ease;
 			}
 
 			.text-btn {
