@@ -6,13 +6,14 @@ import {
 	browserLocalPersistence,
 	signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { EmailIcon, LockIcon } from '@chakra-ui/icons';
+import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
+import { FacebookRounded, Google } from '@mui/icons-material';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Register from './Register';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Login from './Login';
+import Login from '@/components/Login';
 import Confetti from 'react-confetti';
 
 interface SigninModalProps {

@@ -5,6 +5,7 @@ import {
 	Draggable,
 	DropResult,
 } from 'react-beautiful-dnd';
+import { Task } from '@/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TaskModal from './TaskModal';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
@@ -12,19 +13,14 @@ import { auth, db } from '@/utils/firebase';
 import AddBoxRoundedIcon from '@mui/icons-material/AddBox';
 import { Edit } from '@mui/icons-material';
 import { Alert } from '@mui/material';
-import { Task } from '@/utils/types';
 
 interface DraggableContainerProps {
 	tasks: Task[];
-	isOpen: boolean;
-	onClose: () => void;
-	editedTask: Task | null;
 	updateTask: (taskId: string, newTaskData: Partial<Task>) => Promise<void>;
 	removeTask: (taskId: string) => void;
 }
 
 export default function DraggableContainer({
-	isOpen,
 	tasks,
 	updateTask,
 	removeTask,
@@ -77,6 +73,7 @@ export default function DraggableContainer({
 
 	const handleDragEnd = (result: DropResult) => {
 		if (!result.destination) return;
+
 		const items = Array.from(tasks);
 		const [reorderedItem] = items.splice(result.source.index, 1);
 		items.splice(result.destination.index, 0, reorderedItem);
@@ -142,7 +139,31 @@ export default function DraggableContainer({
 								/>
 							</span>
 						</div>
-
+						<TaskModal
+							isOpen={isModalOpen}
+							onClose={() => {
+								setIsModalOpen(false);
+								setEditedTask(null);
+							}}
+							editedTask={editedTask}
+							onSubmit={(
+								title,
+								description,
+								category,
+								taskId,
+							) => {
+								if (taskId) {
+									updateExistingTask(
+										title,
+										description,
+										category,
+										taskId,
+									);
+								} else {
+									addTask(title, description, category);
+								}
+							}}
+						/>
 						<Droppable droppableId={lane.id}>
 							{(provided) => (
 								<div

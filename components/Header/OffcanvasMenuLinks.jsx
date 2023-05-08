@@ -26,8 +26,13 @@ export default function OffcanvasMenuLinks(props) {
 		},
 		{
 			label: 'Task kanban board',
-			href: '/todo',
-			pills: <Pills variant='tool' text='Showcase' />,
+			href: '/tasks',
+			pills: (
+				<>
+					<Pills variant='tool' text='Tool' />
+					<Pills variant='showcase' text='Showcase' />
+				</>
+			),
 		},
 		{
 			label: 'Loaders',

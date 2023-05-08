@@ -12,8 +12,6 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import DraggableContainer from './DraggableContainer';
 import TaskModal from '@/components/task/TaskModal';
-import Login from './Login';
-import { Task } from '@/utils/types';
 
 export default function TaskWrapper() {
 	const [tasks, setTasks] = useState<Task[]>([]);
@@ -124,129 +122,113 @@ export default function TaskWrapper() {
 
 	return (
 		<>
-			{/* <div className='container'><TaskCategories /></div> */}
-			<div className='todo todo-wrapper'>
-				<div className='todo__inner'>
-					<main>
-						<div className='todo__header'>
-							<h2>
-								Welcome back,
-								<span>{auth.currentUser?.displayName} 👋</span>
-							</h2>
-							<div className='todo__intro'>
-								<div className='text'>
-									{tasks.length === 0 && (
-										<>
+			<div className='bg-gray-100 h-screen flex items-baseline pt-4 mt-8 justify-center'>
+				<div className='todo todo-wrapper w-full max-w-5xl p-6 rounded-xl bg-white shadow-md'>
+					<div className='todo__inner'>
+						<main>
+							<div className='todo__header flex flex-col mb-2'>
+								<h2 className='text-xl font-semibold'>
+									Welcome back,{' '}
+									<span className='text-blue-500'>
+										{auth.currentUser?.displayName} 👋
+									</span>
+								</h2>
+								<div className='todo__intro'>
+									<div className='text'>
+										{tasks.length === 0 && (
+											<>
+												<p>
+													You have no tasks left. Time
+													to relax. 🥳 Or get busy and
+													create some new ones!
+												</p>
+											</>
+										)}
+										{tasks.length === 1 && (
+											<>
+												<p>
+													You've got {tasks.length}{' '}
+													task left. Good luck nailing
+													it! 🤑
+												</p>
+											</>
+										)}
+										{tasks.length >= 2 &&
+											tasks.length <= 4 && (
+												<>
+													<p>
+														You've got{' '}
+														{tasks.length} task
+														{tasks.length === 1
+															? ''
+															: 's'}{' '}
+														left. Better start
+														working then! 😳
+													</p>
+												</>
+											)}
+										{tasks.length > 4 && (
 											<p>
-												You have no tasks left. Time to
-												relax. 🥳 Or get busy and create
-												some new ones!
+												You've got {tasks.length}{' '}
+												task(s) left. 😵‍💫 But no
+												pressure, I wont judge you
+												slacking. 🫣
 											</p>
-										</>
-									)}
-									{tasks.length === 1 && (
-										<>
-											<p>
-												You`&apos;`ve got {tasks.length}{' '}
-												task left. Good luck nailing it!
-												🤑
-											</p>
-										</>
-									)}
-									{tasks.length >= 2 && tasks.length <= 4 && (
-										<>
-											<p>
-												You `&apos;`ve got{' '}
-												{tasks.length} task
-												{tasks.length === 1
-													? ''
-													: 's'}{' '}
-												left. Better start working then!
-												😳
-											</p>
-										</>
-									)}
-									{tasks.length > 4 && (
-										<p>
-											You `&apos;`ve got {tasks.length}{' '}
-											task(s) left. 😵‍💫 But no pressure, I
-											wont judge you slacking. 🫣
-										</p>
-									)}
+										)}
+									</div>
 								</div>
-							</div>
-							<div
-								className={`toggle-view ${
-									view === 'board' ? 'grid' : 'list'
-								}`}>
-								<div className='view'>
+								<div className='toggle-view flex space-x-4'>
 									<button
-										className='board-view'
+										className='board-view bg-blue-500 text-white font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										Board view
 									</button>
 									<button
-										className='list-view'
+										className='list-view bg-blue-500 text-white font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										List view
 									</button>
+									<button
+										className='add-task bg-green-500 text-white font-semibold py-2 px-4 rounded-md'
+										onClick={() => setIsModalOpen(true)}
+										disabled={!isLoggedIn}>
+										Add task
+									</button>
 								</div>
-								<button
-									className='add task'
-									onClick={() => setIsModalOpen(true)}
-									disabled={!isLoggedIn}>
-									Add task
-								</button>
 							</div>
-						</div>
-						<TaskModal
-							isOpen={isModalOpen}
-							onClose={() => {
-								setIsModalOpen(false);
-								setEditedTask(null);
-							}}
-							onSubmit={addTask}
-							editedTask={editedTask}
-							tasks={[]}
-							updateTask={function (
-								taskId: string,
-								newTaskData: Partial<Task>,
-							): Promise<void> {
-								throw new Error('Function not implemented.');
-							}}
-							removeTask={function (taskId: string): void {
-								throw new Error('Function not implemented.');
-							}}
-						/>
+							<TaskModal
+								isOpen={isModalOpen}
+								onClose={() => {
+									setIsModalOpen(false);
+									setEditedTask(null);
+								}}
+								onSubmit={addTask}
+								editedTask={editedTask}
+							/>
 
-						<div className={`view-container ${view}-view`}>
-							{/* Board View */}
-							{view === 'board' && (
-								<div className='tasks'>
-									<DraggableContainer
-										tasks={tasks}
-										updateTask={updateTask}
-										removeTask={removeTask}
-										isOpen={false}
-										onClose={function (): void {
-											throw new Error(
-												'Function not implemented.',
-											);
-										}}
-										editedTask={null}
-									/>
-								</div>
-							)}
-							{/* List View */}
-							{view === 'list' && (
-								<div className='list-view'>
-									{/* List view content */}
-								</div>
-							)}
-						</div>
-					</main>
+							<div className={`view-container ${view}-view`}>
+								{/* Board View */}
+								{view === 'board' && (
+									<div className='tasks'>
+										<DraggableContainer
+											tasks={tasks}
+											updateTask={updateTask}
+											removeTask={removeTask}
+										/>
+									</div>
+								)}
+								{/* List View */}
+								{view === 'list' && (
+									<div className='list-view'>
+										{/* List view content */}
+									</div>
+								)}
+							</div>
+						</main>
+					</div>
 				</div>
 			</div>
+			;
 		</>
 	);
 }
