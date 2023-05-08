@@ -122,7 +122,7 @@ export default function TaskWrapper() {
 
 	return (
 		<>
-			<div className='bg-gray-100 h-screen flex items-baseline pt-4 mt-8 justify-center'>
+			<div className='bg-gray-100 h-screen flex items-baseline pt-4 justify-center'>
 				<div className='todo todo-wrapper w-full max-w-5xl p-6 rounded-xl bg-white shadow-md'>
 					<div className='todo__inner'>
 						<main>

@@ -96,7 +96,7 @@ export default function OffcanvasMenuLinks(props) {
 			<ul className='offcanvas-menu__items'>
 				{items.map((item) => (
 					<li
-						className='mb-4 flex items-center'
+						className='mb-2 flex items-center'
 						onClick={handleCloseMenu}
 						key={item.href}
 						value={item.wip}>

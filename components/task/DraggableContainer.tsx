@@ -5,7 +5,7 @@ import {
 	Draggable,
 	DropResult,
 } from 'react-beautiful-dnd';
-import { Task } from '@/types';
+import { Task } from '@/utils/types';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import TaskModal from './TaskModal';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';

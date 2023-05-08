@@ -92,7 +92,7 @@ export default function Index() {
 	return (
 		<>
 			<div className='todo bg-gray-100 '>
-				<div className='todo__inner contain container'>
+				<div className='todo__inner container'>
 					{isLoggedIn ? (
 						<>
 							<div className='authenticated'>
