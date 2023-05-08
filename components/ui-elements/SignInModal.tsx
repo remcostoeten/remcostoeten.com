@@ -1,83 +1,76 @@
-import { useState, useEffect } from 'react';
 import {
 	getAuth,
 	setPersistence,
 	browserSessionPersistence,
 	browserLocalPersistence,
 	signInWithEmailAndPassword,
-} from 'firebase/auth';
-import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { FacebookRounded, Google } from '@mui/icons-material';
-import { motion } from 'framer-motion';
-import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
-import Register from './Register';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Login from '@/components/Login';
-import Confetti from 'react-confetti';
-
-interface SigninModalProps {
-	onClose: () => void;
-	onSignIn: (email?: string, password?: string, rememberMe?: boolean) => void;
-	setShowRegisterModal: (show: boolean) => void;
-}
-
-export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
+  } from 'firebase/auth';
+  import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
+  import { FacebookRounded, Google } from '@mui/icons-material';
+  import { motion } from 'framer-motion';
+  import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
+  import SignUpModal from './SignUpModal';
+  import { toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
+  import Login from '@/components/Login';
+  import Confetti from 'react-confetti';
+  import { useState } from 'react';
+  
+  interface SignInModalProps {
+	open: boolean;
+	handleClose: () => void;
+	signInWithGoogle: () => Promise<void>;
+	handleSignUpClick: () => void;
+	onSignIn: () => void;
+  }
+  
+  export default function SignInModal({
+	open,
+	handleClose,
+	signInWithGoogle,
+	handleSignUpClick,
+	onSignIn,
+  }: SignInModalProps) {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [rememberMe, setRememberMe] = useState(false);
-	const [showModal, setShowModal] = useState(false);
-	const [showSignupModal, setShowSignupModal] = useState(false);
 	const [showConfetti, setShowConfetti] = useState(false);
-
-	const handleSignin = async (event: React.FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
-		try {
-			const auth = getAuth();
-			const persistenceMode = rememberMe
-				? browserLocalPersistence
-				: browserSessionPersistence;
-			await setPersistence(auth, persistenceMode);
-			await signInWithEmailAndPassword(auth, email, password); // Change this
-
-			onSignIn(email, password, rememberMe);
-			setShowConfetti(true);
-
-			if (auth.currentUser?.displayName) {
-				toast.success(
-					`Welcome aboard ${auth.currentUser.displayName}!`,
-				);
-				setShowConfetti(true);
-			} else {
-				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
-				setShowConfetti(true);
-			}
-		} catch (error) {
-			console.error(error);
-			toast.error(
-				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
-			);
+  
+	const handleSignIn = async (event: React.FormEvent<HTMLFormElement>) => {
+	  event.preventDefault();
+	  try {
+		const auth = getAuth();
+		const persistenceMode = rememberMe
+		  ? browserLocalPersistence
+		  : browserSessionPersistence;
+		await setPersistence(auth, persistenceMode);
+		await signInWithEmailAndPassword(auth, email, password);
+  
+		onSignIn();
+		setShowConfetti(true);
+  
+		if (auth.currentUser?.displayName) {
+		  toast.success(`Welcome aboard ${auth.currentUser.displayName}!`);
+		} else {
+		  toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
 		}
+	  } catch (error) {
+		console.error(error);
+		toast.error(
+		  'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.'
+		);
+	  }
 	};
-
-	useEffect(() => {
-		if (showConfetti) {
-			const timer = setTimeout(() => {
-				setShowConfetti(false);
-				onClose();
-			}, 3000);
-
-			return () => clearTimeout(timer);
-		}
-	}, [showConfetti, onClose]);
-
+  
 	const handleRememberMeChange = () => {
-		setRememberMe(!rememberMe);
+	  setRememberMe(!rememberMe);
 	};
-
+  
 	const handleCloseSignupModal = () => {
-		setShowSignupModal(false);
+	  handleClose();
+	  handleSignUpClick();
 	};
+  
 
 	return (
 		<>
@@ -85,22 +78,18 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 				<div className='modal__inner'>
 					<h2 className='modal__title'>Login</h2>
 					<div className='modal__social'>
-						<motion.div
-							className='header__user'
-							whileHover={{ scale: 1.05 }}>
 							<span className='google'>
 								<Login />
 							</span>
-						</motion.div>
 					</div>
 					<div className='modal__divider'>or</div>
-					<form className='modal__register' onSubmit={handleSignin}>
-						<motion.div
-							className='modal__close'
-							onClick={onClose}
-							whileHover={{ scale: 1.05 }}>
-							<HighlightOffSharpIcon />
-						</motion.div>
+					<form className='modal__register' onSubmit={handleSignIn}>
+							{/* <motion.div
+								className='modal__close'
+								onClick={handleClose}
+								whileHover={{ scale: 1.05 }}>
+								<HighlightOffSharpIcon /> */}
+						{/* </motion.div> */}
 						<div className='modal__input'>
 							<EmailIcon />
 							<input
@@ -147,13 +136,13 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 							Sign up
 						</a>
 					</div>
-					{showSignupModal && (
+					{/* {showSignupModal && (
 						<Register
-							onClose={handleCloseSignupModal}
+							handleClose={handleCloseSignupModal}
 							onSignIn={onSignIn}
 							setShowRegisterModal={setShowSignupModal}
 						/>
-					)}
+					)} */}
 				</div>
 			</div>
 			{showConfetti && (

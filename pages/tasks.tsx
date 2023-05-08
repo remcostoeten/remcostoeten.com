@@ -34,18 +34,22 @@ export default function Index() {
 		setShowSignUpModal(false);
 	};
 
+	const handleSignIn = () => {
+		setIsLoggedIn(true);
+	  };
+
+
 	return (
 		<>
 			<div className='todo'>
 				<div className='todo__inner flex'>
 					<AsideSmall view={''} isLoggedIn={false} />
 					{isLoggedIn ? (
-						<>
-							<div className='authenticated'>
-								<TaskWrapper />
-							</div>
-						</>
-					) : (
+          <div className='authenticated'>
+            <TaskWrapper />
+          </div>
+        ) : (
+        
 						<>
 							<div className='not-authorized'>
 								<div className='not-authorized__inner'>
@@ -86,13 +90,14 @@ export default function Index() {
 					)}
 				</div>
 			</div>
-			
 			<SignInModal
   open={showModal}
   handleClose={handleCloseModal}
   signInWithGoogle={signInWithGoogle}
   handleSignUpClick={handleSignUpClick}
+  onSignIn={() => setIsLoggedIn(true)}
 />
+
 
 
 			
