@@ -1,7 +1,13 @@
 <script>
 	import Header from './Header.svelte';
 	import './styles.css';
+	import PageLoader from '../components/PageLoader.svelte';
+    import { page } from '$app/stores';
+	const isLoading = $page.loading;
 </script>
+
+<PageLoader {isLoading} />
+
 
 <div class="app">
 	<Header />
