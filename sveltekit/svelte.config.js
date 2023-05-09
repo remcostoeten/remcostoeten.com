@@ -1,9 +1,8 @@
 import adapter from '@sveltejs/adapter-netlify';
 
-const config = {
+export default {
   kit: {
-    adapter: adapter()
+    adapter: adapter(),
+    target: '#svelte'
   }
 };
-
-export default config;
