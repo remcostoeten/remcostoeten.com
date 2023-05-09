@@ -5,6 +5,7 @@ import { Pills } from '@/components/ui-elements/Pills';
 export default function OffcanvasMenuLinks(props) {
 	const handleCloseMenu = props.handleCloseMenu;
 	const [visible, setVisible] = useState(false);
+	const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : '';
 
 	useEffect(() => {
 		const timeout = setTimeout(() => {
@@ -99,11 +100,6 @@ export default function OffcanvasMenuLinks(props) {
 			),
 		  },
 	];
-
-	const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : '';
-
- 
-
 	return (
 		<>
 		  <ul className='offcanvas-menu__items'>
@@ -115,9 +111,9 @@ export default function OffcanvasMenuLinks(props) {
 				value={item.wip}
 			  >
 				{item.href === '/sveltekit' ? (
-				  <a className='text-lg text-off-white ' href={process.env.SVELTE_APP_URL}>
+				  <Link className='text-lg text-off-white ' href={process.env.SVELTE_APP_URL}>
 					{item.label}
-				  </a>
+				  </Link>
 				) : (
 				  <Link className='text-lg text-off-white ' href={item.href}>
 					{item.label}
