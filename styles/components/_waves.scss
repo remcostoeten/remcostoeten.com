@@ -4,7 +4,7 @@
 
 @keyframes move-forever {
 	0% {
-		transform: translate3d(calc(-90px + var(--mouseX, 0) * 0.04), 0, 0);
+		transform: translate3d(calc(-90px + var(--mouseX, 0) * 0.041q), 0, 0);
 	}
 	100% {
 		transform: translate3d(calc(85px + var(--mouseX, 0) * 0.04), 0, 0);
@@ -29,16 +29,16 @@
 .waves {
 	z-index: -1;
 	&__animate-one {
-		animation: move-forever 25s linear infinite;
+		animation: move-forever 23s linear infinite;
 	}
 	&__animate-two {
 		animation: move-forever-slow 12s linear infinite;
 	}
 	&__animate-three {
-		animation: move-forever 13s linear infinite;
+		animation: move-forever 22s linear infinite;
 	}
 	&__animate-four {
-		animation: move-forever-slow 7s linear infinite;
+		animation: move-forever-slow 24s linear infinite;
 	}
 	&__animate-five {
 		animation: move-forever 11s linear infinite;

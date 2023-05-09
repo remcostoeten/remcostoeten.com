@@ -905,7 +905,7 @@
 
 body {
   position: relative;
-  height: 175vh;
+  height: 100vh;
   animation: bodyIn 1200ms ease-in-out;
   overflow-x: hidden;
 }
@@ -4474,7 +4474,7 @@ button:hover {
 
 @keyframes move-forever {
   0% {
-    transform: translate3d(calc(-90px + var(--mouseX, 0) * 0.04), 0, 0);
+    transform: translate3d(calc(-90px + var(--mouseX, 0) * 0.041q), 0, 0);
   }
   100% {
     transform: translate3d(calc(85px + var(--mouseX, 0) * 0.04), 0, 0);
@@ -4496,16 +4496,16 @@ button:hover {
   z-index: -1;
 }
 .waves__animate-one {
-  animation: move-forever 25s linear infinite;
+  animation: move-forever 23s linear infinite;
 }
 .waves__animate-two {
   animation: move-forever-slow 12s linear infinite;
 }
 .waves__animate-three {
-  animation: move-forever 13s linear infinite;
+  animation: move-forever 22s linear infinite;
 }
 .waves__animate-four {
-  animation: move-forever-slow 7s linear infinite;
+  animation: move-forever-slow 24s linear infinite;
 }
 .waves__animate-five {
   animation: move-forever 11s linear infinite;

@@ -10,7 +10,7 @@ function FilteredTextComponent() {
 	const [remainingUrlsCount, setRemainingUrlsCount] = useState(0);
 	const [copied, setCopied] = useState(false);
 	const [blockSize] = useState(50);
-	const [filter, setFilter] = useState('dood');
+	const [filter, setFilter] = useState('');
 	const [inputText, setInputText] = useState('');
 	const [showResetButton, setShowResetButton] = useState(false);
 	const [removeClicked, setRemoveClicked] = useState(false);
@@ -310,7 +310,7 @@ function FilteredTextComponent() {
 					className={`${
 						preBlocks.length > 1
 							? 'mt-10 overflow-y-scroll max-h-60'
-							: ''
+							: '0'
 					}`}>
 					<pre className='language-jsx mt-4 whitespace-pre-wrap bg-gray-800 rounded-md p-4'>
 						<code className='language-html text-gray-100'>
