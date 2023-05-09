@@ -1,7 +1,12 @@
 [build]
   command = "npm run build"
-  publish = "out"
+  publish = ".next"
   functions = "api"
 
 [[plugins]]
   package = "@netlify/plugin-nextjs"
+
+[[plugins]]
+  package = "@netlify/plugin-svelte"
+  [plugins.inputs]
+    entryFile = "sveltekit/src/main.js"
