@@ -1,3 +1,7 @@
 [build]
-  command = "npm run build && cd sveltekit && npm run build"
+  command = "npm run build"
   publish = "out"
+  functions = "api"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

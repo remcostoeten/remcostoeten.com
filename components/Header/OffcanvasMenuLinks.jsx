@@ -91,7 +91,7 @@ export default function OffcanvasMenuLinks(props) {
 		},
 		{
 			label: 'SvelteKit',
-			href: '/sveltekit',
+			href: process.env.SVELTE_APP_URL,
 			pills: (
 			  <>
 				<Pills variant='showcase' text='Showcase' />
@@ -106,27 +106,28 @@ export default function OffcanvasMenuLinks(props) {
 
 	return (
 		<>
-		<ul className='offcanvas-menu__items'>
-		  {items.map((item) => (
-			<li
-			  className='mb-2 flex items-center'
-			  onClick={handleCloseMenu}
-			  key={item.href}
-			  value={item.wip}
-			>
-			  {item.href === '/sveltekit' ? (
-				<a className='text-lg text-off-white ' href={`${baseUrl}`}>
-				  {item.label}
-				</a>
-			  ) : (
-				<Link className='text-lg text-off-white ' href={item.href}>
-				  {item.label}
-				</Link>
-			  )}
-			  {item.pills}
-			</li>
-		  ))}
-		</ul>
-	  </>
-	);
+		  <ul className='offcanvas-menu__items'>
+			{items.map((item) => (
+			  <li
+				className='mb-2 flex items-center'
+				onClick={handleCloseMenu}
+				key={item.href}
+				value={item.wip}
+			  >
+				{item.href === '/sveltekit' ? (
+				  <a className='text-lg text-off-white ' href={process.env.SVELTE_APP_URL}>
+					{item.label}
+				  </a>
+				) : (
+				  <Link className='text-lg text-off-white ' href={item.href}>
+					{item.label}
+				  </Link>
+				)}
+				{item.pills}
+			  </li>
+			))}
+		  </ul>
+		</>
+	  );
+	  
 }
