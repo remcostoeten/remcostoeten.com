@@ -80,21 +80,6 @@ const Toggle = () => {
 
 	return (
 		<>
-			<label className='toggle'>
-				<input type='checkbox' ref={toggleRef} onClick={handleToggle} />
-				<div className='toggle__inner'>
-					<div>
-						<span></span>
-						<span></span>
-					</div>
-					<svg>
-						<use xlinkHref='#path' />
-					</svg>
-					<svg>
-						<use xlinkHref='#path' />
-					</svg>
-				</div>
-			</label>
 			<svg xmlns='http://www.w3.org/2000/svg' style={{ display: 'none' }}>
 				<symbol
 					xmlns='http://www.w3.org/2000/svg'

@@ -7,7 +7,7 @@ export default function index() {
 	return (
 		<>
 			{/* <Hero /> */}
-			<Section />
+				{/* <Section /> */}
 		</>
 	);
 }

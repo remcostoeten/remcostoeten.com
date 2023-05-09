@@ -8,6 +8,7 @@ import { InfiniteLoader } from '../components/ui-elements/loaders/Infinite';
 import WarningMessage from '../components/ui-elements/MessageWip';
 import SpeedDial from '../components/ui-elements/Speeddial';
 import Head from 'next/head';
+import Navbar from '../components/Header/Navbar';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
@@ -35,7 +36,6 @@ function App({ Component, pageProps }) {
 			Router.events.off('routeChangeComplete', handleComplete);
 			Router.events.off('routeChangeError', handleComplete);
 
-			// Clear interval when component unmounts
 			clearInterval(intervalId);
 		};
 	}, []);
@@ -54,7 +54,8 @@ function App({ Component, pageProps }) {
 				/>
 			</Head>
 			{loading && <InfiniteLoader />}
-			<Header />
+			<Navbar/>
+			{/* <Header / */}
 			<main className='wrapper__content'>
 				<Component {...pageProps} />
 			</main>
@@ -63,9 +64,9 @@ function App({ Component, pageProps }) {
 			<SpeedDial />
 			{version !== null &&  showTimer && (
 				<div className='fixed bottom-4 right-4 z-50'>
-					<div className='bg-white text-xs dark:bg-black rounded text-slate-600 p-2'>
+					<div className='bg-white text-xs rounded text-slate-600 p-2'>
 						Design version{' '}
-						<span className='inline-block font-medium bg-indigo-200 dark:bg-gray-900 rounded-md px-2 py-1 animate-fade-in'>
+						<span className='inline-block font-medium bg-indigo-200 bg-gray-900 rounded-md px-2 py-1 animate-fade-in'>
 							{version}
 						</span>
 					</div>

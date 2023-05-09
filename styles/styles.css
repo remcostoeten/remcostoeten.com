@@ -905,7 +905,7 @@
 
 body {
   position: relative;
-  height: 100vh;
+  height: 150vh;
   animation: bodyIn 1200ms ease-in-out;
   overflow-x: hidden;
 }
