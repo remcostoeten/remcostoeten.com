@@ -298,19 +298,7 @@ function FilteredTextComponent() {
 				{successMessage && (
 					<>
 						{' '}
-						<AlertMessage
-							id='toast-success'
-							type='success'
-							message={successMessage}
-						/>
-					</>
-				)}
-
-				<div
-					className={`${
-						preBlocks.length > 1
-							? 'mt-10 overflow-y-scroll max-h-60'
-							: '0'
+	
 					}`}>
 					<pre className='language-jsx mt-4 whitespace-pre-wrap bg-gray-800 rounded-md p-4'>
 						<code className='language-html text-gray-100'>
