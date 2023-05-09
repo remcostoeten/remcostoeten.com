@@ -1,10 +1,15 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-	reactStrictMode: true,
-};
-
 module.exports = {
-	images: {
-		domains: ['storage.googleapis.com'],
+	async redirects() {
+	  return [
+		{
+		  source: '/sveltekit',
+		  destination: '/sveltekit/',
+		  permanent: true,
+		},
+	  ];
 	},
-};
+	images: {
+	  domains: ['storage.googleapis.com'],
+	},
+  };
+  

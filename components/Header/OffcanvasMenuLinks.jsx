@@ -89,26 +89,44 @@ export default function OffcanvasMenuLinks(props) {
 				</>
 			),
 		},
+		{
+			label: 'SvelteKit',
+			href: '/sveltekit',
+			pills: (
+			  <>
+				<Pills variant='showcase' text='Showcase' />
+			  </>
+			),
+		  },
 	];
+
+	const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : '';
+
+ 
 
 	return (
 		<>
-			<ul className='offcanvas-menu__items'>
-				{items.map((item) => (
-					<li
-						className='mb-2 flex items-center'
-						onClick={handleCloseMenu}
-						key={item.href}
-						value={item.wip}>
-						<Link
-							className='text-lg text-off-white '
-							href={item.href}>
-							{item.label}
-						</Link>
-						{item.pills}
-					</li>
-				))}
-			</ul>
-		</>
+		<ul className='offcanvas-menu__items'>
+		  {items.map((item) => (
+			<li
+			  className='mb-2 flex items-center'
+			  onClick={handleCloseMenu}
+			  key={item.href}
+			  value={item.wip}
+			>
+			  {item.href === '/sveltekit' ? (
+				<a className='text-lg text-off-white ' href={`${baseUrl}`}>
+				  {item.label}
+				</a>
+			  ) : (
+				<Link className='text-lg text-off-white ' href={item.href}>
+				  {item.label}
+				</Link>
+			  )}
+			  {item.pills}
+			</li>
+		  ))}
+		</ul>
+	  </>
 	);
 }
