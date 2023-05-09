@@ -283,15 +283,12 @@
 }
 @keyframes pulse {
   0% {
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
   50% {
-    -webkit-transform: scale(0.01);
     transform: scale(0.01);
   }
   100% {
-    -webkit-transform: scale(1);
     transform: scale(1);
   }
 }
@@ -366,40 +363,6 @@
 
 .loading div:nth-child(16) {
   animation-delay: 0.6s;
-}
-
-@-moz-keyframes scaleDot {
-  40% {
-    transform: scale(1.3) translate(-2px, -2px);
-  }
-  80% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@-webkit-keyframes scaleDot {
-  40% {
-    transform: scale(1.3) translate(-2px, -2px);
-  }
-  80% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-@-o-keyframes scaleDot {
-  40% {
-    transform: scale(1.3) translate(-2px, -2px);
-  }
-  80% {
-    transform: scale(1);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 @keyframes scaleDot {
   40% {
@@ -639,7 +602,8 @@
   z-index: 10;
   border-radius: 0.7rem;
   padding: 0.515rem 0.5rem;
-  text-emphasis: center;
+  -webkit-text-emphasis: center;
+          text-emphasis: center;
   background-color: #e4e7ec;
   margin-bottom: 24px;
   margin-left: 24px;
@@ -995,7 +959,8 @@ body.alternative-color {
   z-index: 10;
   border-radius: 0.7rem;
   padding: 0.415rem 0.38rem;
-  text-emphasis: center;
+  -webkit-text-emphasis: center;
+          text-emphasis: center;
   background-color: #f9f9f9;
   margin-bottom: 12px;
   margin-left: 12px;
@@ -1114,12 +1079,10 @@ h6 {
 
 @keyframes slide-in-bck-center {
   0% {
-    -webkit-transform: translateZ(600px);
     transform: translateZ(600px);
     opacity: 0;
   }
   100% {
-    -webkit-transform: translateZ(0);
     transform: translateZ(0);
     opacity: 1;
   }
@@ -1606,14 +1569,17 @@ button:hover {
   padding: 10px 30px;
   display: flex;
   align-items: baseline;
+  width: -moz-max-content;
   width: max-content;
-  clip-path: polygon(100% 0, 84% 100%, 100% 100%, 0 100%, 0 0);
+  -webkit-clip-path: polygon(100% 0, 84% 100%, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(100% 0, 84% 100%, 100% 100%, 0 100%, 0 0);
   transition: 250ms ease all;
   display: flex;
   align-items: center;
 }
 .cta:hover {
-  clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+  -webkit-clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
+          clip-path: polygon(100% 0, 100% 100%, 100% 100%, 0 100%, 0 0);
   transition-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .cta svg {
@@ -1623,10 +1589,12 @@ button:hover {
 }
 
 .cta.cta-two {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 26% 100%, 0 49%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 26% 100%, 0 49%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 26% 100%, 0 49%);
 }
 .cta.cta-two:hover {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
 }
 .cta.cta-two svg {
   margin-right: 20px;
@@ -2664,39 +2632,39 @@ button:hover {
 .offcanvas-open .header .offcanvas-menu__items li {
   animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
   transition: 1s;
-  animation-delay: 555ms;
-  transform: translateX(-200%);
   position: relative;
-}
-.offcanvas-open .header .offcanvas-menu__items li a {
+  transform: translateX(-200%);
   cursor: pointer;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(2) {
-  animation-delay: 710ms;
+  animation-delay: 555ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(3) {
-  animation-delay: 865ms;
+  animation-delay: 710ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(4) {
-  animation-delay: 1020ms;
+  animation-delay: 865ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(5) {
-  animation-delay: 1175ms;
+  animation-delay: 1020ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(6) {
-  animation-delay: 1330ms;
+  animation-delay: 1175ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(7) {
-  animation-delay: 1485ms;
+  animation-delay: 1330ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(8) {
-  animation-delay: 1640ms;
+  animation-delay: 1485ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(9) {
   animation-delay: 1640ms;
 }
-.offcanvas-open .header .offcanvas-menu .text-btn {
-  margin-bottom: 20px;
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(10) {
+  animation-delay: 1795ms;
+}
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(11) {
+  animation-delay: 1950ms;
 }
 .offcanvas-open .header .offcanvas-menu::before {
   content: "";
@@ -2888,6 +2856,7 @@ button:hover {
   background-color: #ff7979;
   border-radius: 8px;
   margin-bottom: 8px;
+  width: -moz-max-content;
   width: max-content;
   min-width: 39px;
   padding: 0 8px;
@@ -3558,9 +3527,7 @@ button:hover {
   max-width: calc(100% - 40px);
   width: 860px;
   margin: 0 auto;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   padding: 100px 0;
 }
@@ -3846,14 +3813,10 @@ button:hover {
   border-radius: 4px;
   width: 210px;
   letter-spacing: 1px;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
   display: inline-flex;
-  -webkit-align-items: center;
   -moz-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  -webkit-justify-content: center;
   -moz-justify-content: center;
   -ms-justify-content: center;
   justify-content: center;
@@ -3905,6 +3868,9 @@ button:hover {
   color: #000 !important;
 }
 .product-page .stripe-form input {
+  color: white;
+}
+.product-page .stripe-form input::-moz-placeholder {
   color: white;
 }
 .product-page .stripe-form input::placeholder {
@@ -4256,7 +4222,8 @@ button:hover {
 .pdp img {
   max-width: 100%;
   height: auto;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .pdp nav {
   display: block;
@@ -4618,7 +4585,9 @@ button:hover {
   color: #636775;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   cursor: pointer;
-  user-select: none;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
   transition: color 200ms;
 }
 .label.theme-toggle__label {
