@@ -52,28 +52,26 @@ export default function TaskWrapper() {
 			}
 		});
 	}, []);
-
 	useEffect(() => {
 		if (auth.currentUser) {
-			const unsubscribe = onSnapshot(
-				collection(db, `tasks`),
-				doc(auth.currentUser?.uid),
-				(snapshot) => {
-					setTasks(
-						snapshot.docs.map(
-							(doc) =>
-								({
-									id: doc.id,
-									...doc.data(),
-								} as Task),
-						),
-					);
-				},
-			);
-			return () => unsubscribe();
+		  const unsubscribe = onSnapshot(
+			collection(db, `tasks-${auth.currentUser?.uid}`),
+			(snapshot) => {
+			  setTasks(
+				snapshot.docs.map(
+				  (doc) =>
+					({
+					  id: doc.id,
+					  ...doc.data(),
+					} as Task),
+				),
+			  );
+			},
+		  );
+		  return () => unsubscribe();
 		}
-	}, []);
-
+	  }, []);
+	  
 	const addTask = async (
 		title: string,
 		description: string,
