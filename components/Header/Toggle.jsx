@@ -139,8 +139,6 @@ const Toggle = () => {
 								</div>
 						</div>
 					</div>
-
-					<BlobOne />
 				</div>
 			)}
 		</>

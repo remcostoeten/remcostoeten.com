@@ -61,13 +61,8 @@ export default function OffcanvasMenuLinks(props) {
 			),
 		},
 		{
-			label: 'Stripe v1',
+			label: 'Stripe payment',
 			href: '/product',
-			pills: <Pills variant='wip' text='Work in progress' />,
-		},
-		{
-			label: 'Stripe v2',
-			href: '/stripe-payment',
 			pills: <Pills variant='wip' text='Work in progress' />,
 		},
 		{

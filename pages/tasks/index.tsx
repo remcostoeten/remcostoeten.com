@@ -101,13 +101,13 @@ export default function Index() {
 						</>
 					) : (
 						<>
-							<div className='not-authorized'>
-								<div className='not-authorized__inner'>
-									<h2>
+							<div className='not-authorized flex '>
+								<div className='not-authorized__inner text-black p-6'>
+									<h2 className='text-black'>
 										Oops! Not authorized<br></br>for this
 										page.
 									</h2>
-									<p>
+									<p className='text-black'>
 										You should be logged in in order to use{' '}
 										the task/to-do app.<br></br> You
 										obviously don't want another user to
