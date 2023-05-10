@@ -64,7 +64,7 @@ const TaskModal: React.FC<Props> = ({
 							<span className='text-gray-700'>Task Title</span>
 							<input
 								type='text'
-								className='mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500'
+								className='p-2 mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500'
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
 							/>
@@ -74,7 +74,7 @@ const TaskModal: React.FC<Props> = ({
 								Task Description
 							</span>
 							<textarea
-								className='mt-1 block w-full h-24 rounded-md border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500'
+								className='p-2 mt-1 block w-full h-24 rounded-md border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500'
 								value={description}
 								onChange={(e) =>
 									setDescription(e.target.value)
@@ -84,7 +84,7 @@ const TaskModal: React.FC<Props> = ({
 							<span className='text-gray-700'>Task Category</span>
 							<input
 								type='text'
-								className='mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500'
+								className='p-2 mt-1 block w-full rounded-md border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-500'
 								value={category}
 								onChange={(e) => setCategory(e.target.value)}
 							/>

@@ -21,11 +21,6 @@ export default function TaskWrapper() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [editedTask, setEditedTask] = useState<Task | null>(null);
 
-	const openEditModal = (task: Task) => {
-		setEditedTask(task);
-		setIsModalOpen(true);
-	};
-	type ViewType = 'board' | 'list';
 	interface Task {
 		id: string;
 		title: string;
@@ -34,6 +29,25 @@ export default function TaskWrapper() {
 		status: 'todo' | 'inprogress' | 'done';
 		date: string;
 	}
+
+	const handleSubmit = async (
+		title: string,
+		description: string,
+		category: string,
+		taskId?: string
+	  ) => {
+		if (taskId) {
+		  // Edit an existing task
+		  await updateTask(taskId, { title, description, category });
+		  toast.success('Task updated successfully');
+		} else {
+		  // Add a new task
+		  await addTask(title, description, category);
+		  toast.success('Task added successfully');
+		}
+	  };
+	  
+
 	const toggleView = () => {
 		setView(view === 'board' ? 'list' : 'board');
 	};
@@ -188,7 +202,7 @@ export default function TaskWrapper() {
 										List view
 									</button>
 									<button
-										className='btn btn--primary'
+										className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
 										onClick={() => setIsModalOpen(true)}
 										disabled={!isLoggedIn}>
 										Add task
@@ -196,14 +210,15 @@ export default function TaskWrapper() {
 								</div>
 							</div>
 							<TaskModal
-								isOpen={isModalOpen}
-								onClose={() => {
-									setIsModalOpen(false);
-									setEditedTask(null);
-								}}
-								onSubmit={addTask}
-								editedTask={editedTask}
-							/>
+  isOpen={isModalOpen}
+  onClose={() => {
+    setIsModalOpen(false);
+    setEditedTask(null);
+  }}
+  onSubmit={handleSubmit}
+  editedTask={editedTask}
+/>
+
 
 							<div className={`view-container ${view}-view`}>
 								{/* Board View */}
