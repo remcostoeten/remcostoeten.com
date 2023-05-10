@@ -133,7 +133,7 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 								/>
 								<label htmlFor='rememberMe'>Remember Me</label>
 							</span>
-							<span classname='text-md'>
+							<span className='text-md'>
 								<a href='#'>Forgot Password?</a>
 							</span>
 						</div>

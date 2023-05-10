@@ -179,17 +179,17 @@ export default function TaskWrapper() {
 								</div>
 								<div className='toggle-view flex space-x-4'>
 									<button
-										className='board-view bg-blue-500 text-white font-semibold py-2 px-4 rounded-md'
+										className='board-view text-black bg-blue-500 font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										Board view
 									</button>
 									<button
-										className='list-view bg-blue-500 text-white font-semibold py-2 px-4 rounded-md'
+										className='list-view bg-blue-500 text-black font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										List view
 									</button>
 									<button
-										className='add-task bg-green-500 text-white font-semibold py-2 px-4 rounded-md'
+										className='btn btn--primary'
 										onClick={() => setIsModalOpen(true)}
 										disabled={!isLoggedIn}>
 										Add task

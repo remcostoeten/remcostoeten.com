@@ -49,7 +49,7 @@ const TaskModal: React.FC<Props> = ({
 		<Dialog open={isOpen} onClose={onClose}>
 			<Dialog.Overlay className='fixed inset-0 bg-black bg-opacity-30' />
 			<div className='fixed inset-0 flex items-center justify-center'>
-				<div className='bg-white rounded-md p-6 max-w-md w-full mx-auto'>
+				<div className='bg-zinc-100 rounded-md p-6 max-w-md w-full mx-auto'>
 					<Dialog.Title className='text-xl font-semibold flex justify-between items-center'>
 						{editedTask ? 'Edit Task' : 'Add New Task'}
 						<button
