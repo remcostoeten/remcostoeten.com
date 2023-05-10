@@ -101,7 +101,7 @@ export default function Index() {
 						</>
 					) : (
 						<>
-							<div className='not-authorized flex items-middle '>
+							<div className='not-authorized flex items-center '>
 								<div className='not-authorized__inner text-black p-6'>
 									<h2 className='text-black text-lg'>
 										Oops! Not authorized<br></br>for this
