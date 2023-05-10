@@ -56,7 +56,8 @@ export default function TaskWrapper() {
 	useEffect(() => {
 		if (auth.currentUser) {
 			const unsubscribe = onSnapshot(
-				collection(db, `tasks-${auth.currentUser?.uid}`),
+				collection(db, `tasks`),
+				doc(auth.currentUser?.uid),
 				(snapshot) => {
 					setTasks(
 						snapshot.docs.map(
