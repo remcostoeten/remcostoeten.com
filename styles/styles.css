@@ -3010,14 +3010,11 @@ button:hover {
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(7) {
   animation-delay: 1485ms;
 }
-.offcanvas-open .header .offcanvas-menu__items lis:nth-child(8) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(8) {
   animation-delay: 1640ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(9) {
   animation-delay: 1795ms;
-}
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(10) {
-  animation-delay: 1950ms;
 }
 .offcanvas-open .header .offcanvas-menu .text-btn {
   margin-bottom: 20px;

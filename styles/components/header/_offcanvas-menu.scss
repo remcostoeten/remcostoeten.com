@@ -171,14 +171,12 @@
 					&:nth-child(7) {
 						animation-delay: 555ms + 155ms * 6;
 					}
-					&s:nth-child(8) {
+					&:nth-child(8) {
 						animation-delay: 555ms + 155ms * 7;
 					}
 					&:nth-child(9) {
 						animation-delay: 555ms + 155ms * 8;
-					}	&:nth-child(10) {
-						animation-delay: 555ms + 155ms * 9;
-					}
+					}	
 				}
 			}
 

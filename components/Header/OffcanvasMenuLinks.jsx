@@ -16,16 +16,6 @@ export default function OffcanvasMenuLinks(props) {
 
 	const items = [
 		{
-			label: 'Text extractor tool',
-			href: '/url-filtering-tool',
-			pills: <Pills variant='tool' text='Tool' />,
-		},
-		{
-			label: 'Chat export',
-			href: '/chat-export',
-			pills: <Pills variant='upcoming' text='Showcase' />,
-		},
-		{
 			label: 'Task kanban board',
 			href: '/tasks',
 			pills: (
@@ -35,6 +25,17 @@ export default function OffcanvasMenuLinks(props) {
 				</>
 			),
 		},
+		{
+			label: 'Text extractor tool',
+			href: '/url-filtering-tool',
+			pills: <Pills variant='tool' text='Tool' />,
+		},
+		{
+			label: 'Chat export',
+			href: '/chat-export',
+			pills: <Pills variant='upcoming' text='Showcase' />,
+		},
+		
 		{
 			label: 'Loaders',
 			href: '/loaders',
@@ -49,16 +50,6 @@ export default function OffcanvasMenuLinks(props) {
 			label: 'Login',
 			href: '/log',
 			pills: <Pills variant='wip' text='Work in progress' />,
-		},
-		{
-			label: 'Not Authorized',
-			href: '/not-authenticated',
-			pills: (
-				<>
-					<Pills variant='experiment' text='Experiment' />
-					<Pills variant='wip' text='Work in progress' />
-				</>
-			),
 		},
 		{
 			label: 'Stripe payment',
@@ -90,7 +81,7 @@ export default function OffcanvasMenuLinks(props) {
 			href: process.env.SVELTE_APP_URL,
 			pills: (
 			  <>
-				<Pills variant='showcase' text='Showcase' />
+				<Pills variant='wip' text='WiP/future' />
 			  </>
 			),
 		  },
@@ -105,9 +96,9 @@ export default function OffcanvasMenuLinks(props) {
 					value={item.wip}
 				>
 					{item.href ? (
-  <Link href={item.href} className='text-lg text-off-white'>{item.label}</Link>
+  <Link href={item.href} className='text-md text-off-white'>{item.label}</Link>
 ) : (
-  <Link href={`${baseUrl}/`} className='text-lg text-off-white'>{item.label}</Link>
+  <Link href={`${baseUrl}/`} className='text-md text-off-white'>{item.label}</Link>
 )}
 
 					{item.pills}
