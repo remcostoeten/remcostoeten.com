@@ -140,17 +140,6 @@
 
 			&__items {
 				li {
-<<<<<<< HEAD
-				  animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
-				  transition: $animationDuration;
-				  position: relative;
-				  transform: translateX(-200%);
-				  cursor: pointer;
-			  
-				  @for $i from 2 through 11 {
-					&:nth-child(#{$i}) {
-					  animation-delay: 555ms + 155ms * ($i - 2);
-=======
 					animation: slideInFromLeft 1s forwards
 						cubic-bezier(0.42, 0, 0.3, 0.81);
 					transition: $animationDuration;
@@ -189,12 +178,22 @@
 						animation-delay: 555ms + 155ms * 8;
 					}	&:nth-child(10) {
 						animation-delay: 555ms + 155ms * 9;
->>>>>>> master
 					}
-				  }
 				}
-			  }
-			  
+			}
+
+			.btn--menu {
+				// animation: initialHideDelay $menuOpenDuration $initialHide
+						// forwards,
+					// puffInCenter 1500ms 2s cubic-bezier(0.47, 0, 0.745, 0.715)
+						// both,
+					//blurFadeSmall 1500ms 2s ease;
+			}
+
+			.text-btn {
+				margin-bottom: 20px;
+			}
+
 			&::before {
 				content: '';
 				animation: menuOpen $menuOpenDuration forwards;

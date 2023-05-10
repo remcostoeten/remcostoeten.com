@@ -2823,7 +2823,7 @@ button:hover {
     width: 25px;
   }
   100% {
-    scale: 200;
+    scale: 250;
     @media (min-width: 0px) and (max-width: 767px) {
       scale: 70;
     }
@@ -2985,35 +2985,33 @@ button:hover {
 .offcanvas-open .header .offcanvas-menu__items li {
   animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
   transition: 1s;
-  position: relative;
+  animation-delay: 555ms;
   transform: translateX(-200%);
+  position: relative;
+}
+.offcanvas-open .header .offcanvas-menu__items li a {
   cursor: pointer;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(2) {
-  animation-delay: 555ms;
-}
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(3) {
   animation-delay: 710ms;
 }
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(4) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(3) {
   animation-delay: 865ms;
 }
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(5) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(4) {
   animation-delay: 1020ms;
 }
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(6) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(5) {
   animation-delay: 1175ms;
 }
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(7) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(6) {
   animation-delay: 1330ms;
 }
-<<<<<<< HEAD
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(8) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(7) {
   animation-delay: 1485ms;
-=======
+}
 .offcanvas-open .header .offcanvas-menu__items lis:nth-child(8) {
   animation-delay: 1640ms;
->>>>>>> master
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(9) {
   animation-delay: 1795ms;
@@ -3021,11 +3019,8 @@ button:hover {
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(10) {
   animation-delay: 1950ms;
 }
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(10) {
-  animation-delay: 1795ms;
-}
-.offcanvas-open .header .offcanvas-menu__items li:nth-child(11) {
-  animation-delay: 1950ms;
+.offcanvas-open .header .offcanvas-menu .text-btn {
+  margin-bottom: 20px;
 }
 .offcanvas-open .header .offcanvas-menu::before {
   content: "";

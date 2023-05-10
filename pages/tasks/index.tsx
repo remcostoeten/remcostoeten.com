@@ -91,7 +91,7 @@ export default function Index() {
 
 	return (
 		<>
-			<div className='todo bg-gray-100 '>
+			<div className='todo bg-gray-100 h-full '>
 				<div className='todo__inner container'>
 					{isLoggedIn ? (
 						<>
@@ -101,13 +101,13 @@ export default function Index() {
 						</>
 					) : (
 						<>
-							<div className='not-authorized flex '>
+							<div className='not-authorized flex items-middle '>
 								<div className='not-authorized__inner text-black p-6'>
-									<h2 className='text-black'>
+									<h2 className='text-black text-lg'>
 										Oops! Not authorized<br></br>for this
 										page.
 									</h2>
-									<p className='text-black'>
+									<p className='text-black text-md'>
 										You should be logged in in order to use{' '}
 										the task/to-do app.<br></br> You
 										obviously don't want another user to
