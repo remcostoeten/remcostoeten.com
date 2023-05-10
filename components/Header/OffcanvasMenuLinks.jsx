@@ -25,7 +25,7 @@ export default function OffcanvasMenuLinks(props) {
 				</>
 			),
 		},
-		{
+		mm©©©{
 			label: 'Text extractor tool',
 			href: '/url-filtering-tool',
 			pills: <Pills variant='tool' text='Tool' />,
