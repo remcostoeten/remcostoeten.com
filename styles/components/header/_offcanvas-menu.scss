@@ -107,6 +107,8 @@
 .offcanvas-open {
 	.header {
 		.toggle {
+			position: relative;
+
 			&::before {
 				content: '';
 				animation: menuOpen 2000ms forwards;
@@ -124,12 +126,12 @@
 			}
 			@keyframes menuOpen {
 				0% {
-					height: 25px;
-					width: 25px;
+					height: 30px;
+					width: 30px;
 				}
 			
 				100% {
-						scale: 325;
+						scale: 300;
 			
 			
 					@include mobile {

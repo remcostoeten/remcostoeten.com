@@ -29,6 +29,11 @@ $z-index--below-neutral: -1;
 	transition: all 0.15s ease;
   }
 
+  .home-heading {
+	transform: translateX(30%);
+	text-align: left;
+  }
+
 body {
 	position: relative;
 	height: 100vh;

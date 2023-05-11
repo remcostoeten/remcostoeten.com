@@ -920,6 +920,11 @@
   transition: all 0.15s ease;
 }
 
+.home-heading {
+  transform: translateX(30%);
+  text-align: left;
+}
+
 body {
   position: relative;
   height: 100vh;
@@ -2988,6 +2993,9 @@ button:hover {
     display: none;
   }
 }
+.offcanvas-open .header .toggle {
+  position: relative;
+}
 .offcanvas-open .header .toggle::before {
   content: "";
   animation: menuOpen 2000ms forwards;
@@ -3005,11 +3013,11 @@ button:hover {
 }
 @keyframes menuOpen {
   0% {
-    height: 25px;
-    width: 25px;
+    height: 30px;
+    width: 30px;
   }
   100% {
-    scale: 325;
+    scale: 300;
     @media (min-width: 0px) and (max-width: 767px) {
       .offcanvas-open .header .toggle {
         scale: 70;
