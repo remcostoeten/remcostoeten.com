@@ -3,6 +3,24 @@ $animationDurationBase: 250ms;
 $colors: $color--secondary, lighten($color--secondary, 5%),
 	lighten($color--secondary, 10%), lighten($color--secondary, 15%);
 
+.offcanvas-open {
+	.toggle {
+		&:after {
+			content: '';
+			opacity: 0;
+			width: 700px;
+			height: 700px;
+			background-color: $gradient--two;
+			border-radius: 100%;
+			filter: blur(100px);
+			position: absolute;
+			right: 0;
+    bottom: 0;
+			animation: showBlur 20s;
+		}
+	}
+}
+
 .header {
 	top: 0;
 
@@ -12,6 +30,24 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		display: flex;
 		margin-right: 32px;
 		transition: $animationDurationBase ease all;
+
+	
+
+		@keyframes showBlur {
+			0% {
+ scale: 1;
+			}
+
+			15% {
+				opacity: 1;
+			}
+
+			100% {
+				background-color: #b755fd;
+				transform: rotate(45deg);
+				scale: 1.2;
+			}
+		}
 
 		&:hover {
 			span {

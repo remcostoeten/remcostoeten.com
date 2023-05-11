@@ -2467,6 +2467,7 @@ button:hover {
 @tailwind utilities;
 .header__left {
   min-height: 70px;
+  z-index: 1000;
 }
 .header__left .logo {
   transform: translateY(20%);
@@ -2594,6 +2595,20 @@ button:hover {
     @apply z-10 w-full;
   }
 }
+.offcanvas-open .toggle:after {
+  content: "";
+  opacity: 0;
+  width: 700px;
+  height: 700px;
+  background-color: #2e081d;
+  border-radius: 100%;
+  filter: blur(100px);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  animation: showBlur 20s;
+}
+
 .header {
   top: 0;
 }
@@ -2603,6 +2618,19 @@ button:hover {
   display: flex;
   margin-right: 32px;
   transition: 250ms ease all;
+}
+@keyframes showBlur {
+  0% {
+    scale: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    background-color: #b755fd;
+    transform: rotate(45deg);
+    scale: 1.2;
+  }
 }
 .header .toggle:hover span {
   transition-delay: 150ms;
