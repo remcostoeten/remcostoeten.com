@@ -3,11 +3,8 @@ import { useState, useEffect } from 'react';
 import { Pills } from '@/components/ui-elements/Pills';
 
 export default function OffcanvasMenuLinks(props) {
-	const handleCloseMenu = () => {
-		document.body.classList.remove('offcanvas-open');
-		props.handleCloseMenu();
-	  };
-	  	const [visible, setVisible] = useState(false);
+	const handleCloseMenu = props.handleCloseMenu;
+	const [visible, setVisible] = useState(false);
 	const baseUrl = process.env.NODE_ENV === 'development' ? 'http://localhost:5173' : 'https://remcostoeten.com/svelte';
 
 	useEffect(() => {
@@ -23,7 +20,7 @@ export default function OffcanvasMenuLinks(props) {
 			href: '/tasks',
 			pills: (
 				<>
-					<Pills variant='tool' text='Tool' />
+					<Pills className='w-10' variant='tool' text='Tool' />
 					<Pills variant='showcase' text='Showcase' />
 				</>
 			),
@@ -108,7 +105,7 @@ export default function OffcanvasMenuLinks(props) {
 					value={item.wip}
 				>
 					{item.href ? (
-  <Link href={item.href} className='text-md text-off-white'>{item.label}</Link>
+  <Link href={item.href} className='text-lg text-off-white'>{item.label}</Link>
 ) : (
   <Link href={`${baseUrl}/`} className='text-md text-off-white'>{item.label}</Link>
 )}
