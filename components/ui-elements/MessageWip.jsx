@@ -18,10 +18,10 @@ export default function MessageWip() {
 	return (
 		<>
 			{showTooltip && (
-				<div className='fixed bottom-10 left-1/2 transform -translate-x-1/2 z-50'>
+				<div className='fixed shadow-xl rounded-xl bottom-10 left-1/2 transform -translate-x-1/2 z-50'>
 					<div
 						id='toast-warning'
-						className='toast flex items-center p-4 text-slate-500 bg-white rounded-lg shado'
+						className='toast wip flex items-center p-4 text-slate-500 bg-white rounded-lg shado'
 						role='alert'>
 						<div className='inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-orange-500 bg-orange-100 rounded-lg dark:bg-orange-700 dark:text-orange-200'>
 							<svg
@@ -37,11 +37,11 @@ export default function MessageWip() {
 							</svg>
 							<span className='sr-only'>Warning icon</span>
 						</div>
-						<div className='ml-3 text-xs font-normal'>
+							<p classname='text-sm scale-75'>
 							This site is a work in progress, so there may be
 							some issues and features are temporarily unavailable
 							as I am implementing a redesign.
-						</div>
+							</p>
 						<button
 							type='button'
 							onClick={handleTooltipClose}

@@ -77,6 +77,15 @@ export default function OffcanvasMenuLinks(props) {
 			),
 		},
 		{
+			label: 'Paralax landing',
+			href: '/paralax',
+			pills: (
+			  <>
+				<Pills variant='wip' text='WiP' />
+			  </>
+			),
+		  },
+		{
 			label: 'SvelteKit',
 			href: process.env.SVELTE_APP_URL,
 			pills: (

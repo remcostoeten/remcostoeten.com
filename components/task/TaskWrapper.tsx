@@ -191,22 +191,23 @@ export default function TaskWrapper() {
 									</div>
 								</div>
 								<div className='toggle-view flex space-x-4'>
+									<div className="flex">
 									<button
-										className='board-view text-black bg-blue-500 font-semibold py-2 px-4 rounded-md'
+										className='text-sm board-view text-black bg-blue-500 font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										Board view
 									</button>
 									<button
-										className='list-view bg-blue-500 text-black font-semibold py-2 px-4 rounded-md'
+										className='text-sm list-view bg-blue-500 text-black font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										List view
 									</button>
-									<button
-										className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+									</div>
+									<div
+										className='mb-2 mr-2 rounded bg-violet-400 text-white font-semibold py-1 text-sm px-4 cursor-pointer mb-0'
 										onClick={() => setIsModalOpen(true)}
-										disabled={!isLoggedIn}>
-										Add task
-									</button>
+>										Add task
+									</div>
 								</div>
 							</div>
 							<TaskModal
@@ -233,9 +234,13 @@ export default function TaskWrapper() {
 								)}
 								{/* List View */}
 								{view === 'list' && (
-									<div className='list-view'>
-										{/* List view content */}
-									</div>
+									<div className='tasks'>
+									<DraggableContainer
+										tasks={tasks}
+										updateTask={updateTask}
+										removeTask={removeTask}
+									/>
+								</div>
 								)}
 							</div>
 						</main>

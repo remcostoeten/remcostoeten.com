@@ -7,7 +7,6 @@ class MyDocument extends Document {
         <Head>
           <meta charSet='utf-8' />
           <meta name='viewport' content='width=device-width, initial-scale=1.0' />
-          <title>Hello i am remco from ...🔥</title>
           <meta
             name='description'
             content='Remco Stoeten, front-end developer with six years experience aspiring to be more than just a so called "divjesschuiver".'
