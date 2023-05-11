@@ -9,8 +9,8 @@ export default function index() {
 		<>
 		
 		<div className='z-50'>
-				<h1 className='absolute z-50 top-1/4 left-20 swing-in-top-fwd hero-wrapper text-xxxxl text-white font-bold md:w-3/6 leading-12'>
-					<span className="contain">
+				<h1 className='home-heading absolute z-50 top-1/4 left-20 swing-in-top-fwd hero-wrapper text-xxxxl text-white font-bold md:w-3/6 leading-12'>
+					<span>
 						Just another <span className='second'><br/>front-end</span>{' '}
 						developer
 					</span>
@@ -19,7 +19,7 @@ export default function index() {
 					{/* <span>Just another</span>
 					<span className='second'>
 						{'\u00A0'}front-end{'\u00A0'}
-					</span>
+					</span> 
 					<span className='third'> develope</span> */}
 			</div>
 
