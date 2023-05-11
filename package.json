@@ -34,6 +34,7 @@
 		"eslint-config-next": "13.3.0",
 		"firebase": "^9.20.0",
 		"framer-motion": "^10.12.4",
+		"gsap": "^3.11.5",
 		"i": "^0.3.7",
 		"js-cookie": "^3.0.5",
 		"leva": "0.9.23",

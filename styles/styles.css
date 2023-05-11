@@ -901,6 +901,25 @@
   }
 }
 
+.mountain-paralax .header .toggle input + div svg {
+  stroke: #121212;
+}
+.mountain-paralax .header .toggle input + div div span:before, .mountain-paralax .header .toggle input + div div span:after {
+  background-color: #121212;
+}
+
+.cursor {
+  position: fixed;
+  z-index: 9999;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: all 0.15s ease;
+}
+
 body {
   position: relative;
   height: 100vh;
@@ -918,6 +937,11 @@ body::after {
 }
 body.alternative-color {
   background-image: linear-gradient(315deg, #032c2c 0%, #331a32 74%);
+}
+
+.wip p {
+  font-size: 20px;
+  padding-left: 20px;
 }
 
 .speeddial {
@@ -2964,6 +2988,38 @@ button:hover {
     display: none;
   }
 }
+.offcanvas-open .header .toggle::before {
+  content: "";
+  animation: menuOpen 2000ms forwards;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  transform: scale(1);
+  background: #121212;
+  z-index: 20;
+  transition: 350ms ease all;
+  z-index: -1;
+  top: 20px;
+  right: -19px;
+}
+@keyframes menuOpen {
+  0% {
+    height: 25px;
+    width: 25px;
+  }
+  100% {
+    scale: 325;
+    @media (min-width: 0px) and (max-width: 767px) {
+      .offcanvas-open .header .toggle {
+        scale: 70;
+      }
+    }
+  }
+}
+.offcanvas-open .header .offcanvas-menu {
+  z-index: 1000;
+}
 .offcanvas-open .header .offcanvas-menu .container, .offcanvas-open .header .offcanvas-menu .header__inner {
   opacity: 0;
   animation: initialHideDelay 750ms forwards;
@@ -2987,7 +3043,7 @@ button:hover {
   animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
   transition: 1s;
   animation-delay: 555ms;
-  transform: translateX(-200%);
+  transform: translateX(-300%);
   position: relative;
 }
 .offcanvas-open .header .offcanvas-menu__items li a {
@@ -3017,23 +3073,11 @@ button:hover {
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(9) {
   animation-delay: 1795ms;
 }
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(10) {
+  animation-delay: 1950ms;
+}
 .offcanvas-open .header .offcanvas-menu .text-btn {
   margin-bottom: 20px;
-}
-.offcanvas-open .header .offcanvas-menu::before {
-  content: "";
-  animation: menuOpen 2000ms forwards;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  transform: scale(1);
-  background: #121212;
-  z-index: 20;
-  transition: 350ms ease all;
-  z-index: -1;
-  top: 20px;
-  right: -19px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .offcanvas-open .offcanvas-open .offcanvas-menu::before {
