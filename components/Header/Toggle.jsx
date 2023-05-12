@@ -22,7 +22,7 @@ const Toggle = () => {
 
 	const handleCloseMenu = () => {
 		setMenuOpen(false);
-		console.log('test');
+		document.body.classList.remove('offcanvas-open');
 	};
 
 	const handleCloseLoginModal = () => {
