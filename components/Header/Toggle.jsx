@@ -1,3 +1,4 @@
+
 import React, { useEffect, useRef, useState } from 'react';
 import BlobOne from '../svg-elements/BlobOne';
 import RetroButton from '@/components/ui-elements/buttons/RetroButton';
@@ -14,6 +15,7 @@ const Toggle = () => {
 	const [isRegisterModalOpen, setisRegisterModalOpen] = useState(false);
 	const router = useRouter();
 	const [showAuthModal, setShowAuthModal] = useState(false);
+	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
 
 	const handleOpenLoginModal = () => {
 		setIsLoginModalOpen(true);
@@ -24,36 +26,6 @@ const Toggle = () => {
 		setMenuOpen(false);
 		document.body.classList.remove('offcanvas-open');
 	};
-
-	const handleCloseLoginModal = () => {
-		setIsLoginModalOpen(false);
-	};
-
-	const handleOpenRegisterModal = () => {
-		setisRegisterModalOpen(true);
-		setMenuOpen(false);
-	};
-
-	const handleCloseRegisterModal = () => {
-		setisRegisterModalOpen(false);
-	};
-
-	const handleMouseEnter = (index) => {
-		setHoveredIndex(index);
-		setHoveredClasses([
-			...hoveredClasses.slice(0, index),
-			`hovered-${index}`,
-			...hoveredClasses.slice(index + 1),
-		]);
-	};
-
-	const handleMouseLeave = (index) => {
-		setHoveredIndex(null);
-		setHoveredClasses(
-			hoveredClasses.filter((cls) => !cls.includes(`hovered-${index}`)),
-		);
-	};
-	const parentClass = `offcanvas-menu ${hoveredClasses.join(' ')}`;
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
