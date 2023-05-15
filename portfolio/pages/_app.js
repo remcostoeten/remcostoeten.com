@@ -1,5 +1,15 @@
 import '@/styles/globals.css'
 
-export default function App({ Component, pageProps }) {
-  return <Component {...pageProps} />
+import React from 'react';
+import PageTransitionLoader from '@/components/pageTransitionLoader';
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <>
+      <PageTransitionLoader />
+      <Component {...pageProps} />
+    </>
+  );
 }
+
+export default MyApp;
