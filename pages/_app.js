@@ -35,8 +35,7 @@ function App({ Component, pageProps }) {
 			Router.events.off('routeChangeComplete', handleComplete);
 			Router.events.off('routeChangeError', handleComplete);
 
-			// Clear interval when component unmounts
-			clearInterval(intervalId);
+			clearInterval();
 		};
 	}, []);
 
