@@ -37,7 +37,7 @@ export default function MessageWip() {
 							</svg>
 							<span className='sr-only'>Warning icon</span>
 						</div>
-							<p classname='text-sm scale-75'>
+							<p className='text-sm scale-75'>
 							This site is a work in progress, so there may be
 							some issues and features are temporarily unavailable
 							as I am implementing a redesign.

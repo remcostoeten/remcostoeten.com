@@ -59,7 +59,6 @@ function App({ Component, pageProps }) {
 			</main>
 			<WarningMessage />
 			<ToastContainer />
-			<SpeedDial />
 			{version !== null &&  showTimer && (
 				<div className='fixed bottom-4 right-4 z-50'>
 					<div className='bg-white text-xs dark:bg-black rounded		

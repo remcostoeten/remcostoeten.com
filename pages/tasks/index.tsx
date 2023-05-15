@@ -113,8 +113,7 @@ export default function Index() {
 										obviously don't want another user to
 										edit your tasks, do you?
 									</p>
-									<div className='not-authorized__buttons'>
-										<div className='item item--arrow'>
+									<div className='flex flex-col md:flex-row not-authorized__buttons'>										<div className='item item--arrow'>
 											{isLoggedIn ? (
 												<a
 													onClick={() =>
@@ -127,7 +126,8 @@ export default function Index() {
 											) : (
 												<>
 													<div
-														className='cta'
+													// text color indigo
+														className='cta border-2 border-indigo-600 p-2 text-indigo-600 font-bold flex items-center justify-center'
 														onClick={
 															handleSignInButtonClick
 														}>
@@ -140,7 +140,7 @@ export default function Index() {
 										<div className='item item--arrow'>
 											<Link
 												href='/'
-												className='cta cta-two'>
+												className='cta cta-two  border-2 border-indigo-600 p-2 text-indigo-600 font-bold flex items-center justify-center'>
 												Or return home
 												<KeyboardBackspace />
 											</Link>

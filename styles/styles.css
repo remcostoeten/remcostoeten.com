@@ -678,96 +678,6 @@
   background: transparent;
 }
 
-.not-authorized a {
-  text-decoration: none;
-}
-.not-authorized .modal {
-  position: inherit;
-}
-.not-authorized__inner {
-  z-index: 3;
-  position: relative;
-}
-.not-authorized h2 {
-  letter-spacing: 1.1px;
-  margin: 0;
-  font-size: 42px;
-  padding-bottom: 12px;
-}
-.not-authorized p,
-.not-authorized li {
-  padding-bottom: 12px;
-}
-.not-authorized p {
-  padding: 0 0 30px 0;
-}
-.not-authorized ul,
-.not-authorized li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.not-authorized li {
-  display: flex;
-  align-items: center;
-}
-.not-authorized li svg {
-  font-size: 14px;
-  margin-right: 12px;
-  margin-top: 2px;
-  transition: 250ms ease all;
-}
-.not-authorized li svg:hover {
-  color: #7a44fd;
-}
-.not-authorized__buttons {
-  display: flex;
-  font-size: 2.4em;
-  cursor: pointer;
-}
-.not-authorized__buttons .login-btn {
-  all: unset;
-}
-.not-authorized__buttons .cta {
-  margin-right: 24px;
-}
-.not-authorized .cta {
-  margin-bottom: 24px;
-}
-.not-authorized ul {
-  padding-bottom: 24px;
-}
-
-@keyframes backgroundblur {
-  0% {
-    scale: 15;
-    filter: blur(10px);
-    opacity: 0.2;
-  }
-  100% {
-    scale: 15;
-    filter: blur(9.8);
-    opacity: 0.1;
-  }
-}
-@media (max-width: 1280px) {
-  .not-authorized {
-    position: relative;
-  }
-  .not-authorized__inner {
-    max-width: 100%;
-  }
-  .not-authorized h2 {
-    max-width: unset;
-  }
-  .todo__illustration {
-    right: 40px;
-    top: 0;
-    bottom: 0;
-    z-index: 10;
-    position: absolute;
-  }
-}
 .lost svg {
   display: block;
   max-width: 100%;
@@ -901,6 +811,84 @@
   }
 }
 
+.not-authorized a {
+  text-decoration: none;
+}
+.not-authorized .modal {
+  position: inherit;
+}
+.not-authorized__inner {
+  z-index: 3;
+  position: relative;
+}
+.not-authorized h2 {
+  letter-spacing: 1.1px;
+  margin: 0;
+  font-size: 42px;
+  padding-bottom: 12px;
+}
+.not-authorized p,
+.not-authorized li {
+  padding-bottom: 12px;
+}
+.not-authorized p {
+  padding: 0 0 30px 0;
+}
+.not-authorized ul,
+.not-authorized li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.not-authorized li {
+  display: flex;
+  align-items: center;
+}
+.not-authorized li svg {
+  font-size: 14px;
+  margin-right: 12px;
+  margin-top: 2px;
+  transition: 250ms ease all;
+}
+.not-authorized li svg:hover {
+  color: #7a44fd;
+}
+.not-authorized__buttons {
+  display: flex;
+  font-size: 2.4em;
+  cursor: pointer;
+}
+.not-authorized__buttons .login-btn {
+  all: unset;
+}
+.not-authorized__buttons .cta {
+  margin-right: 24px;
+}
+.not-authorized .cta {
+  margin-bottom: 24px;
+}
+.not-authorized ul {
+  padding-bottom: 24px;
+}
+
+@media (max-width: 1280px) {
+  .not-authorized {
+    position: relative;
+  }
+  .not-authorized__inner {
+    max-width: 100%;
+  }
+  .not-authorized h2 {
+    max-width: unset;
+  }
+  .todo__illustration {
+    right: 40px;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    position: absolute;
+  }
+}
 .mountain-paralax .header .toggle input + div svg {
   stroke: #121212;
 }
@@ -1980,9 +1968,10 @@ button:hover {
           clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
 }
 .cta.cta-two svg {
-  margin-right: 20px;
+  margin-right: 15px;
   margin-left: 0;
   transform: rotate(180deg);
+  margin-right: 10px;
 }
 .cta.cta-two a {
   color: #7a44fd;
@@ -1998,22 +1987,24 @@ button:hover {
 @keyframes swipeLeftBlur {
   0% {
     transform: translateX(0);
-    filter: blur(0);
     transform: rotate(0);
+    filter: blur(0);
     opacity: 1;
   }
   50% {
+    transform: rotate(0);
     transform: translateX(-60px);
     filter: blur(2px);
     opacity: 0;
   }
   60% {
-    transform: translateX(100px);
+    transform: rotate(-180deg);
+    transform: translateX(200px);
   }
   100% {
-    transform: rotate(0);
+    transform: translateX(0);
     filter: blur(0);
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
     opacity: 1;
   }
 }
@@ -2041,6 +2032,7 @@ button:hover {
 }
 @keyframes arrowFade {
   0% {
+    scale: 10;
     transform: translateY(-50%) translateX(0);
   }
   100% {

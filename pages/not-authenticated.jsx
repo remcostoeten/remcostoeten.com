@@ -17,7 +17,7 @@ export default function NotAuthenticated() {
 						app. You obviously do not want another user to edit your
 						tasks, do you?
 					</p>
-					<div className='not-authorized__buttons'>
+					<div className='flex flex-col md:flex-row not-authorized__buttons'>
 						{isLoggedIn ? (
 							<a onClick={() => auth.signOut()}>
 								<span>Logout</span>

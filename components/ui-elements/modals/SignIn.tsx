@@ -6,8 +6,7 @@ import {
 	browserLocalPersistence,
 	signInWithEmailAndPassword,
 } from 'firebase/auth';
-import { CloseIcon, EmailIcon, LockIcon } from '@chakra-ui/icons';
-import { FacebookRounded, Google } from '@mui/icons-material';
+import { EmailIcon, LockIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
 import HighlightOffSharpIcon from '@mui/icons-material/HighlightOffSharp';
 import Register from './Register';
@@ -15,6 +14,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Login from '@/components/Login';
 import Confetti from 'react-confetti';
+import { auth } from '@/utils/firebase';
 
 interface SigninModalProps {
 	onClose: () => void;
@@ -38,7 +38,7 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 				? browserLocalPersistence
 				: browserSessionPersistence;
 			await setPersistence(auth, persistenceMode);
-			await signInWithEmailAndPassword(auth, email, password); // Change this
+			await signInWithEmailAndPassword(auth, email, password);
 
 			onSignIn(email, password, rememberMe);
 			setShowConfetti(true);
@@ -48,20 +48,15 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 					`Welcome aboard ${auth.currentUser.displayName}!`,
 				);
 				setShowConfetti(true);
-			} else {
-				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
-				setShowConfetti(true);
-			}
-		} catch (error) {
+			} 
+		} 
+		catch (error) {
 			console.error(error);
-			toast.error(
-				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
-			);
-		}
+		}	
 	};
 
 	useEffect(() => {
-		if (showConfetti) {
+		if (setShowConfetti) {
 			const timer = setTimeout(() => {
 				setShowConfetti(false);
 				onClose();
@@ -71,9 +66,6 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 		}
 	}, [showConfetti, onClose]);
 
-	const handleRememberMeChange = () => {
-		setRememberMe(!rememberMe);
-	};
 
 	const handleCloseSignupModal = () => {
 		setShowSignupModal(false);
@@ -123,21 +115,7 @@ export default function SignIn({ onClose, onSignIn }: SigninModalProps) {
 								}
 							/>
 						</div>
-						<div className='modal__remember-me'>
-							<span>
-								<input
-									type='checkbox'
-									id='rememberMe'
-									checked={rememberMe}
-									onChange={handleRememberMeChange}
-								/>
-								<label htmlFor='rememberMe'>Remember Me</label>
-							</span>
-							<span className='text-md'>
-								<a href='#'>Forgot Password?</a>
-							</span>
-						</div>
-						<button className='login-btn' type='submit'>
+						<button className='login-btn'  type='submit'>
 							<span>Sign in</span>
 						</button>
 					</form>

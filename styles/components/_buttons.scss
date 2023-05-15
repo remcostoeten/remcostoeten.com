@@ -250,9 +250,10 @@ button {
 		}
 
 		svg {
-			margin-right: 20px;
+			margin-right: 15px;
 			margin-left: 0;
 			transform: rotate(180deg);
+			margin-right: 10px;
 		}
 
 		a {
@@ -279,23 +280,25 @@ button {
 @keyframes swipeLeftBlur {
 	0% {
 		transform: translateX(0);
-		filter: blur(0);
 		transform: rotate(0);
+		filter: blur(0);
 		opacity: 1;
 	}
 	50% {
+		transform: rotate(0);
 		transform: translateX(-60px);
 		filter: blur(2px);
 		opacity: 0;
 	}
 	60% {
-		transform: translateX(100px);
+		transform: rotate(-180deg);
+		transform: translateX(200px);
 	}
 
 	100% {
-		transform: rotate(0);
+		transform: translateX(0);
 		filter: blur(0);
-		transform: rotate(180deg);
+		transform: rotate(-180deg);
 		opacity: 1;
 	}
 }
@@ -324,6 +327,7 @@ button {
 }
 @keyframes arrowFade {
 	0% {
+		scale: 10;
 		transform: translateY(-50%) translateX(0);
 	}
 	100% {
