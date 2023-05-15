@@ -40,6 +40,11 @@ body {
 	animation: bodyIn 1200ms ease-in-out;
 	overflow-x: hidden;
 
+	&.white-theme {
+		background: linear-gradient(76.56deg, #cfcdce 0.64%, #f5f3ff 90.93%);
+
+	}
+
 	&::after {
 		content: '';
 		position: absolute;
