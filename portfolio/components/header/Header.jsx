@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
-// import LogoIcon from '../svg-elements/logo/RemcoStoetenLogoIcon';
+import Logo from './Logo';
 import Toggle from './Toggle';
 
 export default function Header() {
@@ -30,7 +30,7 @@ export default function Header() {
 			<div className='container justify-between items-center flex transition-width duration-500 ease-in-out'>
 				<div className='header__left -ml-2'>
 					<Link href='/' onClick={handleCloseMenu}>
-						{/* <LogoIcon /> */}
+						<Logo />
 					</Link>
 				</div>
 				<Toggle
