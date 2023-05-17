@@ -1,0 +1,38 @@
+.birds {
+	transition: transform 0.3s;
+	top: -200px;
+	transform: translate(-190%, 61%);
+}
+
+.birdsWrapper {
+	position: fixed;
+	position: absolute;
+	right: -243px;
+	transform-origin: center;
+}
+
+.secondSection {
+	height: 210vh;
+}
+
+.fadeIn {
+	transition: opacity 0.3s;
+}
+
+.paralax-text {
+	z-index: 110;
+	font-size: 70px;
+	font-weight: 600;
+}
+
+.paralaxWrapper {
+	transform: translate(-10%, 28%);
+	z-index: 110;
+}
+
+.ball-wrapper {
+	position: relative;
+}
+.ball {
+	transform: translate(-10%, -75%);
+}
