@@ -18,9 +18,6 @@ const Toggle = () => {
     setMenuOpen(!menuOpen);
     if (!menuOpen) {
       document.body.classList.add("offcanvas-open");
-      setTimeout(() => {
-        document.body.classList.add("menu-delay");
-      }, 500);
     } else {
       document.body.classList.remove("offcanvas-open");
       document.body.classList.remove("menu-delay");
@@ -46,7 +43,7 @@ const Toggle = () => {
           <div className="offcanvas-menu absolute left-0 text-offWhite top-24">
             <div className={styles.container + " text-off-white text-"}>
               <div className="z-20 delayShow flex flex-col pl-8 md:pl-10 items-baseline">
-                <div className="offcanvas-menu__menu--tagline mb-12">
+                <div className="offcanvas-menu__menu--tagline mb-12 fadeIn">
                   <h2 className="animate__flipInX">Remco stoeten</h2>
                   <p className="first">
                     <span>Aspiring to be more</span>

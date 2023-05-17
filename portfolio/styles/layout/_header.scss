@@ -10,3 +10,54 @@
     opacity: 0;
   }
 }
+@for $i from 1 through 10 {
+  $random-color: random(); // Generate a random number
+  $random-width: random() * (80 - 60) + 20 + vw;
+  $random-height: random() * (80 - 60) + 20 + vh;
+
+  li.mb-5.md\:mb-4.flex.items-center:nth-child(#{$i}) {
+    opacity: 0;
+    transform: translateX(-300%);
+    animation: fadeInFromLeft 2s 500ms forwards, mediumBlur 3s 500ms forwards;
+
+    &:hover {
+      &::after {
+        content: "";
+        position: absolute;
+        width: $random-width;
+        height: $random-height;
+        border-radius: 50%;
+        right: -75vw;
+        opacity: 0.1;
+        background-color: hsl($random-color * 360, 100%, 50%);
+        filter: blur(100px);
+        top: calc((#{$i} - 200px) * 10px);
+        animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards; // Apply the fade-in animation to the pseudo-element
+      }
+    }
+  }
+}
+
+@keyframes fadeInBlob {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.2;
+  }
+}
+
+@keyframes animateBlob {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.5) rotate(-30deg);
+  }
+
+  100% {
+    transform: rotate(180deg);
+  }
+}

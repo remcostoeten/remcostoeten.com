@@ -93,6 +93,39 @@
 }
 
 .delayShow {
-  animation: opacityFadeIn 2s 500ms forwards;
+  animation: opacityFadeIn 2s forwards;
   opacity: 0;
+}
+
+.fadeIn {
+  animation: fade-in 2s 500ms cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  opacity: 0;
+}
+
+.fadeInSecond {
+  animation: fade-in 2s cubic-bezier(0.215, 0.61, 0.355, 1) forwards;
+  opacity: 0;
+  animation-delay: 3s;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateX(-300%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-350%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
