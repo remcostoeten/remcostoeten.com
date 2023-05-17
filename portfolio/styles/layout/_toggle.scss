@@ -23,6 +23,7 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
     }
 
     &::before {
+      animation: showMenu 1500ms ease-in-out forwards;
       content: "";
       width: 25px;
       background-color: #121212;
@@ -30,12 +31,12 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
       border-radius: 50%;
       position: absolute;
       right: 5px;
-      animation: showMenu 1500ms ease-in-out forwards;
       z-index: -1;
-      @include mobile {
-        animation-duration: 1500ms;
-      }
     }
+  }
+
+  .offcanvas-menu {
+    left: 7%;
   }
 }
 
