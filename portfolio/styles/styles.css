@@ -145,12 +145,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(1) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(1):hover::after {
   content: "";
   position: absolute;
-  width: 29.3312081625vw;
-  height: 37.1536974972vh;
+  width: 39.758746318vw;
+  height: 27.0028166102vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(223.6357277473, 100%, 50%);
+  background-color: hsl(93.0308631626, 100%, 50%);
   filter: blur(100px);
   top: calc((1 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -164,12 +164,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(2) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(2):hover::after {
   content: "";
   position: absolute;
-  width: 22.8334211121vw;
-  height: 36.8196727009vh;
+  width: 26.3159607292vw;
+  height: 34.6305570661vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(359.2285100486, 100%, 50%);
+  background-color: hsl(197.7276428513, 100%, 50%);
   filter: blur(100px);
   top: calc((2 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -183,12 +183,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(3) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(3):hover::after {
   content: "";
   position: absolute;
-  width: 37.1798130323vw;
-  height: 24.5385519049vh;
+  width: 35.4817983669vw;
+  height: 37.5322176928vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(98.2788299216, 100%, 50%);
+  background-color: hsl(70.5654411591, 100%, 50%);
   filter: blur(100px);
   top: calc((3 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -202,12 +202,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(4) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(4):hover::after {
   content: "";
   position: absolute;
-  width: 38.4579234544vw;
-  height: 37.3931996644vh;
+  width: 20.3860407555vw;
+  height: 22.0089264094vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(185.1487417022, 100%, 50%);
+  background-color: hsl(298.0409883499, 100%, 50%);
   filter: blur(100px);
   top: calc((4 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -221,12 +221,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(5) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(5):hover::after {
   content: "";
   position: absolute;
-  width: 27.076960934vw;
-  height: 32.1995790726vh;
+  width: 23.6756740196vw;
+  height: 24.4491425355vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(205.626635284, 100%, 50%);
+  background-color: hsl(255.7554297545, 100%, 50%);
   filter: blur(100px);
   top: calc((5 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -240,12 +240,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(6) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(6):hover::after {
   content: "";
   position: absolute;
-  width: 35.4300405198vw;
-  height: 27.9790178462vh;
+  width: 27.7968419689vw;
+  height: 38.1082743255vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(8.7501435564, 100%, 50%);
+  background-color: hsl(82.063952526, 100%, 50%);
   filter: blur(100px);
   top: calc((6 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -259,12 +259,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(7) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(7):hover::after {
   content: "";
   position: absolute;
-  width: 25.3908683858vw;
-  height: 30.0455401864vh;
+  width: 28.2831179072vw;
+  height: 32.0192272498vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(75.6851398777, 100%, 50%);
+  background-color: hsl(259.9301049114, 100%, 50%);
   filter: blur(100px);
   top: calc((7 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -278,12 +278,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(8) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(8):hover::after {
   content: "";
   position: absolute;
-  width: 29.2276200165vw;
-  height: 30.5906358609vh;
+  width: 35.1761063296vw;
+  height: 28.8106126611vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(117.0477590017, 100%, 50%);
+  background-color: hsl(214.1689819542, 100%, 50%);
   filter: blur(100px);
   top: calc((8 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -297,12 +297,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(9) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(9):hover::after {
   content: "";
   position: absolute;
-  width: 39.5527776239vw;
-  height: 30.6442679048vh;
+  width: 21.5228195737vw;
+  height: 32.8315320057vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(351.5444105262, 100%, 50%);
+  background-color: hsl(63.7188514414, 100%, 50%);
   filter: blur(100px);
   top: calc((9 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -316,12 +316,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10) {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   content: "";
   position: absolute;
-  width: 34.1643521367vw;
-  height: 22.8827232791vh;
+  width: 26.213674025vw;
+  height: 28.695896935vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(121.6817960603, 100%, 50%);
+  background-color: hsl(235.4099000826, 100%, 50%);
   filter: blur(100px);
   top: calc((10 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -346,7 +346,7 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
     transform: rotate(180deg);
   }
 }
-.offcanvas-open .toggle:after {
+.offcanvas-open .menu-button:after {
   content: "";
   opacity: 0;
   width: 700px;
@@ -359,10 +359,10 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   bottom: -4px;
   animation: 20s;
 }
-.offcanvas-open .toggle:before {
+.offcanvas-open .menu-button::before {
   content: "";
   width: 25px;
-  background-color: #1e1e1e;
+  background-color: #121212;
   height: 25px;
   border-radius: 50%;
   position: absolute;
@@ -371,7 +371,7 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   z-index: -1;
 }
 @media (max-width: 480px) {
-  .offcanvas-open .toggle:before {
+  .offcanvas-open .menu-button::before {
     animation-duration: 1500ms;
   }
 }

@@ -10,7 +10,7 @@ const MenuButton = () => {
 
   return (
     <button
-      className={`${styles.menu} ${isActive ? styles.active : ""}`}
+      className={`${styles.menu} menu-button ${isActive ? styles.active : ""}`}
       onClick={handleClick}
     >
       <svg viewBox="0 0 64 48">

@@ -7,7 +7,7 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
   lighten($color--secondary, 10%), lighten($color--secondary, 15%);
 
 .offcanvas-open {
-  .toggle {
+  .menu-button {
     &:after {
       content: "";
       opacity: 0;
@@ -22,10 +22,10 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
       animation: 20s;
     }
 
-    &:before {
+    &::before {
       content: "";
       width: 25px;
-      background-color: #1e1e1e;
+      background-color: #121212;
       height: 25px;
       border-radius: 50%;
       position: absolute;
