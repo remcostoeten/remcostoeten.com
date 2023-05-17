@@ -12,29 +12,11 @@ export default function Header() {
 	const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
 
 	const handleCloseMenu = () => {
-		setMenuOpen(!menuOpen);
-		if (!menuOpen) {
-			document.body.classList.add('offcanvas-open');
-			setTimeout(() => {
-				document.body.classList.add('menu-delay');
-			}, 500);
-		} else {
-			document.body.classList.remove('offcanvas-open');
-			document.body.classList.remove('menu-delay');
-		}
+		setMenuOpen(false);
 	};
 
 	const handleToggle = () => {
 		setMenuOpen(!menuOpen);
-		if (!menuOpen) {
-			document.body.classList.add('offcanvas-open');
-			setTimeout(() => {
-				document.body.classList.add('menu-delay');
-			}, 500);
-		} else {
-			document.body.classList.remove('offcanvas-open');
-			document.body.classList.remove('menu-delay');
-		}
 	};
 
 	useEffect(() => {
@@ -47,6 +29,14 @@ export default function Header() {
 			window.removeEventListener('scroll', handleScroll);
 		};
 	}, []);
+
+	useEffect(() => {
+		if (menuOpen) {
+			document.body.classList.add('offcanvas-open');
+		} else {
+			document.body.classList.remove('offcanvas-open');
+		}
+	}, [menuOpen]);
 
 	useEffect(() => {
 		if (menuOpen) {
@@ -94,7 +84,9 @@ export default function Header() {
 							</p>
 						</div>
 						<div className="flex flex-col mb-8 mt-10 ml-2 ">
-							<OffcanvasMenuLinks />
+							<OffcanvasMenuLinks
+								handleCloseMenu={handleCloseMenu}
+							/>
 						</div>
 					</div>
 				)}

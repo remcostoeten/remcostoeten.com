@@ -126,12 +126,12 @@ body {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(1):hover::after {
   content: "";
   position: absolute;
-  width: 36.4912562385vw;
-  height: 37.3599759712vh;
+  width: 25.4870881801vw;
+  height: 30.7415530999vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(235.2022915054, 100%, 50%);
+  background-color: hsl(54.2191746478, 100%, 50%);
   filter: blur(100px);
   top: calc((1 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -140,12 +140,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(1):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(2):hover::after {
   content: "";
   position: absolute;
-  width: 29.8530439415vw;
-  height: 26.8347424488vh;
+  width: 33.7348464535vw;
+  height: 20.952979751vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(60.8592263242, 100%, 50%);
+  background-color: hsl(20.2194528323, 100%, 50%);
   filter: blur(100px);
   top: calc((2 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -154,12 +154,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(2):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(3):hover::after {
   content: "";
   position: absolute;
-  width: 20.4996132736vw;
-  height: 25.3118375681vh;
+  width: 23.9903265026vw;
+  height: 30.0151141446vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(138.4484264026, 100%, 50%);
+  background-color: hsl(325.9765281198, 100%, 50%);
   filter: blur(100px);
   top: calc((3 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -168,12 +168,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(3):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(4):hover::after {
   content: "";
   position: absolute;
-  width: 35.2445353962vw;
-  height: 29.6670042994vh;
+  width: 38.0847828799vw;
+  height: 20.8187676955vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(273.4829687219, 100%, 50%);
+  background-color: hsl(319.0855226293, 100%, 50%);
   filter: blur(100px);
   top: calc((4 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -182,12 +182,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(4):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(5):hover::after {
   content: "";
   position: absolute;
-  width: 20.6052855787vw;
-  height: 31.3894931514vh;
+  width: 23.8838931593vw;
+  height: 30.9470518153vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(86.3109607005, 100%, 50%);
+  background-color: hsl(337.4372281583, 100%, 50%);
   filter: blur(100px);
   top: calc((5 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -196,12 +196,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(5):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(6):hover::after {
   content: "";
   position: absolute;
-  width: 24.248325739vw;
-  height: 32.0768403285vh;
+  width: 27.8931807336vw;
+  height: 22.2062563108vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(119.237240711, 100%, 50%);
+  background-color: hsl(200.7242760606, 100%, 50%);
   filter: blur(100px);
   top: calc((6 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -210,12 +210,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(6):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(7):hover::after {
   content: "";
   position: absolute;
-  width: 27.6893746589vw;
-  height: 37.9090524691vh;
+  width: 37.6956471542vw;
+  height: 25.0888683553vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(198.6215823466, 100%, 50%);
+  background-color: hsl(255.055646916, 100%, 50%);
   filter: blur(100px);
   top: calc((7 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -224,12 +224,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(7):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(8):hover::after {
   content: "";
   position: absolute;
-  width: 27.950801344vw;
-  height: 26.872454999vh;
+  width: 20.9487834771vw;
+  height: 26.6322716912vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(268.1257972398, 100%, 50%);
+  background-color: hsl(9.2110439826, 100%, 50%);
   filter: blur(100px);
   top: calc((8 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -238,12 +238,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(8):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(9):hover::after {
   content: "";
   position: absolute;
-  width: 34.2538297784vw;
-  height: 39.7910816334vh;
+  width: 34.2154209506vw;
+  height: 38.4029594451vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(210.3280829714, 100%, 50%);
+  background-color: hsl(352.0210930407, 100%, 50%);
   filter: blur(100px);
   top: calc((9 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -252,12 +252,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(9):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   content: "";
   position: absolute;
-  width: 38.3265083847vw;
-  height: 37.7201624749vh;
+  width: 33.4440427203vw;
+  height: 26.9256436537vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(312.1483804345, 100%, 50%);
+  background-color: hsl(191.7425946906, 100%, 50%);
   filter: blur(100px);
   top: calc((10 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -360,7 +360,7 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   animation: 20s;
 }
 .offcanvas-open .menu-button::before {
-  animation: showMenu 50ms ease-in-out forwards;
+  animation: showMenu 2.5s ease-in-out forwards;
   content: "";
   width: 25px;
   background-color: #121212;
@@ -372,6 +372,22 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
 }
 .offcanvas-open .offcanvas-menu {
   left: 7%;
+}
+@media (max-width: 480px) {
+  .offcanvas-open .offcanvas-menu {
+    position: relative;
+  }
+  .offcanvas-open .offcanvas-menu::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+  }
 }
 
 .header .toggle {

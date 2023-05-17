@@ -23,7 +23,7 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		}
 
 		&::before {
-			animation: showMenu 50ms ease-in-out forwards;
+			animation: showMenu 2.5s ease-in-out forwards;
 			content: '';
 			width: 25px;
 			background-color: #121212;
@@ -37,6 +37,24 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 
 	.offcanvas-menu {
 		left: 7%;
+
+		@include mobile {
+			position: relative;
+
+			// A blob which sits in background just moving around gradinet colors
+			&::after {
+				content: '';
+				position: absolute;
+
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+				width: 200px;
+				height: 200px;
+				background-color: rgba(0, 0, 0, 0.5);
+				border-radius: 50%;
+			}
+		}
 	}
 }
 

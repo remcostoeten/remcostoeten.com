@@ -41,8 +41,8 @@ export default function OffcanvasMenuLinks(props) {
 			pills: <Pills variant="wip" text="Work in progress" />,
 		},
 		{
-			label: 'WebGL blob',
-			href: '/Blob',
+			label: 'WebGL experiments',
+			href: '/3d-experiments',
 			pills: (
 				<>
 					<Pills variant="experiment" text="Experiment" />
@@ -52,12 +52,16 @@ export default function OffcanvasMenuLinks(props) {
 		},
 	];
 
+	const handleItemClick = () => {
+		handleCloseMenu(); // Close the menu
+	};
+
 	return (
 		<ul className="offcanvas-menu__items">
 			{items.map((item, index) => (
 				<li
 					className={`mb-5 md:mb-4 flex items-center relative animate__animated animate__fadeInUp`}
-					onClick={handleCloseMenu}
+					onClick={handleItemClick} // Close menu when clicked
 					key={item.href}
 					value={item.wip}
 					style={{ animationDelay: `${index * 200}ms` }}
