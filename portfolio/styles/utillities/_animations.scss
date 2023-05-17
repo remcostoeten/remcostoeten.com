@@ -88,10 +88,11 @@
 	}
 
 	to {
-		transform: scale(300);
+		transform: scale(120);
 	}
 }
 
 .delayShow {
   animation:opacityFadeIn  2s forwards;
+  opacity: 0;
 }

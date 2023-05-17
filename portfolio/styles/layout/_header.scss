@@ -1,11 +1,26 @@
-
 .logo {
-    &__icon-right {
-        animation: slideFromLeft 1s $bezier forwards, opacityFadeIn 2s forwards;
-    }
+  &__icon-right {
+    opacity: 0;
+    animation: slideFromLeft 1s $bezier forwards, opacityFadeIn 2s forwards;
+  }
 
-    &__icon-left {
-        animation: slideFromLeft 1s $bezier forwards, opacityFadeIn 2s forwards;
-        opacity: 0;
-    }
+  &__icon-left {
+    animation: slideFromLeft 1s 500ms $bezier forwards,
+      opacityFadeIn 2s 500ms forwards;
+    opacity: 0;
+  }
+}
+
+.offcanvas-menu {
+  animation: fadeIn 5s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }

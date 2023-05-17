@@ -35,17 +35,7 @@ export default function OffcanvasMenuLinks(props) {
 			href: '/chat-export',
 			pills: <Pills variant='upcoming' text='Showcase' />,
 		},
-		
-		{
-			label: 'Loaders',
-			href: '/loaders',
-			pills: (
-				<>
-					<Pills variant='experiment' text='Experiment' />
-					<Pills variant='showcase' text='Showcase' />
-				</>
-			),
-		},
+	
 		{
 			label: 'Login',
 			href: '/log',
@@ -57,17 +47,7 @@ export default function OffcanvasMenuLinks(props) {
 			pills: <Pills variant='wip' text='Work in progress' />,
 		},
 		{
-			label: 'Webgl',
-			href: '/webgl',
-			pills: (
-				<>
-					<Pills variant='experiment' text='Experiment' />
-					<Pills variant='showcase' text='Showcase' />
-				</>
-			),
-		},
-		{
-			label: 'ThreeJS blob',
+			label: 'WebGL blob',
 			href: '/Blob',
 			pills: (
 				<>
@@ -76,24 +56,6 @@ export default function OffcanvasMenuLinks(props) {
 				</>
 			),
 		},
-		{
-			label: 'Paralax landing',
-			href: '/paralax',
-			pills: (
-			  <>
-				<Pills variant='wip' text='WiP' />
-			  </>
-			),
-		  },
-		{
-			label: 'SvelteKit',
-			href: process.env.SVELTE_APP_URL,
-			pills: (
-			  <>
-				<Pills variant='wip' text='WiP/future' />
-			  </>
-			),
-		  },
 	];
 	return (
 		<ul className='offcanvas-menu__items'>

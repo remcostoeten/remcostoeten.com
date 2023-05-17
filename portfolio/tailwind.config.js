@@ -17,6 +17,17 @@ module.exports = {
         'medium': '0.09375rem', //24px
         'large': '0.125rem', //32px
     },
+    textColor: {
+      'offWhite': '#e4e7ec',
+      'offBlack': '#202328',
+    }, 
+    fontSize: {
+      '10': '0.625rem', //10px
+      '12': '0.75rem', //12px
+      '14': '0.875rem', //14px
+      '16': '1rem', //16px
+      '18': '1.125rem', //18px
+    },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
