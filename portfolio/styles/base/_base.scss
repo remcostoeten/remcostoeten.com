@@ -2,11 +2,17 @@
 
 $container-size: 1024px;
 
-.container {
-    max-width: $container-size;
-    margin: 0 auto;
+.contain {
+	width: $container-size;
+	margin: 0 auto;
+}
+
+.contain-space {
+	@include mobile {
+		padding: 0 1rem;
+	}
 }
 
 body {
-    background-color: $off-black;
+	background-color: $off-black;
 }

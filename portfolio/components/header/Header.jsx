@@ -1,65 +1,104 @@
-import React, { useEffect, useState } from "react";
-import Logo from "./Logo";
-import Toggle from "./Toggle";
-import OffcanvasMenuLinks from "./OffcanvasMenuLinks";
+import React, { useEffect, useState } from 'react';
+import Logo from './Logo';
+import Toggle from './Toggle';
+import OffcanvasMenuLinks from './OffcanvasMenuLinks';
+import 'animate.css';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
 
 export default function Header() {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [sticky, setSticky] = useState(false);
+	const [menuOpen, setMenuOpen] = useState(false);
+	const [sticky, setSticky] = useState(false);
+	const [shouldAnimate, setShouldAnimate] = useState(false);
+	const [parent, enableAnimations] = useAutoAnimate(/* optional config */);
 
-  const handleCloseMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+	const handleCloseMenu = () => {
+		setMenuOpen(!menuOpen);
+		if (!menuOpen) {
+			document.body.classList.add('offcanvas-open');
+			setTimeout(() => {
+				document.body.classList.add('menu-delay');
+			}, 500);
+		} else {
+			document.body.classList.remove('offcanvas-open');
+			document.body.classList.remove('menu-delay');
+		}
+	};
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setSticky(window.scrollY > 0);
-    };
+	const handleToggle = () => {
+		setMenuOpen(!menuOpen);
+		if (!menuOpen) {
+			document.body.classList.add('offcanvas-open');
+			setTimeout(() => {
+				document.body.classList.add('menu-delay');
+			}, 500);
+		} else {
+			document.body.classList.remove('offcanvas-open');
+			document.body.classList.remove('menu-delay');
+		}
+	};
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+	useEffect(() => {
+		const handleScroll = () => {
+			setSticky(window.scrollY > 0);
+		};
 
-  return (
-    <div
-      className={`header relative top-0 flex align-middle w-full transition-all	 ${
-        menuOpen ? "menu-open" : ""
-      } ${sticky ? "sticky" : "sticky"}`}
-    >
-      <div className="container justify-between items-center flex transition-width duration-500 ease-in-out pl-4 pt-8 pr-2">
-        <div className="flex z-20 justify-between" onClick={handleCloseMenu}>
-          <Logo />
-          <Toggle
-            menuOpen={menuOpen}
-            setMenuOpen={setMenuOpen}
-            handleCloseMenu={handleCloseMenu}
-          />
-        </div>
-        <div className="container">
-          {menuOpen && (
-            <div className="offcanvas-menu text-offWhite">
-              <div className="text-off-white">
-                <div>
-                  <div className="offcanvas-menu__menu--tagline mb-12 fadeIn ml-3 mt-10">
-                    <h2 className="animate__flipInX">Remco stoeten</h2>
-                    <p className="first">
-                      <span>Aspiring to be more</span>
-                    </p>
-                    <p className="last">
-                      than a <i>divjesschuiver</i>
-                    </p>
-                  </div>
-                  <div className="flex flex-col mb-8 mt-10 ml-2">
-                    <OffcanvasMenuLinks />
-                  </div>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
+		window.addEventListener('scroll', handleScroll);
+		return () => {
+			window.removeEventListener('scroll', handleScroll);
+		};
+	}, []);
+
+	useEffect(() => {
+		if (menuOpen) {
+			setTimeout(() => {
+				setShouldAnimate(true);
+			}, 2000);
+		} else {
+			setShouldAnimate(false);
+		}
+	}, [menuOpen]);
+
+	return (
+		<>
+			<div
+				className={`header relative top-0 flex align-middle w-full transition-all	 ${
+					menuOpen ? 'menu-open' : ''
+				} ${sticky ? 'sticky' : 'sticky'}`}
+			>
+				<div className="contain contain-space flex z-20 justify-between mt-4 animate__animated animate__fadeIn animate__slower">
+					<Logo className="animate__animated animate__bounceInLeft animate__slower" />
+					<Toggle
+						menuOpen={menuOpen}
+						setMenuOpen={setMenuOpen}
+						handleCloseMenu={handleCloseMenu}
+						className="animate__animated animate__bounceInRight animate__slower"
+					/>
+				</div>
+			</div>
+			<div>
+				{menuOpen && (
+					<div className="offcanvas-menu text-offWhite ml-6 animate__animated animate__fadeIn animate__slower">
+						<div className="offcanvas-menu__menu--tagline mb-12  ml-3 mt-10">
+							<h2 className="animate__animated animate__slower">
+								Remco stoeten
+							</h2>
+							<p className="first">
+								<span className="animate__animated animate__bounceInDown animate__slower">
+									Aspiring to be more
+								</span>
+							</p>
+							<p className="last">
+								<i className="animate__animated animate__fadeInUp animate__slower">
+									than a divjesschuiver
+								</i>
+							</p>
+						</div>
+						<div className="flex flex-col mb-8 mt-10 ml-2 ">
+							<OffcanvasMenuLinks />
+						</div>
+					</div>
+				)}
+			</div>
+		</>
+	);
 }
