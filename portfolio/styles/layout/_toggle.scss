@@ -1,14 +1,12 @@
-@import '../abstracts/variables/_colors.scss';
+@import "../abstracts/variables/_colors.scss";
 
 $hamburger-stripe-width: 20px;
 $animationDurationBase: 250ms;
 
-
-
 $colors: $color--secondary, lighten($color--secondary, 5%),
   lighten($color--secondary, 10%), lighten($color--secondary, 15%);
 
-.offcanvas-open {  
+.offcanvas-open {
   .toggle {
     &:after {
       content: "";
@@ -21,27 +19,23 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
       position: absolute;
       right: -4px;
       bottom: -4px;
-      animation:   20s;
+      animation: 20s;
     }
 
     &:before {
-		content: "";
+      content: "";
       width: 25px;
-	  background-color:     #1e1e1e;
+      background-color: #1e1e1e;
       height: 25px;
       border-radius: 50%;
       position: absolute;
       right: 5px;
-		animation: showMenu 1500ms ease-in-out forwards;		
-		z-index: -1;
-		@include mobile {
-		animation-duration: 1500ms;
-	  }
-	}
-  }
-
-  .pill {
-    @extend .delayShow;
+      animation: showMenu 1500ms ease-in-out forwards;
+      z-index: -1;
+      @include mobile {
+        animation-duration: 1500ms;
+      }
+    }
   }
 }
 

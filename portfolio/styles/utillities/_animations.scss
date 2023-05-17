@@ -83,16 +83,16 @@
 }
 
 @keyframes showMenu {
-	from {
-		transform: scale(1);
-	}
+  from {
+    transform: scale(1);
+  }
 
-	to {
-		transform: scale(120);
-	}
+  to {
+    transform: scale(120);
+  }
 }
 
 .delayShow {
-  animation:opacityFadeIn  2s forwards;
+  animation: opacityFadeIn 2s 500ms forwards;
   opacity: 0;
 }

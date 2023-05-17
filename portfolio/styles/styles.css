@@ -137,18 +137,6 @@ body {
   opacity: 0;
 }
 
-.offcanvas-menu {
-  animation: fadeIn 5s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .offcanvas-open .toggle:after {
   content: "";
   opacity: 0;
@@ -178,6 +166,7 @@ body {
     animation-duration: 1500ms;
   }
 }
+
 .header .toggle {
   transition: 250ms ease all;
 }
@@ -383,7 +372,7 @@ body {
     transform: scale(120);
   }
 }
-.delayShow, .offcanvas-open .pill {
-  animation: opacityFadeIn 2s forwards;
+.delayShow {
+  animation: opacityFadeIn 2s 500ms forwards;
   opacity: 0;
 }/*# sourceMappingURL=styles.css.map */

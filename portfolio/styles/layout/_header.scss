@@ -10,17 +10,3 @@
     opacity: 0;
   }
 }
-
-.offcanvas-menu {
-  animation: fadeIn 5s;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}

@@ -1,8 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import RetroButton from "@/components/ui-elements/buttons/RetroButton";
 import OffcanvasMenuLinks from "./OffcanvasMenuLinks";
 import styles from "./Toggle.module.scss";
-import MenuButton from "./MenuButton";
+import MenuButton from "./offcanvas/MenuButton";
 
 const Toggle = () => {
   const [menuOpen, setMenuOpen] = useState(false);
