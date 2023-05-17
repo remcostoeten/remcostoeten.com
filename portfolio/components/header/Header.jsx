@@ -28,7 +28,7 @@ export default function Header() {
         menuOpen ? "menu-open" : ""
       } ${sticky ? "sticky" : "sticky"}`}
     >
-      <div className="container justify-between items-center flex transition-width duration-500 ease-in-out">
+      <div className="container justify-between items-center flex transition-width duration-500 ease-in-out pl-4 pt-8 pr-2">
         <div
           className="flex justify-between align-middle z-20"
           onClick={handleCloseMenu}
