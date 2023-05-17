@@ -1,12 +1,14 @@
-import '@/styles/globals.css'
+import CustomCursor from "@/components/CustomCursor";
+import Header from "@/components/header/Header";
+import "@/styles/styles.css";
 
-import React from 'react';
-import PageTransitionLoader from '@/components/pageTransitionLoader';
+import React from "react";
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-      <PageTransitionLoader />
+      <CustomCursor />
+      <Header/>
       <Component {...pageProps} />
     </>
   );

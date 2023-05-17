@@ -259,3 +259,8 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		}
 	}
 }
+
+.delay {
+					animation: hamburgerIn 2s ease-in-out;
+
+}

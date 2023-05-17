@@ -1,3 +1,529 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #202328;
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+
+/*
+  3. Allow percentage-based heights in the application
+*/
+html, body {
+  height: 100%;
+}
+
+/*
+  Typographic tweaks!
+  4. Add accessible line-height
+  5. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+  6. Improve media defaults
+*/
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+  7. Remove built-in form typography styles
+*/
+input, button, textarea, select {
+  font: inherit;
+}
+
+/*
+  8. Avoid text overflows
+*/
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+  9. Create a root stacking context
+*/
+#root, #__next {
+  isolation: isolate;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Karla", sans-serif;
+  line-height: 1.7;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  padding: 20px 14px;
+}
+
+header img {
+  height: 15px;
+}
+
+header ul {
+  margin-left: auto;
+}
+
+header ul li {
+  color: white;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.container {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+
+.container .left img {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.container .right {
+  padding: 0 10px;
+  margin-top: -100px;
+}
+
+.container .right h1 {
+  color: white;
+  font-size: 124px;
+  font-weight: 900;
+  display: inline-block;
+  font-family: serif;
+  line-height: 1;
+}
+
+.container .right span {
+  font-size: 72px;
+  letter-spacing: -4px;
+  color: #232323;
+}
+
+.container .right p {
+  margin-top: 40px;
+  max-width: 600px;
+  color: white;
+  opacity: 0.5;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+.container .right a {
+  text-decoration: none;
+  color: white;
+  display: inline-block;
+  margin-top: 40px;
+  opacity: 0.5;
+  border: 1px solid gray;
+  padding: 5px 12px 6px 12px;
+  border-radius: 5px;
+}
+
+.cover-2 {
+  background-color: #0f0f0f;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.cover-3 {
+  background-color: #111111;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.cover-4 {
+  background-color: #131313;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.cover-5 {
+  background: linear-gradient(to bottom, #1d1d1d, black);
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+article {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 80%;
+}
+
+.cover {
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.cover-heading {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.cover-heading h1 {
+  color: white;
+  font-size: 52px;
+  font-weight: 900;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+}
+
+.cover-heading span {
+  color: white;
+  font-size: 52px;
+  font-weight: 900;
+  display: inline-block;
+  font-family: "Roboto", sans-serif;
+}
+
+.imsrk2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: blac;
+  font-size: 72px;
+  font-weight: 900;
+  z-index: -1;
+  color: #2d2d2d;
+  font-family: "Roboto", sans-serif;
+  letter-spacing: -4px;
+  line-height: 1;
+}
+
+@media (min-width: 1024px) {
+  .cover-heading h1 {
+    font-size: 72px;
+  }
+  .cover-heading span {
+    font-size: 72px;
+  }
+  .imsrk2 {
+    font-size: 124px;
+  }
+  header {
+    padding: 50px 80px;
+  }
+  header ul {
+    margin-left: auto;
+  }
+  header ul li {
+    font-size: 14px;
+    margin-left: 50px;
+  }
+  .container {
+    margin-top: 100px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+  .container .left img {
+    width: auto;
+    height: 600px;
+    border-radius: 5px;
+  }
+  .container .right {
+    padding: 0;
+    margin-top: -80px;
+  }
+  .container .right h1 {
+    color: white;
+    font-size: 124px;
+    font-weight: 900;
+    display: inline-block;
+    font-family: serif;
+    line-height: 1;
+  }
+  .container .right span {
+    font-size: 72px;
+    letter-spacing: -4px;
+    color: #232323;
+  }
+  .container .right p {
+    margin-top: 40px;
+    max-width: 600px;
+    color: white;
+    opacity: 0.5;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+  .container .right a {
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    margin-top: 40px;
+    opacity: 0.5;
+    border: 1px solid gray;
+    padding: 5px 12px 6px 12px;
+    border-radius: 5px;
+  }
+}
+
+.orb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: black;
+  z-index: 9999;
+  opacity: 0.5;
+  transition: width 0.3s, height 0.3s; /* Add transition for smooth animation */
+  pointer-events: none; /* Prevent the orb from capturing mouse events */
+}
+
+.orb-hover {
+  width: 24px;
+  height: 24px;
+  box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.3); /* Add box shadow for the glow effect */
+}
+
+.logo__icon-right {
+  animation: slideFromLeft 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards, opacityFadeIn 2s forwards;
+}
+.logo__icon-left {
+  animation: slideFromLeft 1s cubic-bezier(0.075, 0.82, 0.165, 1) forwards, opacityFadeIn 2s forwards;
+  opacity: 0;
+}
+
+.offcanvas-open .toggle {
+  position: relative;
+}
+.offcanvas-open .toggle:after {
+  content: "";
+  opacity: 0;
+  width: 700px;
+  height: 700px;
+  background-color: #80b3ff;
+  border-radius: 100%;
+  filter: blur(100px);
+  position: absolute;
+  right: -4px;
+  bottom: -4px;
+  animation: 20s;
+}
+.offcanvas-open .toggle:before {
+  content: "";
+  width: 25px;
+  background-color: #e4e7ec;
+  height: 25px;
+  border-radius: 50%;
+  position: absolute;
+  right: 5px;
+  animation: showMenu 1500ms ease-in-out infinite;
+  z-index: 10;
+}
+@media (max-width: 480px) {
+  .offcanvas-open .toggle:before {
+    animation-duration: 1500ms;
+  }
+}
+
+.header {
+  top: 0;
+}
+.header .toggle {
+  transition: 250ms ease all;
+}
+.header .toggle:hover span {
+  transition-delay: 150ms;
+  transition: 250ms ease-in-out all;
+  scale: 1.1;
+}
+.header .toggle:hover span:nth-child(1) {
+  transition-delay: 0;
+}
+.header .toggle:hover span:last-child {
+  transition-delay: 250ms;
+}
+.header .toggle:hover svg {
+  scale: 1.1;
+}
+.header .toggle span:hover {
+  scale: 1.1;
+  transform: skew(15deg);
+  transform: rotate(3deg);
+}
+.header .toggle span:nth-child(2) {
+  transition-delay: 150ms;
+}
+.header .toggle span:last-child {
+  transition-delay: 250ms;
+}
+.header .toggle input {
+  display: none;
+}
+.header .toggle input + div {
+  width: 20px;
+  height: 14px;
+  position: relative;
+  animation: hamburgerIn 2s ease-in-out;
+}
+.header .toggle input + div div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: transform 0.5s ease;
+}
+.header .toggle input + div div span {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+.header .toggle input + div div span:first-child {
+  top: 0;
+}
+.header .toggle input + div div span:first-child:before, .header .toggle input + div div span:first-child:after {
+  top: 0;
+}
+.header .toggle input + div div span:last-child {
+  bottom: 0;
+}
+.header .toggle input + div div span:last-child:before, .header .toggle input + div div span:last-child:after {
+  bottom: 0;
+}
+.header .toggle input + div div span:before, .header .toggle input + div div span:after {
+  content: "";
+  display: block;
+  width: 47%;
+  height: 2px;
+  border-radius: 1px;
+  background: #e4e7ec;
+  position: absolute;
+  transition: transform 0.5s ease, border-radius 0.3s ease, background 0.4s ease;
+  z-index: 15;
+}
+.header .toggle input + div div span:before {
+  left: 0;
+  transform-origin: 0 50%;
+  transform: translate(1px, 0) scaleX(1.1);
+}
+.header .toggle input + div div span:after {
+  right: 0;
+  transform-origin: 100% 50%;
+  transform: translate(-1px, 0) scaleX(1.1);
+}
+.header .toggle input + div svg {
+  display: block;
+  fill: none;
+  stroke: #e4e7ec;
+  stroke-width: 2px;
+  width: 44px;
+  height: 44px;
+  stroke-linecap: round;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -22px 0 0 -22px;
+  stroke-dasharray: 0 82.801 8 82.801;
+  stroke-dashoffset: 82.801;
+  transform-origin: 50% 50%;
+  transform: scale(1);
+  transition: stroke-dashoffset 0.5s ease, stroke-dasharray 0.6s ease, transform 0.5s ease, stroke 0.4s ease;
+}
+.header .toggle input + div svg:nth-child(3) {
+  transform: rotate(180deg) scale(1);
+}
+.header .toggle input:checked + div div {
+  transform: rotate(90deg);
+}
+.header .toggle input:checked + div div span:first-child:before {
+  transform: rotate(45deg) translate(2.2px, -3px) scaleX(1.05);
+}
+.header .toggle input:checked + div div span:first-child:after {
+  transform: rotate(-45deg) translate(-2.2px, -3px) scaleX(1.05);
+}
+.header .toggle input:checked + div div span:last-child:before {
+  transform: rotate(-45deg) translate(2.2px, 3px) scaleX(1.05);
+}
+.header .toggle input:checked + div div span:last-child:after {
+  transform: rotate(45deg) translate(-2.2px, 3px) scaleX(1.05);
+}
+.header .toggle input:checked + div svg {
+  stroke-dashoffset: 62;
+  stroke-dasharray: 0 82.801 62 82.801;
+  transform: rotate(90deg);
+  stroke: #e4e7ec;
+}
+.header .toggle input:checked + div svg:nth-child(3) {
+  transform: rotate(270deg);
+}
+
 @keyframes opacityFadeIn {
   from {
     opacity: 0;
@@ -5,4 +531,74 @@
   to {
     opacity: 1;
   }
+}
+@keyframes slideFromTop {
+  from {
+    transform: translateY(-200%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slideFromLeft {
+  from {
+    transform: translateX(-200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+@keyframes minorBlur {
+  from {
+    filter: blur(3px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+@keyframes mediumBlur {
+  from {
+    filter: blur(5px);
+  }
+  to {
+    filter: blur(0px);
+  }
+}
+@keyframes hamburgerIn {
+  0% {
+    opacity: 0;
+    transform: rotate(-15deg);
+    scale: 3;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(0);
+    scale: 1;
+  }
+}
+@keyframes bigBlur {
+  0% {
+    scale: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    background-color: #b755fd;
+    transform: rotate(45deg);
+    scale: 1.2;
+  }
+}
+@keyframes showMenu {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(300);
+  }
+}
+.delayShow {
+  animation: opacityFadeIn 2s forwards;
 }/*# sourceMappingURL=styles.css.map */

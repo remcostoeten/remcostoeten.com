@@ -1,0 +1,11 @@
+
+.logo {
+    &__icon-right {
+        animation: slideFromLeft 1s $bezier forwards, opacityFadeIn 2s forwards;
+    }
+
+    &__icon-left {
+        animation: slideFromLeft 1s $bezier forwards, opacityFadeIn 2s forwards;
+        opacity: 0;
+    }
+}

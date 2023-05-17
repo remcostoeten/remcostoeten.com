@@ -1,0 +1,47 @@
+// Breakpoints
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-desktop-large: 1440px;
+
+// Mobile Mixin
+@mixin mobile {
+  @media (max-width: #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+// Tablet Mixin
+@mixin tablet {
+  @media (min-width: #{$breakpoint-mobile + 1}) and (max-width: #{$breakpoint-tablet}) {
+    @content;
+  }
+}
+
+// Desktop Mixin
+@mixin desktop {
+  @media (min-width: #{$breakpoint-tablet + 1}) and (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}
+
+// Desktop Large Mixin
+@mixin desktop-large {
+  @media (min-width: #{$breakpoint-desktop + 1}) and (max-width: #{$breakpoint-desktop-large}) {
+    @content;
+  }
+}
+
+// Above-Mobile Mixin
+@mixin above-mobile {
+  @media (min-width: #{$breakpoint-mobile + 1}) {
+    @content;
+  }
+}
+
+// Below-Desktop Mixin
+@mixin below-desktop {
+  @media (max-width: #{$breakpoint-desktop}) {
+    @content;
+  }
+}

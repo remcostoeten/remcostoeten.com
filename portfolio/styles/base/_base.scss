@@ -1,0 +1,12 @@
+@import '../abstracts/variables/_colors.scss';
+
+$container-size: 1024px;
+
+.container {
+    max-width: $container-size;
+    margin: 0 auto;
+}
+
+body {
+    background-color: $off-black;
+}

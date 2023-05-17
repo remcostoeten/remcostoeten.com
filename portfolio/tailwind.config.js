@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      duration: { 
+        '2000': '2000ms',
+      },
       padding: {
         'xxs': '0.125rem', //8px'        
         'small': '0.1875rem', //12px

@@ -2770,6 +2770,10 @@ button:hover {
     margin-right: 24px;
   }
 }
+.delay {
+  animation: hamburgerIn 2s ease-in-out;
+}
+
 @keyframes delayShow {
   0% {
     opacity: 0;
