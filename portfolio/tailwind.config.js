@@ -20,6 +20,7 @@ module.exports = {
 			textColor: {
 				offWhite: '#e4e7ec',
 				offBlack: '#202328',
+				lightPink: '#FFD2BF',
 			},
 			fontSize: {
 				10: '0.625rem', //10px
@@ -34,6 +35,9 @@ module.exports = {
 					'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
 				offWhite: '#e4e7ec',
 				offBlack: '#202328',
+				offBlackTwo: '130713',
+				peach: '#FFD2BF',
+				offPurple: '#530030',
 			},
 		},
 	},
