@@ -1,7 +1,5 @@
 import React from 'react';
-import styles from './Toggle.module.scss';
 import MenuButton from './offcanvas/MenuButton';
-import OffcanvasMenuLinks from './OffcanvasMenuLinks';
 
 const Toggle = ({ menuOpen, setMenuOpen, handleCloseMenu }) => {
 	const handleToggle = () => {

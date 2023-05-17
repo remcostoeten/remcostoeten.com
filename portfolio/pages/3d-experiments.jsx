@@ -1,10 +1,12 @@
-import MyComponent from '@/components/header/offcanvas/MyComponent';
+import DnaWaves from '@/components/experimental/DnaWaves';
+import WebGLCanvas from '@/components/experimental/Orb';
 import React from 'react';
 
 export default function d() {
 	return (
 		<>
-			<MyComponent />
+			<WebGLCanvas id="webgl-canvas" />
+			<DnaWaves />
 		</>
 	);
 }

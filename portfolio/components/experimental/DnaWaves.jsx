@@ -12,13 +12,13 @@ import {
 } from 'ogl';
 import { Renderer } from 'ogl';
 
-export default function MyComponent() {
+export default function DnaWaves() {
 	const canvasRef = useRef(null);
 
 	useEffect(() => {
 		const renderer = new Renderer({ canvas: canvasRef.current });
 		const gl = renderer.gl;
-		gl.clearColor(0.0, 0.0, 0.0, 1);
+		gl.clearColor(0.0, 0.0, 0.0, 0);
 
 		const camera = new Camera(gl, { fov: 15 });
 		camera.position.set(1, -3, 4);

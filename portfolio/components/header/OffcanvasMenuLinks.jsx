@@ -61,26 +61,18 @@ export default function OffcanvasMenuLinks(props) {
 			{items.map((item, index) => (
 				<li
 					className={`mb-5 md:mb-4 flex items-center relative animate__animated animate__fadeInUp`}
-					onClick={handleItemClick} // Close menu when clicked
+					onClick={handleItemClick}
+					clicked
 					key={item.href}
 					value={item.wip}
 					style={{ animationDelay: `${index * 200}ms` }}
 				>
-					{item.href ? (
-						<Link
-							href={item.href}
-							className="text-lg menu-item md:text-xl text-off-white"
-						>
-							{item.label}
-						</Link>
-					) : (
-						<Link
-							href={`${baseUrl}/`}
-							className="text-lg md:text-xl text-off-white"
-						>
-							{item.label}
-						</Link>
-					)}
+					<Link
+						href={item.href || `${baseUrl}/`}
+						className="text-lg menu-item md:text-xl text-off-white"
+					>
+						{item.label}
+					</Link>
 
 					{item.pills}
 

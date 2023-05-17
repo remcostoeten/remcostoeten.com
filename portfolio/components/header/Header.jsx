@@ -31,29 +31,23 @@ export default function Header() {
 	}, []);
 
 	useEffect(() => {
-		if (menuOpen) {
-			document.body.classList.add('offcanvas-open');
-		} else {
-			document.body.classList.remove('offcanvas-open');
-		}
+		document.body.classList.toggle('offcanvas-open', menuOpen);
 	}, [menuOpen]);
 
 	useEffect(() => {
-		if (menuOpen) {
-			setTimeout(() => {
-				setShouldAnimate(true);
-			}, 2000);
-		} else {
-			setShouldAnimate(false);
-		}
+		const timer = setTimeout(() => {
+			setShouldAnimate(menuOpen);
+		}, 2000);
+
+		return () => clearTimeout(timer);
 	}, [menuOpen]);
 
 	return (
 		<>
 			<div
-				className={`header relative top-0 flex align-middle w-full transition-all	 ${
+				className={`header relative top-0 flex align-middle w-full transition-all ${
 					menuOpen ? 'menu-open' : ''
-				} ${sticky ? 'sticky' : 'sticky'}`}
+				} ${sticky ? 'sticky' : ''}`}
 			>
 				<div className="contain contain-space flex z-20 justify-between mt-4 animate__animated animate__fadeIn animate__slower">
 					<Logo className="animate__animated animate__bounceInLeft animate__slower" />
@@ -65,32 +59,28 @@ export default function Header() {
 					/>
 				</div>
 			</div>
-			<div>
-				{menuOpen && (
-					<div className="offcanvas-menu text-offWhite ml-6 animate__animated animate__fadeIn animate__slower">
-						<div className="offcanvas-menu__menu--tagline mb-12  ml-3 mt-10">
-							<h2 className="animate__animated animate__slower">
-								Remco stoeten
-							</h2>
-							<p className="first">
-								<span className="animate__animated animate__bounceInDown animate__slower">
-									Aspiring to be more
-								</span>
-							</p>
-							<p className="last">
-								<i className="animate__animated animate__fadeInUp animate__slower">
-									than a divjesschuiver
-								</i>
-							</p>
-						</div>
-						<div className="flex flex-col mb-8 mt-10 ml-2 ">
-							<OffcanvasMenuLinks
-								handleCloseMenu={handleCloseMenu}
-							/>
-						</div>
+			{menuOpen && (
+				<div className="offcanvas-menu text-offWhite ml-6 animate__animated animate__fadeIn animate__slower">
+					<div className="offcanvas-menu__menu--tagline mb-12 ml-3 mt-10">
+						<h2 className="animate__animated animate__slower">
+							Remco stoeten
+						</h2>
+						<p className="first">
+							<span className="animate__animated animate__bounceInDown animate__slower">
+								Aspiring to be more
+							</span>
+						</p>
+						<p className="last">
+							<i className="animate__animated animate__fadeInUp animate__slower">
+								than a divjesschuiver
+							</i>
+						</p>
 					</div>
-				)}
-			</div>
+					<div className="flex flex-col mb-8 mt-10 ml-2">
+						<OffcanvasMenuLinks handleCloseMenu={handleCloseMenu} />
+					</div>
+				</div>
+			)}
 		</>
 	);
 }
