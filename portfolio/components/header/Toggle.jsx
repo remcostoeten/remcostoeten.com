@@ -28,7 +28,7 @@ const Toggle = () => {
 
   return (
     <>
-   <label class="toggle flex justify-end z-150 flex mr-8">
+  <label className={`toggle flex justify-end ${menuOpen ? 'relative' : ''} z-150 flex mr-8`}>
         <input type='checkbox' ref={toggleRef} onClick={handleToggle} />
         <div className='toggle__inner'>
           <div>

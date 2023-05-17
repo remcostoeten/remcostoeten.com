@@ -24,7 +24,7 @@ export default function Header() {
 
 	return (
 		<div
-			className={`header flex align-middle w-full transition-all	 ${
+			className={`header top-0 flex align-middle w-full transition-all	 ${
 				menuOpen ? 'menu-open' : ''
 			} ${sticky ? 'sticky' : 'sticky'}`}>
 			<div className='container justify-between items-center flex transition-width duration-500 ease-in-out'>

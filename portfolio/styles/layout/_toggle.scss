@@ -10,8 +10,6 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 
 .offcanvas-open {
   .toggle {
-    position: relative;
-
     &:after {
       content: "";
       opacity: 0;
@@ -44,8 +42,6 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 }
 
 .header {
-  top: 0;
-
   .toggle {
     transition: $animationDurationBase ease all;
 

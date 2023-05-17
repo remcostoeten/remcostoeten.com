@@ -358,9 +358,6 @@ article {
   opacity: 0;
 }
 
-.offcanvas-open .toggle {
-  position: relative;
-}
 .offcanvas-open .toggle:after {
   content: "";
   opacity: 0;
@@ -391,9 +388,6 @@ article {
   }
 }
 
-.header {
-  top: 0;
-}
 .header .toggle {
   transition: 250ms ease all;
 }
