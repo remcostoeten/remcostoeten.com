@@ -1,27 +1,43 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getUserExpenses } from '@/utils/firebase';
 
-const expenses = [
-  // Dummy data; replace this with your actual data or state management
-  { id: 1, name: 'Groceries', amount: 50, category: 'Food' },
-  { id: 2, name: 'Bus fare', amount: 20, category: 'Transportation' },
-];
+const ExpenseList = ({ user }) => {
+  const [expenses, setExpenses] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
-const ExpenseList = () => (
-  <section className="mb-8">
-    <h2 className="text-xl font-semibold mb-4">Expense List</h2>
-    <div>
-      {expenses.map((expense) => (
-        <div key={expense.id} className="bg-gray-200 p-4 rounded my-2 flex justify-between">
-          <div>
-            <p>{expense.name}</p>
-            <p>{expense.amount}</p>
-            <p>{expense.category}</p>
+  useEffect(() => {
+    if (user) {
+      getUserExpenses(user.uid).then((fetchedExpenses) => {
+        setExpenses(fetchedExpenses);
+      });
+    }
+  }, [user]);
+
+  const handleSelectCategory = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const filteredExpenses = selectedCategory
+    ? expenses.filter((expense) => expense.category === selectedCategory)
+    : expenses;
+
+  return (
+    <section className="mb-8">
+      <h2 className="text-xl font-semibold mb-4">Expense List</h2>
+      <div>
+        {filteredExpenses.map((expense) => (
+          <div key={expense.id} className="bg-gray-200 p-4 rounded my-2 flex justify-between">
+            <div className='text-offBlack'>
+              <p>{expense.name}</p>
+              <p>{expense.amount}</p>
+              <p>{expense.category}</p>
+            </div>
+            <button className="bg-red-500 text-white p-2 rounded">Delete</button>
           </div>
-          <button className="bg-red-500 text-white p-2 rounded">Delete</button>
-        </div>
-      ))}
-    </div>
-  </section>
-);
+        ))}
+      </div>
+    </section>
+  );
+};
 
 export default ExpenseList;
