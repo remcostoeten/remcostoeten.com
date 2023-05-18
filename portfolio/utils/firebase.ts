@@ -81,13 +81,13 @@ const singInWithGoogle = () => {
 };
 
 const logout = () => {
-  console.log("loggin out");
-  signOut(auth)
+	console.log("loggin out");
+	signOut(auth)
     .then(() => {
-      // Sign-out successful.
+		console.log("loggedo out successfully");
     })
     .catch((error) => {
-      // An error happened.
+        console.log("logged out catch error");
     });
 };
 
