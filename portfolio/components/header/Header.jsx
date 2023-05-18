@@ -46,15 +46,15 @@ export default function Header() {
 	return (
 		<>
 			<div
-				className={`header relative top-0 flex align-middle w-full transition-all ${
+				className={`header relative top-0 flex mt-6 align-middle w-full transition-all ${
 					menuOpen ? 'menu-open' : ''
 				} ${sticky ? 'sticky' : ''}`}
 			>
-				<div className="contain contain-space flex z-20 justify-between mt-4 animate__animated animate__fadeIn animate__slower">
+				<div className="contain contain-space flex z-20 justify-between animate__animated animate__fadeIn animate__slower relative">
 					<Logo className="animate__animated animate__bounceInLeft animate__slower" />
 					{menuOpen && (
 						<>
-							<div className="offcanvas-menu text-offWhite ml-6 animate__animated animate__fadeIn animate__slower">
+							<div className="absolute offcanvas-menu text-offWhite mt-10 animate__animated animate__fadeIn animate__slower">
 								<div className="offcanvas-menu__menu--tagline mb-12 ml-3 mt-10">
 									<h2 className="animate__animated animate__slower">
 										Remco stoeten

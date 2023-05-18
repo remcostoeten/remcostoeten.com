@@ -71,7 +71,7 @@ export default function OffcanvasMenuLinks(props) {
 					clicked
 					key={item.href}
 					value={item.wip}
-					style={{ animationDelay: `${index * 200}ms` }}
+					style={{ animationDelay: `${index * 250}ms` }} //menu items itterations animation
 				>
 					<Link
 						href={item.href || `${baseUrl}/`}

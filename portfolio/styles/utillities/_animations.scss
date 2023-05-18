@@ -48,7 +48,6 @@
 	}
 }
 
-// Header toggle animations
 @keyframes hamburgerIn {
 	0% {
 		opacity: 0;
@@ -87,9 +86,20 @@
 	}
 
 	to {
-		transform: scale(125);
+		transform: scale(300);
 	}
 }
+
+@keyframes hideMenu {
+	from {
+		transform: scale(300);
+	}
+
+	to {
+		transform: scale(1);
+	}
+}
+
 
 .delayShow {
 	animation: fadeInOpacity 3s forwards ease-in-out;

@@ -6,7 +6,7 @@
 	cursor: pointer;
 	transition: 0.5s ease;
 	height: 50px;
-
+// inside OffcanvasMenuLinks
 	&:hover .bar {
 		box-shadow: 1px 1px 7px 1px RGBa(0, 0, 0, 0.3);
 	}

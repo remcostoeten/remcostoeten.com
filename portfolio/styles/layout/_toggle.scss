@@ -6,9 +6,33 @@ $animationDurationBase: 250ms;
 $colors: $color--secondary, lighten($color--secondary, 5%),
 	lighten($color--secondary, 10%), lighten($color--secondary, 15%);
 
-.offcanvas-open {
+
 	.menu-button {
 		&:after {
+				scale: 1;
+				transition: 500ms ease all;
+			}
+
+		&::before {
+			animation: hideMenu 1.5s ease-in-out ;
+			content: '';
+			scale: 1;
+			width: 25px;
+			background-color: #121212;
+			height: 25px;
+			border-radius: 50%;
+			position: absolute;
+			right: 5px;
+			scale: 1;
+			z-index: -1;
+		}
+
+	}
+	
+
+.offcanvas-open {
+	.menu-button {
+			&:after {
 			content: '';
 			opacity: 0;
 			width: 700px;
@@ -19,11 +43,11 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 			position: absolute;
 			right: -4px;
 			bottom: -4px;
-			animation: 20s;
+			animation: hideMenu 750ms ease-in-out forwards;
 		}
 
 		&::before {
-			animation: showMenu 1.5s ease-in-out forwards;
+			animation: showMenu 1500ms ease-in-out forwards;
 			content: '';
 			width: 25px;
 			background-color: #121212;
@@ -31,13 +55,12 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 			border-radius: 50%;
 			position: absolute;
 			right: 5px;
+			scale: 1;
 			z-index: -1;
 		}
 	}
 
 	.offcanvas-menu {
-		left: 7%;
-
 		@include mobile {
 			position: relative;
 
@@ -56,6 +79,8 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		}
 	}
 }
+
+
 
 .header {
 	.toggle {
