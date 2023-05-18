@@ -13,7 +13,7 @@ const MaxBudget = ({ user }) => {
 	}, [user]);
 
 	return (
-		<section className="my-8">
+		<section>
 			<h2 className="text-xl font-semibold mb-4">Set your Budget</h2>
 			<form className="offBlack items-center space-x-4">
 				<input

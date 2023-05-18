@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import Logo from './Logo';
+import Logo from '../ui-elements/Logo';
 import Toggle from './Toggle';
 import OffcanvasMenuLinks from './OffcanvasMenuLinks';
 import 'animate.css';

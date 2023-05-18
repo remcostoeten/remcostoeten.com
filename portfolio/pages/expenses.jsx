@@ -5,6 +5,7 @@ import ExpenseList from '@/components/expenses/ExpenseList';
 import AddExpense from '@/components/expenses/AddExpense';
 import MaxBudget from '@/components/expenses/MaxBudget';
 import Login from '@/components/ui-elements/buttons/Login';
+import Aside from '@/components/dashboard/Aside';
 
 const Home = () => {
 	const [user, setUser] = useState(null);
@@ -26,9 +27,11 @@ const Home = () => {
 	};
 
 	return (
-		<main className="p-4 text-offWhite">
+		<main className="text-offWhite">
 			{!user ? (
-				<Login />
+				<>
+					<Aside />
+				</>
 			) : (
 				<>
 					<MaxBudget user={user} />
