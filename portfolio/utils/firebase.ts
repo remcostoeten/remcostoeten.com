@@ -99,4 +99,6 @@ export {
   signInWithPopup,
   GoogleAuthProvider,
   getUserExpenses,
+  setMaxBudget,
+  getMaxBudget
 };
