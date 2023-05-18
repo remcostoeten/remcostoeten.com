@@ -31,6 +31,12 @@ export default function OffcanvasMenuLinks(props) {
 			pills: <Pills variant="upcoming" text="Showcase" />,
 		},
 		{
+			label: 'Expenses tracker',
+			href: '/expenses',
+			pills: <Pills variant="tool" text="Showcase" />,
+			pills: <Pills variant="wip" text="Work in progress" />,
+		},
+		{
 			label: 'Login',
 			href: '/log',
 			pills: <Pills variant="wip" text="Work in progress" />,
