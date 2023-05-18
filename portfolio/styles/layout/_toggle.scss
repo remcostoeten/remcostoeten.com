@@ -23,7 +23,7 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		}
 
 		&::before {
-			animation: showMenu 2.5s ease-in-out forwards;
+			animation: showMenu 1.5s ease-in-out forwards;
 			content: '';
 			width: 25px;
 			background-color: #121212;
@@ -41,7 +41,6 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 		@include mobile {
 			position: relative;
 
-			// A blob which sits in background just moving around gradinet colors
 			&::after {
 				content: '';
 				position: absolute;

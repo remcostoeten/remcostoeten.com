@@ -2,7 +2,6 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Logo from '../ui-elements/Logo';
 import Link from 'next/link';
-import ThemeToggle from './ui-elements/ThemeToggle';
 import HomeIcon from '@mui/icons-material/Home';
 import FormatListNumberedIcon from '@mui/icons-material/FormatListNumbered';
 import BuildIcon from '@mui/icons-material/Build';
@@ -40,7 +39,6 @@ export default function Aside() {
 	return (
 		<aside className="w-1/4 bg-gray-900 pt-6 pl-8 pr-8 mr-8 rounded h-screen">
 			<Logo />
-			<ThemeToggle />
 			<ul className="mt-8">
 				{menuItems.map((menuItem) => (
 					<li key={menuItem.link || menuItem.name}>
