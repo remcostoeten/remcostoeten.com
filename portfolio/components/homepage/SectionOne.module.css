@@ -1,9 +1,3 @@
-.birds {
-	transition: transform 0.3s;
-	top: -200px;
-	transform: translate(-190%, 61%);
-}
-
 .birdsWrapper {
 	position: fixed;
 	position: absolute;
@@ -30,9 +24,12 @@
 	z-index: 110;
 }
 
-.ball-wrapper {
-	position: relative;
-}
 .ball {
-	transform: translate(-10%, -75%);
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	background-color: peachpuff; /* Replace with your desired peachy color */
+	position: absolute;
+	top: 50%;
+	transform: translate(53%, -140%);
 }
