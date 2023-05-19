@@ -30,7 +30,6 @@ const Home = () => {
 		<main className="text-offWhite">
 			{!user ? (
 				<>
-					<Aside />
 				</>
 			) : (
 				<>
