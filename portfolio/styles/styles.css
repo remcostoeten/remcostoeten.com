@@ -165,12 +165,12 @@ body {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(1):hover::after {
   content: "";
   position: absolute;
-  width: 35.2306644027vw;
-  height: 32.4422067837vh;
+  width: 26.7719362331vw;
+  height: 35.8491101204vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(215.269626199, 100%, 50%);
+  background-color: hsl(6.33711974, 100%, 50%);
   filter: blur(100px);
   top: calc((1 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -179,12 +179,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(1):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(2):hover::after {
   content: "";
   position: absolute;
-  width: 35.0109860828vw;
-  height: 39.5175136015vh;
+  width: 22.7828501744vw;
+  height: 24.4953301009vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(248.208716297, 100%, 50%);
+  background-color: hsl(0.1784723741, 100%, 50%);
   filter: blur(100px);
   top: calc((2 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -193,12 +193,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(2):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(3):hover::after {
   content: "";
   position: absolute;
-  width: 27.0660890862vw;
-  height: 30.3210513297vh;
+  width: 33.3997317804vw;
+  height: 20.1913183324vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(155.2370086185, 100%, 50%);
+  background-color: hsl(23.1445558042, 100%, 50%);
   filter: blur(100px);
   top: calc((3 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -207,12 +207,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(3):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(4):hover::after {
   content: "";
   position: absolute;
-  width: 39.0635706989vw;
-  height: 34.453754061vh;
+  width: 30.0289789025vw;
+  height: 39.0034653049vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(210.8254617216, 100%, 50%);
+  background-color: hsl(177.8999870642, 100%, 50%);
   filter: blur(100px);
   top: calc((4 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -221,12 +221,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(4):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(5):hover::after {
   content: "";
   position: absolute;
-  width: 25.875388993vw;
-  height: 29.0237718202vh;
+  width: 31.6668167234vw;
+  height: 36.1394347482vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(2.717549229, 100%, 50%);
+  background-color: hsl(283.689951992, 100%, 50%);
   filter: blur(100px);
   top: calc((5 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -235,12 +235,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(5):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(6):hover::after {
   content: "";
   position: absolute;
-  width: 28.0782648084vw;
-  height: 20.8297820642vh;
+  width: 24.005549vw;
+  height: 36.0536850354vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(269.0328476258, 100%, 50%);
+  background-color: hsl(167.4538603086, 100%, 50%);
   filter: blur(100px);
   top: calc((6 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -249,12 +249,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(6):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(7):hover::after {
   content: "";
   position: absolute;
-  width: 29.4995549048vw;
-  height: 33.2902547471vh;
+  width: 32.9024686311vw;
+  height: 26.6423470226vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(20.9134563129, 100%, 50%);
+  background-color: hsl(254.394848496, 100%, 50%);
   filter: blur(100px);
   top: calc((7 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -263,12 +263,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(7):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(8):hover::after {
   content: "";
   position: absolute;
-  width: 35.3608240227vw;
-  height: 29.7026486111vh;
+  width: 22.1881480406vw;
+  height: 23.3309718519vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(159.0182959845, 100%, 50%);
+  background-color: hsl(334.0834204813, 100%, 50%);
   filter: blur(100px);
   top: calc((8 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -277,12 +277,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(8):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(9):hover::after {
   content: "";
   position: absolute;
-  width: 21.7099626098vw;
-  height: 35.0317028769vh;
+  width: 37.2115794777vw;
+  height: 35.6621079596vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(343.0898847147, 100%, 50%);
+  background-color: hsl(46.2622969661, 100%, 50%);
   filter: blur(100px);
   top: calc((9 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -291,12 +291,12 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(9):hover::after {
 li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   content: "";
   position: absolute;
-  width: 37.9572406563vw;
-  height: 38.3998843505vh;
+  width: 23.0998759785vw;
+  height: 30.2300221682vh;
   border-radius: 50%;
   right: -75vw;
   opacity: 0.1;
-  background-color: hsl(298.4553303185, 100%, 50%);
+  background-color: hsl(336.6410209699, 100%, 50%);
   filter: blur(100px);
   top: calc((10 - 200px) * 10px);
   animation: fadeInBlob 1s ease-in-out forwards, animateBlob 15s forwards;
@@ -385,12 +385,16 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   background-image: linear-gradient(to right, rgb(193, 69, 154), rgb(255, 0, 255)); /* Gradient for link 3 */
 }
 
+.menu-closed .menu-button::after, .menu-closed .menu-button::before {
+  scale: 300;
+}
+
 .menu-button:after {
   scale: 1;
   transition: 500ms ease all;
 }
 .menu-button::before {
-  animation: hideMenu 1.5s ease-in-out;
+  animation: hideMenu 1s cubic-bezier(0.23, 1, 0.92, 1) forwards;
   content: "";
   scale: 1;
   width: 25px;
@@ -398,7 +402,8 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
   height: 25px;
   border-radius: 50%;
   position: absolute;
-  right: 5px;
+  right: 18px;
+  top: 6px;
   scale: 1;
   z-index: -1;
 }
@@ -654,7 +659,7 @@ li.mb-5.md\:mb-4.flex.items-center:nth-child(10):hover::after {
     transform: scale(300);
   }
   to {
-    transform: scale(1);
+    transform: scale(0);
   }
 }
 .delayShow {

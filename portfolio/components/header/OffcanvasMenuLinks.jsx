@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Pills } from './Pills';
+import { doc } from '@firebase/firestore';
 
 export default function OffcanvasMenuLinks(props) {
 	const handleCloseMenu = props.handleCloseMenu;
@@ -26,24 +27,9 @@ export default function OffcanvasMenuLinks(props) {
 			pills: <Pills variant="tool" text="Tool" />,
 		},
 		{
-			label: 'Chat export',
-			href: '/chat-export',
-			pills: <Pills variant="upcoming" text="Showcase" />,
-		},
-		{
 			label: 'Expenses tracker',
 			href: '/expenses',
 			pills: <Pills variant="tool" text="Showcase" />,
-			pills: <Pills variant="wip" text="Work in progress" />,
-		},
-		{
-			label: 'Login',
-			href: '/log',
-			pills: <Pills variant="wip" text="Work in progress" />,
-		},
-		{
-			label: 'Stripe payment',
-			href: '/product',
 			pills: <Pills variant="wip" text="Work in progress" />,
 		},
 		{
@@ -59,8 +45,11 @@ export default function OffcanvasMenuLinks(props) {
 	];
 
 	const handleItemClick = () => {
-		handleCloseMenu(); // Close the menu
+		handleCloseMenu(); 
+		document.body.classList.add('menu-closed');
+	
 	};
+	
 
 	return (
 		<ul className="offcanvas-menu__items">

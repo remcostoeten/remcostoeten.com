@@ -3,18 +3,21 @@
 $hamburger-stripe-width: 20px;
 $animationDurationBase: 250ms;
 
-$colors: $color--secondary, lighten($color--secondary, 5%),
-	lighten($color--secondary, 10%), lighten($color--secondary, 15%);
-
-
+.menu-closed {
 	.menu-button {
+		&::after,
+		&::before {
+
+scale:300;}	}
+}
+.menu-button {
 		&:after {
 				scale: 1;
 				transition: 500ms ease all;
 			}
 
 		&::before {
-			animation: hideMenu 1.5s ease-in-out ;
+			animation: hideMenu 1s cubic-bezier(0.23, 1, 0.920, 1) forwards;
 			content: '';
 			scale: 1;
 			width: 25px;
@@ -22,12 +25,14 @@ $colors: $color--secondary, lighten($color--secondary, 5%),
 			height: 25px;
 			border-radius: 50%;
 			position: absolute;
-			right: 5px;
+			right: 18px;
+			top: 6px;
 			scale: 1;
 			z-index: -1;
 		}
 
-	}
+
+}
 	
 
 .offcanvas-open {
