@@ -678,96 +678,6 @@
   background: transparent;
 }
 
-.not-authorized a {
-  text-decoration: none;
-}
-.not-authorized .modal {
-  position: inherit;
-}
-.not-authorized__inner {
-  z-index: 3;
-  position: relative;
-}
-.not-authorized h2 {
-  letter-spacing: 1.1px;
-  margin: 0;
-  font-size: 42px;
-  padding-bottom: 12px;
-}
-.not-authorized p,
-.not-authorized li {
-  padding-bottom: 12px;
-}
-.not-authorized p {
-  padding: 0 0 30px 0;
-}
-.not-authorized ul,
-.not-authorized li {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.not-authorized li {
-  display: flex;
-  align-items: center;
-}
-.not-authorized li svg {
-  font-size: 14px;
-  margin-right: 12px;
-  margin-top: 2px;
-  transition: 250ms ease all;
-}
-.not-authorized li svg:hover {
-  color: #7a44fd;
-}
-.not-authorized__buttons {
-  display: flex;
-  font-size: 2.4em;
-  cursor: pointer;
-}
-.not-authorized__buttons .login-btn {
-  all: unset;
-}
-.not-authorized__buttons .cta {
-  margin-right: 24px;
-}
-.not-authorized .cta {
-  margin-bottom: 24px;
-}
-.not-authorized ul {
-  padding-bottom: 24px;
-}
-
-@keyframes backgroundblur {
-  0% {
-    scale: 15;
-    filter: blur(10px);
-    opacity: 0.2;
-  }
-  100% {
-    scale: 15;
-    filter: blur(9.8);
-    opacity: 0.1;
-  }
-}
-@media (max-width: 1280px) {
-  .not-authorized {
-    position: relative;
-  }
-  .not-authorized__inner {
-    max-width: 100%;
-  }
-  .not-authorized h2 {
-    max-width: unset;
-  }
-  .todo__illustration {
-    right: 40px;
-    top: 0;
-    bottom: 0;
-    z-index: 10;
-    position: absolute;
-  }
-}
 .lost svg {
   display: block;
   max-width: 100%;
@@ -901,11 +811,116 @@
   }
 }
 
+.not-authorized a {
+  text-decoration: none;
+}
+.not-authorized .modal {
+  position: inherit;
+}
+.not-authorized__inner {
+  z-index: 3;
+  position: relative;
+}
+.not-authorized h2 {
+  letter-spacing: 1.1px;
+  margin: 0;
+  font-size: 42px;
+  padding-bottom: 12px;
+}
+.not-authorized p,
+.not-authorized li {
+  padding-bottom: 12px;
+}
+.not-authorized p {
+  padding: 0 0 30px 0;
+}
+.not-authorized ul,
+.not-authorized li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.not-authorized li {
+  display: flex;
+  align-items: center;
+}
+.not-authorized li svg {
+  font-size: 14px;
+  margin-right: 12px;
+  margin-top: 2px;
+  transition: 250ms ease all;
+}
+.not-authorized li svg:hover {
+  color: #7a44fd;
+}
+.not-authorized__buttons {
+  display: flex;
+  font-size: 2.4em;
+  cursor: pointer;
+}
+.not-authorized__buttons .login-btn {
+  all: unset;
+}
+.not-authorized__buttons .cta {
+  margin-right: 24px;
+}
+.not-authorized .cta {
+  margin-bottom: 24px;
+}
+.not-authorized ul {
+  padding-bottom: 24px;
+}
+
+@media (max-width: 1280px) {
+  .not-authorized {
+    position: relative;
+  }
+  .not-authorized__inner {
+    max-width: 100%;
+  }
+  .not-authorized h2 {
+    max-width: unset;
+  }
+  .todo__illustration {
+    right: 40px;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    position: absolute;
+  }
+}
+.mountain-paralax .header .toggle input + div svg {
+  stroke: #121212;
+}
+.mountain-paralax .header .toggle input + div div span:before, .mountain-paralax .header .toggle input + div div span:after {
+  background-color: #121212;
+}
+
+.cursor {
+  position: fixed;
+  z-index: 9999;
+  width: 20px;
+  height: 20px;
+  background-color: #000;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transition: all 0.15s ease;
+}
+
+.home-heading {
+  transform: translateX(30%);
+  text-align: left;
+}
+
 body {
   position: relative;
   height: 100vh;
   animation: bodyIn 1200ms ease-in-out;
   overflow-x: hidden;
+}
+body.white-theme {
+  background: linear-gradient(76.56deg, #cfcdce 0.64%, #f5f3ff 90.93%);
 }
 body::after {
   content: "";
@@ -916,8 +931,10 @@ body::after {
   z-index: -20;
   background: linear-gradient(76.56deg, #2e081d 0.64%, #0d0a1b 90.93%);
 }
-body.alternative-color {
-  background-image: linear-gradient(315deg, #032c2c 0%, #331a32 74%);
+
+.wip p {
+  font-size: 20px;
+  padding-left: 20px;
 }
 
 .speeddial {
@@ -1136,6 +1153,7 @@ body.alternative-color {
   display: flex;
   align-items: center;
   padding-left: 40px;
+  height: 40px;
   width: 100%;
   font-size: 1em;
   border-radius: 8px;
@@ -1950,9 +1968,10 @@ button:hover {
           clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%);
 }
 .cta.cta-two svg {
-  margin-right: 20px;
+  margin-right: 15px;
   margin-left: 0;
   transform: rotate(180deg);
+  margin-right: 10px;
 }
 .cta.cta-two a {
   color: #7a44fd;
@@ -1968,22 +1987,24 @@ button:hover {
 @keyframes swipeLeftBlur {
   0% {
     transform: translateX(0);
-    filter: blur(0);
     transform: rotate(0);
+    filter: blur(0);
     opacity: 1;
   }
   50% {
+    transform: rotate(0);
     transform: translateX(-60px);
     filter: blur(2px);
     opacity: 0;
   }
   60% {
-    transform: translateX(100px);
+    transform: rotate(-180deg);
+    transform: translateX(200px);
   }
   100% {
-    transform: rotate(0);
+    transform: translateX(0);
     filter: blur(0);
-    transform: rotate(180deg);
+    transform: rotate(-180deg);
     opacity: 1;
   }
 }
@@ -2011,6 +2032,7 @@ button:hover {
 }
 @keyframes arrowFade {
   0% {
+    scale: 10;
     transform: translateY(-50%) translateX(0);
   }
   100% {
@@ -2437,6 +2459,7 @@ button:hover {
 @tailwind utilities;
 .header__left {
   min-height: 70px;
+  z-index: 1000;
 }
 .header__left .logo {
   transform: translateY(20%);
@@ -2564,6 +2587,20 @@ button:hover {
     @apply z-10 w-full;
   }
 }
+.offcanvas-open .toggle:after {
+  content: "";
+  opacity: 0;
+  width: 700px;
+  height: 700px;
+  background-color: #2e081d;
+  border-radius: 100%;
+  filter: blur(100px);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  animation: showBlur 20s;
+}
+
 .header {
   top: 0;
 }
@@ -2573,6 +2610,19 @@ button:hover {
   display: flex;
   margin-right: 32px;
   transition: 250ms ease all;
+}
+@keyframes showBlur {
+  0% {
+    scale: 1;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    background-color: #b755fd;
+    transform: rotate(45deg);
+    scale: 1.2;
+  }
 }
 .header .toggle:hover span {
   transition-delay: 150ms;
@@ -2720,6 +2770,10 @@ button:hover {
     margin-right: 24px;
   }
 }
+.delay {
+  animation: hamburgerIn 2s ease-in-out;
+}
+
 @keyframes delayShow {
   0% {
     opacity: 0;
@@ -2823,7 +2877,7 @@ button:hover {
     width: 25px;
   }
   100% {
-    scale: 200;
+    scale: 250;
     @media (min-width: 0px) and (max-width: 767px) {
       scale: 70;
     }
@@ -2963,6 +3017,41 @@ button:hover {
     display: none;
   }
 }
+.offcanvas-open .header .toggle {
+  position: relative;
+}
+.offcanvas-open .header .toggle::before {
+  content: "";
+  animation: menuOpen 2000ms forwards;
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  transform: scale(1);
+  background: #121212;
+  z-index: 20;
+  transition: 350ms ease all;
+  z-index: -1;
+  top: 20px;
+  right: -19px;
+}
+@keyframes menuOpen {
+  0% {
+    height: 30px;
+    width: 30px;
+  }
+  100% {
+    scale: 300;
+    @media (min-width: 0px) and (max-width: 767px) {
+      .offcanvas-open .header .toggle {
+        scale: 70;
+      }
+    }
+  }
+}
+.offcanvas-open .header .offcanvas-menu {
+  z-index: 1000;
+}
 .offcanvas-open .header .offcanvas-menu .container, .offcanvas-open .header .offcanvas-menu .header__inner {
   opacity: 0;
   animation: initialHideDelay 750ms forwards;
@@ -2986,7 +3075,7 @@ button:hover {
   animation: slideInFromLeft 1s forwards cubic-bezier(0.42, 0, 0.3, 0.81);
   transition: 1s;
   animation-delay: 555ms;
-  transform: translateX(-200%);
+  transform: translateX(-300%);
   position: relative;
 }
 .offcanvas-open .header .offcanvas-menu__items li a {
@@ -3010,7 +3099,7 @@ button:hover {
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(7) {
   animation-delay: 1485ms;
 }
-.offcanvas-open .header .offcanvas-menu__items lis:nth-child(8) {
+.offcanvas-open .header .offcanvas-menu__items li:nth-child(8) {
   animation-delay: 1640ms;
 }
 .offcanvas-open .header .offcanvas-menu__items li:nth-child(9) {
@@ -3021,21 +3110,6 @@ button:hover {
 }
 .offcanvas-open .header .offcanvas-menu .text-btn {
   margin-bottom: 20px;
-}
-.offcanvas-open .header .offcanvas-menu::before {
-  content: "";
-  animation: menuOpen 2000ms forwards;
-  position: absolute;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  transform: scale(1);
-  background: #121212;
-  z-index: 20;
-  transition: 350ms ease all;
-  z-index: -1;
-  top: 20px;
-  right: -19px;
 }
 @media (min-width: 0px) and (max-width: 767px) {
   .offcanvas-open .offcanvas-open .offcanvas-menu::before {

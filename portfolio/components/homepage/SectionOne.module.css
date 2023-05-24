@@ -1,0 +1,35 @@
+.birdsWrapper {
+	position: fixed;
+	position: absolute;
+	right: -243px;
+	transform-origin: center;
+}
+
+.secondSection {
+	height: 210vh;
+}
+
+.fadeIn {
+	transition: opacity 0.3s;
+}
+
+.paralax-text {
+	z-index: 110;
+	font-size: 70px;
+	font-weight: 600;
+}
+
+.paralaxWrapper {
+	transform: translate(-10%, 28%);
+	z-index: 110;
+}
+
+.ball {
+	width: 350px;
+	height: 350px;
+	border-radius: 50%;
+	background-color: peachpuff; /* Replace with your desired peachy color */
+	position: absolute;
+	top: 50%;
+	transform: translate(53%, -140%);
+}

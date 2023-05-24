@@ -1,0 +1,146 @@
+.logo {
+	&__icon-right {
+		opacity: 0;
+		animation: slideFromLeft 2s $bezier forwards, opacityFadeIn 2s forwards;
+	}
+
+	&__icon-left {
+		animation: slideFromLeft 2s 500ms $bezier forwards,
+			opacityFadeIn 2s 500ms forwards;
+		opacity: 0;
+	}
+}
+@for $i from 1 through 10 {
+	$random-color: random(); // Generate a random number
+	$random-width: random() * (80 - 60) + 20 + vw;
+	$random-height: random() * (80 - 60) + 20 + vh;
+
+	li.mb-5.md\:mb-4.flex.items-center:nth-child(#{$i}) {
+		// opacity: 0;
+		// transform: translateX(-300%);
+		// animation: fadeInFromLeft 2s 500ms forwards,
+		// mediumBlur 3s 500ms forwards;
+
+		&:hover {
+			&::after {
+				content: '';
+				position: absolute;
+				width: $random-width;
+				height: $random-height;
+				border-radius: 50%;
+				right: -75vw;
+				opacity: 0.1;
+				background-color: hsl($random-color * 360, 100%, 50%);
+				filter: blur(100px);
+				top: calc((#{$i} - 200px) * 10px);
+				animation: fadeInBlob 1s ease-in-out forwards,
+					animateBlob 15s forwards;
+			}
+		}
+	}
+}
+
+.offcanvas-menu__menu--tagline.mb-12.fadeInFromLeft.ml-3.mt-10 {
+	@extend .fadeInOpacity;
+	opacity: 0;
+}
+
+.h2.animate__animated.animate__fade-in {
+	animation: fadeInBlob 1500ms 1s ease-in-out forwards;
+}
+
+@keyframes fadeInBlob {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes animateBlob {
+	0% {
+		transform: scale(1);
+	}
+
+	50% {
+		transform: scale(1.5) rotate(-30deg);
+	}
+
+	100% {
+		transform: rotate(180deg);
+	}
+}
+
+.blob {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 200px;
+	height: 200px;
+	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 50%;
+	filter: blur(10px);
+	animation: blobAnimation 10s infinite;
+}
+
+@keyframes blobAnimation {
+	0% {
+		width: 0;
+		height: 0;
+	}
+	50% {
+		width: 400px;
+		height: 400px;
+	}
+	100% {
+		width: 200px;
+		height: 200px;
+	}
+}
+.offcanvas-menu__items li:hover .blob {
+	display: block;
+}
+
+.blob {
+	position: absolute;
+	top: 50%;
+	right: -100px;
+	transform: translate(-50%, -50%);
+	width: 75vw;
+	height: 80vh;
+	opacity: 0.2;
+	filter: blur(150px);
+	display: none;
+	background-image: linear-gradient(
+		to right,
+		rgb(13, 126, 59),
+		rgb(0, 255, 0)
+	); /* Default gradient */
+}
+
+.blob1 {
+	background-image: linear-gradient(
+		to right,
+		rgb(206, 60, 231),
+		rgb(129, 23, 168)
+	); /* Gradient for link 1 */
+}
+
+.blob2 {
+	background-image: linear-gradient(
+		to right,
+		rgb(0, 0, 255),
+		rgb(64, 28, 148)
+	); /* Gradient for link 2 */
+}
+
+.blob3 {
+	background-image: linear-gradient(
+		to right,
+		rgb(193, 69, 154),
+		rgb(255, 0, 255)
+	); /* Gradient for link 3 */
+}

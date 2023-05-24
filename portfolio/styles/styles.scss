@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Base
+@import 'base/_variables.scss';
+@import 'base/_mixins.scss';
+@import 'base/_base.scss';
+
+// Abstracts
+@import 'abstracts/_reset.scss';
+@import 'abstracts/_globals.scss';
+@import 'abstracts/variables/colors.scss';
+
+// Components
+@import 'components/_page-transitions.scss';
+@import 'components/_mouse-cursor.scss';
+@import 'components/_waves.scss';
+// Layout
+@import 'layout/_variables.scss';
+@import 'layout/_header.scss';
+@import 'layout/_toggle.scss';
+
+// Utilliies
+@import 'utillities/_animations.scss';

@@ -37,3 +37,9 @@ next-env.d.ts
 
 # Local Netlify folder
 .netlify
+.env.development
+
+.css.map
+*.css.map
+portfolio/styles/styles.css.map
+portfolio/styles/styles.css.map

@@ -1,0 +1,18 @@
+.orb {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: black;
+    z-index: 9999;
+    opacity: 0.5;
+    transition: width 0.3s, height 0.3s; /* Add transition for smooth animation */
+    pointer-events: none; /* Prevent the orb from capturing mouse events */
+  }
+  
+  .orb-hover {
+    width: 24px;
+    height: 24px;
+    box-shadow: 0 0 10px 6px rgba(0, 0, 0, 0.3); /* Add box shadow for the glow effect */
+  }
+  
+  

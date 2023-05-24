@@ -133,11 +133,11 @@ export default function DraggableContainer({
 									)
 								</span>
 							</div>
-							<span className='add'>
+							{/* <span className='add'>
 								<AddBoxRoundedIcon
 									onClick={() => setIsModalOpen(true)}
 								/>
-							</span>
+							</span> */}
 						</div>
 						<TaskModal
 							isOpen={isModalOpen}

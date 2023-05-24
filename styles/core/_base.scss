@@ -6,11 +6,44 @@ $z-index--125: 125;
 $z-index--neutral: 1;
 $z-index--below-neutral: -1;
 
+.mountain-paralax {
+	.header .toggle input + div svg {
+		stroke : $black--alternative;
+	}
+
+	.header .toggle input + div div span:before, .header .toggle input + div div span:after {
+		background-color: $black--alternative;
+	}
+
+}
+
+.cursor {
+	position: fixed;
+	z-index: 9999;
+	width: 20px;
+	height: 20px;
+	background-color: #000;
+	border-radius: 50%;
+	pointer-events: none;
+	mix-blend-mode: difference;
+	transition: all 0.15s ease;
+  }
+
+  .home-heading {
+	transform: translateX(30%);
+	text-align: left;
+  }
+
 body {
 	position: relative;
 	height: 100vh;
 	animation: bodyIn 1200ms ease-in-out;
 	overflow-x: hidden;
+
+	&.white-theme {
+		background: linear-gradient(76.56deg, #cfcdce 0.64%, #f5f3ff 90.93%);
+
+	}
 
 	&::after {
 		content: '';
@@ -21,10 +54,13 @@ body {
 		z-index: -20;
 		background: linear-gradient(76.56deg, #2e081d 0.64%, #0d0a1b 90.93%);
 	}
+}
 
-	&.alternative-color {
-		background-image: linear-gradient(315deg, #032c2c 0%, #331a32 74%);
-	}
+.wip {
+ p {
+	font-size: 20px;
+	padding-left: 20px;
+ }
 }
 
 .speeddial {

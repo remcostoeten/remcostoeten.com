@@ -77,13 +77,16 @@ $outOfView: -110%;
 	}
 
 	100% {
-		scale: 200;
+		scale: 250;
 
 		@include mobile {
 			scale: 70;
 		}
 	}
 }
+
+
+
 
 @keyframes headerLine {
 	0% {

@@ -1,14 +1,51 @@
 import Link from 'next/link';
-
-import { useEffect } from 'react';
+import { useState,useEffect} from 'react';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Confetti from 'react-confetti';
 
 export default function Log() {
-	useEffect(() => {
+	const [name, setName] = useState('');
+	const [email, setEmail] = useState('');
+	const [showConfetti, setShowConfetti] = useState(false);
+	const [password, setPassword] = useState('');useEffect(() => {
 		document.body.classList.add('login');
 		return () => {
 			document.body.classList.remove('login');
 		};
 	}, []);
+
+	const handleSignin = async (event) => {
+		event.preventDefault();
+		try {
+			const auth = getAuth();
+			const persistenceMode = rememberMe
+				? browserLocalPersistence
+				: browserSessionPersistence;
+			await setPersistence(auth, persistenceMode);
+			await signInWithEmailAndPassword(auth, email, password); // Change this
+
+			onSignIn(email, password, rememberMe);
+			setShowConfetti(true);
+
+			if (auth.currentUser?.displayName) {
+				toast.success(
+					`Welcome aboard ${auth.currentUser.displayName}!`,
+				);
+				setShowConfetti(true);
+			} else {
+				toast.success(`Welcome aboard ${auth.currentUser?.email}!`);
+				setShowConfetti(true);
+			}
+		} catch (error) {
+			console.error(error);
+			toast.error(
+				'Something went wrong, probably a typo or already got an account? If this keeps happening contact the admin.',
+			);
+		}
+	};
+
 
 	return (
 		<>
@@ -56,11 +93,13 @@ export default function Log() {
 												/>
 											</svg>
 										</span>
-										<input
-											type='text'
-											className='block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
-											placeholder='name'
-										/>
+										{/* <input
+                      type='text'
+                      className='block w-full px-10 py-3 text-gray-700 bg-white border rounded-lg focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+                      placeholder='name'
+                      value={name}
+                      onChange={(event) => setName(event.target.value)}
+                    /> */}
 									</div>
 									<div className='relative flex items-center mt-6'>
 										<span className='absolute'>
@@ -82,7 +121,10 @@ export default function Log() {
 											type='email'
 											className='block w-full py-3 text-gray-700 bg-white border rounded-lg px-11  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
 											placeholder='Email address'
-										/>
+											value={email}
+											onChange={(event) =>
+												setEmail(event.target.value)
+											}/>
 									</div>
 									<div className='relative flex items-center mt-4'>
 										<span className='absolute'>
@@ -100,23 +142,31 @@ export default function Log() {
 												/>
 											</svg>
 										</span>
+
+
 										<input
-											type='password'
-											className='block w-full px-10 py-3 text-gray-700 bg-white border rounded-  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
-											placeholder='Password'
-										/>
+								type='password'
+								className='block w-full px-10 py-3 text-gray-700 bg-white border rounded-  focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:outline-none focus:ring focus:ring-opacity-40'
+								value={password}
+								placeholder='password'
+								onChange={(event) =>
+									setPassword(event.target.value)
+								}
+							/>
+
+									
 									</div>
 
 									<div className='mt-6'>
-										<button className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50'>
-											Sign Up
-										</button>
+									<button className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50' type='submit'>
+							<span>Sign in</span>
+						</button>
+							
 										<div className='mt-6 text-center '>
-											<a
-												href='#'
+											<Link href='#'
 												className='text-sm text-blue-500 hover:underline dark:text-blue-400'>
 												Already have an account?
-											</a>
+											</Link>
 										</div>
 									</div>
 								</form>
@@ -125,6 +175,13 @@ export default function Log() {
 					</div>
 				</div>
 			</div>
-		</>
+			{showConfetti && (
+				<Confetti
+					width={window.innerWidth}
+					height={window.innerHeight}
+					numberOfPieces={200}
+				/>
+			)}
+				</>
 	);
 }

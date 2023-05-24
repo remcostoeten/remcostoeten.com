@@ -124,6 +124,8 @@ $checkbox-size: 16px;
 			display: flex;
 			align-items: center;
 			padding-left: calc(32px + $spacing-s);
+			height: 40px;
+		
 			width: 100%;
 			font-size: 1em;
 			border-radius: 8px;

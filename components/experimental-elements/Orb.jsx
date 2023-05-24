@@ -161,96 +161,95 @@ void main() {
 }`;
 
 const WebGLCanvas = () => {
-  const canvasRef = useRef();
-  const canvas = canvasRef.current;
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-const gl = canvas.getContext("webgl");
+    const gl = canvas.getContext('webgl');
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      gl.viewport(0, 0, canvas.width, canvas.height);
+    }
+
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    if (!gl) {
+      alert('WebGL is not available on your browser.');
+      return;
+    }
+
+    // Create and compile the vertex shader
+    const vertexShaderObj = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vertexShaderObj, vertexShader);
+    gl.compileShader(vertexShaderObj);
+
+    // Create and compile the fragment shader
+    const fragmentShaderObj = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fragmentShaderObj, fragmentShader);
+    gl.compileShader(fragmentShaderObj);
+
+    // Create and link the shader program
+    const shaderProgram = gl.createProgram();
+    gl.attachShader(shaderProgram, vertexShaderObj);
+    gl.attachShader(shaderProgram, fragmentShaderObj);
+    gl.linkProgram(shaderProgram);
+
+    if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+      alert('Error linking shaders.');
+      return;
+    }
+
+    gl.useProgram(shaderProgram);
+
+    // Create buffer for vertex data
+    const buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1, -1, 1, 1, -1]), gl.STATIC_DRAW);
+
+    const positionLoc = gl.getAttribLocation(shaderProgram, 'a_position');
+    gl.enableVertexAttribArray(positionLoc);
+    gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
+
+    const resolutionLoc = gl.getUniformLocation(shaderProgram, 'u_resolution');
+    const mouseLoc = gl.getUniformLocation(shaderProgram, 'u_mouse');
+    const timeLoc = gl.getUniformLocation(shaderProgram, 'u_time');
+
     gl.viewport(0, 0, canvas.width, canvas.height);
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+    gl.clearColor(0, 0, 0, 1);
 
+    let mouseX = 0;
+    let mouseY = 0;
 
+    canvas.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX / canvas.width;
+      mouseY = 1 - e.clientY / canvas.height;
+    });
 
+    function render(time) {
+      time *= 0.001;
 
-if (!gl) {
-  alert("WebGL is not available on your browser.");
-  return;
-}
+      gl.uniform2f(resolutionLoc, canvas.width, canvas.height);
+      gl.uniform2f(mouseLoc, mouseX, mouseY);
+      gl.uniform1f(timeLoc, time);
 
-// Create and compile the vertex shader
-const vertexShaderObj = gl.createShader(gl.VERTEX_SHADER);
-gl.shaderSource(vertexShaderObj, vertexShader);
-gl.compileShader(vertexShaderObj);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      gl.drawArrays(gl.TRIANGLES, 0, 6);
 
-// Create and compile the fragment shader
-const fragmentShaderObj = gl.createShader(gl.FRAGMENT_SHADER);
-gl.shaderSource(fragmentShaderObj, fragmentShader);
-gl.compileShader(fragmentShaderObj);
+      requestAnimationFrame(render);
+    }
 
-// Create and link the shader program
-const shaderProgram = gl.createProgram();
-gl.attachShader(shaderProgram, vertexShaderObj);
-gl.attachShader(shaderProgram, fragmentShaderObj);
-gl.linkProgram(shaderProgram);
+    requestAnimationFrame(render);
 
-if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
-  alert("Error linking shaders.");
-  return;
-}
-
-gl.useProgram(shaderProgram);
-
-// Create buffer for vertex data
-const buffer = gl.createBuffer();
-gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([
-  -1, -1, 1, -1, -1, 1,
-  1, 1, -1, 1, 1, -1
-]), gl.STATIC_DRAW);
-
-const positionLoc = gl.getAttribLocation(shaderProgram, "a_position");
-gl.enableVertexAttribArray(positionLoc);
-gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-
-const resolutionLoc = gl.getUniformLocation(shaderProgram, "u_resolution");
-const mouseLoc = gl.getUniformLocation(shaderProgram, "u_mouse");
-const timeLoc = gl.getUniformLocation(shaderProgram, "u_time");
-
-gl.viewport(0, 0, canvas.width, canvas.height);
-gl.clearColor(0, 0, 0, 1);
-
-let mouseX = 0;
-let mouseY = 0;
-
-canvas.addEventListener("mousemove", (e) => {
-  mouseX = e.clientX / canvas.width;
-  mouseY = 1 - e.clientY / canvas.height;
-});
-
-function render(time) {
-  time *= 0.001;
-
-  gl.uniform2f(resolutionLoc, canvas.width, canvas.height);
-  gl.uniform2f(mouseLoc, mouseX, mouseY);
-  gl.uniform1f(timeLoc, time);
-
-  gl.clear(gl.COLOR_BUFFER_BIT);
-  gl.drawArrays(gl.TRIANGLES, 0, 6);
-
-  requestAnimationFrame(render);
-}
-
-requestAnimationFrame(render);
+    return () => {
+      window.removeEventListener('resize', resizeCanvas);
+    };
   }, []);
 
-  return <canvas ref={canvasRef} style={{ display: 'block' }} />;
+  return <canvas ref={canvasRef} style={{ display: 'block', width: '100%' }} />;
 };
+
 
 export default WebGLCanvas;

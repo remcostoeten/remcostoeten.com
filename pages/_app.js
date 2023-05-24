@@ -35,8 +35,7 @@ function App({ Component, pageProps }) {
 			Router.events.off('routeChangeComplete', handleComplete);
 			Router.events.off('routeChangeError', handleComplete);
 
-			// Clear interval when component unmounts
-			clearInterval(intervalId);
+			clearInterval();
 		};
 	}, []);
 
@@ -60,10 +59,10 @@ function App({ Component, pageProps }) {
 			</main>
 			<WarningMessage />
 			<ToastContainer />
-			<SpeedDial />
 			{version !== null &&  showTimer && (
 				<div className='fixed bottom-4 right-4 z-50'>
-					<div className='bg-white text-xs dark:bg-black rounded text-slate-600 p-2'>
+					<div className='bg-white text-xs dark:bg-black rounded		
+					text-slate-600 p-2'>
 						Design version{' '}
 						<span className='inline-block font-medium bg-indigo-200 dark:bg-gray-900 rounded-md px-2 py-1 animate-fade-in'>
 							{version}

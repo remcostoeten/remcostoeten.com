@@ -10,13 +10,13 @@ import {
 } from 'firebase/auth';
 
 const firebaseConfig = {
-	apiKey: 'AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es',
-	authDomain: 'task-41e05.firebaseapp.com',
-	projectId: 'task-41e05',
-	storageBucket: 'task-41e05.appspot.com',
-	messagingSenderId: '482137951796',
-	appId: '1:482137951796:web:1dab3385fd607afab28461',
-	measurementId: 'G-VCJ0MVKSX9',
+	apiKey: "AIzaSyA5k9RbLj4sexsoRb4W1w_8wWggxcZQ2es",
+	authDomain: "task-41e05.firebaseapp.com",
+	projectId: "task-41e05",
+	storageBucket: "task-41e05.appspot.com",
+	messagingSenderId: "482137951796",
+	appId: "1:482137951796:web:1dab3385fd607afab28461",
+	measurementId: "G-VCJ0MVKSX9"
 };
 
 const app = initializeApp(firebaseConfig);

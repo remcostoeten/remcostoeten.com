@@ -91,7 +91,7 @@ export default function Index() {
 
 	return (
 		<>
-			<div className='todo bg-gray-100 '>
+			<div className='todo bg-gray-100 h-full '>
 				<div className='todo__inner container'>
 					{isLoggedIn ? (
 						<>
@@ -101,20 +101,19 @@ export default function Index() {
 						</>
 					) : (
 						<>
-							<div className='not-authorized flex '>
+							<div className='not-authorized flex items-center '>
 								<div className='not-authorized__inner text-black p-6'>
-									<h2 className='text-black'>
+									<h2 className='text-black text-xl'>
 										Oops! Not authorized<br></br>for this
 										page.
 									</h2>
-									<p className='text-black'>
+									<p className='text-black text-sm'>
 										You should be logged in in order to use{' '}
 										the task/to-do app.<br></br> You
 										obviously don't want another user to
 										edit your tasks, do you?
 									</p>
-									<div className='not-authorized__buttons'>
-										<div className='item item--arrow'>
+									<div className='flex flex-col md:flex-row not-authorized__buttons'>										<div className='item item--arrow'>
 											{isLoggedIn ? (
 												<a
 													onClick={() =>
@@ -127,7 +126,8 @@ export default function Index() {
 											) : (
 												<>
 													<div
-														className='cta'
+													// text color indigo
+														className='cta border-2 border-indigo-600 p-2 text-indigo-600 font-bold flex items-center justify-center'
 														onClick={
 															handleSignInButtonClick
 														}>
@@ -140,7 +140,7 @@ export default function Index() {
 										<div className='item item--arrow'>
 											<Link
 												href='/'
-												className='cta cta-two'>
+												className='cta cta-two  border-2 border-indigo-600 p-2 text-indigo-600 font-bold flex items-center justify-center'>
 												Or return home
 												<KeyboardBackspace />
 											</Link>

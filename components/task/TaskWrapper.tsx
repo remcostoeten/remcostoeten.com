@@ -21,11 +21,6 @@ export default function TaskWrapper() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [editedTask, setEditedTask] = useState<Task | null>(null);
 
-	const openEditModal = (task: Task) => {
-		setEditedTask(task);
-		setIsModalOpen(true);
-	};
-	type ViewType = 'board' | 'list';
 	interface Task {
 		id: string;
 		title: string;
@@ -34,6 +29,25 @@ export default function TaskWrapper() {
 		status: 'todo' | 'inprogress' | 'done';
 		date: string;
 	}
+
+	const handleSubmit = async (
+		title: string,
+		description: string,
+		category: string,
+		taskId?: string
+	  ) => {
+		if (taskId) {
+		  // Edit an existing task
+		  await updateTask(taskId, { title, description, category });
+		  toast.success('Task updated successfully');
+		} else {
+		  // Add a new task
+		  await addTask(title, description, category);
+		  toast.success('Task added successfully');
+		}
+	  };
+	  
+
 	const toggleView = () => {
 		setView(view === 'board' ? 'list' : 'board');
 	};
@@ -52,27 +66,26 @@ export default function TaskWrapper() {
 			}
 		});
 	}, []);
-
 	useEffect(() => {
 		if (auth.currentUser) {
-			const unsubscribe = onSnapshot(
-				collection(db, `tasks-${auth.currentUser?.uid}`),
-				(snapshot) => {
-					setTasks(
-						snapshot.docs.map(
-							(doc) =>
-								({
-									id: doc.id,
-									...doc.data(),
-								} as Task),
-						),
-					);
-				},
-			);
-			return () => unsubscribe();
+		  const unsubscribe = onSnapshot(
+			collection(db, `tasks-${auth.currentUser?.uid}`),
+			(snapshot) => {
+			  setTasks(
+				snapshot.docs.map(
+				  (doc) =>
+					({
+					  id: doc.id,
+					  ...doc.data(),
+					} as Task),
+				),
+			  );
+			},
+		  );
+		  return () => unsubscribe();
 		}
-	}, []);
-
+	  }, []);
+	  
 	const addTask = async (
 		title: string,
 		description: string,
@@ -178,33 +191,35 @@ export default function TaskWrapper() {
 									</div>
 								</div>
 								<div className='toggle-view flex space-x-4'>
+									<div className="flex">
 									<button
-										className='board-view bg-blue-500 text-white font-semibold py-2 px-4 rounded-md'
+										className='text-sm board-view text-black bg-blue-500 font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										Board view
 									</button>
 									<button
-										className='list-view bg-blue-500 text-white font-semibold py-2 px-4 rounded-md'
+										className='text-sm list-view bg-blue-500 text-black font-semibold py-2 px-4 rounded-md'
 										onClick={toggleView}>
 										List view
 									</button>
-									<button
-										className='add-task bg-green-500 text-white font-semibold py-2 px-4 rounded-md'
+									</div>
+									<div
+										className='mb-2 mr-2 rounded bg-violet-400 text-white font-semibold py-1 text-sm px-4 cursor-pointer mb-0'
 										onClick={() => setIsModalOpen(true)}
-										disabled={!isLoggedIn}>
-										Add task
-									</button>
+>										Add task
+									</div>
 								</div>
 							</div>
 							<TaskModal
-								isOpen={isModalOpen}
-								onClose={() => {
-									setIsModalOpen(false);
-									setEditedTask(null);
-								}}
-								onSubmit={addTask}
-								editedTask={editedTask}
-							/>
+  isOpen={isModalOpen}
+  onClose={() => {
+    setIsModalOpen(false);
+    setEditedTask(null);
+  }}
+  onSubmit={handleSubmit}
+  editedTask={editedTask}
+/>
+
 
 							<div className={`view-container ${view}-view`}>
 								{/* Board View */}
@@ -219,9 +234,13 @@ export default function TaskWrapper() {
 								)}
 								{/* List View */}
 								{view === 'list' && (
-									<div className='list-view'>
-										{/* List view content */}
-									</div>
+									<div className='tasks'>
+									<DraggableContainer
+										tasks={tasks}
+										updateTask={updateTask}
+										removeTask={removeTask}
+									/>
+								</div>
 								)}
 							</div>
 						</main>

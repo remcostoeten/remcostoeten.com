@@ -5,7 +5,8 @@
 .header {
 	&__left {
 		min-height: $header-height;
-
+		z-index: 1000;
+		
 		.logo {
 			transform: translateY(20%);
 		}

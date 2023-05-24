@@ -1,0 +1,18 @@
+@import '../abstracts/variables/_colors.scss';
+
+$container-size: 1024px;
+
+.contain {
+	width: $container-size;
+	margin: 0 auto;
+}
+
+.contain-space {
+	@include mobile {
+		padding: 0 1rem;
+	}
+}
+
+body {
+	background-color: $off-black;
+}

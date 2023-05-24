@@ -1,0 +1,157 @@
+@keyframes opacityFadeIn {
+	from {
+		opacity: 0;
+	}
+
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes slideFromTop {
+	from {
+		transform: translateY(-200%);
+	}
+
+	to {
+		transform: translateY(0);
+	}
+}
+
+@keyframes slideFromLeft {
+	from {
+		transform: translateX(-200%);
+	}
+
+	to {
+		transform: translateX(0);
+	}
+}
+
+@keyframes minorBlur {
+	from {
+		filter: blur(3px);
+	}
+
+	to {
+		filter: blur(0px);
+	}
+}
+
+@keyframes mediumBlur {
+	from {
+		filter: blur(5px);
+	}
+
+	to {
+		filter: blur(0px);
+	}
+}
+
+@keyframes hamburgerIn {
+	0% {
+		opacity: 0;
+		transform: rotate(-15deg);
+		scale: 3;
+	}
+
+	40% {
+		opacity: 0;
+	}
+
+	100% {
+		transform: rotate(0);
+		scale: 1;
+	}
+}
+
+@keyframes bigBlur {
+	0% {
+		scale: 1;
+	}
+
+	15% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: rotate(45deg);
+		scale: 1.2;
+	}
+}
+
+@keyframes showMenu {
+	from {
+		transform: scale(1);
+	}
+
+	to {
+		transform: scale(300);
+	}
+}
+
+@keyframes hideMenu {
+	from {
+		transform: scale(300);
+	}
+
+	to {
+		transform: scale(0);
+	}
+}
+
+
+.delayShow {
+	animation: fadeInOpacity 3s forwards ease-in-out;
+	opacity: 0;
+}
+
+.fadeInFromLeft {
+	animation: fadeInOpacity 1s 500ms ease-in-out forwards;
+}
+
+.fadeInOpacity {
+	animation: fadeInOpacity 1s 500ms ease-in-out forwards;
+}
+
+.flipInFromX {
+	animation: flipInFromX 1s 500ms ease-in-out forwards;
+}
+
+.fadeInSecond {
+	animation: fadeInOpacity 3s ease-in-out forwards;
+	opacity: 0;
+	animation-delay: 3s;
+}
+
+@keyframes flipInFromX {
+	from {
+		transform: rotateX(-90deg);
+	}
+
+	to {
+		transform: rotateX(0deg);
+	}
+}
+
+@keyframes fadeInOpacity {
+	from {
+		opacity: 0;
+		// transform: translateX(-300%);
+	}
+	to {
+		opacity: 1;
+		// transform: translateX(0);
+	}
+}
+
+@keyframes fadeInFromLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-350%);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
