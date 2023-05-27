@@ -1,0 +1,48 @@
+n// Animations
+:root {
+	--animate-duration: 1s;
+	--animate-delay: 1s;
+	--animate-repeat: 1;
+}
+
+$animate-duration: 1s;
+$animate-delay: 1s;
+$animate-repeat: 1;
+
+$containSize: 1024px;
+
+@keyframes offcanvasfadeIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.offcanvasFadeIn {
+	animation-name: offcanvasfadeIn;
+}
+
+.animate {
+	animation-duration: 1s;
+	animation-duration: $animate-duration;
+	animation-fill-mode: both;
+}
+
+.animateSlow {
+	animation-duration: $animate-duration * 3;
+}
+
+.offcanvas-menu {
+	@extend .animate;
+	@extend .offcanvasFadeIn;
+	@extend .animateSlow;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	z-index: 100;
+	margin: 0 auto;
+	width: $containSize;
+}

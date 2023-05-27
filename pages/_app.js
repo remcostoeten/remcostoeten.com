@@ -6,13 +6,13 @@ import Router from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import { InfiniteLoader } from '../components/ui-elements/loaders/Infinite';
 import WarningMessage from '../components/ui-elements/MessageWip';
-import SpeedDial from '../components/ui-elements/Speeddial';
 import Head from 'next/head';
+import TopNotice from '../components/ui-elements/TopNotice';
 
 function App({ Component, pageProps }) {
 	const [loading, setLoading] = useState(false);
-	const [version, setVersion] = useState(233); 
-	const [showTimer, setShowTimer] = useState(true); 
+	const [version, setVersion] = useState(233);
+	const [showTimer, setShowTimer] = useState(true);
 	const handleStart = () => setLoading(true);
 	const handleComplete = () => setLoading(false);
 
@@ -44,27 +44,30 @@ function App({ Component, pageProps }) {
 			<Head>
 				<title>Hello i am remco from ...🔥</title>
 				<meta
-					name='description'
+					name="description"
 					content='Remco Stoeten, front-end developer with six years experience aspiring to be more than just a so called "divjesschuiver".'
 				/>
 				<meta
-					name='viewport'
-					content='width=device-width, initial-scale=1.0'
+					name="viewport"
+					content="width=device-width, initial-scale=1.0"
 				/>
 			</Head>
 			{loading && <InfiniteLoader />}
+			<TopNotice />
 			<Header />
-			<main className='wrapper__content'>
+			<main className="wrapper__content">
 				<Component {...pageProps} />
 			</main>
 			<WarningMessage />
 			<ToastContainer />
-			{version !== null &&  showTimer && (
-				<div className='fixed bottom-4 right-4 z-50'>
-					<div className='bg-white text-xs dark:bg-black rounded		
-					text-slate-600 p-2'>
+			{version !== null && showTimer && (
+				<div className="fixed bottom-4 right-4 z-50">
+					<div
+						className="bg-white text-xs dark:bg-black rounded		
+					text-slate-600 p-2"
+					>
 						Design version{' '}
-						<span className='inline-block font-medium bg-indigo-200 dark:bg-gray-900 rounded-md px-2 py-1 animate-fade-in'>
+						<span className="inline-block font-medium bg-indigo-200 dark:bg-gray-900 rounded-md px-2 py-1 animate-fade-in">
 							{version}
 						</span>
 					</div>

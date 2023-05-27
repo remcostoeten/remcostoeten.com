@@ -1,6 +1,5 @@
 import React from 'react';
 import MenuButton from './offcanvas/MenuButton';
-import { doc } from '@firebase/firestore';
 
 const Toggle = ({ menuOpen, setMenuOpen, handleCloseMenu }) => {
 	const handleToggle = () => {
@@ -10,7 +9,7 @@ const Toggle = ({ menuOpen, setMenuOpen, handleCloseMenu }) => {
 			setTimeout(() => {
 				document.body.classList.remove('menu-closed');
 			}, 2000);
-			}
+		}
 	};
 
 	return (

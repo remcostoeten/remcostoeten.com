@@ -2,7 +2,9 @@ import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import Prism from 'prismjs';
 import 'prismjs/components/prism-jsx.min.js';
-import Waves from '../components/svg-elements/Waves.js';
+import AlertMessage from '../components/ui-elements/AlertMessage';
+import Waves from '../components/svg-elements/Waves';
+import Link from 'next/link';
 
 function FilteredTextComponent() {
 	const [successMessage, setSuccessMessage] = useState('');
@@ -67,6 +69,7 @@ function FilteredTextComponent() {
 		setRemoveClicked(true);
 		setShowResetButton(true);
 	};
+
 	const filterTextOpposite = () => {
 		const lines = inputText.split('\n');
 		const filteredLines = lines.filter((line) => !line.includes(filter));
@@ -89,7 +92,7 @@ function FilteredTextComponent() {
 		if (urls) {
 			urls = urls.map((url) => url.replace(/"/g, '').replace(/'/g, ''));
 			setOutputText(urls.join(' '));
-			setSuccessMessage('All text which is not an URL removed.');
+			setSuccessMessage('All text which is not a URL removed.');
 			const remainingCount = urls.length;
 			setRemainingUrlsCount(remainingCount);
 			const copyCount = Math.min(remainingCount, 50);
@@ -108,6 +111,7 @@ function FilteredTextComponent() {
 	const handleInputChange = (e) => {
 		setInputText(e.target.value);
 	};
+
 	const copyToClipboard = () => {
 		navigator.clipboard.writeText(outputText);
 		setCopied(true);
@@ -147,7 +151,7 @@ function FilteredTextComponent() {
 	}, []);
 
 	const purpleBtnWrapper =
-		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:e xt-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
+		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
 
 	const greenBtnWrapperOuter =
 		'relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-600 to-blue-500 group-hover:from-purple-600 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800';
@@ -166,82 +170,85 @@ function FilteredTextComponent() {
 			<Head>
 				<title>URL Filtering and Link Opener Tool</title>
 				<meta
-					name='Remco stoeten - remcostoeten.com '
-					content='This tool allows you to filter text and extract URLs. It also enables you to open a list of URLs in new tabs.'
+					name="Remco stoeten - remcostoeten.com "
+					content="This tool allows you to filter text and extract URLs. It also enables you to open a list of URLs in new tabs."
 				/>
 				<link
-					rel='canonical'
-					href='https://remcostoeten.com/url-filtering-tool'
+					rel="canonical"
+					href="https://remcostoeten.com/url-filtering-tool"
 				/>
 			</Head>
 			<Waves />
 
-			<article className='contain mx-auto pt-14 z-10'>
-				<h1 className='text-3xl text-white  font-bold mb-4'>
+			<article className="container mx-auto pt-14 z-10">
+				<h1 className="text-3xl text-white font-bold mb-4">
 					URL Filtering and Link Opener Tool
 				</h1>
-				<p className='text-white text-lg mt-4 mb-4'>
+				<p className="text-white mt-4 mb-4">
 					This is a tool I use quite often and I got absolutely sick
 					off seeing a Cloudfare instance everytime I enter the page
 					followed by a captcha and a bunch of ads. So what do you do
 					then? Right, recreate and host the functionallity yourself
 					🤢 So that is what I did.
 				</p>
-				<div className='flex align-middle mb-4'>
-				<div className={`${pinkBtnWrapperOuter} w-full text-black  bg-191919`}>
+				<div className="flex align-middle">
+					<div className={`${purpleBtnWrapper} w-full `}>
 						<input
-							type='text'
+							type="text"
 							value={filter}
-							className='w-full text-black px-3 text-lg py-2 border border-gray-300 bg-191919 rounded'
+							className="w-full px-3 py-2 border text-white bg-191919 border-gray-300 rounded"
 							onChange={handleFilterChange}
-							placeholder='Enter letters here'
+							placeholder="Enter letters here"
 						/>
 					</div>
 				</div>
-				<div className='flex align-middle mb-4'>
-					<div className={`${pinkBtnWrapperOuter} w-full text-black  bg-191919`}>
+				<div className="flex align-middle mb-4">
+					<div className={`${pinkBtnWrapperOuter} w-full bg-191919`}>
 						<textarea
 							value={inputText}
 							onChange={handleInputChange}
-							placeholder='Enter text here'
-							className='w-full text-black px-3 text-lg py-2 border border-gray-300 bg-191919 rounded'
+							placeholder="Enter text here"
+							className="w-full px-3 py-2 border border-gray-300 bg-191919 text-white rounded"
 						/>
 					</div>
 				</div>
-				<div className='flex align-middele items-center flex-wrap'>
-					<button onClick={filterText} class={purpleBtnWrapper}>
-						<span className='relative text-xl  px-8 py-4 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+				<div className="flex align-middele items-center flex-wrap">
+					<button onClick={filterText} className={purpleBtnWrapper}>
+						<span className={purpleBtnWrapperInner}>
 							Remove not containing
 						</span>
 					</button>
 					<button
 						onClick={filterTextOpposite}
-						className='relative text-xl inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800'>
-						<span className='relative px-8 py-4  text-xl transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+						className="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800"
+					>
+						<span className="relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 							Remove containing
 						</span>
 					</button>
 
 					<button
 						onClick={removeNonUrls}
-						className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-						<span className='relative px-8 py-4  text-xl transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+						className=" relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+					>
+						<span className="relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 							Remove all text except URLs
 						</span>
 					</button>
 					{removeClicked && (
 						<>
-							<div className='flex align-middle'>
+							<div className="flex align-middle">
 								<button
 									onClick={() => {
 										setInputText('');
 										setOutputText('');
 										setFilter('');
-										setSuccessMessage('URLS cleared');
+										setSuccessMessage('URLs cleared');
 										setRemainingUrlsCount(0);
 									}}
-									className=' relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-									<span className='relative  px-8 py-4  text-xl transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+									className=" relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+								>
+									<span className="relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 										Clear input
 									</span>
 								</button>
@@ -250,12 +257,14 @@ function FilteredTextComponent() {
 					)}
 					{remainingUrlsCount > 0 && !extractClicked && (
 						<div
-							className='text-gray-500 flex 
-					 items-baseline flex-col'>
+							className="text-gray-500 flex 
+					 items-baseline flex-col"
+						>
 							<button
 								onClick={openUrls}
-								className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-								<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+								className="flex relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+							>
+								<span className="relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 									Open urls
 								</span>
 							</button>
@@ -263,18 +272,19 @@ function FilteredTextComponent() {
 					)}
 
 					{remainingUrlsCount > 0 && (
-						<div className='text-gray-500  flex items-baseline flex-col'>
+						<div className="text-gray-500  flex items-baseline flex-col">
 							<button
 								onClick={handleCopyClick}
-								className='flex relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800'>
-								<span className='relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
+								className="flex relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-xs font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-pink-200 dark:focus:ring-pink-800"
+							>
+								<span className="relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
 									{copied ? 'Copied!' : 'Copy 50 URLs'}{' '}
 								</span>
 							</button>
 						</div>
 					)}
 					{remainingUrlsCount > 0 && !extractClicked && (
-						<span className='text-white'>
+						<span className="text-white">
 							Remaining individual URLs: {remainingUrlsCount}
 						</span>
 					)}
@@ -282,15 +292,27 @@ function FilteredTextComponent() {
 
 				{outputText && (
 					<>
-						<div className='flex justify-end items-center mt-4'>
+						<div className="flex justify-end items-center mt-4">
 							<button
 								onClick={copyToClipboard}
-								class={purpleBtnWrapper}>
-								<span className='relative  px-8 py-4  text-xl transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0'>
-									Copy to
+								class={purpleBtnWrapper}
+							>
+								<span className="relative px-2.5 py-1.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+									Copy to Clipboard
 								</span>
 							</button>
 						</div>
+					</>
+				)}
+
+				{successMessage && (
+					<>
+						{' '}
+						<AlertMessage
+							id="toast-success"
+							type="success"
+							message={successMessage}
+						/>
 					</>
 				)}
 
@@ -299,11 +321,35 @@ function FilteredTextComponent() {
 						preBlocks.length > 1
 							? 'mt-10 overflow-y-scroll max-h-60'
 							: '0'
-					}`}>
-					<pre className='language-jsx mt-4 whitespace-pre-wrap bg-gray-800 rounded-md p-4'>
-						<code className='language-html text-gray-100'>
-							{outputText}
-						</code>
+					}`}
+				>
+					<pre className="language-jsx mt-4 whitespace-pre-wrap bg-gray-800 rounded-md p-4">
+						{preBlocks.map((block, index) => (
+							<code
+								className="language-html break-all text-gray-100 block"
+								key={index}
+							>
+								{block
+									.split(/(https?:\/\/[^\s]+)/g)
+									.map((text, idx) => {
+										if (text.match(/https?:\/\/[^\s]+/g)) {
+											return (
+												<a
+													key={idx}
+													href={text}
+													target="_blank"
+													rel="noopener noreferrer"
+													className="text-blue-500 hover:underline"
+												>
+													{text}
+												</a>
+											);
+										} else {
+											return text;
+										}
+									})}
+							</code>
+						))}
 					</pre>
 				</div>
 			</article>

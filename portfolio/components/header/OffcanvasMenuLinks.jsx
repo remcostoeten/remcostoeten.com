@@ -45,11 +45,9 @@ export default function OffcanvasMenuLinks(props) {
 	];
 
 	const handleItemClick = () => {
-		handleCloseMenu(); 
+		handleCloseMenu();
 		document.body.classList.add('menu-closed');
-	
 	};
-	
 
 	return (
 		<ul className="offcanvas-menu__items">
