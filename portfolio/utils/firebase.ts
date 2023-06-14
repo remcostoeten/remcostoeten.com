@@ -32,12 +32,12 @@ const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 const auth = getAuth();
 
-async function getUserExpenses(userId) {
+async function getUserExpenses(userId: any) {
   const expensesRef = collection(db, "expenses");
   const userExpensesQuery = query(expensesRef, where("userId", "==", userId));
   const expensesSnapshot = await getDocs(userExpensesQuery);
 
-  const expenses = [];
+  const expenses: any = [];
   expensesSnapshot.forEach((doc) => {
     expenses.push({ id: doc.id, ...doc.data() });
   });
@@ -45,7 +45,7 @@ async function getUserExpenses(userId) {
   return expenses;
 }
 
-async function getMaxBudget(userId) {
+async function getMaxBudget(userId: any) {
   const budgetRef = doc(db, "budgets", userId);
   const budgetSnap = await getDoc(budgetRef);
 
@@ -56,7 +56,7 @@ async function getMaxBudget(userId) {
   }
 }
 
-async function setMaxBudget(userId, maxBudget) {
+async function setMaxBudget(userId: any , maxBudget: any) {
   const budgetRef = doc(db, "budgets", userId);
   await setDoc(budgetRef, { maxBudget });
 }
