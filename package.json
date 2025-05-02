@@ -33,7 +33,7 @@
 		"classnames": "^2.3.2",
 		"clsx": "^1.2.1",
 		"eslint": "8.38.0",
-		"eslint-config-next": "13.3.0",
+		"eslint-config-next": "14.1.0",
 		"firebase": "^9.20.0",
 		"framer-motion": "^10.12.11",
 		"gsap": "^3.11.5",
